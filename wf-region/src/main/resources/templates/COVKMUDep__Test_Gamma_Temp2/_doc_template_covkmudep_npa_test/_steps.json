@@ -1,0 +1,29 @@
+{
+	"oProperties":{ 
+      "bSkipStepCreate":true
+       },
+  "_:Watch": {
+	"_default_author": {
+      "oMission": {"sKey_Right":"SignRelease"},
+      "oRights": {
+      	"Manage": {},
+      	"SignComment": {}
+      }
+    },
+    "_default_accept": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},      	
+      	"SignComment": {},
+         "ManageAttachNeedSignECP": {}
+      },
+		"bNeedECP": true,
+       	"oProperties": {
+        "sasKey_Field_SignECP": "oTable_Attachments.oFile"
+      }
+    }
+},
+   
+  "step_create:Create": {},
+  "step_accept:Accept": {"property": {"nSubscribersMin": "1"}}
+}

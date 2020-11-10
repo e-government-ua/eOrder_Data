@@ -1,0 +1,131 @@
+{
+  "aField": [
+    {
+      "sKey": "nID",
+      "sKey_Type": "long",
+      "sName": "ID поля",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+	{
+      "sKey": "sID",
+      "sKey_Type": "string",
+      "sName": "sID",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "oProcessDocument.sID_Document",
+      "sKey_Type": "string",
+      "sName": "ID Документу",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false,
+      "asMetaAttribute": ["sURL=/documents/sID_Order=[]"]
+    },
+    {
+      "sKey": "oProcessDocument.sURL_Document",
+      "sKey_Type": "string",
+      "sName": "Посилання на документ",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false,
+      "nSizeBytes": 500
+    },
+    {
+      "sKey": "sNumberIncome",
+      "sKey_Type": "string",
+      "sName": "Номер вхідного звернення",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "sNumberCorresp",
+      "sKey_Type": "string",
+      "sName": "Вих.№ кореспондента",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "sDateCorresp",
+      "sKey_Type": "string",
+      "sName": "Вих. дата кореспондента",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "sCorresp",
+      "sKey_Type": "string",
+      "sName": "Кореспондент",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "sContent",
+      "sKey_Type": "string",
+      "sName": "Короткий зміст (html)",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false,
+      "nSizeBytes": 1000
+    },
+    {
+      "sKey": "sDateRegistration",
+      "sKey_Type": "string",
+      "sName": "Дата вихідного звернення",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "sLoginAuthor",
+      "sKey_Type": "string",
+      "sName": "Логін автора",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+     {
+      "sKey": "ID_",
+      "sKey_Type": "string",
+      "sName": "ID поля системного",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": true,
+      "bRequired": false
+     }
+  ],
+  "oProperties": {
+    "sKey_Field_UniqAuto": "nID",
+    "asKey_Field_Uniq": [
+      "sID"
+    ],
+    "asKey_BP_Registry": [
+      "_doc_template_UB_income"
+    ],
+    "sFormula_Registry": "",
+	"sName": "Реєстрація вх. УБ",
+	"sID_SubjectSystem": "GoogleExcel_iCore",
+	"sKey_Entity": "106VPVyDw2cLiroVco6UsD8zeMSNx9VAp4aoZdV-UtCE/income"
+  },
+  "bReadonly": false,
+  "bHide": false,
+  "bRequired": false
+}

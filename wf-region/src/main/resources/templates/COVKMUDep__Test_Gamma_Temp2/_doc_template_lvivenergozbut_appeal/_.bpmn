@@ -1,0 +1,840 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="_doc_template_lvivenergozbut_appeal" name="Звернення" isExecutable="true">
+    <documentation>;bTemplated=true</documentation>
+    <startEvent id="startevent1" name="Start">
+      <extensionElements>
+        <activiti:formProperty id="oProcessSubject_Executor_1" name="Виконавець завдання; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTable_listener" name="Учасники; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Додатки; ;bNew=true" type="table"></activiti:formProperty>
+      </extensionElements>
+    </startEvent>
+    <userTask id="usertask1" name="Створення звернення">
+      <extensionElements>
+        <activiti:formProperty id="sKey_Private" name="Реєстраційний номер;;writable=false,bImportFieldSkip=true" type="string"></activiti:formProperty>
+        <activiti:formProperty id="asRecorder" name="Реєстратор" type="enum" required="true">
+          <activiti:value id="sRecorder_0" name="921 - ЦОК № 1"></activiti:value>
+          <activiti:value id="sRecorder_1" name="922 - ЦОК № 2"></activiti:value>
+          <activiti:value id="sRecorder_2" name="923 - ЦОК № 3"></activiti:value>
+          <activiti:value id="sRecorder_3" name="924 - ЦОК № 4"></activiti:value>
+          <activiti:value id="sRecorder_4" name="925 - ЦОК № 5"></activiti:value>
+          <activiti:value id="sRecorder_5" name="926 - ЦОК № 6"></activiti:value>
+          <activiti:value id="sRecorder_6" name="927 - ЦОК № 7"></activiti:value>
+          <activiti:value id="sRecorder_7" name="928 - ЦОК № 8"></activiti:value>
+          <activiti:value id="sRecorder_8" name="929 - ЦОК № 9"></activiti:value>
+          <activiti:value id="sRecorder_9" name="930 - ЦОК № 10"></activiti:value>
+          <activiti:value id="sRecorder_10" name="931 - ЦОК № 11"></activiti:value>
+          <activiti:value id="sRecorder_11" name="932 - ЦОК № 12"></activiti:value>
+          <activiti:value id="sRecorder_12" name="902 - Канцелярія"></activiti:value>
+          <activiti:value id="sRecorder_13" name="910 - Інформативно-консультаційний центр"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asRegister" name="Реєстр" type="enum" required="true">
+          <activiti:value id="sRegister_0" name="Реєстр звернень громадян"></activiti:value>
+          <activiti:value id="sRegister_1" name="Реєстр звернень юридичних осіб"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sZverneniaNomer" name="Звернення №" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sFioName" name="ПІБ" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLegalName" name="Назва" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLegalNumber" name="Вхідний номер кореспондента" type="string"></activiti:formProperty>
+        <activiti:formProperty id="asQuestionNew" name="Тип порушеного питання" type="enum" required="true">
+          <activiti:value id="q1" name="Облік"></activiti:value>
+          <activiti:value id="q2" name="Договір про постачання електричної енергії"></activiti:value>
+          <activiti:value id="q3" name="Відключення за несплату рахунків"></activiti:value>
+          <activiti:value id="q4" name="Виставлення рахунків"></activiti:value>
+          <activiti:value id="q5" name="Ціна"></activiti:value>
+          <activiti:value id="q6" name="Зміна постачальника"></activiti:value>
+          <activiti:value id="q7" name="Відшкодування/компенсація"></activiti:value>
+          <activiti:value id="q8" name="Неконкурентна поведінка"></activiti:value>
+          <activiti:value id="q9" name="Пільги, субсидії"></activiti:value>
+          <activiti:value id="q10" name="Інформація від споживачів про крадіжки електроенергії"></activiti:value>
+          <activiti:value id="q11" name="Скарги на працівників компанії"></activiti:value>
+          <activiti:value id="q12" name="Додаткові послуги споживачеві"></activiti:value>
+          <activiti:value id="q13" name="Надання іншої довідкової інформації"></activiti:value>
+          <activiti:value id="q14" name="Питання розподілу електричної енергії, які не стосуються електропостачальника"></activiti:value>
+          <activiti:value id="q15" name="Звернення, які не стосуються питань електропостачання"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sEssence" name="Короткий опис змісту звернення" type="textArea" required="true"></activiti:formProperty>
+        <activiti:formProperty id="asQuestion" name="Тип порушеного питання OLD;;bVisible=false" type="enum">
+          <activiti:value id="sQuestion_0" name="Проведення заміни приладів обліку електричної енергії у населення та їх технічної перевірки і експертизи"></activiti:value>
+          <activiti:value id="sQuestion_1" name="Розрахунки за спожиту електричну енергію, застосування тарифів та надання пільг за спожиту електричну енергію для населення"></activiti:value>
+          <activiti:value id="sQuestion_2" name="Отримання, узгодження та виконання технічних умов приєднання до електричних мереж нових або реконструйованих електроустановок"></activiti:value>
+          <activiti:value id="sQuestion_3" name="Взаєморозрахунки між сторонами під час приєднання електроустановок до електричних мереж електропередавальної організації або основного споживача"></activiti:value>
+          <activiti:value id="sQuestion_4" name="Проведення проектних, будівельно-монтажних та налагоджувальних робіт, пов'язаних з виконанням технічних умов"></activiti:value>
+          <activiti:value id="sQuestion_5" name="Уведення в експлуатацію новозбудованих електроустановок"></activiti:value>
+          <activiti:value id="sQuestion_6" name="Порядок та умови включення резервних джерел живлення з метою забезпечення категорійності та надійності електропостачання"></activiti:value>
+          <activiti:value id="sQuestion_7" name="Тимчасове користування електричною енергією"></activiti:value>
+          <activiti:value id="sQuestion_8" name="Переоформлення договору про користування електричною енергією або постачання електричної енергії при зміні власника"></activiti:value>
+          <activiti:value id="sQuestion_9" name="Установлення договірних величин споживання електричної енергії та потужності, коригування та стягнення плати за перевищення договірних величин споживання"></activiti:value>
+          <activiti:value id="sQuestion_10" name="Перехід на розрахунки за тарифом, диференційованим за періодами часу"></activiti:value>
+          <activiti:value id="sQuestion_11" name="Оплата за реактивну електричну енергію"></activiti:value>
+          <activiti:value id="sQuestion_12" name="Порядок укладення договорів про спільне використання технологічних мереж та/або технічне забезпечення електропостачання споживача"></activiti:value>
+          <activiti:value id="sQuestion_13" name="Установлення, ремонт або заміна приладів обліку"></activiti:value>
+          <activiti:value id="sQuestion_14" name="Технічний стан електромереж"></activiti:value>
+          <activiti:value id="sQuestion_15" name="Надійність та якість електропостачання"></activiti:value>
+          <activiti:value id="sQuestion_16" name="Скарги на роботу персоналу Компанії"></activiti:value>
+          <activiti:value id="sQuestion_17" name="Відновлення енергопостачання після відключення електроустановок споживача у зв'язку з несплатою заборгованості за спожиту електроенергію"></activiti:value>
+          <activiti:value id="sQuestion_18" name="Інші"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sAddress" name="Адреса відправника" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sEmail" name="Електронна пошта" type="string"></activiti:formProperty>
+        <activiti:formProperty id="asTenKode" name="10-й код; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asMethodOfReceipt" name="Реєстр" type="enum">
+          <activiti:value id="sReceipt_0" name="пошта"></activiti:value>
+          <activiti:value id="sReceipt_1" name="ел. пошта"></activiti:value>
+          <activiti:value id="sReceipt_2" name="наручно"></activiti:value>
+          <activiti:value id="sReceipt_3" name="кур'єрська доставка"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asForwardedFrom" name="Переслано від" type="enum" required="true">
+          <activiti:value id="sReceipt_0" name="ЛОКЦ"></activiti:value>
+          <activiti:value id="sReceipt_1" name="ГарячаУрядоваЛінія"></activiti:value>
+          <activiti:value id="sReceipt_2" name="ЛМР"></activiti:value>
+          <activiti:value id="sReceipt_3" name="Міська Рада"></activiti:value>
+          <activiti:value id="sReceipt_4" name="Поліція"></activiti:value>
+          <activiti:value id="sReceipt_5" name="Прокуратура"></activiti:value>
+          <activiti:value id="sReceipt_7" name="Споживач"></activiti:value>
+          <activiti:value id="sReceipt_8" name="Гаряча лінія області"></activiti:value>
+          <activiti:value id="sReceipt_9" name="ПрАТ Львівобленерго"></activiti:value>
+          <activiti:value id="sReceipt_10" name="ЛОДА"></activiti:value>
+          <activiti:value id="sReceipt_6" name="інше"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sFile" name="Додаток; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Печатна форма;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1RjujueoXGLMU2vIlaiibkK9vw-c0AwnI9tAhuBjs8z0', 'sSourceType':'GoogleDoc'}" readable="false"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextConsideration" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на розгляд надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextAgree" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на затвердження надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextSeen" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на ознайомлення надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="oProcessSubject_Executor_1" name="Виконавець; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="oProcessSubject_Controller_1" name="Контролер; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select"></activiti:formProperty>
+        <activiti:formProperty id="marker_fio" name="marker_fio" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sFioName&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asRegister&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sRegister_0'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_legal" name="marker_legal" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sLegalName&quot;,&quot;sLegalNumber&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asRegister&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sRegister_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_fio_req" name="marker_fio_req" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sFioName&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asRegister&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sRegister_0'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_legal_req" name="marker_legal_req" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sLegalName&quot;,&quot;sLegalNumber&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asRegister&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sRegister_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_count" name="СЧЕТЧИК" type="markers" default="{&quot;motion&quot;:{&quot;GenerateCounterCustom_1&quot;:{&quot;aID&quot;:[{&quot;sFormula&quot;:&quot;(new Date()).getFullYear()+'_[id=asRegister]'&quot;}],&quot;sFormulaResult&quot;:&quot;'[id=asRegister]' === 'sRegister_1' ? '[asRecorder]'.substring(0, 3)+'-з-[0]' : '[asRecorder]'.substring(0, 3)+'-'+'[sFioName]'.substring(0, 1)+'-[0]-з'&quot;,&quot;sID_Field_Target&quot;:&quot;sKey_Private&quot;,&quot;sKey_StepType_Condition&quot;:&quot;Create&quot;,&quot;sEvent_Condition&quot;:&quot;Submit_Before&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sCountFull" name="Номер звернення СТАРЫЙ; ;bVisible=false" type="string"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="usertask1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.setDocumentTasksRightsNeed(execution, true, "_")}]]></conditionExpression>
+    </sequenceFlow>
+    <serviceTask id="servicetask1" name="e-mail consideration" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[iDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTextConsideration]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_consideration]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway" default="flow7"></exclusiveGateway>
+    <userTask id="usertask2" name="Розгляд звернення :: ${sFioName}${sLegalName} - № ${sKey_Private}" default="flow17">
+      <extensionElements>
+        <activiti:formProperty id="sKey_Private" name="Реєстраційний номер;;writable=false,bImportFieldSkip=true" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sCountFull" name="Номер звернення СТАРЫЙ; ;writable=false,bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="asRecorder" name="Реєстратор" type="enum" writable="false">
+          <activiti:value id="sRecorder_0" name="921 - ЦОК № 1"></activiti:value>
+          <activiti:value id="sRecorder_1" name="922 - ЦОК № 2"></activiti:value>
+          <activiti:value id="sRecorder_2" name="923 - ЦОК № 3"></activiti:value>
+          <activiti:value id="sRecorder_3" name="924 - ЦОК № 4"></activiti:value>
+          <activiti:value id="sRecorder_4" name="925 - ЦОК № 5"></activiti:value>
+          <activiti:value id="sRecorder_5" name="926 - ЦОК № 6"></activiti:value>
+          <activiti:value id="sRecorder_6" name="927 - ЦОК № 7"></activiti:value>
+          <activiti:value id="sRecorder_7" name="928 - ЦОК № 8"></activiti:value>
+          <activiti:value id="sRecorder_8" name="929 - ЦОК № 9"></activiti:value>
+          <activiti:value id="sRecorder_9" name="930 - ЦОК № 10"></activiti:value>
+          <activiti:value id="sRecorder_10" name="931 - ЦОК № 11"></activiti:value>
+          <activiti:value id="sRecorder_11" name="932 - ЦОК № 12"></activiti:value>
+          <activiti:value id="sRecorder_12" name="902 - Канцелярія"></activiti:value>
+          <activiti:value id="sRecorder_13" name="910 - Інформативно-консультаційний центр"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asRegister" name="Реєстр" type="enum" writable="false">
+          <activiti:value id="sRegister_0" name="Реєстр звернень громадян"></activiti:value>
+          <activiti:value id="sRegister_1" name="Реєстр звернень юридичних осіб"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sZverneniaNomer" name="Звернення №" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sFioName" name="ПІБ" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLegalName" name="Назва" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLegalNumber" name="Вхідний номер кореспондента" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="asQuestionNew" name="Тип порушеного питання" type="enum">
+          <activiti:value id="q1" name="Облік"></activiti:value>
+          <activiti:value id="q2" name="Договір про постачання електричної енергії"></activiti:value>
+          <activiti:value id="q3" name="Відключення за несплату рахунків"></activiti:value>
+          <activiti:value id="q4" name="Виставлення рахунків"></activiti:value>
+          <activiti:value id="q5" name="Ціна"></activiti:value>
+          <activiti:value id="q6" name="Зміна постачальника"></activiti:value>
+          <activiti:value id="q7" name="Відшкодування/компенсація"></activiti:value>
+          <activiti:value id="q8" name="Неконкурентна поведінка"></activiti:value>
+          <activiti:value id="q9" name="Пільги, субсидії"></activiti:value>
+          <activiti:value id="q10" name="Інформація від споживачів про крадіжки електроенергії"></activiti:value>
+          <activiti:value id="q11" name="Скарги на працівників компанії"></activiti:value>
+          <activiti:value id="q12" name="Додаткові послуги споживачеві"></activiti:value>
+          <activiti:value id="q13" name="Надання іншої довідкової інформації"></activiti:value>
+          <activiti:value id="q14" name="Питання розподілу електричної енергії, які не стосуються електропостачальника"></activiti:value>
+          <activiti:value id="q15" name="Звернення, які не стосуються питань електропостачання"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sEssence" name="Короткий опис змісту звернення" type="textArea" required="true"></activiti:formProperty>
+        <activiti:formProperty id="asQuestion" name="Тип порушеного питання OLD;;bVisible=false" type="enum" writable="false">
+          <activiti:value id="sQuestion_0" name="Проведення заміни приладів обліку електричної енергії у населення та їх технічної перевірки і експертизи"></activiti:value>
+          <activiti:value id="sQuestion_1" name="Розрахунки за спожиту електричну енергію, застосування тарифів та надання пільг за спожиту електричну енергію для населення"></activiti:value>
+          <activiti:value id="sQuestion_2" name="Отримання, узгодження та виконання технічних умов приєднання до електричних мереж нових або реконструйованих електроустановок"></activiti:value>
+          <activiti:value id="sQuestion_3" name="Взаєморозрахунки між сторонами під час приєднання електроустановок до електричних мереж електропередавальної організації або основного споживача"></activiti:value>
+          <activiti:value id="sQuestion_4" name="Проведення проектних, будівельно-монтажних та налагоджувальних робіт, пов'язаних з виконанням технічних умов"></activiti:value>
+          <activiti:value id="sQuestion_5" name="Уведення в експлуатацію новозбудованих електроустановок"></activiti:value>
+          <activiti:value id="sQuestion_6" name="Порядок та умови включення резервних джерел живлення з метою забезпечення категорійності та надійності електропостачання"></activiti:value>
+          <activiti:value id="sQuestion_7" name="Тимчасове користування електричною енергією"></activiti:value>
+          <activiti:value id="sQuestion_8" name="Переоформлення договору про користування електричною енергією або постачання електричної енергії при зміні власника"></activiti:value>
+          <activiti:value id="sQuestion_9" name="Установлення договірних величин споживання електричної енергії та потужності, коригування та стягнення плати за перевищення договірних величин споживанн"></activiti:value>
+          <activiti:value id="sQuestion_10" name="Перехід на розрахунки за тарифом, диференційованим за періодами часу"></activiti:value>
+          <activiti:value id="sQuestion_11" name="Оплата за реактивну електричну енергію"></activiti:value>
+          <activiti:value id="sQuestion_12" name="Порядок укладення договорів про спільне використання технологічних мереж та/або технічне забезпечення електропостачання споживача"></activiti:value>
+          <activiti:value id="sQuestion_13" name="Установлення, ремонт або заміна приладів обліку"></activiti:value>
+          <activiti:value id="sQuestion_14" name="Технічний стан електромереж"></activiti:value>
+          <activiti:value id="sQuestion_15" name="Надійність та якість електропостачання"></activiti:value>
+          <activiti:value id="sQuestion_16" name="Скарги на роботу персоналу Компанії"></activiti:value>
+          <activiti:value id="sQuestion_17" name="Відновлення енергопостачання після відключення електроустановок споживача у зв'язку з несплатою заборгованості за спожиту електроенергію"></activiti:value>
+          <activiti:value id="sQuestion_18" name="Інші"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sAddress" name="Адреса відправника" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sEmail" name="Електронна пошта" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="asTenKode" name="10-й код; ;sID_CheckboxTrue=yes" type="enum" default="no" writable="false">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asMethodOfReceipt" name="Реєстр" type="enum" writable="false">
+          <activiti:value id="sReceipt_0" name="пошта"></activiti:value>
+          <activiti:value id="sReceipt_1" name="ел. пошта"></activiti:value>
+          <activiti:value id="sReceipt_2" name="наручно"></activiti:value>
+          <activiti:value id="sReceipt_3" name="кур'єрська доставка"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asForwardedFrom" name="Переслано від" type="enum" writable="false">
+          <activiti:value id="sReceipt_0" name="ЛОКЦ"></activiti:value>
+          <activiti:value id="sReceipt_1" name="ГарячаУрядоваЛінія"></activiti:value>
+          <activiti:value id="sReceipt_2" name="ЛМР"></activiti:value>
+          <activiti:value id="sReceipt_3" name="Міська Рада"></activiti:value>
+          <activiti:value id="sReceipt_4" name="Поліція"></activiti:value>
+          <activiti:value id="sReceipt_5" name="Прокуратура"></activiti:value>
+          <activiti:value id="sReceipt_7" name="Споживач"></activiti:value>
+          <activiti:value id="sReceipt_8" name="Гаряча лінія області"></activiti:value>
+          <activiti:value id="sReceipt_9" name="ПрАТ Львівобленерго"></activiti:value>
+          <activiti:value id="sReceipt_10" name="ЛОДА"></activiti:value>
+          <activiti:value id="sReceipt_6" name="інше"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sFile" name="Додаток; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Печатна форма;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1RjujueoXGLMU2vIlaiibkK9vw-c0AwnI9tAhuBjs8z0', 'sSourceType':'GoogleDoc'}" readable="false"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextConsideration" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на розгляд надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextAgree" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на затвердження надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextSeen" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на ознайомлення надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="oProcessSubject_Executor_1" name="Виконавець; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="oProcessSubject_Controller_1" name="Контролер; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select"></activiti:formProperty>
+        <activiti:formProperty id="marker_full_count" name="Для физ" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sCountFull&quot;],&quot;asID_Field_sValue&quot;:[&quot;[sIndexDepart]-[sFirstCharName][sCount]-з&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asRegister&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sRegister_0'&quot;}}}" readable="false"></activiti:formProperty>
+        <activiti:formProperty id="marker_full_count2" name="для юр лиц" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sCountFull&quot;],&quot;asID_Field_sValue&quot;:[&quot;[sIndexDepart]-З[sCount]&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asRegister&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sRegister_1'&quot;}}}" readable="false"></activiti:formProperty>
+        <activiti:formProperty id="sIndexDepart" name="sIndexDepart; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_fio" name="marker_fio" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sFioName&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asRegister&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sRegister_0'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_legal" name="marker_legal" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sLegalName&quot;,&quot;sLegalNumber&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asRegister&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sRegister_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sCount" name="Count; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sFirstCharName" name="Первая буква фамилии; ;bVisible=false" type="string"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow5" sourceRef="exclusivegateway1" targetRef="exclusivegateway7">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisTypeStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow6" sourceRef="usertask1" targetRef="servicetask8">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[consideration]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow7" sourceRef="exclusivegateway1" targetRef="servicetask1"></sequenceFlow>
+    <userTask id="usertask3" name="Редагуваня :: ${sFioName}${sLegalName} - № ${sKey_Private}" default="FlowButton_SaveChange">
+      <extensionElements>
+        <activiti:formProperty id="sKey_Private" name="Реєстраційний номер;;writable=false,bImportFieldSkip=true" type="string"></activiti:formProperty>
+        <activiti:formProperty id="asRecorder" name="Реєстратор" type="enum" required="true">
+          <activiti:value id="sRecorder_0" name="921 - ЦОК № 1"></activiti:value>
+          <activiti:value id="sRecorder_1" name="922 - ЦОК № 2"></activiti:value>
+          <activiti:value id="sRecorder_2" name="923 - ЦОК № 3"></activiti:value>
+          <activiti:value id="sRecorder_3" name="924 - ЦОК № 4"></activiti:value>
+          <activiti:value id="sRecorder_4" name="925 - ЦОК № 5"></activiti:value>
+          <activiti:value id="sRecorder_5" name="926 - ЦОК № 6"></activiti:value>
+          <activiti:value id="sRecorder_6" name="927 - ЦОК № 7"></activiti:value>
+          <activiti:value id="sRecorder_7" name="928 - ЦОК № 8"></activiti:value>
+          <activiti:value id="sRecorder_8" name="929 - ЦОК № 9"></activiti:value>
+          <activiti:value id="sRecorder_9" name="930 - ЦОК № 10"></activiti:value>
+          <activiti:value id="sRecorder_10" name="931 - ЦОК № 11"></activiti:value>
+          <activiti:value id="sRecorder_11" name="932 - ЦОК № 12"></activiti:value>
+          <activiti:value id="sRecorder_12" name="902 - Канцелярія"></activiti:value>
+          <activiti:value id="sRecorder_13" name="910 - Інформативно-консультаційний центр"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asRegister" name="Реєстр" type="enum" required="true">
+          <activiti:value id="sRegister_0" name="Реєстр звернень громадян"></activiti:value>
+          <activiti:value id="sRegister_1" name="Реєстр звернень юридичних осіб"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sZverneniaNomer" name="Звернення №" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sFioName" name="ПІБ" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLegalName" name="Назва" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLegalNumber" name="Вхідний номер кореспондента" type="string"></activiti:formProperty>
+        <activiti:formProperty id="asQuestionNew" name="Тип порушеного питання" type="enum" required="true">
+          <activiti:value id="q1" name="Облік"></activiti:value>
+          <activiti:value id="q2" name="Договір про постачання електричної енергії"></activiti:value>
+          <activiti:value id="q3" name="Відключення за несплату рахунків"></activiti:value>
+          <activiti:value id="q4" name="Виставлення рахунків"></activiti:value>
+          <activiti:value id="q5" name="Ціна"></activiti:value>
+          <activiti:value id="q6" name="Зміна постачальника"></activiti:value>
+          <activiti:value id="q7" name="Відшкодування/компенсація"></activiti:value>
+          <activiti:value id="q8" name="Неконкурентна поведінка"></activiti:value>
+          <activiti:value id="q9" name="Пільги, субсидії"></activiti:value>
+          <activiti:value id="q10" name="Інформація від споживачів про крадіжки електроенергії"></activiti:value>
+          <activiti:value id="q11" name="Скарги на працівників компанії"></activiti:value>
+          <activiti:value id="q12" name="Додаткові послуги споживачеві"></activiti:value>
+          <activiti:value id="q13" name="Надання іншої довідкової інформації"></activiti:value>
+          <activiti:value id="q14" name="Питання розподілу електричної енергії, які не стосуються електропостачальника"></activiti:value>
+          <activiti:value id="q15" name="Звернення, які не стосуються питань електропостачання"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sEssence" name="Короткий опис змісту звернення" type="textArea" required="true"></activiti:formProperty>
+        <activiti:formProperty id="asQuestion" name="Тип порушеного питання OLD;;bVisible=false" type="enum">
+          <activiti:value id="sQuestion_0" name="Проведення заміни приладів обліку електричної енергії у населення та їх технічної перевірки і експертизи"></activiti:value>
+          <activiti:value id="sQuestion_1" name="Розрахунки за спожиту електричну енергію, застосування тарифів та надання пільг за спожиту електричну енергію для населення"></activiti:value>
+          <activiti:value id="sQuestion_2" name="Отримання, узгодження та виконання технічних умов приєднання до електричних мереж нових або реконструйованих електроустановок"></activiti:value>
+          <activiti:value id="sQuestion_3" name="Взаєморозрахунки між сторонами під час приєднання електроустановок до електричних мереж електропередавальної організації або основного споживача"></activiti:value>
+          <activiti:value id="sQuestion_4" name="Проведення проектних, будівельно-монтажних та налагоджувальних робіт, пов'язаних з виконанням технічних умов"></activiti:value>
+          <activiti:value id="sQuestion_5" name="Уведення в експлуатацію новозбудованих електроустановок"></activiti:value>
+          <activiti:value id="sQuestion_6" name="Порядок та умови включення резервних джерел живлення з метою забезпечення категорійності та надійності електропостачання"></activiti:value>
+          <activiti:value id="sQuestion_7" name="Тимчасове користування електричною енергією"></activiti:value>
+          <activiti:value id="sQuestion_8" name="Переоформлення договору про користування електричною енергією або постачання електричної енергії при зміні власника"></activiti:value>
+          <activiti:value id="sQuestion_9" name="Установлення договірних величин споживання електричної енергії та потужності, коригування та стягнення плати за перевищення договірних величин споживанн"></activiti:value>
+          <activiti:value id="sQuestion_10" name="Перехід на розрахунки за тарифом, диференційованим за періодами часу"></activiti:value>
+          <activiti:value id="sQuestion_11" name="Оплата за реактивну електричну енергію"></activiti:value>
+          <activiti:value id="sQuestion_12" name="Порядок укладення договорів про спільне використання технологічних мереж та/або технічне забезпечення електропостачання споживача"></activiti:value>
+          <activiti:value id="sQuestion_13" name="Установлення, ремонт або заміна приладів обліку"></activiti:value>
+          <activiti:value id="sQuestion_14" name="Технічний стан електромереж"></activiti:value>
+          <activiti:value id="sQuestion_15" name="Надійність та якість електропостачання"></activiti:value>
+          <activiti:value id="sQuestion_16" name="Скарги на роботу персоналу Компанії"></activiti:value>
+          <activiti:value id="sQuestion_17" name="Відновлення енергопостачання після відключення електроустановок споживача у зв'язку з несплатою заборгованості за спожиту електроенергію"></activiti:value>
+          <activiti:value id="sQuestion_18" name="Інші"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sAddress" name="Адреса відправника" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sEmail" name="Електронна пошта" type="string"></activiti:formProperty>
+        <activiti:formProperty id="asTenKode" name="10-й код; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asMethodOfReceipt" name="Реєстр" type="enum">
+          <activiti:value id="sReceipt_0" name="пошта"></activiti:value>
+          <activiti:value id="sReceipt_1" name="ел. пошта"></activiti:value>
+          <activiti:value id="sReceipt_2" name="наручно"></activiti:value>
+          <activiti:value id="sReceipt_3" name="кур'єрська доставка"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asForwardedFrom" name="Переслано від" type="enum" required="true">
+          <activiti:value id="sReceipt_0" name="ЛОКЦ"></activiti:value>
+          <activiti:value id="sReceipt_1" name="ГарячаУрядоваЛінія"></activiti:value>
+          <activiti:value id="sReceipt_2" name="ЛМР"></activiti:value>
+          <activiti:value id="sReceipt_3" name="Міська Рада"></activiti:value>
+          <activiti:value id="sReceipt_4" name="Поліція"></activiti:value>
+          <activiti:value id="sReceipt_5" name="Прокуратура"></activiti:value>
+          <activiti:value id="sReceipt_7" name="Споживач"></activiti:value>
+          <activiti:value id="sReceipt_8" name="Гаряча лінія області"></activiti:value>
+          <activiti:value id="sReceipt_9" name="ПрАТ Львівобленерго"></activiti:value>
+          <activiti:value id="sReceipt_10" name="ЛОДА"></activiti:value>
+          <activiti:value id="sReceipt_6" name="інше"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sFile" name="Додаток; ;bNew=true,bVisible=false" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Печатна форма;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1RjujueoXGLMU2vIlaiibkK9vw-c0AwnI9tAhuBjs8z0', 'sSourceType':'GoogleDoc'}" readable="false"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextConsideration" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на розгляд надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextAgree" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на затвердження надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextSeen" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на ознайомлення надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="oProcessSubject_Executor_1" name="Виконавець; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="oProcessSubject_Controller_1" name="Контролер; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select"></activiti:formProperty>
+        <activiti:formProperty id="marker_fio" name="marker_fio" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sFioName&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asRegister&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sRegister_0'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_legal" name="marker_legal" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sLegalName&quot;,&quot;sLegalNumber&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asRegister&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sRegister_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_fio_req" name="marker_fio_req" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sFioName&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asRegister&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sRegister_0'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_legal_req" name="marker_legal_req" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sLegalName&quot;,&quot;sLegalNumber&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asRegister&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sRegister_1'&quot;}}}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <exclusiveGateway id="exclusivegateway4" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="FlowButton_SaveChangeAndSnos" name="Знести підписи та зберегти зміни;sIF=hasAny-States(Authorship)" sourceRef="usertask3" targetRef="exclusivegateway4">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${resetDocumentSignesListener}">
+          <activiti:field name="sasKey_StepType">
+            <activiti:string><![CDATA[Accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_SaveChangeAndSnos')}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="FlowButton_SaveChange" name="Зберегти зміни;sIF=hasAny-States(Authorship)" sourceRef="usertask3" targetRef="exclusivegateway4">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_SaveChange')}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="FlowButton_Edit" name="Редагувати;sIF=hasAny-States(Authorship)" sourceRef="usertask2" targetRef="usertask3">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[edit]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_Edit')}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow15" sourceRef="exclusivegateway4" targetRef="exclusivegateway1">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[consideration]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow16" sourceRef="servicetask1" targetRef="usertask2"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway5" name="Exclusive Gateway" default="flow18"></exclusiveGateway>
+    <sequenceFlow id="flow17" sourceRef="usertask2" targetRef="exclusivegateway5"></sequenceFlow>
+    <sequenceFlow id="flow18" sourceRef="exclusivegateway5" targetRef="usertask2"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway6" name="Exclusive Gateway" default="flow20"></exclusiveGateway>
+    <sequenceFlow id="flow19" sourceRef="exclusivegateway5" targetRef="exclusivegateway6">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow20" sourceRef="exclusivegateway6" targetRef="usertask2">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:expression><![CDATA[+1]]></activiti:expression>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow21" sourceRef="exclusivegateway6" targetRef="exclusivegateway7">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[seen]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisTypeStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <serviceTask id="servicetask5" name="Начальник ІКЦ" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_consideration]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_consideration]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('TreatmentReview', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sEmailTextConsideration]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow45" sourceRef="servicetask5" targetRef="servicetask1"></sequenceFlow>
+    <scriptTask id="scripttask1" name="для старого счетчика" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>var asRecorder = execution.getVariable('asRecorder');
+var indexRecorder = asRecorder.split('_')[1];
+//номенклатура товариства
+var arr = [921,922,923,924,925,926,927,928,929,930,931,932,902,910];
+var num = arr[indexRecorder];
+
+//Счетичик
+var asRegister = execution.getVariable('asRegister');
+var sCount = execution.getVariable('sCount');
+var firstChar;
+if(asRegister == 'sRegister_0'){
+  //Первая буква фамилии
+    var sFioName = execution.getVariable('sFioName');
+    if(sFioName !== null){
+       firstChar = sFioName.charAt();
+    }
+    var sCountFull = num + '-' + firstChar + sCount + '-з';
+    execution.setVariable('sCountFull', sCountFull);
+}
+
+if(asRegister == 'sRegister_1'){
+  var sCountFull = num + '-З' + sCount;
+    execution.setVariable('sCountFull', sCountFull);
+}</script>
+    </scriptTask>
+    <serviceTask id="servicetask7" name="ЛОКЦ, ГарячаУрядоваЛінія" activiti:delegateExpression="#{MailTaskWithoutAttachment}">
+      <extensionElements>
+        <activiti:field name="from">
+          <activiti:string><![CDATA[noreply@igov.org.ua]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="to">
+          <activiti:expression><![CDATA[${asForwardedFrom=='sReceipt_0' ? 'lvivokc@gmail.com' : 'g@gmail.com'},${asForwardedFrom=='sReceipt_1' ? 'lvivokc@gmail.com' : 'g@gmail.com'}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="text">
+          <activiti:expression><![CDATA[Дякуємо за Ваше звернення. <br>
+Наші працівники вже працюють над відповіддю і нададуть її в найкоротший термін <br>
+<br>
+З повагою, адміністрація ТОВ "Львівенергозбут"]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="subject">
+          <activiti:string><![CDATA[ЛьвівЕнергоЗбут - реєстрація скарги]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <exclusiveGateway id="exclusivegateway7" name="Exclusive Gateway" default="flow50"></exclusiveGateway>
+    <endEvent id="endevent3" name="End"></endEvent>
+    <sequenceFlow id="flow50" sourceRef="exclusivegateway7" targetRef="servicetask9">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[seen]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <serviceTask id="servicetask8" name="e-mail відповідь адресату" activiti:delegateExpression="#{MailTaskWithoutAttachment}">
+      <extensionElements>
+        <activiti:field name="from">
+          <activiti:string><![CDATA[noreply@igov.org.ua]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="to">
+          <activiti:expression><![CDATA[${sEmail !=null ? sEmail : 'g@gmail.com'}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="text">
+          <activiti:expression><![CDATA[Дякуємо за Ваше звернення. <br>
+Наші працівники вже працюють над відповіддю і нададуть її в найкоротший термін <br>
+<br>
+З повагою, адміністрація ТОВ "Львівенергозбут"]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="subject">
+          <activiti:string><![CDATA[ЛьвівЕнергоЗбут - реєстрація скарги]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow51" sourceRef="servicetask8" targetRef="servicetask7"></sequenceFlow>
+    <sequenceFlow id="flow52" sourceRef="servicetask7" targetRef="servicetask5"></sequenceFlow>
+    <serviceTask id="servicetask9" name="e-mail seen" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[iDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTextSeen]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_seen]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <userTask id="usertask4" name="Ознайомлення зі зверненням :: ${sFioName}${sLegalName} - № ${sKey_Private}">
+      <extensionElements>
+        <activiti:formProperty id="sKey_Private" name="Реєстраційний номер;;writable=false,bImportFieldSkip=true" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sCountFull" name="Номер звернення СТАРЫЙ; ;writable=false,bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="asRecorder" name="Реєстратор" type="enum" writable="false">
+          <activiti:value id="sRecorder_0" name="921 - ЦОК № 1"></activiti:value>
+          <activiti:value id="sRecorder_1" name="922 - ЦОК № 2"></activiti:value>
+          <activiti:value id="sRecorder_2" name="923 - ЦОК № 3"></activiti:value>
+          <activiti:value id="sRecorder_3" name="924 - ЦОК № 4"></activiti:value>
+          <activiti:value id="sRecorder_4" name="925 - ЦОК № 5"></activiti:value>
+          <activiti:value id="sRecorder_5" name="926 - ЦОК № 6"></activiti:value>
+          <activiti:value id="sRecorder_6" name="927 - ЦОК № 7"></activiti:value>
+          <activiti:value id="sRecorder_7" name="928 - ЦОК № 8"></activiti:value>
+          <activiti:value id="sRecorder_8" name="929 - ЦОК № 9"></activiti:value>
+          <activiti:value id="sRecorder_9" name="930 - ЦОК № 10"></activiti:value>
+          <activiti:value id="sRecorder_10" name="931 - ЦОК № 11"></activiti:value>
+          <activiti:value id="sRecorder_11" name="932 - ЦОК № 12"></activiti:value>
+          <activiti:value id="sRecorder_12" name="902 - Канцелярія"></activiti:value>
+          <activiti:value id="sRecorder_13" name="910 - Інформативно-консультаційний центр"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asRegister" name="Реєстр" type="enum" writable="false">
+          <activiti:value id="sRegister_0" name="Реєстр звернень громадян"></activiti:value>
+          <activiti:value id="sRegister_1" name="Реєстр звернень юридичних осіб"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sZverneniaNomer" name="Звернення №" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sFioName" name="ПІБ" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLegalName" name="Назва" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLegalNumber" name="Вхідний номер кореспондента" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="asQuestionNew" name="Тип порушеного питання" type="enum">
+          <activiti:value id="q1" name="Облік"></activiti:value>
+          <activiti:value id="q2" name="Договір про постачання електричної енергії"></activiti:value>
+          <activiti:value id="q3" name="Відключення за несплату рахунків"></activiti:value>
+          <activiti:value id="q4" name="Виставлення рахунків"></activiti:value>
+          <activiti:value id="q5" name="Ціна"></activiti:value>
+          <activiti:value id="q6" name="Зміна постачальника"></activiti:value>
+          <activiti:value id="q7" name="Відшкодування/компенсація"></activiti:value>
+          <activiti:value id="q8" name="Неконкурентна поведінка"></activiti:value>
+          <activiti:value id="q9" name="Пільги, субсидії"></activiti:value>
+          <activiti:value id="q10" name="Інформація від споживачів про крадіжки електроенергії"></activiti:value>
+          <activiti:value id="q11" name="Скарги на працівників компанії"></activiti:value>
+          <activiti:value id="q12" name="Додаткові послуги споживачеві"></activiti:value>
+          <activiti:value id="q13" name="Надання іншої довідкової інформації"></activiti:value>
+          <activiti:value id="q14" name="Питання розподілу електричної енергії, які не стосуються електропостачальника"></activiti:value>
+          <activiti:value id="q15" name="Звернення, які не стосуються питань електропостачання"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sEssence" name="Короткий опис змісту звернення" type="textArea" required="true"></activiti:formProperty>
+        <activiti:formProperty id="asQuestion" name="Тип порушеного питання OLD;;bVisible=false" type="enum" writable="false">
+          <activiti:value id="sQuestion_0" name="Проведення заміни приладів обліку електричної енергії у населення та їх технічної перевірки і експертизи"></activiti:value>
+          <activiti:value id="sQuestion_1" name="Розрахунки за спожиту електричну енергію, застосування тарифів та надання пільг за спожиту електричну енергію для населення"></activiti:value>
+          <activiti:value id="sQuestion_2" name="Отримання, узгодження та виконання технічних умов приєднання до електричних мереж нових або реконструйованих електроустановок"></activiti:value>
+          <activiti:value id="sQuestion_3" name="Взаєморозрахунки між сторонами під час приєднання електроустановок до електричних мереж електропередавальної організації або основного споживача"></activiti:value>
+          <activiti:value id="sQuestion_4" name="Проведення проектних, будівельно-монтажних та налагоджувальних робіт, пов'язаних з виконанням технічних умов"></activiti:value>
+          <activiti:value id="sQuestion_5" name="Уведення в експлуатацію новозбудованих електроустановок"></activiti:value>
+          <activiti:value id="sQuestion_6" name="Порядок та умови включення резервних джерел живлення з метою забезпечення категорійності та надійності електропостачання"></activiti:value>
+          <activiti:value id="sQuestion_7" name="Тимчасове користування електричною енергією"></activiti:value>
+          <activiti:value id="sQuestion_8" name="Переоформлення договору про користування електричною енергією або постачання електричної енергії при зміні власника"></activiti:value>
+          <activiti:value id="sQuestion_9" name="Установлення договірних величин споживання електричної енергії та потужності, коригування та стягнення плати за перевищення договірних величин споживанн"></activiti:value>
+          <activiti:value id="sQuestion_10" name="Перехід на розрахунки за тарифом, диференційованим за періодами часу"></activiti:value>
+          <activiti:value id="sQuestion_11" name="Оплата за реактивну електричну енергію"></activiti:value>
+          <activiti:value id="sQuestion_12" name="Порядок укладення договорів про спільне використання технологічних мереж та/або технічне забезпечення електропостачання споживача"></activiti:value>
+          <activiti:value id="sQuestion_13" name="Установлення, ремонт або заміна приладів обліку"></activiti:value>
+          <activiti:value id="sQuestion_14" name="Технічний стан електромереж"></activiti:value>
+          <activiti:value id="sQuestion_15" name="Надійність та якість електропостачання"></activiti:value>
+          <activiti:value id="sQuestion_16" name="Скарги на роботу персоналу Компанії"></activiti:value>
+          <activiti:value id="sQuestion_17" name="Відновлення енергопостачання після відключення електроустановок споживача у зв'язку з несплатою заборгованості за спожиту електроенергію"></activiti:value>
+          <activiti:value id="sQuestion_18" name="Інші"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sAddress" name="Адреса відправника" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sEmail" name="Електронна пошта" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="asTenKode" name="10-й код; ;sID_CheckboxTrue=yes" type="enum" default="no" writable="false">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asMethodOfReceipt" name="Реєстр" type="enum" writable="false">
+          <activiti:value id="sReceipt_0" name="пошта"></activiti:value>
+          <activiti:value id="sReceipt_1" name="ел. пошта"></activiti:value>
+          <activiti:value id="sReceipt_2" name="наручно"></activiti:value>
+          <activiti:value id="sReceipt_3" name="кур'єрська доставка"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asForwardedFrom" name="Переслано від" type="enum" writable="false">
+          <activiti:value id="sReceipt_0" name="ЛОКЦ"></activiti:value>
+          <activiti:value id="sReceipt_1" name="ГарячаУрядоваЛінія"></activiti:value>
+          <activiti:value id="sReceipt_2" name="ЛМР"></activiti:value>
+          <activiti:value id="sReceipt_3" name="Міська Рада"></activiti:value>
+          <activiti:value id="sReceipt_4" name="Поліція"></activiti:value>
+          <activiti:value id="sReceipt_5" name="Прокуратура"></activiti:value>
+          <activiti:value id="sReceipt_7" name="Споживач"></activiti:value>
+          <activiti:value id="sReceipt_8" name="Гаряча лінія області"></activiti:value>
+          <activiti:value id="sReceipt_9" name="ПрАТ Львівобленерго"></activiti:value>
+          <activiti:value id="sReceipt_10" name="ЛОДА"></activiti:value>
+          <activiti:value id="sReceipt_6" name="інше"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sFile" name="Додаток; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Печатна форма;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1RjujueoXGLMU2vIlaiibkK9vw-c0AwnI9tAhuBjs8z0', 'sSourceType':'GoogleDoc'}" readable="false"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextConsideration" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на розгляд надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextAgree" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на затвердження надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextSeen" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на ознайомлення надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="oProcessSubject_Executor_1" name="Виконавець; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="oProcessSubject_Controller_1" name="Контролер; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select"></activiti:formProperty>
+        <activiti:formProperty id="marker_full_count" name="Для физ" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sCountFull&quot;],&quot;asID_Field_sValue&quot;:[&quot;[sIndexDepart]-[sFirstCharName][sCount]-з&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asRegister&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sRegister_0'&quot;}}}" readable="false"></activiti:formProperty>
+        <activiti:formProperty id="marker_full_count2" name="для юр лиц" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sCountFull&quot;],&quot;asID_Field_sValue&quot;:[&quot;[sIndexDepart]-З[sCount]&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asRegister&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sRegister_1'&quot;}}}" readable="false"></activiti:formProperty>
+        <activiti:formProperty id="sIndexDepart" name="sIndexDepart; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_fio" name="marker_fio" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sFioName&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asRegister&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sRegister_0'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_legal" name="marker_legal" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sLegalName&quot;,&quot;sLegalNumber&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asRegister&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sRegister_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sCount" name="Count; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sFirstCharName" name="Первая буква фамилии; ;bVisible=false" type="string"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow53" sourceRef="servicetask9" targetRef="usertask4"></sequenceFlow>
+    <sequenceFlow id="flow54" sourceRef="usertask4" targetRef="exclusivegateway8"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway8" name="Exclusive Gateway" default="flow55"></exclusiveGateway>
+    <exclusiveGateway id="exclusivegateway9" name="Exclusive Gateway" default="flow57"></exclusiveGateway>
+    <sequenceFlow id="flow55" sourceRef="exclusivegateway8" targetRef="usertask4"></sequenceFlow>
+    <sequenceFlow id="flow56" sourceRef="exclusivegateway8" targetRef="exclusivegateway9">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow57" sourceRef="exclusivegateway9" targetRef="usertask4">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:expression><![CDATA[+1]]></activiti:expression>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow58" sourceRef="exclusivegateway9" targetRef="endevent3">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisTypeStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow59" sourceRef="exclusivegateway7" targetRef="endevent3">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisTypeStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram__doc_template_lvivenergozbut_appeal">
+    <bpmndi:BPMNPlane bpmnElement="_doc_template_lvivenergozbut_appeal" id="BPMNPlane__doc_template_lvivenergozbut_appeal">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="1.0" y="61.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="74.0" width="121.0" x="80.0" y="42.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask1" id="BPMNShape_servicetask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="520.0" y="123.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway1" id="BPMNShape_exclusivegateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="325.0" y="1.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask2" id="BPMNShape_usertask2">
+        <omgdc:Bounds height="80.0" width="137.0" x="504.0" y="200.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask3" id="BPMNShape_usertask3">
+        <omgdc:Bounds height="84.0" width="131.0" x="785.0" y="198.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway4" id="BPMNShape_exclusivegateway4">
+        <omgdc:Bounds height="40.0" width="40.0" x="830.0" y="1.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway5" id="BPMNShape_exclusivegateway5">
+        <omgdc:Bounds height="40.0" width="40.0" x="552.0" y="301.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway6" id="BPMNShape_exclusivegateway6">
+        <omgdc:Bounds height="40.0" width="40.0" x="440.0" y="301.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask5" id="BPMNShape_servicetask5">
+        <omgdc:Bounds height="55.0" width="105.0" x="520.0" y="51.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask1" id="BPMNShape_scripttask1">
+        <omgdc:Bounds height="68.0" width="111.0" x="739.0" y="450.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask7" id="BPMNShape_servicetask7">
+        <omgdc:Bounds height="65.0" width="115.0" x="366.0" y="48.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway7" id="BPMNShape_exclusivegateway7">
+        <omgdc:Bounds height="40.0" width="40.0" x="326.0" y="301.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent3" id="BPMNShape_endevent3">
+        <omgdc:Bounds height="35.0" width="35.0" x="105.0" y="400.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask8" id="BPMNShape_servicetask8">
+        <omgdc:Bounds height="60.0" width="105.0" x="226.0" y="51.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask9" id="BPMNShape_servicetask9">
+        <omgdc:Bounds height="55.0" width="105.0" x="293.0" y="380.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask4" id="BPMNShape_usertask4">
+        <omgdc:Bounds height="81.0" width="142.0" x="276.0" y="457.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway8" id="BPMNShape_exclusivegateway8">
+        <omgdc:Bounds height="40.0" width="40.0" x="326.0" y="560.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway9" id="BPMNShape_exclusivegateway9">
+        <omgdc:Bounds height="40.0" width="40.0" x="182.0" y="560.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="36.0" y="78.0"></omgdi:waypoint>
+        <omgdi:waypoint x="80.0" y="79.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="345.0" y="41.0"></omgdi:waypoint>
+        <omgdi:waypoint x="346.0" y="301.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="201.0" y="79.0"></omgdi:waypoint>
+        <omgdi:waypoint x="226.0" y="81.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
+        <omgdi:waypoint x="345.0" y="41.0"></omgdi:waypoint>
+        <omgdi:waypoint x="345.0" y="150.0"></omgdi:waypoint>
+        <omgdi:waypoint x="520.0" y="150.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_SaveChangeAndSnos" id="BPMNEdge_FlowButton_SaveChangeAndSnos">
+        <omgdi:waypoint x="916.0" y="240.0"></omgdi:waypoint>
+        <omgdi:waypoint x="947.0" y="238.0"></omgdi:waypoint>
+        <omgdi:waypoint x="947.0" y="21.0"></omgdi:waypoint>
+        <omgdi:waypoint x="870.0" y="21.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="70.0" width="100.0" x="954.0" y="131.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_SaveChange" id="BPMNEdge_FlowButton_SaveChange">
+        <omgdi:waypoint x="850.0" y="198.0"></omgdi:waypoint>
+        <omgdi:waypoint x="850.0" y="41.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="750.0" y="131.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_Edit" id="BPMNEdge_FlowButton_Edit">
+        <omgdi:waypoint x="641.0" y="240.0"></omgdi:waypoint>
+        <omgdi:waypoint x="785.0" y="240.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="658.0" y="240.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow15" id="BPMNEdge_flow15">
+        <omgdi:waypoint x="830.0" y="21.0"></omgdi:waypoint>
+        <omgdi:waypoint x="365.0" y="21.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow16" id="BPMNEdge_flow16">
+        <omgdi:waypoint x="572.0" y="178.0"></omgdi:waypoint>
+        <omgdi:waypoint x="572.0" y="200.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow17" id="BPMNEdge_flow17">
+        <omgdi:waypoint x="641.0" y="240.0"></omgdi:waypoint>
+        <omgdi:waypoint x="648.0" y="262.0"></omgdi:waypoint>
+        <omgdi:waypoint x="648.0" y="320.0"></omgdi:waypoint>
+        <omgdi:waypoint x="592.0" y="321.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow18" id="BPMNEdge_flow18">
+        <omgdi:waypoint x="572.0" y="301.0"></omgdi:waypoint>
+        <omgdi:waypoint x="572.0" y="280.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow19" id="BPMNEdge_flow19">
+        <omgdi:waypoint x="552.0" y="321.0"></omgdi:waypoint>
+        <omgdi:waypoint x="480.0" y="321.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow20" id="BPMNEdge_flow20">
+        <omgdi:waypoint x="460.0" y="301.0"></omgdi:waypoint>
+        <omgdi:waypoint x="460.0" y="239.0"></omgdi:waypoint>
+        <omgdi:waypoint x="504.0" y="240.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow21" id="BPMNEdge_flow21">
+        <omgdi:waypoint x="440.0" y="321.0"></omgdi:waypoint>
+        <omgdi:waypoint x="366.0" y="321.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow45" id="BPMNEdge_flow45">
+        <omgdi:waypoint x="572.0" y="106.0"></omgdi:waypoint>
+        <omgdi:waypoint x="572.0" y="123.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow50" id="BPMNEdge_flow50">
+        <omgdi:waypoint x="346.0" y="341.0"></omgdi:waypoint>
+        <omgdi:waypoint x="345.0" y="380.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow51" id="BPMNEdge_flow51">
+        <omgdi:waypoint x="331.0" y="81.0"></omgdi:waypoint>
+        <omgdi:waypoint x="366.0" y="80.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow52" id="BPMNEdge_flow52">
+        <omgdi:waypoint x="481.0" y="80.0"></omgdi:waypoint>
+        <omgdi:waypoint x="520.0" y="78.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow53" id="BPMNEdge_flow53">
+        <omgdi:waypoint x="345.0" y="435.0"></omgdi:waypoint>
+        <omgdi:waypoint x="347.0" y="457.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow54" id="BPMNEdge_flow54">
+        <omgdi:waypoint x="418.0" y="497.0"></omgdi:waypoint>
+        <omgdi:waypoint x="469.0" y="497.0"></omgdi:waypoint>
+        <omgdi:waypoint x="469.0" y="580.0"></omgdi:waypoint>
+        <omgdi:waypoint x="366.0" y="580.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow55" id="BPMNEdge_flow55">
+        <omgdi:waypoint x="346.0" y="560.0"></omgdi:waypoint>
+        <omgdi:waypoint x="347.0" y="538.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow56" id="BPMNEdge_flow56">
+        <omgdi:waypoint x="326.0" y="580.0"></omgdi:waypoint>
+        <omgdi:waypoint x="222.0" y="580.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow57" id="BPMNEdge_flow57">
+        <omgdi:waypoint x="202.0" y="560.0"></omgdi:waypoint>
+        <omgdi:waypoint x="202.0" y="497.0"></omgdi:waypoint>
+        <omgdi:waypoint x="276.0" y="497.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow58" id="BPMNEdge_flow58">
+        <omgdi:waypoint x="182.0" y="580.0"></omgdi:waypoint>
+        <omgdi:waypoint x="122.0" y="579.0"></omgdi:waypoint>
+        <omgdi:waypoint x="122.0" y="435.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow59" id="BPMNEdge_flow59">
+        <omgdi:waypoint x="326.0" y="321.0"></omgdi:waypoint>
+        <omgdi:waypoint x="122.0" y="321.0"></omgdi:waypoint>
+        <omgdi:waypoint x="122.0" y="400.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

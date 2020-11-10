@@ -1,0 +1,19 @@
+{
+  "aField": [
+    {
+      "id": "sDescription",
+      "name": "Коментар",
+      "type": "string"
+    },
+    {
+      "id": "sName",
+      "name": "Назва додатка",
+      "type": "string"
+    },
+    {
+      "id": "sFile",
+      "name": "Додаток;;bNew=true",
+      "type": "file"
+    }
+  ]
+}

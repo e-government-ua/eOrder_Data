@@ -1,0 +1,31 @@
+[
+{
+  "sKey_ProcessTaskType":"Controller",
+  "oProcessTaskSubjectStatusCategory_FilterLogicalVO":{"aOr":[{"aAnd":[{"sID":"TaskSubjectStatusCategory_Progress"}]}]},
+  "oField_DateRegions":{
+    "oDateControl":{"sKey_At":"AutoDate_Today","sKey_To":"AutoDate_Today"}
+  }
+},
+
+{"aSort":null,
+  "sText":null,
+  "sKey_ProcessTaskType":"Controller",
+  "oProcessTaskSubjectStatusType_FilterLogicalVO":null,
+  "oProcessTaskSubjectStatusCategory_FilterLogicalVO":{"aOr":[{"aAnd":[{"sID":"TaskSubjectStatusCategory_Progress"}]}]},
+  "oField_DateRegions":{"oDateExecute":{"oAt":null,"sKey_At":"AutoDate_Today","bToday_At":true,"bTomorow_At":false,"sKey_To":"AutoDate_Today","bToday_To":true,"bTomorow_To":false,"oTo":null}},
+  "sHead":null,
+  "sBody":null,
+  "sID_ProcessTaskReportType":null,
+  "oProcessTaskLoginControl_FilterLogicalVO":null,
+  "oProcessTaskLoginExecute_FilterLogicalVO":null,
+  "oProcessTaskLoginVisor_FilterLogicalVO":null,
+  "oProcessTaskDepartmentLoginAuthor_FilterLogicalVO":null,
+  "oSubjectRoleGroup_FilterLogicalVO":null,
+  "sID":"FilterTypeFolder_TaskControl_Відкриті (очикують) (sys)",
+  "sName":"Відкриті (очикують) (sys)",
+  "nOrder":1,
+  "sID_FilterTypeFolderEnum":"FilterTypeFolder_TaskControl",
+  "sKey_Type_DateRegion":"oDateExecute",
+  "bSystem":true
+}
+]

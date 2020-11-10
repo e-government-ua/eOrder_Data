@@ -1,0 +1,95 @@
+{
+"oProperties":{ 
+	  "bSkipStepCreate": true,
+      "sasKey_Field_RKK":"sKey_Subject_DocumentSender,sName_DocumentType,sKey_Private,oDateAt,sName_SubjectHuman_DocumentSigner,sName_SubjectHuman_DocumentAuthor,sName_Document"
+      },
+  "_:Watch": {
+	"_default_author": {
+      "oMission": {"sKey_Right":"SignRelease"},
+      "oRights": {
+      	
+      	"SignComment": {},
+      	"AddSignerWriteExecute": {},
+        "EditSignerWriteExecute": {},
+        "RemoveSignerWriteExecute": {}
+      }
+    },
+    "_default_accept": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},      	
+      	"SignComment": {},
+      	"ManageViewers": {}
+      },
+      "bNeedECP": true,
+       "oProperties": {
+        "sasKey_Field_SignECP": "PrintForm_02,PrintForm_03"
+      }
+    },
+    "_default_consideration": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {
+        "ManageViewers": {},
+        "EditFields": {},
+        "SignWriteNotNeed": {},
+        "SignComment": {},
+        "AddSignerWriteAccept": {},
+        "EditSignerWriteAccept": {},
+        "RemoveSignerWriteAccept": {}
+      }
+    },
+    
+     "_default_view": {
+      "oMission": {"sKey_Right":"View", "sKey_Step_At":""},
+      "oRights": {
+      	"ManageViewers": {},
+        "SignComment": {}
+      }
+    },
+     "_default_agree": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+        "SignComment": {},
+        "SignDelegate":{}
+      }      
+    },
+     "_default_execute": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},      	
+      	"SignComment": {},
+      	"AddSignerWriteExecute": {},
+        "EditSignerWriteExecute": {},
+        "RemoveSignerWriteExecute": {}
+      	
+      }           
+    },
+"_default_execute_1": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {      	      	
+      	"SignComment": {},
+      "AddSignerWriteExecute": {},
+        "EditSignerWriteExecute": {},
+        "RemoveSignerWriteExecute": {}      	
+      }     
+    },
+"_default_execute_2": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},      	
+      	"SignComment": {}      	
+      },
+      "bNeedECP": true
+    }
+    },
+   
+  "step_create:Create": {},
+  "step_consideration:Consideration": {},
+"step_execute:Execute": {},
+"step_execute_2:Execute": {},
+  "step_accept:Accept": {}, 
+  "step_agree:Agree": {},
+"step_execute_4:Execute": {}
+}

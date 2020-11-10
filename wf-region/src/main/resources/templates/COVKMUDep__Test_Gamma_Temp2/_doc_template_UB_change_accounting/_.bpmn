@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="_doc_template_UB_change_accounting" name="Службова на коригування в обліку УБ" isExecutable="true">
+    <documentation>;bTemplated=true</documentation>
+    <startEvent id="startevent1" name="Start">
+      <extensionElements>
+        <activiti:formProperty id="sKey_Step_Document" name="sKey_Step_Document;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Додаткові файли; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableChange" name="Перелік документів для коригування в обліку;;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableCorrectionRemoval" name="Перелік документів для коригування в обліку;;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableDopExecute" name="Додати доп виконавця;;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sID_Custom_GovPublic" name="sID_Custom_GovPublic;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+      </extensionElements>
+    </startEvent>
+    <userTask id="usertask1" name="Створення документа">
+      <extensionElements>
+        <activiti:formProperty id="sID_Custom_GovPublic" name="sID_Custom_GovPublic;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sKey_Step_Document" name="sKey_Step_Document ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTypeDepAuthor" name="sTypeDepAuthor; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sID_Group_Activiti" name="id группы ; ;bVisible=false" type="string" default="UB_,"></activiti:formProperty>
+        <activiti:formProperty id="nDeepLevel" name="глубина ; ;bVisible=false" type="string" default="5"></activiti:formProperty>
+        <activiti:formProperty id="sNumberDoc" name="Реєстраційний номер;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sArchive_index" name="Індекс справи;;bVisible=false" type="string" default="200035020" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sArchive_title" name="Заголовок справи (тому, частини);;bVisible=false" type="textArea" default="Реєстр документів «Службова записка на коригування в обліку»" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sArchive_qtyTitle" name="Кількість справ (томів, частин);;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sArchive_save" name="Строк зберігання справи (тому, частини), номер статей за переліком НБУ;;bVisible=false" type="string" default="Постійно" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sManual" name="." type="fileHTML" default="${oTemplateService.getFieldDataPath(execution, 'value/sManual.html')}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа;;bVisible=false" type="string" default="Службова записка на коригування в обліку"></activiti:formProperty>
+        <activiti:formProperty id="sID_Order" name="sID_Order;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDateCreateDocument" name="Дата створення електронного документа;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="asTableFile_sNameFile" name="найменування файлів (аттачів);;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sEmailAccept" name="Емейл согласующим; ;bVisible=false" type="string" default="Шановний колего! Вам на погодження надіслано документ &quot;[sTitleDoc] [sID_Order_URL] у системі iDoc. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailAgree" name="Емейл утверждающим; ;bVisible=false" type="string" default="Шановний колего! Вам на затвердження надіслано документ &quot;[sTitleDoc] [sID_Order_URL] у системі iDoc. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailDirect" name="Емейл адресатам ; ;bVisible=false" type="string" default="Шановний колего! Вам адресовано документ &quot;[sTitleDoc] [sID_Order_URL] у системі iDoc. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailSeen" name="Емейл ознакомление ; ;bVisible=false" type="string" default="Шановний колего! Вам на ознайомлення надіслано документ &quot;[sTitleDoc] [sID_Order_URL] у системі iDoc. Відпрацюйте його у найкоротший термін. Нагадуємо, що ви будете виконувати обов'язки замість звільненного співробітника [sName_Author] з [oDate_Dismissal]."></activiti:formProperty>
+        <activiti:formProperty id="sEmailExecute" name="Емейл виконання ; ;bVisible=false" type="string" default="Шановний колего! Вам на виконання надіслано документ &quot;[sTitleDoc] [sID_Order_URL] у системі iDoc. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Принтформа;;bPrintform=true,bVisible=false" type="string" default="${oTemplateService.getFieldDataPath(execution, 'printform/sBody_1.html')}"></activiti:formProperty>
+        <activiti:formProperty id="sName_Author" name="ПІБ працівника; ;bVisible=false" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sDepartment_Author" name="Структурний підрозділ автора; ;bVisible=false" type="string" expression="${subjectService.getEmployee(oDocumentService.getLoginAuthor(execution), false).aSubjectGroupPositionCustom.iterator().next().oSubjectHumanPositionCustom.oSubjectGroup_Organ.oSubject.sLabel}"></activiti:formProperty>
+        <activiti:formProperty id="asTypeChange" name="Тип коригування" type="enum">
+          <activiti:value id="sChangePosting" name="Коригуюча проводка"></activiti:value>
+          <activiti:value id="sChangePosting_StandReportMounth" name="Коригуюча проводка стандартна за звітний місяць"></activiti:value>
+          <activiti:value id="sChangePosting_NotStandReportMounth" name="Коригуюча проводка не стандартна за звітний місяць"></activiti:value>
+          <activiti:value id="sChangePosting_sReportPeriod" name="Коригуюча проводка за проміжний звітний період"></activiti:value>
+          <activiti:value id="sChangePosting_ReportYear" name="Коригуюча проводка за звітний рік"></activiti:value>
+          <activiti:value id="sCorrectionPosting" name="Виправлення(сторно) проводка"></activiti:value>
+          <activiti:value id="sRemovalPosing" name="Видалення (анулювання) проводки"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asTypeChange_Branch" name="Тип коригування" type="enum">
+          <activiti:value id="sCorrectionPosting" name="Виправлення(сторно) проводка"></activiti:value>
+          <activiti:value id="sRemovalPosing" name="Видалення (анулювання) проводки"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="oDateBalance" name="Дата балансу, в якій виконується коригування" type="date" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sReason" name="Обгрунтування необхідності коригування" type="textArea" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sVideo_Jira" name="Тікет Jira" type="string"></activiti:formProperty>
+        <activiti:formProperty id="asCountDoc" name="Кількість документів більше 10;якщо кількість документів, що підлягають коригуванню, перевищує 10, виконавець додає необхідний перелік документів у файлі;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="no" name="Ні"></activiti:value>
+          <activiti:value id="yes" name="Так"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTableChange" name="Перелік документів для коригування в обліку;;nRowsLimit=10,bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableCorrectionRemoval" name="Перелік документів для коригування в обліку;;nRowsLimit=10,bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Додаткові файли; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="marker_SF_1" name="маркер показа полей" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_SF_1&quot;:{&quot;aField_ID&quot;:[&quot;sTableChange&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeChange&quot;,&quot;sClient2&quot;:&quot;asTypeChange_Branch&quot;,&quot;sClient1&quot;:&quot;asCountDoc&quot;},&quot;sCondition&quot;:&quot;([sClient1] == 'no' || [sClient1] == 'Ні') &amp;&amp; ([sClient] == 'sChangePosting' || [sClient] == 'sChangePosting_StandReportMounth' || [sClient] == 'sChangePosting_NotStandReportMounth' || [sClient] == 'sChangePosting_sReportPeriod' || [sClient] == 'sChangePosting_ReportYear' || [sClient2] == 'sChangePosting' || [sClient2] == 'sChangePosting_StandReportMounth' || [sClient2] == 'sChangePosting_NotStandReportMounth' || [sClient2] == 'sChangePosting_sReportPeriod' || [sClient2] == 'sChangePosting_ReportYear')&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_SF_2" name="маркер показа полей" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_SF_2&quot;:{&quot;aField_ID&quot;:[&quot;sTableCorrectionRemoval&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeChange&quot;,&quot;sClient2&quot;:&quot;asTypeChange_Branch&quot;,&quot;sClient1&quot;:&quot;asCountDoc&quot;},&quot;sCondition&quot;:&quot;([sClient1] == 'no' || [sClient1] == 'Ні') &amp;&amp; ([sClient] == 'sCorrectionPosting' || [sClient] == 'sRemovalPosing' || [sClient2] == 'sCorrectionPosting' || [sClient2] == 'sRemovalPosing')&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_SF_3" name="маркер для показа полей" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_SF_3&quot;:{&quot;aField_ID&quot;:[&quot;asTypeChange_Branch&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sTypeDepAuthor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'Branches' || [sClient] == 'SalesProduct'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_SF_4" name="маркер для показа полей" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_SF_4&quot;:{&quot;aField_ID&quot;:[&quot;asTypeChange&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sTypeDepAuthor&quot;},&quot;sCondition&quot;:&quot;[sClient] != 'Branches'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_SE_3" name="маркер показа полей" type="markers" default="{&quot;motion&quot;:{&quot;ShowElementsOnTrue_SE_3&quot;:{&quot;aElement_ID&quot;:[&quot;asTypeChange_Branch&quot;],&quot;asID_Field&quot;:{&quot;sCond&quot;:&quot;sTypeDepAuthor&quot;},&quot;sCondition&quot;:&quot;[sCond] == 'Branches' || [sCond] == 'SalesProduct'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_SE_4" name="маркер показа полей" type="markers" default="{&quot;motion&quot;:{&quot;ShowElementsOnTrue_SE_4&quot;:{&quot;aElement_ID&quot;:[&quot;asTypeChange&quot;],&quot;asID_Field&quot;:{&quot;sCond&quot;:&quot;sTypeDepAuthor&quot;},&quot;sCondition&quot;:&quot;[sCond] != 'Branches'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_R_1" name="маркер для обязательности полей" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_R_1&quot;:{&quot;aField_ID&quot;:[&quot;asTypeChange_Branch&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sTypeDepAuthor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'Branches' || [sClient] == 'SalesProduct'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_R_2" name="маркер для обязательности полей" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_R_2&quot;:{&quot;aField_ID&quot;:[&quot;asTypeChange&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sTypeDepAuthor&quot;},&quot;sCondition&quot;:&quot;[sClient] != 'Branches'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sNumberScrooge_Report" name="№ документа Scrooge;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sType_Report" name="Тип;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDT_Report" name="Дт;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sKT_Report" name="Кт;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sAmount_Report" name="Сума;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sCurrency_Report" name="Валюта;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPurpose_Report" name="Призначення платежу;;bVisible=false" type="string"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask2" name="Погодження документа :: ${asTypeChangeNameTask}" default="flow271">
+      <extensionElements>
+        <activiti:formProperty id="sID_Custom_GovPublic" name="sID_Custom_GovPublic;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTypeDepAuthor" name="sTypeDepAuthor; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sKey_Step_Document" name="sKey_Step_Document ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sID_Group_Activiti" name="id группы ; ;bVisible=false" type="string" default="UB_,"></activiti:formProperty>
+        <activiti:formProperty id="nDeepLevel" name="глубина ; ;bVisible=false" type="string" default="5"></activiti:formProperty>
+        <activiti:formProperty id="sNumberDoc" name="Реєстраційний номер;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sArchive_index" name="Індекс справи;;bVisible=false" type="string" default="200035020" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sArchive_title" name="Заголовок справи (тому, частини);;bVisible=false" type="textArea" default="Реєстр документів «Службова записка на коригування в обліку»" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sArchive_qtyTitle" name="Кількість справ (томів, частин);;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sArchive_save" name="Строк зберігання справи (тому, частини), номер статей за переліком НБУ;;bVisible=false" type="string" default="Постійно" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа;;bVisible=false" type="string" default="Службова записка на коригування в обліку"></activiti:formProperty>
+        <activiti:formProperty id="sID_Order" name="sID_Order;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDateCreateDocument" name="Дата створення електронного документа;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="asTableFile_sNameFile" name="найменування файлів (аттачів);;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sEmailAccept" name="Емейл согласующим; ;bVisible=false" type="string" default="Шановний колего! Вам на погодження надіслано документ &quot;[sTitleDoc] [sID_Order_URL] у системі iDoc. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailAgree" name="Емейл утверждающим; ;bVisible=false" type="string" default="Шановний колего! Вам на затвердження надіслано документ &quot;[sTitleDoc] [sID_Order_URL] у системі iDoc. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailDirect" name="Емейл адресатам ; ;bVisible=false" type="string" default="Шановний колего! Вам адресовано документ &quot;[sTitleDoc] [sID_Order_URL] у системі iDoc. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailSeen" name="Емейл ознакомление ; ;bVisible=false" type="string" default="Шановний колего! Вам на ознайомлення надіслано документ &quot;[sTitleDoc] [sID_Order_URL] у системі iDoc. Відпрацюйте його у найкоротший термін. Нагадуємо, що ви будете виконувати обов'язки замість звільненного співробітника [sName_Author] з [oDate_Dismissal]."></activiti:formProperty>
+        <activiti:formProperty id="sEmailExecute" name="Емейл виконання ; ;bVisible=false" type="string" default="Шановний колего! Вам на виконання надіслано документ &quot;[sTitleDoc] [sID_Order_URL] у системі iDoc. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Принтформа;;bPrintform=true,bVisible=false" type="string" default="${oTemplateService.getFieldDataPath(execution, 'printform/sBody_1.html')}"></activiti:formProperty>
+        <activiti:formProperty id="sName_Author" name="ПІБ працівника; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDepartment_Author" name="Структурний підрозділ автора; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="asTypeChange" name="Тип коригування" type="enum" writable="false">
+          <activiti:value id="sChangePosting" name="Коригуюча проводка"></activiti:value>
+          <activiti:value id="sChangePosting_StandReportMounth" name="Коригуюча проводка стандартна за звітний місяць"></activiti:value>
+          <activiti:value id="sChangePosting_NotStandReportMounth" name="Коригуюча проводка не стандартна за звітний місяць"></activiti:value>
+          <activiti:value id="sChangePosting_sReportPeriod" name="Коригуюча проводка за проміжний звітний період"></activiti:value>
+          <activiti:value id="sChangePosting_ReportYear" name="Коригуюча проводка за звітний рік"></activiti:value>
+          <activiti:value id="sCorrectionPosting" name="Виправлення(сторно) проводка"></activiti:value>
+          <activiti:value id="sRemovalPosing" name="Видалення (анулювання) проводки"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asTypeChange_Branch" name="Тип коригування" type="enum" writable="false">
+          <activiti:value id="sCorrectionPosting" name="Виправлення(сторно) проводка"></activiti:value>
+          <activiti:value id="sRemovalPosing" name="Видалення (анулювання) проводки"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="oDateBalance" name="Дата балансу, в якій виконується коригування" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sReason" name="Обгрунтування необхідності коригування" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sVideo_Jira" name="Тікет Jira" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="asCountDoc" name="Кількість документів більше 10;якщо кількість документів, що підлягають коригуванню, перевищує 10, виконавець додає необхідний перелік документів у файлі;sID_CheckboxTrue=yes" type="enum" default="no" writable="false">
+          <activiti:value id="no" name="Ні"></activiti:value>
+          <activiti:value id="yes" name="Так"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTableChange" name="Перелік документів для коригування в обліку;;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTableCorrectionRemoval" name="Перелік документів для коригування в обліку;;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Додаткові файли; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="marker_SF_1" name="маркер показа полей" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_SF_1&quot;:{&quot;aField_ID&quot;:[&quot;sTableChange&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeChange&quot;,&quot;sClient2&quot;:&quot;asTypeChange_Branch&quot;,&quot;sClient1&quot;:&quot;asCountDoc&quot;},&quot;sCondition&quot;:&quot;([sClient1] == 'no' || [sClient1] == 'Ні') &amp;&amp; ([sClient] == 'sChangePosting' || [sClient] == 'sChangePosting_StandReportMounth' || [sClient] == 'sChangePosting_NotStandReportMounth' || [sClient] == 'sChangePosting_sReportPeriod' || [sClient] == 'sChangePosting_ReportYear' || [sClient2] == 'sChangePosting' || [sClient2] == 'sChangePosting_StandReportMounth' || [sClient2] == 'sChangePosting_NotStandReportMounth' || [sClient2] == 'sChangePosting_sReportPeriod' || [sClient2] == 'sChangePosting_ReportYear')&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_SF_2" name="маркер показа полей" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_SF_2&quot;:{&quot;aField_ID&quot;:[&quot;sTableCorrectionRemoval&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeChange&quot;,&quot;sClient2&quot;:&quot;asTypeChange_Branch&quot;,&quot;sClient1&quot;:&quot;asCountDoc&quot;},&quot;sCondition&quot;:&quot;([sClient1] == 'no' || [sClient1] == 'Ні') &amp;&amp; ([sClient] == 'sCorrectionPosting' || [sClient] == 'sRemovalPosing' || [sClient2] == 'sCorrectionPosting' || [sClient2] == 'sRemovalPosing')&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_SF_3" name="маркер для показа полей" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_SF_3&quot;:{&quot;aField_ID&quot;:[&quot;asTypeChange_Branch&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sTypeDepAuthor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'Branches' || [sClient] == 'SalesProduct'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_SF_4" name="маркер для показа полей" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_SF_4&quot;:{&quot;aField_ID&quot;:[&quot;asTypeChange&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sTypeDepAuthor&quot;},&quot;sCondition&quot;:&quot;[sClient] != 'Branches'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_SE_1" name="маркер показа полей" type="markers" default="{&quot;motion&quot;:{&quot;ShowElementsOnTrue_SE_1&quot;:{&quot;aElement_ID&quot;:[&quot;sTableChange&quot;],&quot;asID_Field&quot;:{&quot;sCond&quot;:&quot;asTypeChange&quot;,&quot;sCond2&quot;:&quot;asTypeChange_Branch&quot;,&quot;sCond1&quot;:&quot;asCountDoc&quot;},&quot;sCondition&quot;:&quot;[sCond1] == 'no' &amp;&amp; ([sCond] == 'sChangePosting' || [sCond] == 'sChangePosting_StandReportMounth' || [sCond] == 'sChangePosting_NotStandReportMounth' || [sCond] == 'sChangePosting_sReportPeriod' || [sCond] == 'sChangePosting_ReportYear' || [sCond2] == 'sChangePosting' || [sCond2] == 'sChangePosting_StandReportMounth' || [sCond2] == 'sChangePosting_NotStandReportMounth' || [sCond2] == 'sChangePosting_sReportPeriod' || [sCond2] == 'sChangePosting_ReportYear')&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_SE_2" name="маркер показа полей" type="markers" default="{&quot;motion&quot;:{&quot;ShowElementsOnTrue_SE_2&quot;:{&quot;aElement_ID&quot;:[&quot;sTableCorrectionRemoval&quot;],&quot;asID_Field&quot;:{&quot;sCond&quot;:&quot;asTypeChange&quot;,&quot;sCond2&quot;:&quot;asTypeChange_Branch&quot;,&quot;sCond1&quot;:&quot;asCountDoc&quot;},&quot;sCondition&quot;:&quot;[sCond1] == 'no' &amp;&amp; ([sCond] == 'sCorrectionPosting' || [sCond] == 'sRemovalPosing' || [sCond2] == 'sCorrectionPosting' || [sCond2] == 'sRemovalPosing')&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_SE_3" name="маркер показа полей" type="markers" default="{&quot;motion&quot;:{&quot;ShowElementsOnTrue_SE_3&quot;:{&quot;aElement_ID&quot;:[&quot;asTypeChange_Branch&quot;],&quot;asID_Field&quot;:{&quot;sCond&quot;:&quot;sTypeDepAuthor&quot;},&quot;sCondition&quot;:&quot;[sCond] == 'Branches' || [sCond] == 'SalesProduct'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_SE_4" name="маркер показа полей" type="markers" default="{&quot;motion&quot;:{&quot;ShowElementsOnTrue_SE_4&quot;:{&quot;aElement_ID&quot;:[&quot;asTypeChange&quot;],&quot;asID_Field&quot;:{&quot;sCond&quot;:&quot;sTypeDepAuthor&quot;},&quot;sCondition&quot;:&quot;[sCond] != 'Branches'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sNumberScrooge_Report" name="№ документа Scrooge;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sType_Report" name="Тип;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDT_Report" name="Дт;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sKT_Report" name="Кт;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sAmount_Report" name="Сума;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sCurrency_Report" name="Валюта;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPurpose_Report" name="Призначення платежу;;bVisible=false" type="string"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <endEvent id="endevent2" name="End"></endEvent>
+    <userTask id="usertask4" name="Редагування документа :: ${asTypeChangeNameTask}">
+      <extensionElements>
+        <activiti:formProperty id="sID_Custom_GovPublic" name="sID_Custom_GovPublic;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTypeDepAuthor" name="sTypeDepAuthor; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sKey_Step_Document" name="sKey_Step_Document ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sID_Group_Activiti" name="id группы ; ;bVisible=false" type="string" default="UB_,"></activiti:formProperty>
+        <activiti:formProperty id="nDeepLevel" name="глубина ; ;bVisible=false" type="string" default="5"></activiti:formProperty>
+        <activiti:formProperty id="sNumberDoc" name="Реєстраційний номер;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sArchive_index" name="Індекс справи;;bVisible=false" type="string" default="200035020" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sArchive_title" name="Заголовок справи (тому, частини);;bVisible=false" type="textArea" default="Реєстр документів «Службова записка на коригування в обліку»" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sArchive_qtyTitle" name="Кількість справ (томів, частин);;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sArchive_save" name="Строк зберігання справи (тому, частини), номер статей за переліком НБУ;;bVisible=false" type="string" default="Постійно" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sManual" name="." type="fileHTML" default="${oTemplateService.getFieldDataPath(execution, 'value/sManual.html')}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа;;bVisible=false" type="string" default="Службова записка на коригування в обліку"></activiti:formProperty>
+        <activiti:formProperty id="sDateCreateDocument" name="Дата створення електронного документа;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="asTableFile_sNameFile" name="найменування файлів (аттачів);;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sID_Order" name="sID_Order;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sEmailAccept" name="Емейл согласующим; ;bVisible=false" type="string" default="Шановний колего! Вам на погодження надіслано документ &quot;[sTitleDoc] [sID_Order_URL] у системі iDoc. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailAgree" name="Емейл утверждающим; ;bVisible=false" type="string" default="Шановний колего! Вам на затвердження надіслано документ &quot;[sTitleDoc] [sID_Order_URL] у системі iDoc. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailDirect" name="Емейл адресатам ; ;bVisible=false" type="string" default="Шановний колего! Вам адресовано документ &quot;[sTitleDoc] [sID_Order_URL] у системі iDoc. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailSeen" name="Емейл ознакомление ; ;bVisible=false" type="string" default="Шановний колего! Вам на ознайомлення надіслано документ &quot;[sTitleDoc] [sID_Order_URL] у системі iDoc. Відпрацюйте його у найкоротший термін. Нагадуємо, що ви будете виконувати обов'язки замість звільненного співробітника [sName_Author] з [oDate_Dismissal]."></activiti:formProperty>
+        <activiti:formProperty id="sEmailExecute" name="Емейл виконання ; ;bVisible=false" type="string" default="Шановний колего! Вам на виконання надіслано документ &quot;[sTitleDoc] [sID_Order_URL] у системі iDoc. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Принтформа;;bPrintform=true,bVisible=false" type="string" default="${oTemplateService.getFieldDataPath(execution, 'printform/sBody_1.html')}"></activiti:formProperty>
+        <activiti:formProperty id="sName_Author" name="ПІБ працівника; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDepartment_Author" name="Структурний підрозділ автора; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="asTypeChange" name="Тип коригування" type="enum">
+          <activiti:value id="sChangePosting" name="Коригуюча проводка"></activiti:value>
+          <activiti:value id="sChangePosting_StandReportMounth" name="Коригуюча проводка стандартна за звітний місяць"></activiti:value>
+          <activiti:value id="sChangePosting_NotStandReportMounth" name="Коригуюча проводка не стандартна за звітний місяць"></activiti:value>
+          <activiti:value id="sChangePosting_sReportPeriod" name="Коригуюча проводка за проміжний звітний період"></activiti:value>
+          <activiti:value id="sChangePosting_ReportYear" name="Коригуюча проводка за звітний рік"></activiti:value>
+          <activiti:value id="sCorrectionPosting" name="Виправлення(сторно) проводка"></activiti:value>
+          <activiti:value id="sRemovalPosing" name="Видалення (анулювання) проводки"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asTypeChange_Branch" name="Тип коригування" type="enum">
+          <activiti:value id="sCorrectionPosting" name="Виправлення(сторно) проводка"></activiti:value>
+          <activiti:value id="sRemovalPosing" name="Видалення (анулювання) проводки"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="oDateBalance" name="Дата балансу, в якій виконується коригування" type="date" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sReason" name="Обгрунтування необхідності коригування" type="textArea" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sVideo_Jira" name="Тікет Jira" type="string"></activiti:formProperty>
+        <activiti:formProperty id="asCountDoc" name="Кількість документів більше 10;якщо кількість документів, що підлягають коригуванню, перевищує 10, виконавець додає необхідний перелік документів у файлі;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="no" name="Ні"></activiti:value>
+          <activiti:value id="yes" name="Так"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTableChange" name="Перелік документів для коригування в обліку;;nRowsLimit=10,bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableCorrectionRemoval" name="Перелік документів для коригування в обліку;;nRowsLimit=10,bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Додаткові файли; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="marker_SF_1" name="маркер показа полей" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_SF_1&quot;:{&quot;aField_ID&quot;:[&quot;sTableChange&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeChange&quot;,&quot;sClient2&quot;:&quot;asTypeChange_Branch&quot;,&quot;sClient1&quot;:&quot;asCountDoc&quot;},&quot;sCondition&quot;:&quot;([sClient1] == 'no' || [sClient1] == 'Ні') &amp;&amp; ([sClient] == 'sChangePosting' || [sClient] == 'sChangePosting_StandReportMounth' || [sClient] == 'sChangePosting_NotStandReportMounth' || [sClient] == 'sChangePosting_sReportPeriod' || [sClient] == 'sChangePosting_ReportYear' || [sClient2] == 'sChangePosting' || [sClient2] == 'sChangePosting_StandReportMounth' || [sClient2] == 'sChangePosting_NotStandReportMounth' || [sClient2] == 'sChangePosting_sReportPeriod' || [sClient2] == 'sChangePosting_ReportYear')&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_SF_2" name="маркер показа полей" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_SF_2&quot;:{&quot;aField_ID&quot;:[&quot;sTableCorrectionRemoval&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeChange&quot;,&quot;sClient2&quot;:&quot;asTypeChange_Branch&quot;,&quot;sClient1&quot;:&quot;asCountDoc&quot;},&quot;sCondition&quot;:&quot;([sClient1] == 'no' || [sClient1] == 'Ні') &amp;&amp; ([sClient] == 'sCorrectionPosting' || [sClient] == 'sRemovalPosing' || [sClient2] == 'sCorrectionPosting' || [sClient2] == 'sRemovalPosing')&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_SF_3" name="маркер для показа полей" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_SF_3&quot;:{&quot;aField_ID&quot;:[&quot;asTypeChange_Branch&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sTypeDepAuthor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'Branches' || [sClient] == 'SalesProduct'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_SF_4" name="маркер для показа полей" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_SF_4&quot;:{&quot;aField_ID&quot;:[&quot;asTypeChange&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sTypeDepAuthor&quot;},&quot;sCondition&quot;:&quot;[sClient] != 'Branches'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_SE_3" name="маркер показа полей" type="markers" default="{&quot;motion&quot;:{&quot;ShowElementsOnTrue_SE_3&quot;:{&quot;aElement_ID&quot;:[&quot;asTypeChange_Branch&quot;],&quot;asID_Field&quot;:{&quot;sCond&quot;:&quot;sTypeDepAuthor&quot;},&quot;sCondition&quot;:&quot;[sCond] == 'Branches' || [sCond] == 'SalesProduct'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_SE_4" name="маркер показа полей" type="markers" default="{&quot;motion&quot;:{&quot;ShowElementsOnTrue_SE_4&quot;:{&quot;aElement_ID&quot;:[&quot;asTypeChange&quot;],&quot;asID_Field&quot;:{&quot;sCond&quot;:&quot;sTypeDepAuthor&quot;},&quot;sCondition&quot;:&quot;[sCond] != 'Branches'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_R_1" name="маркер для обязательности полей" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_R_1&quot;:{&quot;aField_ID&quot;:[&quot;asTypeChange_Branch&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sTypeDepAuthor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'Branches' || [sClient] == 'SalesProduct'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_R_2" name="маркер для обязательности полей" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_R_2&quot;:{&quot;aField_ID&quot;:[&quot;asTypeChange&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sTypeDepAuthor&quot;},&quot;sCondition&quot;:&quot;[sClient] != 'Branches'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sNumberScrooge_Report" name="№ документа Scrooge;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sType_Report" name="Тип;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDT_Report" name="Дт;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sKT_Report" name="Кт;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sAmount_Report" name="Сума;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sCurrency_Report" name="Валюта;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPurpose_Report" name="Призначення платежу;;bVisible=false" type="string"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="FlowButton_VernutNaVizirovanie" name="Повернути на погодження;sIF=hasAny-States(Authorship)" sourceRef="usertask4" targetRef="servicetask54">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentResetStepTypesListener}">
+          <activiti:field name="sasKey_StepType">
+            <activiti:string><![CDATA[Accept,Agree,Direct]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_VernutNaVizirovanie')}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="FlowButton_VzyatNaRedaktirovanie" name="Редагувати;sIF=hasAny-States(Authorship)" sourceRef="usertask2" targetRef="usertask4">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[edit]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_VzyatNaRedaktirovanie')}]]></conditionExpression>
+    </sequenceFlow>
+    <serviceTask id="servicetask15" name="Положительный email" activiti:delegateExpression="#{MailTaskWithoutAttachment}">
+      <extensionElements>
+        <activiti:field name="to">
+          <activiti:expression><![CDATA[${subjectHumanService.getSubjectHumanVO_Compact(oDocumentService.getLoginAuthor(execution)).oSubjectHuman.defaultEmail.sValue}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="from">
+          <activiti:string><![CDATA[noreply@igov.org.ua]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="subject">
+          <activiti:expression><![CDATA[Ваш документ ${sID_Order}-${sTitleDoc} виконана!]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="text">
+          <activiti:expression><![CDATA[<!DOCTYPE html>
+<html>
+<head lang="ru">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style type="text/css">
+        body {margin: 0; padding: 0;}
+        #mailer-body {font: 400 18px/20px 'Calibri';}
+        #mailer-body div,
+        #mailer-body p,
+        #mailer-body span,
+        #mailer-body strong,
+        #mailer-body b,
+        #mailer-body em,
+        #mailer-body i,
+        #mailer-body a,
+        #mailer-body li,
+        #mailer-body td {-webkit-text-size-adjust: none;}
+        #mailer-body a {color: #2F70AF; text-decoration: none;}
+        #mailer-body a:hover {color: #2e5e9c; text-decoration: underline;}
+        #mailer-body label {height: 20px; line-height: 20px; position: relative; cursor: pointer; display: inline-block;}
+        #mailer-body p > label {width: 40px;}
+        #mailer-body label input[type='radio'] {width: 16px; height: 16px; top: -1px; float: left; position: relative; opacity: 0;}
+        #mailer-body label input[type='radio'] + span {position: absolute; margin: 0 15px 0 0; font-weight: 700; font-size: 16px;}
+        #mailer-body label input[type='radio'] + span:before {content: " "; width: 22px; height: 20px; background: url(http://shots.jotform.com/elton/radio_flat.png) left -1px no-repeat; left: -25px; display: block; position: absolute;}
+        #mailer-body label input[type='radio']:checked + span:before {background: url(http://shots.jotform.com/elton/radio_flat.png) left -22px no-repeat;}
+        #mailer-body textarea {width: 548px; padding: 5px; min-height: 65px; height: 65px; max-height: 100px; margin: 10px 0 0 0; border-radius: 3px; border: 1px solid #dddddd; resize: vertical;}
+        #mailer-body textarea:focus {outline: 0;}
+        #mailer-body button {height: 30px; padding: 0 25px; border: 0; border-radius: 3px; line-height: 30px; font-size: 14px; font-weight: 600; background: #2F70AF; cursor: pointer; color: white; display: inline-block;}
+    </style>
+</head>
+<body>
+<table width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse: collapse;" id="mailer-body">
+    <tbody>
+    <tr>
+        <td align="center">
+            <table width="800" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;">
+                <!--header line statrs-->
+                <tr>
+                    <td bgcolor="#5CA3CB" style="padding: 35px 120px; color: white;"><b style="font-size: 24px;">iDoc</b><br />Cистема електронного документообігу</td>
+                </tr>
+                <!--header line end-->
+                <!--content statrs-->
+                <tr>
+                    <td style="padding: 35px 120px;">
+		    <h3>Шановний(-а) колего!</h3>
+			<p> Ваш документ <a href="https://idoc.ubank.local/documents/sID_Order=${sID_Order}">${sID_Order}-${sTitleDoc}</a> виконано.<br />Всього найкращого!</p>
+			            </td>
+                </tr>
+                <!--content end-->
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow260" sourceRef="scripttask5" targetRef="endevent2"></sequenceFlow>
+    <sequenceFlow id="flow263" sourceRef="startevent1" targetRef="scripttask2"></sequenceFlow>
+    <sequenceFlow id="flow271" sourceRef="usertask2" targetRef="servicetask15"></sequenceFlow>
+    <serviceTask id="servicetask19" name="Проссмотр" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_view]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('View_change_accounting', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_view]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sEmailView]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <scriptTask id="scripttask1" name="айди документа" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>var processInstanceId = execution.getProcessInstanceId();
+var processInstanceIdToLong = parseFloat(processInstanceId);
+var sID_Order= generalConfig.getOrderId_ByProcess(processInstanceIdToLong);
+execution.setVariable('sID_Order', sID_Order);</script>
+    </scriptTask>
+    <sequenceFlow id="flow280" sourceRef="scripttask1" targetRef="usertask1"></sequenceFlow>
+    <serviceTask id="servicetask20" name="Email" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[Є необроблені документи у системі iDoc]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailAccept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:expression><![CDATA[${oDocumentService.getKey_Step(execution)}]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow287" sourceRef="servicetask20" targetRef="usertask2"></sequenceFlow>
+    <sequenceFlow id="flow387" sourceRef="servicetask19" targetRef="servicetask20">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <serviceTask id="servicetask54" name="Руководитель" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oDocumentService.getSubjectEmployeeParentLogin(oDocumentService.getLoginAuthor(execution))}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sEmailAccept]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <scriptTask id="scripttask2" name="дата создания" scriptFormat="groovy" activiti:autoStoreVariables="false">
+      <script>execution.setVariable('sDateCreateDocument', new Date().format("dd.MM.yyyy").toString());</script>
+    </scriptTask>
+    <sequenceFlow id="flow406" sourceRef="scripttask2" targetRef="scripttask1"></sequenceFlow>
+    <scriptTask id="scripttask3" name="название файлов" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>var processInstanceId = execution.getProcessInstanceId();
+execution.setVariable('asTableFile_sNameFile',  taskForm.getValuesFromTableField(processInstanceId, 'sTableFile', 'sName').toString().replace(/\[|\]/g, ''));
+
+var asTypeChange = execution.getVariable('asTypeChange') || execution.getVariable('asTypeChange_Branch');
+var asTypeChangeNameTask = asTypeChange == 'sChangePosting'                      ? 'Коригуюча проводка'
+                               : asTypeChange == 'sChangePosting_StandReportMounth'    ? 'Коригуюча проводка стандартна за звітний місяць'
+                               : asTypeChange == 'sChangePosting_NotStandReportMounth' ? 'Коригуюча проводка не стандартна за звітний місяць'
+                               : asTypeChange == 'sChangePosting_sReportPeriod'        ? 'Коригуюча проводка за проміжний звітний період'
+                               : asTypeChange == 'sChangePosting_ReportYear'           ? 'Коригуюча проводка за звітний рік'
+                               : asTypeChange == 'sCorrectionPosting'                  ? 'Виправлення(сторно) проводка'
+                               : asTypeChange == 'sRemovalPosing'                      ? 'Видалення (анулювання) проводки'
+                               : '';
+execution.setVariable('asTypeChangeNameTask', asTypeChangeNameTask);
+
+// Для отчетов
+var sTableChange_sDT = taskForm.getValuesFromTableField(processInstanceId, 'sTableChange', 'sDT').toString().replace(/\[|\]/g, '');
+var sTableChange_sKT = taskForm.getValuesFromTableField(processInstanceId, 'sTableChange', 'sKT').toString().replace(/\[|\]/g, '');
+var sTableChange_sAmount = taskForm.getValuesFromTableField(processInstanceId, 'sTableChange', 'sAmount').toString().replace(/\[|\]/g, '');
+var sTableChange_sCurrency_Pre = taskForm.getValuesFromTableField(processInstanceId, 'sTableChange', 'sCurrency');
+var sTableChange_sPurpose =  taskForm.getValuesFromTableField(processInstanceId, 'sTableChange', 'sPurpose').toString().replace(/\[|\]/g, '');
+
+var sTableCorrectionRemoval_sNumberScrooge = taskForm.getValuesFromTableField(processInstanceId, 'sTableCorrectionRemoval', 'sNumberScrooge').toString().replace(/\[|\]/g, '');
+var sTableCorrectionRemoval_sType_Pre = taskForm.getValuesFromTableField(processInstanceId, 'sTableCorrectionRemoval', 'sType');
+var sTableCorrectionRemoval_sDT = taskForm.getValuesFromTableField(processInstanceId, 'sTableCorrectionRemoval', 'sDT').toString().replace(/\[|\]/g, '');
+var sTableCorrectionRemoval_sKT = taskForm.getValuesFromTableField(processInstanceId, 'sTableCorrectionRemoval', 'sKT').toString().replace(/\[|\]/g, '');
+var sTableCorrectionRemoval_sAmount = taskForm.getValuesFromTableField(processInstanceId, 'sTableCorrectionRemoval', 'sAmount').toString().replace(/\[|\]/g, '');
+var sTableCorrectionRemoval_sCurrency_Pre = taskForm.getValuesFromTableField(processInstanceId, 'sTableCorrectionRemoval', 'sCurrency');
+var sTableCorrectionRemoval_sPurpose = taskForm.getValuesFromTableField(processInstanceId, 'sTableCorrectionRemoval', 'sPurpose').toString().replace(/\[|\]/g, '');
+
+var sTableCorrectionRemoval_sType = [];
+for (var i = 0; i &lt; sTableCorrectionRemoval_sType_Pre.length; i++) {
+	sTableCorrectionRemoval_sType.push(sTableCorrectionRemoval_sType_Pre[i] == 'sTrue' ? 'Правильний' : 'Неправильний');
+}
+var sTableCorrectionRemoval_sType = sTableCorrectionRemoval_sType.toString().replace(/\[|\]/g, '');
+
+function descCurrency(type) {
+	return type == 'UAH' ? '980 - Гривня' :
+		   type == 'CHF' ? '756 - Швейцарський франк' :
+		   type == 'GBP' ? '826 - Фунт стерлінгів' :
+		   type == 'USD' ? '840 - Долар США' :
+		   type == 'EUH' ? '978 - Ївро' :
+		   type == 'RUB' ? '643 - Російський рубль' :
+		   type == 'PLN' ? '985 - Злотий' :
+		   type == 'CAD' ? '124 - Канадський долар' :
+		   type == 'JPY' ? '392 - Їна'
+		   : 'Невідома валюта';
+};
+
+var sTableChange_sCurrency = [];
+for (var i = 0; i &lt; sTableChange_sCurrency_Pre.length; i++) {
+	sTableChange_sCurrency.push(descCurrency(sTableChange_sCurrency_Pre[i]));
+}
+var sTableChange_sCurrency = sTableChange_sCurrency.toString().replace(/\[|\]/g, '');
+
+var sTableCorrectionRemoval_sCurrency = [];
+for (var i = 0; i &lt; sTableCorrectionRemoval_sCurrency_Pre.length; i++) {
+	sTableCorrectionRemoval_sCurrency.push(descCurrency(sTableCorrectionRemoval_sCurrency_Pre[i]));
+}
+var sTableCorrectionRemoval_sCurrency = sTableCorrectionRemoval_sCurrency.toString().replace(/\[|\]/g, '');
+
+execution.setVariable('sNumberScrooge_Report', sTableCorrectionRemoval_sNumberScrooge);
+execution.setVariable('sType_Report', sTableCorrectionRemoval_sType);
+execution.setVariable('sDT_Report', asTypeChange == 'sCorrectionPosting' || asTypeChange == 'sRemovalPosing' ? sTableCorrectionRemoval_sDT : sTableChange_sDT);
+execution.setVariable('sKT_Report', asTypeChange == 'sCorrectionPosting' || asTypeChange == 'sRemovalPosing' ? sTableCorrectionRemoval_sKT : sTableChange_sKT);
+execution.setVariable('sAmount_Report', asTypeChange == 'sCorrectionPosting' || asTypeChange == 'sRemovalPosing' ? sTableCorrectionRemoval_sAmount : sTableChange_sAmount);
+execution.setVariable('sCurrency_Report', asTypeChange == 'sCorrectionPosting' || asTypeChange == 'sRemovalPosing' ? sTableCorrectionRemoval_sCurrency : sTableChange_sCurrency);
+execution.setVariable('sPurpose_Report', asTypeChange == 'sCorrectionPosting' || asTypeChange == 'sRemovalPosing' ? sTableCorrectionRemoval_sPurpose : sTableChange_sPurpose);</script>
+    </scriptTask>
+    <sequenceFlow id="flow407" sourceRef="scripttask3" targetRef="servicetask19"></sequenceFlow>
+    <sequenceFlow id="flow408" sourceRef="servicetask54" targetRef="scripttask3"></sequenceFlow>
+    <scriptTask id="scripttask5" name="код счетчика" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>//счетчик
+var number=execution.getVariable('sID_Custom_GovPublic');
+number++;
+var fullNumber = '' + (number&lt;&lt;0);
+execution.setVariable('sNumberDoc', fullNumber);</script>
+    </scriptTask>
+    <serviceTask id="servicetask65" name="счетчик" activiti:delegateExpression="#{ProcessCountTaskCustomListener}">
+      <extensionElements>
+        <activiti:field name="sKey">
+          <activiti:string><![CDATA[2020_change_accounting]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sPattern">
+          <activiti:string><![CDATA[[sID_Custom_GovPublic]]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="nDigits">
+          <activiti:string><![CDATA[5]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow428" sourceRef="servicetask15" targetRef="exclusivegateway67"></sequenceFlow>
+    <sequenceFlow id="flow429" sourceRef="servicetask65" targetRef="scripttask5"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway67" name="Exclusive Gateway" default="flow438"></exclusiveGateway>
+    <sequenceFlow id="flow437" sourceRef="exclusivegateway67" targetRef="servicetask65">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${sNumberDoc == ''}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow438" sourceRef="exclusivegateway67" targetRef="endevent2"></sequenceFlow>
+    <sequenceFlow id="flow439" sourceRef="usertask1" targetRef="servicetask54"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram__doc_template_UB_change_accounting">
+    <bpmndi:BPMNPlane bpmnElement="_doc_template_UB_change_accounting" id="BPMNPlane__doc_template_UB_change_accounting">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="403.0" y="25.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="84.0" width="130.0" x="762.0" y="1.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask2" id="BPMNShape_usertask2">
+        <omgdc:Bounds height="84.0" width="131.0" x="926.0" y="413.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent2" id="BPMNShape_endevent2">
+        <omgdc:Bounds height="35.0" width="35.0" x="725.0" y="727.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask4" id="BPMNShape_usertask4">
+        <omgdc:Bounds height="78.0" width="131.0" x="1303.0" y="416.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask15" id="BPMNShape_servicetask15">
+        <omgdc:Bounds height="71.0" width="115.0" x="934.0" y="552.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask19" id="BPMNShape_servicetask19">
+        <omgdc:Bounds height="55.0" width="105.0" x="776.0" y="330.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask1" id="BPMNShape_scripttask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="610.0" y="15.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask20" id="BPMNShape_servicetask20">
+        <omgdc:Bounds height="55.0" width="105.0" x="775.0" y="427.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask54" id="BPMNShape_servicetask54">
+        <omgdc:Bounds height="70.0" width="162.0" x="746.0" y="140.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask2" id="BPMNShape_scripttask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="475.0" y="15.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask3" id="BPMNShape_scripttask3">
+        <omgdc:Bounds height="55.0" width="105.0" x="775.0" y="240.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask5" id="BPMNShape_scripttask5">
+        <omgdc:Bounds height="55.0" width="105.0" x="795.0" y="717.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask65" id="BPMNShape_servicetask65">
+        <omgdc:Bounds height="55.0" width="105.0" x="939.0" y="717.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway67" id="BPMNShape_exclusivegateway67">
+        <omgdc:Bounds height="40.0" width="40.0" x="971.0" y="660.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_VernutNaVizirovanie" id="BPMNEdge_FlowButton_VernutNaVizirovanie">
+        <omgdi:waypoint x="1434.0" y="455.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1558.0" y="452.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1558.0" y="175.0"></omgdi:waypoint>
+        <omgdi:waypoint x="908.0" y="175.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="1462.0" y="399.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_VzyatNaRedaktirovanie" id="BPMNEdge_FlowButton_VzyatNaRedaktirovanie">
+        <omgdi:waypoint x="1057.0" y="455.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1303.0" y="455.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="1088.0" y="413.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow260" id="BPMNEdge_flow260">
+        <omgdi:waypoint x="795.0" y="744.0"></omgdi:waypoint>
+        <omgdi:waypoint x="760.0" y="744.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow263" id="BPMNEdge_flow263">
+        <omgdi:waypoint x="438.0" y="42.0"></omgdi:waypoint>
+        <omgdi:waypoint x="475.0" y="42.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow271" id="BPMNEdge_flow271">
+        <omgdi:waypoint x="991.0" y="497.0"></omgdi:waypoint>
+        <omgdi:waypoint x="991.0" y="552.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow280" id="BPMNEdge_flow280">
+        <omgdi:waypoint x="715.0" y="42.0"></omgdi:waypoint>
+        <omgdi:waypoint x="762.0" y="43.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow287" id="BPMNEdge_flow287">
+        <omgdi:waypoint x="880.0" y="454.0"></omgdi:waypoint>
+        <omgdi:waypoint x="926.0" y="455.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow387" id="BPMNEdge_flow387">
+        <omgdi:waypoint x="828.0" y="385.0"></omgdi:waypoint>
+        <omgdi:waypoint x="827.0" y="427.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow406" id="BPMNEdge_flow406">
+        <omgdi:waypoint x="580.0" y="42.0"></omgdi:waypoint>
+        <omgdi:waypoint x="610.0" y="42.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow407" id="BPMNEdge_flow407">
+        <omgdi:waypoint x="827.0" y="295.0"></omgdi:waypoint>
+        <omgdi:waypoint x="828.0" y="330.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow408" id="BPMNEdge_flow408">
+        <omgdi:waypoint x="827.0" y="210.0"></omgdi:waypoint>
+        <omgdi:waypoint x="827.0" y="240.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow428" id="BPMNEdge_flow428">
+        <omgdi:waypoint x="991.0" y="623.0"></omgdi:waypoint>
+        <omgdi:waypoint x="991.0" y="660.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow429" id="BPMNEdge_flow429">
+        <omgdi:waypoint x="939.0" y="744.0"></omgdi:waypoint>
+        <omgdi:waypoint x="900.0" y="744.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow437" id="BPMNEdge_flow437">
+        <omgdi:waypoint x="991.0" y="700.0"></omgdi:waypoint>
+        <omgdi:waypoint x="991.0" y="717.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow438" id="BPMNEdge_flow438">
+        <omgdi:waypoint x="971.0" y="680.0"></omgdi:waypoint>
+        <omgdi:waypoint x="742.0" y="680.0"></omgdi:waypoint>
+        <omgdi:waypoint x="742.0" y="727.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow439" id="BPMNEdge_flow439">
+        <omgdi:waypoint x="827.0" y="85.0"></omgdi:waypoint>
+        <omgdi:waypoint x="827.0" y="140.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

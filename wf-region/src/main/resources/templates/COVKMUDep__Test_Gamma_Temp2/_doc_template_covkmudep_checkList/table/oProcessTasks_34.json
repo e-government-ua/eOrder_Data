@@ -1,0 +1,33 @@
+[
+  {
+    "sHead": "Оформити заявку на отримання зарплатної картки або надати реквізити діючої картки (бухгалтерія, каб. 600, 2 корпус)",
+    "sBody": "Оформити заявку на отримання зарплатної картки або надати реквізити діючої картки (бухгалтерія, каб. 600, 2 корпус)",
+    "sID_BP": "_task_base",
+    "sKey_TaskReportType": "Text",
+    "bSplited_Execute": false,
+    "oProcessTaskSubjectsVO": {
+      "aController": [
+        {
+          "oUserVO": {
+            "sLogin": "",
+            "sLabel": ""
+          },
+          "nDaysPlan": null,
+          "oDatePlan": "$[sDate]"
+        }
+      ],
+      "aExecutor": [
+        {
+          "oUserVO": {
+            "sLogin": "",
+            "sLabel": ""
+          },
+          "nDaysPlan": null,
+          "oDatePlan": "$[sDate]"
+        }
+      ],
+      "aVisor": []
+    },
+    "aProcessTaskAttribute": []
+  }
+]

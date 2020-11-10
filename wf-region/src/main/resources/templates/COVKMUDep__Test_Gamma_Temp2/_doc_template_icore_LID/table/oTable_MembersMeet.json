@@ -1,0 +1,16 @@
+{
+  "aField": [
+    {
+      "id": "sName_Participant",
+      "name": "Ім'я запрошеного",
+      "type": "string",
+      "nWidth": "50%"
+      
+    },
+    {
+      "id": "sEmail_Participant",
+      "name": "Пошта запрошеного",
+      "type": "string"
+    }
+  ]
+}

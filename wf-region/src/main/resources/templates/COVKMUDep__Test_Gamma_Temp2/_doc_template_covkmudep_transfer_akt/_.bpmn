@@ -1,0 +1,1759 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="_doc_template_covkmudep_transfer_akt" name="АКТ про передачу справ і майна(переведення)" isExecutable="true">
+    <documentation>;bTemplated=true</documentation>
+    <userTask id="usertask1" name="Створення Акт про передачу справ і майн(переведення)">
+      <extensionElements>
+        <activiti:formProperty id="sDateReg" name="Дата складення" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg11" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg21" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg22" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg31" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg32" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg33" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg4" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg3" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg2" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg1" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head" name="Керівник;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select"></activiti:formProperty>
+        <activiti:formProperty id="sVibor" name="не застосовується;;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_HeadDep" name="Керівник департамента;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head2" name="Департамент забезпечення документообігу ;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Коваль Олег Анатолійович"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head21" name="Сектор архівного зберігання урядових документів відділу випуску актів Кабінету Міністрів України та організації роботи урядового архіву;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Кисельова Алла Анатоліївна"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head22" name="Сектор технічного забезпечення відділу цифрової обробки кореспонденції та технічного забезпечення;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Слюсар Володимир Миколайович"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head3" name="Управління інформаційних технологій та безпеки;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Романенко Іван Борисович"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head31" name="Відділ технічної підтримки ;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Лазарєв Дмитро Юрійович"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head32" name="Відділ цифрової архітектури;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Тиханський Володимир Вікторович"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head33" name="Відділ зв'язку та телекомунікацій;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Пилипенко Володимир Васильович"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head4" name="Департамент кадрового забезпечення;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Кошик Наталія Миколаївна"></activiti:formProperty>
+        <activiti:formProperty id="sGender" name="Стать заявника" type="enum">
+          <activiti:value id="s1" name="передав"></activiti:value>
+          <activiti:value id="s2" name="передала"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sPositionPerevod" name="Найменування посади, на яку переводиться" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDateNakazAkt" name="Дата наказу" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sNumberNakazAkt" name="Номер наказу" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логин автора; ;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Author" name="Полное ФИО;;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Акт про передачу справ та майна (переведення);;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1b4adrmXHqY9y7tzrESlzfbe8rkt48arywoBU56qK0Rw', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="Акт про передачу справ та майна (переведення)1;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1u6npq9CwSSAFKDqpP5n35OATj1-H5PgWMxZ7m6pheRg', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Почта;;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC [sID_Order_URL] "></activiti:formProperty>
+        <activiti:formProperty id="sLoginNakaz" name="Логин автора приказа;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_Author" name="Должность автора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDepartment_Author" name="Департамент автора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_HeadDep" name="Посада керівника департамента;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_1" name="Маркер" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sBody_1&quot;,&quot;sName_Head&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sVibor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'no'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_HeadDep" name="Логин руководителя департаменту;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head" name="Логин руководителя;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head2" name="Логин руководителя департаменту забезпечення документообігу;;bVisible=false" type="string" default="covkmudep_koval-o-a"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head21" name="Логин руководителя сектору архівного зберігання урядових документів відділу випуску актів Кабінету Міністрів України та організації роботи урядового архіву;;bVisible=false" type="string" default="covkmudep_kiseleva-a-a"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head22" name="Логин руководителя сектору технічного забезпечення відділу цифрової обробки кореспонденції та технічного забезпечення;;bVisible=false" type="string" default="covkmudep_slusar-v-m"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head3" name="Логин руководителя управління інформаційних технологій та безпеки;;bVisible=false" type="string" default="covkmudep_vinmer"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head31" name="Логин руководителя відділу технічної підтримки ;;bVisible=false" type="string" default="covkmudep_lazarev-d-y"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head32" name="Логин руководителя відділу цифрової архітектури;;bVisible=false" type="string" default="covkmudep_tykhanskyy-v-v"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head33" name="Логин руководителя відділу зв'язку та телекомунікацій;;bVisible=false" type="string" default="covkmudep_pylypenko-v-v"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head4" name="Логин руководителя департаменту кадрового забезпечення ;;bVisible=false" type="string" default="covkmudep_koshik-n-m"></activiti:formProperty>
+        <activiti:formProperty id="marker_2" name="Маркер2" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sBody_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sVibor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="nID_Process_Parent" name="nID_Process_Parent;;bVisible=false" type="long"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="scripttask1"></sequenceFlow>
+    <userTask id="usertask2" name="Погодження(АКТ про передачу справ і майна)">
+      <extensionElements>
+        <activiti:formProperty id="sDateReg" name="Дата складення" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg11" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg21" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg22" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg31" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg32" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg33" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg4" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg3" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg2" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg1" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head" name="Керівник;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sVibor" name="не застосовується;;sID_CheckboxTrue=yes" type="enum" default="no" writable="false">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_HeadDep" name="Керівник департамента;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head2" name="Департамент забезпечення документообігу ;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Коваль Олег Анатолійович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head21" name="Сектор архівного зберігання урядових документів відділу випуску актів Кабінету Міністрів України та організації роботи урядового архіву;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Кисельова Алла Анатоліївна" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head22" name="Сектор технічного забезпечення відділу цифрової обробки кореспонденції та технічного забезпечення;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Слюсар Володимир Миколайович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head3" name="Управління інформаційних технологій та безпеки;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Романенко Іван Борисович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head31" name="Відділ технічної підтримки ;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Лазарєв Дмитро Юрійович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head32" name="Відділ цифрової архітектури;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Тиханський Володимир Вікторович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head33" name="Відділ зв'язку та телекомунікацій;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Пилипенко Володимир Васильович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head4" name="Департамент кадрового забезпечення;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Кошик Наталія Миколаївна" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sGender" name="Стать заявника" type="enum" writable="false">
+          <activiti:value id="s1" name="передав"></activiti:value>
+          <activiti:value id="s2" name="передала"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sPositionPerevod" name="Найменування посади, на яку переводиться" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateNakazAkt" name="Дата наказу" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumberNakazAkt" name="Номер наказу" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логин автора; ;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Author" name="Полное ФИО;;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Акт про передачу справ та майна (переведення);;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1b4adrmXHqY9y7tzrESlzfbe8rkt48arywoBU56qK0Rw', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="Акт про передачу справ та майна (переведення)1;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1u6npq9CwSSAFKDqpP5n35OATj1-H5PgWMxZ7m6pheRg', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Почта;;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC [sID_Order_URL] "></activiti:formProperty>
+        <activiti:formProperty id="sLoginNakaz" name="Логин автора приказа;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_Author" name="Должность автора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDepartment_Author" name="Департамент автора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_HeadDep" name="Посада керівника департамента;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_1" name="Маркер" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sBody_1&quot;,&quot;sName_Head&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sVibor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'no'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_HeadDep" name="Логин руководителя департаменту;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head" name="Логин руководителя;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head2" name="Логин руководителя департаменту забезпечення документообігу;;bVisible=false" type="string" default="covkmudep_koval-o-a"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head21" name="Логин руководителя сектору архівного зберігання урядових документів відділу випуску актів Кабінету Міністрів України та організації роботи урядового архіву;;bVisible=false" type="string" default="covkmudep_kiseleva-a-a"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head22" name="Логин руководителя сектору технічного забезпечення відділу цифрової обробки кореспонденції та технічного забезпечення;;bVisible=false" type="string" default="covkmudep_slusar-v-m"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head3" name="Логин руководителя управління інформаційних технологій та безпеки;;bVisible=false" type="string" default="covkmudep_vinmer"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head31" name="Логин руководителя відділу технічної підтримки ;;bVisible=false" type="string" default="covkmudep_lazarev-d-y"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head32" name="Логин руководителя відділу цифрової архітектури;;bVisible=false" type="string" default="covkmudep_tykhanskyy-v-v"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head33" name="Логин руководителя відділу зв'язку та телекомунікацій;;bVisible=false" type="string" default="covkmudep_pylypenko-v-v"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head4" name="Логин руководителя департаменту кадрового забезпечення ;;bVisible=false" type="string" default="covkmudep_koshik-n-m"></activiti:formProperty>
+        <activiti:formProperty id="marker_2" name="Маркер2" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sBody_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sVibor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="nID_Process_Parent" name="nID_Process_Parent;;bVisible=false" type="long"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow2" sourceRef="usertask5" targetRef="servicetask1">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_accept_1]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${sVibor =='no'}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="usertask3" name="Погодження(АКТ про передачу справ і майна)">
+      <extensionElements>
+        <activiti:formProperty id="sDateReg" name="Дата складення" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg11" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg21" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg22" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg31" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg32" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg33" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg4" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg3" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg2" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg1" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head" name="Керівник;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sVibor" name="не застосовується;;sID_CheckboxTrue=yes" type="enum" default="no" writable="false">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_HeadDep" name="Керівник департамента;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head2" name="Департамент забезпечення документообігу ;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Коваль Олег Анатолійович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head21" name="Сектор архівного зберігання урядових документів відділу випуску актів Кабінету Міністрів України та організації роботи урядового архіву;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Кисельова Алла Анатоліївна" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head22" name="Сектор технічного забезпечення відділу цифрової обробки кореспонденції та технічного забезпечення;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Слюсар Володимир Миколайович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head3" name="Управління інформаційних технологій та безпеки;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Романенко Іван Борисович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head31" name="Відділ технічної підтримки ;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Лазарєв Дмитро Юрійович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head32" name="Відділ цифрової архітектури;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Тиханський Володимир Вікторович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head33" name="Відділ зв'язку та телекомунікацій;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Пилипенко Володимир Васильович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head4" name="Департамент кадрового забезпечення;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Кошик Наталія Миколаївна" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sGender" name="Стать заявника" type="enum" writable="false">
+          <activiti:value id="s1" name="передав"></activiti:value>
+          <activiti:value id="s2" name="передала"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sPositionPerevod" name="Найменування посади, на яку переводиться" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateNakazAkt" name="Дата наказу" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumberNakazAkt" name="Номер наказу" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логин автора; ;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Author" name="Полное ФИО;;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Акт про передачу справ та майна (переведення);;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1b4adrmXHqY9y7tzrESlzfbe8rkt48arywoBU56qK0Rw', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="Акт про передачу справ та майна (переведення)1;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1u6npq9CwSSAFKDqpP5n35OATj1-H5PgWMxZ7m6pheRg', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Почта;;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC [sID_Order_URL] "></activiti:formProperty>
+        <activiti:formProperty id="sLoginNakaz" name="Логин автора приказа;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_Author" name="Должность автора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDepartment_Author" name="Департамент автора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_HeadDep" name="Посада керівника департамента;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_1" name="Маркер" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sBody_1&quot;,&quot;sName_Head&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sVibor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'no'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_HeadDep" name="Логин руководителя департаменту;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head" name="Логин руководителя;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head2" name="Логин руководителя департаменту забезпечення документообігу;;bVisible=false" type="string" default="covkmudep_koval-o-a"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head21" name="Логин руководителя сектору архівного зберігання урядових документів відділу випуску актів Кабінету Міністрів України та організації роботи урядового архіву;;bVisible=false" type="string" default="covkmudep_kiseleva-a-a"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head22" name="Логин руководителя сектору технічного забезпечення відділу цифрової обробки кореспонденції та технічного забезпечення;;bVisible=false" type="string" default="covkmudep_slusar-v-m"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head3" name="Логин руководителя управління інформаційних технологій та безпеки;;bVisible=false" type="string" default="covkmudep_vinmer"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head31" name="Логин руководителя відділу технічної підтримки ;;bVisible=false" type="string" default="covkmudep_lazarev-d-y"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head32" name="Логин руководителя відділу цифрової архітектури;;bVisible=false" type="string" default="covkmudep_tykhanskyy-v-v"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head33" name="Логин руководителя відділу зв'язку та телекомунікацій;;bVisible=false" type="string" default="covkmudep_pylypenko-v-v"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head4" name="Логин руководителя департаменту кадрового забезпечення ;;bVisible=false" type="string" default="covkmudep_koshik-n-m"></activiti:formProperty>
+        <activiti:formProperty id="marker_2" name="Маркер2" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sBody_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sVibor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="nID_Process_Parent" name="nID_Process_Parent;;bVisible=false" type="long"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <serviceTask id="servicetask1" name="письмо" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept_1]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[IDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="servicetask2" name="LoginHead" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept_1]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${sLogin_Head}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow4" sourceRef="servicetask1" targetRef="servicetask2"></sequenceFlow>
+    <sequenceFlow id="flow5" sourceRef="servicetask2" targetRef="usertask2"></sequenceFlow>
+    <sequenceFlow id="flow6" sourceRef="scripttask4" targetRef="servicetask11">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_accept_2]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow10" sourceRef="servicetask11" targetRef="servicetask14"></sequenceFlow>
+    <sequenceFlow id="flow11" sourceRef="servicetask14" targetRef="usertask3"></sequenceFlow>
+    <sequenceFlow id="flow14" sourceRef="usertask3" targetRef="scripttask5">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_accept_3]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <serviceTask id="servicetask5" name="LoginAuthor" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oDocumentService.getLoginAuthor(execution)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_consideration]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_consideration]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <userTask id="usertask5" name="Підписання автором з ЕЦП">
+      <extensionElements>
+        <activiti:formProperty id="sDateReg" name="Дата складення" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg11" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg21" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg22" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg31" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg32" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg33" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg4" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg3" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg2" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg1" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head" name="Керівник;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sVibor" name="не застосовується;;sID_CheckboxTrue=yes" type="enum" default="no" writable="false">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_HeadDep" name="Керівник департамента;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head2" name="Департамент забезпечення документообігу ;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Коваль Олег Анатолійович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head21" name="Сектор архівного зберігання урядових документів відділу випуску актів Кабінету Міністрів України та організації роботи урядового архіву;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Кисельова Алла Анатоліївна" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head22" name="Сектор технічного забезпечення відділу цифрової обробки кореспонденції та технічного забезпечення;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Слюсар Володимир Миколайович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head3" name="Управління інформаційних технологій та безпеки;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Романенко Іван Борисович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head31" name="Відділ технічної підтримки ;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Лазарєв Дмитро Юрійович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head32" name="Відділ цифрової архітектури;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Тиханський Володимир Вікторович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head33" name="Відділ зв'язку та телекомунікацій;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Пилипенко Володимир Васильович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head4" name="Департамент кадрового забезпечення;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Кошик Наталія Миколаївна" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sGender" name="Стать заявника" type="enum" writable="false">
+          <activiti:value id="s1" name="передав"></activiti:value>
+          <activiti:value id="s2" name="передала"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sPositionPerevod" name="Найменування посади, на яку переводиться" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateNakazAkt" name="Дата наказу" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumberNakazAkt" name="Номер наказу" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логин автора; ;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Author" name="Полное ФИО;;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Акт про передачу справ та майна (переведення);;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1b4adrmXHqY9y7tzrESlzfbe8rkt48arywoBU56qK0Rw', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="Акт про передачу справ та майна (переведення)1;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1u6npq9CwSSAFKDqpP5n35OATj1-H5PgWMxZ7m6pheRg', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Почта;;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC [sID_Order_URL] "></activiti:formProperty>
+        <activiti:formProperty id="sLoginNakaz" name="Логин автора приказа;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_Author" name="Должность автора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDepartment_Author" name="Департамент автора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_HeadDep" name="Посада керівника департамента;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_1" name="Маркер" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sBody_1&quot;,&quot;sName_Head&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sVibor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'no'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_HeadDep" name="Логин руководителя департаменту;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head" name="Логин руководителя;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head2" name="Логин руководителя департаменту забезпечення документообігу;;bVisible=false" type="string" default="covkmudep_koval-o-a"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head21" name="Логин руководителя сектору архівного зберігання урядових документів відділу випуску актів Кабінету Міністрів України та організації роботи урядового архіву;;bVisible=false" type="string" default="covkmudep_kiseleva-a-a"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head22" name="Логин руководителя сектору технічного забезпечення відділу цифрової обробки кореспонденції та технічного забезпечення;;bVisible=false" type="string" default="covkmudep_slusar-v-m"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head3" name="Логин руководителя управління інформаційних технологій та безпеки;;bVisible=false" type="string" default="covkmudep_vinmer"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head31" name="Логин руководителя відділу технічної підтримки ;;bVisible=false" type="string" default="covkmudep_lazarev-d-y"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head32" name="Логин руководителя відділу цифрової архітектури;;bVisible=false" type="string" default="covkmudep_tykhanskyy-v-v"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head33" name="Логин руководителя відділу зв'язку та телекомунікацій;;bVisible=false" type="string" default="covkmudep_pylypenko-v-v"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head4" name="Логин руководителя департаменту кадрового забезпечення ;;bVisible=false" type="string" default="covkmudep_koshik-n-m"></activiti:formProperty>
+        <activiti:formProperty id="marker_2" name="Маркер2" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sBody_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sVibor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="nID_Process_Parent" name="nID_Process_Parent;;bVisible=false" type="long"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow20" sourceRef="servicetask5" targetRef="usertask5"></sequenceFlow>
+    <userTask id="usertask6" name="Погодження(АКТ про передачу справ і майна)">
+      <extensionElements>
+        <activiti:formProperty id="sDateReg" name="Дата складення" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg11" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg21" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg22" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg31" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg32" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg33" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg4" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg3" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg2" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg1" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head" name="Керівник;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sVibor" name="не застосовується;;sID_CheckboxTrue=yes" type="enum" default="no" writable="false">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_HeadDep" name="Керівник департамента;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head2" name="Департамент забезпечення документообігу ;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Коваль Олег Анатолійович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head21" name="Сектор архівного зберігання урядових документів відділу випуску актів Кабінету Міністрів України та організації роботи урядового архіву;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Кисельова Алла Анатоліївна" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head22" name="Сектор технічного забезпечення відділу цифрової обробки кореспонденції та технічного забезпечення;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Слюсар Володимир Миколайович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head3" name="Управління інформаційних технологій та безпеки;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Романенко Іван Борисович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head31" name="Відділ технічної підтримки ;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Лазарєв Дмитро Юрійович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head32" name="Відділ цифрової архітектури;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Тиханський Володимир Вікторович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head33" name="Відділ зв'язку та телекомунікацій;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Пилипенко Володимир Васильович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head4" name="Департамент кадрового забезпечення;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Кошик Наталія Миколаївна" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sGender" name="Стать заявника" type="enum" writable="false">
+          <activiti:value id="s1" name="передав"></activiti:value>
+          <activiti:value id="s2" name="передала"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sPositionPerevod" name="Найменування посади, на яку переводиться" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateNakazAkt" name="Дата наказу" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumberNakazAkt" name="Номер наказу" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логин автора; ;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Author" name="Полное ФИО;;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Акт про передачу справ та майна (переведення);;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1b4adrmXHqY9y7tzrESlzfbe8rkt48arywoBU56qK0Rw', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="Акт про передачу справ та майна (переведення)1;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1u6npq9CwSSAFKDqpP5n35OATj1-H5PgWMxZ7m6pheRg', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Почта;;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC [sID_Order_URL] "></activiti:formProperty>
+        <activiti:formProperty id="sLoginNakaz" name="Логин автора приказа;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_Author" name="Должность автора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDepartment_Author" name="Департамент автора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_HeadDep" name="Посада керівника департамента;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_1" name="Маркер" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sBody_1&quot;,&quot;sName_Head&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sVibor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'no'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_HeadDep" name="Логин руководителя департаменту;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head" name="Логин руководителя;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head2" name="Логин руководителя департаменту забезпечення документообігу;;bVisible=false" type="string" default="covkmudep_koval-o-a"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head21" name="Логин руководителя сектору архівного зберігання урядових документів відділу випуску актів Кабінету Міністрів України та організації роботи урядового архіву;;bVisible=false" type="string" default="covkmudep_kiseleva-a-a"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head22" name="Логин руководителя сектору технічного забезпечення відділу цифрової обробки кореспонденції та технічного забезпечення;;bVisible=false" type="string" default="covkmudep_slusar-v-m"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head3" name="Логин руководителя управління інформаційних технологій та безпеки;;bVisible=false" type="string" default="covkmudep_vinmer"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head31" name="Логин руководителя відділу технічної підтримки ;;bVisible=false" type="string" default="covkmudep_lazarev-d-y"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head32" name="Логин руководителя відділу цифрової архітектури;;bVisible=false" type="string" default="covkmudep_tykhanskyy-v-v"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head33" name="Логин руководителя відділу зв'язку та телекомунікацій;;bVisible=false" type="string" default="covkmudep_pylypenko-v-v"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head4" name="Логин руководителя департаменту кадрового забезпечення ;;bVisible=false" type="string" default="covkmudep_koshik-n-m"></activiti:formProperty>
+        <activiti:formProperty id="marker_2" name="Маркер2" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sBody_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sVibor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="nID_Process_Parent" name="nID_Process_Parent;;bVisible=false" type="long"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow22" sourceRef="servicetask15" targetRef="usertask6"></sequenceFlow>
+    <sequenceFlow id="flow23" sourceRef="usertask6" targetRef="scripttask6">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_accept_4]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow28" sourceRef="servicetask12" targetRef="servicetask15"></sequenceFlow>
+    <userTask id="usertask7" name="Погодження(АКТ про передачу справ і майна)">
+      <extensionElements>
+        <activiti:formProperty id="sDateReg" name="Дата складення" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg11" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg21" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg22" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg31" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg32" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg33" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg4" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg3" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg2" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg1" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head" name="Керівник;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sVibor" name="не застосовується;;sID_CheckboxTrue=yes" type="enum" default="no" writable="false">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_HeadDep" name="Керівник департамента;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head2" name="Департамент забезпечення документообігу ;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Коваль Олег Анатолійович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head21" name="Сектор архівного зберігання урядових документів відділу випуску актів Кабінету Міністрів України та організації роботи урядового архіву;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Кисельова Алла Анатоліївна" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head22" name="Сектор технічного забезпечення відділу цифрової обробки кореспонденції та технічного забезпечення;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Слюсар Володимир Миколайович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head3" name="Управління інформаційних технологій та безпеки;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Романенко Іван Борисович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head31" name="Відділ технічної підтримки ;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Лазарєв Дмитро Юрійович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head32" name="Відділ цифрової архітектури;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Тиханський Володимир Вікторович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head33" name="Відділ зв'язку та телекомунікацій;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Пилипенко Володимир Васильович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head4" name="Департамент кадрового забезпечення;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Кошик Наталія Миколаївна" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sGender" name="Стать заявника" type="enum" writable="false">
+          <activiti:value id="s1" name="передав"></activiti:value>
+          <activiti:value id="s2" name="передала"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sPositionPerevod" name="Найменування посади, на яку переводиться" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateNakazAkt" name="Дата наказу" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumberNakazAkt" name="Номер наказу" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логин автора; ;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Author" name="Полное ФИО;;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Акт про передачу справ та майна (переведення);;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1b4adrmXHqY9y7tzrESlzfbe8rkt48arywoBU56qK0Rw', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="Акт про передачу справ та майна (переведення)1;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1u6npq9CwSSAFKDqpP5n35OATj1-H5PgWMxZ7m6pheRg', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Почта;;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC [sID_Order_URL] "></activiti:formProperty>
+        <activiti:formProperty id="sLoginNakaz" name="Логин автора приказа;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_Author" name="Должность автора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDepartment_Author" name="Департамент автора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_HeadDep" name="Посада керівника департамента;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_1" name="Маркер" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sBody_1&quot;,&quot;sName_Head&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sVibor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'no'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_HeadDep" name="Логин руководителя департаменту;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head" name="Логин руководителя;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head2" name="Логин руководителя департаменту забезпечення документообігу;;bVisible=false" type="string" default="covkmudep_koval-o-a"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head21" name="Логин руководителя сектору архівного зберігання урядових документів відділу випуску актів Кабінету Міністрів України та організації роботи урядового архіву;;bVisible=false" type="string" default="covkmudep_kiseleva-a-a"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head22" name="Логин руководителя сектору технічного забезпечення відділу цифрової обробки кореспонденції та технічного забезпечення;;bVisible=false" type="string" default="covkmudep_slusar-v-m"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head3" name="Логин руководителя управління інформаційних технологій та безпеки;;bVisible=false" type="string" default="covkmudep_vinmer"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head31" name="Логин руководителя відділу технічної підтримки ;;bVisible=false" type="string" default="covkmudep_lazarev-d-y"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head32" name="Логин руководителя відділу цифрової архітектури;;bVisible=false" type="string" default="covkmudep_tykhanskyy-v-v"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head33" name="Логин руководителя відділу зв'язку та телекомунікацій;;bVisible=false" type="string" default="covkmudep_pylypenko-v-v"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head4" name="Логин руководителя департаменту кадрового забезпечення ;;bVisible=false" type="string" default="covkmudep_koshik-n-m"></activiti:formProperty>
+        <activiti:formProperty id="marker_2" name="Маркер2" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sBody_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sVibor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="nID_Process_Parent" name="nID_Process_Parent;;bVisible=false" type="long"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow30" sourceRef="servicetask13" targetRef="servicetask16"></sequenceFlow>
+    <sequenceFlow id="flow31" sourceRef="usertask7" targetRef="scripttask7">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_accept_5]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <serviceTask id="servicetask10" name="LoginAuthor" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oDocumentService.getLoginAuthor(execution)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_seen]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_seen]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow37" sourceRef="servicetask16" targetRef="usertask7"></sequenceFlow>
+    <sequenceFlow id="flow38" sourceRef="usertask1" targetRef="scripttask14">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Consideration]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <serviceTask id="servicetask11" name="письмо" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept_2]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[IDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="servicetask12" name="письмо" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept_3]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[IDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="servicetask13" name="письмо" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept_4]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[IDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="servicetask14" name="Role1" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept_2]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${sLogin_Head21}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="servicetask15" name="Role2" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept_3]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${sLogin_Head22}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="servicetask16" name="Role3" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept_4]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${sLogin_Head31}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <scriptTask id="scripttask1" name="Script Task" scriptFormat="groovy" activiti:autoStoreVariables="false">
+      <script>execution.setVariable('sDateReg', new Date().format("dd.MM.yyyy").toString())</script>
+    </scriptTask>
+    <serviceTask id="servicetask17" name="письмо" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept_5]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[IDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="servicetask18" name="Role4" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept_5]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${sLogin_Head32}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow40" sourceRef="servicetask17" targetRef="servicetask18"></sequenceFlow>
+    <userTask id="usertask8" name="Погодження(АКТ про передачу справ і майна)">
+      <extensionElements>
+        <activiti:formProperty id="sDateReg" name="Дата складення" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg11" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg21" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg22" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg31" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg32" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg33" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg4" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg3" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg2" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg1" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head" name="Керівник;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sVibor" name="не застосовується;;sID_CheckboxTrue=yes" type="enum" default="no" writable="false">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_HeadDep" name="Керівник департамента;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head2" name="Департамент забезпечення документообігу ;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Коваль Олег Анатолійович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head21" name="Сектор архівного зберігання урядових документів відділу випуску актів Кабінету Міністрів України та організації роботи урядового архіву;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Кисельова Алла Анатоліївна" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head22" name="Сектор технічного забезпечення відділу цифрової обробки кореспонденції та технічного забезпечення;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Слюсар Володимир Миколайович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head3" name="Управління інформаційних технологій та безпеки;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Романенко Іван Борисович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head31" name="Відділ технічної підтримки ;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Лазарєв Дмитро Юрійович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head32" name="Відділ цифрової архітектури;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Тиханський Володимир Вікторович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head33" name="Відділ зв'язку та телекомунікацій;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Пилипенко Володимир Васильович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head4" name="Департамент кадрового забезпечення;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Кошик Наталія Миколаївна" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sGender" name="Стать заявника" type="enum" writable="false">
+          <activiti:value id="s1" name="передав"></activiti:value>
+          <activiti:value id="s2" name="передала"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sPositionPerevod" name="Найменування посади, на яку переводиться" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateNakazAkt" name="Дата наказу" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumberNakazAkt" name="Номер наказу" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логин автора; ;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Author" name="Полное ФИО;;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Акт про передачу справ та майна (переведення);;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1b4adrmXHqY9y7tzrESlzfbe8rkt48arywoBU56qK0Rw', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="Акт про передачу справ та майна (переведення)1;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1u6npq9CwSSAFKDqpP5n35OATj1-H5PgWMxZ7m6pheRg', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Почта;;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC [sID_Order_URL] "></activiti:formProperty>
+        <activiti:formProperty id="sLoginNakaz" name="Логин автора приказа;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_Author" name="Должность автора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDepartment_Author" name="Департамент автора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_HeadDep" name="Посада керівника департамента;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_1" name="Маркер" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sBody_1&quot;,&quot;sName_Head&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sVibor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'no'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_HeadDep" name="Логин руководителя департаменту;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head" name="Логин руководителя;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head2" name="Логин руководителя департаменту забезпечення документообігу;;bVisible=false" type="string" default="covkmudep_koval-o-a"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head21" name="Логин руководителя сектору архівного зберігання урядових документів відділу випуску актів Кабінету Міністрів України та організації роботи урядового архіву;;bVisible=false" type="string" default="covkmudep_kiseleva-a-a"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head22" name="Логин руководителя сектору технічного забезпечення відділу цифрової обробки кореспонденції та технічного забезпечення;;bVisible=false" type="string" default="covkmudep_slusar-v-m"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head3" name="Логин руководителя управління інформаційних технологій та безпеки;;bVisible=false" type="string" default="covkmudep_vinmer"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head31" name="Логин руководителя відділу технічної підтримки ;;bVisible=false" type="string" default="covkmudep_lazarev-d-y"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head32" name="Логин руководителя відділу цифрової архітектури;;bVisible=false" type="string" default="covkmudep_tykhanskyy-v-v"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head33" name="Логин руководителя відділу зв'язку та телекомунікацій;;bVisible=false" type="string" default="covkmudep_pylypenko-v-v"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head4" name="Логин руководителя департаменту кадрового забезпечення ;;bVisible=false" type="string" default="covkmudep_koshik-n-m"></activiti:formProperty>
+        <activiti:formProperty id="marker_2" name="Маркер2" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sBody_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sVibor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="nID_Process_Parent" name="nID_Process_Parent;;bVisible=false" type="long"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow41" sourceRef="servicetask18" targetRef="usertask8"></sequenceFlow>
+    <serviceTask id="servicetask19" name="письмо" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept_6]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[IDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow42" sourceRef="usertask8" targetRef="scripttask8">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_accept_6]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <serviceTask id="servicetask20" name="Role5" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept_6]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${sLogin_Head33}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow43" sourceRef="servicetask19" targetRef="servicetask20"></sequenceFlow>
+    <userTask id="usertask9" name="Погодження(АКТ про передачу справ і майна)">
+      <extensionElements>
+        <activiti:formProperty id="sDateReg" name="Дата складення" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg11" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg21" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg22" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg31" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg32" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg33" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg4" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg3" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg2" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg1" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head" name="Керівник;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sVibor" name="не застосовується;;sID_CheckboxTrue=yes" type="enum" default="no" writable="false">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_HeadDep" name="Керівник департамента;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head2" name="Департамент забезпечення документообігу ;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Коваль Олег Анатолійович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head21" name="Сектор архівного зберігання урядових документів відділу випуску актів Кабінету Міністрів України та організації роботи урядового архіву;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Кисельова Алла Анатоліївна" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head22" name="Сектор технічного забезпечення відділу цифрової обробки кореспонденції та технічного забезпечення;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Слюсар Володимир Миколайович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head3" name="Управління інформаційних технологій та безпеки;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Романенко Іван Борисович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head31" name="Відділ технічної підтримки ;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Лазарєв Дмитро Юрійович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head32" name="Відділ цифрової архітектури;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Тиханський Володимир Вікторович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head33" name="Відділ зв'язку та телекомунікацій;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Пилипенко Володимир Васильович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head4" name="Департамент кадрового забезпечення;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Кошик Наталія Миколаївна" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sGender" name="Стать заявника" type="enum" writable="false">
+          <activiti:value id="s1" name="передав"></activiti:value>
+          <activiti:value id="s2" name="передала"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sPositionPerevod" name="Найменування посади, на яку переводиться" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateNakazAkt" name="Дата наказу" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumberNakazAkt" name="Номер наказу" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логин автора; ;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Author" name="Полное ФИО;;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Акт про передачу справ та майна (переведення);;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1b4adrmXHqY9y7tzrESlzfbe8rkt48arywoBU56qK0Rw', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="Акт про передачу справ та майна (переведення)1;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1u6npq9CwSSAFKDqpP5n35OATj1-H5PgWMxZ7m6pheRg', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Почта;;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC [sID_Order_URL] "></activiti:formProperty>
+        <activiti:formProperty id="sLoginNakaz" name="Логин автора приказа;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_Author" name="Должность автора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDepartment_Author" name="Департамент автора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_HeadDep" name="Посада керівника департамента;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_1" name="Маркер" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sBody_1&quot;,&quot;sName_Head&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sVibor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'no'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_HeadDep" name="Логин руководителя департаменту;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head" name="Логин руководителя;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head2" name="Логин руководителя департаменту забезпечення документообігу;;bVisible=false" type="string" default="covkmudep_koval-o-a"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head21" name="Логин руководителя сектору архівного зберігання урядових документів відділу випуску актів Кабінету Міністрів України та організації роботи урядового архіву;;bVisible=false" type="string" default="covkmudep_kiseleva-a-a"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head22" name="Логин руководителя сектору технічного забезпечення відділу цифрової обробки кореспонденції та технічного забезпечення;;bVisible=false" type="string" default="covkmudep_slusar-v-m"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head3" name="Логин руководителя управління інформаційних технологій та безпеки;;bVisible=false" type="string" default="covkmudep_vinmer"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head31" name="Логин руководителя відділу технічної підтримки ;;bVisible=false" type="string" default="covkmudep_lazarev-d-y"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head32" name="Логин руководителя відділу цифрової архітектури;;bVisible=false" type="string" default="covkmudep_tykhanskyy-v-v"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head33" name="Логин руководителя відділу зв'язку та телекомунікацій;;bVisible=false" type="string" default="covkmudep_pylypenko-v-v"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head4" name="Логин руководителя департаменту кадрового забезпечення ;;bVisible=false" type="string" default="covkmudep_koshik-n-m"></activiti:formProperty>
+        <activiti:formProperty id="marker_2" name="Маркер2" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sBody_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sVibor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="nID_Process_Parent" name="nID_Process_Parent;;bVisible=false" type="long"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow44" sourceRef="servicetask20" targetRef="usertask9"></sequenceFlow>
+    <serviceTask id="servicetask21" name="письмо" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept_7]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[IDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow45" sourceRef="usertask9" targetRef="scripttask9">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_accept_7]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <serviceTask id="servicetask22" name="Role6" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept_7]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${sLogin_Head4}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow46" sourceRef="servicetask21" targetRef="servicetask22"></sequenceFlow>
+    <userTask id="usertask10" name="Погодження(АКТ про передачу справ і майна)">
+      <extensionElements>
+        <activiti:formProperty id="sDateReg" name="Дата складення" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg11" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg21" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg22" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg31" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg32" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg33" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg4" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg3" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg2" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg1" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head" name="Керівник;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sVibor" name="не застосовується;;sID_CheckboxTrue=yes" type="enum" default="no" writable="false">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_HeadDep" name="Керівник департамента;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head2" name="Департамент забезпечення документообігу ;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Коваль Олег Анатолійович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head21" name="Сектор архівного зберігання урядових документів відділу випуску актів Кабінету Міністрів України та організації роботи урядового архіву;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Кисельова Алла Анатоліївна" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head22" name="Сектор технічного забезпечення відділу цифрової обробки кореспонденції та технічного забезпечення;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Слюсар Володимир Миколайович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head3" name="Управління інформаційних технологій та безпеки;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Романенко Іван Борисович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head31" name="Відділ технічної підтримки ;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Лазарєв Дмитро Юрійович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head32" name="Відділ цифрової архітектури;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Тиханський Володимир Вікторович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head33" name="Відділ зв'язку та телекомунікацій;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Пилипенко Володимир Васильович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head4" name="Департамент кадрового забезпечення;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Кошик Наталія Миколаївна" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sGender" name="Стать заявника" type="enum" writable="false">
+          <activiti:value id="s1" name="передав"></activiti:value>
+          <activiti:value id="s2" name="передала"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sPositionPerevod" name="Найменування посади, на яку переводиться" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateNakazAkt" name="Дата наказу" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumberNakazAkt" name="Номер наказу" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логин автора; ;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Author" name="Полное ФИО;;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Акт про передачу справ та майна (переведення);;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1b4adrmXHqY9y7tzrESlzfbe8rkt48arywoBU56qK0Rw', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="Акт про передачу справ та майна (переведення)1;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1u6npq9CwSSAFKDqpP5n35OATj1-H5PgWMxZ7m6pheRg', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Почта;;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC [sID_Order_URL] "></activiti:formProperty>
+        <activiti:formProperty id="sLoginNakaz" name="Логин автора приказа;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_Author" name="Должность автора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDepartment_Author" name="Департамент автора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_HeadDep" name="Посада керівника департамента;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_1" name="Маркер" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sBody_1&quot;,&quot;sName_Head&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sVibor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'no'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_HeadDep" name="Логин руководителя департаменту;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head" name="Логин руководителя;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head2" name="Логин руководителя департаменту забезпечення документообігу;;bVisible=false" type="string" default="covkmudep_koval-o-a"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head21" name="Логин руководителя сектору архівного зберігання урядових документів відділу випуску актів Кабінету Міністрів України та організації роботи урядового архіву;;bVisible=false" type="string" default="covkmudep_kiseleva-a-a"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head22" name="Логин руководителя сектору технічного забезпечення відділу цифрової обробки кореспонденції та технічного забезпечення;;bVisible=false" type="string" default="covkmudep_slusar-v-m"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head3" name="Логин руководителя управління інформаційних технологій та безпеки;;bVisible=false" type="string" default="covkmudep_vinmer"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head31" name="Логин руководителя відділу технічної підтримки ;;bVisible=false" type="string" default="covkmudep_lazarev-d-y"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head32" name="Логин руководителя відділу цифрової архітектури;;bVisible=false" type="string" default="covkmudep_tykhanskyy-v-v"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head33" name="Логин руководителя відділу зв'язку та телекомунікацій;;bVisible=false" type="string" default="covkmudep_pylypenko-v-v"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head4" name="Логин руководителя департаменту кадрового забезпечення ;;bVisible=false" type="string" default="covkmudep_koshik-n-m"></activiti:formProperty>
+        <activiti:formProperty id="marker_2" name="Маркер2" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sBody_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sVibor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="nID_Process_Parent" name="nID_Process_Parent;;bVisible=false" type="long"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow47" sourceRef="servicetask22" targetRef="usertask10"></sequenceFlow>
+    <serviceTask id="servicetask23" name="письмо" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept_8]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[IDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="servicetask24" name="Role7" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept_8]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${sLogin_Head3}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <userTask id="usertask11" name="Погодження(АКТ про передачу справ і майна)">
+      <extensionElements>
+        <activiti:formProperty id="sDateReg" name="Дата складення" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg11" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg21" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg22" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg31" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg32" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg33" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg4" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg3" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg2" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg1" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head" name="Керівник;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sVibor" name="не застосовується;;sID_CheckboxTrue=yes" type="enum" default="no" writable="false">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_HeadDep" name="Керівник департамента;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head2" name="Департамент забезпечення документообігу ;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Коваль Олег Анатолійович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head21" name="Сектор архівного зберігання урядових документів відділу випуску актів Кабінету Міністрів України та організації роботи урядового архіву;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Кисельова Алла Анатоліївна" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head22" name="Сектор технічного забезпечення відділу цифрової обробки кореспонденції та технічного забезпечення;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Слюсар Володимир Миколайович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head3" name="Управління інформаційних технологій та безпеки;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Романенко Іван Борисович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head31" name="Відділ технічної підтримки ;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Лазарєв Дмитро Юрійович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head32" name="Відділ цифрової архітектури;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Тиханський Володимир Вікторович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head33" name="Відділ зв'язку та телекомунікацій;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Пилипенко Володимир Васильович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head4" name="Департамент кадрового забезпечення;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Кошик Наталія Миколаївна" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sGender" name="Стать заявника" type="enum" writable="false">
+          <activiti:value id="s1" name="передав"></activiti:value>
+          <activiti:value id="s2" name="передала"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sPositionPerevod" name="Найменування посади, на яку переводиться" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateNakazAkt" name="Дата наказу" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumberNakazAkt" name="Номер наказу" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логин автора; ;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Author" name="Полное ФИО;;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Акт про передачу справ та майна (переведення);;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1b4adrmXHqY9y7tzrESlzfbe8rkt48arywoBU56qK0Rw', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="Акт про передачу справ та майна (переведення)1;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1u6npq9CwSSAFKDqpP5n35OATj1-H5PgWMxZ7m6pheRg', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Почта;;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC [sID_Order_URL] "></activiti:formProperty>
+        <activiti:formProperty id="sLoginNakaz" name="Логин автора приказа;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_Author" name="Должность автора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDepartment_Author" name="Департамент автора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_HeadDep" name="Посада керівника департамента;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_1" name="Маркер" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sBody_1&quot;,&quot;sName_Head&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sVibor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'no'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_HeadDep" name="Логин руководителя департаменту;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head" name="Логин руководителя;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head2" name="Логин руководителя департаменту забезпечення документообігу;;bVisible=false" type="string" default="covkmudep_koval-o-a"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head21" name="Логин руководителя сектору архівного зберігання урядових документів відділу випуску актів Кабінету Міністрів України та організації роботи урядового архіву;;bVisible=false" type="string" default="covkmudep_kiseleva-a-a"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head22" name="Логин руководителя сектору технічного забезпечення відділу цифрової обробки кореспонденції та технічного забезпечення;;bVisible=false" type="string" default="covkmudep_slusar-v-m"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head3" name="Логин руководителя управління інформаційних технологій та безпеки;;bVisible=false" type="string" default="covkmudep_vinmer"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head31" name="Логин руководителя відділу технічної підтримки ;;bVisible=false" type="string" default="covkmudep_lazarev-d-y"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head32" name="Логин руководителя відділу цифрової архітектури;;bVisible=false" type="string" default="covkmudep_tykhanskyy-v-v"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head33" name="Логин руководителя відділу зв'язку та телекомунікацій;;bVisible=false" type="string" default="covkmudep_pylypenko-v-v"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head4" name="Логин руководителя департаменту кадрового забезпечення ;;bVisible=false" type="string" default="covkmudep_koshik-n-m"></activiti:formProperty>
+        <activiti:formProperty id="marker_2" name="Маркер2" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sBody_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sVibor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="nID_Process_Parent" name="nID_Process_Parent;;bVisible=false" type="long"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow48" sourceRef="servicetask23" targetRef="servicetask24"></sequenceFlow>
+    <sequenceFlow id="flow49" sourceRef="servicetask24" targetRef="usertask11"></sequenceFlow>
+    <sequenceFlow id="flow50" sourceRef="usertask10" targetRef="scripttask10">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_accept_8]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <serviceTask id="servicetask25" name="письмо" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept_9]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[IDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="servicetask26" name="Role8" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept_9]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${sLogin_Head2}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <userTask id="usertask12" name="Погодження(АКТ про передачу справ і майна)">
+      <extensionElements>
+        <activiti:formProperty id="sDateReg" name="Дата складення" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg11" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg21" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg22" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg31" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg32" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg33" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg4" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg3" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg2" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg1" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head" name="Керівник;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sVibor" name="не застосовується;;sID_CheckboxTrue=yes" type="enum" default="no" writable="false">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_HeadDep" name="Керівник департамента;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head2" name="Департамент забезпечення документообігу ;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Коваль Олег Анатолійович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head21" name="Сектор архівного зберігання урядових документів відділу випуску актів Кабінету Міністрів України та організації роботи урядового архіву;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Кисельова Алла Анатоліївна" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head22" name="Сектор технічного забезпечення відділу цифрової обробки кореспонденції та технічного забезпечення;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Слюсар Володимир Миколайович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head3" name="Управління інформаційних технологій та безпеки;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Романенко Іван Борисович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head31" name="Відділ технічної підтримки ;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Лазарєв Дмитро Юрійович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head32" name="Відділ цифрової архітектури;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Тиханський Володимир Вікторович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head33" name="Відділ зв'язку та телекомунікацій;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Пилипенко Володимир Васильович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head4" name="Департамент кадрового забезпечення;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Кошик Наталія Миколаївна" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sGender" name="Стать заявника" type="enum" writable="false">
+          <activiti:value id="s1" name="передав"></activiti:value>
+          <activiti:value id="s2" name="передала"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sPositionPerevod" name="Найменування посади, на яку переводиться" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateNakazAkt" name="Дата наказу" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumberNakazAkt" name="Номер наказу" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логин автора; ;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Author" name="Полное ФИО;;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Акт про передачу справ та майна (переведення);;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1b4adrmXHqY9y7tzrESlzfbe8rkt48arywoBU56qK0Rw', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="Акт про передачу справ та майна (переведення)1;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1u6npq9CwSSAFKDqpP5n35OATj1-H5PgWMxZ7m6pheRg', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Почта;;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC [sID_Order_URL] "></activiti:formProperty>
+        <activiti:formProperty id="sLoginNakaz" name="Логин автора приказа;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_Author" name="Должность автора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDepartment_Author" name="Департамент автора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_HeadDep" name="Посада керівника департамента;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_1" name="Маркер" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sBody_1&quot;,&quot;sName_Head&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sVibor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'no'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_HeadDep" name="Логин руководителя департаменту;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head" name="Логин руководителя;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head2" name="Логин руководителя департаменту забезпечення документообігу;;bVisible=false" type="string" default="covkmudep_koval-o-a"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head21" name="Логин руководителя сектору архівного зберігання урядових документів відділу випуску актів Кабінету Міністрів України та організації роботи урядового архіву;;bVisible=false" type="string" default="covkmudep_kiseleva-a-a"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head22" name="Логин руководителя сектору технічного забезпечення відділу цифрової обробки кореспонденції та технічного забезпечення;;bVisible=false" type="string" default="covkmudep_slusar-v-m"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head3" name="Логин руководителя управління інформаційних технологій та безпеки;;bVisible=false" type="string" default="covkmudep_vinmer"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head31" name="Логин руководителя відділу технічної підтримки ;;bVisible=false" type="string" default="covkmudep_lazarev-d-y"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head32" name="Логин руководителя відділу цифрової архітектури;;bVisible=false" type="string" default="covkmudep_tykhanskyy-v-v"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head33" name="Логин руководителя відділу зв'язку та телекомунікацій;;bVisible=false" type="string" default="covkmudep_pylypenko-v-v"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head4" name="Логин руководителя департаменту кадрового забезпечення ;;bVisible=false" type="string" default="covkmudep_koshik-n-m"></activiti:formProperty>
+        <activiti:formProperty id="marker_2" name="Маркер2" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sBody_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sVibor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="nID_Process_Parent" name="nID_Process_Parent;;bVisible=false" type="long"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow51" sourceRef="servicetask25" targetRef="servicetask26"></sequenceFlow>
+    <sequenceFlow id="flow52" sourceRef="servicetask26" targetRef="usertask12"></sequenceFlow>
+    <serviceTask id="servicetask27" name="письмо" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept_10]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[IDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow53" sourceRef="usertask12" targetRef="scripttask12">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_accept_10]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <serviceTask id="servicetask28" name="LoginHeadDEP" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept_10]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${sLogin_HeadDep}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <userTask id="usertask13" name="Погодження(АКТ про передачу справ і майна)">
+      <extensionElements>
+        <activiti:formProperty id="sDateReg" name="Дата складення" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg11" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg21" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg22" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg31" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg32" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg33" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg4" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg3" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg2" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg1" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head" name="Керівник;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sVibor" name="не застосовується;;sID_CheckboxTrue=yes" type="enum" default="no" writable="false">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_HeadDep" name="Керівник департамента;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head2" name="Департамент забезпечення документообігу ;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Коваль Олег Анатолійович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head21" name="Сектор архівного зберігання урядових документів відділу випуску актів Кабінету Міністрів України та організації роботи урядового архіву;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Кисельова Алла Анатоліївна" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head22" name="Сектор технічного забезпечення відділу цифрової обробки кореспонденції та технічного забезпечення;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Слюсар Володимир Миколайович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head3" name="Управління інформаційних технологій та безпеки;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Романенко Іван Борисович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head31" name="Відділ технічної підтримки ;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Лазарєв Дмитро Юрійович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head32" name="Відділ цифрової архітектури;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Тиханський Володимир Вікторович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head33" name="Відділ зв'язку та телекомунікацій;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Пилипенко Володимир Васильович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head4" name="Департамент кадрового забезпечення;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Кошик Наталія Миколаївна" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sGender" name="Стать заявника" type="enum" writable="false">
+          <activiti:value id="s1" name="передав"></activiti:value>
+          <activiti:value id="s2" name="передала"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sPositionPerevod" name="Найменування посади, на яку переводиться" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateNakazAkt" name="Дата наказу" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumberNakazAkt" name="Номер наказу" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логин автора; ;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Author" name="Полное ФИО;;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Акт про передачу справ та майна (переведення);;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1b4adrmXHqY9y7tzrESlzfbe8rkt48arywoBU56qK0Rw', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="Акт про передачу справ та майна (переведення)1;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1u6npq9CwSSAFKDqpP5n35OATj1-H5PgWMxZ7m6pheRg', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Почта;;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC [sID_Order_URL] "></activiti:formProperty>
+        <activiti:formProperty id="sLoginNakaz" name="Логин автора приказа;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_Author" name="Должность автора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDepartment_Author" name="Департамент автора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_HeadDep" name="Посада керівника департамента;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_1" name="Маркер" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sBody_1&quot;,&quot;sName_Head&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sVibor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'no'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_HeadDep" name="Логин руководителя департаменту;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head" name="Логин руководителя;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head2" name="Логин руководителя департаменту забезпечення документообігу;;bVisible=false" type="string" default="covkmudep_koval-o-a"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head21" name="Логин руководителя сектору архівного зберігання урядових документів відділу випуску актів Кабінету Міністрів України та організації роботи урядового архіву;;bVisible=false" type="string" default="covkmudep_kiseleva-a-a"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head22" name="Логин руководителя сектору технічного забезпечення відділу цифрової обробки кореспонденції та технічного забезпечення;;bVisible=false" type="string" default="covkmudep_slusar-v-m"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head3" name="Логин руководителя управління інформаційних технологій та безпеки;;bVisible=false" type="string" default="covkmudep_vinmer"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head31" name="Логин руководителя відділу технічної підтримки ;;bVisible=false" type="string" default="covkmudep_lazarev-d-y"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head32" name="Логин руководителя відділу цифрової архітектури;;bVisible=false" type="string" default="covkmudep_tykhanskyy-v-v"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head33" name="Логин руководителя відділу зв'язку та телекомунікацій;;bVisible=false" type="string" default="covkmudep_pylypenko-v-v"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head4" name="Логин руководителя департаменту кадрового забезпечення ;;bVisible=false" type="string" default="covkmudep_koshik-n-m"></activiti:formProperty>
+        <activiti:formProperty id="marker_2" name="Маркер2" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sBody_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sVibor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="nID_Process_Parent" name="nID_Process_Parent;;bVisible=false" type="long"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow54" sourceRef="usertask11" targetRef="scripttask11">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_accept_9]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow55" sourceRef="servicetask27" targetRef="servicetask28"></sequenceFlow>
+    <sequenceFlow id="flow56" sourceRef="servicetask28" targetRef="usertask13"></sequenceFlow>
+    <serviceTask id="servicetask29" name="письмо" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_seen]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[IDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow57" sourceRef="usertask13" targetRef="scripttask13">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Seen]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <userTask id="usertask14" name="Ознайомлення(АКТ про передачу справ і майна)">
+      <extensionElements>
+        <activiti:formProperty id="sDateReg" name="Дата складення" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg11" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg21" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg22" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg31" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg32" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg33" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg4" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg3" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg2" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg1" name="Дата складення;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head" name="Керівник;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sVibor" name="не застосовується;;sID_CheckboxTrue=yes" type="enum" default="no" writable="false">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_HeadDep" name="Керівник департамента;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head2" name="Департамент забезпечення документообігу ;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Коваль Олег Анатолійович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head21" name="Сектор архівного зберігання урядових документів відділу випуску актів Кабінету Міністрів України та організації роботи урядового архіву;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Кисельова Алла Анатоліївна" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head22" name="Сектор технічного забезпечення відділу цифрової обробки кореспонденції та технічного забезпечення;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Слюсар Володимир Миколайович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head3" name="Управління інформаційних технологій та безпеки;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Романенко Іван Борисович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head31" name="Відділ технічної підтримки ;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Лазарєв Дмитро Юрійович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head32" name="Відділ цифрової архітектури;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Тиханський Володимир Вікторович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head33" name="Відділ зв'язку та телекомунікацій;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Пилипенко Володимир Васильович" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head4" name="Департамент кадрового забезпечення;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" default="Кошик Наталія Миколаївна" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sGender" name="Стать заявника" type="enum" writable="false">
+          <activiti:value id="s1" name="передав"></activiti:value>
+          <activiti:value id="s2" name="передала"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sPositionPerevod" name="Найменування посади, на яку переводиться" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateNakazAkt" name="Дата наказу" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumberNakazAkt" name="Номер наказу" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логин автора; ;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Author" name="Полное ФИО;;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Акт про передачу справ та майна (переведення);;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1b4adrmXHqY9y7tzrESlzfbe8rkt48arywoBU56qK0Rw', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="Акт про передачу справ та майна (переведення)1;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1u6npq9CwSSAFKDqpP5n35OATj1-H5PgWMxZ7m6pheRg', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Почта;;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC [sID_Order_URL] "></activiti:formProperty>
+        <activiti:formProperty id="sLoginNakaz" name="Логин автора приказа;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_Author" name="Должность автора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDepartment_Author" name="Департамент автора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_HeadDep" name="Посада керівника департамента;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_1" name="Маркер" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sBody_1&quot;,&quot;sName_Head&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sVibor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'no'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_HeadDep" name="Логин руководителя департаменту;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head" name="Логин руководителя;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head2" name="Логин руководителя департаменту забезпечення документообігу;;bVisible=false" type="string" default="covkmudep_koval-o-a"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head21" name="Логин руководителя сектору архівного зберігання урядових документів відділу випуску актів Кабінету Міністрів України та організації роботи урядового архіву;;bVisible=false" type="string" default="covkmudep_kiseleva-a-a"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head22" name="Логин руководителя сектору технічного забезпечення відділу цифрової обробки кореспонденції та технічного забезпечення;;bVisible=false" type="string" default="covkmudep_slusar-v-m"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head3" name="Логин руководителя управління інформаційних технологій та безпеки;;bVisible=false" type="string" default="covkmudep_vinmer"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head31" name="Логин руководителя відділу технічної підтримки ;;bVisible=false" type="string" default="covkmudep_lazarev-d-y"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head32" name="Логин руководителя відділу цифрової архітектури;;bVisible=false" type="string" default="covkmudep_tykhanskyy-v-v"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head33" name="Логин руководителя відділу зв'язку та телекомунікацій;;bVisible=false" type="string" default="covkmudep_pylypenko-v-v"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head4" name="Логин руководителя департаменту кадрового забезпечення ;;bVisible=false" type="string" default="covkmudep_koshik-n-m"></activiti:formProperty>
+        <activiti:formProperty id="marker_2" name="Маркер2" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sBody_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sVibor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="nID_Process_Parent" name="nID_Process_Parent;;bVisible=false" type="long"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow59" sourceRef="servicetask10" targetRef="usertask14"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="flow60" sourceRef="usertask14" targetRef="exclusivegateway1"></sequenceFlow>
+    <sequenceFlow id="flow61" sourceRef="exclusivegateway1" targetRef="usertask14"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway2" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="flow62" sourceRef="exclusivegateway1" targetRef="exclusivegateway2"></sequenceFlow>
+    <sequenceFlow id="flow63" sourceRef="exclusivegateway2" targetRef="usertask14"></sequenceFlow>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow64" sourceRef="exclusivegateway2" targetRef="endevent1"></sequenceFlow>
+    <serviceTask id="servicetask30" name="LoginNakaz" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${sLoginNakaz}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_seen]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_seen]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow65" sourceRef="servicetask29" targetRef="servicetask30"></sequenceFlow>
+    <sequenceFlow id="flow66" sourceRef="servicetask30" targetRef="servicetask10"></sequenceFlow>
+    <sequenceFlow id="flow68" sourceRef="scripttask3" targetRef="scripttask2"></sequenceFlow>
+    <scriptTask id="scripttask2" name="Script Task" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>var sLoginAuthor = execution.getVariable('sLoginAuthor');
+var oEmployeeAuthor = subjectService.getEmployee(sLoginAuthor, false);
+
+var sPosition = oEmployeeAuthor.aSubjectGroupPositionCustom.iterator().next().oSubjectHumanPositionCustom.sNote;
+execution.setVariable('sPosition_Author', sPosition);</script>
+    </scriptTask>
+    <sequenceFlow id="flow69" sourceRef="scripttask2" targetRef="usertask1"></sequenceFlow>
+    <scriptTask id="scripttask3" name="Script Task" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>var sLoginAuthor = execution.getVariable('sLoginAuthor');
+var oEmployeeAuthor = subjectService.getEmployee(sLoginAuthor, false);
+
+var sDepartment_Author = oEmployeeAuthor.aSubjectGroupPositionCustom.iterator().next().oSubjectHumanPositionCustom.oSubjectGroup_Owner.oSubject.sLabelShort;
+execution.setVariable('sDepartment_Author', sDepartment_Author);</script>
+    </scriptTask>
+    <sequenceFlow id="flow70" sourceRef="scripttask1" targetRef="scripttask3"></sequenceFlow>
+    <sequenceFlow id="flow71" sourceRef="usertask5" targetRef="servicetask11">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_accept_2]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${sVibor =='yes'}]]></conditionExpression>
+    </sequenceFlow>
+    <scriptTask id="scripttask4" name="Script Task" scriptFormat="groovy" activiti:autoStoreVariables="false">
+      <script>execution.setVariable('sDateReg11', new Date().format("dd.MM.yyyy").toString())</script>
+    </scriptTask>
+    <sequenceFlow id="flow72" sourceRef="usertask2" targetRef="scripttask4"></sequenceFlow>
+    <scriptTask id="scripttask5" name="Script Task" scriptFormat="groovy" activiti:autoStoreVariables="false">
+      <script>execution.setVariable('sDateReg21', new Date().format("dd.MM.yyyy").toString())</script>
+    </scriptTask>
+    <sequenceFlow id="flow73" sourceRef="scripttask5" targetRef="servicetask12"></sequenceFlow>
+    <scriptTask id="scripttask6" name="Script Task" scriptFormat="groovy" activiti:autoStoreVariables="false">
+      <script>execution.setVariable('sDateReg22', new Date().format("dd.MM.yyyy").toString())</script>
+    </scriptTask>
+    <sequenceFlow id="flow74" sourceRef="scripttask6" targetRef="servicetask13"></sequenceFlow>
+    <scriptTask id="scripttask7" name="Script Task" scriptFormat="groovy" activiti:autoStoreVariables="false">
+      <script>execution.setVariable('sDateReg31', new Date().format("dd.MM.yyyy").toString())</script>
+    </scriptTask>
+    <sequenceFlow id="flow75" sourceRef="scripttask7" targetRef="servicetask17"></sequenceFlow>
+    <scriptTask id="scripttask8" name="Script Task" scriptFormat="groovy" activiti:autoStoreVariables="false">
+      <script>execution.setVariable('sDateReg32', new Date().format("dd.MM.yyyy").toString())</script>
+    </scriptTask>
+    <sequenceFlow id="flow76" sourceRef="scripttask8" targetRef="servicetask19"></sequenceFlow>
+    <scriptTask id="scripttask9" name="Script Task" scriptFormat="groovy" activiti:autoStoreVariables="false">
+      <script>execution.setVariable('sDateReg33', new Date().format("dd.MM.yyyy").toString())</script>
+    </scriptTask>
+    <sequenceFlow id="flow77" sourceRef="scripttask9" targetRef="servicetask21"></sequenceFlow>
+    <scriptTask id="scripttask10" name="Script Task" scriptFormat="groovy" activiti:autoStoreVariables="false">
+      <script>execution.setVariable('sDateReg4', new Date().format("dd.MM.yyyy").toString())</script>
+    </scriptTask>
+    <sequenceFlow id="flow78" sourceRef="scripttask10" targetRef="servicetask23"></sequenceFlow>
+    <scriptTask id="scripttask11" name="Script Task" scriptFormat="groovy" activiti:autoStoreVariables="false">
+      <script>execution.setVariable('sDateReg3', new Date().format("dd.MM.yyyy").toString())</script>
+    </scriptTask>
+    <sequenceFlow id="flow79" sourceRef="scripttask11" targetRef="servicetask25"></sequenceFlow>
+    <scriptTask id="scripttask12" name="Script Task" scriptFormat="groovy" activiti:autoStoreVariables="false">
+      <script>execution.setVariable('sDateReg2', new Date().format("dd.MM.yyyy").toString())</script>
+    </scriptTask>
+    <sequenceFlow id="flow80" sourceRef="scripttask12" targetRef="servicetask27"></sequenceFlow>
+    <scriptTask id="scripttask13" name="Script Task" scriptFormat="groovy" activiti:autoStoreVariables="false">
+      <script>execution.setVariable('sDateReg1', new Date().format("dd.MM.yyyy").toString())</script>
+    </scriptTask>
+    <sequenceFlow id="flow81" sourceRef="scripttask13" targetRef="servicetask29"></sequenceFlow>
+    <scriptTask id="scripttask14" name="Script Task" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>//нИД_ребенка
+var processInstanceId = execution.getProcessInstanceId();
+var nID_Process_Child = processDocumentService.getProcessDocument(processInstanceId);
+execution.setVariable('nID_Process_Child', nID_Process_Child.id);</script>
+    </scriptTask>
+    <sequenceFlow id="flow82" sourceRef="scripttask14" targetRef="scripttask15"></sequenceFlow>
+    <scriptTask id="scripttask15" name="Script Task" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>//связать документ
+nID_Process_Parent = +nID_Process_Parent;
+execution.setVariable('nID_Process_Parent', nID_Process_Parent);
+processDocumentTreeService.setProcessDocumentTree(nID_Process_Child, nID_Process_Parent)</script>
+    </scriptTask>
+    <sequenceFlow id="flow83" sourceRef="scripttask15" targetRef="servicetask5"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram__doc_template_covkmudep_transfer_akt">
+    <bpmndi:BPMNPlane bpmnElement="_doc_template_covkmudep_transfer_akt" id="BPMNPlane__doc_template_covkmudep_transfer_akt">
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="65.0" width="105.0" x="132.0" y="0.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="36.0" y="14.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask2" id="BPMNShape_usertask2">
+        <omgdc:Bounds height="81.0" width="105.0" x="694.0" y="157.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask3" id="BPMNShape_usertask3">
+        <omgdc:Bounds height="75.0" width="105.0" x="133.0" y="160.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask1" id="BPMNShape_servicetask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="694.0" y="4.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask2" id="BPMNShape_servicetask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="694.0" y="88.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask5" id="BPMNShape_servicetask5">
+        <omgdc:Bounds height="55.0" width="105.0" x="408.0" y="5.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask5" id="BPMNShape_usertask5">
+        <omgdc:Bounds height="60.0" width="105.0" x="552.0" y="3.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask6" id="BPMNShape_usertask6">
+        <omgdc:Bounds height="71.0" width="127.0" x="430.0" y="262.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask7" id="BPMNShape_usertask7">
+        <omgdc:Bounds height="73.0" width="115.0" x="128.0" y="347.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask10" id="BPMNShape_servicetask10">
+        <omgdc:Bounds height="55.0" width="105.0" x="291.0" y="1095.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask11" id="BPMNShape_servicetask11">
+        <omgdc:Bounds height="55.0" width="105.0" x="419.0" y="170.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask12" id="BPMNShape_servicetask12">
+        <omgdc:Bounds height="55.0" width="105.0" x="133.0" y="270.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask13" id="BPMNShape_servicetask13">
+        <omgdc:Bounds height="55.0" width="105.0" x="441.0" y="356.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask14" id="BPMNShape_servicetask14">
+        <omgdc:Bounds height="55.0" width="105.0" x="269.0" y="170.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask15" id="BPMNShape_servicetask15">
+        <omgdc:Bounds height="55.0" width="105.0" x="281.0" y="270.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask16" id="BPMNShape_servicetask16">
+        <omgdc:Bounds height="55.0" width="105.0" x="281.0" y="356.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask1" id="BPMNShape_scripttask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="1.0" y="90.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask17" id="BPMNShape_servicetask17">
+        <omgdc:Bounds height="55.0" width="105.0" x="131.0" y="459.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask18" id="BPMNShape_servicetask18">
+        <omgdc:Bounds height="55.0" width="105.0" x="281.0" y="459.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask8" id="BPMNShape_usertask8">
+        <omgdc:Bounds height="68.0" width="127.0" x="430.0" y="453.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask19" id="BPMNShape_servicetask19">
+        <omgdc:Bounds height="55.0" width="105.0" x="441.0" y="546.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask20" id="BPMNShape_servicetask20">
+        <omgdc:Bounds height="55.0" width="105.0" x="291.0" y="546.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask9" id="BPMNShape_usertask9">
+        <omgdc:Bounds height="93.0" width="105.0" x="131.0" y="527.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask21" id="BPMNShape_servicetask21">
+        <omgdc:Bounds height="55.0" width="105.0" x="133.0" y="640.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask22" id="BPMNShape_servicetask22">
+        <omgdc:Bounds height="55.0" width="105.0" x="291.0" y="640.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask10" id="BPMNShape_usertask10">
+        <omgdc:Bounds height="74.0" width="127.0" x="430.0" y="630.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask23" id="BPMNShape_servicetask23">
+        <omgdc:Bounds height="55.0" width="105.0" x="441.0" y="750.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask24" id="BPMNShape_servicetask24">
+        <omgdc:Bounds height="55.0" width="105.0" x="301.0" y="750.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask11" id="BPMNShape_usertask11">
+        <omgdc:Bounds height="85.0" width="105.0" x="133.0" y="735.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask25" id="BPMNShape_servicetask25">
+        <omgdc:Bounds height="55.0" width="105.0" x="133.0" y="860.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask26" id="BPMNShape_servicetask26">
+        <omgdc:Bounds height="55.0" width="105.0" x="301.0" y="860.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask12" id="BPMNShape_usertask12">
+        <omgdc:Bounds height="85.0" width="105.0" x="461.0" y="845.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask27" id="BPMNShape_servicetask27">
+        <omgdc:Bounds height="55.0" width="105.0" x="461.0" y="980.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask28" id="BPMNShape_servicetask28">
+        <omgdc:Bounds height="55.0" width="105.0" x="315.0" y="980.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask13" id="BPMNShape_usertask13">
+        <omgdc:Bounds height="85.0" width="105.0" x="141.0" y="965.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask29" id="BPMNShape_servicetask29">
+        <omgdc:Bounds height="55.0" width="105.0" x="141.0" y="1095.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask14" id="BPMNShape_usertask14">
+        <omgdc:Bounds height="85.0" width="105.0" x="461.0" y="1080.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway1" id="BPMNShape_exclusivegateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="493.0" y="1200.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway2" id="BPMNShape_exclusivegateway2">
+        <omgdc:Bounds height="40.0" width="40.0" x="420.0" y="1200.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="350.0" y="1203.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask30" id="BPMNShape_servicetask30">
+        <omgdc:Bounds height="55.0" width="105.0" x="141.0" y="1183.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask2" id="BPMNShape_scripttask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="133.0" y="90.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask3" id="BPMNShape_scripttask3">
+        <omgdc:Bounds height="55.0" width="105.0" x="1.0" y="170.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask4" id="BPMNShape_scripttask4">
+        <omgdc:Bounds height="55.0" width="105.0" x="568.0" y="170.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask5" id="BPMNShape_scripttask5">
+        <omgdc:Bounds height="55.0" width="105.0" x="10.0" y="270.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask6" id="BPMNShape_scripttask6">
+        <omgdc:Bounds height="55.0" width="105.0" x="581.0" y="356.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask7" id="BPMNShape_scripttask7">
+        <omgdc:Bounds height="55.0" width="105.0" x="10.0" y="459.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask8" id="BPMNShape_scripttask8">
+        <omgdc:Bounds height="55.0" width="105.0" x="581.0" y="466.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask9" id="BPMNShape_scripttask9">
+        <omgdc:Bounds height="55.0" width="105.0" x="10.0" y="546.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask10" id="BPMNShape_scripttask10">
+        <omgdc:Bounds height="55.0" width="105.0" x="590.0" y="639.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask11" id="BPMNShape_scripttask11">
+        <omgdc:Bounds height="55.0" width="105.0" x="10.0" y="750.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask12" id="BPMNShape_scripttask12">
+        <omgdc:Bounds height="55.0" width="105.0" x="600.0" y="860.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask13" id="BPMNShape_scripttask13">
+        <omgdc:Bounds height="55.0" width="105.0" x="10.0" y="980.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask14" id="BPMNShape_scripttask14">
+        <omgdc:Bounds height="55.0" width="105.0" x="269.0" y="5.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask15" id="BPMNShape_scripttask15">
+        <omgdc:Bounds height="55.0" width="105.0" x="281.0" y="88.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="53.0" y="49.0"></omgdi:waypoint>
+        <omgdi:waypoint x="53.0" y="90.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="657.0" y="33.0"></omgdi:waypoint>
+        <omgdi:waypoint x="694.0" y="31.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="746.0" y="59.0"></omgdi:waypoint>
+        <omgdi:waypoint x="746.0" y="88.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="746.0" y="143.0"></omgdi:waypoint>
+        <omgdi:waypoint x="746.0" y="157.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="568.0" y="197.0"></omgdi:waypoint>
+        <omgdi:waypoint x="524.0" y="197.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow10" id="BPMNEdge_flow10">
+        <omgdi:waypoint x="419.0" y="197.0"></omgdi:waypoint>
+        <omgdi:waypoint x="374.0" y="197.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow11" id="BPMNEdge_flow11">
+        <omgdi:waypoint x="269.0" y="197.0"></omgdi:waypoint>
+        <omgdi:waypoint x="238.0" y="197.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow14" id="BPMNEdge_flow14">
+        <omgdi:waypoint x="185.0" y="235.0"></omgdi:waypoint>
+        <omgdi:waypoint x="62.0" y="270.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow20" id="BPMNEdge_flow20">
+        <omgdi:waypoint x="513.0" y="32.0"></omgdi:waypoint>
+        <omgdi:waypoint x="552.0" y="33.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow22" id="BPMNEdge_flow22">
+        <omgdi:waypoint x="386.0" y="297.0"></omgdi:waypoint>
+        <omgdi:waypoint x="430.0" y="297.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow23" id="BPMNEdge_flow23">
+        <omgdi:waypoint x="493.0" y="333.0"></omgdi:waypoint>
+        <omgdi:waypoint x="633.0" y="356.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow28" id="BPMNEdge_flow28">
+        <omgdi:waypoint x="238.0" y="297.0"></omgdi:waypoint>
+        <omgdi:waypoint x="281.0" y="297.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow30" id="BPMNEdge_flow30">
+        <omgdi:waypoint x="441.0" y="383.0"></omgdi:waypoint>
+        <omgdi:waypoint x="386.0" y="383.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow31" id="BPMNEdge_flow31">
+        <omgdi:waypoint x="185.0" y="420.0"></omgdi:waypoint>
+        <omgdi:waypoint x="62.0" y="459.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow37" id="BPMNEdge_flow37">
+        <omgdi:waypoint x="281.0" y="383.0"></omgdi:waypoint>
+        <omgdi:waypoint x="243.0" y="383.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow38" id="BPMNEdge_flow38">
+        <omgdi:waypoint x="237.0" y="32.0"></omgdi:waypoint>
+        <omgdi:waypoint x="269.0" y="32.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow40" id="BPMNEdge_flow40">
+        <omgdi:waypoint x="236.0" y="486.0"></omgdi:waypoint>
+        <omgdi:waypoint x="281.0" y="486.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow41" id="BPMNEdge_flow41">
+        <omgdi:waypoint x="386.0" y="486.0"></omgdi:waypoint>
+        <omgdi:waypoint x="430.0" y="487.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow42" id="BPMNEdge_flow42">
+        <omgdi:waypoint x="557.0" y="487.0"></omgdi:waypoint>
+        <omgdi:waypoint x="581.0" y="493.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow43" id="BPMNEdge_flow43">
+        <omgdi:waypoint x="441.0" y="573.0"></omgdi:waypoint>
+        <omgdi:waypoint x="396.0" y="573.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow44" id="BPMNEdge_flow44">
+        <omgdi:waypoint x="291.0" y="573.0"></omgdi:waypoint>
+        <omgdi:waypoint x="236.0" y="573.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow45" id="BPMNEdge_flow45">
+        <omgdi:waypoint x="131.0" y="573.0"></omgdi:waypoint>
+        <omgdi:waypoint x="115.0" y="573.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow46" id="BPMNEdge_flow46">
+        <omgdi:waypoint x="238.0" y="667.0"></omgdi:waypoint>
+        <omgdi:waypoint x="291.0" y="667.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow47" id="BPMNEdge_flow47">
+        <omgdi:waypoint x="396.0" y="667.0"></omgdi:waypoint>
+        <omgdi:waypoint x="430.0" y="667.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow48" id="BPMNEdge_flow48">
+        <omgdi:waypoint x="441.0" y="777.0"></omgdi:waypoint>
+        <omgdi:waypoint x="406.0" y="777.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow49" id="BPMNEdge_flow49">
+        <omgdi:waypoint x="301.0" y="777.0"></omgdi:waypoint>
+        <omgdi:waypoint x="238.0" y="777.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow50" id="BPMNEdge_flow50">
+        <omgdi:waypoint x="557.0" y="667.0"></omgdi:waypoint>
+        <omgdi:waypoint x="590.0" y="666.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow51" id="BPMNEdge_flow51">
+        <omgdi:waypoint x="238.0" y="887.0"></omgdi:waypoint>
+        <omgdi:waypoint x="301.0" y="887.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow52" id="BPMNEdge_flow52">
+        <omgdi:waypoint x="406.0" y="887.0"></omgdi:waypoint>
+        <omgdi:waypoint x="461.0" y="887.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow53" id="BPMNEdge_flow53">
+        <omgdi:waypoint x="566.0" y="887.0"></omgdi:waypoint>
+        <omgdi:waypoint x="600.0" y="887.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow54" id="BPMNEdge_flow54">
+        <omgdi:waypoint x="133.0" y="777.0"></omgdi:waypoint>
+        <omgdi:waypoint x="115.0" y="777.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow55" id="BPMNEdge_flow55">
+        <omgdi:waypoint x="461.0" y="1007.0"></omgdi:waypoint>
+        <omgdi:waypoint x="420.0" y="1007.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow56" id="BPMNEdge_flow56">
+        <omgdi:waypoint x="315.0" y="1007.0"></omgdi:waypoint>
+        <omgdi:waypoint x="246.0" y="1007.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow57" id="BPMNEdge_flow57">
+        <omgdi:waypoint x="141.0" y="1007.0"></omgdi:waypoint>
+        <omgdi:waypoint x="115.0" y="1007.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow59" id="BPMNEdge_flow59">
+        <omgdi:waypoint x="396.0" y="1122.0"></omgdi:waypoint>
+        <omgdi:waypoint x="461.0" y="1122.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow60" id="BPMNEdge_flow60">
+        <omgdi:waypoint x="566.0" y="1122.0"></omgdi:waypoint>
+        <omgdi:waypoint x="639.0" y="1122.0"></omgdi:waypoint>
+        <omgdi:waypoint x="639.0" y="1220.0"></omgdi:waypoint>
+        <omgdi:waypoint x="533.0" y="1220.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow61" id="BPMNEdge_flow61">
+        <omgdi:waypoint x="513.0" y="1200.0"></omgdi:waypoint>
+        <omgdi:waypoint x="513.0" y="1165.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow62" id="BPMNEdge_flow62">
+        <omgdi:waypoint x="493.0" y="1220.0"></omgdi:waypoint>
+        <omgdi:waypoint x="460.0" y="1220.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow63" id="BPMNEdge_flow63">
+        <omgdi:waypoint x="440.0" y="1200.0"></omgdi:waypoint>
+        <omgdi:waypoint x="440.0" y="1122.0"></omgdi:waypoint>
+        <omgdi:waypoint x="461.0" y="1122.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow64" id="BPMNEdge_flow64">
+        <omgdi:waypoint x="420.0" y="1220.0"></omgdi:waypoint>
+        <omgdi:waypoint x="385.0" y="1220.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow65" id="BPMNEdge_flow65">
+        <omgdi:waypoint x="193.0" y="1150.0"></omgdi:waypoint>
+        <omgdi:waypoint x="193.0" y="1183.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow66" id="BPMNEdge_flow66">
+        <omgdi:waypoint x="193.0" y="1183.0"></omgdi:waypoint>
+        <omgdi:waypoint x="343.0" y="1150.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow68" id="BPMNEdge_flow68">
+        <omgdi:waypoint x="53.0" y="170.0"></omgdi:waypoint>
+        <omgdi:waypoint x="185.0" y="145.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow69" id="BPMNEdge_flow69">
+        <omgdi:waypoint x="238.0" y="117.0"></omgdi:waypoint>
+        <omgdi:waypoint x="184.0" y="100.0"></omgdi:waypoint>
+        <omgdi:waypoint x="184.0" y="65.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow70" id="BPMNEdge_flow70">
+        <omgdi:waypoint x="53.0" y="145.0"></omgdi:waypoint>
+        <omgdi:waypoint x="53.0" y="170.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow71" id="BPMNEdge_flow71">
+        <omgdi:waypoint x="604.0" y="63.0"></omgdi:waypoint>
+        <omgdi:waypoint x="471.0" y="170.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow72" id="BPMNEdge_flow72">
+        <omgdi:waypoint x="694.0" y="197.0"></omgdi:waypoint>
+        <omgdi:waypoint x="673.0" y="197.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow73" id="BPMNEdge_flow73">
+        <omgdi:waypoint x="115.0" y="297.0"></omgdi:waypoint>
+        <omgdi:waypoint x="133.0" y="297.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow74" id="BPMNEdge_flow74">
+        <omgdi:waypoint x="581.0" y="383.0"></omgdi:waypoint>
+        <omgdi:waypoint x="546.0" y="383.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow75" id="BPMNEdge_flow75">
+        <omgdi:waypoint x="115.0" y="486.0"></omgdi:waypoint>
+        <omgdi:waypoint x="131.0" y="486.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow76" id="BPMNEdge_flow76">
+        <omgdi:waypoint x="633.0" y="521.0"></omgdi:waypoint>
+        <omgdi:waypoint x="493.0" y="546.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow77" id="BPMNEdge_flow77">
+        <omgdi:waypoint x="62.0" y="601.0"></omgdi:waypoint>
+        <omgdi:waypoint x="185.0" y="640.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow78" id="BPMNEdge_flow78">
+        <omgdi:waypoint x="642.0" y="694.0"></omgdi:waypoint>
+        <omgdi:waypoint x="493.0" y="750.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow79" id="BPMNEdge_flow79">
+        <omgdi:waypoint x="62.0" y="805.0"></omgdi:waypoint>
+        <omgdi:waypoint x="185.0" y="860.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow80" id="BPMNEdge_flow80">
+        <omgdi:waypoint x="652.0" y="915.0"></omgdi:waypoint>
+        <omgdi:waypoint x="513.0" y="980.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow81" id="BPMNEdge_flow81">
+        <omgdi:waypoint x="62.0" y="1035.0"></omgdi:waypoint>
+        <omgdi:waypoint x="193.0" y="1095.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow82" id="BPMNEdge_flow82">
+        <omgdi:waypoint x="321.0" y="60.0"></omgdi:waypoint>
+        <omgdi:waypoint x="333.0" y="88.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow83" id="BPMNEdge_flow83">
+        <omgdi:waypoint x="333.0" y="88.0"></omgdi:waypoint>
+        <omgdi:waypoint x="460.0" y="60.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

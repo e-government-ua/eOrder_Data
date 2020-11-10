@@ -1,0 +1,1 @@
+[oSubjectEmployeeVO_OnWhomTheAction.sFIO_Short] ([oSubjectEmployeeVO_OnWhomTheAction.sLogin]): прохання переносу строку на [oProcessTaskVO.]. Підстава: [oProcessTaskSubject.sDatePlan]

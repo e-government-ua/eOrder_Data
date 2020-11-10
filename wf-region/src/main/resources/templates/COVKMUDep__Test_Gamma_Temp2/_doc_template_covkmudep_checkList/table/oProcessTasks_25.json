@@ -1,0 +1,33 @@
+[
+  {
+    "sHead": "Ознайомити нового співробітника з порядком роботи в системі електронного документообігу",
+    "sBody": "Ознайомити нового співробітника з порядком роботи в системі електронного документообігу",
+    "sID_BP": "_task_base",
+    "sKey_TaskReportType": "Text",
+    "bSplited_Execute": false,
+    "oProcessTaskSubjectsVO": {
+      "aController": [
+        {
+          "oUserVO": {
+            "sLogin": "",
+            "sLabel": ""
+          },
+          "nDaysPlan": null,
+          "oDatePlan": "$[sDate]"
+        }
+      ],
+      "aExecutor": [
+        {
+          "oUserVO": {
+            "sLogin": "",
+            "sLabel": ""
+          },
+          "nDaysPlan": null,
+          "oDatePlan": "$[sDate]"
+        }
+      ],
+      "aVisor": []
+    },
+    "aProcessTaskAttribute": []
+  }
+]

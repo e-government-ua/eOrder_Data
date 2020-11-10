@@ -1,0 +1,17 @@
+{
+  "aField": [
+    {
+      "id": "sName_SubjectExecutor",
+      "name": "До відома",
+      "type": "string",
+      "nWidth": "50%"
+      
+    },
+    {
+      "id": "sLogin_SubjectExecutor",
+      "name": "Login",
+      "type": "string",
+      "bVisible": "false"
+    }
+  ]
+}

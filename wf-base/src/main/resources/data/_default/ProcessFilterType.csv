@@ -1,0 +1,12 @@
+nID;sID;sName;sHandlerClass
+1;document;Документы;org.icore.service.business.process.handler.ListDocumentHandler
+2;task;Задачи;org.icore.service.business.process.handler.ListTaskHandler
+3;department;Департаменты;org.icore.service.business.process.handler.ListPersonalDepartmentHandler
+4;employee;Персонал;org.icore.service.business.process.handler.ListPersonalEmployeeHandler
+5;function;Функции;org.icore.service.business.process.handler.ListPersonalFunctionHandler
+6;position;Должности;org.icore.service.business.process.handler.ListPersonalPositionHandler
+7;role;Роли;org.icore.service.business.process.handler.ListPersonalRoleHandler
+8;taskControlStatistic;Задачи контроль;org.icore.service.business.process.handler.ListTaskControlStatisticHandler
+9;taskExecuteStatistic;Задачи исполнение;org.icore.service.business.process.handler.ListTaskExecuteStatisticHandler
+10;documentStatistic;Документые;org.icore.service.business.process.handler.ListDocumentStatisticHandler
+11;monitoring;Мониторинг;org.icore.service.business.process.handler.ListMonitoringHandler

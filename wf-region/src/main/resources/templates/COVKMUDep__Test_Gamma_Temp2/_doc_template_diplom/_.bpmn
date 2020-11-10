@@ -1,0 +1,887 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="_doc_template_diplom" name="Дублікат диплому" isExecutable="true">
+    <documentation>;bTemplated=true</documentation>
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="usertask2"></sequenceFlow>
+    <userTask id="usertask2" name="РКК">
+      <extensionElements>
+        <activiti:formProperty id="sLastName" name="Прізвище" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sName" name="Ім'я" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sSurname" name="По батькові" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDate" name="Дата народження" type="date" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sPeriodOfStudy" name="Період навчання" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTypeDoc" name="Тип документа" type="enum" required="true">
+          <activiti:value id="sBachelorDiploma" name="диплом бакалавра"></activiti:value>
+          <activiti:value id="sMasterDiploma" name="диплом магістра"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sSeriesOfDoc" name="Серія та номер документа" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sRequest" name="Від кого запит" type="enum" required="true">
+          <activiti:value id="sCitizen" name="громадянин"></activiti:value>
+          <activiti:value id="sOrganization" name="організація"></activiti:value>
+          <activiti:value id="sLawyer" name="адвокат"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Таблиця для сканів документів замовника; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sNumberDoc" name="Номер вхідного документа" type="enum" required="true">
+          <activiti:value id="124" name="124-Міністерство освіти і науки України"></activiti:value>
+          <activiti:value id="125" name="125-Обласне управління освіти, Служба безпеки України, Верховний Суд, Конституційний Суд, всі суди, митниця, прокуратура, юстиція, Національна поліція України, Генеральна прокуратура, обласна державна адміністрація, виконавчий комітет, ГУ ДМС України, районні ради, податкова інспекція, райвиконком, Пенсійний фонд, державне казначейство, ДАК, міністерства, Вища рада правосуддя, Національне агентство із забезпечення якості вищої освіти,  національна поліція, НАБУ"></activiti:value>
+          <activiti:value id="126" name="126-Підприємства, організації України та інших держав, фірми, правнича фундація, Інститут імені Корецького, оргкомітети, фонди, ЗАТ, ТОВ, АТ «Укрпошта», Укртелеком, Київстар, видавництва, федерації, консульства посольства, консульство, посольство"></activiti:value>
+          <activiti:value id="127" name="127-Навчальні заклади"></activiti:value>
+          <activiti:value id="128" name="128-Адвокатські та юридичні контори, адвокати"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRegNumber" name="Номер документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_01" name="Маркер-счетчик" type="markers" default="{   &quot;motion&quot;: {     &quot;GenerateCounterCustom_1&quot;: {       &quot;aID&quot;: [         {           &quot;sFormula&quot;: &quot;(new Date()).getFullYear()+'[sID_BP]'&quot;         }       ],       &quot;sFormulaResult&quot;: &quot;'[sText1]'+'-'+'01'+'-'+[0]'&quot;,       &quot;sID_Field_Target&quot;: &quot;sRegNumber&quot;     }   } }"></activiti:formProperty>
+        <activiti:formProperty id="sDateDoc" name="Дата реєстрації вхідного документа" type="date" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sAdress" name="Адреса звідки запит" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sNameOrganization" name="Назва організації (від кого запрос)" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sDatEnd" name="Кінцева дата виконання/кінцева дата відправки документів на резолюцію до проректора" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sName_Prorektor" name="Проректор; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Prorektor" name="Логін проректора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sText1" name="Текст енама;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_dlia_enuma_124" name="Маркер для енама 124" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_1&quot;:{&quot;aField_ID&quot;:[&quot;sText1&quot;],&quot;asID_Field_sValue&quot;:[&quot;124&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sNumberDoc&quot;},&quot;sCondition&quot;:&quot;[sClient] == '124'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_dlia_enama_125" name="Маркер для енама 125" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_2&quot;:{&quot;aField_ID&quot;:[&quot;sText1&quot;],&quot;asID_Field_sValue&quot;:[&quot;125&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sNumberDoc&quot;},&quot;sCondition&quot;:&quot;[sClient] == '125'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_dlia_enuma_126" name="Маркер для енама 126" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_3&quot;:{&quot;aField_ID&quot;:[&quot;sText1&quot;],&quot;asID_Field_sValue&quot;:[&quot;126&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sNumberDoc&quot;},&quot;sCondition&quot;:&quot;[sClient] == '126'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_dlia_enuma_127" name="Маркер для енама 127" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_4&quot;:{&quot;aField_ID&quot;:[&quot;sText1&quot;],&quot;asID_Field_sValue&quot;:[&quot;127&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sNumberDoc&quot;},&quot;sCondition&quot;:&quot;[sClient] == '127'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_dlia_enuma_128" name="Маркер для енама 128" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_5&quot;:{&quot;aField_ID&quot;:[&quot;sText1&quot;],&quot;asID_Field_sValue&quot;:[&quot;128&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sNumberDoc&quot;},&quot;sCondition&quot;:&quot;[sClient] == '128'&quot;}}}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <serviceTask id="servicetask2" name="Права проректору " activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_consideration]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${sLogin_Prorektor}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_consideration]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sNameOrganization]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow4" sourceRef="usertask2" targetRef="servicetask2">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[consideration]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <userTask id="usertask3" name="Резолюція проректора">
+      <extensionElements>
+        <activiti:formProperty id="sLastName" name="Прізвище" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName" name="Ім'я" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sSurname" name="По батькові" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDate" name="Дата народження" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPeriodOfStudy" name="Період навчання" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTypeDoc" name="Тип документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sSeriesOfDoc" name="Серія та номер документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sRequest" name="Від кого запит" type="enum" writable="false">
+          <activiti:value id="sCitizen" name="громадянин"></activiti:value>
+          <activiti:value id="sOrganization" name="організація"></activiti:value>
+          <activiti:value id="sLawyer" name="адвокат"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Таблиця для сканів документів замовника;;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumberDoc" name="Номер вхідного документа" type="enum" writable="false">
+          <activiti:value id="124" name="124-Міністерство освіти і науки України"></activiti:value>
+          <activiti:value id="125" name="125-Обласне управління освіти, Служба безпеки України, Верховний Суд, Конституційний Суд, всі суди, митниця, прокуратура, юстиція, Національна поліція України, Генеральна прокуратура, обласна державна адміністрація, виконавчий комітет, ГУ ДМС України, районні ради, податкова інспекція, райвиконком, Пенсійний фонд, державне казначейство, ДАК, міністерства, Вища рада правосуддя, Національне агентство із забезпечення якості вищої освіти,  національна поліція, НАБУ"></activiti:value>
+          <activiti:value id="126" name="126-Підприємства, організації України та інших держав, фірми, правнича фундація, Інститут імені Корецького, оргкомітети, фонди, ЗАТ, ТОВ, АТ «Укрпошта», Укртелеком, Київстар, видавництва, федерації, консульства посольства, консульство, посольство"></activiti:value>
+          <activiti:value id="127" name="127-Навчальні заклади"></activiti:value>
+          <activiti:value id="128" name="128-Адвокатські та юридичні контори, адвокати"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRegNumber" name="Номер документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateDoc" name="Дата реєстрації вхідного документа" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sAdress" name="Адреса звідки запит" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNameOrganization" name="Назва організації (від кого запрос)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateEnd" name="Кінцева дата виконання" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Prorektor" name="Проректор;bVisible=false;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Prorektor" name="Логін проректора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sResolution" name="Резолюція" type="enum" required="true">
+          <activiti:value id="yes" name="до виконання"></activiti:value>
+          <activiti:value id="no" name="відмовити"></activiti:value>
+          <activiti:value id="toAttention" name="до відома"></activiti:value>
+          <activiti:value id="other" name="інше"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sNameFile" name="Резолюція проректора" type="fileHTML" required="true"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow5" sourceRef="servicetask2" targetRef="usertask3"></sequenceFlow>
+    <serviceTask id="servicetask3" name="Права, роль діловод " activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_direct]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('dilovod',null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_direct]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sNameOrganization]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow7" sourceRef="servicetask3" targetRef="usertask8"></sequenceFlow>
+    <sequenceFlow id="flow8" sourceRef="usertask8" targetRef="servicetask14">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[seen]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow9" sourceRef="usertask9" targetRef="servicetask11">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_direct_1]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <userTask id="usertask8" name="Реєстрація резолюції діловодом">
+      <extensionElements>
+        <activiti:formProperty id="sLastName" name="Прізвище" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName" name="Ім'я" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sSurname" name="По батькові" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDate" name="Дата народження" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPeriodOfStudy" name="Період навчання" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTypeDoc" name="Тип документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sSeriesOfDoc" name="Серія та номер документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sRequest" name="Від кого запит" type="enum" writable="false">
+          <activiti:value id="sCitizen" name="громадянин"></activiti:value>
+          <activiti:value id="sOrganization" name="організація"></activiti:value>
+          <activiti:value id="sLawyer" name="адвокат"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Таблиця для сканів документів замовника;;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumberDoc" name="Номер вхідного документа" type="enum" writable="false">
+          <activiti:value id="124" name="124-Міністерство освіти і науки України"></activiti:value>
+          <activiti:value id="125" name="125-Обласне управління освіти, Служба безпеки України, Верховний Суд, Конституційний Суд, всі суди, митниця, прокуратура, юстиція, Національна поліція України, Генеральна прокуратура, обласна державна адміністрація, виконавчий комітет, ГУ ДМС України, районні ради, податкова інспекція, райвиконком, Пенсійний фонд, державне казначейство, ДАК, міністерства, Вища рада правосуддя, Національне агентство із забезпечення якості вищої освіти,  національна поліція, НАБУ"></activiti:value>
+          <activiti:value id="126" name="126-Підприємства, організації України та інших держав, фірми, правнича фундація, Інститут імені Корецького, оргкомітети, фонди, ЗАТ, ТОВ, АТ «Укрпошта», Укртелеком, Київстар, видавництва, федерації, консульства посольства, консульство, посольство"></activiti:value>
+          <activiti:value id="127" name="127-Навчальні заклади"></activiti:value>
+          <activiti:value id="128" name="128-Адвокатські та юридичні контори, адвокати"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRegNumber" name="Номер документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateDoc" name="Дата реєстрації вхідного документа" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sAdress" name="Адреса звідки запит" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNameOrganization" name="Назва організації (від кого запрос)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateEnd" name="Кінцева дата виконання" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Prorektor" name="Логін проректора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sResolution" name="Резолюція" type="enum" writable="false">
+          <activiti:value id="yes" name="до виконання"></activiti:value>
+          <activiti:value id="no" name="відмовити"></activiti:value>
+          <activiti:value id="toAttention" name="до відома"></activiti:value>
+          <activiti:value id="other" name="інше"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sNameFile" name="Резолюція проректора" type="fileHTML" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateFixation" name="Дата фіксування резолюції діловодом" type="date" required="true"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask9" name="Керівнику на ознайомлення з резолюцією проректора">
+      <extensionElements>
+        <activiti:formProperty id="sLastName" name="Прізвище" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName" name="Ім'я" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sSurname" name="По батькові" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDate" name="Дата народження" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPeriodOfStudy" name="Період навчання" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTypeDoc" name="Тип документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sSeriesOfDoc" name="Серія та номер документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sRequest" name="Від кого запит" type="enum" writable="false">
+          <activiti:value id="sCitizen" name="громадянин"></activiti:value>
+          <activiti:value id="sOrganization" name="організація"></activiti:value>
+          <activiti:value id="sLawyer" name="адвокат"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Таблиця для сканів документів замовника;;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumberDoc" name="Номер вхідного документа" type="enum" writable="false">
+          <activiti:value id="124" name="124-Міністерство освіти і науки України"></activiti:value>
+          <activiti:value id="125" name="125-Обласне управління освіти, Служба безпеки України, Верховний Суд, Конституційний Суд, всі суди, митниця, прокуратура, юстиція, Національна поліція України, Генеральна прокуратура, обласна державна адміністрація, виконавчий комітет, ГУ ДМС України, районні ради, податкова інспекція, райвиконком, Пенсійний фонд, державне казначейство, ДАК, міністерства, Вища рада правосуддя, Національне агентство із забезпечення якості вищої освіти,  національна поліція, НАБУ"></activiti:value>
+          <activiti:value id="126" name="126-Підприємства, організації України та інших держав, фірми, правнича фундація, Інститут імені Корецького, оргкомітети, фонди, ЗАТ, ТОВ, АТ «Укрпошта», Укртелеком, Київстар, видавництва, федерації, консульства посольства, консульство, посольство"></activiti:value>
+          <activiti:value id="127" name="127-Навчальні заклади"></activiti:value>
+          <activiti:value id="128" name="128-Адвокатські та юридичні контори, адвокати"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRegNumber" name="Номер документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateDoc" name="Дата реєстрації вхідного документа" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sAdress" name="Адреса звідки запит" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNameOrganization" name="Назва організації (від кого запрос)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateEnd" name="Кінцева дата виконання" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Prorektor" name="Логін проректора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sResolution" name="Резолюція" type="enum">
+          <activiti:value id="yes" name="до виконання"></activiti:value>
+          <activiti:value id="no" name="відмовити"></activiti:value>
+          <activiti:value id="toAttention" name="до відома"></activiti:value>
+          <activiti:value id="other" name="інше"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sNameFile" name="Резолюція проректора" type="fileHTML" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateFixation" name="Дата фіксування резолюції діловодом" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNameExecutor" name="ПІБ виконавця/той хто готує наказ; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="string"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask10" name="Затвердження наказа керівником відділу">
+      <extensionElements>
+        <activiti:formProperty id="sLastName" name="Прізвище" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName" name="Ім'я" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sSurname" name="По батькові" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDate" name="Дата народження" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPeriodOfStudy" name="Період навчання" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTypeDoc" name="Тип документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sSeriesOfDoc" name="Серія та номер документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sRequest" name="Від кого запит" type="enum" writable="false">
+          <activiti:value id="sCitizen" name="громадянин"></activiti:value>
+          <activiti:value id="sOrganization" name="організація"></activiti:value>
+          <activiti:value id="sLawyer" name="адвокат"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Таблиця для сканів документів замовника;;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumberDoc" name="Номер вхідного документа" type="enum" writable="false">
+          <activiti:value id="124" name="124-Міністерство освіти і науки України"></activiti:value>
+          <activiti:value id="125" name="125-Обласне управління освіти, Служба безпеки України, Верховний Суд, Конституційний Суд, всі суди, митниця, прокуратура, юстиція, Національна поліція України, Генеральна прокуратура, обласна державна адміністрація, виконавчий комітет, ГУ ДМС України, районні ради, податкова інспекція, райвиконком, Пенсійний фонд, державне казначейство, ДАК, міністерства, Вища рада правосуддя, Національне агентство із забезпечення якості вищої освіти,  національна поліція, НАБУ"></activiti:value>
+          <activiti:value id="126" name="126-Підприємства, організації України та інших держав, фірми, правнича фундація, Інститут імені Корецького, оргкомітети, фонди, ЗАТ, ТОВ, АТ «Укрпошта», Укртелеком, Київстар, видавництва, федерації, консульства посольства, консульство, посольство"></activiti:value>
+          <activiti:value id="127" name="127-Навчальні заклади"></activiti:value>
+          <activiti:value id="128" name="128-Адвокатські та юридичні контори, адвокати"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRegNumber" name="Номер документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateDoc" name="Дата реєстрації вхідного документа" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sAdress" name="Адреса звідки запит" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNameOrganization" name="Назва організації (від кого запрос)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateEnd" name="Кінцева дата виконання" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sExecutor" name="Виконувач-архіваріус; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Prorektor" name="Логін проректора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sResolution" name="Резолюція" type="enum" writable="false">
+          <activiti:value id="yes" name="до виконання"></activiti:value>
+          <activiti:value id="no" name="відмовити"></activiti:value>
+          <activiti:value id="toAttention" name="до відома"></activiti:value>
+          <activiti:value id="other" name="інше"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sNameFile" name="Резолюція проректора" type="fileHTML" writable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sDateFixation" name="Дата фіксування резолюції діловодом" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNameExecutor" name="ПІБ виконавця/той хто готує наказ; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateNakaza" name="Дата наказа" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumberNakaza" name="Номер наказа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile_1" name="Скан наказа; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <serviceTask id="servicetask5" name="Права ректор и учебный отдел" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${sLogin_Rektor},${oSubjectRoleService.getsEmployeesLoginsOfRoles('TrainingDivision',null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_agree_1]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sNameOrganization]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow11" sourceRef="usertask18" targetRef="servicetask5">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_agree_1]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <userTask id="usertask11" name="Затвердження наказа ректором">
+      <extensionElements>
+        <activiti:formProperty id="sLastName" name="Прізвище" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName" name="Ім'я" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sSurname" name="По батькові" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDate" name="Дата народження" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPeriodOfStudy" name="Період навчання" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTypeDoc" name="Тип документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sSeriesOfDoc" name="Серія та номер документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sRequest" name="Від кого запит" type="enum" writable="false">
+          <activiti:value id="sCitizen" name="громадянин"></activiti:value>
+          <activiti:value id="sOrganization" name="організація"></activiti:value>
+          <activiti:value id="sLawyer" name="адвокат"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Таблиця для сканів документів замовника;;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumberDoc" name="Номер вхідного документа" type="enum" writable="false">
+          <activiti:value id="124" name="124-Міністерство освіти і науки України"></activiti:value>
+          <activiti:value id="125" name="125-Обласне управління освіти, Служба безпеки України, Верховний Суд, Конституційний Суд, всі суди, митниця, прокуратура, юстиція, Національна поліція України, Генеральна прокуратура, обласна державна адміністрація, виконавчий комітет, ГУ ДМС України, районні ради, податкова інспекція, райвиконком, Пенсійний фонд, державне казначейство, ДАК, міністерства, Вища рада правосуддя, Національне агентство із забезпечення якості вищої освіти,  національна поліція, НАБУ"></activiti:value>
+          <activiti:value id="126" name="126-Підприємства, організації України та інших держав, фірми, правнича фундація, Інститут імені Корецького, оргкомітети, фонди, ЗАТ, ТОВ, АТ «Укрпошта», Укртелеком, Київстар, видавництва, федерації, консульства посольства, консульство, посольство"></activiti:value>
+          <activiti:value id="127" name="127-Навчальні заклади"></activiti:value>
+          <activiti:value id="128" name="128-Адвокатські та юридичні контори, адвокати"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRegNumber" name="Номер документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateDoc" name="Дата реєстрації вхідного документа" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sAdress" name="Адреса звідки запит" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNameOrganization" name="Назва організації (від кого запрос)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateEnd" name="Кінцева дата виконання" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sExecutor" name="Виконувач-архіваріус; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Prorektor" name="Логін проректора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sResolution" name="Резолюція" type="enum" writable="false">
+          <activiti:value id="yes" name="до виконання"></activiti:value>
+          <activiti:value id="no" name="відмовити"></activiti:value>
+          <activiti:value id="toAttention" name="до відома"></activiti:value>
+          <activiti:value id="other" name="інше"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sNameFile" name="Резолюція проректора" type="fileHTML" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateFixation" name="Дата фіксування резолюції діловодом" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNameExecutor" name="ПІБ виконавця/той хто готує наказ; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile_1" name="Скан наказа; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateNakaza" name="Дата наказа" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumberNakaza" name="Номер наказа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile_2" name="Сканована заявка до ЄДЕБО; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Rektor" name="Логін ректора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sText1" name="Текст енама;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_dlia_enuma" name="Маркер для енама" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_1&quot;:{&quot;aField_ID&quot;:[&quot;sText1&quot;],&quot;asID_Field_sValue&quot;:[&quot;124&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sNumberDoc&quot;},&quot;sCondition&quot;:&quot;[sClient] == '124'&quot;}}}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow12" sourceRef="servicetask5" targetRef="usertask11"></sequenceFlow>
+    <userTask id="usertask12" name="Реєстрація звернення до ЄДЕБО керівником відділу діловодства та архіву">
+      <extensionElements>
+        <activiti:formProperty id="sLastName" name="Прізвище" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sName" name="Ім'я" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sSurname" name="По батькові" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDate" name="Дата народження" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPeriodOfStudy" name="Період навчання" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTypeDoc" name="Тип документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sSeriesOfDoc" name="Серія та номер документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sRequest" name="Від кого запит" type="enum">
+          <activiti:value id="sCitizen" name="громадянин"></activiti:value>
+          <activiti:value id="sOrganization" name="організація"></activiti:value>
+          <activiti:value id="sLawyer" name="адвокат"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Таблиця для сканів документів замовника;;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumberDoc" name="Номер вхідного документа" type="enum">
+          <activiti:value id="124" name="124-Міністерство освіти і науки України"></activiti:value>
+          <activiti:value id="125" name="125-Обласне управління освіти, Служба безпеки України, Верховний Суд, Конституційний Суд, всі суди, митниця, прокуратура, юстиція, Національна поліція України, Генеральна прокуратура, обласна державна адміністрація, виконавчий комітет, ГУ ДМС України, районні ради, податкова інспекція, райвиконком, Пенсійний фонд, державне казначейство, ДАК, міністерства, Вища рада правосуддя, Національне агентство із забезпечення якості вищої освіти,  національна поліція, НАБУ"></activiti:value>
+          <activiti:value id="126" name="126-Підприємства, організації України та інших держав, фірми, правнича фундація, Інститут імені Корецького, оргкомітети, фонди, ЗАТ, ТОВ, АТ «Укрпошта», Укртелеком, Київстар, видавництва, федерації, консульства посольства, консульство, посольство"></activiti:value>
+          <activiti:value id="127" name="127-Навчальні заклади"></activiti:value>
+          <activiti:value id="128" name="128-Адвокатські та юридичні контори, адвокати"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRegNumber" name="Номер документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDateDoc" name="Дата реєстрації вхідного документа" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sAdress" name="Адреса звідки запит" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sNameOrganization" name="Назва організації (від кого запрос)" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDateEnd" name="Кінцева дата виконання" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sExecutor" name="Виконувач-архіваріус; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Prorektor" name="Логін проректора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sResolution" name="Резолюція" type="enum">
+          <activiti:value id="yes" name="до виконання"></activiti:value>
+          <activiti:value id="no" name="відмовити"></activiti:value>
+          <activiti:value id="toAttention" name="до відома"></activiti:value>
+          <activiti:value id="other" name="інше"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sNameFile" name="Резолюція проректора" type="fileHTML" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sDateFixation" name="Дата фіксування резолюції діловодом" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sNameExecutor" name="ПІБ виконавця/той хто готує наказ; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile_1" name="Скан наказа; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateNakaza" name="Дата наказа" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sNumberNakaza" name="Номер наказа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile_2" name="Сканована заявка до ЄДЕБО; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateApplication" name="Дата звернення до ПК&quot;Зоря&quot;" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sOutgoingNumber" name="Вихідний номер" type="string"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow13" sourceRef="usertask11" targetRef="usertask18">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_execute]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow15" sourceRef="usertask12" targetRef="servicetask13">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_execute_1]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <userTask id="usertask14" name="Передача копії диплома в архів">
+      <extensionElements>
+        <activiti:formProperty id="sLastName" name="Прізвище" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sName" name="Ім'я" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sSurname" name="По батькові" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDate" name="Дата народження" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPeriodOfStudy" name="Період навчання" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTypeDoc" name="Тип документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sSeriesOfDoc" name="Серія та номер документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sRequest" name="Від кого запит" type="enum">
+          <activiti:value id="sCitizen" name="громадянин"></activiti:value>
+          <activiti:value id="sOrganization" name="організація"></activiti:value>
+          <activiti:value id="sLawyer" name="адвокат"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Таблиця для сканів документів замовника;;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumberDoc" name="Номер вхідного документа" type="enum">
+          <activiti:value id="124" name="124-Міністерство освіти і науки України"></activiti:value>
+          <activiti:value id="125" name="125-Обласне управління освіти, Служба безпеки України, Верховний Суд, Конституційний Суд, всі суди, митниця, прокуратура, юстиція, Національна поліція України, Генеральна прокуратура, обласна державна адміністрація, виконавчий комітет, ГУ ДМС України, районні ради, податкова інспекція, райвиконком, Пенсійний фонд, державне казначейство, ДАК, міністерства, Вища рада правосуддя, Національне агентство із забезпечення якості вищої освіти,  національна поліція, НАБУ"></activiti:value>
+          <activiti:value id="126" name="126-Підприємства, організації України та інших держав, фірми, правнича фундація, Інститут імені Корецького, оргкомітети, фонди, ЗАТ, ТОВ, АТ «Укрпошта», Укртелеком, Київстар, видавництва, федерації, консульства посольства, консульство, посольство"></activiti:value>
+          <activiti:value id="127" name="127-Навчальні заклади"></activiti:value>
+          <activiti:value id="128" name="128-Адвокатські та юридичні контори, адвокати"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRegNumber" name="Номер документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDateDoc" name="Дата реєстрації вхідного документа" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sAdress" name="Адреса звідки запит" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sNameOrganization" name="Назва організації (від кого запрос)" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDateEnd" name="Кінцева дата виконання" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sExecutor" name="Виконувач-архіваріус; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Prorektor" name="Логін проректора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sResolution" name="Резолюція" type="enum">
+          <activiti:value id="yes" name="до виконання"></activiti:value>
+          <activiti:value id="no" name="відмовити"></activiti:value>
+          <activiti:value id="toAttention" name="до відома"></activiti:value>
+          <activiti:value id="other" name="інше"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sNameFile" name="Резолюція проректора" type="fileHTML" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sDateFixation" name="Дата фіксування резолюції діловодом" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sNameExecutor" name="ПІБ виконавця/той хто готує наказ; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile_1" name="Скан наказа; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateNakaza" name="Дата наказа" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sNumberNakaza" name="Номер наказа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile_2" name="Сканована заявка до ЄДЕБО; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateApplication" name="Дата звернення до ПК&quot;Зоря&quot;" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sOutgoingNumber" name="Вихідний номер" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Rektor" name="Логін ректора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sNumberAct" name="Номер акта" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDateAct" name="Дата акта" type="date"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow19" sourceRef="usertask14" targetRef="servicetask16">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_execute_2]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow23" sourceRef="usertask3" targetRef="servicetask3">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_direct]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <serviceTask id="servicetask11" name="Права узгоджувачам, роль архіваріуса" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_direct]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('arkhivarius',null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_direct_1]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sNameOrganization]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow25" sourceRef="servicetask11" targetRef="usertask17"></sequenceFlow>
+    <sequenceFlow id="flow26" sourceRef="usertask17" targetRef="servicetask15">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_agree]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <userTask id="usertask17" name="Проект наказа">
+      <extensionElements>
+        <activiti:formProperty id="sLastName" name="Прізвище" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName" name="Ім'я" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sSurname" name="По батькові" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDate" name="Дата народження" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPeriodOfStudy" name="Період навчання" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTypeDoc" name="Тип документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sSeriesOfDoc" name="Серія та номер документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sRequest" name="Від кого запит" type="enum" writable="false">
+          <activiti:value id="sCitizen" name="громадянин"></activiti:value>
+          <activiti:value id="sOrganization" name="організація"></activiti:value>
+          <activiti:value id="sLawyer" name="адвокат"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sNumberDoc" name="Номер вхідного документа" type="enum" writable="false">
+          <activiti:value id="124" name="124-Міністерство освіти і науки України"></activiti:value>
+          <activiti:value id="125" name="125-Обласне управління освіти, Служба безпеки України, Верховний Суд, Конституційний Суд, всі суди, митниця, прокуратура, юстиція, Національна поліція України, Генеральна прокуратура, обласна державна адміністрація, виконавчий комітет, ГУ ДМС України, районні ради, податкова інспекція, райвиконком, Пенсійний фонд, державне казначейство, ДАК, міністерства, Вища рада правосуддя, Національне агентство із забезпечення якості вищої освіти,  національна поліція, НАБУ"></activiti:value>
+          <activiti:value id="126" name="126-Підприємства, організації України та інших держав, фірми, правнича фундація, Інститут імені Корецького, оргкомітети, фонди, ЗАТ, ТОВ, АТ «Укрпошта», Укртелеком, Київстар, видавництва, федерації, консульства посольства, консульство, посольство"></activiti:value>
+          <activiti:value id="127" name="127-Навчальні заклади"></activiti:value>
+          <activiti:value id="128" name="128-Адвокатські та юридичні контори, адвокати"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRegNumber" name="Номер документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Таблиця для сканів документів замовника;;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateDoc" name="Дата реєстрації вхідного документа" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sAdress" name="Адреса звідки запит" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNameOrganization" name="Назва організації (від кого запрос)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateEnd" name="Кінцева дата виконання" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sExecutor" name="Виконувач-архіваріус; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Prorektor" name="Логін проректора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sResolution" name="Резолюція" type="enum" writable="false">
+          <activiti:value id="yes" name="до виконання"></activiti:value>
+          <activiti:value id="no" name="відмовити"></activiti:value>
+          <activiti:value id="toAttention" name="до відома"></activiti:value>
+          <activiti:value id="other" name="інше"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sNameFile" name="Резолюція проректора" type="fileHTML" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateFixation" name="Дата фіксування резолюції діловодом" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNameExecutor" name="ПІБ виконавця/той хто готує наказ; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDateNakaza" name="Дата наказа" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sNumberNakaza" name="Номер наказа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile_1" name="Скан наказа; ;bNew=true" type="table"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask18" name="Заявка в ЄДЕБО">
+      <extensionElements>
+        <activiti:formProperty id="sLastName" name="Прізвище" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName" name="Ім'я" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sSurname" name="По батькові" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDate" name="Дата народження" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPeriodOfStudy" name="Період навчання" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTypeDoc" name="Тип документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sSeriesOfDoc" name="Серія та номер документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sRequest" name="Від кого запит" type="enum" writable="false">
+          <activiti:value id="sCitizen" name="громадянин"></activiti:value>
+          <activiti:value id="sOrganization" name="організація"></activiti:value>
+          <activiti:value id="sLawyer" name="адвокат"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Таблиця для сканів документів замовника;;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumberDoc" name="Номер вхідного документа" type="enum" writable="false">
+          <activiti:value id="124" name="124-Міністерство освіти і науки України"></activiti:value>
+          <activiti:value id="125" name="125-Обласне управління освіти, Служба безпеки України, Верховний Суд, Конституційний Суд, всі суди, митниця, прокуратура, юстиція, Національна поліція України, Генеральна прокуратура, обласна державна адміністрація, виконавчий комітет, ГУ ДМС України, районні ради, податкова інспекція, райвиконком, Пенсійний фонд, державне казначейство, ДАК, міністерства, Вища рада правосуддя, Національне агентство із забезпечення якості вищої освіти,  національна поліція, НАБУ"></activiti:value>
+          <activiti:value id="126" name="126-Підприємства, організації України та інших держав, фірми, правнича фундація, Інститут імені Корецького, оргкомітети, фонди, ЗАТ, ТОВ, АТ «Укрпошта», Укртелеком, Київстар, видавництва, федерації, консульства посольства, консульство, посольство"></activiti:value>
+          <activiti:value id="127" name="127-Навчальні заклади"></activiti:value>
+          <activiti:value id="128" name="128-Адвокатські та юридичні контори, адвокати"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRegNumber" name="Номер документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateDoc" name="Дата реєстрації вхідного документа" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sAdress" name="Адреса звідки запит" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNameOrganization" name="Назва організації (від кого запрос)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateEnd" name="Кінцева дата виконання" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sExecutor" name="Виконувач-архіваріус; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Prorektor" name="Логін проректора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sResolution" name="Резолюція" type="enum" writable="false">
+          <activiti:value id="yes" name="до виконання"></activiti:value>
+          <activiti:value id="no" name="відмовити"></activiti:value>
+          <activiti:value id="toAttention" name="до відома"></activiti:value>
+          <activiti:value id="other" name="інше"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sNameFile" name="Резолюція проректора" type="fileHTML" writable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sDateFixation" name="Дата фіксування резолюції діловодом" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNameExecutor" name="ПІБ виконавця/той хто готує наказ; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile_1" name="Скан наказа; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateNakaza" name="Дата наказа" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumberNakaza" name="Номер наказа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile_2" name="Сканована заявка до ЄДЕБО; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Rektor" name="Логін ректора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sText1" name="Текст енама;;bVisible=false" type="string"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <serviceTask id="servicetask12" name="Права, роль учебного отдела " activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_direct]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('TrainingDivision',null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_direct_2]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sNameOrganization]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow27" sourceRef="usertask10" targetRef="servicetask12">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_direct_2]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow28" sourceRef="servicetask12" targetRef="usertask12"></sequenceFlow>
+    <serviceTask id="servicetask13" name="Права узгоджувачам, роль архіваріуса" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_execute]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('arkhivarius',null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_execute_1]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sNameOrganization]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow29" sourceRef="servicetask13" targetRef="usertask14"></sequenceFlow>
+    <userTask id="usertask19" name="Передача копії диплома в архів">
+      <extensionElements>
+        <activiti:formProperty id="sLastName" name="Прізвище" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sName" name="Ім'я" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sSurname" name="По батькові" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDate" name="Дата народження" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPeriodOfStudy" name="Період навчання" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTypeDoc" name="Тип документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sSeriesOfDoc" name="Серія та номер документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sRequest" name="Від кого запит" type="enum">
+          <activiti:value id="sCitizen" name="громадянин"></activiti:value>
+          <activiti:value id="sOrganization" name="організація"></activiti:value>
+          <activiti:value id="sLawyer" name="адвокат"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Таблиця для сканів документів замовника;;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumberDoc" name="Номер вхідного документа" type="enum">
+          <activiti:value id="124" name="124-Міністерство освіти і науки України"></activiti:value>
+          <activiti:value id="125" name="125-Обласне управління освіти, Служба безпеки України, Верховний Суд, Конституційний Суд, всі суди, митниця, прокуратура, юстиція, Національна поліція України, Генеральна прокуратура, обласна державна адміністрація, виконавчий комітет, ГУ ДМС України, районні ради, податкова інспекція, райвиконком, Пенсійний фонд, державне казначейство, ДАК, міністерства, Вища рада правосуддя, Національне агентство із забезпечення якості вищої освіти,  національна поліція, НАБУ"></activiti:value>
+          <activiti:value id="126" name="126-Підприємства, організації України та інших держав, фірми, правнича фундація, Інститут імені Корецького, оргкомітети, фонди, ЗАТ, ТОВ, АТ «Укрпошта», Укртелеком, Київстар, видавництва, федерації, консульства посольства, консульство, посольство"></activiti:value>
+          <activiti:value id="127" name="127-Навчальні заклади"></activiti:value>
+          <activiti:value id="128" name="128-Адвокатські та юридичні контори, адвокати"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRegNumber" name="Номер документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDateDoc" name="Дата реєстрації вхідного документа" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sAdress" name="Адреса звідки запит" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sNameOrganization" name="Назва організації (від кого запрос)" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDateEnd" name="Кінцева дата виконання" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sExecutor" name="Виконувач-архіваріус; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Prorektor" name="Логін проректора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sResolution" name="Резолюція" type="enum">
+          <activiti:value id="yes" name="до виконання"></activiti:value>
+          <activiti:value id="no" name="відмовити"></activiti:value>
+          <activiti:value id="toAttention" name="до відома"></activiti:value>
+          <activiti:value id="other" name="інше"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sNameFile" name="Резолюція проректора" type="fileHTML" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sDateFixation" name="Дата фіксування резолюції діловодом" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sNameExecutor" name="ПІБ виконавця/той хто готує наказ; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile_1" name="Скан наказа; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateNakaza" name="Дата наказа" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sNumberNakaza" name="Номер наказа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile_2" name="Сканована заявка до ЄДЕБО; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateApplication" name="Дата звернення до ПК&quot;Зоря&quot;" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sOutgoingNumber" name="Вихідний номер" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Rektor" name="Логін ректора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sNumberAct" name="Номер акта" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDateAct" name="Дата акта" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sDateReceiving" name="Дата отримання диплома замовником" type="date"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow30" sourceRef="usertask19" targetRef="endevent1"></sequenceFlow>
+    <serviceTask id="servicetask14" name="Права, роль керівника відділу архіву та діловодства" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_seen]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('HeadArkhiv',null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_seen]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sNameOrganization]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow31" sourceRef="servicetask14" targetRef="usertask9"></sequenceFlow>
+    <serviceTask id="servicetask15" name="Права, роль керівника відділу архіву та діловодства" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('HeadArkhiv',null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sNameOrganization]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow32" sourceRef="servicetask15" targetRef="usertask10"></sequenceFlow>
+    <serviceTask id="servicetask16" name="Права, роль керівника відділу архіву та діловодства" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_execute]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('arkhivarius',null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_execute_2]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sNameOrganization]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow33" sourceRef="servicetask16" targetRef="usertask19"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram__doc_template_diplom">
+    <bpmndi:BPMNPlane bpmnElement="_doc_template_diplom" id="BPMNPlane__doc_template_diplom">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="20.0" y="150.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask2" id="BPMNShape_usertask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="80.0" y="140.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask2" id="BPMNShape_servicetask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="230.0" y="140.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask3" id="BPMNShape_usertask3">
+        <omgdc:Bounds height="71.0" width="105.0" x="380.0" y="132.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask3" id="BPMNShape_servicetask3">
+        <omgdc:Bounds height="71.0" width="105.0" x="524.0" y="132.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask8" id="BPMNShape_usertask8">
+        <omgdc:Bounds height="76.0" width="111.0" x="680.0" y="130.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask9" id="BPMNShape_usertask9">
+        <omgdc:Bounds height="81.0" width="105.0" x="827.0" y="260.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask10" id="BPMNShape_usertask10">
+        <omgdc:Bounds height="71.0" width="105.0" x="200.0" y="265.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask5" id="BPMNShape_servicetask5">
+        <omgdc:Bounds height="71.0" width="105.0" x="4.0" y="430.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask11" id="BPMNShape_usertask11">
+        <omgdc:Bounds height="71.0" width="105.0" x="30.0" y="510.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask12" id="BPMNShape_usertask12">
+        <omgdc:Bounds height="111.0" width="105.0" x="147.0" y="365.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask14" id="BPMNShape_usertask14">
+        <omgdc:Bounds height="81.0" width="105.0" x="500.0" y="380.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="940.0" y="403.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask11" id="BPMNShape_servicetask11">
+        <omgdc:Bounds height="71.0" width="105.0" x="640.0" y="265.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask17" id="BPMNShape_usertask17">
+        <omgdc:Bounds height="71.0" width="105.0" x="485.0" y="265.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask18" id="BPMNShape_usertask18">
+        <omgdc:Bounds height="71.0" width="105.0" x="270.0" y="479.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask12" id="BPMNShape_servicetask12">
+        <omgdc:Bounds height="71.0" width="105.0" x="50.0" y="265.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask13" id="BPMNShape_servicetask13">
+        <omgdc:Bounds height="71.0" width="105.0" x="340.0" y="385.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask19" id="BPMNShape_usertask19">
+        <omgdc:Bounds height="81.0" width="105.0" x="800.0" y="380.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask14" id="BPMNShape_servicetask14">
+        <omgdc:Bounds height="83.0" width="105.0" x="827.0" y="126.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask15" id="BPMNShape_servicetask15">
+        <omgdc:Bounds height="87.0" width="105.0" x="340.0" y="257.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask16" id="BPMNShape_servicetask16">
+        <omgdc:Bounds height="87.0" width="105.0" x="650.0" y="377.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="55.0" y="167.0"></omgdi:waypoint>
+        <omgdi:waypoint x="80.0" y="167.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="185.0" y="167.0"></omgdi:waypoint>
+        <omgdi:waypoint x="230.0" y="167.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="335.0" y="167.0"></omgdi:waypoint>
+        <omgdi:waypoint x="380.0" y="167.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
+        <omgdi:waypoint x="629.0" y="167.0"></omgdi:waypoint>
+        <omgdi:waypoint x="680.0" y="168.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow8" id="BPMNEdge_flow8">
+        <omgdi:waypoint x="791.0" y="168.0"></omgdi:waypoint>
+        <omgdi:waypoint x="827.0" y="167.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow9" id="BPMNEdge_flow9">
+        <omgdi:waypoint x="827.0" y="300.0"></omgdi:waypoint>
+        <omgdi:waypoint x="745.0" y="300.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow11" id="BPMNEdge_flow11">
+        <omgdi:waypoint x="270.0" y="514.0"></omgdi:waypoint>
+        <omgdi:waypoint x="56.0" y="501.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow12" id="BPMNEdge_flow12">
+        <omgdi:waypoint x="109.0" y="465.0"></omgdi:waypoint>
+        <omgdi:waypoint x="82.0" y="510.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow13" id="BPMNEdge_flow13">
+        <omgdi:waypoint x="135.0" y="545.0"></omgdi:waypoint>
+        <omgdi:waypoint x="270.0" y="514.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow15" id="BPMNEdge_flow15">
+        <omgdi:waypoint x="252.0" y="420.0"></omgdi:waypoint>
+        <omgdi:waypoint x="340.0" y="420.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow19" id="BPMNEdge_flow19">
+        <omgdi:waypoint x="605.0" y="420.0"></omgdi:waypoint>
+        <omgdi:waypoint x="650.0" y="420.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow23" id="BPMNEdge_flow23">
+        <omgdi:waypoint x="485.0" y="167.0"></omgdi:waypoint>
+        <omgdi:waypoint x="524.0" y="167.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow25" id="BPMNEdge_flow25">
+        <omgdi:waypoint x="640.0" y="300.0"></omgdi:waypoint>
+        <omgdi:waypoint x="590.0" y="300.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow26" id="BPMNEdge_flow26">
+        <omgdi:waypoint x="485.0" y="300.0"></omgdi:waypoint>
+        <omgdi:waypoint x="445.0" y="300.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow27" id="BPMNEdge_flow27">
+        <omgdi:waypoint x="200.0" y="300.0"></omgdi:waypoint>
+        <omgdi:waypoint x="155.0" y="300.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow28" id="BPMNEdge_flow28">
+        <omgdi:waypoint x="102.0" y="336.0"></omgdi:waypoint>
+        <omgdi:waypoint x="199.0" y="365.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow29" id="BPMNEdge_flow29">
+        <omgdi:waypoint x="445.0" y="420.0"></omgdi:waypoint>
+        <omgdi:waypoint x="500.0" y="420.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow30" id="BPMNEdge_flow30">
+        <omgdi:waypoint x="905.0" y="420.0"></omgdi:waypoint>
+        <omgdi:waypoint x="940.0" y="420.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow31" id="BPMNEdge_flow31">
+        <omgdi:waypoint x="879.0" y="209.0"></omgdi:waypoint>
+        <omgdi:waypoint x="879.0" y="260.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow32" id="BPMNEdge_flow32">
+        <omgdi:waypoint x="340.0" y="300.0"></omgdi:waypoint>
+        <omgdi:waypoint x="305.0" y="300.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow33" id="BPMNEdge_flow33">
+        <omgdi:waypoint x="755.0" y="420.0"></omgdi:waypoint>
+        <omgdi:waypoint x="800.0" y="420.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

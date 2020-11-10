@@ -1,0 +1,26 @@
+nID;nOrder;sID;sName;sNote;sID_ProcessDocumentStatusEnum
+0;0;None;Немає;Немає статусу (помилково створене/не створене);DocumentStatus_None
+1;10;Hold;Утримання;Виключено з обробки, черги або плану (створення/редагування/виправлення);DocumentStatus_Hold
+2;13;HoldSaved;Створено;Виключено з обробки, черги або плану (створення), до початку візування ;DocumentStatus_HoldSaved
+3;17;Registration;Реєструється;Йде реєстрація конкретним працівником;DocumentStatus_Registration
+4;19;Registered;Документ зареєстровано;Зареєстровано конкретним працівником;DocumentStatus_Registered
+5;20;Shedule;Заплановано;Очікує часу для обробки або черги (пул заявок на задану дату та час);DocumentStatus_Shedule
+6;30;Queue;Черга обробки;Очікує взяття (ассайну) до обробки (пул заявок на зараз);DocumentStatus_Queue
+7;40;Processing;Йде обробка;Ще не діє, очікує обробки;DocumentStatus_Processing
+8;42;ProcessingAccepted;Документ погоджено;Ще не діє, очікує обробки але погоджено;DocumentStatus_ProcessingAccepted
+9;45;ProcessingAccepted_ResolutionFirst;Первинну резолюцію накладено;ще не діє, очікує обробки але з резолюцією;DocumentStatus_ProcessingAccepted
+10;50;Processed;Резолюцію накладено;Діє після обробки;DocumentStatus_Processed
+11;51;HoldAsk;Документ повернений на опрацювання;Має зауваження (вже повернуто на редагування);DocumentStatus_HoldAsk
+12;52;AgreedSent;Документ підписано та відправлено;Відправлено після обробки (затвердження) та діє, затверджено;DocumentStatus_AgreedSent
+13;55;Executing;Виконання документу завершено;Діє після обробки виконанння;DocumentStatus_Executing
+14;56;Executing_ResolutionSecont;Резолюцію накладено;Діє після обробки, йде виконання, з резолюцією;DocumentStatus_Executing
+15;57;Executed;Виконання документу завершено;Діє після обробки выконано;DocumentStatus_Executed
+16;58;Controlled;Проконтрольовано;Діє після обробки та проконтрольовано виконання;DocumentStatus_Controlled
+17;59;Controlled_Attached;Документ долучено до справи;Діє після обробки, проконтрольовано виконання та долучено до справи;DocumentStatus_Controlled
+18;60;Expired;Прострочено;Вже не діє але зберігається;DocumentStatus_Expired
+19;62;ExpiredArchiving;Архівація;Відмічено на архівацію (вже не діє але зберігається не в архіві);DocumentStatus_ExpiredArchiving
+20;64;ExpiredArchived;Архівовано;Вже архівовано (не діє та зберігається в архіві);DocumentStatus_ExpiredArchived
+21;66;ArchiveDestruction;Знищення архіву;Ще зберігається в архіві але відмічено на знищення (для перетворення тільки у нагадування/акт);DocumentStatus_ArchiveDestruction
+22;68;ArchiveDestroyed;Знищений архів;Вже знищене та не зберігається в архіві (є тільки нагадування/акт);DocumentStatus_ArchiveDestroyed
+23;70;GarbageDestruction;Знищення сміття;Відмічено на знищення сміття (остаточне, без нагадування/акту, як виправлення помилки);DocumentStatus_GarbageDestruction
+24;75;GarbageDestroyed;Знищене сміття;Вже знищене сміття (остаточно, без нагадування/акту, як виправлення помилки);DocumentStatus_GarbageDestroyed

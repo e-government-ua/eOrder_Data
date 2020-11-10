@@ -1,0 +1,34 @@
+{
+	"oProperties": {
+		"sasID_BP_Derivative":"_doc_template_UB_outgoing"
+	},
+	"_:Watch": {
+		"_default_author": {
+			"oMission": {"sKey_Right": "SignRelease"},
+			"oRights": {
+				"Remove": {},
+				"SignComment": {},
+				"Manage": {},
+       			"EditAuthor": {}
+			}
+		},
+		"_default_view": {
+			"oMission": {"sKey_Right": "View"},
+			"oRights": {
+				"ManageViewers": {},
+				"SignComment": {}
+			}
+		},
+		"_default_seen": {
+      		"oMission": {"sKey_Right": "SignRead"},
+      		"oRights": {
+      			"AskMessage": {"bDisable": true},
+       			"SignComment": {}
+      		}
+    	}
+	},
+	"step_create:Create": {},
+	"step_edit:Edit": {},
+	"step_direct:Direct": {},
+	"step_seen:Seen": {}
+}

@@ -1,0 +1,11 @@
+nID;sName;nID_SubjectOrgan;sHandlerClass
+1;iGov;2;org.icore.service.business.document.access.handler.DocumentAccessHandler_IGov
+2;ПриватБанк;1;org.icore.service.business.document.access.handler.DocumentAccessHandler_PB
+3;Банк Михайловский;7;org.icore.service.business.document.access.handler.DocumentAccessHandler_PB
+4;Альфа Банк;8;org.icore.service.business.document.access.handler.DocumentAccessHandler_PB
+5;Platinum Bank;9;org.icore.service.business.document.access.handler.DocumentAccessHandler_PB
+6;FIDOBANK;11;org.icore.service.business.document.access.handler.DocumentAccessHandler_PB
+7;Банк Південний;12;org.icore.service.business.document.access.handler.DocumentAccessHandler_PB
+8;UniCredit Bank;13;org.icore.service.business.document.access.handler.DocumentAccessHandler_PB
+9;IdeaBank;14;org.icore.service.business.document.access.handler.DocumentAccessHandler_PB
+10;Ощадбанк;15;org.icore.service.business.document.access.handler.DocumentAccessHandler_PB

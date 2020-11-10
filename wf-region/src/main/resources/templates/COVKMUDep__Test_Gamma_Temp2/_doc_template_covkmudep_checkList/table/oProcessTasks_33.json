@@ -1,0 +1,33 @@
+[
+  {
+    "sHead": "Сфотографуватись на перепустку (бюро перепусток, каб. 200)",
+    "sBody": "Сфотографуватись на перепустку (бюро перепусток, каб. 200)",
+    "sID_BP": "_task_base",
+    "sKey_TaskReportType": "Text",
+    "bSplited_Execute": false,
+    "oProcessTaskSubjectsVO": {
+      "aController": [
+        {
+          "oUserVO": {
+            "sLogin": "",
+            "sLabel": ""
+          },
+          "nDaysPlan": null,
+          "oDatePlan": "$[sDate]"
+        }
+      ],
+      "aExecutor": [
+        {
+          "oUserVO": {
+            "sLogin": "",
+            "sLabel": ""
+          },
+          "nDaysPlan": null,
+          "oDatePlan": "$[sDate]"
+        }
+      ],
+      "aVisor": []
+    },
+    "aProcessTaskAttribute": []
+  }
+]

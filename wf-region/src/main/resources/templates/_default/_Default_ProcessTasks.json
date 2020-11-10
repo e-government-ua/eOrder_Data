@@ -1,0 +1,19 @@
+[
+     {
+          "sHead": ""
+          ,"sBody": ""
+          ,"sID_BP": "_task_base"
+          ,"sKey_TaskReportType": "Text"
+          ,"bSplited_Execute": false
+          ,"oProcessTaskSubjectsVO": {
+               "aController": [
+               ]
+               ,"aExecutor": [
+               ]
+               ,"aVisor": [
+               ]
+          }
+          ,"aProcessTaskAttribute": [
+          ]
+     }
+]

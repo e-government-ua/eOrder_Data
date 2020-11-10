@@ -1,0 +1,1218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="_doc_template_iboxbank_new_client" name="Реєстрація клієнта" isExecutable="true">
+    <documentation>;bTemplated=true</documentation>
+    <startEvent id="startevent1" name="Start">
+      <extensionElements>
+        <activiti:formProperty id="sPesronType" name="Вкажіть резидентність" type="enum" required="true">
+          <activiti:value id="physical" name="Фізична особа Резидент"></activiti:value>
+          <activiti:value id="physicalnr" name="Фізична особа Нерезидент "></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="markersLine_ZZ" name="Інформація про заявника" type="markers" default="{&quot;attributes&quot;:{&quot;Line_ZZ&quot;:{&quot;aElement_ID&quot;:[&quot;bankIdlastName&quot;],&quot;sValue&quot;:&quot;Інформація про заявника&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="bankIdlastName" name="Прізвище" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdfirstName" name="Ім`я" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdmiddleName" name="По батькові" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdbirthDay" name="Дата народження" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sBirthplace" name="Місце народження" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sSex" name="Стать" type="enum" required="true">
+          <activiti:value id="M" name="Чоловік"></activiti:value>
+          <activiti:value id="F" name="Жінка"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bankIdinn" name="Ваш ІПН" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdPassport" name="Паспортні дані; ;bVisible=false" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile_Adresses" name="Адреси; ;bNew=true" type="table" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile_Documents" name="Документ, що посвідчує особу; ;bNew=true" type="table" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdsID_Country" name="Громадянство" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sCuntr" name="Громадянство; ;bVisible=false" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdAddressFactual" name="Адрес реєстрації; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="bankIdAddressFactual_fact" name="Адреса проживання; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sBankId_ID" name="Найменування Банку, в якому клієнт ідентифікований/верифікований" type="enum" required="true">
+          <activiti:value id="PrivatBank" name="АТ КБ ПРИВАТБАНК"></activiti:value>
+          <activiti:value id="KonkordBank" name="АТ АКБ КОНКОРД "></activiti:value>
+          <activiti:value id="PivdennyjBank" name="ПАТ Акціонерний банк Південний"></activiti:value>
+          <activiti:value id="MonoBank" name="АТ УНІВЕРСАЛ БАНК (MonoBank)"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="phone" name="Ваш телефон" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="email" name="Ваш E-Mail" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sPolitical" name="Зв’язок з політично значущими особами" type="enum" required="true">
+          <activiti:value id="Political" name="Політично значуща особа"></activiti:value>
+          <activiti:value id="PoliticalFamilyMember" name="Член сім’ї політично значущої особи"></activiti:value>
+          <activiti:value id="PoliticalAssociated" name="Особа, яка пов'язана з політично значущою особою"></activiti:value>
+          <activiti:value id="notPolitical" name="Не пов'язаний(-а)"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sPoliticalPPosition" name="Категорія посад політично значущої особи" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPoliticalPIB" name="Прізвище, ім’я, по батькові політично значущої особи" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPoliticalIDData" name="Інші ідентифікаційні данні (за наявності) політично значущої особи" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPoliticalResidentData" name="Ознака резидентності політично значущої особи" type="string"></activiti:formProperty>
+        <activiti:formProperty id="bLegalPolitical" name="Застосування понять в значеннях, визначених законодавством у сфері запобігання та протидії доведені; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sWork" name="Місце роботи" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sPosition" name="Посада" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bSPD" name="Чи займаєтесь Ви підприємницькою діяльністю?; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRegOrgan_spd" name="Орган реєстрації" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sRegDate_spd" name="Дата запису; Запис дати у форматі дд.мм.рррр;" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sRegNum_spd" name="Номер запису" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sActType_spd" name="Вид діяльності" type="string"></activiti:formProperty>
+        <activiti:formProperty id="bSelfEmpl" name="Чи є Ви самозайнятою особою?; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRegOrgan_self" name="Орган реєстрації" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sRegDate_self" name="Дата запису; Запис дати у форматі дд.мм.рррр;" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sRegNum_self" name="Номер запису" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sActType_self" name="Вид діяльності" type="string"></activiti:formProperty>
+        <activiti:formProperty id="markersLine_Operation" name="Інформація про операції" type="markers" default="{&quot;attributes&quot;:{&quot;Line_Operation&quot;:{&quot;aElement_ID&quot;:[&quot;bCashService&quot;],&quot;sValue&quot;:&quot;Позначте операції, які плануєте проводити:&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="bCashService" name="Розрахунково-касове обслуговування; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bRemittance" name="Грошові перекази; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bSpecialPaymentMeans" name="Операції з використанням спеціальних платіжних засобів; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bBorderRemittance" name="Переказ коштів за кордон; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bSecurities" name="Операції з цінними паперами; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bBankMetal" name="Операції з банківськими металами; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bCredit" name="Кредитні операції; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bDepposit" name="Депозитні операції; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bOther" name="Інше; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sOtherOperationType" name="Прохання вказати" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sAverageIncome" name="Вкажіть суму середньомісячного сукупного доходу" type="enum" required="true">
+          <activiti:value id="less10" name="до 10 000,00 грн."></activiti:value>
+          <activiti:value id="between10and15" name="10 000,00 – 15 000,00 грн."></activiti:value>
+          <activiti:value id="between15and25" name="15 000,00 - 25 000,00 грн"></activiti:value>
+          <activiti:value id="more25" name="більше 25 000,00 грн."></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="markersLine_Income" name="Інформація про джерала надходжень" type="markers" default="{&quot;attributes&quot;:{&quot;Line_Income&quot;:{&quot;aElement_ID&quot;:[&quot;bSalary&quot;],&quot;sValue&quot;:&quot;Зазначте джерела надходження коштів та інших цінностей на рахуки:&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="bSalary" name="Заробітна плата, соціальні виплати; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bPension" name="Пенсія; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bScholarship" name="Стипендія; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bSPDIncome" name="Доходи від здійснення підприємницької діяльності; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bOwnSavings" name="Власні заощадження готівки; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bDividends" name="Дивіденди; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bHeritage" name="Спадщина; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bRelativesAid" name="Фінансова допомога родичів; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bDeppositAndPercents" name="Депозитні кошти та їх відсотки; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bAsLoan" name="У вигляді позики; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bLoan" name="Кредитні  кошти; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bOtherIncome" name="Інше; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sOtherOperationTypeIncome" name="Прохання вказати" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sAverageAccountIncome" name="Обсяги надходження на рахунок" type="enum" required="true">
+          <activiti:value id="less5" name="до 5 000,00 грн."></activiti:value>
+          <activiti:value id="between5and10" name="5 000,00 – 10 000,00 грн."></activiti:value>
+          <activiti:value id="between10and25" name="10 000,00 - 25 000,00 грн"></activiti:value>
+          <activiti:value id="more25" name="більше 25 000,00 грн."></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bUSAtaxResident" name="Належите до податкових резидентів США?; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bUSAtaxResidentProved" name="Умови належності до податкових резидентів Сполучений Штатів Америки доведені; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sUSASignInfo" name="; ;labelType=info" type="label" default="Персональні дані, що містяться в цьому Опитувальнику, надаються відповідно до отриманої згоди суб'єктів персональних даних на обробку такої інформації Банком та передачу відповідних відомостей (даних) в цілях дотримання вимог законодавства України та/або міждержавної угоди по оподаткуванню іноземних рахунків між урядом України та США та/або Закону Сполучених Штатів Америки «Про оподаткування іноземних рахунків» («FATCA») (далі - законодавство про оподаткування іноземних рахунків («FATCA»)) в уповноважений орган або особі, на яку покладено зобов'язання по утриманню податку у відповідності з положеннями законодавства про оподаткування іноземних рахунків («FATCA») або який застосовує положення законодавства про оподаткування іноземних рахунків («FATCA»), а також іноземним податковим агентам."></activiti:formProperty>
+        <activiti:formProperty id="bAccept" name="Підписанням ції заяви погоджуюсь із ...; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sAcceptInfo_1" name="Підписанням цієї заяви; ;labelType=info" type="label" default="1. підтверджую, що дані відповідають дійсності, та  своїм підписом підтверджую, що:"></activiti:formProperty>
+        <activiti:formProperty id="sAcceptInfo_2" name="Підписанням цієї заяви; ;labelType=info" type="label" default="* ознайомився (-лась), підтверджую прийняття та повне розуміння змісту, і згоден (-на) з Умовами банківського обслуговування фізичних осіб в  АТ &quot;АЙБОКС БАНК&quot;, з умовами та правилами надання банківських послуг, тарифами Банку. Зазначені Умовами банківського обслуговування фізичних осіб в  АТ &quot;АЙБОКС БАНК&quot;  та тарифи оприлюднені на офіційному сайті Банку в мережі інтернет за посиланням: www.iboxbank.online;"></activiti:formProperty>
+        <activiti:formProperty id="sAcceptInfo_3" name="Підписанням цієї заяви; ;labelType=info" type="label" default="* зі змістом Інструкції про порядок відкриття і закриття рахунків клієнтів банків та кореспондентських рахунків банків - резидентів і нерезидентів, затвердженої Постановою Правління Національного банку України від 2 листопада 2003 року № 492, я ознайомлений, вимоги цієї Інструкції для мене є обов’язкові.  Письмові розпорядження підписуватимуться мною або уповноваженою мною особою за Довіреністю. У разі зміни повноважень особи на право розпоряджатися рахунком зобов'язуюсь негайно повідомити про це Банк у письмовій формі;"></activiti:formProperty>
+        <activiti:formProperty id="sAcceptInfo_4" name="Підписанням цієї заяви; ;labelType=info" type="label" default="*ознайомлений з тим, що поточний рахунок*, який відкривається для нього  АТ &quot;АЙБОКС БАНК&quot;, забороняється використовувати для проведення операцій, пов’язаних зі  здійсненням підприємницької діяльності та незалежної професійної діяльності;"></activiti:formProperty>
+        <activiti:formProperty id="sAcceptInfo_5" name="Підписанням цієї заяви; ;labelType=info" type="label" default="*усе листування щодо цього рахунку прошу надсилати за фактичною адресою місця проживання. Про зміну адреси повідомлятиму Банк письмово; Зобов’язуюсь про всі зміни даних, які зазначені в Анкеті - Заяві повідомляти в Банк письмово не пізніше 5 днів з моменту таких змін."></activiti:formProperty>
+        <activiti:formProperty id="sAcceptInfo_6" name="Підписанням цієї заяви; ;labelType=info" type="label" default="*повідомлена мною інформація  є достовірною та уповноважую  АТ &quot;АЙБОКС БАНК&quot; перевіряти цю, та іншу інформацію, яка може бути потрібною, у роботодавця, за місцем  проживання або у представників державної влади та місцевого самоврядування тощо."></activiti:formProperty>
+        <activiti:formProperty id="sAcceptInfo_7" name="Підписанням цієї заяви; ;labelType=info" type="label" default="*Я надаю Банку право: на обробку моїх персональних даних, отриманих у зв’язку з заповненням Заяви-анкети; на їх використання в наступних цілях: забезпечення реалізації адміністративно-правових (в тому числі, відносин у сфері державного управління), податкових відносин та відносин у сфері бухгалтерського обліку; забезпечення реалізації відносин у сфері економічних, фінансових послуг та страхування; забезпечення реалізації відносин з акціонерами ПРИВАТНЕ АКЦІОНЕРНЕ ТОВАРИСТВО &quot;АЙБОКС БАНК&quot; та пов’язаними особами; на передачу персональних даних третім особам відповідно до зазначених цілей."></activiti:formProperty>
+        <activiti:formProperty id="sAcceptInfo_8" name="Підписанням цієї заяви; ;labelType=info" type="label" default="2. Акцептую  та приєднуюся до умов банківського обслуговування фізичних осіб в ПРИВАТНЕ АКЦІОНЕРНЕ ТОВАРИСТВО &quot;АЙБОКС БАНК&quot; (надалі - Публічна пропозиція), що оприлюднена на  офіційному сайті Банку в мережі інтернет за посиланням: www.iboxbank.online, погодився з тим, що ця Заява-Анкета разом із вищевказаною Публічною пропозицією  АТ &quot;АЙБОКС БАНК&quot;  та Тарифами Банку, що розміщенні на  офіційному веб-сайті Банку за електронною адресою: www.iboxbank.online  становить зміст Договору про банківське обслуговування фізичної особи (надалі – Договір), уповноважує Банк та надає йому згоду на вчинення всіх дій, визначених в Публічній пропозиції, не має жодних заперечень щодо закріпленого в Публічній пропозиції порядку зміни умов обслуговування, тарифів тощо, а також підтверджує, що цей порядок ніяким чином не порушує його права та інтереси."></activiti:formProperty>
+        <activiti:formProperty id="sAcceptInfo_9" name="Підписанням цієї заяви; ;labelType=info" type="label" default="3. Підтверджую, що надаю свою згоду Банку на доступ до своєї кредитної історії, збір, зберігання, використання та поширення інформації щодо себе через Бюро кредитних історій, з якими співпрацює Банк."></activiti:formProperty>
+        <activiti:formProperty id="sAcceptInfo_10" name="Підписанням цієї заяви; ;labelType=info" type="label" default="4. Приймаю на себе всі обов’язки та набуваю всіх прав, передбачених Публічною пропозицією  АТ &quot;АЙБОКС БАНК&quot; на укладання  Договору про банківське обслуговування фізичної особи стосовно клієнта, рівно як і Банк бере на себе всі обов’язки та набуває всіх прав, передбачених цією Публічною пропозицією стосовно Банку. "></activiti:formProperty>
+        <activiti:formProperty id="sAcceptInfo_11" name="Підписанням цієї заяви; ;labelType=info" type="label" default="5. Підтверджую, що взаємовідносини Сторін за Договором в частині, не врегульованій ним, визначаються чинним законодавством України."></activiti:formProperty>
+        <activiti:formProperty id="sAcceptInfo_12" name="Підписанням цієї заяви; ;labelType=info" type="label" default="6. Підтверджую ознайомлення з умовами гарантування вкладів Фондом гарантування вкладів фізичних осіб  викладені в п. 3.4. Публічної пропозиції АТ &quot;АЙБОКС БАНК&quot;."></activiti:formProperty>
+        <activiti:formProperty id="sAcceptInfo_13" name="Підписанням цієї заяви; ;labelType=info" type="label" default="7. Підтверджую, що до моменту укладення Договору Банк ознайомив мене з довідкою про систему гарантування вкладів фізичних осіб (надалі – Довідка), згідно Порядку здійснення Фондом гарантування вкладів фізичних осіб захисту прав та охоронюваних законом інтересів вкладників, затвердженого виконавчою дирекцією Фонду від 26.05.2016 № 825, зареєстровано в Міністерстві юстиції України 17 червня 2016 р. за  № 874/29004. Після укладення Договору, ознайомлення Клієнта з Довідкою здійснюється Банком не рідше ніж один раз на рік одним із наступних способів на вибір Банку: а) шляхом ознайомлення з Довідкою під підпис Клієнта при відвідуванні Банка; б) шляхом направлення Клієнту Довідки на його поштову адресу, що зазначена, в цьому Договорі; в) шляхом направлення Клієнту сканкопії Довідки на його електронну адресу, що зазначена в цьому Договорі; г) шляхом розміщення Довідки на офіційному веб-сайті Банку: http://www.iboxbank.online."></activiti:formProperty>
+        <activiti:formProperty id="sAcceptInfo_14" name="Підписанням цієї заяви; ;labelType=info" type="label" default="8. Підтверджую, що самостійно ініціюю отримання примірника цієї заяви під час першого звернення до Банку. "></activiti:formProperty>
+        <activiti:formProperty id="bankIdphone" name="БанкІДтелефон; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="bankIdemail" name="БанкІДпошта; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="FlagBankId" name="FlagBankIdPhoneEmail; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="markerBankIdPasportPhoneEmail" name="markerBankIdPasportPhoneEmail" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_BankIdPhoneEmail&quot;:{&quot;aField_ID&quot;:[&quot;phone&quot;,&quot;email&quot;,&quot;FlagBankId&quot;,&quot;bankIdAddressFactual_fact&quot;],&quot;asID_Field_sValue&quot;:[&quot;[bankIdphone]&quot;,&quot;[bankIdemail]&quot;,&quot;1234567890&quot;,&quot;[bankIdAddressFactual]&quot;],&quot;asID_Field&quot;:{&quot;sCondit1&quot;:&quot;bankIdlastName&quot;,&quot;sCondit2&quot;:&quot;FlagBankId&quot;},&quot;sCondition&quot;:&quot;[sCondit1] != '1234567890'&amp;&amp;[sCondit2] != '1234567890'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документа;;bVisible=false" type="date"></activiti:formProperty>
+        <activiti:formProperty id="nID_Process_Child" name="nID_Process_Child;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sflagFOP" name="flagFOP;; bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sflagPEPs" name="flagPEPs;; bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sflagS" name="flagS;;  bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sUS_TaxResident" name="US_TaxResident;;  bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="scli_fin_stan" name="cli_fin_stan;; bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="scli_bank_oper" name="cli_bank_oper;; bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="scli_fin_source" name="cli_fin_source;; bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sBankVerif" name="BankVerif;; bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sclId" name="clId;; bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sclIdText" name="clIdText;; bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_showIsPolitical" name="marker_showIsPolitical" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_isPolitical&quot;:{&quot;aField_ID&quot;:[&quot;bLegalPolitical&quot;,&quot;sPoliticalPPosition&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sPolitical&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'Political' || [sClient] == 'PoliticalFamilyMember' || [sClient] == 'PoliticalAssociated'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_reqIsPolitical" name="marker_reqIsPolitical" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_isPolitical&quot;:{&quot;aField_ID&quot;:[&quot;bLegalPolitical&quot;,&quot;sPoliticalPPosition&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sPolitical&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'Political' || [sClient] == 'PoliticalFamilyMember' || [sClient] == 'PoliticalAssociated'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_showPoliticalRel" name="marker_showPoliticalRel" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_isPoliticalRel&quot;:{&quot;aField_ID&quot;:[&quot;sPoliticalPIB&quot;,&quot;sPoliticalIDData&quot;,&quot;sPoliticalResidentData&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sPolitical&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'PoliticalFamilyMember' || [sClient] == 'PoliticalAssociated'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_reqPoliticalRel" name="marker_reqPoliticalRel" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_isPoliticalRel&quot;:{&quot;aField_ID&quot;:[&quot;sPoliticalPIB&quot;,&quot;sPoliticalIDData&quot;,&quot;sPoliticalResidentData&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sPolitical&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'PoliticalFamilyMember' || [sClient] == 'PoliticalAssociated'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_showSPD" name="marker_showSPD" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_isSPD&quot;:{&quot;aField_ID&quot;:[&quot;sRegOrgan_spd&quot;,&quot;sRegDate_spd&quot;,&quot;sRegNum_spd&quot;,&quot;sActType_spd&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bSPD&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_reqSPD" name="marker_reqSPD" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_isSPD&quot;:{&quot;aField_ID&quot;:[&quot;sRegOrgan_spd&quot;,&quot;sRegDate_spd&quot;,&quot;sRegNum_spd&quot;,&quot;sActType_spd&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bSPD&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_showSelf" name="marker_showSelf" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_isSelfEmpl&quot;:{&quot;aField_ID&quot;:[&quot;sRegOrgan_self&quot;,&quot;sRegDate_self&quot;,&quot;sRegNum_self&quot;,&quot;sActType_self&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bSelfEmpl&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_reqSelf" name="marker_reqSelf" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_isSelfEmpl&quot;:{&quot;aField_ID&quot;:[&quot;sRegOrgan_self&quot;,&quot;sRegDate_self&quot;,&quot;sRegNum_self&quot;,&quot;sActType_self&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bSelfEmpl&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_showUSA" name="marker_showUSA" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_isUSA&quot;:{&quot;aField_ID&quot;:[&quot;bUSAtaxResidentProved&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bUSAtaxResident&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_reqUSA" name="marker_reqUSA" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_isUSA&quot;:{&quot;aField_ID&quot;:[&quot;bUSAtaxResidentProved&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bUSAtaxResident&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_showOtherOperation" name="marker_showOtherOperation" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_isOtherOperation&quot;:{&quot;aField_ID&quot;:[&quot;sOtherOperationType&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bOther&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_reqOtherOperation" name="marker_reqOtherOperation" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_isOtherOperation&quot;:{&quot;aField_ID&quot;:[&quot;sOtherOperationType&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bOther&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_showOtherIncome" name="marker_showOtherIncome" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_isOtherIncome&quot;:{&quot;aField_ID&quot;:[&quot;sOtherOperationTypeIncome&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bOtherIncome&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_reqOtherIncome" name="marker_reqOtherIncome" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_isOtherIncome&quot;:{&quot;aField_ID&quot;:[&quot;sOtherOperationTypeIncome&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bOtherIncome&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_chekUSA" name="marker_chekUSA" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_checkUSA&quot;:{&quot;aField_ID&quot;:[&quot;bUSAtaxResidentProved&quot;],&quot;asID_Field_sValue&quot;:[&quot;yes&quot;],&quot;asID_Field&quot;:{&quot;sCondit1&quot;:&quot;bankIdlastName&quot;},&quot;sCondition&quot;:&quot;[sCondit1] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_showUSAMessage" name="marker_showUSAMessage" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_showUSAInfo&quot;:{&quot;aField_ID&quot;:[&quot;sUSASignInfo&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bUSAtaxResidentProved&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentOsobi" name="Копія документу, що посвідчує особу;(паспорт громадянина України, паспорт громадянина України для виїзду за кордон тощо;bNew=true" type="file" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sCopyINN" name="Копія ІПН; ;bNew=true" type="file" required="true"></activiti:formProperty>
+        <activiti:formProperty id="marker_fileExValidate" name="marker_fileExValidate" type="markers" default="{&quot;validate&quot;:{&quot;[FileExtensions_1&quot;:{&quot;aField_ID&quot;:[&quot;sDocumentOsobi&quot;,&quot;sCopyINN&quot;],&quot;saExtension&quot;:&quot;pdf&quot;,&quot;sMessage&quot;:&quot;Недопустимий формат файлу! Повинно бути: {saExtension}&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="form_signed_all_1" name="Заява-Анкета Опитувальник; ;bPrintFormFileAsPDF=true,bNew=true" type="file" required="true"></activiti:formProperty>
+        <activiti:formProperty id="PrintFormAutoSign_1" name="Шаблон для накладення ЕЦП ; ;bVisible=false" type="string" default="pattern/print/Bank/opytuvalnykBanky.html"></activiti:formProperty>
+        <activiti:formProperty id="markerIsFopFlag" name="markerIsFopFlag" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_FOPFlag1&quot;:{&quot;aField_ID&quot;:[&quot;sflagFOP&quot;],&quot;asID_Field_sValue&quot;:[&quot;1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bSPD&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markerNotFopFlag" name="markerNotFopFlag" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_FOPFlag0&quot;:{&quot;aField_ID&quot;:[&quot;sflagFOP&quot;],&quot;asID_Field_sValue&quot;:[&quot;0&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bSPD&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'no'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markerIsSelfFlag" name="markerIsSelfFlag" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_SelfFlag1&quot;:{&quot;aField_ID&quot;:[&quot;sflagS&quot;],&quot;asID_Field_sValue&quot;:[&quot;1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bSelfEmpl&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markerNotSelfFlag" name="markerNotSelfFlag" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_SelfFlag0&quot;:{&quot;aField_ID&quot;:[&quot;sflagS&quot;],&quot;asID_Field_sValue&quot;:[&quot;0&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bSelfEmpl&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'no'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markerIssUS_TaxResident" name="markerIsUSTaxResident" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_sUS_TaxResident1&quot;:{&quot;aField_ID&quot;:[&quot;sUS_TaxResident&quot;],&quot;asID_Field_sValue&quot;:[&quot;1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bUSAtaxResidentProved&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markerNotsUS_TaxResident" name="markerNotUSTaxResident" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_sUS_TaxResident0&quot;:{&quot;aField_ID&quot;:[&quot;sUS_TaxResident&quot;],&quot;asID_Field_sValue&quot;:[&quot;0&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bUSAtaxResidentProved&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'no'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markerIsPEPsFlag" name="markerIsPEPsFlag" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_PEPlag1&quot;:{&quot;aField_ID&quot;:[&quot;sflagPEPs&quot;],&quot;asID_Field_sValue&quot;:[&quot;1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sPolitical&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'Political' &amp;&amp; [sClient] == 'PoliticalFamilyMember' &amp;&amp; [sClient] == 'PoliticalAssociated'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markerNotPEPsFlag" name="markerNotPEPsFlag" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_PEPlag0&quot;:{&quot;aField_ID&quot;:[&quot;sflagPEPs&quot;],&quot;asID_Field_sValue&quot;:[&quot;0&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sPolitical&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'notPolitical'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markerRegData" name="markerRegData" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_DataFromSelf&quot;:{&quot;aField_ID&quot;:[&quot;sRegOrgan_spd&quot;,&quot;sRegDate_spd&quot;,&quot;sRegNum_spd&quot;,&quot;sActType_spd&quot;],&quot;asID_Field_sValue&quot;:[&quot;[sRegOrgan_self]&quot;,&quot;[sRegDate_self]&quot;,&quot;[sRegNum_self]&quot;,&quot;[sActType_self]&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bSelfEmpl&quot;,&quot;sClientSPD&quot;:&quot;bSPD&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes' &amp;&amp; [sClientSPD] == 'no'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markerFinStan" name="markerFinStan" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_FinStan&quot;:{&quot;aField_ID&quot;:[&quot;scli_fin_stan&quot;],&quot;asID_Field_sValue&quot;:[&quot;[sAverageIncome]&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sPolitical&quot;},&quot;sCondition&quot;:&quot;1 == 1&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markerBank" name="markerBank" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_Bank&quot;:{&quot;aField_ID&quot;:[&quot;sBankVerif&quot;,&quot;sclId&quot;],&quot;asID_Field_sValue&quot;:[&quot;[sBankId_ID]&quot;,&quot;[bankIdinn]&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sPolitical&quot;},&quot;sCondition&quot;:&quot;1 == 1&quot;}}}"></activiti:formProperty>
+      </extensionElements>
+    </startEvent>
+    <userTask id="usertask1" name="Створення документу">
+      <extensionElements>
+        <activiti:formProperty id="sBankVerifDate" name="Дата ідентифікації в BankID" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sPesronType" name="Вкажіть резидентність" type="enum" required="true">
+          <activiti:value id="physical" name="Фізична особа Резидент"></activiti:value>
+          <activiti:value id="physicalnr" name="Фізична особа Нерезидент "></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="markersLine_ZZ" name="Інформація про заявника" type="markers" default="{&quot;attributes&quot;:{&quot;Line_ZZ&quot;:{&quot;aElement_ID&quot;:[&quot;bankIdlastName&quot;],&quot;sValue&quot;:&quot;Інформація про заявника&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="bankIdlastName" name="Прізвище" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdfirstName" name="Ім`я" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdmiddleName" name="По батькові" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdinn" name="Ваш ІПН" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sSex" name="Стать" type="enum" required="true">
+          <activiti:value id="M" name="Чоловік"></activiti:value>
+          <activiti:value id="F" name="Жінка"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bankIdPassport" name="Паспортні дані; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="bankIdAddressFactual" name="Адрес реєстрації; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="bankIdAddressFactual_fact" name="Адреса проживання; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="bankIdsID_Country" name="Громадянство" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sCuntr" name="Громадянство; ;bVisible=false" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdAddressFactual" name="Адрес реєстрації; ;bVisible=false" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdAddressFactual_fact" name="Адреса проживання; ;bVisible=false" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sBankId_ID" name="Найменування Банку, в якому клієнт ідентифікований/верифікований" type="enum" required="true">
+          <activiti:value id="PrivatBank" name="АТ КБ ПРИВАТБАНК"></activiti:value>
+          <activiti:value id="KonkordBank" name="АТ АКБ КОНКОРД "></activiti:value>
+          <activiti:value id="PivdennyjBank" name="ПАТ Акціонерний банк Південний"></activiti:value>
+          <activiti:value id="MonoBank" name="АТ УНІВЕРСАЛ БАНК (MonoBank)"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="phone" name="Ваш телефон" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="email" name="Ваш E-Mail" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sPolitical" name="Зв’язок з політично значущими особами" type="enum" required="true">
+          <activiti:value id="Political" name="Політично значуща особа"></activiti:value>
+          <activiti:value id="PoliticalFamilyMember" name="Член сім’ї політично значущої особи"></activiti:value>
+          <activiti:value id="PoliticalAssociated" name="Особа, яка пов'язана з політично значущою особою"></activiti:value>
+          <activiti:value id="notPolitical" name="Не пов'язаний(-а)"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sPoliticalPPosition" name="Категорія посад політично значущої особи" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPoliticalPIB" name="Прізвище, ім’я, по батькові політично значущої особи" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPoliticalIDData" name="Інші ідентифікаційні данні (за наявності) політично значущої особи" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPoliticalResidentData" name="Ознака резидентності політично значущої особи" type="string"></activiti:formProperty>
+        <activiti:formProperty id="bLegalPolitical" name="Застосування понять в значеннях, визначених законодавством у сфері запобігання та протидії доведені" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sWork" name="Місце роботи" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sPosition" name="Посада" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bSPD" name="Чи займаєтесь Ви підприємницькою діяльністю?; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRegOrgan_spd" name="Орган реєстрації" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sRegDate_spd" name="Дата запису" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sRegNum_spd" name="Номер запису" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sActType_spd" name="Вид діяльності" type="string"></activiti:formProperty>
+        <activiti:formProperty id="bSelfEmpl" name="Чи є Ви самозайнятою особою?; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRegOrgan_self" name="Орган реєстрації" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sRegDate_self" name="Дата запису" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sRegNum_self" name="Номер запису" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sActType_self" name="Вид діяльності" type="string"></activiti:formProperty>
+        <activiti:formProperty id="markersLine_Operation" name="Інформація про операції" type="markers" default="{&quot;attributes&quot;:{&quot;Line_Operation&quot;:{&quot;aElement_ID&quot;:[&quot;bCashService&quot;],&quot;sValue&quot;:&quot;Позначте операції, які плануєте проводити:&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="bCashService" name="Розрахунково-касове обслуговування; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bRemittance" name="Грошові перекази; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bSpecialPaymentMeans" name="Операції з використанням спеціальних платіжних засобів; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bBorderRemittance" name="Переказ коштів за кордон; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bSecurities" name="Операції з цінними паперами; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bBankMetal" name="Операції з банківськими металами; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bCredit" name="Кредитні операції; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bDepposit" name="Депозитні операції; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bOther" name="Інше; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sOtherOperationType" name="Прохання вказати" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sAverageIncome" name="Вкажіть суму середньомісячного сукупного доходу" type="enum" required="true">
+          <activiti:value id="less10" name="до 10 000,00 грн."></activiti:value>
+          <activiti:value id="between10and15" name="10 000,00 – 15 000,00 грн."></activiti:value>
+          <activiti:value id="between15and25" name="15 000,00 - 25 000,00 грн"></activiti:value>
+          <activiti:value id="more25" name="більше 25 000,00 грн."></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="markersLine_Income" name="Інформація про джерала надходжень" type="markers" default="{&quot;attributes&quot;:{&quot;Line_Income&quot;:{&quot;aElement_ID&quot;:[&quot;bSalary&quot;],&quot;sValue&quot;:&quot;Зазначте джерела надходження коштів та інших цінностей на рахуки:&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="bSalary" name="Заробітна плата, соціальні виплати; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bPension" name="Пенсія; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bScholarship" name="Стипендія; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bSPDIncome" name="Доходи від здійснення підприємницької діяльності; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bOwnSavings" name="Власні заощадження готівки; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bDividends" name="Дивіденди; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bHeritage" name="Спадщина; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bRelativesAid" name="Фінансова допомога родичів; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bDeppositAndPercents" name="Депозитні кошти та їх відсотки; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bAsLoan" name="У вигляді позики; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bLoan" name="Кредитні  кошти; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bOtherIncome" name="Інше; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sOtherOperationTypeIncome" name="Прохання вказати" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sAverageAccountIncome" name="Обсяги надходження на рахунок" type="enum" required="true">
+          <activiti:value id="less5" name="до 5 000,00 грн."></activiti:value>
+          <activiti:value id="between5and10" name="5 000,00 – 10 000,00 грн."></activiti:value>
+          <activiti:value id="between10and25" name="10 000,00 - 25 000,00 грн"></activiti:value>
+          <activiti:value id="more25" name="більше 25 000,00 грн."></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bUSAtaxResident" name="Належите до податкових резидентів США?; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bUSAtaxResidentProved" name="Умови належності до податкових резидентів Сполучений Штатів Америки доведені; ;sID_CheckboxTrue=yes" type="enum" default="no" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sUSASignInfo" name="; ;labelType=info" type="label" default="Персональні дані, що містяться в цьому Опитувальнику, надаються відповідно до отриманої згоди суб'єктів персональних даних на обробку такої інформації Банком та передачу відповідних відомостей (даних) в цілях дотримання вимог законодавства України та/або міждержавної угоди по оподаткуванню іноземних рахунків між урядом України та США та/або Закону Сполучених Штатів Америки «Про оподаткування іноземних рахунків» («FATCA») (далі - законодавство про оподаткування іноземних рахунків («FATCA»)) в уповноважений орган або особі, на яку покладено зобов'язання по утриманню податку у відповідності з положеннями законодавства про оподаткування іноземних рахунків («FATCA») або який застосовує положення законодавства про оподаткування іноземних рахунків («FATCA»), а також іноземним податковим агентам."></activiti:formProperty>
+        <activiti:formProperty id="bAccept" name="Підписанням ції заяви погоджуюсь із ...; ;sID_CheckboxTrue=yes" type="enum" default="yes" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bankIdbirthDay" name="Дата народження; ;bVisible=false" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sBirthplace" name="Місце народження" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdphone" name="БанкІДтелефон; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="bankIdemail" name="БанкІДпошта; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="FlagBankId" name="FlagBankIdPhoneEmail; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="markerBankIdPasportPhoneEmail" name="markerBankIdPasportPhoneEmail" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_BankIdPhoneEmail&quot;:{&quot;aField_ID&quot;:[&quot;phone&quot;,&quot;email&quot;,&quot;FlagBankId&quot;],&quot;asID_Field_sValue&quot;:[&quot;[bankIdphone]&quot;,&quot;[bankIdemail]&quot;,&quot;1234567890&quot;],&quot;asID_Field&quot;:{&quot;sCondit1&quot;:&quot;bankIdlastName&quot;,&quot;sCondit2&quot;:&quot;FlagBankId&quot;},&quot;sCondition&quot;:&quot;[sCondit1] != '1234567890'&amp;&amp;[sCondit2] != '1234567890'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документа;;bVisible=false" type="date"></activiti:formProperty>
+        <activiti:formProperty id="nID_Process_Child" name="nID_Process_Child;;bVisible=false" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentOsobi" name="Копія документу, що посвідчує особу;(паспорт громадянина України, паспорт громадянина України для виїзду за кордон тощо;bNew=true" type="file" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sCopyINN" name="Копія ІПН; ;bNew=true" type="file" required="true"></activiti:formProperty>
+        <activiti:formProperty id="form_signed_all_1" name="Заява-Анкета Опитувальник; ;bPrintFormFileAsPDF=true,bNew=true" type="file" required="true"></activiti:formProperty>
+        <activiti:formProperty id="marker_showIsPolitical" name="marker_showIsPolitical" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_isPolitical&quot;:{&quot;aField_ID&quot;:[&quot;bLegalPolitical&quot;,&quot;sPoliticalPPosition&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sPolitical&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'Political' || [sClient] == 'PoliticalFamilyMember' || [sClient] == 'PoliticalAssociated'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_reqIsPolitical" name="marker_reqIsPolitical" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_isPolitical&quot;:{&quot;aField_ID&quot;:[&quot;bLegalPolitical&quot;,&quot;sPoliticalPPosition&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sPolitical&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'Political' || [sClient] == 'PoliticalFamilyMember' || [sClient] == 'PoliticalAssociated'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_showPoliticalRel" name="marker_showPoliticalRel" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_isPoliticalRel&quot;:{&quot;aField_ID&quot;:[&quot;sPoliticalPIB&quot;,&quot;sPoliticalIDData&quot;,&quot;sPoliticalResidentData&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sPolitical&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'PoliticalFamilyMember' || [sClient] == 'PoliticalAssociated'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_reqPoliticalRel" name="marker_reqPoliticalRel" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_isPoliticalRel&quot;:{&quot;aField_ID&quot;:[&quot;sPoliticalPIB&quot;,&quot;sPoliticalIDData&quot;,&quot;sPoliticalResidentData&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sPolitical&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'PoliticalFamilyMember' || [sClient] == 'PoliticalAssociated'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_showSPD" name="marker_showSPD" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_isSPD&quot;:{&quot;aField_ID&quot;:[&quot;sRegOrgan_spd&quot;,&quot;sRegDate_spd&quot;,&quot;sRegNum_spd&quot;,&quot;sActType_spd&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bSPD&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_reqSPD" name="marker_reqSPD" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_isSPD&quot;:{&quot;aField_ID&quot;:[&quot;sRegOrgan_spd&quot;,&quot;sRegDate_spd&quot;,&quot;sRegNum_spd&quot;,&quot;sActType_spd&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bSPD&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_showSelf" name="marker_showSelf" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_isSelfEmpl&quot;:{&quot;aField_ID&quot;:[&quot;sRegOrgan_self&quot;,&quot;sRegDate_self&quot;,&quot;sRegNum_self&quot;,&quot;sActType_self&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bSelfEmpl&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_reqSelf" name="marker_reqSelf" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_isSelfEmpl&quot;:{&quot;aField_ID&quot;:[&quot;sRegOrgan_self&quot;,&quot;sRegDate_self&quot;,&quot;sRegNum_self&quot;,&quot;sActType_self&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bSelfEmpl&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_showUSA" name="marker_showUSA" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_isUSA&quot;:{&quot;aField_ID&quot;:[&quot;bUSAtaxResidentProved&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bUSAtaxResident&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_reqUSA" name="marker_reqUSA" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_isUSA&quot;:{&quot;aField_ID&quot;:[&quot;bUSAtaxResidentProved&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bUSAtaxResident&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_showOtherOperation" name="marker_showOtherOperation" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_isOtherOperation&quot;:{&quot;aField_ID&quot;:[&quot;sOtherOperationType&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bOther&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_reqOtherOperation" name="marker_reqOtherOperation" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_isOtherOperation&quot;:{&quot;aField_ID&quot;:[&quot;sOtherOperationType&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bOther&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_showOtherIncome" name="marker_showOtherIncome" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_isOtherIncome&quot;:{&quot;aField_ID&quot;:[&quot;sOtherOperationTypeIncome&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bOtherIncome&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_reqOtherIncome" name="marker_reqOtherIncome" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_isOtherIncome&quot;:{&quot;aField_ID&quot;:[&quot;sOtherOperationTypeIncome&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bOtherIncome&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_chekUSA" name="marker_chekUSA" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_checkUSA&quot;:{&quot;aField_ID&quot;:[&quot;bUSAtaxResidentProved&quot;],&quot;asID_Field_sValue&quot;:[&quot;yes&quot;],&quot;asID_Field&quot;:{&quot;sCondit1&quot;:&quot;bankIdlastName&quot;},&quot;sCondition&quot;:&quot;[sCondit1] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_showUSAMessage" name="marker_showUSAMessage" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_showUSAInfo&quot;:{&quot;aField_ID&quot;:[&quot;sUSASignInfo&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bUSAtaxResidentProved&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_fileExValidate" name="marker_fileExValidate" type="markers" default="{&quot;validate&quot;:{&quot;[FileExtensions_1&quot;:{&quot;aField_ID&quot;:[&quot;sDocumentOsobi&quot;,&quot;sCopyINN&quot;],&quot;saExtension&quot;:&quot;pdf&quot;,&quot;sMessage&quot;:&quot;Недопустимий формат файлу! Повинно бути: {saExtension}&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markerIsFopFlag" name="markerIsFopFlag" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_FOPFlag1&quot;:{&quot;aField_ID&quot;:[&quot;sflagFOP&quot;],&quot;asID_Field_sValue&quot;:[&quot;1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bSPD&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markerNotFopFlag" name="markerNotFopFlag" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_FOPFlag0&quot;:{&quot;aField_ID&quot;:[&quot;sflagFOP&quot;],&quot;asID_Field_sValue&quot;:[&quot;0&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bSPD&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'no'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markerIsSelfFlag" name="markerIsSelfFlag" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_SelfFlag1&quot;:{&quot;aField_ID&quot;:[&quot;sflagS&quot;],&quot;asID_Field_sValue&quot;:[&quot;1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bSelfEmpl&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markerNotSelfFlag" name="markerNotSelfFlag" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_SelfFlag0&quot;:{&quot;aField_ID&quot;:[&quot;sflagS&quot;],&quot;asID_Field_sValue&quot;:[&quot;0&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bSelfEmpl&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'no'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markerIssUS_TaxResident" name="markerIsUSTaxResident" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_sUS_TaxResident1&quot;:{&quot;aField_ID&quot;:[&quot;sUS_TaxResident&quot;],&quot;asID_Field_sValue&quot;:[&quot;1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bUSAtaxResidentProved&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markerNotsUS_TaxResident" name="markerNotUSTaxResident" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_sUS_TaxResident0&quot;:{&quot;aField_ID&quot;:[&quot;sUS_TaxResident&quot;],&quot;asID_Field_sValue&quot;:[&quot;0&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bUSAtaxResidentProved&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'no'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markerIsPEPsFlag" name="markerIsPEPsFlag" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_PEPlag1&quot;:{&quot;aField_ID&quot;:[&quot;sflagPEPs&quot;],&quot;asID_Field_sValue&quot;:[&quot;1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sPolitical&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'Political' &amp;&amp; [sClient] == 'PoliticalFamilyMember' &amp;&amp; [sClient] == 'PoliticalAssociated'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markerNotPEPsFlag" name="markerNotPEPsFlag" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_PEPlag0&quot;:{&quot;aField_ID&quot;:[&quot;sflagPEPs&quot;],&quot;asID_Field_sValue&quot;:[&quot;0&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sPolitical&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'notPolitical'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markerRegData" name="markerRegData" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_DataFromSelf&quot;:{&quot;aField_ID&quot;:[&quot;sRegOrgan_spd&quot;,&quot;sRegDate_spd&quot;,&quot;sRegNum_spd&quot;,&quot;sActType_spd&quot;],&quot;asID_Field_sValue&quot;:[&quot;[sRegOrgan_self]&quot;,&quot;[sRegDate_self]&quot;,&quot;[sRegNum_self]&quot;,&quot;[sActType_self]&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bSelfEmpl&quot;,&quot;sClientSPD&quot;:&quot;bSPD&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes' &amp;&amp; [sClientSPD] == 'no'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markerFinStan" name="markerFinStan" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_FinStan&quot;:{&quot;aField_ID&quot;:[&quot;scli_fin_stan&quot;],&quot;asID_Field_sValue&quot;:[&quot;[sAverageIncome]&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sPolitical&quot;},&quot;sCondition&quot;:&quot;1 == 1&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markerBank" name="markerBank" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_Bank&quot;:{&quot;aField_ID&quot;:[&quot;sBankVerif&quot;,&quot;sclId&quot;],&quot;asID_Field_sValue&quot;:[&quot;[sBankId_ID]&quot;,&quot;[bankIdinn]&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sPolitical&quot;},&quot;sCondition&quot;:&quot;1 == 1&quot;}}}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow23" sourceRef="startevent1" targetRef="scripttask6">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.setDocumentTasksRightsNeed(execution, true, "_,accept")}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow208" sourceRef="servicetask17" targetRef="usertask21">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_direct]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <scriptTask id="scripttask4" name=" Сьогоднішня дата за замовчуванням" scriptFormat="groovy" activiti:autoStoreVariables="false">
+      <script>// Сегодняшняя дата по умолчанию
+execution.setVariable('oDateAt', new Date().format("dd.MM.yyyy").toString())</script>
+    </scriptTask>
+    <sequenceFlow id="flow240" sourceRef="scripttask4" targetRef="usertask1"></sequenceFlow>
+    <userTask id="usertask21" name="Черга на опрацювання заяви :: ${bankIdlastName} ${bankIdfirstName} ${bankIdmiddleName}">
+      <extensionElements>
+        <activiti:formProperty id="sBankVerifDate" name="Дата ідентифікації в BankID" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPesronType" name="Вкажіть резидентність" type="enum" writable="false">
+          <activiti:value id="physical" name="Фізична особа Резидент"></activiti:value>
+          <activiti:value id="physicalnr" name="Фізична особа Нерезидент "></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="markersLine_ZZ" name="Інформація про заявника" type="markers" default="{&quot;attributes&quot;:{&quot;Line_ZZ&quot;:{&quot;aElement_ID&quot;:[&quot;bankIdlastName&quot;],&quot;sValue&quot;:&quot;Інформація про заявника&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="bankIdlastName" name="Прізвище" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdfirstName" name="Ім`я" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdmiddleName" name="По батькові" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sSex" name="Стать" type="enum" writable="false">
+          <activiti:value id="M" name="Чоловік"></activiti:value>
+          <activiti:value id="F" name="Жінка"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bankIdinn" name="Ваш ІПН" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdPassport" name="Паспортні дані; ;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile_Adresses" name="Адреси; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile_Documents" name="Документ, що посвідчує особу; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="bankIdsID_Country" name="Громадянство" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCuntr" name="Громадянство; ;bVisible=false" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdAddressFactual" name="Адрес реєстрації; ;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdAddressFactual_fact" name="Адреса проживання; ;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBankId_ID" name="Найменування Банку, в якому клієнт ідентифікований/верифікований" type="enum" writable="false">
+          <activiti:value id="PrivatBank" name="АТ КБ ПРИВАТБАНК"></activiti:value>
+          <activiti:value id="KonkordBank" name="АТ АКБ КОНКОРД "></activiti:value>
+          <activiti:value id="PivdennyjBank" name="ПАТ Акціонерний банк Південний"></activiti:value>
+          <activiti:value id="MonoBank" name="АТ УНІВЕРСАЛ БАНК (MonoBank)"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="phone" name="Ваш телефон" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="email" name="Ваш E-Mail" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPolitical" name="Зв’язок з політично значущими особами" type="enum" writable="false">
+          <activiti:value id="Political" name="Політично значуща особа"></activiti:value>
+          <activiti:value id="PoliticalFamilyMember" name="Член сім’ї політично значущої особи"></activiti:value>
+          <activiti:value id="PoliticalAssociated" name="Особа, яка пов'язана з політично значущою особою"></activiti:value>
+          <activiti:value id="notPolitical" name="Не пов'язаний(-а)"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sPoliticalPPosition" name="Категорія посад політично значущої особи" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPoliticalPIB" name="Прізвище, ім’я, по батькові політично значущої особи" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPoliticalIDData" name="Інші ідентифікаційні данні (за наявності) політично значущої особи" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPoliticalResidentData" name="Ознака резидентності політично значущої особи" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bLegalPolitical" name="Застосування понять в значеннях, визначених законодавством у сфері запобігання та протидії доведені; ;sID_CheckboxTrue=yes" type="enum" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sWork" name="Місце роботи" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPosition" name="Посада" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bSPD" name="Чи займаєтесь Ви підприємницькою діяльністю?" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRegOrgan_spd" name="Орган реєстрації" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sRegDate_spd" name="Дата запису" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sRegNum_spd" name="Номер запису" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sActType_spd" name="Вид діяльності" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bSelfEmpl" name="Чи є Ви самозайнятою особою?; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRegOrgan_self" name="Орган реєстрації" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sRegDate_self" name="Дата запису" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sRegNum_self" name="Номер запису" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sActType_self" name="Вид діяльності" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="markersLine_Operation" name="Інформація про операції" type="markers" default="{&quot;attributes&quot;:{&quot;Line_Operation&quot;:{&quot;aElement_ID&quot;:[&quot;bCashService&quot;],&quot;sValue&quot;:&quot;Позначте операції, які плануєте проводити:&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="bCashService" name="Розрахунково-касове обслуговування; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bRemittance" name="Грошові перекази; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bSpecialPaymentMeans" name="Операції з використанням спеціальних платіжних засобів; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bBorderRemittance" name="Переказ коштів за кордон; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bSecurities" name="Операції з цінними паперами; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bBankMetal" name="Операції з банківськими металами; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bCredit" name="Кредитні операції; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bDepposit" name="Депозитні операції; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bOther" name="Інше; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sOtherOperationType" name="Прохання вказати" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sAverageIncome" name="Вкажіть суму середньомісячного сукупного доходу" type="enum" writable="false">
+          <activiti:value id="less10" name="до 10 000,00 грн."></activiti:value>
+          <activiti:value id="between10and15" name="10 000,00 – 15 000,00 грн."></activiti:value>
+          <activiti:value id="between15and25" name="15 000,00 - 25 000,00 грн"></activiti:value>
+          <activiti:value id="more25" name="більше 25 000,00 грн."></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="markersLine_Income" name="Інформація про джерала надходжень" type="markers" default="{&quot;attributes&quot;:{&quot;Line_Income&quot;:{&quot;aElement_ID&quot;:[&quot;bSalary&quot;],&quot;sValue&quot;:&quot;Зазначте джерела надходження коштів та інших цінностей на рахуки:&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="bSalary" name="Заробітна плата, соціальні виплати; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bPension" name="Пенсія; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bScholarship" name="Стипендія; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bSPDIncome" name="Доходи від здійснення підприємницької діяльності; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bOwnSavings" name="Власні заощадження готівки; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bDividends" name="Дивіденди; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bHeritage" name="Спадщина; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bRelativesAid" name="Фінансова допомога родичів; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bDeppositAndPercents" name="Депозитні кошти та їх відсотки; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bAsLoan" name="У вигляді позики; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bLoan" name="Кредитні  кошти; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bOtherIncome" name="Інше; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sOtherOperationTypeIncome" name="Прохання вказати" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sAverageAccountIncome" name="Обсяги надходження на рахунок" type="enum" writable="false">
+          <activiti:value id="less5" name="до 5 000,00 грн."></activiti:value>
+          <activiti:value id="between5and10" name="5 000,00 – 10 000,00 грн."></activiti:value>
+          <activiti:value id="between10and25" name="10 000,00 - 25 000,00 грн"></activiti:value>
+          <activiti:value id="more25" name="більше 25 000,00 грн."></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bUSAtaxResident" name="Належите до податкових резидентів США?; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bUSAtaxResidentProved" name="Умови належності до податкових резидентів Сполучений Штатів Америки доведені; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bAccept" name="Підписанням ції заяви погоджуюсь із ...; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bankIdbirthDay" name="Дата народження" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBirthplace" name="Місце народження" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdphone" name="БанкІДтелефон; ;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdemail" name="БанкІДпошта; ;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="FlagBankId" name="FlagBankIdPhoneEmail; ;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="markerBankIdPasportPhoneEmail" name="markerBankIdPasportPhoneEmail" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_BankIdPhoneEmail&quot;:{&quot;aField_ID&quot;:[&quot;phone&quot;,&quot;email&quot;,&quot;FlagBankId&quot;],&quot;asID_Field_sValue&quot;:[&quot;[bankIdphone]&quot;,&quot;[bankIdemail]&quot;,&quot;1234567890&quot;],&quot;asID_Field&quot;:{&quot;sCondit1&quot;:&quot;bankIdlastName&quot;,&quot;sCondit2&quot;:&quot;FlagBankId&quot;},&quot;sCondition&quot;:&quot;[sCondit1] != '1234567890'&amp;&amp;[sCondit2] != '1234567890'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документа;;bVisible=false" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="nID_Process_Child" name="nID_Process_Child;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentOsobi" name="Копія документу, що посвідчує особу;(паспорт громадянина України, паспорт громадянина України для виїзду за кордон тощо;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCopyINN" name="Копія ІПН; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="form_signed_all_1" name="Заява-Анкета Опитувальник; ;bPrintFormFileAsPDF=true,bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="marker_showIsPolitical" name="marker_showIsPolitical" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_isPolitical&quot;:{&quot;aField_ID&quot;:[&quot;bLegalPolitical&quot;,&quot;sPoliticalPPosition&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sPolitical&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'Political' || [sClient] == 'PoliticalFamilyMember' || [sClient] == 'PoliticalAssociated'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_showPoliticalRel" name="marker_showPoliticalRel" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_isPoliticalRel&quot;:{&quot;aField_ID&quot;:[&quot;sPoliticalPIB&quot;,&quot;sPoliticalIDData&quot;,&quot;sPoliticalResidentData&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sPolitical&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'PoliticalFamilyMember' || [sClient] == 'PoliticalAssociated'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_showSPD" name="marker_showSPD" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_isSPD&quot;:{&quot;aField_ID&quot;:[&quot;sRegOrgan_spd&quot;,&quot;sRegDate_spd&quot;,&quot;sRegNum_spd&quot;,&quot;sActType_spd&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bSPD&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_showSelf" name="marker_showSelf" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_isSelfEmpl&quot;:{&quot;aField_ID&quot;:[&quot;sRegOrgan_self&quot;,&quot;sRegDate_self&quot;,&quot;sRegNum_self&quot;,&quot;sActType_self&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bSelfEmpl&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_showUSA" name="marker_showUSA" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_isUSA&quot;:{&quot;aField_ID&quot;:[&quot;bUSAtaxResidentProved&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bUSAtaxResident&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_reqOtherOperation" name="marker_reqOtherOperation" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_isOtherOperation&quot;:{&quot;aField_ID&quot;:[&quot;sOtherOperationType&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bOther&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_reqOtherIncome" name="marker_reqOtherIncome" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_isOtherIncome&quot;:{&quot;aField_ID&quot;:[&quot;sOtherOperationTypeIncome&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bOtherIncome&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow243" sourceRef="usertask21" targetRef="servicetask18">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[consideration]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <serviceTask id="servicetask17" name="Видача прав відповідальним працівникам" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_direct]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('oper', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_direct]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sMyPosition]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow244" sourceRef="usertask1" targetRef="servicetask20"></sequenceFlow>
+    <userTask id="usertask22" name="Опрацювання заяви :: ${bankIdlastName} ${bankIdfirstName} ${bankIdmiddleName}">
+      <extensionElements>
+        <activiti:formProperty id="sBankVerifDate" name="Дата ідентифікації в BankID;;sPath=BankVerifDate" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPesronType" name="Вкажіть резидентність;;sPath=type" type="enum" writable="false">
+          <activiti:value id="physical" name="Фізична особа Резидент"></activiti:value>
+          <activiti:value id="physicalnr" name="Фізична особа Нерезидент "></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sflagFOP" name="flagFOP;;sPath=flagFOP,bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sflagPEPs" name="flagPEPs;;sPath=flagPEPs,bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sflagS" name="flagS;;sPath=flagS,bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sUS_TaxResident" name="US_TaxResident;;sPath=US_TaxResident,bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="scli_fin_stan" name="cli_fin_stan;;sPath=cli_fin_stan,bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="scli_bank_oper" name="cli_bank_oper;;sPath=cli_bank_oper,bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="scli_fin_source" name="cli_fin_source;;sPath=cli_fin_source,bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sBankVerif" name="BankVerif;;sPath=BankVerif,bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sclId" name="clId;;sPath=clId,bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sclIdText" name="clIdText;;sPath=clIdText,bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="markersLine_ZZ" name="Інформація про заявника" type="markers" default="{&quot;attributes&quot;:{&quot;Line_ZZ&quot;:{&quot;aElement_ID&quot;:[&quot;bankIdlastName&quot;],&quot;sValue&quot;:&quot;Інформація про заявника&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="bankIdlastName" name="Прізвище;;sPath=lastName" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdfirstName" name="Ім`я;;sPath=firstName" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdmiddleName" name="По батькові;;sPath=middleName" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sSex" name="Стать;;sPath=sex" type="enum" writable="false">
+          <activiti:value id="M" name="Чоловік"></activiti:value>
+          <activiti:value id="F" name="Жінка"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sPasportPhotoExists" name="Вклеєна фотографія в Укр паспорт;;sPath=PasportPhotoExists" type="enum" required="true">
+          <activiti:value id="1" name="16 років"></activiti:value>
+          <activiti:value id="2" name="25 років"></activiti:value>
+          <activiti:value id="3" name="45 років"></activiti:value>
+          <activiti:value id="NULL" name="Не відомо"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bankIdinn" name="Ваш ІПН;;sPath=inn" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdPassport" name="Паспортні дані; ;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile_Adresses" name="Адреси; ;sPath=addresses,bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile_Documents" name="Документ, що посвідчує особу; ;sPath=documents,bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="bankIdsID_Country" name="Громадянство" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCuntr" name="Громадянство; ;bVisible=false" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdAddressFactual" name="Адрес реєстрації; ;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdAddressFactual_fact" name="Адреса проживання; ;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBankId_ID" name="Найменування Банку, в якому клієнт ідентифікований/верифікований" type="enum" writable="false">
+          <activiti:value id="PrivatBank" name="АТ КБ ПРИВАТБАНК"></activiti:value>
+          <activiti:value id="KonkordBank" name="АТ АКБ КОНКОРД "></activiti:value>
+          <activiti:value id="PivdennyjBank" name="ПАТ Акціонерний банк Південний"></activiti:value>
+          <activiti:value id="MonoBank" name="АТ УНІВЕРСАЛ БАНК (MonoBank)"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="phone" name="Ваш телефон;;sPath=phone" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="email" name="Ваш E-Mail;;sPath=email" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPolitical" name="Зв’язок з політично значущими особами" type="enum" writable="false">
+          <activiti:value id="Political" name="Політично значуща особа"></activiti:value>
+          <activiti:value id="PoliticalFamilyMember" name="Член сім’ї політично значущої особи"></activiti:value>
+          <activiti:value id="PoliticalAssociated" name="Особа, яка пов'язана з політично значущою особою"></activiti:value>
+          <activiti:value id="notPolitical" name="Не пов'язаний(-а)"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sPoliticalPPosition" name="Категорія посад політично значущої особи" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPoliticalPIB" name="Прізвище, ім’я, по батькові політично значущої особи" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPoliticalIDData" name="Інші ідентифікаційні данні (за наявності) політично значущої особи" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPoliticalResidentData" name="Ознака резидентності політично значущої особи" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bLegalPolitical" name="Застосування понять в значеннях, визначених законодавством у сфері запобігання та протидії доведені; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sWork" name="Місце роботи;;sPath=job" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPosition" name="Посада;;sPath=socStatus" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bSPD" name="Чи займаєтесь Ви підприємницькою діяльністю?; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRegOrgan_spd" name="Орган реєстрації;;sPath=gna_name" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sRegDate_spd" name="Дата запису; Запис дати у форматі дд.мм.рррр;sPath=gna_date" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sRegNum_spd" name="Номер запису;;sPath=gna_no" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sActType_spd" name="Вид діяльності;;sPath=gna_vid" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bSelfEmpl" name="Чи є Ви самозайнятою особою?; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRegOrgan_self" name="Орган реєстрації" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sRegDate_self" name="Дата запису" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sRegNum_self" name="Номер запису" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sActType_self" name="Вид діяльності" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="markersLine_Operation" name="Інформація про операції" type="markers" default="{&quot;attributes&quot;:{&quot;Line_Operation&quot;:{&quot;aElement_ID&quot;:[&quot;bCashService&quot;],&quot;sValue&quot;:&quot;Позначте операції, які плануєте проводити:&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="bCashService" name="Розрахунково-касове обслуговування; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bRemittance" name="Грошові перекази; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bSpecialPaymentMeans" name="Операції з використанням спеціальних платіжних засобів; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bBorderRemittance" name="Переказ коштів за кордон; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bSecurities" name="Операції з цінними паперами; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bBankMetal" name="Операції з банківськими металами; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bCredit" name="Кредитні операції; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bDepposit" name="Депозитні операції; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bOther" name="Інше; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sOtherOperationType" name="Прохання вказати" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sAverageIncome" name="Вкажіть суму середньомісячного сукупного доходу" type="enum" writable="false">
+          <activiti:value id="less10" name="до 10 000,00 грн."></activiti:value>
+          <activiti:value id="between10and15" name="10 000,00 – 15 000,00 грн."></activiti:value>
+          <activiti:value id="between15and25" name="15 000,00 - 25 000,00 грн"></activiti:value>
+          <activiti:value id="more25" name="більше 25 000,00 грн."></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="markersLine_Income" name="Інформація про джерала надходжень" type="markers" default="{&quot;attributes&quot;:{&quot;Line_Income&quot;:{&quot;aElement_ID&quot;:[&quot;bSalary&quot;],&quot;sValue&quot;:&quot;Зазначте джерела надходження коштів та інших цінностей на рахуки:&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="bSalary" name="Заробітна плата, соціальні виплати; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bPension" name="Пенсія; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bScholarship" name="Стипендія; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bSPDIncome" name="Доходи від здійснення підприємницької діяльності; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bOwnSavings" name="Власні заощадження готівки; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bDividends" name="Дивіденди; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bHeritage" name="Спадщина; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bRelativesAid" name="Фінансова допомога родичів; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bDeppositAndPercents" name="Депозитні кошти та їх відсотки; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bAsLoan" name="У вигляді позики; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bLoan" name="Кредитні  кошти; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bOtherIncome" name="Інше; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sOtherOperationTypeIncome" name="Прохання вказати" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sAverageAccountIncome" name="Обсяги надходження на рахунок" type="enum" writable="false">
+          <activiti:value id="less5" name="до 5 000,00 грн."></activiti:value>
+          <activiti:value id="between5and10" name="5 000,00 – 10 000,00 грн."></activiti:value>
+          <activiti:value id="between10and25" name="10 000,00 - 25 000,00 грн"></activiti:value>
+          <activiti:value id="more25" name="більше 25 000,00 грн."></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bUSAtaxResident" name="Належите до податкових резидентів США?; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bUSAtaxResidentProved" name="Умови належності до податкових резидентів Сполучений Штатів Америки доведені; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bAccept" name="Підписанням ції заяви погоджуюсь із ...; ;sID_CheckboxTrue=yes" type="enum" writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="bankIdbirthDay" name="Дата народження; ;sPath=birthDay" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBirthplace" name="Місце народження; ;sPath=Birthplace" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdphone" name="БанкІДтелефон; ;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdemail" name="БанкІДпошта; ;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="FlagBankId" name="FlagBankIdPhoneEmail; ;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="markerBankIdPasportPhoneEmail" name="markerBankIdPasportPhoneEmail" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_BankIdPhoneEmail&quot;:{&quot;aField_ID&quot;:[&quot;phone&quot;,&quot;email&quot;,&quot;FlagBankId&quot;],&quot;asID_Field_sValue&quot;:[&quot;[bankIdphone]&quot;,&quot;[bankIdemail]&quot;,&quot;1234567890&quot;],&quot;asID_Field&quot;:{&quot;sCondit1&quot;:&quot;bankIdlastName&quot;,&quot;sCondit2&quot;:&quot;FlagBankId&quot;},&quot;sCondition&quot;:&quot;[sCondit1] != '1234567890'&amp;&amp;[sCondit2] != '1234567890'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документа;;bVisible=false" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="nID_Process_Child" name="nID_Process_Child;;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentOsobi" name="Копія документу, що посвідчує особу;(паспорт громадянина України, паспорт громадянина України для виїзду за кордон тощо;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCopyINN" name="Копія ІПН; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="form_signed_all_1" name="Заява-Анкета Опитувальник; ;bPrintFormFileAsPDF=true,bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="marker_showIsPolitical" name="marker_showIsPolitical" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_isPolitical&quot;:{&quot;aField_ID&quot;:[&quot;bLegalPolitical&quot;,&quot;sPoliticalPPosition&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sPolitical&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'Political' || [sClient] == 'PoliticalFamilyMember' || [sClient] == 'PoliticalAssociated'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_showPoliticalRel" name="marker_showPoliticalRel" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_isPoliticalRel&quot;:{&quot;aField_ID&quot;:[&quot;sPoliticalPIB&quot;,&quot;sPoliticalIDData&quot;,&quot;sPoliticalResidentData&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sPolitical&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'PoliticalFamilyMember' || [sClient] == 'PoliticalAssociated'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_showSPD" name="marker_showSPD" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_isSPD&quot;:{&quot;aField_ID&quot;:[&quot;sRegOrgan_spd&quot;,&quot;sRegDate_spd&quot;,&quot;sRegNum_spd&quot;,&quot;sActType_spd&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bSPD&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_showSelf" name="marker_showSelf" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_isSelfEmpl&quot;:{&quot;aField_ID&quot;:[&quot;sRegOrgan_self&quot;,&quot;sRegDate_self&quot;,&quot;sRegNum_self&quot;,&quot;sActType_self&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bSelfEmpl&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_showUSA" name="marker_showUSA" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_isUSA&quot;:{&quot;aField_ID&quot;:[&quot;bUSAtaxResidentProved&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bUSAtaxResident&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_reqOtherOperation" name="marker_reqOtherOperation" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_isOtherOperation&quot;:{&quot;aField_ID&quot;:[&quot;sOtherOperationType&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bOther&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_reqOtherIncome" name="marker_reqOtherIncome" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_isOtherIncome&quot;:{&quot;aField_ID&quot;:[&quot;sOtherOperationTypeIncome&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bOtherIncome&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sNotes" name="Примітки" type="textArea"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <serviceTask id="servicetask18" name="Видача прав відповідальним працівникам" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_consideration]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oDocumentService.getLogin_SubmitedLast(execution)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_consideration]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sMyPosition]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow245" sourceRef="servicetask18" targetRef="usertask22"></sequenceFlow>
+    <sequenceFlow id="flow246" sourceRef="usertask22" targetRef="exclusivegateway1"></sequenceFlow>
+    <serviceTask id="servicetask19" name="Лист відмова" activiti:delegateExpression="#{MailTaskWithoutAttachment}">
+      <extensionElements>
+        <activiti:field name="from">
+          <activiti:string><![CDATA[noreply@igov.org.ua]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="to">
+          <activiti:expression><![CDATA[${email}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="text">
+          <activiti:expression><![CDATA[Шановний (-на) ${bankIdlastName} ${bankIdfirstName} ${bankIdmiddleName}, вам було відмовлено]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="subject">
+          <activiti:string><![CDATA[Вам було відмовлено]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway" default="flow248"></exclusiveGateway>
+    <sequenceFlow id="flow247" sourceRef="exclusivegateway1" targetRef="servicetask19">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentRejectsOnStepTypes(execution, "Consideration")}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow248" sourceRef="exclusivegateway1" targetRef="servicetask21"></sequenceFlow>
+    <serviceTask id="servicetask20" name="Service Task" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_view]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('RoleMonitoring',null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[_]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[bankIdinn]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow249" sourceRef="servicetask20" targetRef="scripttask5"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway2" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="flow250" sourceRef="exclusivegateway2" targetRef="servicetask17"></sequenceFlow>
+    <serviceTask id="servicetask21" name="Service Task" activiti:delegateExpression="#{Export_BankID_NBU_iBox}"></serviceTask>
+    <sequenceFlow id="flow251" sourceRef="servicetask21" targetRef="endevent1"></sequenceFlow>
+    <scriptTask id="scripttask5" name="Формування строки на основі булєвих значень" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>var sBankOper = "";
+var sFinSource = "";
+
+var bCashService = execution.getVariable('bCashService');
+var bRemittance = execution.getVariable('bRemittance');
+var bSpecialPaymentMeans = execution.getVariable('bSpecialPaymentMeans');
+var bBorderRemittance = execution.getVariable('bBorderRemittance');
+var bSecurities = execution.getVariable('bSecurities');
+var bBankMetal = execution.getVariable('bBankMetal');
+var bCredit = execution.getVariable('bCredit');
+var bDepposit = execution.getVariable('bDepposit');
+var bOther = execution.getVariable('bOther');
+var sOtherOperationType = execution.getVariable('sOtherOperationType');
+
+if (bCashService == 'yes' || bCashService == 'так') {
+    sBankOper = sBankOper + " Розрахунково-касове обслуговування,";
+}
+
+if (bRemittance == 'yes' || bRemittance == 'так') {
+    sBankOper = sBankOper + " Грошові перекази,";
+} 
+
+if (bSpecialPaymentMeans == 'yes' || bSpecialPaymentMeans == 'так') {
+    sBankOper = sBankOper + " Операції з використанням спеціальних платіжних засобів,";
+} 
+
+if (bBorderRemittance == 'yes' || bBorderRemittance == 'так') {
+    sBankOper = sBankOper + " Переказ коштів за кордон,";
+} 
+
+if (bSecurities == 'yes' || bSecurities == 'так') {
+    sBankOper = sBankOper + " Операції з цінними паперами,";
+} 
+
+if (bBankMetal == 'yes' || bBankMetal == 'так') {
+    sBankOper = sBankOper + " Операції з банківськими металами,";
+}
+
+if (bCredit == 'yes' || bCredit == 'так') {
+    sBankOper = sBankOper + " Кредитні операції,";
+} 
+
+if (bDepposit == 'yes' || bDepposit == 'так') {
+    sBankOper = sBankOper + " Депозитні операції,";
+} 
+
+if (bOther == 'yes' || bOther == 'так') {
+    sBankOper = sBankOper + sOtherOperationType;
+}
+
+execution.setVariable('scli_bank_oper', sBankOper);
+
+var bSalary = execution.getVariable('bSalary');
+var bPension = execution.getVariable('bPension');
+var bScholarship = execution.getVariable('bScholarship');
+var bSPDIncome = execution.getVariable('bSPDIncome');
+var bOwnSavings = execution.getVariable('bOwnSavings');
+var bDividends = execution.getVariable('bDividends');
+var bHeritage = execution.getVariable('bHeritage');
+var bRelativesAid = execution.getVariable('bRelativesAid');
+var bDeppositAndPercents = execution.getVariable('bDeppositAndPercents');
+var bAsLoan = execution.getVariable('bAsLoan');
+var bLoan = execution.getVariable('bLoan');
+var bOtherIncome = execution.getVariable('bOtherIncome');
+var sOtherOperationTypeIncome = execution.getVariable('sOtherOperationTypeIncome');
+
+if (bSalary == 'yes' || bSalary == 'так') {
+    sFinSource = sFinSource + " Заробітна плата, соціальні виплати,";
+}
+
+if (bPension == 'yes' || bPension == 'так') {
+    sFinSource = sFinSource + " Пенсія,";
+} 
+
+if (bScholarship == 'yes' || bScholarship == 'так') {
+    sFinSource = sFinSource + " Стипендія,";
+} 
+
+if (bSPDIncome == 'yes' || bSPDIncome == 'так') {
+    sFinSource = sFinSource + " Доходи від здійснення підприємницької діяльності,";
+} 
+
+if (bOwnSavings == 'yes' || bOwnSavings == 'так') {
+    sFinSource = sFinSource + " Власні заощадження готівки,";
+} 
+
+if (bDividends == 'yes' || bDividends == 'так') {
+  sFinSource = sFinSource + " Дивіденди,";
+} 
+
+if (bHeritage == 'yes' || bHeritage == 'так') {
+sFinSource = sFinSource + " Спадщина,";
+}
+
+if (bRelativesAid == 'yes' || bRelativesAid == 'так') {
+sFinSource = sFinSource + " Фінансова допомога родичів,";
+}
+
+if (bDeppositAndPercents == 'yes' || bDeppositAndPercents == 'так') {
+sFinSource = sFinSource + " Депозитні кошти та їх відсотки,";
+}
+
+if (bAsLoan == 'yes' || bAsLoan == 'так') {
+sFinSource = sFinSource + " У вигляді позики,";
+}
+
+if (bLoan == 'yes' || bLoan == 'так') {
+sFinSource = sFinSource + " Кредитні  кошти,";
+}
+
+if (bOtherIncome == 'yes' || bOtherIncome == 'так') {
+    sFinSource = sFinSource + sOtherOperationTypeIncome;
+}
+
+
+execution.setVariable('scli_fin_source', sFinSource);
+
+var sclIdText = "Інформація надана засобами BankID НБУ " + execution.getVariable('oDateAt');
+
+execution.setVariable('sclIdText', sclIdText);</script>
+    </scriptTask>
+    <sequenceFlow id="flow252" sourceRef="scripttask5" targetRef="exclusivegateway2"></sequenceFlow>
+    <scriptTask id="scripttask6" name="Дата BankVerifDate" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>function formatDate (date) {
+	month = date.getMonth() + 1;
+	day = date.getDate()
+	if (month &lt; 10) {
+		month = '0'+ month 
+	} 
+	if (day &lt; 10) {
+		day = '0'+ day 
+	}
+
+
+	return day + '.' + month + '.' + date.getFullYear();
+}
+
+execution.setVariable('sBankVerifDate', formatDate(new Date()));</script>
+    </scriptTask>
+    <sequenceFlow id="flow253" sourceRef="scripttask6" targetRef="scripttask4"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram__doc_template_iboxbank_new_client">
+    <bpmndi:BPMNPlane bpmnElement="_doc_template_iboxbank_new_client" id="BPMNPlane__doc_template_iboxbank_new_client">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="36.0" y="383.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="81.0" width="130.0" x="150.0" y="112.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="180.0" y="383.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask4" id="BPMNShape_scripttask4">
+        <omgdc:Bounds height="65.0" width="105.0" x="1.0" y="120.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask21" id="BPMNShape_usertask21">
+        <omgdc:Bounds height="81.0" width="130.0" x="835.0" y="112.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask17" id="BPMNShape_servicetask17">
+        <omgdc:Bounds height="92.0" width="120.0" x="650.0" y="107.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask22" id="BPMNShape_usertask22">
+        <omgdc:Bounds height="81.0" width="130.0" x="835.0" y="360.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask18" id="BPMNShape_servicetask18">
+        <omgdc:Bounds height="92.0" width="120.0" x="840.0" y="226.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask19" id="BPMNShape_servicetask19">
+        <omgdc:Bounds height="55.0" width="105.0" x="558.0" y="272.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway1" id="BPMNShape_exclusivegateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="590.0" y="380.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask20" id="BPMNShape_servicetask20">
+        <omgdc:Bounds height="55.0" width="105.0" x="310.0" y="125.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway2" id="BPMNShape_exclusivegateway2">
+        <omgdc:Bounds height="40.0" width="40.0" x="580.0" y="132.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask21" id="BPMNShape_servicetask21">
+        <omgdc:Bounds height="55.0" width="105.0" x="359.0" y="373.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask5" id="BPMNShape_scripttask5">
+        <omgdc:Bounds height="55.0" width="105.0" x="440.0" y="125.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask6" id="BPMNShape_scripttask6">
+        <omgdc:Bounds height="55.0" width="105.0" x="1.0" y="263.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow23" id="BPMNEdge_flow23">
+        <omgdi:waypoint x="53.0" y="383.0"></omgdi:waypoint>
+        <omgdi:waypoint x="53.0" y="318.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow208" id="BPMNEdge_flow208">
+        <omgdi:waypoint x="770.0" y="153.0"></omgdi:waypoint>
+        <omgdi:waypoint x="835.0" y="152.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow240" id="BPMNEdge_flow240">
+        <omgdi:waypoint x="106.0" y="152.0"></omgdi:waypoint>
+        <omgdi:waypoint x="150.0" y="152.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow243" id="BPMNEdge_flow243">
+        <omgdi:waypoint x="900.0" y="193.0"></omgdi:waypoint>
+        <omgdi:waypoint x="900.0" y="226.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow244" id="BPMNEdge_flow244">
+        <omgdi:waypoint x="280.0" y="152.0"></omgdi:waypoint>
+        <omgdi:waypoint x="310.0" y="152.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow245" id="BPMNEdge_flow245">
+        <omgdi:waypoint x="900.0" y="318.0"></omgdi:waypoint>
+        <omgdi:waypoint x="900.0" y="360.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow246" id="BPMNEdge_flow246">
+        <omgdi:waypoint x="835.0" y="400.0"></omgdi:waypoint>
+        <omgdi:waypoint x="630.0" y="400.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow247" id="BPMNEdge_flow247">
+        <omgdi:waypoint x="610.0" y="380.0"></omgdi:waypoint>
+        <omgdi:waypoint x="610.0" y="327.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow248" id="BPMNEdge_flow248">
+        <omgdi:waypoint x="590.0" y="400.0"></omgdi:waypoint>
+        <omgdi:waypoint x="464.0" y="400.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow249" id="BPMNEdge_flow249">
+        <omgdi:waypoint x="415.0" y="152.0"></omgdi:waypoint>
+        <omgdi:waypoint x="440.0" y="152.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow250" id="BPMNEdge_flow250">
+        <omgdi:waypoint x="620.0" y="152.0"></omgdi:waypoint>
+        <omgdi:waypoint x="650.0" y="153.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow251" id="BPMNEdge_flow251">
+        <omgdi:waypoint x="359.0" y="400.0"></omgdi:waypoint>
+        <omgdi:waypoint x="215.0" y="400.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow252" id="BPMNEdge_flow252">
+        <omgdi:waypoint x="545.0" y="152.0"></omgdi:waypoint>
+        <omgdi:waypoint x="580.0" y="152.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow253" id="BPMNEdge_flow253">
+        <omgdi:waypoint x="53.0" y="263.0"></omgdi:waypoint>
+        <omgdi:waypoint x="53.0" y="185.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

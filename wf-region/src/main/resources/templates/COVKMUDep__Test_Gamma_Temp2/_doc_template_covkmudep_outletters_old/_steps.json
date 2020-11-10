@@ -1,0 +1,82 @@
+{
+"oProperties":{ 
+      "bSkipStepCreate":true,
+      "sasKey_Field_RKK":"sType,sKeyDoc_Out,oDateAt,sKey_Private,sTitle,sSign,sSignDep,oTable_Doc_Parent,lPages,lPagesAtt,sNote,sStat,sGrif,sName_Author,sDepa,asQuestion,sSummary,sTableSEV2,sTableSEV1,sTable_Adress,sKey_DocumentDS"
+       },
+  "_:Watch": {
+	"_default_author": {
+      "oMission": {"sKey_Right":"SignRelease"},
+      "oRights": {
+		"Manage": {},
+      	"SignComment": {},
+		"ManageSignerWriteAccept": {},
+		"ManageSignersRead": {},
+		"ManageViewers": {},
+		"TaskManage": {}
+      }
+    },
+    "_default_view": {
+      "oMission": {"sKey_Right":"View", "sKey_Step_At":""},
+      "oRights": {
+      	"ManageViewers": {},
+        "SignComment": {}
+      }
+    },
+	"_default_consideration": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {      	
+      	"ManageViewers": {},
+      	"AddSignerWriteAccept": {},
+      	"ManageSignersRead": {},
+      	"SignComment": {}
+      },
+      "bNeedECP": true
+    },
+    "_default_accept": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},      	
+      	"ManageViewers": {},
+      	"SignWriteAny": {},
+      	"AddSignerWriteAccept": {},
+        "RemoveSignerWriteAccept": {},
+      	"ManageSignersRead": {},
+      	"SignComment": {}
+      },
+      "bNeedECP": true
+    },
+    
+    "_default_agree": {
+      "oMission": {"sKey_Right":"SignWrite", "bResetImageAfterSubmit": true},
+      "oRights": {
+      	"SignDelegate":{},      	
+      	"ManageViewers": {},
+      	"SignWriteRefuse": {},
+      	"AddSignerWriteAgree": {},
+        "RemoveSignerWriteAgree": {},
+      	"ManageSignersRead": {},
+      	"SignComment": {}
+      },
+      "bNeedECP": true,
+      "oProperties": {
+        "sasKey_Field_SignECP": "PrintForm_01"
+      }
+    },    
+    "_default_seen": {
+      "oMission": {"sKey_Right":"SignRead"},
+      "oRights": {
+        "ManageSignersRead": {},
+      	"ManageViewers": {}
+      },
+      "bNeedECP": true
+    }
+    },
+   
+  "step_create:Create": {},  
+  "step_accept:Accept": {"property": {"nSubscribersMin": "1"}},  
+  "step_accept_1:Accept": {},
+	"step_accept_2:Accept": {},
+  "step_agree:Agree": {"property": {"nSubscribersMin": "1"}},  
+  "step_seen:Seen": {},
+  "step_edit:Edit": {}
+}

@@ -1,0 +1,59 @@
+{
+  "_:Watch": {
+	"_default_author": {
+      "oMission": {"sKey_Right":"SignRelease"},
+      "oRights": {
+      	"Manage": {}
+      }
+    },    
+    "_default_accept": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},  
+      	"SignWriteRefuse": {},      	
+      	"SignComment": {}
+      }
+     },    
+      "_default_direct": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},      	
+      	"ManageViewers": {},
+      	"SignWriteAny": {},
+      	"AddSignerWriteDirect": {},        
+      	"ManageSignersRead": {},
+      	"TaskAdd": {},
+      	"TaskEdit": {},
+      	"TaskRemove": {},
+      	"SignComment": {}
+      	}
+      },
+    "_default_agree": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},  
+      	"SignWriteRefuse": {},      	
+      	"SignComment": {},
+      	"Remove": {}
+      }
+     }
+    },
+    
+  "step_create:Create": {},
+  "step_accept:Accept": {"oProperties": {
+      "nSubscribersMin":1
+  }
+  },  
+  "step_agree:Agree": {  
+ "oProperties": {
+      "nSubscribersMin":1
+  }
+  },
+  "step_direct:Direct": {  
+ "oProperties": {
+      "nSubscribersMin":1
+  }
+  },  
+  "step_edit:Edit": {}
+
+}

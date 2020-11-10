@@ -1,0 +1,20 @@
+{
+    "_:Watch": 
+    {
+        "_default_AkordBank": 
+        {
+            "sName": "Співробітник відділення",
+            "bWrite": true,
+            "aPermition": ["DeleteDocument"],
+            "asID_Field_Read": 
+            [
+                "*"
+            ],
+            "asID_Field_Write": 
+            [
+                "*"
+            ]
+        }
+    },
+    "step_1:Create":{} 
+}

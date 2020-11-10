@@ -1,0 +1,29 @@
+{
+  "aField": [
+    {
+      "id": "sApplicantPosition",
+      "name": "Посада",
+      "type": "string"
+    },
+    {
+      "id": "sApplicantOrg",
+      "name": "Назва організації",
+      "type": "string"
+    },
+    {
+      "id": "sApplicant",
+      "name": "ПІБ",
+      "type": "string"
+    },
+    {
+      "id": "sApplicantEmail",
+      "name": "Електронна адреса",
+      "type": "string"
+    },
+    {
+      "id": "sApplicantAdress",
+      "name": "Поштова адреса",
+      "type": "string"
+    }
+  ]
+}

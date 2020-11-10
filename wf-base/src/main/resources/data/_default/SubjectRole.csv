@@ -1,0 +1,2 @@
+nID;nID_SubjectGroup_Owner;sKey;sName;sClass
+1;NULL;All;Все сотрудники;org.icore.service.business.subject.function.role.ReflexionRole

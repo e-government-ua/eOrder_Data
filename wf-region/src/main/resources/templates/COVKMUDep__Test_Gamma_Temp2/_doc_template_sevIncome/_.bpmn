@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <signal id="UPLOAD_FATAL_ERROR" name="UPLOAD_FATAL_ERROR"></signal>
+  <process id="_doc_template_sevIncome" name="Процес інтеграції з СЕВ - v.3" isExecutable="true">
+    <documentation>;bTemplated=true</documentation>
+    <startEvent id="startevent1" name="Start">
+      <extensionElements>
+        <activiti:formProperty id="oTableExecutors" name="Виконавець завдання; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="bFlag" name="флаг" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sID_Request" name="ид пакета данных;Debug" type="string"></activiti:formProperty>
+        <activiti:formProperty id="OKPO" name="ЄДРПОУ" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sRegNumber" name="Реєстраційний номер" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sErrorText" name="Причина відхилення" type="string"></activiti:formProperty>
+      </extensionElements>
+    </startEvent>
+    <userTask id="usertask1" name="Створення документа">
+      <extensionElements>
+        <activiti:formProperty id="sID_Request" name="ид пакета данных;Debug" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sID_Package" name="Пекедж" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLabelShort_Organ" name="Від кого." type="string"></activiti:formProperty>
+        <activiti:formProperty id="OKPO" name="ЄДРПОУ" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentKind" name="Вихідний документ" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentNumber" name="Реєстраційний номер" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDateCreate" name="Дата реєстрації вихідного документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentType" name="Вид документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDsType" name="Призначення документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="nPagesNum" name="Кількість аркушів документа" type="long"></activiti:formProperty>
+        <activiti:formProperty id="sID_Document" name="Вихідний №" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentPoint" name="sDocumentPoint" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="oFile" name="Файл; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sAnnotation" name="Короткий зміст" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentTitle" name="заголовок" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentDescription" name="краткое описание" type="string"></activiti:formProperty>
+        <activiti:formProperty id="asReestr" name="Вхідний" type="enum">
+          <activiti:value id="sEnum1" name="Зареєструвати"></activiti:value>
+          <activiti:value id="sEnum2" name="Відхилити"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRegNumber" name="Реєстраційний номер" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sErrorText" name="Причина відхилення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sID_Message" name="sID_Message" type="string"></activiti:formProperty>
+        
+        <activiti:formProperty id="marker_1" name="маркерреєстр" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sRegNumber&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_2" name="маркерреєстр" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sErrorText&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum2'&quot;}}}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="scripttask1"></sequenceFlow>
+    <userTask id="usertask2" name="Узгодження документa-11111" default="flow17">
+      <extensionElements>
+        <activiti:formProperty id="sID_Request" name="ид пакета данных;Debug" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sID_Package" name="Пекедж" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLabelShort_Organ" name="Від кого" type="string"></activiti:formProperty>
+        <activiti:formProperty id="OKPO" name="ЄДРПОУ" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentKind" name="Вихідний документ" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentNumber" name="Реєстраційний номер" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDateCreate" name="Дата реєстрації вихідного документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentType" name="Вид документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDsType" name="Призначення документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="nPagesNum" name="Кількість аркушів документа" type="long"></activiti:formProperty>
+        <activiti:formProperty id="sID_Document" name="Вихідний №" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentPoint" name="sDocumentPoint" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="oFile" name="Файл; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sAnnotation" name="Короткий зміст" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentTitle" name="заголовок" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentDescription" name="краткое описание" type="string"></activiti:formProperty>
+        <activiti:formProperty id="asReestr" name="Вхідний" type="enum">
+          <activiti:value id="sEnum1" name="Зареєструвати"></activiti:value>
+          <activiti:value id="sEnum2" name="Відхилити"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRegNumber" name="Реєстраційний номер" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sErrorText" name="Причина відхилення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_1" name="маркерреєстр" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sRegNumber&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_2" name="маркерреєстр" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sErrorText&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum2'&quot;}}}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow17" sourceRef="exclusivegateway2" targetRef="usertask3">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[agree]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow18" sourceRef="exclusivegateway1" targetRef="usertask2">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <userTask id="usertask3" name="Затвердження документa" default="flow17">
+      <extensionElements>
+        <activiti:formProperty id="sID_Request" name="ид пакета данных;Debug" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sID_Package" name="Пекедж" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLabelShort_Organ" name="Від кого" type="string"></activiti:formProperty>
+        <activiti:formProperty id="OKPO" name="ЄДРПОУ" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentKind" name="Вихідний документ" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentNumber" name="Реєстраційний номер" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDateCreate" name="Дата реєстрації вихідного документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentType" name="Вид документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDsType" name="Призначення документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="nPagesNum" name="Кількість аркушів документа" type="long"></activiti:formProperty>
+        <activiti:formProperty id="sID_Document" name="Вихідний №" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentPoint" name="sDocumentPoint" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="oFile" name="Файл; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sAnnotation" name="Короткий зміст" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentTitle" name="заголовок" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentDescription" name="краткое описание" type="string"></activiti:formProperty>
+        <activiti:formProperty id="asReestr" name="Вхідний" type="enum">
+          <activiti:value id="sEnum1" name="Зареєструвати"></activiti:value>
+          <activiti:value id="sEnum2" name="Відхилити"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRegNumber" name="Реєстраційний номер" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sErrorText" name="Причина відхилення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_1" name="маркерреєстр" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sRegNumber&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_2" name="маркерреєстр" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sErrorText&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum2'&quot;}}}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask4" name="Виконання" default="flow17">
+      <extensionElements>
+        <activiti:formProperty id="sID_Request" name="ид пакета данных;Debug" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sID_Package" name="Пекедж" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLabelShort_Organ" name="Від кого" type="string"></activiti:formProperty>
+        <activiti:formProperty id="OKPO" name="ЄДРПОУ" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentKind" name="Вихідний документ" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentNumber" name="Реєстраційний номер" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDateCreate" name="Дата реєстрації вихідного документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentType" name="Вид документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDsType" name="Призначення документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="nPagesNum" name="Кількість аркушів документа" type="long"></activiti:formProperty>
+        <activiti:formProperty id="sID_Document" name="Вихідний №" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentPoint" name="sDocumentPoint" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="oFile" name="Файл; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sAnnotation" name="Короткий зміст" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentTitle" name="заголовок" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentDescription" name="краткое описание" type="string"></activiti:formProperty>
+        <activiti:formProperty id="asReestr" name="Вхідний" type="enum">
+          <activiti:value id="sEnum1" name="Зареєструвати"></activiti:value>
+          <activiti:value id="sEnum2" name="Відхилити"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRegNumber" name="Реєстраційний номер" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sErrorText" name="Причина відхилення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_1" name="маркерреєстр" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sRegNumber&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_2" name="маркерреєстр" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sErrorText&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum2'&quot;}}}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow19" sourceRef="exclusivegateway3" targetRef="usertask4">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[seen]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <endEvent id="endevent2" name="End"></endEvent>
+    <sequenceFlow id="flow20" sourceRef="usertask4" targetRef="endevent3"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway" default="flow18"></exclusiveGateway>
+    <sequenceFlow id="flow21" sourceRef="usertask1" targetRef="exclusivegateway1"></sequenceFlow>
+    <sequenceFlow id="flow22" sourceRef="exclusivegateway1" targetRef="endevent1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${bFlag=='0'}]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway id="exclusivegateway2" name="Exclusive Gateway" default="flow17"></exclusiveGateway>
+    <sequenceFlow id="flow23" sourceRef="usertask2" targetRef="exclusivegateway2"></sequenceFlow>
+    <sequenceFlow id="flow24" sourceRef="exclusivegateway2" targetRef="endevent1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${bFlag=='1'}]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway id="exclusivegateway3" name="Exclusive Gateway" default="flow19"></exclusiveGateway>
+    <sequenceFlow id="flow25" sourceRef="usertask3" targetRef="exclusivegateway3"></sequenceFlow>
+    <sequenceFlow id="flow26" sourceRef="exclusivegateway3" targetRef="endevent1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${bFlag=='2'}]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway id="exclusivegateway4" name="Exclusive Gateway" default="flow27"></exclusiveGateway>
+    <userTask id="usertask5" name="Створення документа">
+      <extensionElements>
+        <activiti:formProperty id="sID_Request" name="ид пакета данных;Debug" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sID_Package" name="Пекедж -d" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLabelShort_Organ" name="Від кого" type="string"></activiti:formProperty>
+        <activiti:formProperty id="OKPO" name="ЄДРПОУ" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentKind" name="Вихідний документ" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentNumber" name="Реєстраційний номер" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDateCreate" name="Дата реєстрації вихідного документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentType" name="Вид документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDsType" name="Призначення документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="nPagesNum" name="Кількість аркушів документа" type="long"></activiti:formProperty>
+        <activiti:formProperty id="sID_Document" name="Вихідний №" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentPoint" name="sDocumentPoint" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="oFile" name="Файл; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sAnnotation" name="Короткий зміст" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentTitle" name="заголовок" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentDescription" name="краткое описание" type="string"></activiti:formProperty>
+        <activiti:formProperty id="asReestr" name="Вхідний" type="enum">
+          <activiti:value id="ADRESSEE_ACCEPTED" name="Зареєструвати"></activiti:value>
+          <activiti:value id="ERROR" name="Відхилити"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRegNumber" name="Реєстраційний номер" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sErrorText" name="Причина відхилення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_1" name="маркерреєстр" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sRegNumber&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'ADRESSEE_ACCEPTED'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_2" name="маркерреєстр" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sErrorText&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'ERROR'&quot;}}}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask6" name="Узгодження документa-11111" default="flow17">
+      <extensionElements>
+        <activiti:formProperty id="sID_Request" name="ид пакета данных;Debug" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sID_Package" name="Пекедж" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLabelShort_Organ" name="Від кого" type="string"></activiti:formProperty>
+        <activiti:formProperty id="OKPO" name="ЄДРПОУ" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentKind" name="Вихідний документ" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentNumber" name="Реєстраційний номер" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDateCreate" name="Дата реєстрації вихідного документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentType" name="Вид документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDsType" name="Призначення документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="nPagesNum" name="Кількість аркушів документа" type="long"></activiti:formProperty>
+        <activiti:formProperty id="sID_Document" name="Вихідний №" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentPoint" name="sDocumentPoint" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="oFile" name="Файл; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sAnnotation" name="Короткий зміст" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentTitle" name="заголовок" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentDescription" name="краткое описание" type="string"></activiti:formProperty>
+        <activiti:formProperty id="asReestr" name="Вхідний" type="enum">
+          <activiti:value id="sEnum1" name="Зареєструвати"></activiti:value>
+          <activiti:value id="sEnum2" name="Відхилити"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRegNumber" name="Реєстраційний номер" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sErrorText" name="Причина відхилення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_1" name="маркерреєстр" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sRegNumber&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_2" name="маркерреєстр" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sErrorText&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum2'&quot;}}}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask7" name="Узагальнення документa" default="flow17">
+      <extensionElements>
+        <activiti:formProperty id="sID_Request" name="ид пакета данных;Debug" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sID_Package" name="Пекедж" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLabelShort_Organ" name="Від кого" type="string"></activiti:formProperty>
+        <activiti:formProperty id="OKPO" name="ЄДРПОУ" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentKind" name="Вихідний документ" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentNumber" name="Реєстраційний номер" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDateCreate" name="Дата реєстрації вихідного документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentType" name="Вид документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDsType" name="Призначення документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="nPagesNum" name="Кількість аркушів документа" type="long"></activiti:formProperty>
+        <activiti:formProperty id="sID_Document" name="Вихідний №" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentPoint" name="sDocumentPoint" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="oFile" name="Файл; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sAnnotation" name="Короткий зміст" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentTitle" name="заголовок" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentDescription" name="краткое описание" type="string"></activiti:formProperty>
+        <activiti:formProperty id="asReestr" name="Вхідний" type="enum">
+          <activiti:value id="sEnum1" name="Зареєструвати"></activiti:value>
+          <activiti:value id="sEnum2" name="Відхилити"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRegNumber" name="Реєстраційний номер" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sErrorText" name="Причина відхилення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_1" name="маркерреєстр" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sRegNumber&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_2" name="маркерреєстр" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sErrorText&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum2'&quot;}}}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask8" name="Ознайомлення" default="flow17">
+      <extensionElements>
+        <activiti:formProperty id="sID_Request" name="ид пакета данных;Debug" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sID_Package" name="Пекедж" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLabelShort_Organ" name="Від кого" type="string"></activiti:formProperty>
+        <activiti:formProperty id="OKPO" name="ЄДРПОУ" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentKind" name="Вихідний документ" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentNumber" name="Реєстраційний номер" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDateCreate" name="Дата реєстрації вихідного документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentType" name="Вид документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDsType" name="Призначення документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="nPagesNum" name="Кількість аркушів документа" type="long"></activiti:formProperty>
+        <activiti:formProperty id="sID_Document" name="Вихідний №" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentPoint" name="sDocumentPoint" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="oFile" name="Файл; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sAnnotation" name="Короткий зміст" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentTitle" name="заголовок" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentDescription" name="краткое описание" type="string"></activiti:formProperty>
+        <activiti:formProperty id="asReestr" name="Вхідний" type="enum">
+          <activiti:value id="sEnum1" name="Зареєструвати"></activiti:value>
+          <activiti:value id="sEnum2" name="Відхилити"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRegNumber" name="Реєстраційний номер" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sErrorText" name="Причина відхилення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_1" name="маркерреєстр" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sRegNumber&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_2" name="маркерреєстр" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sErrorText&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum2'&quot;}}}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow27" sourceRef="exclusivegateway4" targetRef="usertask5"></sequenceFlow>
+    <sequenceFlow id="flow28" sourceRef="exclusivegateway4" targetRef="usertask6">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${bFlag=='accept'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow29" sourceRef="exclusivegateway4" targetRef="usertask7">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[agree]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${bFlag=='agree'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow30" sourceRef="exclusivegateway4" targetRef="usertask8">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[seen]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${bFlag=='seen'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow31" sourceRef="usertask5" targetRef="servicetask1"></sequenceFlow>
+    <sequenceFlow id="flow32" sourceRef="usertask6" targetRef="servicetask1"></sequenceFlow>
+    <sequenceFlow id="flow33" sourceRef="usertask7" targetRef="servicetask1"></sequenceFlow>
+    <sequenceFlow id="flow34" sourceRef="usertask8" targetRef="servicetask1"></sequenceFlow>
+    <endEvent id="endevent3" name="End"></endEvent>
+    <scriptTask id="scripttask1" name="Script Task" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>var a = execution.getVariable('bFlag');
+execution.setVariable('bFlag', a);
+
+var b = execution.getVariable('sRegNumber');
+execution.setVariable('sRegNumber', b);
+
+var c = execution.getVariable('sErrorText');
+execution.setVariable('sErrorText', c);
+
+var d = execution.getVariable('OKPO');
+execution.setVariable('OKPO', d);
+
+var e = execution.getVariable('sID_Request');
+execution.setVariable('sID_Request', e);</script>
+    </scriptTask>
+    <userTask id="usertask9" name="Адресація" default="flow17">
+      <extensionElements>
+        <activiti:formProperty id="sID_Request" name="ид пакета данных;Debug" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sID_Package" name="Пекедж" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLabelShort_Organ" name="Від кого" type="string"></activiti:formProperty>
+        <activiti:formProperty id="OKPO" name="ЄДРПОУ" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentKind" name="Вихідний документ" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentNumber" name="Реєстраційний номер" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDateCreate" name="Дата реєстрації вихідного документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentType" name="Вид документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDsType" name="Призначення документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="nPagesNum" name="Кількість аркушів документа" type="long"></activiti:formProperty>
+        <activiti:formProperty id="sID_Document" name="Вихідний №" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentPoint" name="sDocumentPoint" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="oFile" name="Файл; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sAnnotation" name="Короткий зміст" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentTitle" name="заголовок" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentDescription" name="краткое описание" type="string"></activiti:formProperty>
+        <activiti:formProperty id="asReestr" name="Вхідний" type="enum">
+          <activiti:value id="sEnum1" name="Зареєструвати"></activiti:value>
+          <activiti:value id="sEnum2" name="Відхилити"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRegNumber" name="Реєстраційний номер" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sErrorText" name="Причина відхилення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_1" name="маркерреєстр" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sRegNumber&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_2" name="маркерреєстр" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sErrorText&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum2'&quot;}}}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow36" sourceRef="exclusivegateway4" targetRef="usertask9">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[direct]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${bFlag=='direct'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow37" sourceRef="usertask9" targetRef="servicetask1"></sequenceFlow>
+    <serviceTask id="servicetask1" name="Service Task" activiti:delegateExpression="#{DocumenAnknowledgeServiceTask}">
+      <extensionElements>
+        <activiti:field name="sRegNumber">
+          <activiti:expression><![CDATA[${sRegNumber}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sOKPO">
+          <activiti:expression><![CDATA[${OKPO}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sID_Package">
+          <activiti:expression><![CDATA[${sID_Request}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sErrorText">
+          <activiti:expression><![CDATA[${sErrorText}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sAnknowledgeEnum">
+          <activiti:expression><![CDATA[${asReestr}]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow38" sourceRef="servicetask1" targetRef="endevent2"></sequenceFlow>
+    <serviceTask id="servicetask2" name="DELIVERED_TO_CEV" activiti:delegateExpression="#{DocumenAnknowledgeServiceTask}">
+      <extensionElements>
+        <activiti:field name="sRegNumber">
+          <activiti:expression><![CDATA[${sRegNumber}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sOKPO">
+          <activiti:expression><![CDATA[${OKPO}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sID_Package">
+          <activiti:expression><![CDATA[${sID_Request}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sErrorText">
+          <activiti:expression><![CDATA[${sErrorText}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sAnknowledgeEnum">
+          <activiti:string><![CDATA[DELIVERED_TO_CEV]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="servicetask3" name="CEV_DELIVERED_TO_ADRESSEE" activiti:delegateExpression="#{DocumenAnknowledgeServiceTask}">
+      <extensionElements>
+        <activiti:field name="sRegNumber">
+          <activiti:expression><![CDATA[${sRegNumber}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sOKPO">
+          <activiti:expression><![CDATA[${OKPO}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sID_Package">
+          <activiti:expression><![CDATA[${sID_Request}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sErrorText">
+          <activiti:expression><![CDATA[${sErrorText}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sAnknowledgeEnum">
+          <activiti:string><![CDATA[CEV_DELIVERED_TO_ADRESSEE]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow39" sourceRef="servicetask2" targetRef="servicetask3"></sequenceFlow>
+    <serviceTask id="servicetask4" name="CEV_DELIVERED_TO_ADRESSEE" activiti:delegateExpression="#{DocumenAnknowledgeServiceTask}">
+      <extensionElements>
+        <activiti:field name="sRegNumber">
+          <activiti:expression><![CDATA[${sRegNumber}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sOKPO">
+          <activiti:expression><![CDATA[${OKPO}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sID_Package">
+          <activiti:expression><![CDATA[${sID_Request}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sErrorText">
+          <activiti:expression><![CDATA[${sErrorText}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sAnknowledgeEnum">
+          <activiti:string><![CDATA[ADRESSEE_ACCEPTED]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow41" sourceRef="scripttask1" targetRef="servicetask2"></sequenceFlow>
+    <sequenceFlow id="flow42" sourceRef="servicetask3" targetRef="exclusivegateway4"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram__doc_template_sevIncome">
+    <bpmndi:BPMNPlane bpmnElement="_doc_template_sevIncome" id="BPMNPlane__doc_template_sevIncome">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="1.0" y="237.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="74.0" width="121.0" x="1071.0" y="378.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask2" id="BPMNShape_usertask2">
+        <omgdc:Bounds height="71.0" width="121.0" x="1291.0" y="379.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="1361.0" y="271.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask3" id="BPMNShape_usertask3">
+        <omgdc:Bounds height="71.0" width="121.0" x="1511.0" y="379.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask4" id="BPMNShape_usertask4">
+        <omgdc:Bounds height="71.0" width="121.0" x="1511.0" y="561.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent2" id="BPMNShape_endevent2">
+        <omgdc:Bounds height="35.0" width="35.0" x="1515.0" y="128.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway1" id="BPMNShape_exclusivegateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="1221.0" y="394.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway2" id="BPMNShape_exclusivegateway2">
+        <omgdc:Bounds height="40.0" width="40.0" x="1441.0" y="394.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway3" id="BPMNShape_exclusivegateway3">
+        <omgdc:Bounds height="40.0" width="40.0" x="1551.0" y="481.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway4" id="BPMNShape_exclusivegateway4">
+        <omgdc:Bounds height="40.0" width="40.0" x="606.0" y="234.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask5" id="BPMNShape_usertask5">
+        <omgdc:Bounds height="74.0" width="121.0" x="742.0" y="74.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask6" id="BPMNShape_usertask6">
+        <omgdc:Bounds height="71.0" width="121.0" x="742.0" y="174.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask7" id="BPMNShape_usertask7">
+        <omgdc:Bounds height="71.0" width="121.0" x="742.0" y="264.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask8" id="BPMNShape_usertask8">
+        <omgdc:Bounds height="71.0" width="121.0" x="742.0" y="364.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent3" id="BPMNShape_endevent3">
+        <omgdc:Bounds height="35.0" width="35.0" x="1301.0" y="578.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask1" id="BPMNShape_scripttask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="80.0" y="227.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask9" id="BPMNShape_usertask9">
+        <omgdc:Bounds height="71.0" width="121.0" x="742.0" y="466.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask1" id="BPMNShape_servicetask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="1335.0" y="118.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask2" id="BPMNShape_servicetask2">
+        <omgdc:Bounds height="74.0" width="141.0" x="250.0" y="218.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask3" id="BPMNShape_servicetask3">
+        <omgdc:Bounds height="74.0" width="141.0" x="430.0" y="218.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask4" id="BPMNShape_servicetask4">
+        <omgdc:Bounds height="74.0" width="141.0" x="1380.0" y="1.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="36.0" y="254.0"></omgdi:waypoint>
+        <omgdi:waypoint x="80.0" y="254.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow17" id="BPMNEdge_flow17">
+        <omgdi:waypoint x="1481.0" y="414.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1511.0" y="414.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow18" id="BPMNEdge_flow18">
+        <omgdi:waypoint x="1261.0" y="414.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1291.0" y="414.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow19" id="BPMNEdge_flow19">
+        <omgdi:waypoint x="1571.0" y="521.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1571.0" y="561.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow20" id="BPMNEdge_flow20">
+        <omgdi:waypoint x="1511.0" y="596.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1336.0" y="595.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow21" id="BPMNEdge_flow21">
+        <omgdi:waypoint x="1192.0" y="415.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1221.0" y="414.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow22" id="BPMNEdge_flow22">
+        <omgdi:waypoint x="1241.0" y="394.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1241.0" y="288.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1361.0" y="288.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow23" id="BPMNEdge_flow23">
+        <omgdi:waypoint x="1412.0" y="414.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1441.0" y="414.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow24" id="BPMNEdge_flow24">
+        <omgdi:waypoint x="1461.0" y="394.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1460.0" y="288.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1396.0" y="288.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow25" id="BPMNEdge_flow25">
+        <omgdi:waypoint x="1571.0" y="450.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1571.0" y="481.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow26" id="BPMNEdge_flow26">
+        <omgdi:waypoint x="1591.0" y="501.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1647.0" y="500.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1647.0" y="241.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1378.0" y="241.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1378.0" y="271.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow27" id="BPMNEdge_flow27">
+        <omgdi:waypoint x="626.0" y="234.0"></omgdi:waypoint>
+        <omgdi:waypoint x="626.0" y="111.0"></omgdi:waypoint>
+        <omgdi:waypoint x="742.0" y="111.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow28" id="BPMNEdge_flow28">
+        <omgdi:waypoint x="626.0" y="234.0"></omgdi:waypoint>
+        <omgdi:waypoint x="626.0" y="209.0"></omgdi:waypoint>
+        <omgdi:waypoint x="742.0" y="209.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow29" id="BPMNEdge_flow29">
+        <omgdi:waypoint x="626.0" y="274.0"></omgdi:waypoint>
+        <omgdi:waypoint x="626.0" y="299.0"></omgdi:waypoint>
+        <omgdi:waypoint x="742.0" y="299.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow30" id="BPMNEdge_flow30">
+        <omgdi:waypoint x="626.0" y="274.0"></omgdi:waypoint>
+        <omgdi:waypoint x="626.0" y="399.0"></omgdi:waypoint>
+        <omgdi:waypoint x="742.0" y="399.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow31" id="BPMNEdge_flow31">
+        <omgdi:waypoint x="863.0" y="111.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1335.0" y="145.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow32" id="BPMNEdge_flow32">
+        <omgdi:waypoint x="863.0" y="209.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1387.0" y="173.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow33" id="BPMNEdge_flow33">
+        <omgdi:waypoint x="802.0" y="264.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1387.0" y="173.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow34" id="BPMNEdge_flow34">
+        <omgdi:waypoint x="802.0" y="364.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1387.0" y="173.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow36" id="BPMNEdge_flow36">
+        <omgdi:waypoint x="626.0" y="274.0"></omgdi:waypoint>
+        <omgdi:waypoint x="626.0" y="501.0"></omgdi:waypoint>
+        <omgdi:waypoint x="742.0" y="501.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow37" id="BPMNEdge_flow37">
+        <omgdi:waypoint x="802.0" y="466.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1387.0" y="173.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow38" id="BPMNEdge_flow38">
+        <omgdi:waypoint x="1440.0" y="145.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1515.0" y="145.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow39" id="BPMNEdge_flow39">
+        <omgdi:waypoint x="391.0" y="255.0"></omgdi:waypoint>
+        <omgdi:waypoint x="430.0" y="255.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow41" id="BPMNEdge_flow41">
+        <omgdi:waypoint x="185.0" y="254.0"></omgdi:waypoint>
+        <omgdi:waypoint x="250.0" y="255.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow42" id="BPMNEdge_flow42">
+        <omgdi:waypoint x="571.0" y="255.0"></omgdi:waypoint>
+        <omgdi:waypoint x="606.0" y="254.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

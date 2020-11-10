@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed>
+
+    <entry tableId="sRodStan"
+           xmlns="http://www.w3.org/2005/Atom"
+           xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+           xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+        <category term="StandardODATA.Catalog_ФизическиеЛица"/>
+        <content>
+            <m:properties>
+                <d:Description>%sNam</d:Description>
+                <d:ДатаРождения>%sNumb[yyyy-MM-dd'T'HH:mm:ss]</d:ДатаРождения>
+                <d:Комментарий>%sINN</d:Комментарий>
+            </m:properties>
+        </content>
+    </entry>
+
+    <entry xmlns="http://www.w3.org/2005/Atom"
+           xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+           xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+        <category term="StandardODATA.Catalog_ФизическиеЛица"/>
+        <content>
+            <m:properties>
+                <d:Description>%sLastName %sFirstName %sSurname</d:Description>
+                <d:ДатаРождения>%sBirthsday[yyyy-MM-dd'T'HH:mm:ss]</d:ДатаРождения>
+                <d:МестоРождения>,%sBornCity</d:МестоРождения>
+                <d:Пол>%asPolRus</d:Пол>
+                <d:ИНН key="true">%sINN</d:ИНН>
+                <d:КодПоДРФО>%sINN</d:КодПоДРФО>
+                <d:СоставСемьи m:type="Collection(StandardODATA.Catalog_ФизическиеЛица_СоставСемьи_RowType)">
+                    <d:element tableId="sRodStan" m:type="StandardODATA.Catalog_ФизическиеЛица_СоставСемьи_RowType">
+                        <d:LineNumber increment="true">1</d:LineNumber>
+                        <d:СтепеньРодства_Key>{{"sTable":"Catalog_СтепениРодстваФизЛиц","sFilter":"Description eq '%sNu'","sSelect":"Ref_Key"}}</d:СтепеньРодства_Key>
+                        <d:ФизЛицо_Key>{{"sTable":"Catalog_ФизическиеЛица","sFilter":"substringof('%sINN', Комментарий) and Description eq '%sNam'","sSelect":"Ref_Key"}}</d:ФизЛицо_Key>
+                        <d:ГодРождения>%sNumb[yyyy]</d:ГодРождения>
+                    </d:element>
+                </d:СоставСемьи>
+                <d:ТрудоваяДеятельность m:type="Collection(StandardODATA.Catalog_ФизическиеЛица_ТрудоваяДеятельность_RowType)">
+                    <d:element tableId="sTableOsvitaNaVirobnictvi" m:type="StandardODATA.Catalog_ФизическиеЛица_ТрудоваяДеятельность_RowType">
+                        <d:LineNumber increment="true">1</d:LineNumber>
+                        <d:Организация>%sPeriodTable</d:Организация>
+                        <d:ДатаНачала>%sDateTable[yyyy-MM-dd'T'HH:mm:ss]</d:ДатаНачала>
+                        <d:ДатаОкончания>%sNameTable[yyyy-MM-dd'T'HH:mm:ss]</d:ДатаОкончания>
+                        <d:Должность>%sVid</d:Должность>
+                    </d:element>
+                </d:ТрудоваяДеятельность>
+                <d:Образование m:type="Collection(StandardODATA.Catalog_ФизическиеЛица_Образование_RowType)">
+                    <d:element m:type="StandardODATA.Catalog_ФизическиеЛица_Образование_RowType">
+                        <d:LineNumber>1</d:LineNumber>
+                        <d:ВидОбразования_Key>{{"sTable":"Catalog_ВидыОбразованияФизЛиц","sFilter":"Description eq '%asOsvita'","sSelect":"Ref_Key"}}</d:ВидОбразования_Key>
+                        <d:УчебноеЗаведение_Key>{{"sTable":"Catalog_УчебныеЗаведения","sFilter":"substringof('%sNazvaZakladu', Description)","sSelect":"Ref_Key"}}</d:УчебноеЗаведение_Key>
+                        <d:Специальность_Key>{{"sTable":"Catalog_КлассификаторСпециальностейПоОбразованию","sFilter":"Description eq '%sSpecDiploma'","sSelect":"Ref_Key"}}</d:Специальность_Key>
+                        <d:Диплом>%sDiplomSpec</d:Диплом>
+                        <d:ГодОкончания>%sRikZak[yyyy]</d:ГодОкончания>
+                        <d:Квалификация>%sClassDiploma</d:Квалификация>
+                        <d:ФормаОбучения>%asFormaNvcnRus</d:ФормаОбучения>
+                    </d:element>
+                </d:Образование>
+                <d:ЗнаниеЯзыков m:type="Collection(StandardODATA.Catalog_ФизическиеЛица_ЗнаниеЯзыков_RowType)"/>
+                <d:Профессии m:type="Collection(StandardODATA.Catalog_ФизическиеЛица_Профессии_RowType)"/>
+                <d:Стажи m:type="Collection(StandardODATA.Catalog_ФизическиеЛица_Стажи_RowType)"/>
+            </m:properties>
+        </content>
+    </entry>
+
+    <entry xmlns="http://www.w3.org/2005/Atom"
+           xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+           xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+        <category term="StandardODATA.Catalog_СотрудникиОрганизаций"/>
+        <content>
+            <m:properties>
+                <d:Физлицо_Key>{{"sTable":"Catalog_ФизическиеЛица","sFilter":"ИНН eq '%sINN'","sSelect":"Ref_Key"}}</d:Физлицо_Key>
+                <d:ВидДоговора>ТрудовойДоговор</d:ВидДоговора>
+                <d:Актуальность>true</d:Актуальность>
+                <d:ВидЗанятости>%sJobType1C</d:ВидЗанятости>
+                <d:ДатаПриемаНаРаботу>%sDataPrich[yyyy-MM-dd'T'HH:mm:ss]</d:ДатаПриемаНаРаботу>
+                <d:Description>%sLastName %sFirstName %sSurname</d:Description>
+                <d:НомерБонуснойКарты>%sBonusCard</d:НомерБонуснойКарты>
+                <d:Должность_Key>{{"sTable":"Catalog_ДолжностиОрганизаций", "sFilter":"Description eq '%sPosada123'", "sSelect":"Ref_Key"}}</d:Должность_Key>
+                <d:ПодразделениеОрганизации_Key>{{"sTable":"Catalog_ПодразделенияОрганизаций", "sFilter":"Description eq '%sStaje1%sCeh'", "sSelect":"Ref_Key"}}</d:ПодразделениеОрганизации_Key>
+                <d:Организация_Key>{{"sTable":"Catalog_ПодразделенияОрганизаций", "sFilter":"Description eq '%sStaje1%sCeh'", "sSelect":"Owner_Key"}}</d:Организация_Key>
+            </m:properties>
+        </content>
+    </entry>
+
+    <entry xmlns="http://www.w3.org/2005/Atom"
+           xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+           xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+        <category term="StandardODATA.Document_ПриемНаРаботуВОрганизацию"/>
+        <content>
+            <m:properties>
+                <d:Date>%sDataPrich[yyyy-MM-dd'T'HH:mm:ss]</d:Date>
+                <d:Комментарий>%sZvannia</d:Комментарий>
+                <d:Организация_Key>{{"sTable":"Catalog_ПодразделенияОрганизаций", "sFilter":"Description eq '%sStaje1%sCeh'", "sSelect":"Owner_Key"}}</d:Организация_Key>
+                <d:Ответственный_Key>{{"sTable":"Catalog_Пользователи", "sFilter":"substringof('%sAuthorTabel', Code)", "sSelect":"Ref_Key"}}</d:Ответственный_Key>
+                <d:РаботникиОрганизации m:type="Collection(StandardODATA.Document_ПриемНаРаботуВОрганизацию_РаботникиОрганизации_RowType)">
+                    <d:element m:type="StandardODATA.Document_ПриемНаРаботуВОрганизацию_РаботникиОрганизации_RowType">
+                        <d:LineNumber>1</d:LineNumber>
+                        <d:ФизЛицо_Key>{{"sTable":"Catalog_ФизическиеЛица","sFilter":"ИНН eq '%sINN'","sSelect":"Ref_Key"}}</d:ФизЛицо_Key>
+                        <d:Должность_Key>{{"sTable":"Catalog_ДолжностиОрганизаций", "sFilter":"Description eq '%sPosada123'", "sSelect":"Ref_Key"}}</d:Должность_Key>
+                        <d:ДатаПриема>%sGruppaObliku[yyyy-MM-dd'T'HH:mm:ss]</d:ДатаПриема>
+                        <d:Сотрудник_Key>{{"sTable":"Catalog_СотрудникиОрганизаций","sFilter":"Физлицо/ИНН eq '%sINN'","sSelect":"Ref_Key","sOrderBy":"DataVersion desc"}}</d:Сотрудник_Key>
+                        <d:ЗанимаемыхСтавок>%asPisliaDiplomna</d:ЗанимаемыхСтавок>
+                        <d:ИспытательныйСрок>%sKatObl</d:ИспытательныйСрок>
+                        <d:ГрафикРаботы_Key>{{"sTable":"Catalog_ГрафикиРаботы", "sFilter":"Description eq '%asGrafikiRaboti'", "sSelect":"Ref_Key"}}</d:ГрафикРаботы_Key>
+                        <d:ПодразделениеОрганизации_Key>{{"sTable":"Catalog_ПодразделенияОрганизаций", "sFilter":"Description eq '%sStaje1%sCeh'", "sSelect":"Ref_Key"}}</d:ПодразделениеОрганизации_Key>
+                    </d:element>
+                </d:РаботникиОрганизации>
+                <d:ОсновныеНачисления m:type="Collection(StandardODATA.Document_ПриемНаРаботуВОрганизацию_ОсновныеНачисления_RowType)">
+                    <d:element m:type="StandardODATA.Document_ПриемНаРаботуВОрганизацию_ОсновныеНачисления_RowType">
+                        <d:LineNumber>1</d:LineNumber>
+                        <d:ФизЛицо_Key>{{"sTable":"Catalog_ФизическиеЛица","sFilter":"ИНН eq '%sINN'","sSelect":"Ref_Key"}}</d:ФизЛицо_Key>
+                        <d:Сотрудник_Key>{{"sTable":"Catalog_СотрудникиОрганизаций","sFilter":"Физлицо/ИНН eq '%sINN'","sSelect":"Ref_Key","sOrderBy":"DataVersion desc"}}</d:Сотрудник_Key>
+                        <d:Показатель1>%sOkladd_ByPosition%sOkladd_ByGroupPosition</d:Показатель1>
+                        <d:ВидРасчета_Key>{{"sTable":"ChartOfCalculationTypes_ОсновныеНачисленияОрганизаций","sFilter":"Description eq 'Оклад по часам'","sSelect":"Ref_Key"}}</d:ВидРасчета_Key>
+                        <d:Валюта1_Key>{{"sTable":"Catalog_Валюты","sFilter":"Description eq 'грн'","sSelect":"Ref_Key"}}</d:Валюта1_Key>
+                    </d:element>
+                    <d:element m:type="StandardODATA.Document_ПриемНаРаботуВОрганизацию_ОсновныеНачисления_RowType">
+                        <d:LineNumber>2</d:LineNumber>
+                        <d:ФизЛицо_Key>{{"sTable":"Catalog_ФизическиеЛица","sFilter":"ИНН eq '%sINN'","sSelect":"Ref_Key"}}</d:ФизЛицо_Key>
+                        <d:Сотрудник_Key>{{"sTable":"Catalog_СотрудникиОрганизаций","sFilter":"Физлицо/ИНН eq '%sINN'","sSelect":"Ref_Key","sOrderBy":"DataVersion desc"}}</d:Сотрудник_Key>
+                        <d:Показатель2>40</d:Показатель2>
+                        <d:ВидРасчета_Key>{{"sTable":"ChartOfCalculationTypes_ОсновныеНачисленияОрганизаций","sFilter":"Description eq 'Доплата за ночные часы'","sSelect":"Ref_Key"}}</d:ВидРасчета_Key>
+                        <d:Валюта1_Key>{{"sTable":"Catalog_Валюты","sFilter":"Description eq 'грн'","sSelect":"Ref_Key"}}</d:Валюта1_Key>
+                    </d:element>
+                    <d:element m:type="StandardODATA.Document_ПриемНаРаботуВОрганизацию_ОсновныеНачисления_RowType">
+                        <d:LineNumber>3</d:LineNumber>
+                        <d:ФизЛицо_Key>{{"sTable":"Catalog_ФизическиеЛица","sFilter":"ИНН eq '%sINN'","sSelect":"Ref_Key"}}</d:ФизЛицо_Key>
+                        <d:Сотрудник_Key>{{"sTable":"Catalog_СотрудникиОрганизаций","sFilter":"Физлицо/ИНН eq '%sINN'","sSelect":"Ref_Key","sOrderBy":"DataVersion desc"}}</d:Сотрудник_Key>
+                        <d:Показатель1>0</d:Показатель1>
+                        <d:ВидРасчета_Key>{{"sTable":"ChartOfCalculationTypes_ОсновныеНачисленияОрганизаций","sFilter":"Description eq 'Индексация зарплаты'","sSelect":"Ref_Key"}}</d:ВидРасчета_Key>
+                        <d:Валюта1_Key>{{"sTable":"Catalog_Валюты","sFilter":"Description eq 'грн'","sSelect":"Ref_Key"}}</d:Валюта1_Key>
+                    </d:element>
+                </d:ОсновныеНачисления>
+                <d:ВзносыФОТ m:type="Collection(StandardODATA.Document_ПриемНаРаботуВОрганизацию_ВзносыФОТ_RowType)">
+                    <d:element m:type="StandardODATA.Document_ПриемНаРаботуВОрганизацию_ВзносыФОТ_RowType">
+                        <d:LineNumber>1</d:LineNumber>
+                        <d:Сотрудник_Key>{{"sTable":"Catalog_СотрудникиОрганизаций","sFilter":"Физлицо/ИНН eq '%sINN'","sSelect":"Ref_Key","sOrderBy":"DataVersion desc"}}</d:Сотрудник_Key>
+                        <d:Налог_Key>{{"sTable":"Catalog_Налоги","sFilter":"Description eq 'ЕСВ ФОТ (работники)'","sSelect":"Ref_Key"}}</d:Налог_Key>
+                    </d:element>
+                    <d:element m:type="StandardODATA.Document_ПриемНаРаботуВОрганизацию_ВзносыФОТ_RowType">
+                        <d:LineNumber>2</d:LineNumber>
+                        <d:Сотрудник_Key>{{"sTable":"Catalog_СотрудникиОрганизаций","sFilter":"Физлицо/ИНН eq '%sINN'","sSelect":"Ref_Key","sOrderBy":"DataVersion desc"}}</d:Сотрудник_Key>
+                        <d:Налог_Key>{{"sTable":"Catalog_Налоги","sFilter":"Description eq 'ЕСВ ФОТ (больничные)'","sSelect":"Ref_Key"}}</d:Налог_Key>
+                    </d:element>
+                </d:ВзносыФОТ>
+            </m:properties>
+        </content>
+    </entry>
+
+    <entry bFailOnError="false" xmlns="http://www.w3.org/2005/Atom"
+           xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+           xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+        <category term="StandardODATA.InformationRegister_ВоинскийУчет"/>
+        <content>
+            <m:properties>
+                <d:Period>1900-01-01T00:00:00</d:Period>
+                <d:ОтношениеКВоинскойОбязанности>%asStavlenniaDoViyskOblRus</d:ОтношениеКВоинскойОбязанности>
+                <d:ОтношениеКВоинскомуУчету>%asViyskoviyOblikRus</d:ОтношениеКВоинскомуУчету>
+                <d:Звание_Key>{{"sTable":"Catalog_ВоинскиеЗвания","sFilter":"Description eq '%sZvanie'","sSelect":"Ref_Key"}}</d:Звание_Key>
+                <d:Группа>%asGrupaViyskRus</d:Группа>
+                <d:Категория>%asKatRus</d:Категория>
+                <d:Военкомат_Key>{{"sTable":"Catalog_Военкоматы","sFilter":"Description eq '%sVoenkOrVch'","sSelect":"Ref_Key"}}</d:Военкомат_Key>
+                <d:Годность>%asPredatnostRus</d:Годность>
+                <d:ОснованиеНегодности>%sPidstava</d:ОснованиеНегодности>
+                <d:Физлицо_Key>{{"sTable":"Catalog_ФизическиеЛица","sFilter":"ИНН eq '%sINN'","sSelect":"Ref_Key"}}</d:Физлицо_Key>
+            </m:properties>
+        </content>
+    </entry>
+
+    <entry bFailOnError="false" xmlns="http://www.w3.org/2005/Atom"
+           xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+           xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+        <category term="StandardODATA.InformationRegister_ЗначенияСвойствОбъектов"/>
+        <content>
+            <m:properties>
+                <d:Объект>{{"sTable":"Catalog_ФизическиеЛица","sFilter":"ИНН eq '%sINN'","sSelect":"Ref_Key"}}</d:Объект>
+                <d:Объект_Type>StandardODATA.Catalog_ФизическиеЛица</d:Объект_Type>
+                <d:Значение>%sHiredPersonRus</d:Значение>
+                <d:Значение_Type>Edm.String</d:Значение_Type>
+                <d:Свойство_Key>{{"sTable":"ChartOfCharacteristicTypes_СвойстваОбъектов","sFilter":"Description eq 'ФИОрус'","sSelect":"Ref_Key"}}</d:Свойство_Key>
+            </m:properties>
+        </content>
+    </entry>
+
+    <entry bFailOnError="false" xmlns="http://www.w3.org/2005/Atom"
+           xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+           xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+        <category term="StandardODATA.InformationRegister_ПаспортныеДанныеФизЛиц"/>
+        <content>
+            <m:properties>
+                <d:ФизЛицо>{{"sTable":"Catalog_ФизическиеЛица","sFilter":"ИНН eq '%sINN'","sSelect":"Ref_Key"}}</d:ФизЛицо>
+                <d:ФизЛицо_Type>StandardODATA.Catalog_ФизическиеЛица</d:ФизЛицо_Type>
+                <d:ДокументВид_Key>{{"sTable":"Catalog_ДокументыУдостоверяющиеЛичность","sFilter":"Description eq 'Паспорт гражданина Украины'","sSelect":"Ref_Key"}}</d:ДокументВид_Key>
+                <d:ДокументСерия>%sPassportUASeria</d:ДокументСерия>
+                <d:ДокументНомер>%sPassportUANumber</d:ДокументНомер>
+                <d:ДокументДатаВыдачи>%sPassportUADate[yyyy-MM-dd'T'HH:mm:ss]</d:ДокументДатаВыдачи>
+                <d:ДокументКемВыдан>%sPassportUAIssuedBy</d:ДокументКемВыдан>
+                <d:Period>%sPassportUADate[yyyy-MM-dd'T'HH:mm:ss]</d:Period>
+            </m:properties>
+        </content>
+    </entry>
+
+    <entry bFailOnError="false" xmlns="http://www.w3.org/2005/Atom"
+           xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+           xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+        <category term="StandardODATA.InformationRegister_КонтактнаяИнформация"/>
+        <content>
+            <m:properties>
+                <d:Тип>Телефон</d:Тип>
+                <d:Представление>%sTelMob</d:Представление>
+                <d:Объект>{{"sTable":"Catalog_ФизическиеЛица","sFilter":"ИНН eq '%sINN'","sSelect":"Ref_Key"}}</d:Объект>
+                <d:Объект_Type>StandardODATA.Catalog_ФизическиеЛица</d:Объект_Type>
+                <d:Вид>{{"sTable":"Catalog_ВидыКонтактнойИнформации","sFilter":"Description eq 'Телефон физ.лица мобильный'","sSelect":"Ref_Key"}}</d:Вид>
+                <d:Вид_Type>StandardODATA.Catalog_ВидыКонтактнойИнформации</d:Вид_Type>
+            </m:properties>
+        </content>
+    </entry>
+
+    <entry bFailOnError="false" xmlns="http://www.w3.org/2005/Atom"
+           xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+           xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+        <category term="StandardODATA.InformationRegister_КонтактнаяИнформация"/>
+        <content>
+            <m:properties>
+                <d:Тип>АдресЭлектроннойПочты</d:Тип>
+                <d:Представление>%email</d:Представление>
+                <d:Объект>{{"sTable":"Catalog_ФизическиеЛица","sFilter":"ИНН eq '%sINN'","sSelect":"Ref_Key"}}</d:Объект>
+                <d:Объект_Type>StandardODATA.Catalog_ФизическиеЛица</d:Объект_Type>
+                <d:Вид>{{"sTable":"Catalog_ВидыКонтактнойИнформации","sFilter":"Description eq 'Email физ. лица'","sSelect":"Ref_Key"}}</d:Вид>
+                <d:Вид_Type>StandardODATA.Catalog_ВидыКонтактнойИнформации</d:Вид_Type>
+            </m:properties>
+        </content>
+    </entry>
+
+    <entry bFailOnError="false" xmlns="http://www.w3.org/2005/Atom"
+           xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+           xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+        <category term="StandardODATA.InformationRegister_КонтактнаяИнформация"/>
+        <content>
+            <m:properties>
+                <d:Тип>Адрес</d:Тип>
+                <d:Представление>%sMisceJittia</d:Представление>
+                <d:Объект>{{"sTable":"Catalog_ФизическиеЛица","sFilter":"ИНН eq '%sINN'","sSelect":"Ref_Key"}}</d:Объект>
+                <d:Объект_Type>StandardODATA.Catalog_ФизическиеЛица</d:Объект_Type>
+                <d:Вид>{{"sTable":"Catalog_ВидыКонтактнойИнформации","sFilter":"Description eq 'Адрес проживания физ. лица'","sSelect":"Ref_Key"}}</d:Вид>
+                <d:Вид_Type>StandardODATA.Catalog_ВидыКонтактнойИнформации</d:Вид_Type>
+            </m:properties>
+        </content>
+    </entry>
+
+    <entry bFailOnError="false" xmlns="http://www.w3.org/2005/Atom"
+           xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+           xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+        <category term="StandardODATA.InformationRegister_КонтактнаяИнформация"/>
+        <content>
+            <m:properties>
+                <d:Тип>Адрес</d:Тип>
+                <d:Представление>%sMisceReestr</d:Представление>
+                <d:Объект>{{"sTable":"Catalog_ФизическиеЛица","sFilter":"ИНН eq '%sINN'","sSelect":"Ref_Key"}}</d:Объект>
+                <d:Объект_Type>StandardODATA.Catalog_ФизическиеЛица</d:Объект_Type>
+                <d:Вид>{{"sTable":"Catalog_ВидыКонтактнойИнформации","sFilter":"Description eq 'Адрес по прописке физ. лица'","sSelect":"Ref_Key"}}</d:Вид>
+                <d:Вид_Type>StandardODATA.Catalog_ВидыКонтактнойИнформации</d:Вид_Type>
+            </m:properties>
+        </content>
+    </entry>
+
+    <entry bFailOnError="false" xmlns="http://www.w3.org/2005/Atom"
+           xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+           xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+        <category term="StandardODATA.InformationRegister_ЗначенияСвойствОбъектов"/>
+        <content>
+            <m:properties>
+                <d:Объект>{{"sTable":"Catalog_ФизическиеЛица","sFilter":"ИНН eq '%sINN'","sSelect":"Ref_Key"}}</d:Объект>
+                <d:Объект_Type>StandardODATA.Catalog_ФизическиеЛица</d:Объект_Type>
+                <d:Значение>%sNationKniga</d:Значение>
+                <d:Значение_Type>Edm.String</d:Значение_Type>
+                <d:Свойство_Key>{{"sTable":"ChartOfCharacteristicTypes_СвойстваОбъектов","sFilter":"Description eq 'НомерТК'","sSelect":"Ref_Key"}}</d:Свойство_Key>
+            </m:properties>
+        </content>
+    </entry>
+
+    <entry bFailOnError="false" xmlns="http://www.w3.org/2005/Atom"
+           xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+           xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+        <category term="StandardODATA.InformationRegister_ФИОФизЛиц"/>
+        <content>
+            <m:properties>
+                <d:Period>%sDateRegistration[yyyy-MM-dd'T'HH:mm:ss]</d:Period>
+                <d:ФизЛицо>{{"sTable":"Catalog_ФизическиеЛица","sFilter":"ИНН eq '%sINN'","sSelect":"Ref_Key"}}</d:ФизЛицо>
+                <d:ФизЛицо_Type>StandardODATA.Catalog_ФизическиеЛица</d:ФизЛицо_Type>
+                <d:Фамилия>%sLastName</d:Фамилия>
+                <d:Имя>%sFirstName</d:Имя>
+                <d:Отчество>%sSurname</d:Отчество>
+            </m:properties>
+        </content>
+    </entry>
+
+    <entry bFailOnError="false" xmlns="http://www.w3.org/2005/Atom"
+           xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+           xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+        <category term="StandardODATA.InformationRegister_СемейноеПоложениеФизЛиц"/>
+        <content>
+            <m:properties>
+                <d:Period>%sDateRegistration[yyyy-MM-dd'T'HH:mm:ss]</d:Period>
+                <d:ФизЛицо_Key key="true">{{"sTable":"Catalog_ФизическиеЛица","sFilter":"ИНН eq '%sINN'","sSelect":"Ref_Key"}}</d:ФизЛицо_Key>
+                <d:СемейноеПоложение_Key>{{"sTable":"Catalog_СемейноеПоложениеФизЛиц","sFilter":"Description eq '%asRodStanRu'","sSelect":"Ref_Key"}}</d:СемейноеПоложение_Key>
+            </m:properties>
+        </content>
+    </entry>
+
+</feed>

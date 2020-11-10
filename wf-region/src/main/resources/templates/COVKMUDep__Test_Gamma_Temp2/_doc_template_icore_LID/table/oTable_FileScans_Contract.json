@@ -1,0 +1,14 @@
+{
+  "aField": [
+    {
+      "id": "sFileScans_Name",
+      "name": "Назва документа(тів)",
+      "type": "string"
+    },
+    {
+      "id": "oFileScans_File",
+      "name": "Скан документа(тів); ;bNew=true",
+      "type": "file"
+    }
+  ]
+}

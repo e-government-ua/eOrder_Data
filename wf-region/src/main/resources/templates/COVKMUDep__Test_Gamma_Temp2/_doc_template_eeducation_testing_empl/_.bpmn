@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <signal id="SessionEnd" name="SessionEnd" activiti:scope="processInstance"></signal>
+  <process id="_doc_template_eeducation_testing_empl" name="Тестирование всех сотрудников на стандарты" isExecutable="true">
+    <documentation>;bTemplated=true</documentation>
+    <startEvent id="startevent1" name="Start">
+      <extensionElements>
+        <activiti:formProperty id="oTable_Employees" name="Таблица сотрудников; ;bNew=true" type="table"></activiti:formProperty>
+      </extensionElements>
+    </startEvent>
+    <userTask id="usertask1" name="Создание">
+      <extensionElements>
+        <activiti:formProperty id="oTable_Employees" name="Таблица сотрудников; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sID_GoogleExcel_Question" name="Таблица с вопросами;;bVisible=false" type="select" default="https://docs.google.com/spreadsheets/d/1aUQJBJCDa0KH8ecGdLaEvVsocVAjEpKJBN59HyEsflQ" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sID_GoogleExcel_Answer" name="Таблица с ответами; ;bVisible=false" type="select" default="https://docs.google.com/spreadsheets/d/1aUQJBJCDa0KH8ecGdLaEvVsocVAjEpKJBN59HyEsflQ" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sNameDoc" name="Название документа;;bVisible=false" type="string" default="Тестирование сотрудника на стандарты"></activiti:formProperty>
+        <activiti:formProperty id="sasKey_Program" name="Список строк-ключей программ обучения;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="processInstanceId_Document_Parent" name="processInstanceId_Document_Parent;;bVisible=false" type="string" expression="${generalConfig.getOrderId_ByProcess(generalConfig.getSelfServerId(), execution.getProcessInstanceId()).toString()}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow1" sourceRef="servicetask1" targetRef="scripttask2"></sequenceFlow>
+    <serviceTask id="servicetask1" name="Старт БП &quot;Тестирование&quot;" activiti:delegateExpression="#{createDocument}">
+      <extensionElements>
+        <activiti:field name="sID_BP">
+          <activiti:string><![CDATA[_doc_template_eeducation_testing]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sLoginAuthor">
+          <activiti:expression><![CDATA[${sLoginForBPStart}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="soData">
+          <activiti:string><![CDATA[sNameDoc::value{[sNameDoc]};;sasKey_Program::value{[sasKey_Program]};;processInstanceId_Document_Parent::value{[processInstanceId_Document_Parent]};;]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow7" sourceRef="startevent1" targetRef="scripttask1"></sequenceFlow>
+    <scriptTask id="scripttask1" name="Script Task" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>var snID_Process_Activiti = execution.getProcessInstanceId();
+var saEmploees = oSubjectRoleService.getsEmployeesLoginsOfRoles('RoleDocumentoborot', null);
+var aEmploees = saEmploees.split(',');
+var nTestsTotal = 0;
+
+var aoEmploees = [];
+
+for (i = 0; i &lt; aEmploees.length; i++) {
+    oEmploee = subjectService.getEmployee(aEmploees[i], false);
+    oTableRow = {};
+
+    if (oEmploee.oSubjectStatus.sName == "Working" || oEmploee.oSubjectStatus.sName == "Ill" || oEmploee.oSubjectStatus.sName == "Vacation") {
+
+        oTableRow.sName_Empl = oEmploee.sLastName + ' ' + oEmploee.sFirstName + ' ' + oEmploee.sPatronymic;
+        oTableRow.sLogin_Empl = aEmploees[i]; 
+        oTableRow.sCurator = "false";
+        oTableRow.saWorkState = oEmploee.oSubjectStatus.sName;
+
+        aoEmploees.push(oTableRow);
+        ++nTestsTotal;
+    }
+};
+
+processDocumentService.setProcessDocumentFieldTable_ByExecution(execution,'oTable_Employees', JSON.stringify(aoEmploees), false);
+execution.setVariable('aoEmploees', JSON.stringify(aoEmploees));
+execution.setVariable('nTestsTotal', nTestsTotal);
+execution.setVariable('nTests',0);</script>
+    </scriptTask>
+    <sequenceFlow id="flow8" sourceRef="scripttask1" targetRef="usertask1"></sequenceFlow>
+    <sequenceFlow id="flow9" sourceRef="usertask1" targetRef="scripttask3"></sequenceFlow>
+    <scriptTask id="scripttask2" name="Script Task" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>var nCounter = execution.getVariable('nCounter') - 1;
+var bEndOfEmploeesList = false
+var sasKey_Program = "Common"
+
+
+var snID_Process_Activiti = execution.getProcessInstanceId(); 
+
+var sName_Table = 'oTable_Employees';
+
+var sLogin_Empl = 'sLogin_Empl';
+var asEmploeesLogin = taskForm.getValuesFromTableField(snID_Process_Activiti, sName_Table, sLogin_Empl);
+
+var sName_Empl = "sName_Empl";
+var asName_Empl = taskForm.getValuesFromTableField(snID_Process_Activiti, sName_Table, sName_Empl);
+
+var saSection = "saSection";
+var asaSection = taskForm.getValuesFromTableField(snID_Process_Activiti, sName_Table, saSection);
+
+var sCurator = "sCurator";
+var asCurator = taskForm.getValuesFromTableField(snID_Process_Activiti, sName_Table, sCurator);
+
+var sIT_type = "sIT_type";
+var asIT_type = taskForm.getValuesFromTableField(snID_Process_Activiti, sName_Table, sIT_type);
+
+var saWorkState = "saWorkState";
+var asaWorkState = taskForm.getValuesFromTableField(snID_Process_Activiti, sName_Table, saWorkState);
+
+if(nCounter &lt; 0) {
+    bEndOfEmploeesList = true;
+} else {
+    execution.setVariable('sLoginForBPStart',asEmploeesLogin[nCounter]);
+
+    if(asaSection[nCounter] == "sBA") {
+        sasKey_Program = sasKey_Program + ",BA"
+        
+        if(asCurator[nCounter] == "yes") {
+            sasKey_Program = sasKey_Program + ",BA-Curator"
+        };
+    } else if(asaSection[nCounter] == "sIT") {
+        sasKey_Program = sasKey_Program + ",IT"
+        
+        if(asCurator[nCounter] == "yes") {
+            sasKey_Program = sasKey_Program + ",IT-Curator"            
+        };
+
+        if(asIT_type[nCounter] == "sFront") {
+            sasKey_Program = sasKey_Program + ",IT-Front"
+        } else if (asIT_type[nCounter] == "sBack") {
+            sasKey_Program = sasKey_Program + ",IT-Back"
+        } else if (asIT_type[nCounter] == "sDevop") {
+            sasKey_Program = sasKey_Program + ",IT-DevOp"
+        };
+    };
+
+    execution.setVariable('sasKey_Program',sasKey_Program);
+};
+
+execution.setVariable('nCounter', nCounter);
+
+execution.setVariable('bEndOfEmploeesList', bEndOfEmploeesList);</script>
+    </scriptTask>
+    <sequenceFlow id="flow10" sourceRef="scripttask2" targetRef="timerintermediatecatchevent1"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway" default="flow12"></exclusiveGateway>
+    <sequenceFlow id="flow11" sourceRef="exclusivegateway1" targetRef="signalintermediatecatchevent1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${bEndOfEmploeesList}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow12" sourceRef="exclusivegateway1" targetRef="servicetask1"></sequenceFlow>
+    <scriptTask id="scripttask3" name="Set counter" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>var processInstanceId_Document_Parent = execution.getVariable('processInstanceId_Document_Parent').split('-')[1].slice(0,-1);
+execution.setVariable('processInstanceId_Document_Parent', processInstanceId_Document_Parent);
+
+var snID_Process_Activiti = execution.getProcessInstanceId(); 
+
+var sName_Table = 'oTable_Employees';
+
+var sLogin_Empl = 'sLogin_Empl';
+var asEmploeesLogin = taskForm.getValuesFromTableField(snID_Process_Activiti, sName_Table, sLogin_Empl);
+
+var nCounter = asEmploeesLogin.length
+execution.setVariable('nCounter', nCounter);
+
+var bAllTestsComplited = false;
+execution.setVariable('bAllTestsComplited',bAllTestsComplited);</script>
+    </scriptTask>
+    <sequenceFlow id="flow13" sourceRef="scripttask3" targetRef="scripttask2"></sequenceFlow>
+    <intermediateCatchEvent id="timerintermediatecatchevent1" name="TimerCatchEvent">
+      <timerEventDefinition>
+        <timeDuration>PT6S</timeDuration>
+      </timerEventDefinition>
+    </intermediateCatchEvent>
+    <sequenceFlow id="flow14" sourceRef="timerintermediatecatchevent1" targetRef="exclusivegateway1"></sequenceFlow>
+    <intermediateCatchEvent id="signalintermediatecatchevent1" name="SignalCatchEvent">
+      <signalEventDefinition signalRef="SessionEnd"></signalEventDefinition>
+    </intermediateCatchEvent>
+    <sequenceFlow id="flow15" sourceRef="signalintermediatecatchevent1" targetRef="scripttask4"></sequenceFlow>
+    <scriptTask id="scripttask4" name="Обробка сигналу" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>// Обробка сигналу
+
+var nTestsTotal = execution.getVariable('nTestsTotal');
+var nTests = execution.getVariable('nTests') + 1;
+
+var bAllTestsComplited = execution.getVariable('bAllTestsComplited');
+
+if(nTests == nTestsTotal) {
+    bAllTestsComplited = true;
+};
+
+execution.setVariable('bAllTestsComplited',bAllTestsComplited);
+execution.setVariable('nTests',nTests);</script>
+    </scriptTask>
+    <exclusiveGateway id="exclusivegateway2" name="Exclusive Gateway" default="flow17"></exclusiveGateway>
+    <sequenceFlow id="flow16" sourceRef="scripttask4" targetRef="exclusivegateway2"></sequenceFlow>
+    <sequenceFlow id="flow17" sourceRef="exclusivegateway2" targetRef="signalintermediatecatchevent1"></sequenceFlow>
+    <sequenceFlow id="flow18" sourceRef="exclusivegateway2" targetRef="endevent1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${bAllTestsComplited}]]></conditionExpression>
+    </sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram__doc_template_eeducation_testing_empl">
+    <bpmndi:BPMNPlane bpmnElement="_doc_template_eeducation_testing_empl" id="BPMNPlane__doc_template_eeducation_testing_empl">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="80.0" y="100.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="340.0" y="90.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="1100.0" y="100.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask1" id="BPMNShape_servicetask1">
+        <omgdc:Bounds height="71.0" width="105.0" x="512.0" y="82.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask1" id="BPMNShape_scripttask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="196.0" y="90.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask2" id="BPMNShape_scripttask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="512.0" y="261.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway1" id="BPMNShape_exclusivegateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="698.0" y="97.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask3" id="BPMNShape_scripttask3">
+        <omgdc:Bounds height="55.0" width="105.0" x="340.0" y="261.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="timerintermediatecatchevent1" id="BPMNShape_timerintermediatecatchevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="701.0" y="271.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="signalintermediatecatchevent1" id="BPMNShape_signalintermediatecatchevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="800.0" y="100.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask4" id="BPMNShape_scripttask4">
+        <omgdc:Bounds height="55.0" width="105.0" x="765.0" y="200.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway2" id="BPMNShape_exclusivegateway2">
+        <omgdc:Bounds height="40.0" width="40.0" x="984.0" y="97.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="564.0" y="153.0"></omgdi:waypoint>
+        <omgdi:waypoint x="564.0" y="261.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
+        <omgdi:waypoint x="115.0" y="117.0"></omgdi:waypoint>
+        <omgdi:waypoint x="196.0" y="117.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow8" id="BPMNEdge_flow8">
+        <omgdi:waypoint x="301.0" y="117.0"></omgdi:waypoint>
+        <omgdi:waypoint x="340.0" y="117.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow9" id="BPMNEdge_flow9">
+        <omgdi:waypoint x="392.0" y="145.0"></omgdi:waypoint>
+        <omgdi:waypoint x="392.0" y="261.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow10" id="BPMNEdge_flow10">
+        <omgdi:waypoint x="617.0" y="288.0"></omgdi:waypoint>
+        <omgdi:waypoint x="701.0" y="288.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow11" id="BPMNEdge_flow11">
+        <omgdi:waypoint x="738.0" y="117.0"></omgdi:waypoint>
+        <omgdi:waypoint x="800.0" y="117.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow12" id="BPMNEdge_flow12">
+        <omgdi:waypoint x="698.0" y="117.0"></omgdi:waypoint>
+        <omgdi:waypoint x="617.0" y="117.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow13" id="BPMNEdge_flow13">
+        <omgdi:waypoint x="445.0" y="288.0"></omgdi:waypoint>
+        <omgdi:waypoint x="512.0" y="288.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow14" id="BPMNEdge_flow14">
+        <omgdi:waypoint x="718.0" y="271.0"></omgdi:waypoint>
+        <omgdi:waypoint x="718.0" y="137.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow15" id="BPMNEdge_flow15">
+        <omgdi:waypoint x="817.0" y="135.0"></omgdi:waypoint>
+        <omgdi:waypoint x="817.0" y="200.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow16" id="BPMNEdge_flow16">
+        <omgdi:waypoint x="870.0" y="227.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1003.0" y="227.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1004.0" y="137.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow17" id="BPMNEdge_flow17">
+        <omgdi:waypoint x="984.0" y="117.0"></omgdi:waypoint>
+        <omgdi:waypoint x="835.0" y="117.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow18" id="BPMNEdge_flow18">
+        <omgdi:waypoint x="1024.0" y="117.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1100.0" y="117.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

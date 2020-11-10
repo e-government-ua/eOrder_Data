@@ -1,0 +1,12 @@
+nID;sName;sNote;nID_SubjectType;nID_SubjectStatusType
+1;Working;Працює;1;1
+2;Vacation;У відпустці;1;1
+3;Dismissed;Звільнений;1;1
+4;Active;Діюче;2;2
+5;Inactive;Не діюче;2;2
+6;Deleted;Видалено;null;1
+7;Blocked;Заблокований;1;1
+8;External;Активний зовнішній суб’єкт;null;3
+9;ExternalBanned;Забанений зовнішній суб’єкт;null;3
+10;Ill;На лікарняному;1;1
+11;Decree;У декреті;1;1

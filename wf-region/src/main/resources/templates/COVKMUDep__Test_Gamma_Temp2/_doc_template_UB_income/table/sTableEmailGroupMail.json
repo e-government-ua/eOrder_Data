@@ -1,0 +1,9 @@
+{
+  "aField": [
+    {
+      "id": "sName_nameGroupMail",
+      "name": "Групова скринька; ;sID_Relation=sID_Relation,nID_Parent=nID_Parent",
+      "type": "select"
+    }
+  ]
+}

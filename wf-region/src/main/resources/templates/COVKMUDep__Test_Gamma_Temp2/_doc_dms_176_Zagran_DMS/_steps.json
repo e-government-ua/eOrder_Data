@@ -1,0 +1,31 @@
+{
+  "oProperties":{ 
+      "bSkipStepCreate":true
+       },
+   "_:Watch": {
+	"_default_author": {
+      "oMission": {"sKey_Right":"SignRelease"},
+        "oRights": {
+      	"Manage": {},
+		"ManageViewers": {"bDisable": true},
+      	"AddSignerRead": {"bDisable": true},      	
+        "ManageJoin": {"bDisable": true},
+        "TaskAdd": {"bDisable": true},
+        "TaskEdit": {"bDisable": true},
+        "TaskRemove": {"bDisable": true}
+      }
+    },
+    "_default_agree": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"EditFields": {},
+     	"SignWriteNotNeed":{},
+      	"SignComment": {},
+      	"AddSignerWriteAgree": {}
+     }
+    }
+  },
+  "step_create:Create": {},
+  "step_agree:Agree": {}
+
+}

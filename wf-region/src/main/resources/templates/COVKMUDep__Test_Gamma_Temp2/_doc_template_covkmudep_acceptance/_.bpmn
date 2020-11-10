@@ -1,0 +1,1684 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="_doc_template_covkmudep_acceptance" name="Прийом на випробувальний термін" isExecutable="true">
+    <documentation>;bTemplated=true</documentation>
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <userTask id="usertask1" name="Створення документа.Надання документів кандидатом">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sVakansy" name="Посада" type="string" required="true"></activiti:formProperty>
+        
+        <activiti:formProperty id="bankIdlastName" name="Прізвище" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdfirstName" name="Ім'я" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdmiddleName" name="По батькові" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="email" name="Почтова скринька(e-mail)" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="phone" name="Телефон" type="string" required="true"></activiti:formProperty>
+        
+        <activiti:formProperty id="bankIdinn" name="Ваш ІПН;(РНОКПП для фізичних осіб підприємців)" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdPassport" name="Паспортні дані ;(Серія, номер, ким видано)" type="string"></activiti:formProperty>
+        
+        <activiti:formProperty id="sBirthCountry" name="Країна народження" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="dBirth" name="Дата народження" type="date" required="true"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_2" name="Володіння мовами" type="markers" default="{&quot;attributes&quot;:{&quot;Line_2&quot;:{&quot;aElement_ID&quot;:[&quot;MovaTable&quot;],&quot;sValue&quot;:&quot;Володіння мовами&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="MovaTable" name="Володіння мовами; ;bNew=true" type="table" default="{&quot;aField&quot;:[{&quot;id&quot;:&quot;nTable1&quot;,&quot;name&quot;:&quot;Мова&quot;,&quot;type&quot;:&quot;string&quot;,&quot;required&quot;:&quot;true&quot;,&quot;nWidth&quot;:&quot;30%&quot;},{&quot;id&quot;:&quot;nTable2&quot;,&quot;name&quot;:&quot;Диплом, сертифікат&quot;,&quot;type&quot;:&quot;string&quot;,&quot;required&quot;:&quot;true&quot;,&quot;nWidth&quot;:&quot;35%&quot;},{&quot;id&quot;:&quot;nTable3&quot;,&quot;name&quot;:&quot;Рівень володіння&quot;,&quot;type&quot;:&quot;string&quot;,&quot;required&quot;:&quot;true&quot;,&quot;nWidth&quot;:&quot;35%&quot;}]}"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_3" name="Перелік навчальних закладів" type="markers" default="{&quot;attributes&quot;:{&quot;Line_3&quot;:{&quot;aElement_ID&quot;:[&quot;VNZTable&quot;],&quot;sValue&quot;:&quot;Перелік навчальних закладів&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="VNZTable" name="Перелік навчальних закладів; ;bNew=true" type="table" default="{&quot;aField&quot;:[{&quot;id&quot;:&quot;nTable1&quot;,&quot;name&quot;:&quot;Найменування навчального закладу&quot;,&quot;type&quot;:&quot;string&quot;,&quot;required&quot;:&quot;true&quot;,&quot;nWidth&quot;:&quot;20%&quot;},{&quot;id&quot;:&quot;nTable2&quot;,&quot;name&quot;:&quot;Рік вступу&quot;,&quot;type&quot;:&quot;date&quot;,&quot;required&quot;:&quot;true&quot;,&quot;nWidth&quot;:&quot;13%&quot;},{&quot;id&quot;:&quot;nTable3&quot;,&quot;name&quot;:&quot;Рік закінчення&quot;,&quot;type&quot;:&quot;date&quot;,&quot;required&quot;:&quot;true&quot;,&quot;nWidth&quot;:&quot;13%&quot;},{&quot;id&quot;:&quot;nTable4&quot;,&quot;name&quot;:&quot;Спеціальність&quot;,&quot;type&quot;:&quot;string&quot;,&quot;required&quot;:&quot;true&quot;,&quot;nWidth&quot;:&quot;15%&quot;},{&quot;id&quot;:&quot;nTable5&quot;,&quot;name&quot;:&quot;Кваліфікація&quot;,&quot;type&quot;:&quot;string&quot;,&quot;required&quot;:&quot;true&quot;,&quot;nWidth&quot;:&quot;16%&quot;},{&quot;id&quot;:&quot;nTable6&quot;,&quot;name&quot;:&quot;Номер диплому&quot;,&quot;type&quot;:&quot;string&quot;,&quot;required&quot;:&quot;true&quot;,&quot;nWidth&quot;:&quot;10%&quot;},{&quot;id&quot;:&quot;nTable7&quot;,&quot;name&quot;:&quot;Дата видачі диплому&quot;,&quot;type&quot;:&quot;date&quot;,&quot;required&quot;:&quot;true&quot;,&quot;nWidth&quot;:&quot;13%&quot;}]}"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_4" name="Місця роботи" type="markers" default="{&quot;attributes&quot;:{&quot;Line_4&quot;:{&quot;aElement_ID&quot;:[&quot;sWorkAllTime&quot;],&quot;sValue&quot;:&quot;Місця роботи&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sWorkAllTime" name="Загальний стаж роботи" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="WorkTable" name="Місце роботи; ;bNew=true" type="table" default="{&quot;aField&quot;:[{&quot;id&quot;:&quot;nTable1&quot;,&quot;name&quot;:&quot;Назва установи&quot;,&quot;type&quot;:&quot;string&quot;,&quot;required&quot;:&quot;true&quot;,&quot;nWidth&quot;:&quot;25%&quot;},{&quot;id&quot;:&quot;nTable2&quot;,&quot;name&quot;:&quot;Посада&quot;,&quot;type&quot;:&quot;string&quot;,&quot;required&quot;:&quot;true&quot;,&quot;nWidth&quot;:&quot;25%&quot;},{&quot;id&quot;:&quot;nTable3&quot;,&quot;name&quot;:&quot;Період роботи&quot;,&quot;type&quot;:&quot;date&quot;,&quot;required&quot;:&quot;true&quot;,&quot;nWidth&quot;:&quot;20%&quot;},{&quot;id&quot;:&quot;nTable4&quot;,&quot;name&quot;:&quot;Основні обов’язки&quot;,&quot;type&quot;:&quot;string&quot;,&quot;nWidth&quot;:&quot;30%&quot;}]}"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_5" name="Інші відомості" type="markers" default="{&quot;attributes&quot;:{&quot;Line_5&quot;:{&quot;aElement_ID&quot;:[&quot;tDodVidomosty&quot;],&quot;sValue&quot;:&quot;Інші відомості&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="tDodVidomosty" name="Зміст додаткових відомостей" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="tSpecVumogu" name="Спеціальні вимоги" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="nFile_Dod" name="Додаткові документи;(завантажте єдиним PDF файлом);bNew=true" type="file"></activiti:formProperty>
+        
+        <activiti:formProperty id="sLogin_DelegateUT2" name="sLogin_DelegateUT2 ; ;bVisible=false" type="string"></activiti:formProperty>
+        
+        <activiti:formProperty id="sEmailTest" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на узгодження надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest1" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на затвердження надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest2" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на ознайомлення надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        
+        <activiti:formProperty id="sRoles" name="sRoles ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentOsobi" name="Копія паспорта громадянина України;;bNew=true" type="file" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sCopyINN" name="Копія ІПН; ;bNew=true" type="file" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sProtokol" name="Протокол конкурсної комісії; ;bNew=true" type="file" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sZgoda" name="Згода на проведення спеціальної перевірки; ;bNew=true" type="file" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sTrudova" name="Трудова книжка; ;bNew=true" type="file" required="true"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask2" name="Кадрова служба. Перевірка інформації. Кандидат :: ${bankIdlastName} ${bankIdfirstName}" default="flow85">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdlastName" name="Прізвище" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdfirstName" name="Ім'я" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdmiddleName" name="По батькові" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sVakansy" name="Посада" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="email" name="Почтова скринька(e-mail)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="phone" name="Телефон" type="string" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="bankIdinn" name="ІПН;(РНОКПП для фізичних осіб підприємців)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdPassport" name="Паспортні дані ;(Серія, номер, ким видано)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBirthCountry" name="Країна народження" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="dBirth" name="Дата народження" type="date" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_2" name="Володіння мовами" type="markers" default="{&quot;attributes&quot;:{&quot;Line_2&quot;:{&quot;aElement_ID&quot;:[&quot;MovaTable&quot;],&quot;sValue&quot;:&quot;Володіння мовами&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="MovaTable" name="Володіння мовами; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_3" name="Перелік навчальних закладів" type="markers" default="{&quot;attributes&quot;:{&quot;Line_3&quot;:{&quot;aElement_ID&quot;:[&quot;VNZTable&quot;],&quot;sValue&quot;:&quot;Перелік навчальних закладів&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="VNZTable" name="Перелік навчальних закладів; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_4" name="Місця роботи" type="markers" default="{&quot;attributes&quot;:{&quot;Line_4&quot;:{&quot;aElement_ID&quot;:[&quot;sWorkAllTime&quot;],&quot;sValue&quot;:&quot;Місця роботи&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sWorkAllTime" name="Загальний стаж роботи" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="WorkTable" name="Місце роботи; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_5" name="Інші відомості" type="markers" default="{&quot;attributes&quot;:{&quot;Line_5&quot;:{&quot;aElement_ID&quot;:[&quot;tDodVidomosty&quot;],&quot;sValue&quot;:&quot;Інші відомості&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="tDodVidomosty" name="Зміст додаткових відомостей" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="tSpecVumogu" name="Спеціальні вимоги" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="nFile_Dod" name="Додаткові документи; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="sLogin_DelegateUT2" name="sLogin_DelegateUT2 ; ;bVisible=false" type="string"></activiti:formProperty>
+        
+        <activiti:formProperty id="sEmailTest" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на узгодження надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest1" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на затвердження надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest2" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на ознайомлення надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        
+        <activiti:formProperty id="sRoles" name="sRoles ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentOsobi" name="Копія паспорта громадянина України;;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCopyINN" name="Копія ІПН; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sProtokol" name="Протокол конкурсної комісії; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sZgoda" name="Згода на проведення спеціальної перевірки; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTrudova" name="Трудова книжка; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTable_AuthorRezol" name="Керівник підрозділу; ;bNew=true" type="table" required="true"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask3" name="Опрацювання Державним секретарем. Кандидат :: ${bankIdlastName} ${bankIdfirstName}">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdlastName" name="Прізвище" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdfirstName" name="Ім'я" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdmiddleName" name="По батькові" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sVakansy" name="Посада" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="email" name="Почтова скринька(e-mail)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="phone" name="Телефон" type="string" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="bankIdinn" name="ІПН;(РНОКПП для фізичних осіб підприємців)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdPassport" name="Паспортні дані ;(Серія, номер, ким видано)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBirthCountry" name="Країна народження" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="dBirth" name="Дата народження" type="date" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_2" name="Володіння мовами" type="markers" default="{&quot;attributes&quot;:{&quot;Line_2&quot;:{&quot;aElement_ID&quot;:[&quot;MovaTable&quot;],&quot;sValue&quot;:&quot;Володіння мовами&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="MovaTable" name="Володіння мовами; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_3" name="Перелік навчальних закладів" type="markers" default="{&quot;attributes&quot;:{&quot;Line_3&quot;:{&quot;aElement_ID&quot;:[&quot;VNZTable&quot;],&quot;sValue&quot;:&quot;Перелік навчальних закладів&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="VNZTable" name="Перелік навчальних закладів; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_4" name="Місця роботи" type="markers" default="{&quot;attributes&quot;:{&quot;Line_4&quot;:{&quot;aElement_ID&quot;:[&quot;sWorkAllTime&quot;],&quot;sValue&quot;:&quot;Місця роботи&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sWorkAllTime" name="Загальний стаж роботи" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="WorkTable" name="Місце роботи; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_5" name="Інші відомості" type="markers" default="{&quot;attributes&quot;:{&quot;Line_5&quot;:{&quot;aElement_ID&quot;:[&quot;tDodVidomosty&quot;],&quot;sValue&quot;:&quot;Інші відомості&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="tDodVidomosty" name="Зміст додаткових відомостей" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="tSpecVumogu" name="Спеціальні вимоги" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="nFile_Dod" name="Додаткові документи; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="sLogin_DelegateUT2" name="sLogin_DelegateUT2 ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Доповідна записка;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1rp3vjXaeuzlgC4yEBt-W7n6tW7EJIi3s2YpVehlrbL0', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="Наказ;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true,bDocumentSubTabPrintformDefault=true" type="string" default="{'sPathFile':'1LOMIa1X_vnal_a7yCLacmTRMNosjBWXpIR99QRk8_7Y', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        
+        <activiti:formProperty id="sEmailTest" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на узгодження надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest1" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на затвердження надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest2" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на ознайомлення надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sRoles" name="sRoles ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentOsobi" name="Копія паспорта громадянина України;;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCopyINN" name="Копія ІПН; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sProtokol" name="Протокол конкурсної комісії; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sZgoda" name="Згода на проведення спеціальної перевірки; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTrudova" name="Трудова книжка; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDopZap" name="Доповідна записка; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sStrok" name="Випробувальний термін" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sApproval" name="Затверджено?" type="enum" required="true">
+          <activiti:value id="sYes" name="Так"></activiti:value>
+          <activiti:value id="sNo" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTable_AuthorRezol" name="Керівник підрозділу; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Документи для спец.перевірки та люстрації; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask4" name="Можливість редагування документу Кандидат :: ${bankIdlastName} ${bankIdfirstName}" default="FlowButton_VernutNaVizirovanie">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdlastName" name="Прізвище" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdfirstName" name="Ім'я" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdmiddleName" name="По батькові" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="email" name="Почтова скринька(e-mail)" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="phone" name="Телефон" type="string" required="true"></activiti:formProperty>
+        
+        <activiti:formProperty id="bankIdinn" name="ІПН;(РНОКПП для фізичних осіб підприємців)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdPassport" name="Паспортні дані ;(Серія, номер, ким видано)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBirthCountry" name="Країна народження" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="dBirth" name="Дата народження" type="date" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_2" name="Володіння мовами" type="markers" default="{&quot;attributes&quot;:{&quot;Line_2&quot;:{&quot;aElement_ID&quot;:[&quot;MovaTable&quot;],&quot;sValue&quot;:&quot;Володіння мовами&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="MovaTable" name="Володіння мовами; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_3" name="Перелік навчальних закладів" type="markers" default="{&quot;attributes&quot;:{&quot;Line_3&quot;:{&quot;aElement_ID&quot;:[&quot;VNZTable&quot;],&quot;sValue&quot;:&quot;Перелік навчальних закладів&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="VNZTable" name="Перелік навчальних закладів; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_4" name="Місця роботи" type="markers" default="{&quot;attributes&quot;:{&quot;Line_4&quot;:{&quot;aElement_ID&quot;:[&quot;sWorkAllTime&quot;],&quot;sValue&quot;:&quot;Місця роботи&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sWorkAllTime" name="Загальний стаж роботи" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="WorkTable" name="Місце роботи; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_5" name="Інші відомості" type="markers" default="{&quot;attributes&quot;:{&quot;Line_5&quot;:{&quot;aElement_ID&quot;:[&quot;tDodVidomosty&quot;],&quot;sValue&quot;:&quot;Інші відомості&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="tDodVidomosty" name="Зміст додаткових відомостей" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="tSpecVumogu" name="Спеціальні вимоги" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="nFile_Dod" name="Додаткові документи; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="sName_DelegateUT2" name="Керівник; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_DelegateUT2" name="sLogin_DelegateUT2 ; ;bVisible=false" type="string"></activiti:formProperty>
+        
+        <activiti:formProperty id="sBody_1" name="Наказ;;bPrintform=true,bVisible=false" type="string" default="${oTemplateService.getFieldDataPath(execution, 'printform/sBody_1.html')}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на узгодження надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest1" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на затвердження надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest2" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на ознайомлення надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sRoles" name="sRoles ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentOsobi" name="Копія паспорта громадянина України;;bNew=true" type="file" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sCopyINN" name="Копія ІПН; ;bNew=true" type="file" required="true"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow71" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
+    <sequenceFlow id="flow76" sourceRef="usertask1" targetRef="servicetask5">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <serviceTask id="servicetask2" name="Send Email" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[IDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow80" sourceRef="servicetask2" targetRef="usertask2">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="#{setDocumentSignersListener}">
+          <activiti:field name="sKey_TemplateSigner">
+            <activiti:string><![CDATA[_default_accept]]></activiti:string>
+          </activiti:field>
+          <activiti:field name="sasLogin">
+            <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('DefaultAcceptor', null)}]]></activiti:expression>
+          </activiti:field>
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_accept]]></activiti:string>
+          </activiti:field>
+          <activiti:field name="sKey_Fields">
+            <activiti:string><![CDATA[sRoles]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="FlowButton_VzyatNaRedaktirovanie" name="Редагувати;sIF=hasAny-States(Authorship)" sourceRef="usertask2" targetRef="usertask4">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[edit]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_VzyatNaRedaktirovanie')}]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway id="exclusivegateway6" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="FlowButton_VernutNaVizirovanie" name="Підписати;sIF=hasAny-States(Authorship)" sourceRef="usertask4" targetRef="exclusivegateway6">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_VernutNaVizirovanie')}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="FlowButton_SnosIVernutNaVizirovanie" name="Підписати та знести підписи;sIF=hasAny-States(Authorship)" sourceRef="usertask4" targetRef="exclusivegateway6">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentResetStepTypesListener}">
+          <activiti:field name="sasKey_StepType">
+            <activiti:string><![CDATA[Accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_SnosIVernutNaVizirovanie')}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow84" sourceRef="exclusivegateway6" targetRef="servicetask5">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepPreviousListener}"></activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <exclusiveGateway id="exclusivegateway7" name="Exclusive Gateway" default="flow86"></exclusiveGateway>
+    <sequenceFlow id="flow85" sourceRef="usertask2" targetRef="exclusivegateway7"></sequenceFlow>
+    <sequenceFlow id="flow86" sourceRef="exclusivegateway7" targetRef="usertask2"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway8" name="Exclusive Gateway" default="flow88"></exclusiveGateway>
+    <sequenceFlow id="flow87" sourceRef="exclusivegateway7" targetRef="exclusivegateway8">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow88" name="перевірка всіх підписів" sourceRef="exclusivegateway8" targetRef="usertask2">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[+1]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <serviceTask id="servicetask3" name="Send Email" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_agree_2]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[IDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTest1]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow89" sourceRef="exclusivegateway8" targetRef="servicetask20">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_accept_1]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisTypeStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow90" sourceRef="servicetask3" targetRef="usertask3"></sequenceFlow>
+    <sequenceFlow id="FlowButton_VzyatNaRedaktirovanieUzgodjennia" name="Редагувати;sIF=hasAny-States(Authorship)" sourceRef="usertask3" targetRef="usertask6">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[edit]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_VzyatNaRedaktirovanieUzgodjennia')}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="usertask6" name="Можливість редагування документу" default="FlowButton_VernutNaVizirovanie">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdlastName" name="Прізвище" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdfirstName" name="Ім'я" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdmiddleName" name="По батькові" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="email" name="Почтова скринька(e-mail)" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="phone" name="Телефон" type="string" required="true"></activiti:formProperty>
+        
+        <activiti:formProperty id="bankIdinn" name="ІПН;(РНОКПП для фізичних осіб підприємців)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdPassport" name="Паспортні дані ;(Серія, номер, ким видано)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBirthCountry" name="Країна народження" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="dBirth" name="Дата народження" type="date" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_2" name="Володіння мовами" type="markers" default="{&quot;attributes&quot;:{&quot;Line_2&quot;:{&quot;aElement_ID&quot;:[&quot;MovaTable&quot;],&quot;sValue&quot;:&quot;Володіння мовами&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="MovaTable" name="Володіння мовами; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_3" name="Перелік навчальних закладів" type="markers" default="{&quot;attributes&quot;:{&quot;Line_3&quot;:{&quot;aElement_ID&quot;:[&quot;VNZTable&quot;],&quot;sValue&quot;:&quot;Перелік навчальних закладів&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="VNZTable" name="Перелік навчальних закладів; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_4" name="Місця роботи" type="markers" default="{&quot;attributes&quot;:{&quot;Line_4&quot;:{&quot;aElement_ID&quot;:[&quot;sWorkAllTime&quot;],&quot;sValue&quot;:&quot;Місця роботи&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sWorkAllTime" name="Загальний стаж роботи" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="WorkTable" name="Місце роботи; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_5" name="Інші відомості" type="markers" default="{&quot;attributes&quot;:{&quot;Line_5&quot;:{&quot;aElement_ID&quot;:[&quot;tDodVidomosty&quot;],&quot;sValue&quot;:&quot;Інші відомості&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="tDodVidomosty" name="Зміст додаткових відомостей" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="tSpecVumogu" name="Спеціальні вимоги" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="nFile_Dod" name="Додаткові документи; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="sName_DelegateUT2" name="Керівник; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_DelegateUT2" name="sLogin_DelegateUT2 ; ;bVisible=false" type="string"></activiti:formProperty>
+        
+        <activiti:formProperty id="sBody_1" name="Наказ;;bPrintform=true,bVisible=false" type="string" default="${oTemplateService.getFieldDataPath(execution, 'printform/sBody_1.html')}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на узгодження надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest1" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на затвердження надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest2" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на ознайомлення надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sRoles" name="sRoles ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentOsobi" name="Копія паспорта громадянина України;;bNew=true" type="file" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sCopyINN" name="Копія ІПН; ;bNew=true" type="file" required="true"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <exclusiveGateway id="exclusivegateway9" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="FlowButton_SnosIVernutNaVizirovanieUzgodjennia" name="Підписати;sIF=hasAny-States(Authorship)" sourceRef="usertask6" targetRef="exclusivegateway9">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentResetStepTypesListener}">
+          <activiti:field name="sasKey_StepType">
+            <activiti:string><![CDATA[Accept,Agree]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_SnosIVernutNaVizirovanieUzgodjennia')}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow94" sourceRef="exclusivegateway9" targetRef="servicetask5">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <serviceTask id="servicetask5" name="права (технічний крок)" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('kadri_vikonavec', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sTitleDoc]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow106" sourceRef="servicetask5" targetRef="servicetask2"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway14" name="Exclusive Gateway"></exclusiveGateway>
+    <endEvent id="endevent3" name="End"></endEvent>
+    <sequenceFlow id="flow108" name="Держ.секретар не погодив" sourceRef="exclusivegateway14" targetRef="servicetask31">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Seen]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${sApproval == 'sNo'}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="usertask8" name="КС.Формування пакету документів (довідка про проход спец перевірки та довідка про проход люстрации )) Кандидат :: ${bankIdlastName} ${bankIdfirstName}">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdlastName" name="Прізвище" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdfirstName" name="Ім'я" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdmiddleName" name="По батькові" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sVakansy" name="Посада" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="email" name="Почтова скринька(e-mail)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="phone" name="Телефон" type="string" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="bankIdinn" name="ІПН;(РНОКПП для фізичних осіб підприємців)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdPassport" name="Паспортні дані ;(Серія, номер, ким видано)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBirthCountry" name="Країна народження" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="dBirth" name="Дата народження" type="date" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_2" name="Володіння мовами" type="markers" default="{&quot;attributes&quot;:{&quot;Line_2&quot;:{&quot;aElement_ID&quot;:[&quot;MovaTable&quot;],&quot;sValue&quot;:&quot;Володіння мовами&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="MovaTable" name="Володіння мовами; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_3" name="Перелік навчальних закладів" type="markers" default="{&quot;attributes&quot;:{&quot;Line_3&quot;:{&quot;aElement_ID&quot;:[&quot;VNZTable&quot;],&quot;sValue&quot;:&quot;Перелік навчальних закладів&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="VNZTable" name="Перелік навчальних закладів; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_4" name="Місця роботи" type="markers" default="{&quot;attributes&quot;:{&quot;Line_4&quot;:{&quot;aElement_ID&quot;:[&quot;sWorkAllTime&quot;],&quot;sValue&quot;:&quot;Місця роботи&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sWorkAllTime" name="Загальний стаж роботи" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="WorkTable" name="Місце роботи; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_5" name="Інші відомості" type="markers" default="{&quot;attributes&quot;:{&quot;Line_5&quot;:{&quot;aElement_ID&quot;:[&quot;tDodVidomosty&quot;],&quot;sValue&quot;:&quot;Інші відомості&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="tDodVidomosty" name="Зміст додаткових відомостей" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="tSpecVumogu" name="Спеціальні вимоги" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="nFile_Dod" name="Додаткові документи; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="sLogin_DelegateUT2" name="sLogin_DelegateUT2 ; ;bVisible=false" type="string"></activiti:formProperty>
+        
+        <activiti:formProperty id="sBody_1" name="Доповідна записка;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1rp3vjXaeuzlgC4yEBt-W7n6tW7EJIi3s2YpVehlrbL0', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="Наказ;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true,bDocumentSubTabPrintformDefault=true" type="string" default="{'sPathFile':'1LOMIa1X_vnal_a7yCLacmTRMNosjBWXpIR99QRk8_7Y', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на узгодження надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest1" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на затвердження надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest2" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на ознайомлення надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sRoles" name="sRoles ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentOsobi" name="Копія паспорта громадянина України;;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCopyINN" name="Копія ІПН; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sProtokol" name="Протокол конкурсної комісії; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sZgoda" name="Згода на проведення спеціальної перевірки; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTrudova" name="Трудова книжка; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDopZap" name="Доповідна записка; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sStrok" name="Випробувальний термін" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Документи для спец.перевірки та люстрації; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sRezaltSpecPerev" name="Результат перевірки; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDovidkaSpecPerev" name="Результат перевірки; ;bNew=true" type="file" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sApproval2" name="Затверджено?" type="enum" required="true">
+          <activiti:value id="sYes" name="Так"></activiti:value>
+          <activiti:value id="sNo" name="Ні"></activiti:value>
+        </activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow110" sourceRef="usertask8" targetRef="exclusivegateway18">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_agree_2]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <serviceTask id="servicetask7" name="Повідомлення кандидату про відмову у працевлаштувані" activiti:delegateExpression="#{MailTaskWithoutAttachment}">
+      <extensionElements>
+        <activiti:field name="from">
+          <activiti:string><![CDATA[noreply@igov.org.ua]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="to">
+          <activiti:expression><![CDATA[${email}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="text">
+          <activiti:expression><![CDATA[Шановний колего!
+Відповідно до частини шостої статті 35 Закону України "Про державну службу", наказу Державного секретаря Кабінету Міністрів України від 31 травня 2017 р. № 94 "Про затвердження Порядку проходження випробування на посадах державної служби категорій "Б" і "В" у Секретаріаті Кабінету Міністрів України", у звязку з встановленою невідповідністю займаній посаді за результатами випробування, попереджаємо Вас про наступне звільнення на підставі пункту 2 частини першої статті 87 Закону України "Про державну Службу"]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="subject">
+          <activiti:string><![CDATA[Попередження]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow113" sourceRef="servicetask7" targetRef="endevent3"></sequenceFlow>
+    <sequenceFlow id="flow114" sourceRef="servicetask21" targetRef="servicetask3"></sequenceFlow>
+    <serviceTask id="servicetask11" name="права (технічний крок)" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[step_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('kadri_vikonavec', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept_4]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sTitleDoc]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow118" sourceRef="servicetask32" targetRef="usertask17"></sequenceFlow>
+    <userTask id="usertask10" name="Погодження керівником структурного підрозділу. Кандидат :: ${bankIdlastName} ${bankIdfirstName}">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdlastName" name="Прізвище" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdfirstName" name="Ім'я" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdmiddleName" name="По батькові" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sVakansy" name="Посада" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="email" name="Почтова скринька(e-mail)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="phone" name="Телефон" type="string" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="bankIdinn" name="ІПН;(РНОКПП для фізичних осіб підприємців)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdPassport" name="Паспортні дані ;(Серія, номер, ким видано)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBirthCountry" name="Країна народження" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="dBirth" name="Дата народження" type="date" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_2" name="Володіння мовами" type="markers" default="{&quot;attributes&quot;:{&quot;Line_2&quot;:{&quot;aElement_ID&quot;:[&quot;MovaTable&quot;],&quot;sValue&quot;:&quot;Володіння мовами&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="MovaTable" name="Володіння мовами; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_3" name="Перелік навчальних закладів" type="markers" default="{&quot;attributes&quot;:{&quot;Line_3&quot;:{&quot;aElement_ID&quot;:[&quot;VNZTable&quot;],&quot;sValue&quot;:&quot;Перелік навчальних закладів&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="VNZTable" name="Перелік навчальних закладів; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_4" name="Місця роботи" type="markers" default="{&quot;attributes&quot;:{&quot;Line_4&quot;:{&quot;aElement_ID&quot;:[&quot;sWorkAllTime&quot;],&quot;sValue&quot;:&quot;Місця роботи&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sWorkAllTime" name="Загальний стаж роботи" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="WorkTable" name="Місце роботи; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_5" name="Інші відомості" type="markers" default="{&quot;attributes&quot;:{&quot;Line_5&quot;:{&quot;aElement_ID&quot;:[&quot;tDodVidomosty&quot;],&quot;sValue&quot;:&quot;Інші відомості&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="tDodVidomosty" name="Зміст додаткових відомостей" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="tSpecVumogu" name="Спеціальні вимоги" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="nFile_Dod" name="Додаткові документи; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="sLogin_DelegateUT2" name="sLogin_DelegateUT2 ; ;bVisible=false" type="string"></activiti:formProperty>
+        
+        <activiti:formProperty id="sBody_1" name="Доповідна записка;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1rp3vjXaeuzlgC4yEBt-W7n6tW7EJIi3s2YpVehlrbL0', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="Наказ;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true,bDocumentSubTabPrintformDefault=true" type="string" default="{'sPathFile':'1LOMIa1X_vnal_a7yCLacmTRMNosjBWXpIR99QRk8_7Y', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на узгодження надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest1" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на затвердження надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest2" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на ознайомлення надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sRoles" name="sRoles ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentOsobi" name="Копія паспорта громадянина України;;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCopyINN" name="Копія ІПН; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sProtokol" name="Протокол конкурсної комісії; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sZgoda" name="Згода на проведення спеціальної перевірки; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTrudova" name="Трудова книжка; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDopZap" name="Індивідуальний план; ;bNew=true" type="file" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sStrok" name="Випробувальний термін" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Документи для спец.перевірки та люстрації; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask11" name="Віза керівника кадрової служби. Кандидат :: ${bankIdlastName} ${bankIdfirstName}">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdlastName" name="Прізвище" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdfirstName" name="Ім'я" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdmiddleName" name="По батькові" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sVakansy" name="Посада" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="email" name="Почтова скринька(e-mail)" type="string" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="bankIdinn" name="ІПН;(РНОКПП для фізичних осіб підприємців)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdPassport" name="Паспортні дані ;(Серія, номер, ким видано)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBirthCountry" name="Країна народження" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="dBirth" name="Дата народження" type="date" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_2" name="Володіння мовами" type="markers" default="{&quot;attributes&quot;:{&quot;Line_2&quot;:{&quot;aElement_ID&quot;:[&quot;MovaTable&quot;],&quot;sValue&quot;:&quot;Володіння мовами&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="MovaTable" name="Володіння мовами; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_3" name="Перелік навчальних закладів" type="markers" default="{&quot;attributes&quot;:{&quot;Line_3&quot;:{&quot;aElement_ID&quot;:[&quot;VNZTable&quot;],&quot;sValue&quot;:&quot;Перелік навчальних закладів&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="VNZTable" name="Перелік навчальних закладів; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_4" name="Місця роботи" type="markers" default="{&quot;attributes&quot;:{&quot;Line_4&quot;:{&quot;aElement_ID&quot;:[&quot;sWorkAllTime&quot;],&quot;sValue&quot;:&quot;Місця роботи&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sWorkAllTime" name="Загальний стаж роботи" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="WorkTable" name="Місце роботи; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_5" name="Інші відомості" type="markers" default="{&quot;attributes&quot;:{&quot;Line_5&quot;:{&quot;aElement_ID&quot;:[&quot;tDodVidomosty&quot;],&quot;sValue&quot;:&quot;Інші відомості&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="tDodVidomosty" name="Зміст додаткових відомостей" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="tSpecVumogu" name="Спеціальні вимоги" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="nFile_Dod" name="Додаткові документи; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="sDateStart" name="Прийняти з" type="date" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="sLogin_DelegateUT2" name="sLogin_DelegateUT2 ; ;bVisible=false" type="string"></activiti:formProperty>
+        
+        <activiti:formProperty id="sBody_1" name="Доповідна записка;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1rp3vjXaeuzlgC4yEBt-W7n6tW7EJIi3s2YpVehlrbL0', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="Наказ;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true,bDocumentSubTabPrintformDefault=true" type="string" default="{'sPathFile':'1LOMIa1X_vnal_a7yCLacmTRMNosjBWXpIR99QRk8_7Y', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на узгодження надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest1" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на затвердження надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest2" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на ознайомлення надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sRoles" name="sRoles ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentOsobi" name="Копія паспорта громадянина України;;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCopyINN" name="Копія ІПН; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sProtokol" name="Протокол конкурсної комісії; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sZgoda" name="Згода на проведення спеціальної перевірки; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTrudova" name="Трудова книжка; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDopZap" name="Доповідна записка; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sStrok" name="Випробувальний термін" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Документи для спец.перевірки та люстрації; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow119" sourceRef="usertask10" targetRef="servicetask30">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_accept_2]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow120" sourceRef="usertask11" targetRef="servicetask11">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_accept_4]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <serviceTask id="servicetask16" name="права (технічний крок)" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('kadri_kerivnik', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept_3]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sTitleDoc]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="servicetask20" name="права керівнику" activiti:delegateExpression="${syncDocumentSignersByTableListener}">
+      <extensionElements>
+        <activiti:field name="sID_Field_WithLogin">
+          <activiti:string><![CDATA[sLogin_isExecute]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sID_Field_Table">
+          <activiti:string><![CDATA[sTable_AuthorRezol]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_StepType_Target">
+          <activiti:string><![CDATA[Accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_TemplateRight">
+          <activiti:string><![CDATA[step_accept_1]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow132" sourceRef="servicetask20" targetRef="usertask10"></sequenceFlow>
+    <serviceTask id="servicetask21" name="права (технічний крок)" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('Derg_sekretar', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sTitleDoc]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <userTask id="usertask14" name="Візування  заступником Держ. секретаря">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdlastName" name="Прізвище" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdfirstName" name="Ім'я" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdmiddleName" name="По батькові" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sVakansy" name="Посада" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="email" name="Почтова скринька(e-mail)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="phone" name="Телефон" type="string" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="bankIdinn" name="ІПН;(РНОКПП для фізичних осіб підприємців)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdPassport" name="Паспортні дані ;(Серія, номер, ким видано)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBirthCountry" name="Країна народження" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="dBirth" name="Дата народження" type="date" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_2" name="Володіння мовами" type="markers" default="{&quot;attributes&quot;:{&quot;Line_2&quot;:{&quot;aElement_ID&quot;:[&quot;MovaTable&quot;],&quot;sValue&quot;:&quot;Володіння мовами&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="MovaTable" name="Володіння мовами; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_3" name="Перелік навчальних закладів" type="markers" default="{&quot;attributes&quot;:{&quot;Line_3&quot;:{&quot;aElement_ID&quot;:[&quot;VNZTable&quot;],&quot;sValue&quot;:&quot;Перелік навчальних закладів&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="VNZTable" name="Перелік навчальних закладів; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_4" name="Місця роботи" type="markers" default="{&quot;attributes&quot;:{&quot;Line_4&quot;:{&quot;aElement_ID&quot;:[&quot;sWorkAllTime&quot;],&quot;sValue&quot;:&quot;Місця роботи&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sWorkAllTime" name="Загальний стаж роботи" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="WorkTable" name="Місце роботи; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_5" name="Інші відомості" type="markers" default="{&quot;attributes&quot;:{&quot;Line_5&quot;:{&quot;aElement_ID&quot;:[&quot;tDodVidomosty&quot;],&quot;sValue&quot;:&quot;Інші відомості&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="tDodVidomosty" name="Зміст додаткових відомостей" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="tSpecVumogu" name="Спеціальні вимоги" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="nFile_Dod" name="Додаткові документи; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="sLogin_DelegateUT2" name="sLogin_DelegateUT2 ; ;bVisible=false" type="string"></activiti:formProperty>
+        
+        <activiti:formProperty id="sBody_1" name="Доповідна записка;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1rp3vjXaeuzlgC4yEBt-W7n6tW7EJIi3s2YpVehlrbL0', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="Наказ;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true,bDocumentSubTabPrintformDefault=true" type="string" default="{'sPathFile':'1LOMIa1X_vnal_a7yCLacmTRMNosjBWXpIR99QRk8_7Y', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на узгодження надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest1" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на затвердження надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest2" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на ознайомлення надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sRoles" name="sRoles ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentOsobi" name="Копія паспорта громадянина України;;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCopyINN" name="Копія ІПН; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sProtokol" name="Протокол конкурсної комісії; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sZgoda" name="Згода на проведення спеціальної перевірки; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTrudova" name="Трудова книжка; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTable_AuthorRezol" name="Керівник підрозділу; ;bNew=true" type="table" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Документи для спец.перевірки та люстрації; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow134" sourceRef="usertask14" targetRef="servicetask25">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_accept_5]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <userTask id="usertask17" name="керівник кадр служби для візування. Підпис що закінено">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdlastName" name="Прізвище" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdfirstName" name="Ім'я" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdmiddleName" name="По батькові" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sVakansy" name="Посада" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="email" name="Почтова скринька(e-mail)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="phone" name="Телефон" type="string" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="bankIdinn" name="ІПН;(РНОКПП для фізичних осіб підприємців)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdPassport" name="Паспортні дані ;(Серія, номер, ким видано)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBirthCountry" name="Країна народження" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="dBirth" name="Дата народження" type="date" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_2" name="Володіння мовами" type="markers" default="{&quot;attributes&quot;:{&quot;Line_2&quot;:{&quot;aElement_ID&quot;:[&quot;MovaTable&quot;],&quot;sValue&quot;:&quot;Володіння мовами&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="MovaTable" name="Володіння мовами; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_3" name="Перелік навчальних закладів" type="markers" default="{&quot;attributes&quot;:{&quot;Line_3&quot;:{&quot;aElement_ID&quot;:[&quot;VNZTable&quot;],&quot;sValue&quot;:&quot;Перелік навчальних закладів&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="VNZTable" name="Перелік навчальних закладів; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_4" name="Місця роботи" type="markers" default="{&quot;attributes&quot;:{&quot;Line_4&quot;:{&quot;aElement_ID&quot;:[&quot;sWorkAllTime&quot;],&quot;sValue&quot;:&quot;Місця роботи&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sWorkAllTime" name="Загальний стаж роботи" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="WorkTable" name="Місце роботи; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_5" name="Інші відомості" type="markers" default="{&quot;attributes&quot;:{&quot;Line_5&quot;:{&quot;aElement_ID&quot;:[&quot;tDodVidomosty&quot;],&quot;sValue&quot;:&quot;Інші відомості&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="tDodVidomosty" name="Зміст додаткових відомостей" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="tSpecVumogu" name="Спеціальні вимоги" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="nFile_Dod" name="Додаткові документи; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="sLogin_DelegateUT2" name="sLogin_DelegateUT2 ; ;bVisible=false" type="string"></activiti:formProperty>
+        
+        <activiti:formProperty id="sBody_1" name="Доповідна записка;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1rp3vjXaeuzlgC4yEBt-W7n6tW7EJIi3s2YpVehlrbL0', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="Наказ;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true,bDocumentSubTabPrintformDefault=true" type="string" default="{'sPathFile':'1LOMIa1X_vnal_a7yCLacmTRMNosjBWXpIR99QRk8_7Y', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на узгодження надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest1" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на затвердження надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest2" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на ознайомлення надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sRoles" name="sRoles ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentOsobi" name="Копія паспорта громадянина України;;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCopyINN" name="Копія ІПН; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sProtokol" name="Протокол конкурсної комісії; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sZgoda" name="Згода на проведення спеціальної перевірки; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTrudova" name="Трудова книжка; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTable_AuthorRezol" name="Керівник підрозділу; ;bNew=true" type="table" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Документи для спец.перевірки та люстрації; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow138" sourceRef="usertask17" targetRef="endevent6"></sequenceFlow>
+    <userTask id="usertask18" name="кадри виконавець. + довідка про резул спец. перевірки">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdlastName" name="Прізвище" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdfirstName" name="Ім'я" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdmiddleName" name="По батькові" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sVakansy" name="Посада" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="email" name="Почтова скринька(e-mail)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="phone" name="Телефон" type="string" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="bankIdinn" name="ІПН;(РНОКПП для фізичних осіб підприємців)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdPassport" name="Паспортні дані ;(Серія, номер, ким видано)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBirthCountry" name="Країна народження" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="dBirth" name="Дата народження" type="date" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_2" name="Володіння мовами" type="markers" default="{&quot;attributes&quot;:{&quot;Line_2&quot;:{&quot;aElement_ID&quot;:[&quot;MovaTable&quot;],&quot;sValue&quot;:&quot;Володіння мовами&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="MovaTable" name="Володіння мовами; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_3" name="Перелік навчальних закладів" type="markers" default="{&quot;attributes&quot;:{&quot;Line_3&quot;:{&quot;aElement_ID&quot;:[&quot;VNZTable&quot;],&quot;sValue&quot;:&quot;Перелік навчальних закладів&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="VNZTable" name="Перелік навчальних закладів; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_4" name="Місця роботи" type="markers" default="{&quot;attributes&quot;:{&quot;Line_4&quot;:{&quot;aElement_ID&quot;:[&quot;sWorkAllTime&quot;],&quot;sValue&quot;:&quot;Місця роботи&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sWorkAllTime" name="Загальний стаж роботи" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="WorkTable" name="Місце роботи; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_5" name="Інші відомості" type="markers" default="{&quot;attributes&quot;:{&quot;Line_5&quot;:{&quot;aElement_ID&quot;:[&quot;tDodVidomosty&quot;],&quot;sValue&quot;:&quot;Інші відомості&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="tDodVidomosty" name="Зміст додаткових відомостей" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="tSpecVumogu" name="Спеціальні вимоги" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="nFile_Dod" name="Додаткові документи; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="sLogin_DelegateUT2" name="sLogin_DelegateUT2 ; ;bVisible=false" type="string"></activiti:formProperty>
+        
+        <activiti:formProperty id="sBody_1" name="Доповідна записка;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1rp3vjXaeuzlgC4yEBt-W7n6tW7EJIi3s2YpVehlrbL0', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="Наказ;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true,bDocumentSubTabPrintformDefault=true" type="string" default="{'sPathFile':'1LOMIa1X_vnal_a7yCLacmTRMNosjBWXpIR99QRk8_7Y', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на узгодження надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest1" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на затвердження надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest2" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на ознайомлення надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sRoles" name="sRoles ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentOsobi" name="Копія паспорта громадянина України;;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCopyINN" name="Копія ІПН; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sProtokol" name="Протокол конкурсної комісії; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sZgoda" name="Згода на проведення спеціальної перевірки; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTrudova" name="Трудова книжка; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTable_AuthorRezol" name="Керівник підрозділу; ;bNew=true" type="table" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Документи для спец.перевірки та люстрації; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask21" name="кадри виконавець. перевірка + додати наказ + докумети для спец первірки + для прохолдження люстрації">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdlastName" name="Прізвище" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdfirstName" name="Ім'я" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdmiddleName" name="По батькові" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sVakansy" name="Посада" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="email" name="Почтова скринька(e-mail)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="phone" name="Телефон" type="string" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="bankIdinn" name="ІПН;(РНОКПП для фізичних осіб підприємців)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdPassport" name="Паспортні дані ;(Серія, номер, ким видано)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBirthCountry" name="Країна народження" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="dBirth" name="Дата народження" type="date" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_2" name="Володіння мовами" type="markers" default="{&quot;attributes&quot;:{&quot;Line_2&quot;:{&quot;aElement_ID&quot;:[&quot;MovaTable&quot;],&quot;sValue&quot;:&quot;Володіння мовами&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="MovaTable" name="Володіння мовами; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_3" name="Перелік навчальних закладів" type="markers" default="{&quot;attributes&quot;:{&quot;Line_3&quot;:{&quot;aElement_ID&quot;:[&quot;VNZTable&quot;],&quot;sValue&quot;:&quot;Перелік навчальних закладів&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="VNZTable" name="Перелік навчальних закладів; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_4" name="Місця роботи" type="markers" default="{&quot;attributes&quot;:{&quot;Line_4&quot;:{&quot;aElement_ID&quot;:[&quot;sWorkAllTime&quot;],&quot;sValue&quot;:&quot;Місця роботи&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sWorkAllTime" name="Загальний стаж роботи" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="WorkTable" name="Місце роботи; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_5" name="Інші відомості" type="markers" default="{&quot;attributes&quot;:{&quot;Line_5&quot;:{&quot;aElement_ID&quot;:[&quot;tDodVidomosty&quot;],&quot;sValue&quot;:&quot;Інші відомості&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="tDodVidomosty" name="Зміст додаткових відомостей" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="tSpecVumogu" name="Спеціальні вимоги" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="nFile_Dod" name="Додаткові документи; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="sLogin_DelegateUT2" name="sLogin_DelegateUT2 ; ;bVisible=false" type="string"></activiti:formProperty>
+        
+        <activiti:formProperty id="sBody_1" name="Доповідна записка;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1rp3vjXaeuzlgC4yEBt-W7n6tW7EJIi3s2YpVehlrbL0', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="Наказ;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true,bDocumentSubTabPrintformDefault=true" type="string" default="{'sPathFile':'1LOMIa1X_vnal_a7yCLacmTRMNosjBWXpIR99QRk8_7Y', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на узгодження надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest1" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на затвердження надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest2" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на ознайомлення надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sRoles" name="sRoles ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentOsobi" name="Копія паспорта громадянина України;;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCopyINN" name="Копія ІПН; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sProtokol" name="Протокол конкурсної комісії; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sZgoda" name="Згода на проведення спеціальної перевірки; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTrudova" name="Трудова книжка; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTable_AuthorRezol" name="Керівник підрозділу; ;bNew=true" type="table" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Документи для спец.перевірки та люстрації; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow143" sourceRef="usertask21" targetRef="servicetask16">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_accept_3]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <userTask id="usertask22" name="Віхування бухгалтерським відділом">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdlastName" name="Прізвище" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdfirstName" name="Ім'я" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdmiddleName" name="По батькові" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sVakansy" name="Посада" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="email" name="Почтова скринька(e-mail)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="phone" name="Телефон" type="string" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="bankIdinn" name="ІПН;(РНОКПП для фізичних осіб підприємців)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdPassport" name="Паспортні дані ;(Серія, номер, ким видано)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBirthCountry" name="Країна народження" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="dBirth" name="Дата народження" type="date" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_2" name="Володіння мовами" type="markers" default="{&quot;attributes&quot;:{&quot;Line_2&quot;:{&quot;aElement_ID&quot;:[&quot;MovaTable&quot;],&quot;sValue&quot;:&quot;Володіння мовами&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="MovaTable" name="Володіння мовами; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_3" name="Перелік навчальних закладів" type="markers" default="{&quot;attributes&quot;:{&quot;Line_3&quot;:{&quot;aElement_ID&quot;:[&quot;VNZTable&quot;],&quot;sValue&quot;:&quot;Перелік навчальних закладів&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="VNZTable" name="Перелік навчальних закладів; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_4" name="Місця роботи" type="markers" default="{&quot;attributes&quot;:{&quot;Line_4&quot;:{&quot;aElement_ID&quot;:[&quot;sWorkAllTime&quot;],&quot;sValue&quot;:&quot;Місця роботи&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sWorkAllTime" name="Загальний стаж роботи" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="WorkTable" name="Місце роботи; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_5" name="Інші відомості" type="markers" default="{&quot;attributes&quot;:{&quot;Line_5&quot;:{&quot;aElement_ID&quot;:[&quot;tDodVidomosty&quot;],&quot;sValue&quot;:&quot;Інші відомості&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="tDodVidomosty" name="Зміст додаткових відомостей" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="tSpecVumogu" name="Спеціальні вимоги" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="nFile_Dod" name="Додаткові документи; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="sLogin_DelegateUT2" name="sLogin_DelegateUT2 ; ;bVisible=false" type="string"></activiti:formProperty>
+        
+        <activiti:formProperty id="sBody_1" name="Доповідна записка;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1rp3vjXaeuzlgC4yEBt-W7n6tW7EJIi3s2YpVehlrbL0', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="Наказ;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true,bDocumentSubTabPrintformDefault=true" type="string" default="{'sPathFile':'1LOMIa1X_vnal_a7yCLacmTRMNosjBWXpIR99QRk8_7Y', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на узгодження надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest1" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на затвердження надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest2" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на ознайомлення надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sRoles" name="sRoles ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentOsobi" name="Копія паспорта громадянина України;;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCopyINN" name="Копія ІПН; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sProtokol" name="Протокол конкурсної комісії; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sZgoda" name="Згода на проведення спеціальної перевірки; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTrudova" name="Трудова книжка; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTable_AuthorRezol" name="Керівник підрозділу; ;bNew=true" type="table" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Документи для спец.перевірки та люстрації; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask23" name="Візування юридичним відділом">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdlastName" name="Прізвище" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdfirstName" name="Ім'я" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdmiddleName" name="По батькові" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sVakansy" name="Посада" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="email" name="Почтова скринька(e-mail)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="phone" name="Телефон" type="string" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="bankIdinn" name="ІПН;(РНОКПП для фізичних осіб підприємців)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdPassport" name="Паспортні дані ;(Серія, номер, ким видано)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBirthCountry" name="Країна народження" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="dBirth" name="Дата народження" type="date" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_2" name="Володіння мовами" type="markers" default="{&quot;attributes&quot;:{&quot;Line_2&quot;:{&quot;aElement_ID&quot;:[&quot;MovaTable&quot;],&quot;sValue&quot;:&quot;Володіння мовами&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="MovaTable" name="Володіння мовами; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_3" name="Перелік навчальних закладів" type="markers" default="{&quot;attributes&quot;:{&quot;Line_3&quot;:{&quot;aElement_ID&quot;:[&quot;VNZTable&quot;],&quot;sValue&quot;:&quot;Перелік навчальних закладів&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="VNZTable" name="Перелік навчальних закладів; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_4" name="Місця роботи" type="markers" default="{&quot;attributes&quot;:{&quot;Line_4&quot;:{&quot;aElement_ID&quot;:[&quot;sWorkAllTime&quot;],&quot;sValue&quot;:&quot;Місця роботи&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sWorkAllTime" name="Загальний стаж роботи" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="WorkTable" name="Місце роботи; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_5" name="Інші відомості" type="markers" default="{&quot;attributes&quot;:{&quot;Line_5&quot;:{&quot;aElement_ID&quot;:[&quot;tDodVidomosty&quot;],&quot;sValue&quot;:&quot;Інші відомості&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="tDodVidomosty" name="Зміст додаткових відомостей" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="tSpecVumogu" name="Спеціальні вимоги" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="nFile_Dod" name="Додаткові документи; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="sLogin_DelegateUT2" name="sLogin_DelegateUT2 ; ;bVisible=false" type="string"></activiti:formProperty>
+        
+        <activiti:formProperty id="sBody_1" name="Доповідна записка;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1rp3vjXaeuzlgC4yEBt-W7n6tW7EJIi3s2YpVehlrbL0', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="Наказ;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true,bDocumentSubTabPrintformDefault=true" type="string" default="{'sPathFile':'1LOMIa1X_vnal_a7yCLacmTRMNosjBWXpIR99QRk8_7Y', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на узгодження надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest1" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на затвердження надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest2" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на ознайомлення надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sRoles" name="sRoles ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentOsobi" name="Копія паспорта громадянина України;;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCopyINN" name="Копія ІПН; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sProtokol" name="Протокол конкурсної комісії; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sZgoda" name="Згода на проведення спеціальної перевірки; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTrudova" name="Трудова книжка; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTable_AuthorRezol" name="Керівник підрозділу; ;bNew=true" type="table" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Документи для спец.перевірки та люстрації; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask24" name="Візування режимним підрозділом">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdlastName" name="Прізвище" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdfirstName" name="Ім'я" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdmiddleName" name="По батькові" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sVakansy" name="Посада" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="email" name="Почтова скринька(e-mail)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="phone" name="Телефон" type="string" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="bankIdinn" name="ІПН;(РНОКПП для фізичних осіб підприємців)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdPassport" name="Паспортні дані ;(Серія, номер, ким видано)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBirthCountry" name="Країна народження" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="dBirth" name="Дата народження" type="date" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_2" name="Володіння мовами" type="markers" default="{&quot;attributes&quot;:{&quot;Line_2&quot;:{&quot;aElement_ID&quot;:[&quot;MovaTable&quot;],&quot;sValue&quot;:&quot;Володіння мовами&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="MovaTable" name="Володіння мовами; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_3" name="Перелік навчальних закладів" type="markers" default="{&quot;attributes&quot;:{&quot;Line_3&quot;:{&quot;aElement_ID&quot;:[&quot;VNZTable&quot;],&quot;sValue&quot;:&quot;Перелік навчальних закладів&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="VNZTable" name="Перелік навчальних закладів; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_4" name="Місця роботи" type="markers" default="{&quot;attributes&quot;:{&quot;Line_4&quot;:{&quot;aElement_ID&quot;:[&quot;sWorkAllTime&quot;],&quot;sValue&quot;:&quot;Місця роботи&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sWorkAllTime" name="Загальний стаж роботи" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="WorkTable" name="Місце роботи; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_5" name="Інші відомості" type="markers" default="{&quot;attributes&quot;:{&quot;Line_5&quot;:{&quot;aElement_ID&quot;:[&quot;tDodVidomosty&quot;],&quot;sValue&quot;:&quot;Інші відомості&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="tDodVidomosty" name="Зміст додаткових відомостей" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="tSpecVumogu" name="Спеціальні вимоги" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="nFile_Dod" name="Додаткові документи; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="sLogin_DelegateUT2" name="sLogin_DelegateUT2 ; ;bVisible=false" type="string"></activiti:formProperty>
+        
+        <activiti:formProperty id="sBody_1" name="Доповідна записка;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1rp3vjXaeuzlgC4yEBt-W7n6tW7EJIi3s2YpVehlrbL0', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="Наказ;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true,bDocumentSubTabPrintformDefault=true" type="string" default="{'sPathFile':'1LOMIa1X_vnal_a7yCLacmTRMNosjBWXpIR99QRk8_7Y', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на узгодження надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest1" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на затвердження надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest2" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на ознайомлення надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sRoles" name="sRoles ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentOsobi" name="Копія паспорта громадянина України;;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCopyINN" name="Копія ІПН; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sProtokol" name="Протокол конкурсної комісії; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sZgoda" name="Згода на проведення спеціальної перевірки; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTrudova" name="Трудова книжка; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTable_AuthorRezol" name="Керівник підрозділу; ;bNew=true" type="table" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Документи для спец.перевірки та люстрації; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow144" sourceRef="usertask22" targetRef="servicetask26">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_accept_6]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow145" sourceRef="usertask23" targetRef="servicetask27">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_accept_7]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow146" sourceRef="usertask24" targetRef="servicetask21">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_agree]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <userTask id="usertask25" name="Ознайомлення з наказом">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdlastName" name="Прізвище" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdfirstName" name="Ім'я" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdmiddleName" name="По батькові" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sVakansy" name="Посада" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="email" name="Почтова скринька(e-mail)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="phone" name="Телефон" type="string" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="bankIdinn" name="ІПН;(РНОКПП для фізичних осіб підприємців)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdPassport" name="Паспортні дані ;(Серія, номер, ким видано)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBirthCountry" name="Країна народження" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="dBirth" name="Дата народження" type="date" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_2" name="Володіння мовами" type="markers" default="{&quot;attributes&quot;:{&quot;Line_2&quot;:{&quot;aElement_ID&quot;:[&quot;MovaTable&quot;],&quot;sValue&quot;:&quot;Володіння мовами&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="MovaTable" name="Володіння мовами; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_3" name="Перелік навчальних закладів" type="markers" default="{&quot;attributes&quot;:{&quot;Line_3&quot;:{&quot;aElement_ID&quot;:[&quot;VNZTable&quot;],&quot;sValue&quot;:&quot;Перелік навчальних закладів&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="VNZTable" name="Перелік навчальних закладів; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_4" name="Місця роботи" type="markers" default="{&quot;attributes&quot;:{&quot;Line_4&quot;:{&quot;aElement_ID&quot;:[&quot;sWorkAllTime&quot;],&quot;sValue&quot;:&quot;Місця роботи&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sWorkAllTime" name="Загальний стаж роботи" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="WorkTable" name="Місце роботи; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_5" name="Інші відомості" type="markers" default="{&quot;attributes&quot;:{&quot;Line_5&quot;:{&quot;aElement_ID&quot;:[&quot;tDodVidomosty&quot;],&quot;sValue&quot;:&quot;Інші відомості&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="tDodVidomosty" name="Зміст додаткових відомостей" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="tSpecVumogu" name="Спеціальні вимоги" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="nFile_Dod" name="Додаткові документи; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="sLogin_DelegateUT2" name="sLogin_DelegateUT2 ; ;bVisible=false" type="string"></activiti:formProperty>
+        
+        <activiti:formProperty id="sBody_1" name="Доповідна записка;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1rp3vjXaeuzlgC4yEBt-W7n6tW7EJIi3s2YpVehlrbL0', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="Наказ;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true,bDocumentSubTabPrintformDefault=true" type="string" default="{'sPathFile':'1LOMIa1X_vnal_a7yCLacmTRMNosjBWXpIR99QRk8_7Y', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на узгодження надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest1" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на затвердження надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest2" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на ознайомлення надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sRoles" name="sRoles ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentOsobi" name="Копія паспорта громадянина України;;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCopyINN" name="Копія ІПН; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sProtokol" name="Протокол конкурсної комісії; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sZgoda" name="Згода на проведення спеціальної перевірки; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTrudova" name="Трудова книжка; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTable_AuthorRezol" name="Керівник підрозділу; ;bNew=true" type="table" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Документи для спец.перевірки та люстрації; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow147" sourceRef="usertask25" targetRef="servicetask7"></sequenceFlow>
+    <endEvent id="endevent6" name="End"></endEvent>
+    <exclusiveGateway id="exclusivegateway18" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="flow149" name="запрос на уточнение" sourceRef="exclusivegateway18" targetRef="servicetask33">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${sApproval2 == 'sNo'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow150" name="если все ок" sourceRef="exclusivegateway18" targetRef="servicetask32">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_agree_3]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${sApproval2 == 'sYes'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow151" sourceRef="servicetask33" targetRef="servicetask32">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_agree_3]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow153" sourceRef="servicetask16" targetRef="usertask11"></sequenceFlow>
+    <sequenceFlow id="flow154" sourceRef="servicetask11" targetRef="usertask14"></sequenceFlow>
+    <serviceTask id="servicetask25" name="права (технічний крок)" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('kadri_vikonavec', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept_5]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sTitleDoc]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow155" sourceRef="servicetask25" targetRef="usertask22"></sequenceFlow>
+    <serviceTask id="servicetask26" name="права (технічний крок)" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('kadri_vikonavec', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept_6]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sTitleDoc]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow156" sourceRef="servicetask26" targetRef="usertask23"></sequenceFlow>
+    <serviceTask id="servicetask27" name="права (технічний крок)" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('kadri_vikonavec', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept_7]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sTitleDoc]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow157" sourceRef="servicetask27" targetRef="usertask24"></sequenceFlow>
+    <serviceTask id="servicetask28" name="права (технічний крок)" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('kadri_vikonavec', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_agree_1]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sTitleDoc]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow158" sourceRef="servicetask28" targetRef="usertask8"></sequenceFlow>
+    <serviceTask id="servicetask29" name="права (технічний крок)" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('kadri_vikonavec', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_agree_3]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sTitleDoc]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow160" sourceRef="servicetask29" targetRef="usertask18"></sequenceFlow>
+    <serviceTask id="servicetask30" name="права (технічний крок)" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('kadri_vikonavec', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept_2]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sTitleDoc]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="servicetask31" name="права (технічний крок)" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_seen]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('kadri_vikonavec', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_seen]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sTitleDoc]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow161" sourceRef="servicetask31" targetRef="usertask25"></sequenceFlow>
+    <serviceTask id="servicetask32" name="права (технічний крок)" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('kadri_kerivnik', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_agree_4]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sTitleDoc]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow162" sourceRef="servicetask30" targetRef="usertask21"></sequenceFlow>
+    <sequenceFlow id="flow163" name="Держ секретар погодив" sourceRef="exclusivegateway14" targetRef="servicetask28">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_agree_1]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${sApproval == 'sYes'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow164" sourceRef="usertask3" targetRef="exclusivegateway14"></sequenceFlow>
+    <serviceTask id="servicetask33" name="Запрос на уточнение даних" activiti:delegateExpression="#{MailTaskWithoutAttachment}">
+      <extensionElements>
+        <activiti:field name="from">
+          <activiti:string><![CDATA[noreply@igov.org.ua]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="to">
+          <activiti:expression><![CDATA[${email}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="text">
+          <activiti:expression><![CDATA[Шановний колего!
+Відповідно до частини шостої статті 35 Закону України "Про державну службу", наказу Державного секретаря Кабінету Міністрів України від 31 травня 2017 р. № 94 "Про затвердження Порядку проходження випробування на посадах державної служби категорій "Б" і "В" у Секретаріаті Кабінету Міністрів України", у звязку з встановленою невідповідністю займаній посаді за результатами випробування, попереджаємо Вас про наступне звільнення на підставі пункту 2 частини першої статті 87 Закону України "Про державну Службу"]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="subject">
+          <activiti:string><![CDATA[Попередження]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <userTask id="usertask26" name="ознакомление кандидатом. чек-лист">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdlastName" name="Прізвище" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdfirstName" name="Ім'я" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdmiddleName" name="По батькові" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sVakansy" name="Посада" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="email" name="Почтова скринька(e-mail)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="phone" name="Телефон" type="string" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="bankIdinn" name="ІПН;(РНОКПП для фізичних осіб підприємців)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdPassport" name="Паспортні дані ;(Серія, номер, ким видано)" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBirthCountry" name="Країна народження" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="dBirth" name="Дата народження" type="date" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_2" name="Володіння мовами" type="markers" default="{&quot;attributes&quot;:{&quot;Line_2&quot;:{&quot;aElement_ID&quot;:[&quot;MovaTable&quot;],&quot;sValue&quot;:&quot;Володіння мовами&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="MovaTable" name="Володіння мовами; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_3" name="Перелік навчальних закладів" type="markers" default="{&quot;attributes&quot;:{&quot;Line_3&quot;:{&quot;aElement_ID&quot;:[&quot;VNZTable&quot;],&quot;sValue&quot;:&quot;Перелік навчальних закладів&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="VNZTable" name="Перелік навчальних закладів; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_4" name="Місця роботи" type="markers" default="{&quot;attributes&quot;:{&quot;Line_4&quot;:{&quot;aElement_ID&quot;:[&quot;sWorkAllTime&quot;],&quot;sValue&quot;:&quot;Місця роботи&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sWorkAllTime" name="Загальний стаж роботи" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="WorkTable" name="Місце роботи; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="markersLine_5" name="Інші відомості" type="markers" default="{&quot;attributes&quot;:{&quot;Line_5&quot;:{&quot;aElement_ID&quot;:[&quot;tDodVidomosty&quot;],&quot;sValue&quot;:&quot;Інші відомості&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="tDodVidomosty" name="Зміст додаткових відомостей" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="tSpecVumogu" name="Спеціальні вимоги" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="nFile_Dod" name="Додаткові документи; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        
+        <activiti:formProperty id="sLogin_DelegateUT2" name="sLogin_DelegateUT2 ; ;bVisible=false" type="string"></activiti:formProperty>
+        
+        <activiti:formProperty id="sBody_1" name="Наказ;;bPrintform=true,bVisible=false" type="string" default="${oTemplateService.getFieldDataPath(execution, 'printform/sBody_1.html')}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на узгодження надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest1" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на затвердження надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest2" name="sEmailTest ; ;bVisible=false" type="string" default="Шановний коллего! Вам на ознайомлення надіслано документ [sID_Order_URL]. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sRoles" name="sRoles ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocumentOsobi" name="Копія паспорта громадянина України;;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCopyINN" name="Копія ІПН; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sProtokol" name="Протокол конкурсної комісії; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sZgoda" name="Згода на проведення спеціальної перевірки; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTrudova" name="Трудова книжка; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTable_AuthorRezol" name="Керівник підрозділу; ;bNew=true" type="table" required="true"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram__doc_template_covkmudep_acceptance">
+    <bpmndi:BPMNPlane bpmnElement="_doc_template_covkmudep_acceptance" id="BPMNPlane__doc_template_covkmudep_acceptance">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="195.0" y="40.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="78.0" width="131.0" x="285.0" y="19.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask2" id="BPMNShape_usertask2">
+        <omgdc:Bounds height="108.0" width="133.0" x="585.0" y="218.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask3" id="BPMNShape_usertask3">
+        <omgdc:Bounds height="99.0" width="136.0" x="716.0" y="589.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask4" id="BPMNShape_usertask4">
+        <omgdc:Bounds height="99.0" width="138.0" x="826.0" y="222.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask2" id="BPMNShape_servicetask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="599.0" y="31.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway6" id="BPMNShape_exclusivegateway6">
+        <omgdc:Bounds height="40.0" width="40.0" x="874.0" y="128.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway7" id="BPMNShape_exclusivegateway7">
+        <omgdc:Bounds height="40.0" width="40.0" x="631.0" y="358.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway8" id="BPMNShape_exclusivegateway8">
+        <omgdc:Bounds height="40.0" width="40.0" x="542.0" y="358.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask3" id="BPMNShape_servicetask3">
+        <omgdc:Bounds height="55.0" width="105.0" x="731.0" y="503.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask6" id="BPMNShape_usertask6">
+        <omgdc:Bounds height="99.0" width="138.0" x="987.0" y="589.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway9" id="BPMNShape_exclusivegateway9">
+        <omgdc:Bounds height="40.0" width="40.0" x="1035.0" y="278.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask5" id="BPMNShape_servicetask5">
+        <omgdc:Bounds height="60.0" width="105.0" x="445.0" y="28.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway14" id="BPMNShape_exclusivegateway14">
+        <omgdc:Bounds height="40.0" width="40.0" x="454.0" y="745.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent3" id="BPMNShape_endevent3">
+        <omgdc:Bounds height="35.0" width="35.0" x="39.0" y="889.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask8" id="BPMNShape_usertask8">
+        <omgdc:Bounds height="89.0" width="131.0" x="251.0" y="849.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask7" id="BPMNShape_servicetask7">
+        <omgdc:Bounds height="81.0" width="112.0" x="1.0" y="725.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask11" id="BPMNShape_servicetask11">
+        <omgdc:Bounds height="60.0" width="105.0" x="174.0" y="501.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask10" id="BPMNShape_usertask10">
+        <omgdc:Bounds height="127.0" width="112.0" x="314.0" y="250.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask11" id="BPMNShape_usertask11">
+        <omgdc:Bounds height="97.0" width="137.0" x="158.0" y="376.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask16" id="BPMNShape_servicetask16">
+        <omgdc:Bounds height="60.0" width="105.0" x="174.0" y="269.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask20" id="BPMNShape_servicetask20">
+        <omgdc:Bounds height="55.0" width="105.0" x="445.0" y="284.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask21" id="BPMNShape_servicetask21">
+        <omgdc:Bounds height="60.0" width="105.0" x="731.0" y="398.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask14" id="BPMNShape_usertask14">
+        <omgdc:Bounds height="70.0" width="105.0" x="174.0" y="611.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask17" id="BPMNShape_usertask17">
+        <omgdc:Bounds height="96.0" width="105.0" x="697.0" y="966.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask18" id="BPMNShape_usertask18">
+        <omgdc:Bounds height="55.0" width="105.0" x="525.0" y="1111.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask21" id="BPMNShape_usertask21">
+        <omgdc:Bounds height="98.0" width="145.0" x="154.0" y="128.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask22" id="BPMNShape_usertask22">
+        <omgdc:Bounds height="55.0" width="105.0" x="317.0" y="506.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask23" id="BPMNShape_usertask23">
+        <omgdc:Bounds height="55.0" width="105.0" x="445.0" y="398.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask24" id="BPMNShape_usertask24">
+        <omgdc:Bounds height="55.0" width="105.0" x="593.0" y="400.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask25" id="BPMNShape_usertask25">
+        <omgdc:Bounds height="78.0" width="105.0" x="160.0" y="727.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent6" id="BPMNShape_endevent6">
+        <omgdc:Bounds height="35.0" width="35.0" x="732.0" y="889.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway18" id="BPMNShape_exclusivegateway18">
+        <omgdc:Bounds height="40.0" width="40.0" x="296.0" y="995.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask25" id="BPMNShape_servicetask25">
+        <omgdc:Bounds height="60.0" width="105.0" x="317.0" y="617.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask26" id="BPMNShape_servicetask26">
+        <omgdc:Bounds height="60.0" width="105.0" x="317.0" y="395.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask27" id="BPMNShape_servicetask27">
+        <omgdc:Bounds height="60.0" width="105.0" x="445.0" y="500.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask28" id="BPMNShape_servicetask28">
+        <omgdc:Bounds height="60.0" width="105.0" x="422.0" y="864.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask29" id="BPMNShape_servicetask29">
+        <omgdc:Bounds height="60.0" width="105.0" x="392.0" y="1109.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask30" id="BPMNShape_servicetask30">
+        <omgdc:Bounds height="60.0" width="105.0" x="317.0" y="145.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask31" id="BPMNShape_servicetask31">
+        <omgdc:Bounds height="60.0" width="105.0" x="303.0" y="736.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask32" id="BPMNShape_servicetask32">
+        <omgdc:Bounds height="60.0" width="105.0" x="525.0" y="984.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask33" id="BPMNShape_servicetask33">
+        <omgdc:Bounds height="81.0" width="112.0" x="261.0" y="1098.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask26" id="BPMNShape_usertask26">
+        <omgdc:Bounds height="65.0" width="105.0" x="840.0" y="870.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow71" id="BPMNEdge_flow71">
+        <omgdi:waypoint x="230.0" y="57.0"></omgdi:waypoint>
+        <omgdi:waypoint x="285.0" y="58.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow76" id="BPMNEdge_flow76">
+        <omgdi:waypoint x="416.0" y="58.0"></omgdi:waypoint>
+        <omgdi:waypoint x="445.0" y="58.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow80" id="BPMNEdge_flow80">
+        <omgdi:waypoint x="651.0" y="86.0"></omgdi:waypoint>
+        <omgdi:waypoint x="651.0" y="218.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_VzyatNaRedaktirovanie" id="BPMNEdge_FlowButton_VzyatNaRedaktirovanie">
+        <omgdi:waypoint x="718.0" y="272.0"></omgdi:waypoint>
+        <omgdi:waypoint x="826.0" y="271.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="718.0" y="272.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_VernutNaVizirovanie" id="BPMNEdge_FlowButton_VernutNaVizirovanie">
+        <omgdi:waypoint x="895.0" y="222.0"></omgdi:waypoint>
+        <omgdi:waypoint x="894.0" y="168.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="787.0" y="169.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_SnosIVernutNaVizirovanie" id="BPMNEdge_FlowButton_SnosIVernutNaVizirovanie">
+        <omgdi:waypoint x="964.0" y="271.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1018.0" y="272.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1018.0" y="148.0"></omgdi:waypoint>
+        <omgdi:waypoint x="914.0" y="148.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="70.0" width="100.0" x="945.0" y="152.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow84" id="BPMNEdge_flow84">
+        <omgdi:waypoint x="894.0" y="128.0"></omgdi:waypoint>
+        <omgdi:waypoint x="893.0" y="10.0"></omgdi:waypoint>
+        <omgdi:waypoint x="712.0" y="10.0"></omgdi:waypoint>
+        <omgdi:waypoint x="498.0" y="10.0"></omgdi:waypoint>
+        <omgdi:waypoint x="497.0" y="28.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow85" id="BPMNEdge_flow85">
+        <omgdi:waypoint x="718.0" y="272.0"></omgdi:waypoint>
+        <omgdi:waypoint x="730.0" y="274.0"></omgdi:waypoint>
+        <omgdi:waypoint x="730.0" y="360.0"></omgdi:waypoint>
+        <omgdi:waypoint x="730.0" y="378.0"></omgdi:waypoint>
+        <omgdi:waypoint x="671.0" y="378.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow86" id="BPMNEdge_flow86">
+        <omgdi:waypoint x="651.0" y="358.0"></omgdi:waypoint>
+        <omgdi:waypoint x="651.0" y="326.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow87" id="BPMNEdge_flow87">
+        <omgdi:waypoint x="631.0" y="378.0"></omgdi:waypoint>
+        <omgdi:waypoint x="582.0" y="378.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow88" id="BPMNEdge_flow88">
+        <omgdi:waypoint x="562.0" y="358.0"></omgdi:waypoint>
+        <omgdi:waypoint x="561.0" y="272.0"></omgdi:waypoint>
+        <omgdi:waypoint x="585.0" y="272.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="42.0" width="100.0" x="481.0" y="244.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow89" id="BPMNEdge_flow89">
+        <omgdi:waypoint x="542.0" y="378.0"></omgdi:waypoint>
+        <omgdi:waypoint x="496.0" y="377.0"></omgdi:waypoint>
+        <omgdi:waypoint x="497.0" y="339.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow90" id="BPMNEdge_flow90">
+        <omgdi:waypoint x="783.0" y="558.0"></omgdi:waypoint>
+        <omgdi:waypoint x="784.0" y="589.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_VzyatNaRedaktirovanieUzgodjennia" id="BPMNEdge_FlowButton_VzyatNaRedaktirovanieUzgodjennia">
+        <omgdi:waypoint x="852.0" y="638.0"></omgdi:waypoint>
+        <omgdi:waypoint x="987.0" y="638.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="904.0" y="581.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_SnosIVernutNaVizirovanieUzgodjennia" id="BPMNEdge_FlowButton_SnosIVernutNaVizirovanieUzgodjennia">
+        <omgdi:waypoint x="1056.0" y="589.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1055.0" y="318.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="1067.0" y="531.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow94" id="BPMNEdge_flow94">
+        <omgdi:waypoint x="1055.0" y="278.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1055.0" y="12.0"></omgdi:waypoint>
+        <omgdi:waypoint x="807.0" y="12.0"></omgdi:waypoint>
+        <omgdi:waypoint x="498.0" y="12.0"></omgdi:waypoint>
+        <omgdi:waypoint x="497.0" y="28.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow106" id="BPMNEdge_flow106">
+        <omgdi:waypoint x="550.0" y="58.0"></omgdi:waypoint>
+        <omgdi:waypoint x="599.0" y="58.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow108" id="BPMNEdge_flow108">
+        <omgdi:waypoint x="454.0" y="765.0"></omgdi:waypoint>
+        <omgdi:waypoint x="408.0" y="766.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="42.0" width="100.0" x="396.0" y="704.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow110" id="BPMNEdge_flow110">
+        <omgdi:waypoint x="316.0" y="938.0"></omgdi:waypoint>
+        <omgdi:waypoint x="316.0" y="995.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow113" id="BPMNEdge_flow113">
+        <omgdi:waypoint x="57.0" y="806.0"></omgdi:waypoint>
+        <omgdi:waypoint x="56.0" y="889.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow114" id="BPMNEdge_flow114">
+        <omgdi:waypoint x="783.0" y="458.0"></omgdi:waypoint>
+        <omgdi:waypoint x="783.0" y="503.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow118" id="BPMNEdge_flow118">
+        <omgdi:waypoint x="630.0" y="1014.0"></omgdi:waypoint>
+        <omgdi:waypoint x="697.0" y="1014.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow119" id="BPMNEdge_flow119">
+        <omgdi:waypoint x="370.0" y="250.0"></omgdi:waypoint>
+        <omgdi:waypoint x="369.0" y="205.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow120" id="BPMNEdge_flow120">
+        <omgdi:waypoint x="226.0" y="473.0"></omgdi:waypoint>
+        <omgdi:waypoint x="226.0" y="501.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow132" id="BPMNEdge_flow132">
+        <omgdi:waypoint x="445.0" y="311.0"></omgdi:waypoint>
+        <omgdi:waypoint x="426.0" y="313.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow134" id="BPMNEdge_flow134">
+        <omgdi:waypoint x="279.0" y="646.0"></omgdi:waypoint>
+        <omgdi:waypoint x="317.0" y="647.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow138" id="BPMNEdge_flow138">
+        <omgdi:waypoint x="749.0" y="966.0"></omgdi:waypoint>
+        <omgdi:waypoint x="749.0" y="924.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow143" id="BPMNEdge_flow143">
+        <omgdi:waypoint x="226.0" y="226.0"></omgdi:waypoint>
+        <omgdi:waypoint x="226.0" y="269.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow144" id="BPMNEdge_flow144">
+        <omgdi:waypoint x="369.0" y="506.0"></omgdi:waypoint>
+        <omgdi:waypoint x="369.0" y="455.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow145" id="BPMNEdge_flow145">
+        <omgdi:waypoint x="497.0" y="453.0"></omgdi:waypoint>
+        <omgdi:waypoint x="497.0" y="500.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow146" id="BPMNEdge_flow146">
+        <omgdi:waypoint x="698.0" y="427.0"></omgdi:waypoint>
+        <omgdi:waypoint x="731.0" y="428.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow147" id="BPMNEdge_flow147">
+        <omgdi:waypoint x="160.0" y="766.0"></omgdi:waypoint>
+        <omgdi:waypoint x="113.0" y="765.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow149" id="BPMNEdge_flow149">
+        <omgdi:waypoint x="316.0" y="1035.0"></omgdi:waypoint>
+        <omgdi:waypoint x="317.0" y="1098.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="42.0" width="100.0" x="217.0" y="1042.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow150" id="BPMNEdge_flow150">
+        <omgdi:waypoint x="336.0" y="1015.0"></omgdi:waypoint>
+        <omgdi:waypoint x="525.0" y="1014.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="60.0" x="367.0" y="985.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow151" id="BPMNEdge_flow151">
+        <omgdi:waypoint x="317.0" y="1098.0"></omgdi:waypoint>
+        <omgdi:waypoint x="577.0" y="1044.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow153" id="BPMNEdge_flow153">
+        <omgdi:waypoint x="226.0" y="329.0"></omgdi:waypoint>
+        <omgdi:waypoint x="226.0" y="376.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow154" id="BPMNEdge_flow154">
+        <omgdi:waypoint x="226.0" y="561.0"></omgdi:waypoint>
+        <omgdi:waypoint x="226.0" y="611.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow155" id="BPMNEdge_flow155">
+        <omgdi:waypoint x="369.0" y="617.0"></omgdi:waypoint>
+        <omgdi:waypoint x="369.0" y="561.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow156" id="BPMNEdge_flow156">
+        <omgdi:waypoint x="422.0" y="425.0"></omgdi:waypoint>
+        <omgdi:waypoint x="445.0" y="425.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow157" id="BPMNEdge_flow157">
+        <omgdi:waypoint x="550.0" y="530.0"></omgdi:waypoint>
+        <omgdi:waypoint x="647.0" y="530.0"></omgdi:waypoint>
+        <omgdi:waypoint x="645.0" y="455.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow158" id="BPMNEdge_flow158">
+        <omgdi:waypoint x="422.0" y="894.0"></omgdi:waypoint>
+        <omgdi:waypoint x="382.0" y="893.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow160" id="BPMNEdge_flow160">
+        <omgdi:waypoint x="497.0" y="1139.0"></omgdi:waypoint>
+        <omgdi:waypoint x="525.0" y="1138.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow161" id="BPMNEdge_flow161">
+        <omgdi:waypoint x="303.0" y="766.0"></omgdi:waypoint>
+        <omgdi:waypoint x="265.0" y="766.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow162" id="BPMNEdge_flow162">
+        <omgdi:waypoint x="317.0" y="175.0"></omgdi:waypoint>
+        <omgdi:waypoint x="299.0" y="177.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow163" id="BPMNEdge_flow163">
+        <omgdi:waypoint x="474.0" y="785.0"></omgdi:waypoint>
+        <omgdi:waypoint x="474.0" y="864.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="42.0" width="100.0" x="480.0" y="800.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow164" id="BPMNEdge_flow164">
+        <omgdi:waypoint x="784.0" y="688.0"></omgdi:waypoint>
+        <omgdi:waypoint x="783.0" y="764.0"></omgdi:waypoint>
+        <omgdi:waypoint x="494.0" y="765.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

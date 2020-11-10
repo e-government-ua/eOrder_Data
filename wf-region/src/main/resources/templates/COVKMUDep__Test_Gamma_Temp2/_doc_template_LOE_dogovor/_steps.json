@@ -1,0 +1,84 @@
+{
+  "_:Watch": {
+	"_default_author": {
+      "oMission": {"sKey_Right":"SignRelease"},
+      "oRights": {
+      	"Manage": {},
+      	"SignComment": {}
+      }
+    },
+    "_default_view": {
+      "oMission": {"sKey_Right":"View", "sKey_Step_At":""},
+      "oRights": {
+      	"ManageViewers": {},
+        "SignComment": {}
+      }
+    },
+    "_default_accept": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},      	
+      	"ManageViewers": {},
+      	"SignWriteAny": {},
+      	"SignWriteNotNeed": {"bDisable": true},
+      	"AddSignerWriteAccept": {},
+        "TaskAdd": {},
+         "TaskEdit": {"bDisable": true},
+        "TaskRemove": {},
+      	"ManageSignersRead": {},
+      	"SignComment": {}
+      }
+    },
+    "_default_agree": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},      	
+      	"ManageViewers": {},
+      	"SignWriteRefuse": {},
+      	"SignWriteNotNeed": {"bDisable": true},
+      	"AddSignerWriteAgree": {},
+      	"TaskAdd": {},   
+      	 "TaskEdit": {"bDisable": true},
+        "TaskRemove": {},     
+      	"ManageSignersRead": {},
+      	"SignComment": {},
+      	"ManageSignersWriteDirect": {}
+      }
+    },
+    "_default_consideration": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {     	
+      	"SignComment": {},
+      	"TaskEdit": {"bDisable": true},
+        "DocumentRemove": {"bDisable": true}
+      }
+    },
+     "_default_direct": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {     	
+      	"SignComment": {},
+      	"TaskEdit": {"bDisable": true},
+        "DocumentRemove": {"bDisable": true}
+      }
+    },
+    "_default_seen": {
+      "oMission": {"sKey_Right":"SignRead"},
+      "oRights": {
+      	"ManageViewers": {},
+      	"TaskEdit": {"bDisable": true},
+      	"ManageSignersRead": {},
+      	"SignComment": {}
+      }
+    }
+    },
+   
+  "step_create:Create": {},
+  "step_accept:Accept": {"oProperties": {"nSubscribersMin":1}
+  },  
+  "step_agree:Agree": {},
+  "step_direct:Direct": {},
+  "step_consideration:Consideration": {}, 
+  "step_seen:Seen": {},
+  "step_edit:Edit": {}
+
+}

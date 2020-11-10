@@ -1,0 +1,46 @@
+{
+  "aField": [
+    {
+      "id": "sName_Developer",
+      "name": "ПІБ;розробника ВНД;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel",
+      "type": "select",
+      "required": "true"
+    },    
+    {
+      "id": "sPosition_Developer",
+      "name": "Посада;розробника ВНД",
+      "type": "string",
+      "writable": "false"   
+    },
+    {
+      "id": "sDepart_Developer",
+      "name": "Підрозділ;розробника ВНД",
+      "type": "string",
+      "bVisible": "false"  
+    },
+    {
+      "id": "sName_DepDeveloper",
+      "name": "Підрозділ;розробника ВНД;sID_SubjectRole=ExecutorDepart",
+      "type": "select",
+      "required": "true"     
+    },
+    {
+      "id": "sName_DirDeveloper",
+      "name": "ПІБ директора департаменту;розробника ВНД;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel",
+      "type": "select",
+      "required": "true"
+    },    
+    {
+      "id": "sLogin_Developer",
+      "name": "Login розробника ВНД",
+      "type": "string",    
+      "bVisible": "false"
+    },
+    {
+      "id": "sLogin_DirDeveloper",
+      "name": "Login директора департаменту",
+      "type": "string",    
+      "bVisible": "false"
+    }
+  ]
+}

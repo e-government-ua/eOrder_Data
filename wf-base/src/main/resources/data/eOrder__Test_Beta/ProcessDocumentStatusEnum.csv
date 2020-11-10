@@ -1,0 +1,9 @@
+name;nOrder;sID;sName;sNote;bCompleted
+0;DocumentStatus_Hold;10;Утримання;Виключено з обробки, черги або плану (створення/редагування/виправлення);false
+1;DocumentStatus_Shedule;20;Заплановано;Очікує часу для обробки або черги (пул заявок на задану дату та час);false
+2;DocumentStatus_Queue;30;Черга обробки;Очікує взяття (ассайну) до обробки (пул заявок на зараз);false
+3;DocumentStatus_Processing;40;Обробка;Ще не діє, очікує обробки;false
+4;DocumentStatus_Processed;50;Оброблено;Діє після обробки;false
+5;DocumentStatus_Expired;60;Прострочено;Вже не діє але зберігається;false
+6;DocumentStatus_Archived;70;Архівовано;Вже не зберігається (тільки нагадування);true
+7;DocumentStatus_Removed;80;Видалено;Відмічено на видалення;true

@@ -1,0 +1,16 @@
+nID;sName;sNote
+1;OpenedUnassigned;Необработанные задания с централа
+2;Closed;Закрытые задания
+3;Control;Задания на контроле
+4;OpenedAssigned;Задания в работе
+5;Opened;Не закрытые задания
+6;Documents;Все документы
+7;DocumentOpenedAssigned;Документы в работе
+8;DocumentOpenedUnassignedProcessed;Обработанные документы
+9;DocumentOpenedUnassignedUnprocessed;Необработанные документы
+10;DocumentOpenedUnassignedWithoutECP;Документы ожидающие подпись ЭЦП
+11;DocumentClosed;Закрытые документы
+12;OpenedCreatorDocument;Документы для которых сотрудник является автором
+13;Execution;Необработанные задания
+14;ExecutionFinished;Исполненные
+15;ControlFinished;Проконтролированные

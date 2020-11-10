@@ -1,0 +1,43 @@
+{
+  "_:Watch": {
+	"_default_author": {
+      "oMission": {"sKey_Right":"SignRelease"},
+      "oRights": {
+      	"EditFields": {},
+      	"SignComment": {},      	
+      	"AddSignerWriteAccept": {},
+      	"EditSubjectNotSelf": {},
+      	"RemoveSubjectNotSelf": {},
+      	"Remove": {}
+      },
+      "bNeedECP": true 
+    },   
+    "_default_accept": {    
+      "oMission": {"sKey_Right":"SignWrite", "bResetImageAfterSubmit": true},
+      "oRights": {
+      	"SignComment": {},      	
+      	"SignWriteRefuse": {}
+      },
+      "bNeedECP": true 
+    },
+    "_default_agree": {
+      "oMission": {"sKey_Right":"SignWrite", "bResetImageAfterSubmit": true},
+      "oRights": {
+        "SignComment": {}
+      },
+      "bNeedECP": true 
+    },
+    "_default_seen": {
+      "oMission": {"sKey_Right":"SignRead", "bResetImageAfterSubmit": true},
+      "oRights": {
+        "SignComment": {}
+      }
+    }
+  },
+  "step_create:Create": {},
+  "step_accept:Accept": {}, 
+  "step_accept_1:Accept": {},  
+  "step_agree:Agree": {},
+  "step_edit:Edit": {},
+  "step_seen:Seen": {}
+}

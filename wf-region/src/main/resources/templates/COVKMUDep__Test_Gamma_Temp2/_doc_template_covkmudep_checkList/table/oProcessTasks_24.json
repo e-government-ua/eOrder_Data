@@ -1,0 +1,33 @@
+[
+  {
+    "sHead": "Познайомити нового співробітника з безпосередніми функціональними обов'язками",
+    "sBody": "Познайомити нового співробітника з безпосередніми функціональними обов'язками",
+    "sID_BP": "_task_base",
+    "sKey_TaskReportType": "Text",
+    "bSplited_Execute": false,
+    "oProcessTaskSubjectsVO": {
+      "aController": [
+        {
+          "oUserVO": {
+            "sLogin": "",
+            "sLabel": ""
+          },
+          "nDaysPlan": null,
+          "oDatePlan": "$[sDate]"
+        }
+      ],
+      "aExecutor": [
+        {
+          "oUserVO": {
+            "sLogin": "",
+            "sLabel": ""
+          },
+          "nDaysPlan": null,
+          "oDatePlan": "$[sDate]"
+        }
+      ],
+      "aVisor": []
+    },
+    "aProcessTaskAttribute": []
+  }
+]

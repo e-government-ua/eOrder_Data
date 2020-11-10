@@ -1,0 +1,56 @@
+{
+  "_:Watch": {
+	"_default_author": {
+      "oMission": {"sKey_Right":"SignRelease"},
+      "oRights": {
+      	"Manage": {},
+      	"AddSignerWriteAccept": {},     	
+      	"RemoveSignerWriteAccept": {},
+      	"EditSignerWriteAccept": {},
+      	"AddSignerWriteAgree": {},     	
+      	"RemoveSignerWriteAgree": {},
+      	"EditSignerWriteAgree": {}
+      }
+    },
+        "_default_accept": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignComment": {},
+      	"SignWriteAny": {},
+      	"ManageSignersRead": {},     	
+      	"ManageViewers": {}
+      }
+    },
+     "_default_Seen": {
+      "oMission": {"sKey_Right":"SignRead", "bResetImageAfterSubmit": true},
+      "oRights": {
+      	"SignWriteAny": {},
+      	"ManageSignersRead": {},
+        "ManageViewers": {}
+      }
+  },
+    "_default_agree": {
+      "oMission": {"sKey_Right":"SignWrite", "bResetImageAfterSubmit": true},
+      "oRights": {
+        "SignComment": {},
+        "SignWriteAny": {},
+        "SignWriteNotNeed": {"bDisable": true},      	
+      	"TaskAdd": {},
+      	"TaskEdit": {},
+      	"TaskRemove": {},
+      	"ManageSignersRead": {},
+        "ManageViewers": {}
+      }
+    },
+    "_default_view": {
+      "oMission": {"sKey_Right":"View", "sKey_Step_At":""},
+      "oRights": {
+      	"ManageViewers": {},
+        "SignComment": {}
+      }
+    }
+  },
+  "step_create:Create": {},
+  "step_accept:Accept": {},
+  "step_edit:Edit": {}
+}

@@ -1,0 +1,79 @@
+{
+  "_:Watch": {
+	"_default_author": {
+      "oMission": {"sKey_Right":"SignRelease"},
+      "oRights": {
+      	"Manage": {},
+      	"SignComment": {},
+      	"AddSignerWriteDirect": {"bDisable": true},
+      	"RemoveSignerWriteDirect": {"bDisable": true},
+      	"EditSignerWriteDirect": {"bDisable": true},
+      	"AddSignerWriteAgree": {"bDisable": true},
+      	"RemoveSignerWriteAgree": {"bDisable": true},
+      	"EditSignerWriteAgree": {"bDisable": true},
+		"AddSignerWriteAccept": {"bDisable": true},
+      	"RemoveSignerWriteAccept": {"bDisable": true},
+      	"EditSignerWriteAccept": {"bDisable": true},
+		"TaskAdd": {"bDisable": true},
+      	"TaskEdit": {"bDisable": true},
+      	"TaskRemove": {"bDisable": true},
+		"ManageJoin": {"bDisable": true}
+      }
+    },
+	"_default_Consideration": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},  
+      	"SignWriteRefuse": {},      	
+      	"SignComment": {}
+      },
+       "bNeedECP": true
+     },      
+    "_default_Accept": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignWriteAny": {},
+		"SignWriteNotNeed" : {"bDisable": true}
+      },
+		"bNeedECP": true
+    },
+   "_default_Agree": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignWriteAny": {},
+		"SignWriteNotNeed" : {"bDisable": true}
+      },
+		"bNeedECP": true
+    },
+    "_default_direct": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},      	
+      	"ManageViewers": {},
+      	"SignWriteAny": {},
+      	"AddSignerWriteDirect": {},        
+      	"ManageSignersRead": {},
+      	"SignComment": {},
+		"SignWriteNotNeed" : {"bDisable": true},
+		"TaskAdd": {"bDisable": true},
+      	"TaskEdit": {"bDisable": true},
+      	"TaskRemove": {"bDisable": true},
+		"ManageJoin": {"bDisable": true}
+      	},
+      "bNeedECP": true
+    },
+   "_default_Seen": {
+      "oMission": {"sKey_Right":"SignRead"},
+      "oRights": {
+      	"SignWriteAny": {}
+      }
+    }
+  },  
+  "step_create:Create": {},
+  "step_consideration:Consideration": {},
+  "step_accept:Accept": {},
+  "step_agree:Agree": {},
+  "step_direct:Direct": {},
+  "step_seen:Seen": {},
+  "step_edit:Edit": {}
+}

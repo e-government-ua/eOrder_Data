@@ -1,0 +1,76 @@
+{
+  "_:Watch": {
+	"_default_author": {
+      "oMission": {"sKey_Right":"SignRelease"},
+      "oRights": {
+      	"Manage": {},
+      	"SignComment": {},
+      	"AddSignerWriteAgree": {},
+      	"RemoveSignerWriteAgree": {},
+      	"EditSignerWriteAgree": {},
+		"AddSignerWriteAccept": {},
+      	"RemoveSignerWriteAccept": {},
+      	"EditSignerWriteAccept": {},
+		"TaskAdd": {"bDisable": true},
+      	"TaskEdit": {"bDisable": true},
+      	"TaskRemove": {"bDisable": true},
+		"ManageJoin": {"bDisable": true}
+      }
+    },
+	"_default_Consideration": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},  
+      	"SignWriteRefuse": {},      	
+      	"SignComment": {},
+		"AddSignerWriteAgree": {},
+      	"RemoveSignerWriteAgree": {},
+      	"EditSignerWriteAgree": {},
+		"AddSignerWriteAccept": {},
+      	"RemoveSignerWriteAccept": {},
+      	"EditSignerWriteAccept": {}
+      }
+     },
+	"_default_Visa": {
+      "oMission": {"sKey_Right": "SignWrite"},
+      "oRights": {
+        "SignDelegate":{},  
+      	"SignWriteRefuse": {},      	
+      	"SignComment": {},
+		"AddSignerWriteAgree": {},
+      	"RemoveSignerWriteAgree": {},
+      	"EditSignerWriteAgree": {},
+		"AddSignerWriteAccept": {},
+      	"RemoveSignerWriteAccept": {},
+      	"EditSignerWriteAccept": {}
+      }
+    },      
+    "_default_Accept": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignWriteAny": {},
+		"SignWriteNotNeed" : {"bDisable": true}
+      }
+    },
+   "_default_Agree": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignWriteAny": {},
+		"SignWriteNotNeed" : {"bDisable": true}
+      }
+    },
+   "_default_Seen": {
+      "oMission": {"sKey_Right":"SignRead"},
+      "oRights": {
+      	"SignWriteAny": {}
+      }
+    }
+  },  
+  "step_create:Create": {},
+  "step_consideration:Consideration": {},
+  "step_visa:Visa": {},
+  "step_accept:Accept": {},
+  "step_agree:Agree": {},
+  "step_seen:Seen": {},
+  "step_edit:Edit": {}
+}

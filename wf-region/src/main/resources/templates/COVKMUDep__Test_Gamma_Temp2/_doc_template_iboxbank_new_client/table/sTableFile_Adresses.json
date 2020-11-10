@@ -1,0 +1,67 @@
+{
+    "aField": [
+      {
+        "id": "type",
+        "name": "Обреіть зі списку;Адреса реєстрації або адреса фактичного проживання;",
+        "type": "enum",
+        "required": "true",
+        "a": [
+          {
+            "id": "juridical",
+            "name": "Адреса реєстрації"
+          },
+          {
+            "id": "factual",
+            "name": "Фактична адреса проживання"
+          }
+        ]
+      },
+      {
+        "id": "country",
+        "name": "Країна",
+        "type": "string",
+        "bVisible": "false",
+        "default": "UA"
+      },
+      {
+        "id": "state",
+        "name": "Область",
+        "required": "true",
+        "type": "string"
+      },
+      {
+        "id": "area",
+        "name": "Район",
+        "type": "string"
+      },
+      {
+        "id": "city",
+        "name": "Місто",
+        "required": "true",
+        "type": "string"
+      },
+      {
+        "id": "street",
+        "name": "Вулиця",
+        "required": "true",
+        "type": "string"
+      },
+      {
+        "id": "houseNo",
+        "name": "Номер будинку",
+        "required": "true",
+        "type": "string"
+      },
+      {
+        "id": "flatNo",
+        "name": "Номер квартири",
+        "type": "string"
+      },
+      {
+        "id": "index",
+        "name": "Почтовый индекс",
+        "required": "true",
+        "type": "string"
+      }
+    ]
+  }

@@ -1,0 +1,77 @@
+{
+  "_:Watch": {
+	"_default_author": {
+      "oMission": {"sKey_Right":"SignRelease"},
+      "oRights": {
+      	"Manage": {},
+      	"AddSignerWriteExecute": {"bDisable": true},
+      	"AddSignerWriteDirect": {"bDisable": true},
+      	"AddSignerWriteConsideration": {"bDisable": true},
+        "ManageJoin": {"bDisable": true},
+        "TaskAdd": {"bDisable": true},
+        "TaskEdit": {"bDisable": true},
+        "TaskRemove": {"bDisable": true}
+      }
+    },
+    "_default_Consideration": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},  
+      	"SignWriteRefuse": {},      	
+      	"SignComment": {}
+      },
+       "bNeedECP": true
+     },
+    "_default_accept": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},  
+      	"SignWriteRefuse": {},      	
+      	"SignComment": {}
+      },
+      "bNeedECP": true
+     },        
+    "_default_agree": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},  
+      	"SignWriteRefuse": {},      	
+      	"SignComment": {}
+      },
+      "bNeedECP": true
+     },
+     "_default_direct": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"ManageSignersRead": {},
+        "SignDelegate":{},  
+      	"SignWriteRefuse": {},      	
+      	"SignComment": {}
+      }
+     },
+     "_default_execute": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},      	
+      	"SignComment": {}
+      },
+       "bNeedECP": true
+    },
+     "_default_seen": {
+      "oMission": {"sKey_Right":"SignRead"},
+      "oRights": {
+      	"ManageSignersRead": {}
+      }
+    }         
+    },
+    
+  "step_create:Create": {},
+  "step_consideration:Consideration": {},
+  "step_accept:Accept": {},  
+  "step_agree:Agree": {},
+  "step_direct:Direct": {},
+  "step_execute:Execute": {},
+  "step_seen:Seen": {},
+  "step_edit:Edit": {}
+
+}

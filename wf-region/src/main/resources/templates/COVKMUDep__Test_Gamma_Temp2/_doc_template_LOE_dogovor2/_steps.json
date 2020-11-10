@@ -1,0 +1,94 @@
+{
+  "oProperties": {    
+          "sasKey_Field_RKK":"sTypeDoc,sDate,sReestr,Counterparty,sNameOfCustomer,sID_SubjectOrgan_Customer,sAddressJuridical_SubjectOrgan_Customer,sAddressFact_SubjectOrgan_Customer,sID_SubjectOrgan_01,sNameFull_SubjectOrgan_01,sNameShort_SubjectOrgan_01,sAddressJuridical_SubjectOrgan_01,sNameGoods,sClassifierCode,sNameGoods2,sCountGoods,sPlaceDelivery,sTimeDelivery,sQualitativeInformation,sPriceContract,sPriceUnit,sDateInform"
+    
+  },
+  "_:Watch": {
+	"_default_author": {
+      "oMission": {"sKey_Right":"SignRelease"},
+      "oRights": {
+      	"Manage": {},
+      	"SignComment": {},
+      	"AddSignerWriteDirect": {"bDisable": true},     	
+      	"RemoveSignerWriteDirect": {"bDisable": true},
+      	"EditSignerWriteDirect": {"bDisable": true}
+      }
+    },
+    "_default_view": {
+      "oMission": {"sKey_Right":"View", "sKey_Step_At":""},
+      "oRights": {
+      	"ManageViewers": {},
+        "SignComment": {}
+      }
+    },
+    "_default_accept": {    
+      "oMission": {"sKey_Right":"SignWrite", "bResetImageAfterSubmit": true},
+      "oRights": {
+      	"SignDelegate":{},      	
+      	"ManageViewers": {},
+      	"SignWriteAny": {},
+      	"SignWriteNotNeed": {"bDisable": true},
+      	"AddSignerWriteAccept": {},
+        "TaskAdd": {},
+         "TaskEdit": {"bDisable": true},
+        "TaskRemove": {},
+      	"ManageSignersRead": {},
+      	"SignComment": {}
+      }
+    },
+    "_default_agree": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},      	
+      	"ManageViewers": {},
+      	"SignWriteRefuse": {},
+      	"SignWriteNotNeed": {"bDisable": true},
+      	"AddSignerWriteAgree": {},
+      	"TaskAdd": {},   
+      	 "TaskEdit": {"bDisable": true},
+        "TaskRemove": {},     
+      	"ManageSignersRead": {},
+      	"SignComment": {}
+      },
+      "bNeedECP": true,
+      "oProperties": {
+        "sasKey_Field_SignECP": "soNewPrintForm"
+      }
+    },
+    "_default_consideration": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {     	
+      	"SignComment": {},
+      	"TaskEdit": {"bDisable": true},
+        "DocumentRemove": {"bDisable": true}
+      }
+    },
+     "_default_direct": {
+      "oMission": {"sKey_Right":"SignWrite", "bResetImageAfterSubmit": true},
+      "oRights": {     	
+      	"SignComment": {},
+      	"TaskEdit": {"bDisable": true},
+        "DocumentRemove": {"bDisable": true}
+      }
+    },
+    "_default_seen": {
+      "oMission": {"sKey_Right":"SignRead"},
+      "oRights": {
+      	"ManageViewers": {},
+      	"TaskEdit": {"bDisable": true},
+      	"ManageSignersRead": {},
+      	"SignComment": {}
+      }
+    }
+    },
+   
+  "step_create:Create": {},
+  "step_accept:Accept": {"oProperties": {"nSubscribersMin":1}
+  },  
+  "step_agree:Agree": {},
+  "step_direct:Direct": {},
+  "step_consideration:Consideration": {}, 
+  "step_seen:Seen": {},
+  "step_edit:Edit": {}
+
+}

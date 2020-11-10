@@ -1,0 +1,5 @@
+{"aField": [
+   {"id": "nRow","name": "№","type": "string"}
+   ,{"id": "sName","name": "Назва","type": "string"}
+   ,{"id": "oFile","name": "Файл; ;bNew=true","type": "file"}
+]}

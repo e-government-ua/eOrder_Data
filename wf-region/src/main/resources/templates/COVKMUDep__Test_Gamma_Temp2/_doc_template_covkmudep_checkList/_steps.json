@@ -1,0 +1,28 @@
+{
+  "_:Watch": {
+	"_default_author": {
+      "oMission": {"sKey_Right":"SignRelease"},
+      "oRights": {
+      "EditFields": {},
+      "SignAnswer": {},
+      "AddSignerWriteExecute": {},      
+      "Remove": {},
+      "SignQuestion": {}
+      }
+    },
+    
+     "_default_execute": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {      	
+      	"ManageViewers": {},
+      	"SignWriteExecute": {},
+      	"ManageSignersRead": {},      	
+      	"SignComment": {}
+      
+      }
+    }
+    },
+  "step_create:Create": {},
+  "step_execute:Execute": {}
+  
+}

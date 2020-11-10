@@ -1,0 +1,89 @@
+{
+  "_:Watch": {
+    "_default_author": {
+      "oMission": {
+        "sKey_Right": "SignRelease"
+      },
+      "oRights": {
+        "Manage": {},
+        "SignComment": {}
+      }
+    },
+    "_default_view": {
+      "oMission": {
+        "sKey_Right": "View",
+        "sKey_Step_At": ""
+      },
+      "oRights": {
+        "ManageViewers": {},
+        "SignComment": {}
+      }
+    },
+    "_default_accept": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {
+        "SignDelegate": {},
+        "TaskEdit": {
+          "bDisable": true
+        },
+        "ManageViewers": {},
+        "SignWriteAny": {},
+        "AddSignerWriteAccept": {},
+        "RemoveSignerWriteAccept": {},
+        "ManageSignersRead": {},
+        "SignComment": {}
+      }
+    },
+    "_default_agree": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {
+        "SignDelegate": {},
+        "ManageViewers": {},
+        "SignWriteRefuse": {},
+        "AddSignerWriteAgree": {},
+        "RemoveSignerWriteAgree": {},
+        "ManageSignersRead": {},
+        "SignComment": {}
+      }
+},
+      "_default_visa": {
+        "oMission": {
+          "sKey_Right": "SignWrite"
+        },
+        "oRights": {
+          "ManageViewers": {},
+          "EditFields": {},
+          "SignComment": {}
+        }
+      },
+      "_default_visa_1": {
+        "oMission": {
+          "sKey_Right": "SignWrite"
+        },
+        "oRights": {
+          "EditFields": {},
+          "SignComment": {}
+        }
+      },
+      "_default_execute": {
+        "oMission": {
+          "sKey_Right": "SignWrite"
+        },
+        "oRights": {
+          "SignDelegate": {},
+          "SignComment": {}
+        }
+      }
+    },
+    "step_create:Create": {},
+    "step_accept:Accept": {},
+    "step_visa:Visa": {},
+    "step_visa_1:Visa": {},
+    "step_agree:Agree": {},
+    "step_execute:Execute": {},
+    "step_edit:Edit": {}
+  }

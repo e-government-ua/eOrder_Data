@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="_doc_template_covkmudep_dismissal_leadership_init" name="Звільнення (за ініціативою суб’єкта призначення) стаття 87 ЗУ ДС" isExecutable="true">
+    <documentation>;bTemplated=true</documentation>
+    <userTask id="usertask1" name="Створення звільнення (за ініціативою суб’єкта призначення)">
+      <extensionElements>
+        <activiti:formProperty id="sName_Employee" name="Працівник, якого потрібно звільнити;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_Employee" name="Посада працівника" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Employee" name="Логин работника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDateDismissal" name="Дата звільнення працівника" type="date" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sReasonDismissal" name="Підстава на звільнення" type="enum" required="true">
+          <activiti:value id="s1.3.1" name="Скорочення чисельності або штату державних службовців, скорочення посади державної служби (без скорочення чисельності або штату), реорганізація державного органу, ліквідація державного органу (Частина перша статті 87 пункти 1, 11, 2, 3, 4)"></activiti:value>
+          <activiti:value id="s1.3.2" name="Встановлення невідповідності державного службовця займаній посаді протягом строку випробування"></activiti:value>
+          <activiti:value id="s1.3.3" name="Отримання державним службовцем негативної оцінки за результатами оцінювання службової діяльності"></activiti:value>
+          <activiti:value id="s1.3.4" name="Вчинення державним службовцем дисциплінарного проступку, який передбачає звільнення"></activiti:value>
+          <activiti:value id="s1.3.5" name="Припинення державної служби за нез’явлення державного службовця на службу протягом більш як 120 календарних днів підряд або більш як 150 календарних днів (Частина друга статті 87)"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sVihDop" name="Вихідна допомога" type="fileHTML"></activiti:formProperty>
+        <activiti:formProperty id="marker_1" name="Марке_1" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sVihDop&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReasonDismissal&quot;},&quot;sCondition&quot;:&quot;[sClient] == 's1.3.1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Уведомление;;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC [sID_Order_URL] "></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Звільнення (за ініціативою суб’єкта призначення) стаття 87 ЗУ ДС;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1CryALlJbZ2YLOzYzsybgDajBF1yIkXlS5SQXaOmohz4', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
+    <userTask id="usertask2" name="Підпис автором ЕЦП">
+      <extensionElements>
+        <activiti:formProperty id="sName_Employee" name="Працівник, якого потрібно звільнити;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_Employee" name="Посада працівника" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Employee" name="Логин работника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDateDismissal" name="Дата звільнення працівника" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sReasonDismissal" name="Підстава на звільнення" type="enum" writable="false">
+          <activiti:value id="s1.3.1" name="Скорочення чисельності або штату державних службовців, скорочення посади державної служби (без скорочення чисельності або штату), реорганізація державного органу, ліквідація державного органу (Частина перша статті 87 пункти 1, 11, 2, 3, 4)"></activiti:value>
+          <activiti:value id="s1.3.2" name="Встановлення невідповідності державного службовця займаній посаді протягом строку випробування"></activiti:value>
+          <activiti:value id="s1.3.3" name="Отримання державним службовцем негативної оцінки за результатами оцінювання службової діяльності"></activiti:value>
+          <activiti:value id="s1.3.4" name="Вчинення державним службовцем дисциплінарного проступку, який передбачає звільнення"></activiti:value>
+          <activiti:value id="s1.3.5" name="Припинення державної служби за нез’явлення державного службовця на службу протягом більш як 120 календарних днів підряд або більш як 150 календарних днів (Частина друга статті 87)"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sVihDop" name="Вихідна допомога; ;writable=false" type="fileHTML"></activiti:formProperty>
+        <activiti:formProperty id="marker_1" name="Марке_1" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sVihDop&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReasonDismissal&quot;},&quot;sCondition&quot;:&quot;[sClient] == 's1.3.1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Уведомление;;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC [sID_Order_URL] "></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Employee" name="Полное ФИО; ;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(sLogin_Employee)}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Звільнення (за ініціативою суб’єкта призначення) стаття 87 ЗУ ДС;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1CryALlJbZ2YLOzYzsybgDajBF1yIkXlS5SQXaOmohz4', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <serviceTask id="servicetask1" name="LoginAuthor" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oDocumentService.getLoginAuthor(execution)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_consideration]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_consideration]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway" default="flow5"></exclusiveGateway>
+    <sequenceFlow id="flow2" sourceRef="usertask3" targetRef="exclusivegateway1"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway2" name="Exclusive Gateway" default="flow4"></exclusiveGateway>
+    <sequenceFlow id="flow3" sourceRef="exclusivegateway1" targetRef="exclusivegateway2">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow4" sourceRef="exclusivegateway2" targetRef="usertask3">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:expression><![CDATA[+1]]></activiti:expression>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow5" sourceRef="exclusivegateway1" targetRef="usertask3"></sequenceFlow>
+    <sequenceFlow id="flow6" sourceRef="servicetask3" targetRef="usertask3"></sequenceFlow>
+    <sequenceFlow id="flow7" sourceRef="usertask1" targetRef="servicetask1">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Consideration]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <userTask id="usertask3" name="Узгодження звільнення (за ініціативою суб’єкта призначення)" default="flow2">
+      <extensionElements>
+        <activiti:formProperty id="sName_Employee" name="Працівник, якого потрібно звільнити;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_Employee" name="Посада працівника" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateDismissal" name="Дата звільнення працівника" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sReasonDismissal" name="Підстава на звільнення" type="enum" writable="false">
+          <activiti:value id="s1.3.1" name="Скорочення чисельності або штату державних службовців, скорочення посади державної служби (без скорочення чисельності або штату), реорганізація державного органу, ліквідація державного органу (Частина перша статті 87 пункти 1, 11, 2, 3, 4)"></activiti:value>
+          <activiti:value id="s1.3.2" name="Встановлення невідповідності державного службовця займаній посаді протягом строку випробування"></activiti:value>
+          <activiti:value id="s1.3.3" name="Отримання державним службовцем негативної оцінки за результатами оцінювання службової діяльності"></activiti:value>
+          <activiti:value id="s1.3.4" name="Вчинення державним службовцем дисциплінарного проступку, який передбачає звільнення"></activiti:value>
+          <activiti:value id="s1.3.5" name="Припинення державної служби за нез’явлення державного службовця на службу протягом більш як 120 календарних днів підряд або більш як 150 календарних днів (Частина друга статті 87)"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sVihDop" name="Вихідна допомога; ;writable=false" type="fileHTML"></activiti:formProperty>
+        <activiti:formProperty id="marker_1" name="Марке_1" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sVihDop&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReasonDismissal&quot;},&quot;sCondition&quot;:&quot;[sClient] == 's1.3.1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Уведомление;;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC [sID_Order_URL] "></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Employee" name="Полное ФИО; ;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(sLogin_Employee)}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Звільнення (за ініціативою суб’єкта призначення) стаття 87 ЗУ ДС;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1CryALlJbZ2YLOzYzsybgDajBF1yIkXlS5SQXaOmohz4', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow8" sourceRef="servicetask1" targetRef="usertask2"></sequenceFlow>
+    <serviceTask id="servicetask2" name="Mail" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[IDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <userTask id="usertask4" name="Затвердження звільнення (за ініціативою суб’єкта призначення)">
+      <extensionElements>
+        <activiti:formProperty id="sName_Employee" name="Працівник, якого потрібно звільнити;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_Employee" name="Посада працівника" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateDismissal" name="Дата звільнення працівника" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sReasonDismissal" name="Підстава на звільнення" type="enum" writable="false">
+          <activiti:value id="s1.3.1" name="Скорочення чисельності або штату державних службовців, скорочення посади державної служби (без скорочення чисельності або штату), реорганізація державного органу, ліквідація державного органу (Частина перша статті 87 пункти 1, 11, 2, 3, 4)"></activiti:value>
+          <activiti:value id="s1.3.2" name="Встановлення невідповідності державного службовця займаній посаді протягом строку випробування"></activiti:value>
+          <activiti:value id="s1.3.3" name="Отримання державним службовцем негативної оцінки за результатами оцінювання службової діяльності"></activiti:value>
+          <activiti:value id="s1.3.4" name="Вчинення державним службовцем дисциплінарного проступку, який передбачає звільнення"></activiti:value>
+          <activiti:value id="s1.3.5" name="Припинення державної служби за нез’явлення державного службовця на службу протягом більш як 120 календарних днів підряд або більш як 150 календарних днів (Частина друга статті 87)"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sVihDop" name="Вихідна допомога; ;writable=false" type="fileHTML"></activiti:formProperty>
+        <activiti:formProperty id="marker_1" name="Марке_1" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sVihDop&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReasonDismissal&quot;},&quot;sCondition&quot;:&quot;[sClient] == 's1.3.1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg" name="Дата регестрації наказу;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Уведомление;;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC [sID_Order_URL] "></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Employee" name="Полное ФИО; ;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(sLogin_Employee)}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Звільнення (за ініціативою суб’єкта призначення) стаття 87 ЗУ ДС;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1CryALlJbZ2YLOzYzsybgDajBF1yIkXlS5SQXaOmohz4', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <exclusiveGateway id="exclusivegateway3" name="Exclusive Gateway" default="flow15"></exclusiveGateway>
+    <sequenceFlow id="flow9" sourceRef="usertask4" targetRef="exclusivegateway3"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway4" name="Exclusive Gateway" default="flow11"></exclusiveGateway>
+    <sequenceFlow id="flow10" sourceRef="exclusivegateway3" targetRef="exclusivegateway4">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow11" sourceRef="exclusivegateway4" targetRef="usertask4">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:expression><![CDATA[+1]]></activiti:expression>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow12" sourceRef="servicetask2" targetRef="usertask4"></sequenceFlow>
+    <sequenceFlow id="flow13" sourceRef="exclusivegateway2" targetRef="servicetask2">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Agree]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisTypeStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow15" sourceRef="exclusivegateway3" targetRef="usertask4"></sequenceFlow>
+    <userTask id="usertask5" name="Редагування звільнення (за ініціативою суб’єкта призначення)">
+      <extensionElements>
+        <activiti:formProperty id="sName_Employee" name="Працівник, якого потрібно звільнити;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_Employee" name="Посада працівника" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDateDismissal" name="Дата звільнення працівника" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sReasonDismissal" name="Підстава на звільнення" type="enum">
+          <activiti:value id="s1.3.1" name="Скорочення чисельності або штату державних службовців, скорочення посади державної служби (без скорочення чисельності або штату), реорганізація державного органу, ліквідація державного органу (Частина перша статті 87 пункти 1, 11, 2, 3, 4)"></activiti:value>
+          <activiti:value id="s1.3.2" name="Встановлення невідповідності державного службовця займаній посаді протягом строку випробування"></activiti:value>
+          <activiti:value id="s1.3.3" name="Отримання державним службовцем негативної оцінки за результатами оцінювання службової діяльності"></activiti:value>
+          <activiti:value id="s1.3.4" name="Вчинення державним службовцем дисциплінарного проступку, який передбачає звільнення"></activiti:value>
+          <activiti:value id="s1.3.5" name="Припинення державної служби за нез’явлення державного службовця на службу протягом більш як 120 календарних днів підряд або більш як 150 календарних днів (Частина друга статті 87)"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sVihDop" name="Вихідна допомога" type="fileHTML"></activiti:formProperty>
+        <activiti:formProperty id="marker_1" name="Марке_1" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sVihDop&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReasonDismissal&quot;},&quot;sCondition&quot;:&quot;[sClient] == 's1.3.1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Уведомление;;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC [sID_Order_URL] "></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Employee" name="Полное ФИО; ;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(sLogin_Employee)}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Звільнення (за ініціативою суб’єкта призначення) стаття 87 ЗУ ДС;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1CryALlJbZ2YLOzYzsybgDajBF1yIkXlS5SQXaOmohz4', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="FlowButton_VzyatNaRedaktirovanie" name="Редагування;sIF=hasAny-States(Authorship)" sourceRef="usertask3" targetRef="usertask5">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[edit]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_VzyatNaRedaktirovanie')}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="FlowButton_VzyatNaRedaktirovanieZatverdgennya" name="Редагування;sIF=hasAny-States(Authorship)" sourceRef="usertask4" targetRef="usertask5">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[edit]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_VzyatNaRedaktirovanieZatverdgennya')}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="FlowButton_SnosIVernutNaVizirovanie" name="Зберегти зміни;sIF=hasAny-States(Authorship)" sourceRef="usertask5" targetRef="servicetask1">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${resetDocumentSignesListener}">
+          <activiti:field name="sasKey_StepType">
+            <activiti:string><![CDATA[Consideration,Accept,Agree]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_SnosIVernutNaVizirovanie')}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="usertask6" name="Ознаймлення звільнення (за ініціативою суб’єкта призначення)">
+      <extensionElements>
+        <activiti:formProperty id="sName_Employee" name="Працівник, якого потрібно звільнити;;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_Employee" name="Посада працівника" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateDismissal" name="Дата звільнення працівника" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sReasonDismissal" name="Підстава на звільнення" type="enum" writable="false">
+          <activiti:value id="s1.3.1" name="Скорочення чисельності або штату державних службовців, скорочення посади державної служби (без скорочення чисельності або штату), реорганізація державного органу, ліквідація державного органу (Частина перша статті 87 пункти 1, 11, 2, 3, 4)"></activiti:value>
+          <activiti:value id="s1.3.2" name="Встановлення невідповідності державного службовця займаній посаді протягом строку випробування"></activiti:value>
+          <activiti:value id="s1.3.3" name="Отримання державним службовцем негативної оцінки за результатами оцінювання службової діяльності"></activiti:value>
+          <activiti:value id="s1.3.4" name="Вчинення державним службовцем дисциплінарного проступку, який передбачає звільнення"></activiti:value>
+          <activiti:value id="s1.3.5" name="Припинення державної служби за нез’явлення державного службовця на службу протягом більш як 120 календарних днів підряд або більш як 150 календарних днів (Частина друга статті 87)"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sVihDop" name="Вихідна допомога; ;writable=false" type="fileHTML"></activiti:formProperty>
+        <activiti:formProperty id="marker_1" name="Марке_1" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sVihDop&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReasonDismissal&quot;},&quot;sCondition&quot;:&quot;[sClient] == 's1.3.1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sNumberNakaz" name="Номер наказу" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDateReg" name="Дата регестрації наказу;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_2" name="Маркер сетчик" type="markers" default="{&quot;motion&quot;:{&quot;GenerateCounterCustom_1&quot;:{&quot;aID&quot;:[{&quot;sFormula&quot;:&quot;'[sID_BP]'&quot;}],&quot;sFormulaResult&quot;:&quot;'від [sDateReg] № [0]-К'&quot;,&quot;sID_Field_Target&quot;:&quot;sNumberNakaz&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Уведомление;;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC [sID_Order_URL] "></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Employee" name="Полное ФИО; ;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(sLogin_Employee)}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Звільнення (за ініціативою суб’єкта призначення) стаття 87 ЗУ ДС;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1CryALlJbZ2YLOzYzsybgDajBF1yIkXlS5SQXaOmohz4', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <serviceTask id="servicetask3" name="Mail" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[IDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow19" sourceRef="usertask2" targetRef="servicetask3">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <serviceTask id="servicetask4" name="Mail" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_direct]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[IDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <exclusiveGateway id="exclusivegateway5" name="Exclusive Gateway" default="flow22"></exclusiveGateway>
+    <sequenceFlow id="flow20" sourceRef="usertask6" targetRef="exclusivegateway5"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway6" name="Exclusive Gateway" default="flow27"></exclusiveGateway>
+    <sequenceFlow id="flow21" sourceRef="exclusivegateway5" targetRef="exclusivegateway6">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow22" sourceRef="exclusivegateway5" targetRef="usertask6"></sequenceFlow>
+    <sequenceFlow id="flow24" sourceRef="servicetask4" targetRef="usertask6"></sequenceFlow>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow25" sourceRef="exclusivegateway6" targetRef="endevent1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisTypeStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow26" sourceRef="exclusivegateway4" targetRef="scripttask1">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Direct]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisTypeStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow27" sourceRef="exclusivegateway6" targetRef="usertask6">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:expression><![CDATA[+1]]></activiti:expression>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <scriptTask id="scripttask1" name="DateReg" scriptFormat="groovy" activiti:autoStoreVariables="false">
+      <script>execution.setVariable('sDateReg', new Date().format("dd.MM.yyyy").toString())</script>
+    </scriptTask>
+    <sequenceFlow id="flow28" sourceRef="scripttask1" targetRef="servicetask4"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram__doc_template_covkmudep_dismissal_leadership_init">
+    <bpmndi:BPMNPlane bpmnElement="_doc_template_covkmudep_dismissal_leadership_init" id="BPMNPlane__doc_template_covkmudep_dismissal_leadership_init">
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="74.0" width="125.0" x="97.0" y="36.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="4.0" y="55.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask2" id="BPMNShape_usertask2">
+        <omgdc:Bounds height="57.0" width="105.0" x="382.0" y="38.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask1" id="BPMNShape_servicetask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="237.0" y="39.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway1" id="BPMNShape_exclusivegateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="148.0" y="208.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway2" id="BPMNShape_exclusivegateway2">
+        <omgdc:Bounds height="40.0" width="40.0" x="36.0" y="208.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask3" id="BPMNShape_usertask3">
+        <omgdc:Bounds height="74.0" width="138.0" x="100.0" y="120.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask2" id="BPMNShape_servicetask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="4.0" y="280.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask4" id="BPMNShape_usertask4">
+        <omgdc:Bounds height="86.0" width="134.0" x="154.0" y="265.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway3" id="BPMNShape_exclusivegateway3">
+        <omgdc:Bounds height="40.0" width="40.0" x="200.0" y="381.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway4" id="BPMNShape_exclusivegateway4">
+        <omgdc:Bounds height="40.0" width="40.0" x="111.0" y="381.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask5" id="BPMNShape_usertask5">
+        <omgdc:Bounds height="81.0" width="131.0" x="640.0" y="116.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask6" id="BPMNShape_usertask6">
+        <omgdc:Bounds height="91.0" width="125.0" x="300.0" y="445.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask3" id="BPMNShape_servicetask3">
+        <omgdc:Bounds height="55.0" width="105.0" x="520.0" y="39.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask4" id="BPMNShape_servicetask4">
+        <omgdc:Bounds height="55.0" width="105.0" x="147.0" y="463.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway5" id="BPMNShape_exclusivegateway5">
+        <omgdc:Bounds height="40.0" width="40.0" x="342.0" y="559.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway6" id="BPMNShape_exclusivegateway6">
+        <omgdc:Bounds height="40.0" width="40.0" x="249.0" y="559.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="251.0" y="630.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask1" id="BPMNShape_scripttask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="4.0" y="463.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="39.0" y="72.0"></omgdi:waypoint>
+        <omgdi:waypoint x="97.0" y="73.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="238.0" y="157.0"></omgdi:waypoint>
+        <omgdi:waypoint x="288.0" y="156.0"></omgdi:waypoint>
+        <omgdi:waypoint x="288.0" y="227.0"></omgdi:waypoint>
+        <omgdi:waypoint x="188.0" y="228.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="148.0" y="228.0"></omgdi:waypoint>
+        <omgdi:waypoint x="76.0" y="228.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="56.0" y="208.0"></omgdi:waypoint>
+        <omgdi:waypoint x="56.0" y="156.0"></omgdi:waypoint>
+        <omgdi:waypoint x="100.0" y="157.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="168.0" y="208.0"></omgdi:waypoint>
+        <omgdi:waypoint x="169.0" y="194.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="572.0" y="94.0"></omgdi:waypoint>
+        <omgdi:waypoint x="572.0" y="156.0"></omgdi:waypoint>
+        <omgdi:waypoint x="238.0" y="157.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
+        <omgdi:waypoint x="222.0" y="73.0"></omgdi:waypoint>
+        <omgdi:waypoint x="237.0" y="66.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow8" id="BPMNEdge_flow8">
+        <omgdi:waypoint x="342.0" y="66.0"></omgdi:waypoint>
+        <omgdi:waypoint x="382.0" y="66.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow9" id="BPMNEdge_flow9">
+        <omgdi:waypoint x="288.0" y="308.0"></omgdi:waypoint>
+        <omgdi:waypoint x="317.0" y="307.0"></omgdi:waypoint>
+        <omgdi:waypoint x="317.0" y="400.0"></omgdi:waypoint>
+        <omgdi:waypoint x="240.0" y="401.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow10" id="BPMNEdge_flow10">
+        <omgdi:waypoint x="200.0" y="401.0"></omgdi:waypoint>
+        <omgdi:waypoint x="151.0" y="401.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow11" id="BPMNEdge_flow11">
+        <omgdi:waypoint x="131.0" y="381.0"></omgdi:waypoint>
+        <omgdi:waypoint x="131.0" y="307.0"></omgdi:waypoint>
+        <omgdi:waypoint x="154.0" y="308.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow12" id="BPMNEdge_flow12">
+        <omgdi:waypoint x="109.0" y="307.0"></omgdi:waypoint>
+        <omgdi:waypoint x="154.0" y="308.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow13" id="BPMNEdge_flow13">
+        <omgdi:waypoint x="56.0" y="248.0"></omgdi:waypoint>
+        <omgdi:waypoint x="56.0" y="280.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow15" id="BPMNEdge_flow15">
+        <omgdi:waypoint x="220.0" y="381.0"></omgdi:waypoint>
+        <omgdi:waypoint x="221.0" y="351.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_VzyatNaRedaktirovanie" id="BPMNEdge_FlowButton_VzyatNaRedaktirovanie">
+        <omgdi:waypoint x="238.0" y="157.0"></omgdi:waypoint>
+        <omgdi:waypoint x="640.0" y="156.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="349.0" y="166.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_VzyatNaRedaktirovanieZatverdgennya" id="BPMNEdge_FlowButton_VzyatNaRedaktirovanieZatverdgennya">
+        <omgdi:waypoint x="288.0" y="308.0"></omgdi:waypoint>
+        <omgdi:waypoint x="705.0" y="307.0"></omgdi:waypoint>
+        <omgdi:waypoint x="705.0" y="197.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="425.0" y="311.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_SnosIVernutNaVizirovanie" id="BPMNEdge_FlowButton_SnosIVernutNaVizirovanie">
+        <omgdi:waypoint x="705.0" y="116.0"></omgdi:waypoint>
+        <omgdi:waypoint x="705.0" y="18.0"></omgdi:waypoint>
+        <omgdi:waypoint x="289.0" y="18.0"></omgdi:waypoint>
+        <omgdi:waypoint x="289.0" y="39.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="715.0" y="40.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow19" id="BPMNEdge_flow19">
+        <omgdi:waypoint x="487.0" y="66.0"></omgdi:waypoint>
+        <omgdi:waypoint x="520.0" y="66.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow20" id="BPMNEdge_flow20">
+        <omgdi:waypoint x="425.0" y="490.0"></omgdi:waypoint>
+        <omgdi:waypoint x="471.0" y="490.0"></omgdi:waypoint>
+        <omgdi:waypoint x="471.0" y="578.0"></omgdi:waypoint>
+        <omgdi:waypoint x="382.0" y="579.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow21" id="BPMNEdge_flow21">
+        <omgdi:waypoint x="342.0" y="579.0"></omgdi:waypoint>
+        <omgdi:waypoint x="289.0" y="579.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow22" id="BPMNEdge_flow22">
+        <omgdi:waypoint x="362.0" y="559.0"></omgdi:waypoint>
+        <omgdi:waypoint x="362.0" y="536.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow24" id="BPMNEdge_flow24">
+        <omgdi:waypoint x="252.0" y="490.0"></omgdi:waypoint>
+        <omgdi:waypoint x="300.0" y="490.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow25" id="BPMNEdge_flow25">
+        <omgdi:waypoint x="269.0" y="599.0"></omgdi:waypoint>
+        <omgdi:waypoint x="268.0" y="630.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow26" id="BPMNEdge_flow26">
+        <omgdi:waypoint x="111.0" y="401.0"></omgdi:waypoint>
+        <omgdi:waypoint x="56.0" y="400.0"></omgdi:waypoint>
+        <omgdi:waypoint x="56.0" y="463.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow27" id="BPMNEdge_flow27">
+        <omgdi:waypoint x="269.0" y="559.0"></omgdi:waypoint>
+        <omgdi:waypoint x="268.0" y="490.0"></omgdi:waypoint>
+        <omgdi:waypoint x="300.0" y="490.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow28" id="BPMNEdge_flow28">
+        <omgdi:waypoint x="109.0" y="490.0"></omgdi:waypoint>
+        <omgdi:waypoint x="147.0" y="490.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

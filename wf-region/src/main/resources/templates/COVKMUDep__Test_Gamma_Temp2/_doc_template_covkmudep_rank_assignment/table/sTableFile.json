@@ -1,0 +1,88 @@
+{
+  "aField": [
+    {
+      "id": "sName_Subject",
+      "name": "Прізвище ім’я по-батькові; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel",
+      "type": "select",
+      "required": "true"
+    },
+    {
+      "id": "sDepart_Subject",
+      "name": "Підрозділ",
+      "type": "string",
+      "writable": "false"
+    },
+    {
+      "id": "sPosition_Subject",
+      "name": "Посада",
+      "type": "string",
+      "writable": "false"
+    },
+    {
+      "id": "sLogin_Subject",
+      "name": "Логін відповідального за усунення ризиків",
+      "type": "string",
+      "bVisible": "false"
+    },
+	{
+		"id": "asDurationOfStay",
+		"name": "Термін перебування у чинному ранзі",
+		"type": "enum",
+        "required": "true",
+		"a": [
+			{
+				"id": "consider",
+				"name": "Враховувати"
+			},
+			{
+				"id": "notToConsider",
+				"name": "Не враховувати"
+			}
+		]
+	},
+	{
+		"id": "asRanks",
+		"name": "Ранг",
+		"type": "enum",
+        "required": "true",
+		"a": [
+			{
+				"id": "rank9",
+				"name": "9 ранг"
+			},
+			{
+				"id": "rank8",
+				"name": "8 ранг"
+			},
+			{
+				"id": "rank7",
+				"name": "7 ранг"
+			},
+			{
+				"id": "rank6",
+				"name": "6 ранг"
+			},
+			{
+				"id": "rank5",
+				"name": "5 ранг"
+			},
+			{
+				"id": "rank4",
+				"name": "4 ранг"
+			},
+			{
+				"id": "rank3",
+				"name": "3 ранг"
+			},
+			{
+				"id": "rank2",
+				"name": "2 ранг"
+			},
+			{
+				"id": "rank1",
+				"name": "1 ранг"
+			}
+		]
+	}
+    ]
+}

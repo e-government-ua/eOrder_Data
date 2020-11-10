@@ -1,0 +1,27 @@
+{
+  "_:Watch": {
+	"_default_author": {
+      "oMission": {"sKey_Right":"SignRelease"},
+      "oRights": {
+      	"EditFields": {},
+     	"SignComment": {},     
+        "TaskManage": {},
+        "AddSignerWriteAccept": {},
+        "AddSignerRead": {},
+        "ManageViewers": {}
+      }
+    },   
+    "_default_agree": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"EditFields": {},
+     	"SignWriteNotNeed":{},
+      	"SignComment": {},
+      	"AddSignerWriteAgree": {},
+     }
+    }
+  },
+  "step_create:Create": {},
+  "step_agree:Agree": {}
+
+}

@@ -1,0 +1,3 @@
+nID;sID;sName;nID_Country;sPattern_NotDayOff;sPattern_DayOff;sasURL_Document_Law;sClassHandler;oDate
+1;UA_Standart;Стандарт выходных Украины;1232;;;;;null
+2;KZ_Standart;Стандарт выходных Казахстана;1112;;;;;null

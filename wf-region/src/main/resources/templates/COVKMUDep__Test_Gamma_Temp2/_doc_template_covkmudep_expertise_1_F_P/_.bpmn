@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="_doc_template_covkmudep_expertise_1_F_P" name="Експертиза Секретаріату КМУ-Опрацювання Фаховим підрозділом" isExecutable="true">
+    <documentation>;bTemplated=true</documentation>
+    <startEvent id="startevent1" name="Start">
+      <extensionElements>
+        <activiti:formProperty id="sTypeDoc" name="Тип документа" type="string" default="Відповідь на запит"></activiti:formProperty>
+        <activiti:formProperty id="sID_Custom_GovPublic" name="Номер вхідного документа ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sOutNumber" name="Реєстраційний вихідний номер ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sApplicant" name="Кому" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sName_Executor" name="Виконавець ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sName_AutorResolution" name="Автор резолюції ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sEmail" name="Електронна пошта" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sContent" name="Суть документу" type="fileHTML"></activiti:formProperty>
+        <activiti:formProperty id="sNote" name="Примітка" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Додатки; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDoc1" name="Електронна форма документа; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sContent" name="Короткий зміст документа ; ;bVisible=false" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sName_Signed" name="Підписав ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextDirect" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на резолюцію надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextAgree" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на затвердження надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextSeen" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на адресацію надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+      </extensionElements>
+    </startEvent>
+    <userTask id="usertask4" name="Формування  вихідної кореспонденції">
+      <extensionElements>
+        <activiti:formProperty id="sOtrimano" name="Отримано від" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLice" name="Фізична або юридична особи" type="enum">
+          <activiti:value id="FIZ" name="Фізична особа "></activiti:value>
+          <activiti:value id="UR" name="Юридична особа "></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sLogin_AutorResolution" name="Логін ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPrizvisce" name="Прізвище, ім’я та по батькові фізичної особи" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sAdresa" name="Реєстрація місця проживання та/або фактичне місце проживання" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sID_SubjectOrgan_OKPO_01" name="Код ЄДРПОУ" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_SubjectOrgan_01" name="Повна назва юридичної особи" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sLocation_SubjectOrgan_01" name="Місцезнаходження юридичної особи" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sNeobhidnist" name="Необхідність в отриманні записів із камер відеоспостереження" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sDate_Podii" name="Дата події" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sMisce" name="Місце, територія, об’єкти інфраструктури, на яких відбулась подія" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sNomerTel" name="Номер телефону" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sEmailPost" name="Електронна пошта" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPosta" name="Eлектронною поштою; ;sID_CheckboxTrue=post" type="enum">
+          <activiti:value id="post" name="Електронною поштою"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sPoshta_1" name="Поштою; ;sID_CheckboxTrue=post_2" type="enum">
+          <activiti:value id="post_2" name="Поштою"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asTypeResolution" name="Резолюція" type="enum">
+          <activiti:value id="sEnumToReview" name="Більше 2 ГБ"></activiti:value>
+          <activiti:value id="sEnumPleaseReport" name="В архіві відсутні"></activiti:value>
+          <activiti:value id="sEnumToAttention" name="Камери не встановлено"></activiti:value>
+          <activiti:value id="sEnumToPerform" name="Не надаємо аналітичну інформацію"></activiti:value>
+          <activiti:value id="sEnumToBusiness" name="Розглянемо на засіданні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTypeDoc" name="Тип документа" type="string" default="Відповідь на запит"></activiti:formProperty>
+        <activiti:formProperty id="sID_Custom_GovPublic" name="Номер вхідного документа ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sOutNumber" name="Реєстраційний вихідний номер ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sApplicant" name="Кому" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sName_Executor" name="Виконавець ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sName_AutorResolution" name="Автор резолюції ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sContent" name="Суть документу" type="fileHTML"></activiti:formProperty>
+        <activiti:formProperty id="sNote" name="Примітка" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Додатки; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDoc1" name="Електронна форма документа; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sContent" name="Короткий зміст документа ; ;bVisible=false" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sName_Signed" name="Підписав ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextDirect" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на резолюцію надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextAgree" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на затвердження надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextSeen" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на адресацію надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Vidpovidalniy" name="sLogin_Vidpovidalniy; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_count" name="Маркер счетчик" type="markers" default="{&quot;motion&quot;:{&quot;GenerateCounterCustom_1&quot;:{&quot;aID&quot;:[{&quot;sFormula&quot;:&quot;'[sID_BP]'&quot;}],&quot;sFormulaResult&quot;:&quot;'[sDateRegistration] - '+'[0]'&quot;,&quot;sID_Field_Target&quot;:&quot;sNumberRegistration&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="Marker1" name="Поле отримання" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_24&quot;:{&quot;aField_ID&quot;:[&quot;sInshiSposib&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeDelivery&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum7'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers_fizicna" name="Вибір фізичноі особи" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_3&quot;:{&quot;aField_ID&quot;:[&quot;sPrizvisce&quot;,&quot;sAdresa&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sLice&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'FIZ'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers_redicniy" name="Вибір юридичноі особи" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sID_SubjectOrgan_OKPO_01&quot;,&quot;sFullName_SubjectOrgan_01&quot;,&quot;sLocation_SubjectOrgan_01&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sLice&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'UR'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sPole" name="email; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="markers_pole" name="markers11" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_01&quot;:{&quot;aField_ID&quot;:[&quot;sPole&quot;],&quot;asID_Field_sValue&quot;:[&quot;Eлектронною поштою&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sPosta&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'post'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sPole_1" name="пошта; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_pole_1" name="markers15" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_02&quot;:{&quot;aField_ID&quot;:[&quot;sPole_1&quot;],&quot;asID_Field_sValue&quot;:[&quot;Поштою&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sPoshta_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'post_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="більше 2 ГБ;;bVisible=false, bPrintform=true,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1GX07DKQONHCZ6yGVQKI4h4UV4r-66_mUKZc9p17G4OE', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_3" name="В архві відсутні;;bVisible=false, bPrintform=true,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1dzYrdoPZqnZoIp4wMFv4cWMdDhzJnzZvFL4Ut0e5jUg', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_4" name="Камери не встановленно;;bVisible=false, bPrintform=true,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1uogm-x9pObdET-ERkZrWrg4GuvkQLl8YqgfKsNLLDGo', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_5" name="Не надаємо аналітичну інформацію;;bVisible=false, bPrintform=true,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1v1dLukBEiagnYJAPzc6phXzDFx7XkOHLp5WWFYSRutA', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_6" name="Розглянемо на зассіданні;;bVisible=false, bPrintform=true,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1qfiT1fSPoCGmSF38o4kcihEeTGDLC90axtSTZx8IMUQ', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="marker_sBody_2" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_50&quot;:{&quot;aField_ID&quot;:[&quot;sBody_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeResolution&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumToReview'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_sBody_3" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_51&quot;:{&quot;aField_ID&quot;:[&quot;sBody_3&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeResolution&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumPleaseReport'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_sBody_4" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_52&quot;:{&quot;aField_ID&quot;:[&quot;sBody_4&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeResolution&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumToAttention'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_sBody_5" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_53&quot;:{&quot;aField_ID&quot;:[&quot;sBody_5&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeResolution&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumToPerform'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_sBody_6" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_54&quot;:{&quot;aField_ID&quot;:[&quot;sBody_6&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeResolution&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumToBusiness'&quot;}}}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow23" sourceRef="startevent1" targetRef="usertask4"></sequenceFlow>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow60" sourceRef="usertask6" targetRef="servicetask5"></sequenceFlow>
+    <serviceTask id="servicetask1" name="письмо" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[iDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTextAgree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <userTask id="usertask5" name="Відповідальний. Вихідна кореспонденція. :: ${sApplicant}" default="flow63">
+      <extensionElements>
+        <activiti:formProperty id="sOtrimano" name="Отримано від" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLice" name="Фізична або юридична особи" type="enum">
+          <activiti:value id="FIZ" name="Фізична особа "></activiti:value>
+          <activiti:value id="UR" name="Юридична особа "></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sLogin_AutorResolution" name="Логін ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPrizvisce" name="Прізвище, ім’я та по батькові фізичної особи" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sAdresa" name="Реєстрація місця проживання та/або фактичне місце проживання" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sID_SubjectOrgan_OKPO_01" name="Код ЄДРПОУ" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_SubjectOrgan_01" name="Повна назва юридичної особи" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sLocation_SubjectOrgan_01" name="Місцезнаходження юридичної особи" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sNeobhidnist" name="Необхідність в отриманні записів із камер відеоспостереження" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sDate_Podii" name="Дата події" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sMisce" name="Місце, територія, об’єкти інфраструктури, на яких відбулась подія" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sNomerTel" name="Номер телефону" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sEmailPost" name="Електронна пошта" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPosta" name="Eлектронною поштою; ;sID_CheckboxTrue=post" type="enum">
+          <activiti:value id="post" name="Електронною поштою"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sPoshta_1" name="Поштою; ;sID_CheckboxTrue=post_2" type="enum">
+          <activiti:value id="post_2" name="Поштою"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asTypeResolution" name="Резолюція" type="enum">
+          <activiti:value id="sEnumToReview" name="Більше 2 ГБ"></activiti:value>
+          <activiti:value id="sEnumPleaseReport" name="В архіві відсутні"></activiti:value>
+          <activiti:value id="sEnumToAttention" name="Камери не встановлено"></activiti:value>
+          <activiti:value id="sEnumToPerform" name="Не надаємо аналітичну інформацію"></activiti:value>
+          <activiti:value id="sEnumToBusiness" name="Розглянемо на засіданні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTypeDoc" name="Тип документа" type="string" default="Відповідь на запит" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sID_Custom_GovPublic" name="Номер вхідного документа ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sOutNumber" name="Реєстраційний вихідний номер ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sApplicant" name="Кому" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Executor" name="Виконавець ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sName_AutorResolution" name="Автор резолюції ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sEmail" name="Електронна пошта" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sContent" name="Суть документу" type="fileHTML" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNote" name="Примітка" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Додатки; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc1" name="Електронна форма документа; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sContent" name="Короткий зміст документа ; ;bVisible=false" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sName_Signed" name="Підписав ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextDirect" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на резолюцію надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextAgree" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на затвердження надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextSeen" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на адресацію надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="marker_count" name="Маркер счетчик" type="markers" default="{&quot;motion&quot;:{&quot;GenerateCounterCustom_1&quot;:{&quot;aID&quot;:[{&quot;sFormula&quot;:&quot;'[sID_BP]'&quot;}],&quot;sFormulaResult&quot;:&quot;'[sDateRegistration] - '+'[0]'&quot;,&quot;sID_Field_Target&quot;:&quot;sNumberRegistration&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="Marker1" name="Поле отримання" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_24&quot;:{&quot;aField_ID&quot;:[&quot;sInshiSposib&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeDelivery&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum7'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers_fizicna" name="Вибір фізичноі особи" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_3&quot;:{&quot;aField_ID&quot;:[&quot;sPrizvisce&quot;,&quot;sAdresa&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sLice&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'FIZ'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers_redicniy" name="Вибір юридичноі особи" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sID_SubjectOrgan_OKPO_01&quot;,&quot;sFullName_SubjectOrgan_01&quot;,&quot;sLocation_SubjectOrgan_01&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sLice&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'UR'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sPole" name="email; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="markers_pole" name="markers11" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_01&quot;:{&quot;aField_ID&quot;:[&quot;sPole&quot;],&quot;asID_Field_sValue&quot;:[&quot;Eлектронною поштою&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sPosta&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'post'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sPole_1" name="пошта; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_pole_1" name="markers15" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_02&quot;:{&quot;aField_ID&quot;:[&quot;sPole_1&quot;],&quot;asID_Field_sValue&quot;:[&quot;Поштою&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sPoshta_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'post_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="більше 2 ГБ;;bVisible=false, bPrintform=true,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1GX07DKQONHCZ6yGVQKI4h4UV4r-66_mUKZc9p17G4OE', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_3" name="В архві відсутні;;bVisible=false, bPrintform=true,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1dzYrdoPZqnZoIp4wMFv4cWMdDhzJnzZvFL4Ut0e5jUg', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_4" name="Камери не встановленно;;bVisible=false, bPrintform=true,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1uogm-x9pObdET-ERkZrWrg4GuvkQLl8YqgfKsNLLDGo', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_5" name="Не надаємо аналітичну інформацію;;bVisible=false, bPrintform=true,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1v1dLukBEiagnYJAPzc6phXzDFx7XkOHLp5WWFYSRutA', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_6" name="Розглянемо на зассіданні;;bVisible=false, bPrintform=true,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1qfiT1fSPoCGmSF38o4kcihEeTGDLC90axtSTZx8IMUQ', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow61" sourceRef="usertask4" targetRef="exclusivegateway2">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow62" sourceRef="servicetask1" targetRef="usertask5"></sequenceFlow>
+    <serviceTask id="servicetask2" name="письмо" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[iDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTextDirect]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_direct]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow63" sourceRef="usertask5" targetRef="servicetask3">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[agree]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <userTask id="usertask6" name="Вихідна кореспонденція. :: ${sApplicant} Реєстрація канцелярією">
+      <extensionElements>
+        <activiti:formProperty id="sOtrimano" name="Отримано від" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLice" name="Фізична або юридична особи" type="enum">
+          <activiti:value id="FIZ" name="Фізична особа "></activiti:value>
+          <activiti:value id="UR" name="Юридична особа "></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sLogin_AutorResolution" name="Логін ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPrizvisce" name="Прізвище, ім’я та по батькові фізичної особи" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sAdresa" name="Реєстрація місця проживання та/або фактичне місце проживання" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sID_SubjectOrgan_OKPO_01" name="Код ЄДРПОУ" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_SubjectOrgan_01" name="Повна назва юридичної особи" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sLocation_SubjectOrgan_01" name="Місцезнаходження юридичної особи" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sNeobhidnist" name="Необхідність в отриманні записів із камер відеоспостереження" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sDate_Podii" name="Дата події" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sMisce" name="Місце, територія, об’єкти інфраструктури, на яких відбулась подія" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sNomerTel" name="Номер телефону" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sEmailPost" name="Електронна пошта" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPosta" name="Eлектронною поштою; ;sID_CheckboxTrue=post" type="enum">
+          <activiti:value id="post" name="Електронною поштою"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sPoshta_1" name="Поштою; ;sID_CheckboxTrue=post_2" type="enum">
+          <activiti:value id="post_2" name="Поштою"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asTypeResolution" name="Резолюція" type="enum">
+          <activiti:value id="sEnumToReview" name="Більше 2 ГБ"></activiti:value>
+          <activiti:value id="sEnumPleaseReport" name="В архіві відсутні"></activiti:value>
+          <activiti:value id="sEnumToAttention" name="Камери не встановлено"></activiti:value>
+          <activiti:value id="sEnumToPerform" name="Не надаємо аналітичну інформацію"></activiti:value>
+          <activiti:value id="sEnumToBusiness" name="Розглянемо на засіданні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTypeDoc" name="Тип документа" type="string" default="Відповідь на запит" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateDoc" name="Дата вихідного" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sOutNumber" name="Реєстраційний вихідний номер" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sApplicant" name="Кому" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Executor" name="Виконавець ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sName_AutorResolution" name="Автор резолюції ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sEmail" name="Електронна пошта" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sContent" name="Суть документу" type="fileHTML" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNote" name="Примітка" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Додатки; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc1" name="Електронна форма документа; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sContent" name="Короткий зміст документа ; ;bVisible=false" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sName_Signed" name="Підписав ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextDirect" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на резолюцію надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextAgree" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на затвердження надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextSeen" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на адресацію надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="marker_count" name="Маркер счетчик" type="markers" default="{&quot;motion&quot;:{&quot;GenerateCounterCustom_1&quot;:{&quot;aID&quot;:[{&quot;sFormula&quot;:&quot;'[sID_BP]'&quot;}],&quot;sFormulaResult&quot;:&quot;'[sDateRegistration] - '+'[0]'&quot;,&quot;sID_Field_Target&quot;:&quot;sNumberRegistration&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="Marker1" name="Поле отримання" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_24&quot;:{&quot;aField_ID&quot;:[&quot;sInshiSposib&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeDelivery&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum7'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers_fizicna" name="Вибір фізичноі особи" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_3&quot;:{&quot;aField_ID&quot;:[&quot;sPrizvisce&quot;,&quot;sAdresa&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sLice&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'FIZ'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers_redicniy" name="Вибір юридичноі особи" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sID_SubjectOrgan_OKPO_01&quot;,&quot;sFullName_SubjectOrgan_01&quot;,&quot;sLocation_SubjectOrgan_01&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sLice&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'UR'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sPole" name="email; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="markers_pole" name="markers11" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_01&quot;:{&quot;aField_ID&quot;:[&quot;sPole&quot;],&quot;asID_Field_sValue&quot;:[&quot;Eлектронною поштою&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sPosta&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'post'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sPole_1" name="пошта; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_pole_1" name="markers15" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_02&quot;:{&quot;aField_ID&quot;:[&quot;sPole_1&quot;],&quot;asID_Field_sValue&quot;:[&quot;Поштою&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sPoshta_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'post_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="більше 2 ГБ;;bVisible=false, bPrintform=true,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1GX07DKQONHCZ6yGVQKI4h4UV4r-66_mUKZc9p17G4OE', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_3" name="В архві відсутні;;bVisible=false, bPrintform=true,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1dzYrdoPZqnZoIp4wMFv4cWMdDhzJnzZvFL4Ut0e5jUg', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_4" name="Камери не встановленно;;bVisible=false, bPrintform=true,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1uogm-x9pObdET-ERkZrWrg4GuvkQLl8YqgfKsNLLDGo', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_5" name="Не надаємо аналітичну інформацію;;bVisible=false, bPrintform=true,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1v1dLukBEiagnYJAPzc6phXzDFx7XkOHLp5WWFYSRutA', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_6" name="Розглянемо на зассіданні;;bVisible=false, bPrintform=true,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1qfiT1fSPoCGmSF38o4kcihEeTGDLC90axtSTZx8IMUQ', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow64" sourceRef="servicetask2" targetRef="usertask6"></sequenceFlow>
+    <userTask id="usertask7" name="Редагування вихідної кореспонденції :: ${sApplicant}" default="FlowButton_VernutNaVizirovanie">
+      <extensionElements>
+        <activiti:formProperty id="sOtrimano" name="Отримано від" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLice" name="Фізична або юридична особи" type="enum">
+          <activiti:value id="FIZ" name="Фізична особа "></activiti:value>
+          <activiti:value id="UR" name="Юридична особа "></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sLogin_AutorResolution" name="Логін ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPrizvisce" name="Прізвище, ім’я та по батькові фізичної особи" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sAdresa" name="Реєстрація місця проживання та/або фактичне місце проживання" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sID_SubjectOrgan_OKPO_01" name="Код ЄДРПОУ" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_SubjectOrgan_01" name="Повна назва юридичної особи" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sLocation_SubjectOrgan_01" name="Місцезнаходження юридичної особи" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sNeobhidnist" name="Необхідність в отриманні записів із камер відеоспостереження" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sDate_Podii" name="Дата події" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sMisce" name="Місце, територія, об’єкти інфраструктури, на яких відбулась подія" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sNomerTel" name="Номер телефону" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sEmailPost" name="Електронна пошта" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPosta" name="Eлектронною поштою; ;sID_CheckboxTrue=post" type="enum">
+          <activiti:value id="post" name="Електронною поштою"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sPoshta_1" name="Поштою; ;sID_CheckboxTrue=post_2" type="enum">
+          <activiti:value id="post_2" name="Поштою"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asTypeResolution" name="Резолюція" type="enum">
+          <activiti:value id="sEnumToReview" name="Більше 2 ГБ"></activiti:value>
+          <activiti:value id="sEnumPleaseReport" name="В архіві відсутні"></activiti:value>
+          <activiti:value id="sEnumToAttention" name="Камери не встановлено"></activiti:value>
+          <activiti:value id="sEnumToPerform" name="Не надаємо аналітичну інформацію"></activiti:value>
+          <activiti:value id="sEnumToBusiness" name="Розглянемо на засіданні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTypeDoc" name="Тип документа" type="string" default="Відповідь на запит"></activiti:formProperty>
+        <activiti:formProperty id="sID_Custom_GovPublic" name="Номер вхідного документа ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sOutNumber" name="Реєстраційний вихідний номер ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sApplicant" name="Кому" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sName_Executor" name="Виконавець ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sName_AutorResolution" name="Автор резолюції ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sEmail" name="Електронна пошта" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sContent" name="Суть документу" type="fileHTML"></activiti:formProperty>
+        <activiti:formProperty id="sNote" name="Примітка" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Додатки; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDoc1" name="Електронна форма документа; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sContent" name="Короткий зміст документа ; ;bVisible=false" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sName_Signed" name="Підписав ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextDirect" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на резолюцію надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextAgree" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на затвердження надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextSeen" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на адресацію надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="marker_count" name="Маркер счетчик" type="markers" default="{&quot;motion&quot;:{&quot;GenerateCounterCustom_1&quot;:{&quot;aID&quot;:[{&quot;sFormula&quot;:&quot;'[sID_BP]'&quot;}],&quot;sFormulaResult&quot;:&quot;'[sDateRegistration] - '+'[0]'&quot;,&quot;sID_Field_Target&quot;:&quot;sNumberRegistration&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="Marker1" name="Поле отримання" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_24&quot;:{&quot;aField_ID&quot;:[&quot;sInshiSposib&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeDelivery&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum7'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers_fizicna" name="Вибір фізичноі особи" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_3&quot;:{&quot;aField_ID&quot;:[&quot;sPrizvisce&quot;,&quot;sAdresa&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sLice&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'FIZ'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers_redicniy" name="Вибір юридичноі особи" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sID_SubjectOrgan_OKPO_01&quot;,&quot;sFullName_SubjectOrgan_01&quot;,&quot;sLocation_SubjectOrgan_01&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sLice&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'UR'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sPole" name="email; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="markers_pole" name="markers11" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_01&quot;:{&quot;aField_ID&quot;:[&quot;sPole&quot;],&quot;asID_Field_sValue&quot;:[&quot;Eлектронною поштою&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sPosta&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'post'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sPole_1" name="пошта; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_pole_1" name="markers15" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_02&quot;:{&quot;aField_ID&quot;:[&quot;sPole_1&quot;],&quot;asID_Field_sValue&quot;:[&quot;Поштою&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sPoshta_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'post_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="більше 2 ГБ;;bVisible=false, bPrintform=true,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1GX07DKQONHCZ6yGVQKI4h4UV4r-66_mUKZc9p17G4OE', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_3" name="В архві відсутні;;bVisible=false, bPrintform=true,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1dzYrdoPZqnZoIp4wMFv4cWMdDhzJnzZvFL4Ut0e5jUg', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_4" name="Камери не встановленно;;bVisible=false, bPrintform=true,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1uogm-x9pObdET-ERkZrWrg4GuvkQLl8YqgfKsNLLDGo', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_5" name="Не надаємо аналітичну інформацію;;bVisible=false, bPrintform=true,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1v1dLukBEiagnYJAPzc6phXzDFx7XkOHLp5WWFYSRutA', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_6" name="Розглянемо на зассіданні;;bVisible=false, bPrintform=true,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1qfiT1fSPoCGmSF38o4kcihEeTGDLC90axtSTZx8IMUQ', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="FlowButton_Edit" name="Редагувати;sIF=hasAny-States(Authorship)" sourceRef="usertask5" targetRef="usertask7">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Edit]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_Edit')}]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="FlowButton_VernutNaVizirovanie" name="На погодження;sIF=hasAny-States(Authorship)" sourceRef="usertask7" targetRef="exclusivegateway1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_VernutNaVizirovanie')}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="FlowButton_SnosIVernutNaVizirovanie" name="Знести підписи та відправити на погодження;sIF=hasAny-States(Authorship)" sourceRef="usertask7" targetRef="exclusivegateway1">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${resetDocumentSignesListener}">
+          <activiti:field name="sasKey_StepType">
+            <activiti:string><![CDATA[Agree]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_SnosIVernutNaVizirovanie')}]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway id="exclusivegateway2" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="flow68" sourceRef="exclusivegateway2" targetRef="servicetask4"></sequenceFlow>
+    <sequenceFlow id="flow69" sourceRef="exclusivegateway1" targetRef="exclusivegateway2">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypePreviousListener}"></activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <scriptTask id="scripttask1" name="Script Task" scriptFormat="groovy" activiti:autoStoreVariables="false">
+      <script>execution.setVariable('sDateDoc', new Date().format("dd.MM.yyyy").toString())</script>
+    </scriptTask>
+    <sequenceFlow id="flow70" sourceRef="scripttask1" targetRef="servicetask2"></sequenceFlow>
+    <serviceTask id="servicetask3" name="Service Task" activiti:delegateExpression="${syncDocumentSignersByTableListener}">
+      <extensionElements>
+        <activiti:field name="sKey_StepType_Target">
+          <activiti:string><![CDATA[Agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sID_Field_WithLogin">
+          <activiti:string><![CDATA[sLogin_isExecute]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sID_Field_Table">
+          <activiti:string><![CDATA[sTable_AuthorRezol]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_TemplateRight">
+          <activiti:string><![CDATA[_default_agree]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <userTask id="usertask8" name="Автор резолюції. Вихідна кореспонденція. :: ${sApplicant}">
+      <extensionElements>
+        <activiti:formProperty id="sOtrimano" name="Отримано від" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLice" name="Фізична або юридична особи" type="enum">
+          <activiti:value id="FIZ" name="Фізична особа "></activiti:value>
+          <activiti:value id="UR" name="Юридична особа "></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sLogin_AutorResolution" name="Логін ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPrizvisce" name="Прізвище, ім’я та по батькові фізичної особи" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sAdresa" name="Реєстрація місця проживання та/або фактичне місце проживання" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sID_SubjectOrgan_OKPO_01" name="Код ЄДРПОУ" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_SubjectOrgan_01" name="Повна назва юридичної особи" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sLocation_SubjectOrgan_01" name="Місцезнаходження юридичної особи" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sNeobhidnist" name="Необхідність в отриманні записів із камер відеоспостереження" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sDate_Podii" name="Дата події" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sMisce" name="Місце, територія, об’єкти інфраструктури, на яких відбулась подія" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sNomerTel" name="Номер телефону" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sEmailPost" name="Електронна пошта" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPosta" name="Eлектронною поштою; ;sID_CheckboxTrue=post" type="enum">
+          <activiti:value id="post" name="Електронною поштою"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sPoshta_1" name="Поштою; ;sID_CheckboxTrue=post_2" type="enum">
+          <activiti:value id="post_2" name="Поштою"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asTypeResolution" name="Резолюція" type="enum">
+          <activiti:value id="sEnumToReview" name="Більше 2 ГБ"></activiti:value>
+          <activiti:value id="sEnumPleaseReport" name="В архіві відсутні"></activiti:value>
+          <activiti:value id="sEnumToAttention" name="Камери не встановлено"></activiti:value>
+          <activiti:value id="sEnumToPerform" name="Не надаємо аналітичну інформацію"></activiti:value>
+          <activiti:value id="sEnumToBusiness" name="Розглянемо на засіданні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTypeDoc" name="Тип документа" type="string" default="Відповідь на запит" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sID_Custom_GovPublic" name="Номер вхідного документа ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sOutNumber" name="Реєстраційний вихідний номер ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sApplicant" name="Кому" type="string" writable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sName_Executor" name="Виконавець ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sName_AutorResolution" name="Автор резолюції ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sEmail" name="Електронна пошта" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sContent" name="Суть документу" type="fileHTML" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNote" name="Примітка" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Додатки; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc1" name="Електронна форма документа; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sContent" name="Короткий зміст документа ; ;bVisible=false" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sName_Signed" name="Підписав ; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextDirect" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на резолюцію надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextAgree" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на затвердження надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextSeen" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на адресацію надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="marker_count" name="Маркер счетчик" type="markers" default="{&quot;motion&quot;:{&quot;GenerateCounterCustom_1&quot;:{&quot;aID&quot;:[{&quot;sFormula&quot;:&quot;'[sID_BP]'&quot;}],&quot;sFormulaResult&quot;:&quot;'[sDateRegistration] - '+'[0]'&quot;,&quot;sID_Field_Target&quot;:&quot;sNumberRegistration&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="Marker1" name="Поле отримання" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_24&quot;:{&quot;aField_ID&quot;:[&quot;sInshiSposib&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeDelivery&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum7'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers_fizicna" name="Вибір фізичноі особи" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_3&quot;:{&quot;aField_ID&quot;:[&quot;sPrizvisce&quot;,&quot;sAdresa&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sLice&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'FIZ'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers_redicniy" name="Вибір юридичноі особи" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sID_SubjectOrgan_OKPO_01&quot;,&quot;sFullName_SubjectOrgan_01&quot;,&quot;sLocation_SubjectOrgan_01&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sLice&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'UR'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sPole" name="email; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="markers_pole" name="markers11" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_01&quot;:{&quot;aField_ID&quot;:[&quot;sPole&quot;],&quot;asID_Field_sValue&quot;:[&quot;Eлектронною поштою&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sPosta&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'post'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sPole_1" name="пошта; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_pole_1" name="markers15" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_02&quot;:{&quot;aField_ID&quot;:[&quot;sPole_1&quot;],&quot;asID_Field_sValue&quot;:[&quot;Поштою&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sPoshta_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'post_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="більше 2 ГБ;;bVisible=false, bPrintform=true,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1GX07DKQONHCZ6yGVQKI4h4UV4r-66_mUKZc9p17G4OE', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_3" name="В архві відсутні;;bVisible=false, bPrintform=true,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1dzYrdoPZqnZoIp4wMFv4cWMdDhzJnzZvFL4Ut0e5jUg', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_4" name="Камери не встановленно;;bVisible=false, bPrintform=true,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1uogm-x9pObdET-ERkZrWrg4GuvkQLl8YqgfKsNLLDGo', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_5" name="Не надаємо аналітичну інформацію;;bVisible=false, bPrintform=true,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1v1dLukBEiagnYJAPzc6phXzDFx7XkOHLp5WWFYSRutA', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_6" name="Розглянемо на зассіданні;;bVisible=false, bPrintform=true,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1qfiT1fSPoCGmSF38o4kcihEeTGDLC90axtSTZx8IMUQ', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow71" sourceRef="servicetask3" targetRef="usertask8"></sequenceFlow>
+    <sequenceFlow id="flow72" sourceRef="usertask8" targetRef="scripttask1">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[direct]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <serviceTask id="servicetask4" name="права відповідальному" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_Accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${sLogin_Vidpovidalniy}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sOtrimano]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow73" sourceRef="servicetask4" targetRef="servicetask1"></sequenceFlow>
+    <serviceTask id="servicetask5" name="Service Task" activiti:delegateExpression="#{MailTaskWithoutAttachment}">
+      <extensionElements>
+        <activiti:field name="from">
+          <activiti:string><![CDATA[hh]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="to">
+          <activiti:expression><![CDATA[${sEmail_Author}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="text">
+          <activiti:expression><![CDATA[k]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="subject">
+          <activiti:string><![CDATA[k]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow74" sourceRef="servicetask5" targetRef="endevent1"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram__doc_template_covkmudep_expertise_1_F_P">
+    <bpmndi:BPMNPlane bpmnElement="_doc_template_covkmudep_expertise_1_F_P" id="BPMNPlane__doc_template_covkmudep_expertise_1_F_P">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="308.0" y="74.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask4" id="BPMNShape_usertask4">
+        <omgdc:Bounds height="84.0" width="130.0" x="392.0" y="50.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="740.0" y="528.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask1" id="BPMNShape_servicetask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="404.0" y="226.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask5" id="BPMNShape_usertask5">
+        <omgdc:Bounds height="71.0" width="130.0" x="392.0" y="310.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask2" id="BPMNShape_servicetask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="404.0" y="420.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask6" id="BPMNShape_usertask6">
+        <omgdc:Bounds height="71.0" width="130.0" x="392.0" y="510.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask7" id="BPMNShape_usertask7">
+        <omgdc:Bounds height="71.0" width="121.0" x="632.0" y="310.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway1" id="BPMNShape_exclusivegateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="672.0" y="150.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway2" id="BPMNShape_exclusivegateway2">
+        <omgdc:Bounds height="40.0" width="40.0" x="436.0" y="150.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask1" id="BPMNShape_scripttask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="270.0" y="420.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask3" id="BPMNShape_servicetask3">
+        <omgdc:Bounds height="55.0" width="105.0" x="250.0" y="320.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask8" id="BPMNShape_usertask8">
+        <omgdc:Bounds height="55.0" width="105.0" x="120.0" y="318.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask4" id="BPMNShape_servicetask4">
+        <omgdc:Bounds height="55.0" width="105.0" x="273.0" y="164.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask5" id="BPMNShape_servicetask5">
+        <omgdc:Bounds height="55.0" width="105.0" x="587.0" y="518.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow23" id="BPMNEdge_flow23">
+        <omgdi:waypoint x="343.0" y="91.0"></omgdi:waypoint>
+        <omgdi:waypoint x="392.0" y="92.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow60" id="BPMNEdge_flow60">
+        <omgdi:waypoint x="522.0" y="545.0"></omgdi:waypoint>
+        <omgdi:waypoint x="587.0" y="545.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow61" id="BPMNEdge_flow61">
+        <omgdi:waypoint x="457.0" y="134.0"></omgdi:waypoint>
+        <omgdi:waypoint x="456.0" y="150.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow62" id="BPMNEdge_flow62">
+        <omgdi:waypoint x="456.0" y="281.0"></omgdi:waypoint>
+        <omgdi:waypoint x="457.0" y="310.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow63" id="BPMNEdge_flow63">
+        <omgdi:waypoint x="392.0" y="345.0"></omgdi:waypoint>
+        <omgdi:waypoint x="355.0" y="347.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow64" id="BPMNEdge_flow64">
+        <omgdi:waypoint x="456.0" y="475.0"></omgdi:waypoint>
+        <omgdi:waypoint x="457.0" y="510.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_Edit" id="BPMNEdge_FlowButton_Edit">
+        <omgdi:waypoint x="522.0" y="345.0"></omgdi:waypoint>
+        <omgdi:waypoint x="632.0" y="345.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="522.0" y="345.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_VernutNaVizirovanie" id="BPMNEdge_FlowButton_VernutNaVizirovanie">
+        <omgdi:waypoint x="692.0" y="310.0"></omgdi:waypoint>
+        <omgdi:waypoint x="692.0" y="190.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="590.0" y="227.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_SnosIVernutNaVizirovanie" id="BPMNEdge_FlowButton_SnosIVernutNaVizirovanie">
+        <omgdi:waypoint x="753.0" y="345.0"></omgdi:waypoint>
+        <omgdi:waypoint x="820.0" y="345.0"></omgdi:waypoint>
+        <omgdi:waypoint x="820.0" y="170.0"></omgdi:waypoint>
+        <omgdi:waypoint x="712.0" y="170.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="70.0" width="100.0" x="829.0" y="226.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow68" id="BPMNEdge_flow68">
+        <omgdi:waypoint x="436.0" y="170.0"></omgdi:waypoint>
+        <omgdi:waypoint x="378.0" y="191.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow69" id="BPMNEdge_flow69">
+        <omgdi:waypoint x="672.0" y="170.0"></omgdi:waypoint>
+        <omgdi:waypoint x="476.0" y="170.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow70" id="BPMNEdge_flow70">
+        <omgdi:waypoint x="375.0" y="447.0"></omgdi:waypoint>
+        <omgdi:waypoint x="404.0" y="447.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow71" id="BPMNEdge_flow71">
+        <omgdi:waypoint x="250.0" y="347.0"></omgdi:waypoint>
+        <omgdi:waypoint x="225.0" y="345.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow72" id="BPMNEdge_flow72">
+        <omgdi:waypoint x="172.0" y="373.0"></omgdi:waypoint>
+        <omgdi:waypoint x="322.0" y="420.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow73" id="BPMNEdge_flow73">
+        <omgdi:waypoint x="378.0" y="191.0"></omgdi:waypoint>
+        <omgdi:waypoint x="456.0" y="226.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow74" id="BPMNEdge_flow74">
+        <omgdi:waypoint x="692.0" y="545.0"></omgdi:waypoint>
+        <omgdi:waypoint x="740.0" y="545.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

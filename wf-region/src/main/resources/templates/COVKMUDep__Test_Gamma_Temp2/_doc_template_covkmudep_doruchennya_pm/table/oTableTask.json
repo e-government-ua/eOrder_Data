@@ -1,0 +1,34 @@
+{
+  "aField": [
+    {
+      "id": "sHead",
+      "name": "Назва задачі",
+      "type": "string"   
+    },
+    {
+      "id": "sBody",
+      "name": "Тіло задачі",
+      "type": "string"
+    },
+    {
+      "id": "sDateExecute",
+      "name": "Дата виконання",
+      "type": "string"
+    },
+    {
+      "id": "sController",
+      "name": "Контролюючий",
+      "type": "string"
+    },
+    {
+      "id": "sExecutor",
+      "name": "Виконавці",
+      "type": "string"
+    },
+    {
+      "id": "sVisor",
+      "name": "Спостерігачі",
+      "type": "string"
+    }
+  ]
+}

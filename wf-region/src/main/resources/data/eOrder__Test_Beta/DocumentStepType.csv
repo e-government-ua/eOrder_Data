@@ -1,0 +1,16 @@
+nID;sName;sNote;sSing;bFolder;nOrder;oDateDeprecated;sID_ProcessDocumentStepEnum
+0;Agree;Затвердження;Затверджено;true;9;null;DocumentStep_Agree
+1;Accept;Узгодження;Узгоджено;true;8;null;DocumentStep_Accept
+2;Seen;Ознайомлення;Ознайомлено;true;14;null;DocumentStep_Seen
+3;Create;Створення;Створено;false;2;null;DocumentStep_Create
+4;Execute;Виконання;Виконано;false;13;null;DocumentStep_Execute
+5;Direct;Адресацiя;Дозволено;true;12;null;DocumentStep_Direct
+6;Edit;Редагування;Відредаговано;false;3;null;DocumentStep_Edit
+7;Watch;Перегляд;Переглянуто;false;1;null;DocumentStep_Watch
+8;Consideration;Розгляд;Розглянуто;false;4;null;DocumentStep_Consideration
+9;FirstAccept;Попереднє погодження;Попередньо погоджено;false;7;2018-09-26;DocumentStep_Accept
+10;SecondAgree;Погодження;Погоджено;false;10;2018-09-26;DocumentStep_Agree
+11;Sign;Підписання;Підписано;false;5;2018-09-26;DocumentStep_Agree
+12;ConsiderationADD;Розгляд адресатом;Розглянуто адресатом;true;11;null;DocumentStep_Consideration
+13;Visa;Візування;Завізовано;true;6;2018-09-26;DocumentStep_Agree
+14;DirectExternal;Зовнішня адресація;Отримано;false;14;null;DocumentStep_DirectExternal

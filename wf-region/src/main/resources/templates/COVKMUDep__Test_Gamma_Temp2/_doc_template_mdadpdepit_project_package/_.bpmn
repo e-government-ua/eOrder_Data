@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="_doc_template_mdadpdepit_project_package" name="Комісія по пакету Проектів рішень" isExecutable="true">
+    <documentation>;bTemplated=true</documentation>
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <userTask id="usertask1" name="Створення пакету Проектів рішень">
+      <extensionElements>
+        <activiti:formProperty id="sURL_Table" name="Посилання на порядок денний;;writable=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sSessionN" name="Орієнтовний номер сессії;;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1wNAXlCycWgaTQ7X8i-0zveQ7EaoiebcZGrUl1Wf5b7I/Лист1',sasKey_Field_Find='SessionN,SessionM',sasKey_Field_Select='SessionN')&amp;gt;:SessionN}}" type="select" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sNameC" name="Профільна комісія;;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1760zoZn4hN08FziHJsuqXAHGR-XtMC9dPwjFJjhL3pQ/Лист1',sasKey_Field_Find='NameC',sasKey_Field_Select='NameC,HeadC,HeadLoginC')&amp;gt;:NameC|sHeadC:HeadC|sHeadLoginC:HeadLoginC}}" type="select"></activiti:formProperty>
+        <activiti:formProperty id="sHeadC" name="Голова комісії;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sHeadLoginC" name="Логін голови комісії;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDepart_Resp" name="Відповідальний департамент;;bVisible=false,sID_SubjectRole=ExecutorDepart" type="select"></activiti:formProperty>
+        <activiti:formProperty id="sName_Responsible" name="Відповідальний доповідач по проекту;;bVisible=false, sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Responsible" name="Логін доповідача;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sEmail_Responsible" name="Пошта доповідача;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="markeremail" name="маркер пошти доповідача" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnService_01&quot;:{&quot;sMethod&quot;:&quot;GET&quot;,&quot;sPath&quot;:&quot;subject/getSubjectHuman_Compact&quot;,&quot;oParams&quot;:{&quot;sID_Group_Activiti&quot;:{&quot;sID_Field&quot;:&quot;sLogin_Responsible&quot;}},&quot;oReturn&quot;:{&quot;sEmail_Responsible&quot;:&quot;oSubjectHuman.oDefaultEmail.sValue&quot;}}}}"></activiti:formProperty>
+        <activiti:formProperty id="nID_Process_Parent" name="nID_Process_Parent;;bVisible=false" type="string"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
+    <userTask id="usertask2" name="Узгодження пакету Проектів рішень профільної комісії ${sNameC}">
+      <extensionElements>
+        <activiti:formProperty id="sURL_Table" name="Посилання на порядок денний; Google Excel;writable=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sSessionN" name="Орієнтовний номер сессії;;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1wNAXlCycWgaTQ7X8i-0zveQ7EaoiebcZGrUl1Wf5b7I/Лист1',sasKey_Field_Find='SessionN,SessionM',sasKey_Field_Select='SessionN,SessionM')&amp;gt;:SessionN}}" type="select" writable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sNameC" name="Профільна комісія;;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1760zoZn4hN08FziHJsuqXAHGR-XtMC9dPwjFJjhL3pQ/Лист1',sasKey_Field_Find='NameC',sasKey_Field_Select='NameC,HeadC,HeadLoginC')&amp;gt;:NameC|sHeadC:HeadC|sHeadLoginC:HeadLoginC}}" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sHeadC" name="Голова комісії;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sHeadLoginC" name="Логін голови комісії;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDepart_Resp" name="Відповідальний департамент;;bVisible=false,sID_SubjectRole=ExecutorDepart" type="select"></activiti:formProperty>
+        <activiti:formProperty id="sName_Responsible" name="Відповідальний доповідач по проекту;;bVisible=false, sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Responsible" name="Логін доповідача;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sEmail_Responsible" name="Пошта доповідача;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="markeremail" name="маркер пошти доповідача" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnService_01&quot;:{&quot;sMethod&quot;:&quot;GET&quot;,&quot;sPath&quot;:&quot;subject/getSubjectHuman_Compact&quot;,&quot;oParams&quot;:{&quot;sID_Group_Activiti&quot;:{&quot;sID_Field&quot;:&quot;sLogin_Responsible&quot;}},&quot;oReturn&quot;:{&quot;sEmail_Responsible&quot;:&quot;oSubjectHuman.oDefaultEmail.sValue&quot;}}}}"></activiti:formProperty>
+        <activiti:formProperty id="nID_Process_Parent" name="nID_Process_Parent;;bVisible=false" type="string"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow2" sourceRef="usertask1" targetRef="servicetask1">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow3" sourceRef="usertask2" targetRef="endevent1"></sequenceFlow>
+    <serviceTask id="servicetask1" name="Автор на узгодження" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oDocumentService.getLoginAuthor(execution)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sSessionN]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow4" sourceRef="servicetask1" targetRef="scripttask3"></sequenceFlow>
+    <scriptTask id="scripttask1" name="Script Task" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>// Змінні для запиту
+
+// ІД цільового БП для фільту
+var sTargetBPid = "_doc_template_mdadpdepit_project";
+
+// ІД цільових полів для фільтру та для отримання критеріїв пошуку
+var asTargetField = [
+	"sSessionN",
+	"sNameC"
+];
+
+var oOr = { aOr: [{aAnd: [{sID: "Visa"}]}, {aAnd: [{sID: "Accept"}]}, {aAnd: [{sID: "Agree"}]}]}
+
+// Переведення масиву цільових полів у строку
+var sTargetField = asTargetField.toString().replace(/\[|\]/g, '');
+
+var aFieldConditionParams = [];
+
+// Шаблон таблиці для отримання відповіді
+var sResTable = {
+	aField: [
+		{
+			id: "sID_Document",
+			name: "Номер документа",
+			type: "string"
+			// value: 108-123123321
+		}
+	]
+};
+
+// Заповнення об'єкту aFieldConditionParams для передачі у тіло запиту
+getAFieldConditionParams(asTargetField, aFieldConditionParams);
+
+execution.setVariable('saFieldConditionParams', JSON.stringify(aFieldConditionParams));
+
+
+// Тіло запиту
+// var reqBody = {
+// 	aFieldCondition: aFieldConditionParams,
+// 	oDocumentStepType_FilterLogicalVO: oOr,
+// 	sID_BP: sTargetBPid
+// };
+
+var reqBody = {
+	aSort: null,
+	sID_ProcessDocumentSubjectStatusType: null,
+	oProcessDocumentStateType_FilterLogicalVO: null,
+	oProcessDocumentLoginSigner_FilterLogicalVO: null,
+	oDocumentStepType_FilterLogicalVO:  oOr,
+	oProcessDocumentStatus_FilterLogicalVO: null,
+	oSubjectRoleGroup_FilterLogicalVO: null,
+	sID_BP: sTargetBPid,
+	sID_RepositoryCategory: null,
+	sID_Subject_CounterpartyOwnGroup: null,
+	sID_Subject_CounterpartyOuter: null,
+	sID_Subject_CounterpartyOwn: null,
+	nSumBalance_At: null,
+	nSumBalance_To: null,
+	sKey_ProcessFolder: null,
+	sKeyContractStatus: null,
+	oField_DateRegions: null,
+	sText: null,
+	sID_SubjectGroup_Author: null,
+	aFieldCondition: aFieldConditionParams
+};
+
+// Заповнення параметрів тіла запиту
+function getAFieldConditionObject(sID_Field, sValue) {
+	return {
+		sID_Field: sID_Field, 
+		sCondition: "equals", 
+		sValue: sValue
+	}
+};
+
+// Отримання даних для пошуку із цільових полів
+function getAFieldConditionParams(aTargetFieds, aFieldConditionParams) {
+
+	for (var i = 0; i&lt;aTargetFieds.length; i++) {
+		sFieldID = aTargetFieds[i];
+		sFieldValue = execution.getVariable(sFieldID);
+
+		aFieldConditionParams.push(getAFieldConditionObject(sFieldID, sFieldValue));
+	}
+
+	return aFieldConditionParams;
+
+};
+
+execution.setVariable('reqBody', JSON.stringify(reqBody));
+execution.setVariable('sTargetField', sTargetField);
+execution.setVariable('sResTable', JSON.stringify(sResTable));
+// Виклик методу															
+var oRes = processFilterService.getProcessFilteredFieldsAsTable("", JSON.stringify(reqBody), 0, 5000, true, "", "document", "", "","", sTargetField, JSON.stringify(sResTable));
+
+execution.setVariable('soVidpovidj', oRes.toString());
+
+var nRorws = JSON.parse(oRes).aRow.length
+
+var aDocuments = "";
+
+execution.setVariable('nRows', nRorws);
+
+//Связка нескольких документов, с таблицы
+var snID_Process_Activiti = execution.getProcessInstanceId(); 
+var nID_Process_Child_t = processDocumentService.getProcessDocument(snID_Process_Activiti).id;
+
+for(i=0; i &lt; nRorws; i++) {
+	snID_OrderDocument = JSON.parse(oRes).aRow[i].aField[0].value;
+	snNum = snID_OrderDocument.split('-')[1];
+	processInstanceId_parent_t = snNum.substring(0, snNum.length - 1);	
+	nID_Process_Parent_t = processDocumentService.getProcessDocument(processInstanceId_parent_t).id;
+
+	aDocuments += nID_Process_Parent_t + ", ";
+	
+	processDocumentTreeService.setProcessDocumentTree(+nID_Process_Parent_t, nID_Process_Child_t);
+};
+
+execution.setVariable('sanDocs', aDocuments);
+execution.setVariable('nID_Process_Child_t', nID_Process_Child_t);</script>
+    </scriptTask>
+    <sequenceFlow id="flow5" sourceRef="scripttask1" targetRef="usertask2"></sequenceFlow>
+    <scriptTask id="scripttask2" name="Date create" activiti:async="true" scriptFormat="groovy" activiti:autoStoreVariables="false">
+      <script>execution.setVariable('sDateCreate', new Date().format("yyyy-MM-dd").toString())</script>
+    </scriptTask>
+    <sequenceFlow id="flow6" sourceRef="scripttask2" targetRef="scripttask3"></sequenceFlow>
+    <scriptTask id="scripttask3" name="Script Task" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>// Зміна назви
+var sNameC = execution.getVariable('sNameC');
+
+var sStage = 'Узгодження пакету Проектів рішень профільної комісії ' + sNameC
+execution.setVariable('sStage', sStage);</script>
+    </scriptTask>
+    <sequenceFlow id="flow7" sourceRef="scripttask3" targetRef="scripttask1"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram__doc_template_mdadpdepit_project_package">
+    <bpmndi:BPMNPlane bpmnElement="_doc_template_mdadpdepit_project_package" id="BPMNPlane__doc_template_mdadpdepit_project_package">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="0.0" y="130.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="61.0" width="141.0" x="250.0" y="117.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask2" id="BPMNShape_usertask2">
+        <omgdc:Bounds height="61.0" width="141.0" x="252.0" y="320.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="120.0" y="333.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask1" id="BPMNShape_servicetask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="485.0" y="120.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask1" id="BPMNShape_scripttask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="485.0" y="323.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask2" id="BPMNShape_scripttask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="980.0" y="110.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask3" id="BPMNShape_scripttask3">
+        <omgdc:Bounds height="55.0" width="105.0" x="483.0" y="220.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="35.0" y="147.0"></omgdi:waypoint>
+        <omgdi:waypoint x="250.0" y="147.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="391.0" y="147.0"></omgdi:waypoint>
+        <omgdi:waypoint x="485.0" y="147.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="252.0" y="350.0"></omgdi:waypoint>
+        <omgdi:waypoint x="155.0" y="350.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="537.0" y="175.0"></omgdi:waypoint>
+        <omgdi:waypoint x="535.0" y="220.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="485.0" y="350.0"></omgdi:waypoint>
+        <omgdi:waypoint x="393.0" y="350.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="1032.0" y="165.0"></omgdi:waypoint>
+        <omgdi:waypoint x="535.0" y="220.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
+        <omgdi:waypoint x="535.0" y="275.0"></omgdi:waypoint>
+        <omgdi:waypoint x="537.0" y="323.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

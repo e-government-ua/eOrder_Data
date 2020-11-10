@@ -1,0 +1,10 @@
+{
+  "aField": [
+    {
+      "id": "sEmailKores",
+      "name": "Електронна пошта",
+      "type": "string"
+   
+    }
+  ]
+}

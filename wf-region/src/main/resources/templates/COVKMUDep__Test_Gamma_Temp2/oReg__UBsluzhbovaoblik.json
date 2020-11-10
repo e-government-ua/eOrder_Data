@@ -1,0 +1,193 @@
+{
+  "aField": [
+    {
+      "sKey": "nID",
+      "sKey_Type": "long",
+      "sName": "ID поля",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+	{
+      "sKey": "sID",
+      "sKey_Type": "string",
+      "sName": "sID",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "oProcessDocument.sID_Document",
+      "sKey_Type": "string",
+      "sName": "ID Документу",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false,
+      "asMetaAttribute": ["sURL=/documents/sID_Order=[]"]
+    },
+    {
+      "sKey": "oProcessDocument.sURL_Document",
+      "sKey_Type": "string",
+      "sName": "Посилання на документ",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": true,
+      "bRequired": false,
+      "nSizeBytes": 500
+    },
+    {
+      "sKey": "sNumberDoc",
+      "sKey_Type": "string",
+      "sName": "Реєстраційний номер",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "sDateCreateDocument",
+      "sKey_Type": "string",
+      "sName": "Дата створення ел. документа",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "sName_Author",
+      "sKey_Type": "string",
+      "sName": "ПІБ працівника",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+	{
+      "sKey": "sDepartment_Author",
+      "sKey_Type": "string",
+      "sName": "Структурний підрозділ автора",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+	{
+      "sKey": "asTypeChange",
+      "sKey_Type": "string",
+      "sName": "Тип коригування (enum)",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "oDateBalance",
+      "sKey_Type": "string",
+      "sName": "Дата балансу, в якій виконується коригування",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "sReason",
+      "sKey_Type": "string",
+      "sName": "Обгрунтування необхідності коригування",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "sNumberScrooge_Report",
+      "sKey_Type": "string",
+      "sName": "№ документа Scrooge",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "sType_Report",
+      "sKey_Type": "string",
+      "sName": "Тип (enum)",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "sDT_Report",
+      "sKey_Type": "string",
+      "sName": "Дт",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "sKT_Report",
+      "sKey_Type": "string",
+      "sName": "Кт",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "sAmount_Report",
+      "sKey_Type": "string",
+      "sName": "Сума",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "sCurrency_Report",
+      "sKey_Type": "string",
+      "sName": "Валюта",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "sPurpose_Report",
+      "sKey_Type": "string",
+      "sName": "Призначення платежу",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+     {
+      "sKey": "ID_",
+      "sKey_Type": "string",
+      "sName": "ID поля системного",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": true,
+      "bRequired": false
+     }
+  ],
+  "oProperties": {
+    "sKey_Field_UniqAuto": "nID",
+    "asKey_Field_Uniq": [
+      "sID"
+    ],
+    "asKey_BP_Registry": [
+      "_doc_template_UB_change_accounting"
+    ],
+    "sFormula_Registry": "",
+	"sName": "Реєстр СЗ обліку УБ",
+	"sID_SubjectSystem": "GoogleExcel_iCore",
+	"sKey_Entity": "106VPVyDw2cLiroVco6UsD8zeMSNx9VAp4aoZdV-UtCE/change_accounting"
+  },
+  "bReadonly": false,
+  "bHide": false,
+  "bRequired": false
+}

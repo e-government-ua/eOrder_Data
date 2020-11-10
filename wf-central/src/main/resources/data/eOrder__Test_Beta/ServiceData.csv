@@ -1,0 +1,11 @@
+nID;nID_Service;nID_Place;nID_City;nID_Region;nID_ServiceType;oData;sURL;bHidden;nID_Subject_Operator;bTest;sNote;asAuth;nID_Server
+1;1;NULL;NULL;NULL;4;{"processDefinitionId":"_doc_template_authorization_deputies:1:1","sLogin":"covkmudep_000000sli"};;false;1;false;;BankID,email,EDS,mpbds;108
+3;3;NULL;NULL;NULL;4;{"processDefinitionId":"_doc_covkmudep_appeal_citizens:1:1","sLogin":"covkmudep_000000sli"};;false;1;false;;BankID,EDS,mpbds;108
+4;4;NULL;NULL;NULL;4;{"processDefinitionId":"_doc_template_iboxbank_new_client:1:1","sLogin":"covkmudep_000000sli"};;false;1;false;;BankID-NBU,BankID,email,EDS;108
+5;5;NULL;NULL;NULL;4;{"processDefinitionId":"_doc_template_icore_LID:1:1","sLogin":"covkmudep_000000sli"};;false;1;false;;BankID,EDS,mpbds;108
+19;267;1;1;NULL;4;{"processDefinitionId":"_doc_BTI_267_VlasnistInfo:1:1","sLogin":"covkmudep_000000sli"};;false;210;false;;BankID,EDS,mpbds;108
+21;745;NULL;NULL;NULL;4;{"processDefinitionId":"_doc_UPSZN_0745_ZapisOchered:1:1","sLogin":"covkmudep_000000sli"};;false;1;false;;BankID,EDS,mpbds,phone;108
+110;740;1;1;NULL;4;{"processDefinitionId":"_doc_Rada_0740_SkladSimyi_Dnipro:1:1","sLogin":"covkmudep_000000sli"};;false;1;false;;BankID,EDS,mpbds;108
+999;267;16;16;NULL;4;{"processDefinitionId":"_doc_BTI_267_VlasnistInfo:1:1","sLogin":"covkmudep_000000sli"};;false;210;false;;BankID,EDS,mpbds;108
+1000;746;1;1;NULL;4;{"processDefinitionId":"_doc_data_transfer:1:1","sLogin":"covkmudep_000000sli"};;false;1;false;;BankID,EDS,mpbds;108
+

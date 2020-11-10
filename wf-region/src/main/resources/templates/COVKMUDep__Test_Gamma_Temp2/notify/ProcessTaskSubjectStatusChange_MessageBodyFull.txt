@@ -1,0 +1,7 @@
+Назва :[oProcessTaskVO.sHead] №[sID_Order] <br />
+Завдання: [oProcessTaskVO.sBody]<br />
+Контролюючий: [oSubjectEmployeeVO_ActionSource.sFIO_Short]<br />
+Виконавці: [oSubjectEmployeeVO_OnWhomTheAction.sFIO_Short]<br />
+Дата виконання:[oProcessTaskSubject.sDatePlan]<br />
+Форма звіту:[oProcessTaskVO.sName_TaskReportType]<br />
+<a href="https://covkmudep-dev.test.idoc.com.ua/tasks/sID_Order=[sID_Order]">Відкрити контроль</a>

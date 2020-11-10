@@ -1,0 +1,2215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="_doc_template_covkmudep_CHECK-LIST" name="Адаптація" isExecutable="true">
+    <documentation>;bTemplated=true</documentation>
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <userTask id="usertask1" name="Створення документа ">
+      <extensionElements>
+        <activiti:formProperty id="sName_Employee" name="ПІБ нового співробітника; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Employee" name="Логин нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sName_HR" name="ПІБ HR;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_HR" name="Логин HR;;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head" name="ПІБ керівника нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head" name="Логін керівника нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDate" name="Дата виходу на роботу нового співробітника" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Оповіщення;;bVisible=false" type="string" default="Шановний(на) співробітнику(це), Вам надійшов перелік завдань, у зв'язку з виходом на роботу новопризначеного співробітника, які Ви повинні виконати у зазначений строк."></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Лист;;bVisible=false,bPrintform=true,bDocumentSubTabPrintformDefault=false,bGenerateByGoogle_PDF=true" type="string" default="{'sPathFile':'10fOu9ca7iwv9-QpRR7WiSRQDkZwG-6iktVWAhs_JQ10', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sTable_Regular_Head" name="Таблиця із завданнями;bVisible=false;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTable_Regular_Employee" name="Таблиця із завданнями;bVisible=false;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTable_Regular_HR" name="Таблиця із завданнями;bVisible=false;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sEmail_Employee" name="Електронна адреса нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="PrintForm_1" name="Лист-вітання;List-vitannia;sID_Field_Reciver_PrintformDefault_Signed=PrintForm_1,sFileName=Лист-вітання,bNew=true,bVisible=false" type="file"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <serviceTask id="servicetask2" name="Відправка листа-привітання новому співробітнику" activiti:delegateExpression="#{MailTaskWithAttachments}">
+      <extensionElements>
+        <activiti:field name="from">
+          <activiti:string><![CDATA[noreply@igov.org.ua]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="to">
+          <activiti:expression><![CDATA[${sEmail_Employee}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="subject">
+          <activiti:string><![CDATA[Лист-вітання]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="saAttachmentsForSend">
+          <activiti:expression><![CDATA[${PrintForm_1}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="text">
+          <activiti:string><![CDATA[Шановний співробітник! Ознайомтесь, будь ласка, зі змістом листа.]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow6" sourceRef="scripttask7" targetRef="parallelgateway1"></sequenceFlow>
+    <serviceTask id="servicetask3" name="Права новому сівробітнику" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${sLogin_Employee}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sName_Employee]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="servicetask4" name="Права керівнику нового співробітника" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${sLogin_Head}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sLogin_Head]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="servicetask5" name="Права HR" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${sLogin_HR}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sLogin_HR]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <userTask id="usertask2" name="Створення документа">
+      <extensionElements>
+        <activiti:formProperty id="sName_Employee" name="ПІБ нового співробітника; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Employee" name="Логин нового співробітника; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDate" name="Дата виходу на роботу нового співробітника" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Оповіщення;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Лист-вітання;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'10fOu9ca7iwv9-QpRR7WiSRQDkZwG-6iktVWAhs_JQ10', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sTable_Regular_Executive" name="Таблиця із завданнями;bVisible=false;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTable_Regular_Employee" name="Таблиця із завданнями;bVisible=false;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTable_Regular_HR" name="Таблиця із завданнями;bVisible=false;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_HR" name="Логин HR;;bVisible=false" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Executive" name="Логин начальника;;bVisible=false" type="string" expression="${oDocumentService.getSubjectEmployeeParentLogin(sLogin_Employee)}"></activiti:formProperty>
+        <activiti:formProperty id="sEmail_Employee" name="Електронна адреса нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <scriptTask id="scripttask3" name="саша оригинал Script Task" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>//Концепт
+
+var sID_BP = '_task_base';
+var snID_Process_Activiti = execution.getProcessInstanceId();
+var sTableName = 'sTable_Regular_HR';
+var aoTable_Values = taskForm.getIdAndValueFromTableField(snID_Process_Activiti, sTableName);
+var sLoginAuthor = oDocumentService.getLoginAuthor(execution);
+
+var aProcessTaskVO = [];
+
+
+for (var i=0; i&lt;aoTable_Values.length; i++){  
+
+	var oProcessTaskVO = {};
+	var oProcessTaskSubjectsVO = {
+	    aVisor : [],
+	    aExecutor : [],
+	    aController : []
+	}	
+	sBodyTask = aoTable_Values[i].sBody;
+	var sDateExecute = aoTable_Values[i].sDateExecute;
+		sReplacedDate = sDateExecute.replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$2-$1');
+		sDateExecute = sReplacedDate + ' 23:59:59.000';
+	var sLoginController = aoTable_Values[i].sLogin_isControl;
+	var sLoginExecutor = aoTable_Values[i].sLogin_isExecute;
+	//var sLoginVisor = aoTable_Values[i].sLogin_isObserver;	
+	var sHeadTask = 'Завдання з періоду адаптації новопризначеного співробітника';
+
+	var oController = {};
+        oController.oUserVO = {};
+        oController.oUserVO.sLogin = sLoginController;        
+        oController.sKey_TaskSubjectRole = 'Controller';
+        oController.nOrder = 0;
+        oController.oDatePlan = sDateExecute;
+        oController.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };
+    oProcessTaskSubjectsVO.aController.push(oController);
+    execution.setVariable('aController', JSON.stringify(oProcessTaskSubjectsVO.aController));
+
+    var oExecutor = {};
+    	oExecutor.oUserVO = {};
+        oExecutor.oUserVO.sLogin = sLoginExecutor;        
+        oExecutor.sKey_TaskSubjectRole = 'Executor';
+        oExecutor.nOrder = 0;
+        oExecutor.oDatePlan = sDateExecute;
+        oExecutor.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };        
+    oProcessTaskSubjectsVO.aExecutor.push(oExecutor);      
+    execution.setVariable('aExecutor', JSON.stringify(oProcessTaskSubjectsVO.aExecutor));
+
+    // var oVisor = {};
+    //     oVisor.oUserVO = {};
+    //     oVisor.oUserVO.sLogin = sLoginVisor;        
+    //     oVisor.sKey_TaskSubjectRole = 'Visor';
+    //     oVisor.nOrder = 0;
+    //     oVisor.oDatePlan = sDateExecute;
+    //     oVisor.oProcessTaskSubjectStatus = {
+    //       sID: 'new'
+    //     }       
+    //oProcessTaskSubjectsVO.aVisor.push(oVisor);     
+    //execution.setVariable('aVisor', JSON.stringify(oProcessTaskSubjectsVO.aVisor));
+
+  oProcessTaskVO.sHead = sHeadTask;
+	oProcessTaskVO.sBody = sBodyTask;
+	oProcessTaskVO.sID_BP = sID_BP;
+	oProcessTaskVO.sKey_TaskSource = snID_Process_Activiti;
+	oProcessTaskVO.sKey_TaskSourceType = 'Document';
+	oProcessTaskVO.sKey_TaskReportType = 'textArea';
+	oProcessTaskVO.bSplited_Execute = false;
+	oProcessTaskVO.oProcessTaskSubjectsVO = oProcessTaskSubjectsVO;
+
+	//Проливаем задачи в документ
+	processSubjectTaskService.setProcessTaskData(JSON.stringify(oProcessTaskVO), null, sLoginAuthor);
+
+	aProcessTaskVO.push(oProcessTaskVO);
+	execution.setVariable('oProcessTaskVO', JSON.stringify(oProcessTaskVO));
+};
+
+execution.setVariable('aProcessTaskVO', JSON.stringify(aProcessTaskVO));
+
+//Концепт
+
+var sID_BP = '_task_base';
+var snID_Process_Activiti = execution.getProcessInstanceId();
+var sTableName = 'sTable_Regular_Employee';
+var aoTable_Values = taskForm.getIdAndValueFromTableField(snID_Process_Activiti, sTableName);
+var sLoginAuthor = oDocumentService.getLoginAuthor(execution);
+
+var aProcessTaskVO = [];
+
+
+for (var i=0; i&lt;aoTable_Values.length; i++){  
+
+	var oProcessTaskVO = {};
+	var oProcessTaskSubjectsVO = {
+	    aVisor : [],
+	    aExecutor : [],
+	    aController : []
+	}	
+	sBodyTask = aoTable_Values[i].sBody;
+	var sDateExecute = aoTable_Values[i].sDateExecute;
+		sReplacedDate = sDateExecute.replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$2-$1');
+		sDateExecute = sReplacedDate + ' 23:59:59.000';
+	var sLoginController = aoTable_Values[i].sLogin_isControl;
+	var sLoginExecutor = aoTable_Values[i].sLogin_isExecute;
+	//var sLoginVisor = aoTable_Values[i].sLogin_isObserver;	
+	var sHeadTask = 'Завдання з періоду адаптації новопризначеного співробітника';
+
+	var oController = {};
+        oController.oUserVO = {};
+        oController.oUserVO.sLogin = sLoginController;        
+        oController.sKey_TaskSubjectRole = 'Controller';
+        oController.nOrder = 0;
+        oController.oDatePlan = sDateExecute;
+        oController.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };
+    oProcessTaskSubjectsVO.aController.push(oController);
+    execution.setVariable('aController', JSON.stringify(oProcessTaskSubjectsVO.aController));
+
+    var oExecutor = {};
+    	oExecutor.oUserVO = {};
+        oExecutor.oUserVO.sLogin = sLoginExecutor;        
+        oExecutor.sKey_TaskSubjectRole = 'Executor';
+        oExecutor.nOrder = 0;
+        oExecutor.oDatePlan = sDateExecute;
+        oExecutor.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };        
+    oProcessTaskSubjectsVO.aExecutor.push(oExecutor);      
+    execution.setVariable('aExecutor', JSON.stringify(oProcessTaskSubjectsVO.aExecutor));
+
+    // var oVisor = {};
+    //     oVisor.oUserVO = {};
+    //     oVisor.oUserVO.sLogin = sLoginVisor;        
+    //     oVisor.sKey_TaskSubjectRole = 'Visor';
+    //     oVisor.nOrder = 0;
+    //     oVisor.oDatePlan = sDateExecute;
+    //     oVisor.oProcessTaskSubjectStatus = {
+    //       sID: 'new'
+    //     }       
+    //oProcessTaskSubjectsVO.aVisor.push(oVisor);     
+    //execution.setVariable('aVisor', JSON.stringify(oProcessTaskSubjectsVO.aVisor));
+
+  oProcessTaskVO.sHead = sHeadTask;
+	oProcessTaskVO.sBody = sBodyTask;
+	oProcessTaskVO.sID_BP = sID_BP;
+	oProcessTaskVO.sKey_TaskSource = snID_Process_Activiti;
+	oProcessTaskVO.sKey_TaskSourceType = 'Document';
+	oProcessTaskVO.sKey_TaskReportType = 'textArea';
+	oProcessTaskVO.bSplited_Execute = false;
+	oProcessTaskVO.oProcessTaskSubjectsVO = oProcessTaskSubjectsVO;
+
+	//Проливаем задачи в документ
+	processSubjectTaskService.setProcessTaskData(JSON.stringify(oProcessTaskVO), null, sLoginAuthor);
+
+	aProcessTaskVO.push(oProcessTaskVO);
+	execution.setVariable('oProcessTaskVO', JSON.stringify(oProcessTaskVO));
+};
+
+execution.setVariable('aProcessTaskVO', JSON.stringify(aProcessTaskVO));
+
+//Концепт
+
+var sID_BP = '_task_base';
+var snID_Process_Activiti = execution.getProcessInstanceId();
+var sTableName = 'sTable_Regular_Head';
+var aoTable_Values = taskForm.getIdAndValueFromTableField(snID_Process_Activiti, sTableName);
+var sLoginAuthor = oDocumentService.getLoginAuthor(execution);
+
+var aProcessTaskVO = [];
+
+
+for (var i=0; i&lt;aoTable_Values.length; i++){  
+
+	var oProcessTaskVO = {};
+	var oProcessTaskSubjectsVO = {
+	    aVisor : [],
+	    aExecutor : [],
+	    aController : []
+	}	
+	sBodyTask = aoTable_Values[i].sBody;
+	var sDateExecute = aoTable_Values[i].sDateExecute;
+		sReplacedDate = sDateExecute.replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$2-$1');
+		sDateExecute = sReplacedDate + ' 23:59:59.000';
+	var sLoginController = aoTable_Values[i].sLogin_isControl;
+	var sLoginExecutor = aoTable_Values[i].sLogin_isExecute;
+	//var sLoginVisor = aoTable_Values[i].sLogin_isObserver;	
+	var sHeadTask = 'Завдання з періоду адаптації новопризначеного співробітника';
+
+	var oController = {};
+        oController.oUserVO = {};
+        oController.oUserVO.sLogin = sLoginController;        
+        oController.sKey_TaskSubjectRole = 'Controller';
+        oController.nOrder = 0;
+        oController.oDatePlan = sDateExecute;
+        oController.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };
+    oProcessTaskSubjectsVO.aController.push(oController);
+    execution.setVariable('aController', JSON.stringify(oProcessTaskSubjectsVO.aController));
+
+    var oExecutor = {};
+    	oExecutor.oUserVO = {};
+        oExecutor.oUserVO.sLogin = sLoginExecutor;        
+        oExecutor.sKey_TaskSubjectRole = 'Executor';
+        oExecutor.nOrder = 0;
+        oExecutor.oDatePlan = sDateExecute;
+        oExecutor.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };        
+    oProcessTaskSubjectsVO.aExecutor.push(oExecutor);      
+    execution.setVariable('aExecutor', JSON.stringify(oProcessTaskSubjectsVO.aExecutor));
+
+    // var oVisor = {};
+    //     oVisor.oUserVO = {};
+    //     oVisor.oUserVO.sLogin = sLoginVisor;        
+    //     oVisor.sKey_TaskSubjectRole = 'Visor';
+    //     oVisor.nOrder = 0;
+    //     oVisor.oDatePlan = sDateExecute;
+    //     oVisor.oProcessTaskSubjectStatus = {
+    //       sID: 'new'
+    //     }       
+    //oProcessTaskSubjectsVO.aVisor.push(oVisor);     
+    //execution.setVariable('aVisor', JSON.stringify(oProcessTaskSubjectsVO.aVisor));
+
+  oProcessTaskVO.sHead = sHeadTask;
+	oProcessTaskVO.sBody = sBodyTask;
+	oProcessTaskVO.sID_BP = sID_BP;
+	oProcessTaskVO.sKey_TaskSource = snID_Process_Activiti;
+	oProcessTaskVO.sKey_TaskSourceType = 'Document';
+	oProcessTaskVO.sKey_TaskReportType = 'textArea';
+	oProcessTaskVO.bSplited_Execute = false;
+	oProcessTaskVO.oProcessTaskSubjectsVO = oProcessTaskSubjectsVO;
+
+	//Проливаем задачи в документ
+	processSubjectTaskService.setProcessTaskData(JSON.stringify(oProcessTaskVO), null, sLoginAuthor);
+
+	aProcessTaskVO.push(oProcessTaskVO);
+	execution.setVariable('oProcessTaskVO', JSON.stringify(oProcessTaskVO));
+};
+
+execution.setVariable('aProcessTaskVO', JSON.stringify(aProcessTaskVO));
+</script>
+    </scriptTask>
+    <scriptTask id="scripttask4" name="Script Task для таблиц" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>//Концепт
+
+var sID_BP = '_task_base';
+var snID_Process_Activiti = execution.getProcessInstanceId();
+var sTableName = 'sTable_Regular_HR';
+var aoTable_Values = taskForm.getIdAndValueFromTableField(snID_Process_Activiti, sTableName);
+var sLoginAuthor = oDocumentService.getLoginAuthor(execution);
+
+var aProcessTaskVO = [];
+
+
+for (var i=0; i&lt;aoTable_Values.length; i++){  
+
+	var oProcessTaskVO = {};
+	var oProcessTaskSubjectsVO = {
+	    aVisor : [],
+	    aExecutor : [],
+	    aController : []
+	}	
+	sBodyTask = aoTable_Values[i].sBody;
+	var sDateExecute = aoTable_Values[i].sDateExecute;
+		sReplacedDate = sDateExecute.replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$2-$1');
+		sDateExecute = sReplacedDate + ' 23:59:59.000';
+	var sLoginController = aoTable_Values[i].sLogin_isControl;
+	var sLoginExecutor = aoTable_Values[i].sLogin_isExecute;
+	//var sLoginVisor = aoTable_Values[i].sLogin_isObserver;	
+	var sHeadTask = 'Завдання з чек-листа';
+
+	var oController = {};
+        oController.oUserVO = {};
+        oController.oUserVO.sLogin = sLoginController;        
+        oController.sKey_TaskSubjectRole = 'Controller';
+        oController.nOrder = 0;
+        oController.oDatePlan = sDateExecute;
+        oController.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };
+    oProcessTaskSubjectsVO.aController.push(oController);
+    execution.setVariable('aController', JSON.stringify(oProcessTaskSubjectsVO.aController));
+
+    var oExecutor = {};
+    	oExecutor.oUserVO = {};
+        oExecutor.oUserVO.sLogin = sLoginExecutor;        
+        oExecutor.sKey_TaskSubjectRole = 'Executor';
+        oExecutor.nOrder = 0;
+        oExecutor.oDatePlan = sDateExecute;
+        oExecutor.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };        
+    oProcessTaskSubjectsVO.aExecutor.push(oExecutor);      
+    execution.setVariable('aExecutor', JSON.stringify(oProcessTaskSubjectsVO.aExecutor));
+
+    // var oVisor = {};
+    //     oVisor.oUserVO = {};
+    //     oVisor.oUserVO.sLogin = sLoginVisor;        
+    //     oVisor.sKey_TaskSubjectRole = 'Visor';
+    //     oVisor.nOrder = 0;
+    //     oVisor.oDatePlan = sDateExecute;
+    //     oVisor.oProcessTaskSubjectStatus = {
+    //       sID: 'new'
+    //     }       
+    //oProcessTaskSubjectsVO.aVisor.push(oVisor);     
+    //execution.setVariable('aVisor', JSON.stringify(oProcessTaskSubjectsVO.aVisor));
+
+  oProcessTaskVO.sHead = sHeadTask;
+	oProcessTaskVO.sBody = sBodyTask;
+	oProcessTaskVO.sID_BP = sID_BP;
+	oProcessTaskVO.sKey_TaskSource = snID_Process_Activiti;
+	oProcessTaskVO.sKey_TaskSourceType = 'Document';
+	oProcessTaskVO.sKey_TaskReportType = 'textArea';
+	oProcessTaskVO.bSplited_Execute = false;
+	oProcessTaskVO.oProcessTaskSubjectsVO = oProcessTaskSubjectsVO;
+
+	//Проливаем задачи в документ
+	processSubjectTaskService.setProcessTaskData(JSON.stringify(oProcessTaskVO), null, sLoginAuthor);
+
+	aProcessTaskVO.push(oProcessTaskVO);
+	execution.setVariable('oProcessTaskVO', JSON.stringify(oProcessTaskVO));
+};
+
+execution.setVariable('aProcessTaskVO', JSON.stringify(aProcessTaskVO));
+</script>
+    </scriptTask>
+    <scriptTask id="scripttask5" name="HR Script Task " scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>//Концепт
+
+var sID_BP = '_task_base';
+var snID_Process_Activiti = execution.getProcessInstanceId();
+var sTableName = 'sTable_Regular_HR';
+var aoTable_Values = taskForm.getIdAndValueFromTableField(snID_Process_Activiti, sTableName);
+var sLoginAuthor = oDocumentService.getLoginAuthor(execution);
+
+var aProcessTaskVO = [];
+
+
+for (var i=0; i&lt;aoTable_Values.length; i++){  
+
+	var oProcessTaskVO = {};
+	var oProcessTaskSubjectsVO = {
+	    aVisor : [],
+	    aExecutor : [],
+	    aController : []
+	}	
+	sBodyTask = aoTable_Values[i].sBody;
+	var sDateExecute = aoTable_Values[i].sDateExecute;
+		sReplacedDate = sDateExecute.replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$2-$1');
+		sDateExecute = sReplacedDate + ' 23:59:59.000';
+	var sLoginController = sLogin_Executive;
+	var sLoginExecutor = sLogin_HR;
+	//var sLoginVisor = sLogin_isObserver;	
+	var sHeadTask = 'Завдання з періоду адаптації новопризначеного співробітника '  + [sName_Employee] ;
+
+	var oController = {};
+        oController.oUserVO = {};
+        oController.oUserVO.sLogin = sLoginController;        
+        oController.sKey_TaskSubjectRole = 'Controller';
+        oController.nOrder = 0;
+        oController.oDatePlan = sDateExecute;
+        oController.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };
+    oProcessTaskSubjectsVO.aController.push(oController);
+    execution.setVariable('aController', JSON.stringify(oProcessTaskSubjectsVO.aController));
+
+    var oExecutor = {};
+    	oExecutor.oUserVO = {};
+        oExecutor.oUserVO.sLogin = sLoginExecutor;        
+        oExecutor.sKey_TaskSubjectRole = 'Executor';
+        oExecutor.nOrder = 0;
+        oExecutor.oDatePlan = sDateExecute;
+        oExecutor.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };        
+    oProcessTaskSubjectsVO.aExecutor.push(oExecutor);      
+    execution.setVariable('aExecutor', JSON.stringify(oProcessTaskSubjectsVO.aExecutor));
+
+    // var oVisor = {};
+    //     oVisor.oUserVO = {};
+    //     oVisor.oUserVO.sLogin = sLoginVisor;        
+    //     oVisor.sKey_TaskSubjectRole = 'Visor';
+    //     oVisor.nOrder = 0;
+    //     oVisor.oDatePlan = sDateExecute;
+    //     oVisor.oProcessTaskSubjectStatus = {
+    //       sID: 'new'
+    //     }       
+    //oProcessTaskSubjectsVO.aVisor.push(oVisor);     
+    //execution.setVariable('aVisor', JSON.stringify(oProcessTaskSubjectsVO.aVisor));
+
+  oProcessTaskVO.sHead = sHeadTask;
+	oProcessTaskVO.sBody = sBodyTask;
+	oProcessTaskVO.sID_BP = sID_BP;
+	oProcessTaskVO.sKey_TaskSource = snID_Process_Activiti;
+	oProcessTaskVO.sKey_TaskSourceType = 'Document';
+	oProcessTaskVO.sKey_TaskReportType = 'textArea';
+	oProcessTaskVO.bSplited_Execute = false;
+	oProcessTaskVO.oProcessTaskSubjectsVO = oProcessTaskSubjectsVO;
+
+	//Проливаем задачи в документ
+	processSubjectTaskService.setProcessTaskData(JSON.stringify(oProcessTaskVO), null, sLoginAuthor);
+
+	aProcessTaskVO.push(oProcessTaskVO);
+	execution.setVariable('oProcessTaskVO', JSON.stringify(oProcessTaskVO));
+};
+
+execution.setVariable('aProcessTaskVO', JSON.stringify(aProcessTaskVO));
+
+//Концепт
+
+var sID_BP = '_task_base';
+var snID_Process_Activiti = execution.getProcessInstanceId();
+var sTableName = 'sTable_Regular_Employee';
+var aoTable_Values = taskForm.getIdAndValueFromTableField(snID_Process_Activiti, sTableName);
+var sLoginAuthor = oDocumentService.getLoginAuthor(execution);
+
+var aProcessTaskVO = [];
+
+
+for (var i=0; i&lt;aoTable_Values.length; i++){  
+
+	var oProcessTaskVO = {};
+	var oProcessTaskSubjectsVO = {
+	    aVisor : [],
+	    aExecutor : [],
+	    aController : []
+	}	
+	sBodyTask = aoTable_Values[i].sBody;
+	var sDateExecute = aoTable_Values[i].sDateExecute;
+		sReplacedDate = sDateExecute.replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$2-$1');
+		sDateExecute = sReplacedDate + ' 23:59:59.000';
+	var sLoginController = sLogin_Head;
+	var sLoginExecutor = sLogin_Employee;
+	//var sLoginVisor = sLogin_isObserver;	
+	var sHeadTask = 'Завдання з періоду адаптації новопризначеного співробітника';
+
+	var oController = {};
+        oController.oUserVO = {};
+        oController.oUserVO.sLogin = sLoginController;        
+        oController.sKey_TaskSubjectRole = 'Controller';https://idoc-develop.atlassian.net/browse/PLATFORMBA-1893
+        oController.nOrder = 0;
+        oController.oDatePlan = sDateExecute;
+        oController.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };
+    oProcessTaskSubjectsVO.aController.push(oController);
+    execution.setVariable('aController', JSON.stringify(oProcessTaskSubjectsVO.aController));
+
+    var oExecutor = {};
+    	oExecutor.oUserVO = {};
+        oExecutor.oUserVO.sLogin = sLoginExecutor;        
+        oExecutor.sKey_TaskSubjectRole = 'Executor';
+        oExecutor.nOrder = 0;
+        oExecutor.oDatePlan = sDateExecute;
+        oExecutor.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };        
+    oProcessTaskSubjectsVO.aExecutor.push(oExecutor);      
+    execution.setVariable('aExecutor', JSON.stringify(oProcessTaskSubjectsVO.aExecutor));
+
+    // var oVisor = {};
+    //     oVisor.oUserVO = {};
+    //     oVisor.oUserVO.sLogin = sLoginVisor;        
+    //     oVisor.sKey_TaskSubjectRole = 'Visor';
+    //     oVisor.nOrder = 0;
+    //     oVisor.oDatePlan = sDateExecute;
+    //     oVisor.oProcessTaskSubjectStatus = {
+    //       sID: 'new'
+    //     }       
+    //oProcessTaskSubjectsVO.aVisor.push(oVisor);     
+    //execution.setVariable('aVisor', JSON.stringify(oProcessTaskSubjectsVO.aVisor));
+
+  oProcessTaskVO.sHead = sHeadTask;
+	oProcessTaskVO.sBody = sBodyTask;
+	oProcessTaskVO.sID_BP = sID_BP;
+	oProcessTaskVO.sKey_TaskSource = snID_Process_Activiti;
+	oProcessTaskVO.sKey_TaskSourceType = 'Document';
+	oProcessTaskVO.sKey_TaskReportType = 'textArea';
+	oProcessTaskVO.bSplited_Execute = false;
+	oProcessTaskVO.oProcessTaskSubjectsVO = oProcessTaskSubjectsVO;
+
+	//Проливаем задачи в документ
+	processSubjectTaskService.setProcessTaskData(JSON.stringify(oProcessTaskVO), null, sLoginAuthor);
+
+	aProcessTaskVO.push(oProcessTaskVO);
+	execution.setVariable('oProcessTaskVO', JSON.stringify(oProcessTaskVO));
+};
+
+execution.setVariable('aProcessTaskVO', JSON.stringify(aProcessTaskVO));
+
+//Концепт
+
+var sID_BP = '_task_base';
+var snID_Process_Activiti = execution.getProcessInstanceId();
+var sTableName = 'sTable_Regular_Head';
+var aoTable_Values = taskForm.getIdAndValueFromTableField(snID_Process_Activiti, sTableName);
+var sLoginAuthor = oDocumentService.getLoginAuthor(execution);
+
+var aProcessTaskVO = [];
+
+
+for (var i=0; i&lt;aoTable_Values.length; i++){  
+
+	var oProcessTaskVO = {};
+	var oProcessTaskSubjectsVO = {
+	    aVisor : [],
+	    aExecutor : [],
+	    aController : []
+	}	
+	sBodyTask = aoTable_Values[i].sBody;
+	var sDateExecute = aoTable_Values[i].sDateExecute;
+		sReplacedDate = sDateExecute.replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$2-$1');
+		sDateExecute = sReplacedDate + ' 23:59:59.000';
+	var sLoginController = sLogin_ParentHead;
+	var sLoginExecutor = sLogin_Head;
+	//var sLoginVisor = sLogin_isObserver;	
+	var sHeadTask = 'Завдання з періоду адаптації новопризначеного співробітника';
+
+	var oController = {};
+        oController.oUserVO = {};
+        oController.oUserVO.sLogin = sLoginController;        
+        oController.sKey_TaskSubjectRole = 'Controller';
+        oController.nOrder = 0;
+        oController.oDatePlan = sDateExecute;
+        oController.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };
+    oProcessTaskSubjectsVO.aController.push(oController);
+    execution.setVariable('aController', JSON.stringify(oProcessTaskSubjectsVO.aController));
+
+    var oExecutor = {};
+    	oExecutor.oUserVO = {};
+        oExecutor.oUserVO.sLogin = sLoginExecutor;        
+        oExecutor.sKey_TaskSubjectRole = 'Executor';
+        oExecutor.nOrder = 0;
+        oExecutor.oDatePlan = sDateExecute;
+        oExecutor.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };        
+    oProcessTaskSubjectsVO.aExecutor.push(oExecutor);      
+    execution.setVariable('aExecutor', JSON.stringify(oProcessTaskSubjectsVO.aExecutor));
+
+    // var oVisor = {};
+    //     oVisor.oUserVO = {};
+    //     oVisor.oUserVO.sLogin = sLoginVisor;        
+    //     oVisor.sKey_TaskSubjectRole = 'Visor';
+    //     oVisor.nOrder = 0;
+    //     oVisor.oDatePlan = sDateExecute;
+    //     oVisor.oProcessTaskSubjectStatus = {
+    //       sID: 'new'
+    //     }       
+    //oProcessTaskSubjectsVO.aVisor.push(oVisor);     
+    //execution.setVariable('aVisor', JSON.stringify(oProcessTaskSubjectsVO.aVisor));
+
+  oProcessTaskVO.sHead = sHeadTask;
+	oProcessTaskVO.sBody = sBodyTask;
+	oProcessTaskVO.sID_BP = sID_BP;
+	oProcessTaskVO.sKey_TaskSource = snID_Process_Activiti;
+	oProcessTaskVO.sKey_TaskSourceType = 'Document';
+	oProcessTaskVO.sKey_TaskReportType = 'textArea';
+	oProcessTaskVO.bSplited_Execute = false;
+	oProcessTaskVO.oProcessTaskSubjectsVO = oProcessTaskSubjectsVO;
+
+	//Проливаем задачи в документ
+	processSubjectTaskService.setProcessTaskData(JSON.stringify(oProcessTaskVO), null, sLoginAuthor);
+
+	aProcessTaskVO.push(oProcessTaskVO);
+	execution.setVariable('oProcessTaskVO', JSON.stringify(oProcessTaskVO));
+};
+
+execution.setVariable('aProcessTaskVO', JSON.stringify(aProcessTaskVO));
+</script>
+    </scriptTask>
+    <scriptTask id="scripttask6" name="Eployee+HR" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>//Концепт
+
+var sID_BP = '_task_base';
+var snID_Process_Activiti = execution.getProcessInstanceId();
+var sTableName = 'sTable_Regular_HR';
+var aoTable_Values = taskForm.getIdAndValueFromTableField(snID_Process_Activiti, sTableName);
+var sLoginAuthor = oDocumentService.getLoginAuthor(execution);
+
+var aProcessTaskVO = [];
+
+
+for (var i=0; i&lt;aoTable_Values.length; i++){  
+
+	var oProcessTaskVO = {};
+	var oProcessTaskSubjectsVO = {
+	    aVisor : [],
+	    aExecutor : [],
+	    aController : []
+	}	
+	sBodyTask = aoTable_Values[i].sBody;
+	var sDateExecute = aoTable_Values[i].sDateExecute;
+		sReplacedDate = sDateExecute.replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$2-$1');
+		sDateExecute = sReplacedDate + ' 23:59:59.000';
+	var sLoginController = aoTable_Values[i].sLogin_isControl;
+	var sLoginExecutor = aoTable_Values[i].sLogin_isExecute;
+	//var sLoginVisor = aoTable_Values[i].sLogin_isObserver;	
+	var sHeadTask = 'Завдання з чек-листа';
+
+	var oController = {};
+        oController.oUserVO = {};
+        oController.oUserVO.sLogin = sLoginController;        
+        oController.sKey_TaskSubjectRole = 'Controller';
+        oController.nOrder = 0;
+        oController.oDatePlan = sDateExecute;
+        oController.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };
+    oProcessTaskSubjectsVO.aController.push(oController);
+    execution.setVariable('aController', JSON.stringify(oProcessTaskSubjectsVO.aController));
+
+    var oExecutor = {};
+    	oExecutor.oUserVO = {};
+        oExecutor.oUserVO.sLogin = sLoginExecutor;        
+        oExecutor.sKey_TaskSubjectRole = 'Executor';
+        oExecutor.nOrder = 0;
+        oExecutor.oDatePlan = sDateExecute;
+        oExecutor.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };        
+    oProcessTaskSubjectsVO.aExecutor.push(oExecutor);      
+    execution.setVariable('aExecutor', JSON.stringify(oProcessTaskSubjectsVO.aExecutor));
+
+    // var oVisor = {};
+    //     oVisor.oUserVO = {};
+    //     oVisor.oUserVO.sLogin = sLoginVisor;        
+    //     oVisor.sKey_TaskSubjectRole = 'Visor';
+    //     oVisor.nOrder = 0;
+    //     oVisor.oDatePlan = sDateExecute;
+    //     oVisor.oProcessTaskSubjectStatus = {
+    //       sID: 'new'
+    //     }       
+    //oProcessTaskSubjectsVO.aVisor.push(oVisor);     
+    //execution.setVariable('aVisor', JSON.stringify(oProcessTaskSubjectsVO.aVisor));
+
+  oProcessTaskVO.sHead = sHeadTask;
+	oProcessTaskVO.sBody = sBodyTask;
+	oProcessTaskVO.sID_BP = sID_BP;
+	oProcessTaskVO.sKey_TaskSource = snID_Process_Activiti;
+	oProcessTaskVO.sKey_TaskSourceType = 'Document';
+	oProcessTaskVO.sKey_TaskReportType = 'textArea';
+	oProcessTaskVO.bSplited_Execute = false;
+	oProcessTaskVO.oProcessTaskSubjectsVO = oProcessTaskSubjectsVO;
+
+	//Проливаем задачи в документ
+	processSubjectTaskService.setProcessTaskData(JSON.stringify(oProcessTaskVO), null, sLoginAuthor);
+
+	aProcessTaskVO.push(oProcessTaskVO);
+	execution.setVariable('oProcessTaskVO', JSON.stringify(oProcessTaskVO));
+};
+
+execution.setVariable('aProcessTaskVO', JSON.stringify(aProcessTaskVO));
+
+//Концепт
+
+var sID_BP = '_task_base';
+var snID_Process_Activiti = execution.getProcessInstanceId();
+var sTableName = 'sTable_Regular_Employee';
+var aoTable_Values = taskForm.getIdAndValueFromTableField(snID_Process_Activiti, sTableName);
+var sLoginAuthor = oDocumentService.getLoginAuthor(execution);
+
+var aProcessTaskVO = [];
+
+
+for (var i=0; i&lt;aoTable_Values.length; i++){  
+
+	var oProcessTaskVO = {};
+	var oProcessTaskSubjectsVO = {
+	    aVisor : [],
+	    aExecutor : [],
+	    aController : []
+	}	
+	sBodyTask = aoTable_Values[i].sBody;
+	var sDateExecute = aoTable_Values[i].sDateExecute;
+		sReplacedDate = sDateExecute.replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$2-$1');
+		sDateExecute = sReplacedDate + ' 23:59:59.000';
+	var sLoginController = aoTable_Values[i].sLogin_isControl;
+	var sLoginExecutor = aoTable_Values[i].sLogin_isExecute;
+	//var sLoginVisor = aoTable_Values[i].sLogin_isObserver;	
+	var sHeadTask = 'Завдання з чек-листа';
+
+	var oController = {};
+        oController.oUserVO = {};
+        oController.oUserVO.sLogin = sLoginController;        
+        oController.sKey_TaskSubjectRole = 'Controller';https://idoc-develop.atlassian.net/browse/PLATFORMBA-1893
+        oController.nOrder = 0;
+        oController.oDatePlan = sDateExecute;
+        oController.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };
+    oProcessTaskSubjectsVO.aController.push(oController);
+    execution.setVariable('aController', JSON.stringify(oProcessTaskSubjectsVO.aController));
+
+    var oExecutor = {};
+    	oExecutor.oUserVO = {};
+        oExecutor.oUserVO.sLogin = sLoginExecutor;        
+        oExecutor.sKey_TaskSubjectRole = 'Executor';
+        oExecutor.nOrder = 0;
+        oExecutor.oDatePlan = sDateExecute;
+        oExecutor.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };        
+    oProcessTaskSubjectsVO.aExecutor.push(oExecutor);      
+    execution.setVariable('aExecutor', JSON.stringify(oProcessTaskSubjectsVO.aExecutor));
+
+    // var oVisor = {};
+    //     oVisor.oUserVO = {};
+    //     oVisor.oUserVO.sLogin = sLoginVisor;        
+    //     oVisor.sKey_TaskSubjectRole = 'Visor';
+    //     oVisor.nOrder = 0;
+    //     oVisor.oDatePlan = sDateExecute;
+    //     oVisor.oProcessTaskSubjectStatus = {
+    //       sID: 'new'
+    //     }       
+    //oProcessTaskSubjectsVO.aVisor.push(oVisor);     
+    //execution.setVariable('aVisor', JSON.stringify(oProcessTaskSubjectsVO.aVisor));
+
+  oProcessTaskVO.sHead = sHeadTask;
+	oProcessTaskVO.sBody = sBodyTask;
+	oProcessTaskVO.sID_BP = sID_BP;
+	oProcessTaskVO.sKey_TaskSource = snID_Process_Activiti;
+	oProcessTaskVO.sKey_TaskSourceType = 'Document';
+	oProcessTaskVO.sKey_TaskReportType = 'textArea';
+	oProcessTaskVO.bSplited_Execute = false;
+	oProcessTaskVO.oProcessTaskSubjectsVO = oProcessTaskSubjectsVO;
+
+	//Проливаем задачи в документ
+	processSubjectTaskService.setProcessTaskData(JSON.stringify(oProcessTaskVO), null, sLoginAuthor);
+
+	aProcessTaskVO.push(oProcessTaskVO);
+	execution.setVariable('oProcessTaskVO', JSON.stringify(oProcessTaskVO));
+};
+
+execution.setVariable('aProcessTaskVO', JSON.stringify(aProcessTaskVO));
+</script>
+    </scriptTask>
+    <userTask id="usertask5" name="Employee+HR">
+      <extensionElements>
+        <activiti:formProperty id="sName_Employee" name="ПІБ нового співробітника; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Employee" name="Логин нового співробітника; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDate" name="Дата виходу на роботу нового співробітника" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Оповіщення;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Лист-вітання;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'10fOu9ca7iwv9-QpRR7WiSRQDkZwG-6iktVWAhs_JQ10', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sTable_Regular_Employee" name="Таблиця із завданнями;bVisible=false;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTable_Regular_HR" name="Таблиця із завданнями;bVisible=false;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_HR" name="Логин HR;;bVisible=false" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sEmail_Employee" name="Електронна адреса нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow16" sourceRef="servicetask2" targetRef="servicetask6"></sequenceFlow>
+    <scriptTask id="scripttask7" name="Логин керивника + почта; Гугл почта нового сотрудника" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>var sLogin_Head = oDocumentService.getSubjectEmployeeParentLogin(sLogin_Employee); 
+execution.setVariable('sLogin_Head', sLogin_Head);
+
+var sEmail_Employee = subjectHumanService.getSubjectHumanVO_Compact(sLogin_Employee).oSubjectHuman.defaultEmail.sValue; 
+execution.setVariable('sEmail_Employee', sEmail_Employee);</script>
+    </scriptTask>
+    <userTask id="usertask7" name="проверка вытягивания логинов">
+      <extensionElements>
+        <activiti:formProperty id="sName_Employee" name="ПІБ нового співробітника; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Employee" name="Логин нового співробітника" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sName_Executive" name="ПІБ керівника HR" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Executive" name="Логін керівника нового" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_HR" name="Логин HR" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDate" name="Дата виходу на роботу нового співробітника" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Оповіщення;;bVisible=false" type="string" default="Шановний(на) співробітнику(це), Вам надійшов перелік завдань, у зв'язку з виходом на роботу новопризначеного співробітника, які Ви повинні виконати у зазначений строк."></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Лист-вітання;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'10fOu9ca7iwv9-QpRR7WiSRQDkZwG-6iktVWAhs_JQ10', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sTable_Regular_Executive" name="Таблиця із завданнями;bVisible=false;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTable_Regular_Employee" name="Таблиця із завданнями;bVisible=false;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTable_Regular_HR" name="Таблиця із завданнями;bVisible=false;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sEmail_Employee" name="Електронна адреса нового співробітника" type="string"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow17" sourceRef="scripttask4" targetRef="scripttask6">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[agree]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <scriptTask id="scripttask8" name="Логин керівника керивника НС + почта" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>var sLogin_ParentHead = oDocumentService.getSubjectEmployeeParentLogin(sLogin_Head); 
+execution.setVariable('sLogin_ParentHead', sLogin_ParentHead);
+
+
+</script>
+    </scriptTask>
+    <sequenceFlow id="flow19" sourceRef="servicetask3" targetRef="servicetask5">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentTasksListener}"></activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <scriptTask id="scripttask10" name="саша1 Script Task HR" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>//Концепт
+
+var sID_BP = '_task_base';
+var snID_Process_Activiti = execution.getProcessInstanceId();
+var sTableName = 'sTable_Regular_HR';
+var aoTable_Values = taskForm.getIdAndValueFromTableField(snID_Process_Activiti, sTableName);
+var sLoginAuthor = oDocumentService.getLoginAuthor(execution);
+
+var aProcessTaskVO = [];
+
+
+for (var i=0; i&lt;aoTable_Values.length; i++){  
+
+	var oProcessTaskVO = {};
+	var oProcessTaskSubjectsVO = {
+	    aVisor : [],
+	    aExecutor : [],
+	    aController : []
+	}	
+	sBodyTask = aoTable_Values[i].sBody;
+	var sDateExecute = aoTable_Values[i].sDateExecute;
+		sReplacedDate = sDateExecute.replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$2-$1');
+		sDateExecute = sReplacedDate + ' 23:59:59.000';
+	var sLoginController = aoTable_Values[i].sLogin_Employee;
+	var sLoginExecutor = aoTable_Values[i].sLogin_HR;
+	//var sLoginVisor = aoTable_Values[i].sLogin_isObserver;	
+	var sHeadTask = 'Завдання з періоду адаптації новопризначеного співробітника '  + [sName_Employee] ;
+
+	var oController = {};
+        oController.oUserVO = {};
+        oController.oUserVO.sLogin = sLogin_Employee;        
+        oController.sKey_TaskSubjectRole = 'Controller';
+        oController.nOrder = 0;
+        oController.oDatePlan = sDateExecute;
+        oController.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };
+    oProcessTaskSubjectsVO.aController.push(oController);
+    execution.setVariable('aController', JSON.stringify(oProcessTaskSubjectsVO.aController));
+
+    var oExecutor = {};
+    	oExecutor.oUserVO = {};
+        oExecutor.oUserVO.sLogin = sLogin_HR;        
+        oExecutor.sKey_TaskSubjectRole = 'Executor';
+        oExecutor.nOrder = 0;
+        oExecutor.oDatePlan = sDateExecute;
+        oExecutor.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };        
+    oProcessTaskSubjectsVO.aExecutor.push(oExecutor);      
+    execution.setVariable('aExecutor', JSON.stringify(oProcessTaskSubjectsVO.aExecutor));
+
+    // var oVisor = {};
+    //     oVisor.oUserVO = {};
+    //     oVisor.oUserVO.sLogin = sLoginVisor;        
+    //     oVisor.sKey_TaskSubjectRole = 'Visor';
+    //     oVisor.nOrder = 0;
+    //     oVisor.oDatePlan = sDateExecute;
+    //     oVisor.oProcessTaskSubjectStatus = {
+    //       sID: 'new'
+    //     }       
+    //oProcessTaskSubjectsVO.aVisor.push(oVisor);     
+    //execution.setVariable('aVisor', JSON.stringify(oProcessTaskSubjectsVO.aVisor));
+
+  oProcessTaskVO.sHead = sHeadTask;
+	oProcessTaskVO.sBody = sBodyTask;
+	oProcessTaskVO.sID_BP = sID_BP;
+	oProcessTaskVO.sKey_TaskSource = snID_Process_Activiti;
+	oProcessTaskVO.sKey_TaskSourceType = 'Document';
+	oProcessTaskVO.sKey_TaskReportType = 'textArea';
+	oProcessTaskVO.bSplited_Execute = false;
+	oProcessTaskVO.oProcessTaskSubjectsVO = oProcessTaskSubjectsVO;
+
+	//Проливаем задачи в документ
+	processSubjectTaskService.setProcessTaskData(JSON.stringify(oProcessTaskVO), null, sLoginAuthor);
+
+	aProcessTaskVO.push(oProcessTaskVO);
+	execution.setVariable('oProcessTaskVO', JSON.stringify(oProcessTaskVO));
+};
+
+execution.setVariable('aProcessTaskVO', JSON.stringify(aProcessTaskVO));
+</script>
+    </scriptTask>
+    <scriptTask id="scripttask11" name="саша Script Task Employee" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>//Концепт
+
+var sID_BP = '_task_base';
+var snID_Process_Activiti = execution.getProcessInstanceId();
+var sTableName = 'sTable_Regular_Employee';
+var aoTable_Values = taskForm.getIdAndValueFromTableField(snID_Process_Activiti, sTableName);
+var sLoginAuthor = oDocumentService.getLoginAuthor(execution);
+
+var aProcessTaskVO = [];
+
+
+for (var i=0; i&lt;aoTable_Values.length; i++){  
+
+	var oProcessTaskVO = {};
+	var oProcessTaskSubjectsVO = {
+	    aVisor : [],
+	    aExecutor : [],
+	    aController : []
+	}	
+	sBodyTask = aoTable_Values[i].sBody;
+	var sDateExecute = aoTable_Values[i].sDateExecute;
+		sReplacedDate = sDateExecute.replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$2-$1');
+		sDateExecute = sReplacedDate + ' 23:59:59.000';
+	var sLoginController = aoTable_Values[i].sLogin_isControl;
+	var sLoginExecutor = aoTable_Values[i].sLogin_isExecute;
+	//var sLoginVisor = aoTable_Values[i].sLogin_isObserver;	
+	var sHeadTask = 'Завдання з періоду адаптації новопризначеного співробітника '  + [sName_Employee] ;
+
+	var oController = {};
+        oController.oUserVO = {};
+        oController.oUserVO.sLogin = sLoginController;        
+        oController.sKey_TaskSubjectRole = 'Controller';
+        oController.nOrder = 0;
+        oController.oDatePlan = sDateExecute;
+        oController.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };
+    oProcessTaskSubjectsVO.aController.push(oController);
+    execution.setVariable('aController', JSON.stringify(oProcessTaskSubjectsVO.aController));
+
+    var oExecutor = {};
+    	oExecutor.oUserVO = {};
+        oExecutor.oUserVO.sLogin = sLoginExecutor;        
+        oExecutor.sKey_TaskSubjectRole = 'Executor';
+        oExecutor.nOrder = 0;
+        oExecutor.oDatePlan = sDateExecute;
+        oExecutor.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };        
+    oProcessTaskSubjectsVO.aExecutor.push(oExecutor);      
+    execution.setVariable('aExecutor', JSON.stringify(oProcessTaskSubjectsVO.aExecutor));
+
+    // var oVisor = {};
+    //     oVisor.oUserVO = {};
+    //     oVisor.oUserVO.sLogin = sLoginVisor;        
+    //     oVisor.sKey_TaskSubjectRole = 'Visor';
+    //     oVisor.nOrder = 0;
+    //     oVisor.oDatePlan = sDateExecute;
+    //     oVisor.oProcessTaskSubjectStatus = {
+    //       sID: 'new'
+    //     }       
+    //oProcessTaskSubjectsVO.aVisor.push(oVisor);     
+    //execution.setVariable('aVisor', JSON.stringify(oProcessTaskSubjectsVO.aVisor));
+
+  oProcessTaskVO.sHead = sHeadTask;
+	oProcessTaskVO.sBody = sBodyTask;
+	oProcessTaskVO.sID_BP = sID_BP;
+	oProcessTaskVO.sKey_TaskSource = snID_Process_Activiti;
+	oProcessTaskVO.sKey_TaskSourceType = 'Document';
+	oProcessTaskVO.sKey_TaskReportType = 'textArea';
+	oProcessTaskVO.bSplited_Execute = false;
+	oProcessTaskVO.oProcessTaskSubjectsVO = oProcessTaskSubjectsVO;
+
+	//Проливаем задачи в документ
+	processSubjectTaskService.setProcessTaskData(JSON.stringify(oProcessTaskVO), null, sLoginAuthor);
+
+	aProcessTaskVO.push(oProcessTaskVO);
+	execution.setVariable('oProcessTaskVO', JSON.stringify(oProcessTaskVO));
+};
+
+execution.setVariable('aProcessTaskVO', JSON.stringify(aProcessTaskVO));
+</script>
+    </scriptTask>
+    <scriptTask id="scripttask12" name="саша Script Task Head" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>//Концепт
+
+var sID_BP = '_task_base';
+var snID_Process_Activiti = execution.getProcessInstanceId();
+var sTableName = 'sTable_Regular_Head';
+var aoTable_Values = taskForm.getIdAndValueFromTableField(snID_Process_Activiti, sTableName);
+var sLoginAuthor = oDocumentService.getLoginAuthor(execution);
+
+var aProcessTaskVO = [];
+
+
+for (var i=0; i&lt;aoTable_Values.length; i++){  
+
+	var oProcessTaskVO = {};
+	var oProcessTaskSubjectsVO = {
+	    aVisor : [],
+	    aExecutor : [],
+	    aController : []
+	}	
+	sBodyTask = aoTable_Values[i].sBody;
+	var sDateExecute = aoTable_Values[i].sDateExecute;
+		sReplacedDate = sDateExecute.replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$2-$1');
+		sDateExecute = sReplacedDate + ' 23:59:59.000';
+	var sLoginController = aoTable_Values[i].sLogin_isControl;
+	var sLoginExecutor = aoTable_Values[i].sLogin_isExecute;
+	//var sLoginVisor = aoTable_Values[i].sLogin_isObserver;	
+	var sHeadTask = 'Завдання з періоду адаптації новопризначеного співробітника ' + [sName_Employee] ;
+
+	var oController = {};
+        oController.oUserVO = {};
+        oController.oUserVO.sLogin = sLoginController;        
+        oController.sKey_TaskSubjectRole = 'Controller';
+        oController.nOrder = 0;
+        oController.oDatePlan = sDateExecute;
+        oController.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };
+    oProcessTaskSubjectsVO.aController.push(oController);
+    execution.setVariable('aController', JSON.stringify(oProcessTaskSubjectsVO.aController));
+
+    var oExecutor = {};
+    	oExecutor.oUserVO = {};
+        oExecutor.oUserVO.sLogin = sLoginExecutor;        
+        oExecutor.sKey_TaskSubjectRole = 'Executor';
+        oExecutor.nOrder = 0;
+        oExecutor.oDatePlan = sDateExecute;
+        oExecutor.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };        
+    oProcessTaskSubjectsVO.aExecutor.push(oExecutor);      
+    execution.setVariable('aExecutor', JSON.stringify(oProcessTaskSubjectsVO.aExecutor));
+
+    // var oVisor = {};
+    //     oVisor.oUserVO = {};
+    //     oVisor.oUserVO.sLogin = sLoginVisor;        
+    //     oVisor.sKey_TaskSubjectRole = 'Visor';
+    //     oVisor.nOrder = 0;
+    //     oVisor.oDatePlan = sDateExecute;
+    //     oVisor.oProcessTaskSubjectStatus = {
+    //       sID: 'new'
+    //     }       
+    //oProcessTaskSubjectsVO.aVisor.push(oVisor);     
+    //execution.setVariable('aVisor', JSON.stringify(oProcessTaskSubjectsVO.aVisor));
+
+  oProcessTaskVO.sHead = sHeadTask;
+	oProcessTaskVO.sBody = sBodyTask;
+	oProcessTaskVO.sID_BP = sID_BP;
+	oProcessTaskVO.sKey_TaskSource = snID_Process_Activiti;
+	oProcessTaskVO.sKey_TaskSourceType = 'Document';
+	oProcessTaskVO.sKey_TaskReportType = 'textArea';
+	oProcessTaskVO.bSplited_Execute = false;
+	oProcessTaskVO.oProcessTaskSubjectsVO = oProcessTaskSubjectsVO;
+
+	//Проливаем задачи в документ
+	processSubjectTaskService.setProcessTaskData(JSON.stringify(oProcessTaskVO), null, sLoginAuthor);
+
+	aProcessTaskVO.push(oProcessTaskVO);
+	execution.setVariable('oProcessTaskVO', JSON.stringify(oProcessTaskVO));
+};
+
+execution.setVariable('aProcessTaskVO', JSON.stringify(aProcessTaskVO));
+</script>
+    </scriptTask>
+    <sequenceFlow id="flow20" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
+    <userTask id="usertask8" name="Створення документа HR">
+      <extensionElements>
+        <activiti:formProperty id="sName_Employee" name="ПІБ нового співробітника; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Employee" name="Логин нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_HR" name="Логин HR;;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sName_HR" name="ПІБ HR;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head" name="ПІБ керівника нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head" name="Логін керівника нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDate" name="Дата виходу на роботу нового співробітника" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Оповіщення;;bVisible=false" type="string" default="Шановний(на) співробітнику(це), Вам надійшов перелік завдань, у зв'язку з виходом на роботу новопризначеного співробітника, які Ви повинні виконати у зазначений строк."></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Лист-вітання;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'10fOu9ca7iwv9-QpRR7WiSRQDkZwG-6iktVWAhs_JQ10', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sTable_Regular_HR" name="Таблиця із завданнями;;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sEmail_Employee" name="Електронна адреса нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="Контент гугл дока;;bPrintform=true,bParseTagsOnSubmitOnly=true" type="fileHTML" default="{'sPathFile':'1ikEaslib2JiNC0Quho0DEDeW7vaNDdJV5JLKrPi3gfg', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask9" name="Створення документа Employee+HR">
+      <extensionElements>
+        <activiti:formProperty id="sName_Employee" name="ПІБ нового співробітника; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Employee" name="Логин нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sName_Executive" name="ПІБ керівника HR;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Executive" name="Логін керівника HR;;bVisible=false" type="string" expression="${oDocumentService.getSubjectEmployeeParentLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_HR" name="Логин HR;;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sName_ParentHead" name="ПІБ керівника керівника нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_ParentHead" name="Логін керівника керівника нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDate" name="Дата виходу на роботу нового співробітника" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Оповіщення;;bVisible=false" type="string" default="Шановний(на) співробітнику(це), Вам надійшов перелік завдань, у зв'язку з виходом на роботу новопризначеного співробітника, які Ви повинні виконати у зазначений строк."></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Лист-вітання;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'10fOu9ca7iwv9-QpRR7WiSRQDkZwG-6iktVWAhs_JQ10', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sTable_Regular_Employee" name="Таблиця із завданнями;;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTable_Regular_HR" name="Таблиця із завданнями;;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sEmail_Employee" name="Електронна адреса нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head" name="ПІБ керівника нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head" name="Логін керівника нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <parallelGateway id="parallelgateway1" name="Parallel Gateway"></parallelGateway>
+    <userTask id="usertask10" name="Створення документа Head+HR">
+      <extensionElements>
+        <activiti:formProperty id="sName_Employee" name="ПІБ нового співробітника; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Employee" name="Логин нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sName_Executive" name="ПІБ керівника HR;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Executive" name="Логін керівника HR;;bVisible=false" type="string" expression="${oDocumentService.getSubjectEmployeeParentLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_HR" name="Логин HR;;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sName_ParentHead" name="ПІБ керівника керівника нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_ParentHead" name="Логін керівника керівника нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDate" name="Дата виходу на роботу нового співробітника" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Оповіщення;;bVisible=false" type="string" default="Шановний(на) співробітнику(це), Вам надійшов перелік завдань, у зв'язку з виходом на роботу новопризначеного співробітника, які Ви повинні виконати у зазначений строк."></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Лист-вітання;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'10fOu9ca7iwv9-QpRR7WiSRQDkZwG-6iktVWAhs_JQ10', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sTable_Regular_Head" name="Таблиця із завданнями;;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTable_Regular_HR" name="Таблиця із завданнями;;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sEmail_Employee" name="Електронна адреса нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head" name="ПІБ керівника нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head" name="Логін керівника нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask11" name="Створення документа Head">
+      <extensionElements>
+        <activiti:formProperty id="sName_Employee" name="ПІБ нового співробітника; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Employee" name="Логин нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sName_Executive" name="ПІБ керівника HR;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Executive" name="Логін керівника HR;;bVisible=false" type="string" expression="${oDocumentService.getSubjectEmployeeParentLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_HR" name="Логин HR;;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sName_ParentHead" name="ПІБ керівника керівника нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_ParentHead" name="Логін керівника керівника нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDate" name="Дата виходу на роботу нового співробітника" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Оповіщення;;bVisible=false" type="string" default="Шановний(на) співробітнику(це), Вам надійшов перелік завдань, у зв'язку з виходом на роботу новопризначеного співробітника, які Ви повинні виконати у зазначений строк."></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Лист-вітання;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'10fOu9ca7iwv9-QpRR7WiSRQDkZwG-6iktVWAhs_JQ10', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sTable_Regular_Head" name="Таблиця із завданнями;;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sEmail_Employee" name="Електронна адреса нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head" name="ПІБ керівника нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head" name="Логін керівника нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow37" sourceRef="usertask1" targetRef="scripttask7">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[agree]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <parallelGateway id="parallelgateway2" name="Parallel Gateway"></parallelGateway>
+    <sequenceFlow id="flow39" sourceRef="parallelgateway2" targetRef="servicetask2">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentTasksListener}"></activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <scriptTask id="scripttask13" name="саша Script Task Head" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>//Концепт
+
+var sID_BP = '_task_base';
+var snID_Process_Activiti = execution.getProcessInstanceId();
+var sTableName = 'sTable_Regular_Head';
+var aoTable_Values = taskForm.getIdAndValueFromTableField(snID_Process_Activiti, sTableName);
+var sLoginAuthor = oDocumentService.getLoginAuthor(execution);
+
+var aProcessTaskVO = [];
+
+
+for (var i=0; i&lt;aoTable_Values.length; i++){  
+
+	var oProcessTaskVO = {};
+	var oProcessTaskSubjectsVO = {
+	    aVisor : [],
+	    aExecutor : [],
+	    aController : []
+	}	
+	sBodyTask = aoTable_Values[i].sBody;
+	var sDateExecute = aoTable_Values[i].sDateExecute;
+		sReplacedDate = sDateExecute.replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$2-$1');
+		sDateExecute = sReplacedDate + ' 23:59:59.000';
+	var sLoginController = aoTable_Values[i].sLogin_ParentHead;
+	var sLoginExecutor = aoTable_Values[i].sLogin_Head;
+	//var sLoginVisor = aoTable_Values[i].sLogin_isObserver;	
+	var sHeadTask = 'Завдання з періоду адаптації новопризначеного співробітника ' + [sName_Employee] ;
+
+	var oController = {};
+        oController.oUserVO = {};
+        oController.oUserVO.sLogin = sLogin_ParentHead;        
+        oController.sKey_TaskSubjectRole = 'Controller';
+        oController.nOrder = 0;
+        oController.oDatePlan = sDateExecute;
+        oController.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };
+    oProcessTaskSubjectsVO.aController.push(oController);
+    execution.setVariable('aController', JSON.stringify(oProcessTaskSubjectsVO.aController));
+
+    var oExecutor = {};
+    	oExecutor.oUserVO = {};
+        oExecutor.oUserVO.sLogin = sLogin_Head;        
+        oExecutor.sKey_TaskSubjectRole = 'Executor';
+        oExecutor.nOrder = 0;
+        oExecutor.oDatePlan = sDateExecute;
+        oExecutor.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };        
+    oProcessTaskSubjectsVO.aExecutor.push(oExecutor);      
+    execution.setVariable('aExecutor', JSON.stringify(oProcessTaskSubjectsVO.aExecutor));
+
+    // var oVisor = {};
+    //     oVisor.oUserVO = {};
+    //     oVisor.oUserVO.sLogin = sLoginVisor;        
+    //     oVisor.sKey_TaskSubjectRole = 'Visor';
+    //     oVisor.nOrder = 0;
+    //     oVisor.oDatePlan = sDateExecute;
+    //     oVisor.oProcessTaskSubjectStatus = {
+    //       sID: 'new'
+    //     }       
+    //oProcessTaskSubjectsVO.aVisor.push(oVisor);     
+    //execution.setVariable('aVisor', JSON.stringify(oProcessTaskSubjectsVO.aVisor));
+
+  oProcessTaskVO.sHead = sHeadTask;
+	oProcessTaskVO.sBody = sBodyTask;
+	oProcessTaskVO.sID_BP = sID_BP;
+	oProcessTaskVO.sKey_TaskSource = snID_Process_Activiti;
+	oProcessTaskVO.sKey_TaskSourceType = 'Document';
+	oProcessTaskVO.sKey_TaskReportType = 'textArea';
+	oProcessTaskVO.bSplited_Execute = false;
+	oProcessTaskVO.oProcessTaskSubjectsVO = oProcessTaskSubjectsVO;
+
+	//Проливаем задачи в документ
+	processSubjectTaskService.setProcessTaskData(JSON.stringify(oProcessTaskVO), null, sLoginAuthor);
+
+	aProcessTaskVO.push(oProcessTaskVO);
+	execution.setVariable('oProcessTaskVO', JSON.stringify(oProcessTaskVO));
+};
+
+execution.setVariable('aProcessTaskVO', JSON.stringify(aProcessTaskVO));
+</script>
+    </scriptTask>
+    <scriptTask id="scripttask14" name="саша1 Script Task Employee" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>//Концепт
+
+var sID_BP = '_task_base';
+var snID_Process_Activiti = execution.getProcessInstanceId();
+var sTableName = 'sTable_Regular_Employee';
+var aoTable_Values = taskForm.getIdAndValueFromTableField(snID_Process_Activiti, sTableName);
+var sLoginAuthor = oDocumentService.getLoginAuthor(execution);
+
+var aProcessTaskVO = [];
+
+
+for (var i=0; i&lt;aoTable_Values.length; i++){  
+
+	var oProcessTaskVO = {};
+	var oProcessTaskSubjectsVO = {
+	    aVisor : [],
+	    aExecutor : [],
+	    aController : []
+	}	
+	sBodyTask = aoTable_Values[i].sBody;
+	var sDateExecute = aoTable_Values[i].sDateExecute;
+		sReplacedDate = sDateExecute.replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$2-$1');
+		sDateExecute = sReplacedDate + ' 23:59:59.000';
+	var sLoginController = aoTable_Values[i].sLogin_Head;
+	var sLoginExecutor = aoTable_Values[i].sLogin_Employee;
+	//var sLoginVisor = aoTable_Values[i].sLogin_isObserver;	
+	var sHeadTask = 'Завдання з періоду адаптації новопризначеного співробітника '  + [sName_Employee] ;
+
+	var oController = {};
+        oController.oUserVO = {};
+        oController.oUserVO.sLogin = sLogin_Head;        
+        oController.sKey_TaskSubjectRole = 'Controller';
+        oController.nOrder = 0;
+        oController.oDatePlan = sDateExecute;
+        oController.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };
+    oProcessTaskSubjectsVO.aController.push(oController);
+    execution.setVariable('aController', JSON.stringify(oProcessTaskSubjectsVO.aController));
+
+    var oExecutor = {};
+    	oExecutor.oUserVO = {};
+        oExecutor.oUserVO.sLogin = sLogin_Employee;        
+        oExecutor.sKey_TaskSubjectRole = 'Executor';
+        oExecutor.nOrder = 0;
+        oExecutor.oDatePlan = sDateExecute;
+        oExecutor.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };        
+    oProcessTaskSubjectsVO.aExecutor.push(oExecutor);      
+    execution.setVariable('aExecutor', JSON.stringify(oProcessTaskSubjectsVO.aExecutor));
+
+    // var oVisor = {};
+    //     oVisor.oUserVO = {};
+    //     oVisor.oUserVO.sLogin = sLoginVisor;        
+    //     oVisor.sKey_TaskSubjectRole = 'Visor';
+    //     oVisor.nOrder = 0;
+    //     oVisor.oDatePlan = sDateExecute;
+    //     oVisor.oProcessTaskSubjectStatus = {
+    //       sID: 'new'
+    //     }       
+    //oProcessTaskSubjectsVO.aVisor.push(oVisor);     
+    //execution.setVariable('aVisor', JSON.stringify(oProcessTaskSubjectsVO.aVisor));
+
+  oProcessTaskVO.sHead = sHeadTask;
+	oProcessTaskVO.sBody = sBodyTask;
+	oProcessTaskVO.sID_BP = sID_BP;
+	oProcessTaskVO.sKey_TaskSource = snID_Process_Activiti;
+	oProcessTaskVO.sKey_TaskSourceType = 'Document';
+	oProcessTaskVO.sKey_TaskReportType = 'textArea';
+	oProcessTaskVO.bSplited_Execute = false;
+	oProcessTaskVO.oProcessTaskSubjectsVO = oProcessTaskSubjectsVO;
+
+	//Проливаем задачи в документ
+	processSubjectTaskService.setProcessTaskData(JSON.stringify(oProcessTaskVO), null, sLoginAuthor);
+
+	aProcessTaskVO.push(oProcessTaskVO);
+	execution.setVariable('oProcessTaskVO', JSON.stringify(oProcessTaskVO));
+};
+
+execution.setVariable('aProcessTaskVO', JSON.stringify(aProcessTaskVO));
+</script>
+    </scriptTask>
+    <scriptTask id="scripttask15" name="саша Script Task HR" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>//Концепт
+
+var sID_BP = '_task_base';
+var snID_Process_Activiti = execution.getProcessInstanceId();
+var sTableName = 'sTable_Regular_HR';
+var aoTable_Values = taskForm.getIdAndValueFromTableField(snID_Process_Activiti, sTableName);
+var sLoginAuthor = oDocumentService.getLoginAuthor(execution);
+
+var aProcessTaskVO = [];
+
+
+for (var i=0; i&lt;aoTable_Values.length; i++){  
+
+	var oProcessTaskVO = {};
+	var oProcessTaskSubjectsVO = {
+	    aVisor : [],
+	    aExecutor : [],
+	    aController : []
+	}	
+	sBodyTask = aoTable_Values[i].sBody;
+	var sDateExecute = aoTable_Values[i].sDateExecute;
+		sReplacedDate = sDateExecute.replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$2-$1');
+		sDateExecute = sReplacedDate + ' 23:59:59.000';
+	var sLoginController = aoTable_Values[i].sLogin_isControl;
+	var sLoginExecutor = aoTable_Values[i].sLogin_isExecute;
+	//var sLoginVisor = aoTable_Values[i].sLogin_isObserver;	
+	var sHeadTask = 'Завдання з періоду адаптації новопризначеного співробітника '  + [sName_Employee] ;
+
+	var oController = {};
+        oController.oUserVO = {};
+        oController.oUserVO.sLogin = sLoginController;        
+        oController.sKey_TaskSubjectRole = 'Controller';
+        oController.nOrder = 0;
+        oController.oDatePlan = sDateExecute;
+        oController.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };
+    oProcessTaskSubjectsVO.aController.push(oController);
+    execution.setVariable('aController', JSON.stringify(oProcessTaskSubjectsVO.aController));
+
+    var oExecutor = {};
+    	oExecutor.oUserVO = {};
+        oExecutor.oUserVO.sLogin = sLoginExecutor;        
+        oExecutor.sKey_TaskSubjectRole = 'Executor';
+        oExecutor.nOrder = 0;
+        oExecutor.oDatePlan = sDateExecute;
+        oExecutor.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };        
+    oProcessTaskSubjectsVO.aExecutor.push(oExecutor);      
+    execution.setVariable('aExecutor', JSON.stringify(oProcessTaskSubjectsVO.aExecutor));
+
+    // var oVisor = {};
+    //     oVisor.oUserVO = {};
+    //     oVisor.oUserVO.sLogin = sLoginVisor;        
+    //     oVisor.sKey_TaskSubjectRole = 'Visor';
+    //     oVisor.nOrder = 0;
+    //     oVisor.oDatePlan = sDateExecute;
+    //     oVisor.oProcessTaskSubjectStatus = {
+    //       sID: 'new'
+    //     }       
+    //oProcessTaskSubjectsVO.aVisor.push(oVisor);     
+    //execution.setVariable('aVisor', JSON.stringify(oProcessTaskSubjectsVO.aVisor));
+
+  oProcessTaskVO.sHead = sHeadTask;
+	oProcessTaskVO.sBody = sBodyTask;
+	oProcessTaskVO.sID_BP = sID_BP;
+	oProcessTaskVO.sKey_TaskSource = snID_Process_Activiti;
+	oProcessTaskVO.sKey_TaskSourceType = 'Document';
+	oProcessTaskVO.sKey_TaskReportType = 'textArea';
+	oProcessTaskVO.bSplited_Execute = false;
+	oProcessTaskVO.oProcessTaskSubjectsVO = oProcessTaskSubjectsVO;
+
+	//Проливаем задачи в документ
+	processSubjectTaskService.setProcessTaskData(JSON.stringify(oProcessTaskVO), null, sLoginAuthor);
+
+	aProcessTaskVO.push(oProcessTaskVO);
+	execution.setVariable('oProcessTaskVO', JSON.stringify(oProcessTaskVO));
+};
+
+execution.setVariable('aProcessTaskVO', JSON.stringify(aProcessTaskVO));
+</script>
+    </scriptTask>
+    <scriptTask id="scripttask16" name="саша Script Task Head" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>//Концепт
+
+var sID_BP = '_task_base';
+var snID_Process_Activiti = execution.getProcessInstanceId();
+var sTableName = 'sTable_Regular_Head';
+var aoTable_Values = taskForm.getIdAndValueFromTableField(snID_Process_Activiti, sTableName);
+var sLoginAuthor = oDocumentService.getLoginAuthor(execution);
+
+var aProcessTaskVO = [];
+var sDateExecute = execution.getVariable('sDate');
+
+for (var i=0; i&lt;aoTable_Values.length; i++){  
+
+    var oProcessTaskVO = {};
+    var oProcessTaskSubjectsVO = {
+        aVisor : [],
+        aExecutor : [],
+        aController : []
+    }   
+    sBodyTask = aoTable_Values[i].sBody;
+    nDayDiff = aoTable_Values[i].nDaysOffset;
+        sReplacedDate = sDate.replace(/(\d+).(\d+).(\d+)/, '$3-$2-$1');
+        oDateExecute = subjectCalendarDateService.getDateByDiffExcludeDayOff(null,'2000025', sReplacedDate, nDayDiff, 'yyyy-MM-dd');
+        sDateExecuteNew = oDateExecute.sDateTo;
+        sDateExecuteNew = sDateExecuteNew + ' 23:59:59.000';
+    var sLoginController = aoTable_Values[i].sLogin_Employee;
+    var sLoginExecutor = aoTable_Values[i].sLogin_Head;
+    //var sLoginVisor = aoTable_Values[i].sLogin_isObserver;    
+    var sHeadTask = 'Завдання з періоду адаптації новопризначеного співробітника ' + [sName_Employee] ;
+
+    var oController = {};
+        oController.oUserVO = {};
+        oController.oUserVO.sLogin = sLogin_Employee;        
+        oController.sKey_TaskSubjectRole = 'Controller';
+        oController.nOrder = 0;
+        oController.oDatePlan = sDateExecuteNew;
+        oController.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };
+    oProcessTaskSubjectsVO.aController.push(oController);
+    execution.setVariable('aController', JSON.stringify(oProcessTaskSubjectsVO.aController));
+
+    var oExecutor = {};
+        oExecutor.oUserVO = {};
+        oExecutor.oUserVO.sLogin = sLogin_Head;        
+        oExecutor.sKey_TaskSubjectRole = 'Executor';
+        oExecutor.nOrder = 0;
+        oExecutor.oDatePlan = sDateExecuteNew;
+        oExecutor.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };        
+    oProcessTaskSubjectsVO.aExecutor.push(oExecutor);      
+    execution.setVariable('aExecutor', JSON.stringify(oProcessTaskSubjectsVO.aExecutor));
+
+    // var oVisor = {};
+    //     oVisor.oUserVO = {};
+    //     oVisor.oUserVO.sLogin = sLoginVisor;        
+    //     oVisor.sKey_TaskSubjectRole = 'Visor';
+    //     oVisor.nOrder = 0;
+    //     oVisor.oDatePlan = sDateExecuteNew;
+    //     oVisor.oProcessTaskSubjectStatus = {
+    //       sID: 'new'
+    //     }       
+    //oProcessTaskSubjectsVO.aVisor.push(oVisor);     
+    //execution.setVariable('aVisor', JSON.stringify(oProcessTaskSubjectsVO.aVisor));
+
+  oProcessTaskVO.sHead = sHeadTask;
+    oProcessTaskVO.sBody = sBodyTask;
+    oProcessTaskVO.sID_BP = sID_BP;
+    oProcessTaskVO.sKey_TaskSource = snID_Process_Activiti;
+    oProcessTaskVO.sKey_TaskSourceType = 'Document';
+    oProcessTaskVO.sKey_TaskReportType = 'textArea';
+    oProcessTaskVO.bSplited_Execute = false;
+    oProcessTaskVO.oProcessTaskSubjectsVO = oProcessTaskSubjectsVO;
+
+    //Проливаем задачи в документ
+    processSubjectTaskService.setProcessTaskData(JSON.stringify(oProcessTaskVO), null, sLoginAuthor);
+
+    aProcessTaskVO.push(oProcessTaskVO);
+    execution.setVariable('oProcessTaskVO', JSON.stringify(oProcessTaskVO));
+};
+
+execution.setVariable('aProcessTaskVO', JSON.stringify(aProcessTaskVO));
+</script>
+    </scriptTask>
+    <scriptTask id="scripttask17" name="Script Task hr" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>//Концепт
+
+var sID_BP = '_task_base';
+var snID_Process_Activiti = execution.getProcessInstanceId();
+var sTableName = 'sTable_Regular_HR';
+var aoTable_Values = taskForm.getIdAndValueFromTableField(snID_Process_Activiti, sTableName);
+var sLoginAuthor = oDocumentService.getLoginAuthor(execution);
+
+var aProcessTaskVO = [];
+var sDateExecute = execution.getVariable('sDate');
+
+for (var i=0; i&lt;aoTable_Values.length; i++){  
+
+    var oProcessTaskVO = {};
+    var oProcessTaskSubjectsVO = {
+        aVisor : [],
+        aExecutor : [],
+        aController : []
+    }   
+    sBodyTask = aoTable_Values[i].sBody;
+    nDayDiff = aoTable_Values[i].nDaysOffset;
+        sReplacedDate = sDate.replace(/(\d+).(\d+).(\d+)/, '$3-$2-$1');
+        oDateExecute = subjectCalendarDateService.getDateByDiffExcludeDayOff(null,'2000025', sReplacedDate, nDayDiff, 'yyyy-MM-dd');
+        sDateExecuteNew = oDateExecute.sDateTo;
+        sDateExecuteNew = sDateExecuteNew + ' 23:59:59.000';
+    var sLoginController = aoTable_Values[i].sLogin_Employee;
+    var sLoginExecutor = aoTable_Values[i].sLogin_HR;
+    //var sLoginVisor = aoTable_Values[i].sLogin_isObserver;    
+    var sHeadTask = 'Завдання з періоду адаптації новопризначеного співробітника ' + [sName_Employee] ;
+
+    var oController = {};
+        oController.oUserVO = {};
+        oController.oUserVO.sLogin = sLogin_Employee;        
+        oController.sKey_TaskSubjectRole = 'Controller';
+        oController.nOrder = 0;
+        oController.oDatePlan = sDateExecuteNew;
+        oController.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };
+    oProcessTaskSubjectsVO.aController.push(oController);
+    execution.setVariable('aController', JSON.stringify(oProcessTaskSubjectsVO.aController));
+
+    var oExecutor = {};
+        oExecutor.oUserVO = {};
+        oExecutor.oUserVO.sLogin = sLogin_HR;        
+        oExecutor.sKey_TaskSubjectRole = 'Executor';
+        oExecutor.nOrder = 0;
+        oExecutor.oDatePlan = sDateExecuteNew;
+        oExecutor.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };        
+    oProcessTaskSubjectsVO.aExecutor.push(oExecutor);      
+    execution.setVariable('aExecutor', JSON.stringify(oProcessTaskSubjectsVO.aExecutor));
+
+    // var oVisor = {};
+    //     oVisor.oUserVO = {};
+    //     oVisor.oUserVO.sLogin = sLoginVisor;        
+    //     oVisor.sKey_TaskSubjectRole = 'Visor';
+    //     oVisor.nOrder = 0;
+    //     oVisor.oDatePlan = sDateExecuteNew;
+    //     oVisor.oProcessTaskSubjectStatus = {
+    //       sID: 'new'
+    //     }       
+    //oProcessTaskSubjectsVO.aVisor.push(oVisor);     
+    //execution.setVariable('aVisor', JSON.stringify(oProcessTaskSubjectsVO.aVisor));
+
+  oProcessTaskVO.sHead = 'Новопризначений співробітник: ' + [sName_Employee] + '. ' + sBodyTask;
+    oProcessTaskVO.sBody = sBodyTask;
+    oProcessTaskVO.sID_BP = sID_BP;
+    oProcessTaskVO.sKey_TaskSource = snID_Process_Activiti;
+    oProcessTaskVO.sKey_TaskSourceType = 'Document';
+    oProcessTaskVO.sKey_TaskReportType = 'textArea';
+    oProcessTaskVO.bSplited_Execute = false;
+    oProcessTaskVO.oProcessTaskSubjectsVO = oProcessTaskSubjectsVO;
+
+    //Проливаем задачи в документ
+    processSubjectTaskService.setProcessTaskData(JSON.stringify(oProcessTaskVO), null, sLoginAuthor);
+
+    aProcessTaskVO.push(oProcessTaskVO);
+    execution.setVariable('oProcessTaskVO', JSON.stringify(oProcessTaskVO));
+};
+
+execution.setVariable('aProcessTaskVO', JSON.stringify(aProcessTaskVO));
+</script>
+    </scriptTask>
+    <userTask id="usertask12" name="Затвердження документа HR">
+      <extensionElements>
+        <activiti:formProperty id="sName_Employee" name="ПІБ нового співробітника; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Employee" name="Логин нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_HR" name="Логин HR;;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sName_HR" name="ПІБ HR;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head" name="ПІБ керівника нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head" name="Логін керівника нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDate" name="Дата виходу на роботу нового співробітника" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Оповіщення;;bVisible=false" type="string" default="Шановний(на) співробітнику(це), Вам надійшов перелік завдань, у зв'язку з виходом на роботу новопризначеного співробітника, які Ви повинні виконати у зазначений строк."></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Лист-вітання;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'10fOu9ca7iwv9-QpRR7WiSRQDkZwG-6iktVWAhs_JQ10', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sTable_Regular_HR" name="Таблиця із завданнями;;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sEmail_Employee" name="Електронна адреса нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="Контент гугл дока;;bPrintform=true,bParseTagsOnSubmitOnly=true" type="fileHTML" default="{'sPathFile':'1ikEaslib2JiNC0Quho0DEDeW7vaNDdJV5JLKrPi3gfg', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <scriptTask id="scripttask18" name="Script Task" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>//БП Адаптация
+//1. Получаем все задачи в документе
+var snID_Process_Activiti = execution.getProcessInstanceId();
+
+var aoProcessTasks = processSubjectTaskService.getProcessTasksVO(snID_Process_Activiti, null);
+execution.setVariable('aoProcessTasks_str', aoProcessTasks.length); //логируем полученные задачи aoProcessTasks_str
+execution.setVariable('nCountTasks_All', aoProcessTasks.length);
+var sLoginEmployee = execution.getVariable('sLogin_Employee');
+var sLoginHead = execution.getVariable('sLogin_Head');
+//2. Перебираем все задачи и фильтруем по логину подписанта и статусу
+//какие из них имеют статус “выполнено” 2;Виконано;executed
+//логин контролирующего=логину подписанта!
+//11;Прийнято;accepted
+
+var sLoginController_Current = oDocumentService.getLogin_SubmitedLast(execution);
+var asID_Task = [];
+//var nCountTasks_Controller_Current = 0;
+var nCountTasks_Employee = execution.getVariable('nCountTasks_Employee'); //0
+var nCountTasks_Head = execution.getVariable('nCountTasks_Head');//0
+
+var nCountTasks_Executed_Employee = execution.getVariable('nCountTasks_Executed_Employee');//0
+var nCountTasks_Executed_Head = execution.getVariable('nCountTasks_Executed_Head');//0
+
+
+for (i=0; i &lt; aoProcessTasks.length; i++) {
+	oProcessTasks = aoProcessTasks[i];
+	//фильтр по контролирующему и статусу первого исполнителя
+	if(oProcessTasks.oProcessTaskSubjectsVO.aController[0].oUserVO.sLogin == sLoginController_Current){
+		if(sLoginController_Current == sLoginEmployee){
+			if(oProcessTasks.oProcessTaskSubjectsVO.aExecutor[0].oProcessTaskSubjectStatus.sID == 'executed'){
+				asID_Task.push(oProcessTasks.oProcessTaskSubjectsVO.aController[0].sID_Task);
+				nCountTasks_Executed_Employee++;
+			}
+			nCountTasks_Employee++;
+		};
+		if(sLoginController_Current == sLoginHead){
+			if(oProcessTasks.oProcessTaskSubjectsVO.aExecutor[0].oProcessTaskSubjectStatus.sID == 'executed'){
+				asID_Task.push(oProcessTasks.oProcessTaskSubjectsVO.aController[0].sID_Task);
+				nCountTasks_Executed_Head++;
+			}
+			nCountTasks_Head++;
+		}	
+	}
+};
+
+
+//логируем массив номеров задач, что попали под фильтр
+execution.setVariable('asID_Task', asID_Task.toString());
+//сохраняем общее кол-во задач у текущего контролирующего
+execution.setVariable('nCountTasks_Executed_Employee', nCountTasks_Executed_Employee);
+execution.setVariable('nCountTasks_Employee', nCountTasks_Employee);
+execution.setVariable('nCountTasks_Executed_Head', nCountTasks_Executed_Head);
+execution.setVariable('nCountTasks_Head', nCountTasks_Head);
+
+</script>
+    </scriptTask>
+    <sequenceFlow id="flow41" sourceRef="exclusivegateway2" targetRef="endevent1"></sequenceFlow>
+    <serviceTask id="servicetask6" name="Service Task права НС" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${sLogin_Employee}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sName_Employee]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow42" sourceRef="servicetask6" targetRef="servicetask4"></sequenceFlow>
+    <scriptTask id="scripttask19" name="Script Task employee" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>//Концепт
+
+var sID_BP = '_task_base';
+var snID_Process_Activiti = execution.getProcessInstanceId();
+var sTableName = 'sTable_Regular_Employee';
+var aoTable_Values = taskForm.getIdAndValueFromTableField(snID_Process_Activiti, sTableName);
+var sLoginAuthor = oDocumentService.getLoginAuthor(execution);
+
+var aProcessTaskVO = [];
+var sDateExecute = execution.getVariable('sDate');
+
+for (var i=0; i&lt;aoTable_Values.length; i++){  
+
+    var oProcessTaskVO = {};
+    var oProcessTaskSubjectsVO = {
+        aVisor : [],
+        aExecutor : [],
+        aController : []
+    }   
+    sBodyTask = aoTable_Values[i].sBody;
+    nDayDiff = aoTable_Values[i].nDaysOffset;
+        sReplacedDate = sDate.replace(/(\d+).(\d+).(\d+)/, '$3-$2-$1');
+        oDateExecute = subjectCalendarDateService.getDateByDiffExcludeDayOff(null,'2000025', sReplacedDate, nDayDiff, 'yyyy-MM-dd');
+        sDateExecuteNew = oDateExecute.sDateTo;
+        sDateExecuteNew = sDateExecuteNew + ' 23:59:59.000';
+    var sLoginController = aoTable_Values[i].sLogin_Head;
+    var sLoginExecutor = aoTable_Values[i].sLogin_Employee;
+    //var sLoginVisor = aoTable_Values[i].sLogin_isObserver;    
+    var sHeadTask = 'Завдання з періоду адаптації новопризначеного співробітника ' + [sName_Employee] ;
+
+    var oController = {};
+        oController.oUserVO = {};
+        oController.oUserVO.sLogin = sLogin_Head;        
+        oController.sKey_TaskSubjectRole = 'Controller';
+        oController.nOrder = 0;
+        oController.oDatePlan = sDateExecuteNew;
+        oController.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };
+    oProcessTaskSubjectsVO.aController.push(oController);
+    execution.setVariable('aController', JSON.stringify(oProcessTaskSubjectsVO.aController));
+
+    var oExecutor = {};
+        oExecutor.oUserVO = {};
+        oExecutor.oUserVO.sLogin = sLogin_Employee;        
+        oExecutor.sKey_TaskSubjectRole = 'Executor';
+        oExecutor.nOrder = 0;
+        oExecutor.oDatePlan = sDateExecuteNew;
+        oExecutor.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };        
+    oProcessTaskSubjectsVO.aExecutor.push(oExecutor);      
+    execution.setVariable('aExecutor', JSON.stringify(oProcessTaskSubjectsVO.aExecutor));
+
+    // var oVisor = {};
+    //     oVisor.oUserVO = {};
+    //     oVisor.oUserVO.sLogin = sLoginVisor;        
+    //     oVisor.sKey_TaskSubjectRole = 'Visor';
+    //     oVisor.nOrder = 0;
+    //     oVisor.oDatePlan = sDateExecuteNew;
+    //     oVisor.oProcessTaskSubjectStatus = {
+    //       sID: 'new'
+    //     }       
+    //oProcessTaskSubjectsVO.aVisor.push(oVisor);     
+    //execution.setVariable('aVisor', JSON.stringify(oProcessTaskSubjectsVO.aVisor));
+
+  oProcessTaskVO.sHead =  'Новопризначений співробітник: ' + [sName_Employee] + '. ' +  sBodyTask;
+    oProcessTaskVO.sBody = sBodyTask;
+    oProcessTaskVO.sID_BP = sID_BP;
+    oProcessTaskVO.sKey_TaskSource = snID_Process_Activiti;
+    oProcessTaskVO.sKey_TaskSourceType = 'Document';
+    oProcessTaskVO.sKey_TaskReportType = 'textArea';
+    oProcessTaskVO.bSplited_Execute = false;
+    oProcessTaskVO.oProcessTaskSubjectsVO = oProcessTaskSubjectsVO;
+
+    //Проливаем задачи в документ
+    processSubjectTaskService.setProcessTaskData(JSON.stringify(oProcessTaskVO), null, sLoginAuthor);
+
+    aProcessTaskVO.push(oProcessTaskVO);
+    execution.setVariable('oProcessTaskVO', JSON.stringify(oProcessTaskVO));
+};
+
+execution.setVariable('aProcessTaskVO', JSON.stringify(aProcessTaskVO));
+</script>
+    </scriptTask>
+    <sequenceFlow id="flow43" sourceRef="parallelgateway1" targetRef="scripttask19"></sequenceFlow>
+    <sequenceFlow id="flow44" sourceRef="parallelgateway1" targetRef="scripttask17"></sequenceFlow>
+    <sequenceFlow id="flow45" sourceRef="scripttask17" targetRef="parallelgateway2"></sequenceFlow>
+    <sequenceFlow id="flow46" sourceRef="scripttask19" targetRef="parallelgateway2"></sequenceFlow>
+    <userTask id="usertask13" name="Затвердження документа Employee+HR">
+      <extensionElements>
+        <activiti:formProperty id="sName_Employee" name="ПІБ нового співробітника; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Employee" name="Логин нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sName_Executive" name="ПІБ керівника HR;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Executive" name="Логін керівника HR;;bVisible=false" type="string" expression="${oDocumentService.getSubjectEmployeeParentLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_HR" name="Логин HR;;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sName_ParentHead" name="ПІБ керівника керівника нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_ParentHead" name="Логін керівника керівника нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDate" name="Дата виходу на роботу нового співробітника" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Оповіщення;;bVisible=false" type="string" default="Шановний(на) співробітнику(це), Вам надійшов перелік завдань, у зв'язку з виходом на роботу новопризначеного співробітника, які Ви повинні виконати у зазначений строк."></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Лист-вітання;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'10fOu9ca7iwv9-QpRR7WiSRQDkZwG-6iktVWAhs_JQ10', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sTable_Regular_Employee" name="Таблиця із завданнями;;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTable_Regular_HR" name="Таблиця із завданнями;;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sEmail_Employee" name="Електронна адреса нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head" name="ПІБ керівника нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head" name="Логін керівника нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <scriptTask id="scripttask20" name="Script Task head" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>//Концепт
+
+var sID_BP = '_task_base';
+var snID_Process_Activiti = execution.getProcessInstanceId();
+var sTableName = 'sTable_Regular_Head';
+var aoTable_Values = taskForm.getIdAndValueFromTableField(snID_Process_Activiti, sTableName);
+var sLoginAuthor = oDocumentService.getLoginAuthor(execution);
+
+var aProcessTaskVO = [];
+var sDateExecute = execution.getVariable('sDate');
+
+for (var i=0; i&lt;aoTable_Values.length; i++){  
+
+    var oProcessTaskVO = {};
+    var oProcessTaskSubjectsVO = {
+        aVisor : [],
+        aExecutor : [],
+        aController : []
+    }   
+    sBodyTask = aoTable_Values[i].sBody;
+    nDayDiff = aoTable_Values[i].nDaysOffset;
+        sReplacedDate = sDate.replace(/(\d+).(\d+).(\d+)/, '$3-$2-$1');
+        oDateExecute = subjectCalendarDateService.getDateByDiffExcludeDayOff(null,'2000025', sReplacedDate, nDayDiff, 'yyyy-MM-dd');
+        sDateExecuteNew = oDateExecute.sDateTo;
+        sDateExecuteNew = sDateExecuteNew + ' 23:59:59.000';
+    var sLoginController = aoTable_Values[i].sLogin_Employee;
+    var sLoginExecutor = aoTable_Values[i].sLogin_Head;
+    //var sLoginVisor = aoTable_Values[i].sLogin_isObserver;    
+    var sHeadTask = 'Завдання з періоду адаптації новопризначеного співробітника ' + [sName_Employee] ;
+
+    var oController = {};
+        oController.oUserVO = {};
+        oController.oUserVO.sLogin = sLogin_Employee;        
+        oController.sKey_TaskSubjectRole = 'Controller';
+        oController.nOrder = 0;
+        oController.oDatePlan = sDateExecuteNew;
+        oController.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };
+    oProcessTaskSubjectsVO.aController.push(oController);
+    execution.setVariable('aController', JSON.stringify(oProcessTaskSubjectsVO.aController));
+
+    var oExecutor = {};
+        oExecutor.oUserVO = {};
+        oExecutor.oUserVO.sLogin = sLogin_Head;        
+        oExecutor.sKey_TaskSubjectRole = 'Executor';
+        oExecutor.nOrder = 0;
+        oExecutor.oDatePlan = sDateExecuteNew;
+        oExecutor.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };        
+    oProcessTaskSubjectsVO.aExecutor.push(oExecutor);      
+    execution.setVariable('aExecutor', JSON.stringify(oProcessTaskSubjectsVO.aExecutor));
+
+    // var oVisor = {};
+    //     oVisor.oUserVO = {};
+    //     oVisor.oUserVO.sLogin = sLoginVisor;        
+    //     oVisor.sKey_TaskSubjectRole = 'Visor';
+    //     oVisor.nOrder = 0;
+    //     oVisor.oDatePlan = sDateExecuteNew;
+    //     oVisor.oProcessTaskSubjectStatus = {
+    //       sID: 'new'
+    //     }       
+    //oProcessTaskSubjectsVO.aVisor.push(oVisor);     
+    //execution.setVariable('aVisor', JSON.stringify(oProcessTaskSubjectsVO.aVisor));
+
+  oProcessTaskVO.sHead = 'Новопризначений співробітник: ' + [sName_Employee] + '. ' +  sBodyTask;
+    oProcessTaskVO.sBody = sBodyTask;
+    oProcessTaskVO.sID_BP = sID_BP;
+    oProcessTaskVO.sKey_TaskSource = snID_Process_Activiti;
+    oProcessTaskVO.sKey_TaskSourceType = 'Document';
+    oProcessTaskVO.sKey_TaskReportType = 'textArea';
+    oProcessTaskVO.bSplited_Execute = false;
+    oProcessTaskVO.oProcessTaskSubjectsVO = oProcessTaskSubjectsVO;
+
+    //Проливаем задачи в документ
+    processSubjectTaskService.setProcessTaskData(JSON.stringify(oProcessTaskVO), null, sLoginAuthor);
+
+    aProcessTaskVO.push(oProcessTaskVO);
+    execution.setVariable('oProcessTaskVO', JSON.stringify(oProcessTaskVO));
+};
+
+execution.setVariable('aProcessTaskVO', JSON.stringify(aProcessTaskVO));
+</script>
+    </scriptTask>
+    <sequenceFlow id="flow47" sourceRef="parallelgateway1" targetRef="scripttask20"></sequenceFlow>
+    <sequenceFlow id="flow48" sourceRef="scripttask20" targetRef="parallelgateway2"></sequenceFlow>
+    <sequenceFlow id="flow49" sourceRef="servicetask4" targetRef="usertask15"></sequenceFlow>
+    <userTask id="usertask15" name="Затвердження документа ">
+      <extensionElements>
+        <activiti:formProperty id="sName_Employee" name="ПІБ нового співробітника; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Employee" name="Логин нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sName_HR" name="ПІБ HR;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_HR" name="Логин HR;;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sName_Head" name="ПІБ керівника нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Head" name="Логін керівника нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDate" name="Дата виходу на роботу нового співробітника" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Оповіщення;;bVisible=false" type="string" default="Шановний(на) співробітнику(це), Вам надійшов перелік завдань, у зв'язку з виходом на роботу новопризначеного співробітника, які Ви повинні виконати у зазначений строк."></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Лист-вітання;;bVisible=false,bPrintform=true,bDocumentSubTabPrintformDefault=false,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'10fOu9ca7iwv9-QpRR7WiSRQDkZwG-6iktVWAhs_JQ10', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sTable_Regular_Head" name="Таблиця із завданнями;bVisible=false;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTable_Regular_Employee" name="Таблиця із завданнями;bVisible=false;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTable_Regular_HR" name="Таблиця із завданнями;bVisible=false;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sEmail_Employee" name="Електронна адреса нового співробітника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="nCountTasks_Employee" name="Лічити задачі нового співробітника;;bVisible=false" type="long" default="0"></activiti:formProperty>
+        <activiti:formProperty id="nCountTasks_Head" name="Лічити задачі керівника;;bVisible=false" type="long" default="0"></activiti:formProperty>
+        <activiti:formProperty id="nCountTasks_Executed_Employee" name="Лічити задачі виконані новим співробітником;;bVisible=false" type="long" default="0"></activiti:formProperty>
+        <activiti:formProperty id="nCountTasks_Executed_Head" name="Лічити задачі виконані керівником;;bVisible=false" type="long" default="0"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway" default="flow54"></exclusiveGateway>
+    <sequenceFlow id="flow50" sourceRef="usertask15" targetRef="exclusivegateway1"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway2" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="flow51" sourceRef="exclusivegateway1" targetRef="exclusivegateway2"></sequenceFlow>
+    <sequenceFlow id="flow52" sourceRef="exclusivegateway2" targetRef="scripttask18"></sequenceFlow>
+    <sequenceFlow id="FlowButton_SnosIVernutNaVizirovanie" name="Повернути на візування та зняти підписи;sIF=hasAny-States(Authorship)" sourceRef="scripttask18" targetRef="usertask15">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentResetStepTypesListener}">
+          <activiti:field name="sasKey_StepType">
+            <activiti:string><![CDATA[Agree]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_SnosIVernutNaVizirovanie')}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow54" sourceRef="exclusivegateway1" targetRef="usertask15"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram__doc_template_covkmudep_CHECK-LIST">
+    <bpmndi:BPMNPlane bpmnElement="_doc_template_covkmudep_CHECK-LIST" id="BPMNPlane__doc_template_covkmudep_CHECK-LIST">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="15.0" y="264.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="71.0" width="105.0" x="140.0" y="246.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask2" id="BPMNShape_servicetask2">
+        <omgdc:Bounds height="71.0" width="105.0" x="435.0" y="138.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="921.0" y="427.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask3" id="BPMNShape_servicetask3">
+        <omgdc:Bounds height="55.0" width="105.0" x="242.0" y="483.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask4" id="BPMNShape_servicetask4">
+        <omgdc:Bounds height="79.0" width="105.0" x="592.0" y="224.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask5" id="BPMNShape_servicetask5">
+        <omgdc:Bounds height="55.0" width="105.0" x="369.0" y="487.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask2" id="BPMNShape_usertask2">
+        <omgdc:Bounds height="71.0" width="105.0" x="931.0" y="89.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask3" id="BPMNShape_scripttask3">
+        <omgdc:Bounds height="55.0" width="105.0" x="488.0" y="4.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask4" id="BPMNShape_scripttask4">
+        <omgdc:Bounds height="63.0" width="105.0" x="1.0" y="479.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask5" id="BPMNShape_scripttask5">
+        <omgdc:Bounds height="55.0" width="105.0" x="817.0" y="20.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask6" id="BPMNShape_scripttask6">
+        <omgdc:Bounds height="55.0" width="105.0" x="119.0" y="483.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask5" id="BPMNShape_usertask5">
+        <omgdc:Bounds height="71.0" width="105.0" x="119.0" y="409.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask7" id="BPMNShape_scripttask7">
+        <omgdc:Bounds height="71.0" width="105.0" x="140.0" y="138.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask7" id="BPMNShape_usertask7">
+        <omgdc:Bounds height="71.0" width="105.0" x="931.0" y="12.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask8" id="BPMNShape_scripttask8">
+        <omgdc:Bounds height="71.0" width="105.0" x="3.0" y="4.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask10" id="BPMNShape_scripttask10">
+        <omgdc:Bounds height="55.0" width="105.0" x="940.0" y="174.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask11" id="BPMNShape_scripttask11">
+        <omgdc:Bounds height="55.0" width="105.0" x="480.0" y="483.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask12" id="BPMNShape_scripttask12">
+        <omgdc:Bounds height="55.0" width="105.0" x="480.0" y="373.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask8" id="BPMNShape_usertask8">
+        <omgdc:Bounds height="71.0" width="105.0" x="107.0" y="4.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask9" id="BPMNShape_usertask9">
+        <omgdc:Bounds height="71.0" width="105.0" x="1.0" y="409.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="parallelgateway1" id="BPMNShape_parallelgateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="208.0" y="84.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask10" id="BPMNShape_usertask10">
+        <omgdc:Bounds height="71.0" width="105.0" x="230.0" y="409.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask11" id="BPMNShape_usertask11">
+        <omgdc:Bounds height="71.0" width="105.0" x="1.0" y="339.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="parallelgateway2" id="BPMNShape_parallelgateway2">
+        <omgdc:Bounds height="40.0" width="40.0" x="433.0" y="64.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask13" id="BPMNShape_scripttask13">
+        <omgdc:Bounds height="55.0" width="105.0" x="940.0" y="224.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask14" id="BPMNShape_scripttask14">
+        <omgdc:Bounds height="55.0" width="105.0" x="940.0" y="276.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask15" id="BPMNShape_scripttask15">
+        <omgdc:Bounds height="55.0" width="105.0" x="480.0" y="427.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask16" id="BPMNShape_scripttask16">
+        <omgdc:Bounds height="55.0" width="105.0" x="600.0" y="4.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask17" id="BPMNShape_scripttask17">
+        <omgdc:Bounds height="55.0" width="105.0" x="282.0" y="146.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask12" id="BPMNShape_usertask12">
+        <omgdc:Bounds height="71.0" width="105.0" x="704.0" y="82.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask18" id="BPMNShape_scripttask18">
+        <omgdc:Bounds height="55.0" width="105.0" x="825.0" y="236.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask6" id="BPMNShape_servicetask6">
+        <omgdc:Bounds height="63.0" width="105.0" x="567.0" y="146.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask19" id="BPMNShape_scripttask19">
+        <omgdc:Bounds height="61.0" width="105.0" x="284.0" y="74.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask13" id="BPMNShape_usertask13">
+        <omgdc:Bounds height="71.0" width="105.0" x="704.0" y="12.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask20" id="BPMNShape_scripttask20">
+        <omgdc:Bounds height="55.0" width="105.0" x="284.0" y="218.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask15" id="BPMNShape_usertask15">
+        <omgdc:Bounds height="71.0" width="105.0" x="696.0" y="328.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway1" id="BPMNShape_exclusivegateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="728.0" y="424.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway2" id="BPMNShape_exclusivegateway2">
+        <omgdc:Bounds height="40.0" width="40.0" x="857.0" y="424.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="192.0" y="138.0"></omgdi:waypoint>
+        <omgdi:waypoint x="228.0" y="124.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow16" id="BPMNEdge_flow16">
+        <omgdi:waypoint x="540.0" y="173.0"></omgdi:waypoint>
+        <omgdi:waypoint x="567.0" y="177.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow17" id="BPMNEdge_flow17">
+        <omgdi:waypoint x="106.0" y="510.0"></omgdi:waypoint>
+        <omgdi:waypoint x="119.0" y="510.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow19" id="BPMNEdge_flow19">
+        <omgdi:waypoint x="347.0" y="510.0"></omgdi:waypoint>
+        <omgdi:waypoint x="369.0" y="514.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow20" id="BPMNEdge_flow20">
+        <omgdi:waypoint x="50.0" y="281.0"></omgdi:waypoint>
+        <omgdi:waypoint x="140.0" y="281.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow37" id="BPMNEdge_flow37">
+        <omgdi:waypoint x="192.0" y="246.0"></omgdi:waypoint>
+        <omgdi:waypoint x="192.0" y="209.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow39" id="BPMNEdge_flow39">
+        <omgdi:waypoint x="453.0" y="104.0"></omgdi:waypoint>
+        <omgdi:waypoint x="487.0" y="138.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow41" id="BPMNEdge_flow41">
+        <omgdi:waypoint x="897.0" y="444.0"></omgdi:waypoint>
+        <omgdi:waypoint x="921.0" y="444.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow42" id="BPMNEdge_flow42">
+        <omgdi:waypoint x="619.0" y="209.0"></omgdi:waypoint>
+        <omgdi:waypoint x="644.0" y="224.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow43" id="BPMNEdge_flow43">
+        <omgdi:waypoint x="248.0" y="104.0"></omgdi:waypoint>
+        <omgdi:waypoint x="284.0" y="104.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow44" id="BPMNEdge_flow44">
+        <omgdi:waypoint x="228.0" y="124.0"></omgdi:waypoint>
+        <omgdi:waypoint x="334.0" y="146.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow45" id="BPMNEdge_flow45">
+        <omgdi:waypoint x="334.0" y="146.0"></omgdi:waypoint>
+        <omgdi:waypoint x="453.0" y="104.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow46" id="BPMNEdge_flow46">
+        <omgdi:waypoint x="389.0" y="104.0"></omgdi:waypoint>
+        <omgdi:waypoint x="433.0" y="84.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow47" id="BPMNEdge_flow47">
+        <omgdi:waypoint x="228.0" y="124.0"></omgdi:waypoint>
+        <omgdi:waypoint x="336.0" y="218.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow48" id="BPMNEdge_flow48">
+        <omgdi:waypoint x="336.0" y="218.0"></omgdi:waypoint>
+        <omgdi:waypoint x="453.0" y="104.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow49" id="BPMNEdge_flow49">
+        <omgdi:waypoint x="644.0" y="303.0"></omgdi:waypoint>
+        <omgdi:waypoint x="748.0" y="328.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow50" id="BPMNEdge_flow50">
+        <omgdi:waypoint x="696.0" y="363.0"></omgdi:waypoint>
+        <omgdi:waypoint x="668.0" y="364.0"></omgdi:waypoint>
+        <omgdi:waypoint x="668.0" y="444.0"></omgdi:waypoint>
+        <omgdi:waypoint x="728.0" y="444.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow51" id="BPMNEdge_flow51">
+        <omgdi:waypoint x="768.0" y="444.0"></omgdi:waypoint>
+        <omgdi:waypoint x="857.0" y="444.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow52" id="BPMNEdge_flow52">
+        <omgdi:waypoint x="877.0" y="424.0"></omgdi:waypoint>
+        <omgdi:waypoint x="877.0" y="291.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_SnosIVernutNaVizirovanie" id="BPMNEdge_FlowButton_SnosIVernutNaVizirovanie">
+        <omgdi:waypoint x="825.0" y="263.0"></omgdi:waypoint>
+        <omgdi:waypoint x="748.0" y="264.0"></omgdi:waypoint>
+        <omgdi:waypoint x="748.0" y="328.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="70.0" width="100.0" x="732.0" y="207.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow54" id="BPMNEdge_flow54">
+        <omgdi:waypoint x="748.0" y="424.0"></omgdi:waypoint>
+        <omgdi:waypoint x="748.0" y="399.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

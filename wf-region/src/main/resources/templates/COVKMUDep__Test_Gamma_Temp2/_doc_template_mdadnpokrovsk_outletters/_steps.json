@@ -1,0 +1,97 @@
+{
+"oProperties":{ 
+      "bSkipStepCreate":true,
+      "sasKey_Field_RKK":"sCodeFormRKK,sSpravaNumberRKK,sKorRKK,sSign,sName_Subject_DocumentSenderRKK,sKey_PrivateDirectRKK,sKey_Private_Document_ParentRKK,sDateRegOutRKK,sName_Document,sName_SubjectOrgan_DocumentExecutorRKK,sName_SubjectHuman_DocumentAuthorRKK,sNumberDaysRKK,sTimeSave,nPages_Dodatk,nPages_Document,sIndikator,sTimeInd,sVidProMonit,sInformZmin,sSposibVik,ResolutionForExecutor,sHeadD",
+      "sasKey_FieldSystemHide_RKK":"*"
+       },
+  "_:Watch": {
+	"_default_author": {
+      "oMission": {"sKey_Right":"SignRelease"},
+      "oRights": {
+		"Manage": {},
+      	"SignComment": {},
+		"ManageSignerWriteAccept": {},
+		"ManageSignerWriteAgree": {},
+		"ManageViewers": {},
+		"TaskManage": {}
+      }
+    },
+    "_default_view": {
+      "oMission": {"sKey_Right":"View", "sKey_Step_At":""},
+      "oRights": {
+      	"ManageViewers": {},
+        "SignComment": {}
+      }
+    },
+	"_default_consideration": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {      	
+      	"ManageViewers": {},
+      	"AddSignerWriteAccept": {},
+      	"ManageSignersRead": {},
+      	"SignComment": {}
+      }
+      
+    },
+    "_default_accept": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},      	
+      	"ManageViewers": {},
+      	"AddSignerWriteAccept": {},
+        "RemoveSignerWriteAccept": {},
+      	"ManageSignersRead": {},
+      	"SignComment": {}
+      }
+      
+    },
+
+    "_default_firstAccept": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},      	
+      	"ManageViewers": {},
+      	"AddSignerWriteAccept": {},
+        "RemoveSignerWriteAccept": {},
+      	"ManageSignersRead": {},
+      	"SignComment": {}
+      }
+      
+    },
+    
+    "_default_agree": {
+      "oMission": {"sKey_Right":"SignWrite", "bResetImageAfterSubmit": true},
+      "oRights": {
+      	"SignDelegate":{},      	
+      	"ManageViewers": {},
+      	"SignWriteRefuse": {},
+      	"AddSignerWriteAgree": {},
+        "RemoveSignerWriteAgree": {},
+      	"ManageSignersRead": {},
+      	"SignComment": {}
+      },
+      "bNeedECP": true,
+      "oProperties": {
+        "sasKey_Field_SignECP": "PrintForm_1"
+      }
+    },    
+    "_default_seen": {
+      "oMission": {"sKey_Right":"SignRead"},
+      "oRights": {
+        "ManageSignersRead": {},
+      	"ManageViewers": {}
+      }
+      
+    }
+    },
+   
+  "step_create:Create": {},  
+	"step_firstAccept:FirstAccept": {},
+  "step_accept:Accept": {"property": {"nSubscribersMin": "1"}},  
+  "step_accept_1:Accept": {},
+	"step_accept_2:Accept": {},
+  "step_agree:Agree": {"property": {"nSubscribersMin": "1"}},  
+  "step_execute:Execute": {},
+  "step_edit:Edit": {},
+  "step_directExternal:DirectExternal": {}
+}

@@ -1,0 +1,32 @@
+{
+  "aField": [
+    {
+      "id": "sNumber",
+      "name": "№ п/п",
+      "type": "long",    
+      "nWidth": "15%"
+   
+    },
+    {
+      "id": "sDateBegin",
+      "name": "Перод роботи з",
+      "type": "date"
+      
+   
+    },
+    {
+      "id": "sDateEnd",
+      "name": "по;",
+      "type": "date"
+      
+      
+    },
+{
+      "id": "sDateResult",
+      "name": "Результат;",
+      "type": "string"
+      
+      
+    }
+  ]
+}

@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="_doc_template_covkmudep_dismissal" name="Заява на звільнення" isExecutable="true">
+    <documentation>;bTemplated=true</documentation>
+    <userTask id="usertask1" name="Створення заяви на звільнення">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Заголовок документа." type="string" default="Заява на звільнення" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Author" name="Полное ФИО; ;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_Author" name="Посада заявника; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor2" name="Логин автора; ;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sID_Custom_GovPublic" name="Номер заяви" type="string"></activiti:formProperty>
+        <activiti:formProperty id="asZvilnennia" name="Прошу звільнити мене із займаної посади" type="enum" required="true">
+          <activiti:value id="sPos1" name="за власним бажанням (ст. 38 КЗпП України)"></activiti:value>
+          <activiti:value id="sPos2" name="за угодою сторін (п. 1 ст. 36 КЗпП України)"></activiti:value>
+          <activiti:value id="sPos3" name="перехід в інший державний  орган"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="За власним бажанням;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'104lzsbyo9W9jJRdtWHlpfYvw7WZvimbAbv6j417urck', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="За згодою сторін;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1BTx9LGFb8b7UoMgMi5ySqzgFVv3Pd0PfbSZoVyHj5T0', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_3" name="Переведення;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1-QBpz_bljDs2RbbheB0mD7ypI685rT6sLaKB0HWcB4w', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="Marker_1" name="ПФ1" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sBody_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asZvilnennia&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sPos1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="Marker_2" name="ПФ2" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sBody_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asZvilnennia&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sPos2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="Marker_3" name="ПФ3" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_3&quot;:{&quot;aField_ID&quot;:[&quot;sBody_3&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asZvilnennia&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sPos3'&quot;}}}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="servicetask1"></sequenceFlow>
+    <userTask id="usertask2" name="Узгодження заяви на звільнення" default="flow5">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Заголовок документа" type="string" default="Заява на звільнення" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Author" name="Полное ФИО; ;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_Author" name="Посада заявника; ;writable=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor2" name="Логин автора; ;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sID_Custom_GovPublic" name="Номер заяви" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="asZvilnennia" name="Прошу звільнити мене із займаної посади" type="enum" writable="false">
+          <activiti:value id="sPos1" name="за власним бажанням (ст. 38 КЗпП України)"></activiti:value>
+          <activiti:value id="sPos2" name="за угодою сторін (п. 1 ст. 36 КЗпП України)"></activiti:value>
+          <activiti:value id="sPos3" name="перехід в інший державний  орган"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="За власним бажанням;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'104lzsbyo9W9jJRdtWHlpfYvw7WZvimbAbv6j417urck', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="За згодою сторін;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1BTx9LGFb8b7UoMgMi5ySqzgFVv3Pd0PfbSZoVyHj5T0', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_3" name="Переведення;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1-QBpz_bljDs2RbbheB0mD7ypI685rT6sLaKB0HWcB4w', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="Marker1" name="ПФ1" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sBody_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asZvilnennia&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sPos1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="Marker2" name="ПФ2" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sBody_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asZvilnennia&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sPos2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="Marker3" name="ПФ3" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_3&quot;:{&quot;aField_ID&quot;:[&quot;sBody_3&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asZvilnennia&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sPos3'&quot;}}}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask3" name="Затвердження заяви на звільнення в кадры">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Заголовок документа" type="string" default="Заява на звільнення" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Author" name="Полное ФИО; ;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_Author" name="Посада заявника; ;writable=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor2" name="Логин автора; ;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sID_Custom_GovPublic" name="Номер заяви" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="asZvilnennia" name="Прошу звільнити мене із займаної посади" type="enum" writable="false">
+          <activiti:value id="sPos1" name="за власним бажанням (ст. 38 КЗпП України)"></activiti:value>
+          <activiti:value id="sPos2" name="за угодою сторін (п. 1 ст. 36 КЗпП України)"></activiti:value>
+          <activiti:value id="sPos3" name="перехід в інший державний  орган"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="За власним бажанням;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'104lzsbyo9W9jJRdtWHlpfYvw7WZvimbAbv6j417urck', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="За згодою сторін;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1BTx9LGFb8b7UoMgMi5ySqzgFVv3Pd0PfbSZoVyHj5T0', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_3" name="Переведення;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1-QBpz_bljDs2RbbheB0mD7ypI685rT6sLaKB0HWcB4w', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="Marker1" name="ПФ1" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sBody_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asZvilnennia&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sPos1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="Marker2" name="ПФ2" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sBody_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asZvilnennia&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sPos2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="Marker3" name="ПФ3" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_3&quot;:{&quot;aField_ID&quot;:[&quot;sBody_3&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asZvilnennia&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sPos3'&quot;}}}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow2" sourceRef="usertask1" targetRef="exclusivegateway4">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow3" sourceRef="exclusivegateway2" targetRef="usertask3">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Agree]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisTypeStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow4" sourceRef="usertask3" targetRef="usertask6">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Direct]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway" default="flow6"></exclusiveGateway>
+    <sequenceFlow id="flow5" sourceRef="usertask2" targetRef="exclusivegateway1"></sequenceFlow>
+    <sequenceFlow id="flow6" sourceRef="exclusivegateway1" targetRef="usertask2"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway2" name="Exclusive Gateway" default="flow8"></exclusiveGateway>
+    <sequenceFlow id="flow7" sourceRef="exclusivegateway1" targetRef="exclusivegateway2">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow8" sourceRef="exclusivegateway2" targetRef="usertask2">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:expression><![CDATA[+1]]></activiti:expression>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <userTask id="usertask4" name="Редагування документа">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Заголовок документа" type="string" default="Заява на звільнення" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Author" name="Полное ФИО; ;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_Author" name="Посада заявника" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor2" name="Логин автора; ;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sID_Custom_GovPublic" name="Номер заяви" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="asZvilnennia" name="Прошу звільнити мене із займаної посади" type="enum" required="true">
+          <activiti:value id="sPos1" name="за власним бажанням (ст. 38 КЗпП України)"></activiti:value>
+          <activiti:value id="sPos2" name="за угодою сторін (п. 1 ст. 36 КЗпП України)"></activiti:value>
+          <activiti:value id="sPos3" name="перехід в інший державний  орган"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="За власним бажанням;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'104lzsbyo9W9jJRdtWHlpfYvw7WZvimbAbv6j417urck', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="За згодою сторін;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1BTx9LGFb8b7UoMgMi5ySqzgFVv3Pd0PfbSZoVyHj5T0', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_3" name="Переведення;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1-QBpz_bljDs2RbbheB0mD7ypI685rT6sLaKB0HWcB4w', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="Marker1" name="ПФ1" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sBody_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asZvilnennia&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sPos1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="Marker2" name="ПФ2" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sBody_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asZvilnennia&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sPos2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="Marker3" name="ПФ3" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_3&quot;:{&quot;aField_ID&quot;:[&quot;sBody_3&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asZvilnennia&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sPos3'&quot;}}}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="FlowButton_VzyatNaRedaktirovanie" name="Редагування;sIF=hasAny-States(Authorship)" sourceRef="usertask2" targetRef="usertask4">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[edit]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_VzyatNaRedaktirovanie')}]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway id="exclusivegateway3" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="FlowButton_VernutNaVizirovanie" name="Повернути на візування;sIF=hasAny-States(Authorship)" sourceRef="usertask4" targetRef="exclusivegateway3">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_VernutNaVizirovanie')}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow11" sourceRef="exclusivegateway3" targetRef="exclusivegateway4"></sequenceFlow>
+    <sequenceFlow id="FlowButton_SnosIVernutNaVizirovanie" name="Повернути на візування та зняти підписи;sIF=hasAny-States(Authorship)" sourceRef="usertask4" targetRef="exclusivegateway3">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentResetStepTypesListener}">
+          <activiti:field name="sasKey_StepType">
+            <activiti:string><![CDATA[Accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_SnosIVernutNaVizirovanie')}]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway id="exclusivegateway4" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="flow13" sourceRef="exclusivegateway4" targetRef="usertask2">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <scriptTask id="scripttask1" name="Script Task" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>var sLoginAuthor = oDocumentService.getLoginAuthor(execution);
+execution.setVariable('sLoginAuthor2', sLoginAuthor);
+var oEmployeeAuthor = subjectService.getEmployee(sLoginAuthor, false);
+var oPosition = subjectService.getEmployee(sLoginAuthor, false);
+oDocumentService.setProcessDocumentScopeCustom(execution, oPosition.aSubjectGroupPositionCustom.iterator().next().oSubjectHumanPositionCustom);
+
+var obj = subjectService.getEmployee(sLoginAuthor, false);
+var sDepartment = obj.aSubjectGroupPositionCustom.iterator().next().oSubjectHumanPositionCustom.oSubjectGroup_Organ.name;
+execution.setVariable('sDepartment', sDepartment);
+
+var sPosition = oEmployeeAuthor.aSubjectGroupPositionCustom.iterator().next().oSubjectHumanPositionCustom.sNote;
+execution.setVariable('sPosition_Author', sPosition);</script>
+    </scriptTask>
+    <serviceTask id="servicetask1" name="ProcessCountTaskCustom" activiti:delegateExpression="#{ProcessCountTaskCustomListener}">
+      <extensionElements>
+        <activiti:field name="sKey">
+          <activiti:string><![CDATA[_doc_template_covkmudep_dismissal]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sPattern">
+          <activiti:string><![CDATA[[sID_Custom_GovPublic]]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="nDigits">
+          <activiti:string><![CDATA[5]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow15" sourceRef="servicetask1" targetRef="usertask1"></sequenceFlow>
+    <userTask id="usertask5" name="обходной лист + подтверждение что подана декларация">
+      <extensionElements>
+        <activiti:formProperty id="sRi" name="dd" type="string"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <serviceTask id="servicetask3" name="уведомление о подача декларации" activiti:delegateExpression="#{MailTaskWithoutAttachment}">
+      <extensionElements>
+        <activiti:field name="to">
+          <activiti:expression><![CDATA[${sMail}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="from">
+          <activiti:string><![CDATA[noreply@igov.org.ua]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <userTask id="usertask6" name="бухгалтерия">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Заголовок документа" type="string" default="Заява на звільнення" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Author" name="Полное ФИО; ;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_Author" name="Посада заявника; ;writable=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor2" name="Логин автора; ;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sID_Custom_GovPublic" name="Номер заяви" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="asZvilnennia" name="Прошу звільнити мене із займаної посади" type="enum" writable="false">
+          <activiti:value id="sPos1" name="за власним бажанням (ст. 38 КЗпП України)"></activiti:value>
+          <activiti:value id="sPos2" name="за угодою сторін (п. 1 ст. 36 КЗпП України)"></activiti:value>
+          <activiti:value id="sPos3" name="перехід в інший державний  орган"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="За власним бажанням;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'104lzsbyo9W9jJRdtWHlpfYvw7WZvimbAbv6j417urck', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="За згодою сторін;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1BTx9LGFb8b7UoMgMi5ySqzgFVv3Pd0PfbSZoVyHj5T0', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_3" name="Переведення;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1-QBpz_bljDs2RbbheB0mD7ypI685rT6sLaKB0HWcB4w', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="Marker1" name="ПФ1" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sBody_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asZvilnennia&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sPos1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="Marker2" name="ПФ2" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sBody_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asZvilnennia&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sPos2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="Marker3" name="ПФ3" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_3&quot;:{&quot;aField_ID&quot;:[&quot;sBody_3&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asZvilnennia&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sPos3'&quot;}}}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow18" sourceRef="usertask6" targetRef="servicetask4"></sequenceFlow>
+    <serviceTask id="servicetask4" name="старт приказа"></serviceTask>
+    <sequenceFlow id="flow19" sourceRef="servicetask4" targetRef="endevent1"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram__doc_template_covkmudep_dismissal">
+    <bpmndi:BPMNPlane bpmnElement="_doc_template_covkmudep_dismissal" id="BPMNPlane__doc_template_covkmudep_dismissal">
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="61.0" width="105.0" x="231.0" y="10.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="36.0" y="23.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask2" id="BPMNShape_usertask2">
+        <omgdc:Bounds height="95.0" width="127.0" x="220.0" y="180.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask3" id="BPMNShape_usertask3">
+        <omgdc:Bounds height="73.0" width="105.0" x="114.0" y="400.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="493.0" y="520.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway1" id="BPMNShape_exclusivegateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="263.0" y="317.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway2" id="BPMNShape_exclusivegateway2">
+        <omgdc:Bounds height="40.0" width="40.0" x="146.0" y="317.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask4" id="BPMNShape_usertask4">
+        <omgdc:Bounds height="61.0" width="105.0" x="576.0" y="197.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway3" id="BPMNShape_exclusivegateway3">
+        <omgdc:Bounds height="40.0" width="40.0" x="608.0" y="104.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway4" id="BPMNShape_exclusivegateway4">
+        <omgdc:Bounds height="40.0" width="40.0" x="263.0" y="104.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask1" id="BPMNShape_scripttask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="406.0" y="13.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask1" id="BPMNShape_servicetask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="106.0" y="13.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask5" id="BPMNShape_usertask5">
+        <omgdc:Bounds height="55.0" width="105.0" x="1.0" y="308.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask3" id="BPMNShape_servicetask3">
+        <omgdc:Bounds height="75.0" width="105.0" x="106.0" y="87.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask6" id="BPMNShape_usertask6">
+        <omgdc:Bounds height="55.0" width="105.0" x="114.0" y="510.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask4" id="BPMNShape_servicetask4">
+        <omgdc:Bounds height="55.0" width="105.0" x="303.0" y="510.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="71.0" y="40.0"></omgdi:waypoint>
+        <omgdi:waypoint x="106.0" y="40.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="283.0" y="71.0"></omgdi:waypoint>
+        <omgdi:waypoint x="283.0" y="104.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="166.0" y="357.0"></omgdi:waypoint>
+        <omgdi:waypoint x="166.0" y="400.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="166.0" y="473.0"></omgdi:waypoint>
+        <omgdi:waypoint x="166.0" y="510.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="347.0" y="227.0"></omgdi:waypoint>
+        <omgdi:waypoint x="400.0" y="229.0"></omgdi:waypoint>
+        <omgdi:waypoint x="400.0" y="336.0"></omgdi:waypoint>
+        <omgdi:waypoint x="303.0" y="337.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="283.0" y="317.0"></omgdi:waypoint>
+        <omgdi:waypoint x="283.0" y="275.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
+        <omgdi:waypoint x="263.0" y="337.0"></omgdi:waypoint>
+        <omgdi:waypoint x="186.0" y="337.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow8" id="BPMNEdge_flow8">
+        <omgdi:waypoint x="166.0" y="317.0"></omgdi:waypoint>
+        <omgdi:waypoint x="167.0" y="227.0"></omgdi:waypoint>
+        <omgdi:waypoint x="220.0" y="227.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_VzyatNaRedaktirovanie" id="BPMNEdge_FlowButton_VzyatNaRedaktirovanie">
+        <omgdi:waypoint x="347.0" y="227.0"></omgdi:waypoint>
+        <omgdi:waypoint x="576.0" y="227.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="64.0" width="100.0" x="427.0" y="231.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_VernutNaVizirovanie" id="BPMNEdge_FlowButton_VernutNaVizirovanie">
+        <omgdi:waypoint x="628.0" y="197.0"></omgdi:waypoint>
+        <omgdi:waypoint x="628.0" y="144.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="80.0" width="100.0" x="526.0" y="128.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow11" id="BPMNEdge_flow11">
+        <omgdi:waypoint x="608.0" y="124.0"></omgdi:waypoint>
+        <omgdi:waypoint x="303.0" y="124.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_SnosIVernutNaVizirovanie" id="BPMNEdge_FlowButton_SnosIVernutNaVizirovanie">
+        <omgdi:waypoint x="681.0" y="227.0"></omgdi:waypoint>
+        <omgdi:waypoint x="808.0" y="227.0"></omgdi:waypoint>
+        <omgdi:waypoint x="808.0" y="123.0"></omgdi:waypoint>
+        <omgdi:waypoint x="648.0" y="124.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="96.0" width="100.0" x="706.0" y="127.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow13" id="BPMNEdge_flow13">
+        <omgdi:waypoint x="283.0" y="144.0"></omgdi:waypoint>
+        <omgdi:waypoint x="283.0" y="180.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow15" id="BPMNEdge_flow15">
+        <omgdi:waypoint x="211.0" y="40.0"></omgdi:waypoint>
+        <omgdi:waypoint x="231.0" y="40.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow18" id="BPMNEdge_flow18">
+        <omgdi:waypoint x="219.0" y="537.0"></omgdi:waypoint>
+        <omgdi:waypoint x="303.0" y="537.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow19" id="BPMNEdge_flow19">
+        <omgdi:waypoint x="408.0" y="537.0"></omgdi:waypoint>
+        <omgdi:waypoint x="493.0" y="537.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

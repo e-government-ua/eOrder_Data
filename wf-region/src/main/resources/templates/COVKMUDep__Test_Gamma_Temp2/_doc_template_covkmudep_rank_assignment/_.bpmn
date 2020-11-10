@@ -1,0 +1,812 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="_doc_template_covkmudep_rank_assignment" name="Наказ про присвоєння рангу держслужбовця" isExecutable="true">
+    <documentation>;bTemplated=true</documentation>
+    <startEvent id="startevent1" name="Start">
+      <extensionElements>
+        <activiti:formProperty id="sTableFile" name="Присвоїти ранг; ;bNew=true" type="table"></activiti:formProperty>
+      </extensionElements>
+    </startEvent>
+    <scriptTask id="scripttask1" name="Дата створення" scriptFormat="groovy" activiti:autoStoreVariables="false">
+      <script>execution.setVariable('sTDate', new Date().format("dd.MM.yyyy").toString())</script>
+    </scriptTask>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="scripttask1"></sequenceFlow>
+    <userTask id="usertask1" name="Створення">
+      <extensionElements>
+        <activiti:formProperty id="sLoginAuthor" name="Логін Автора; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTDate" name="Дата присвоєння рангу; ;writable=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="asAssignRanks" name="Присвоїти наступні ранги " type="enum" required="true">
+          <activiti:value id="regular" name="Чергові"></activiti:value>
+          <activiti:value id="trialPeriod" name="Після проходження випробування"></activiti:value>
+          <activiti:value id="early" name="Дострокові"></activiti:value>
+          <activiti:value id="retirement" name="У зв’язку з виходом на пенсію"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Перелік держслужбовців на підвищення рангу;;bNew=true" type="table" required="true"></activiti:formProperty>
+        <activiti:formProperty id="oTable_Doc_Parent" name="Таблиця пов'язаних документів; ;bNew=true,bImportFieldSkip=true" type="table" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sBody_11" name="Наказ про присвоєння чергового рангу;;bPrintform=true,bVisible=false" type="string" default="{'sPathFile':'1Z_ZYm-UqLRNXeopCwO3sN0nuqBg0rCw88CGUpGVPI4A', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_12" name="Наказ про присвоєння рангу після проходження випробування;;bPrintform=true,bVisible=false" type="string" default="{'sPathFile':'1MerCSZeJB8KjLd68geEHehWGfwQ0D0VKhYtk3NW4Dk0', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_13" name="Наказ про присвоєння дострокового рангу;;bPrintform=true,bVisible=false" type="string" default="{'sPathFile':'1F4kBQFD2XFzsgYZE6DyPoUVOASVEe6VI8Or2E8POYjU', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_14" name="Наказ про присвоєння рангу у зв’язку з виходом на пенсію;;bPrintform=true,bVisible=false" type="string" default="{'sPathFile':'1hLwS7Sru_XDSEllOUJlfmvS1TVUjGISEnbRyfCG49kE', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print11" name="marker_print11" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print11&quot;:{&quot;aField_ID&quot;:[&quot;sBody_11&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asAssignRanks&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'regular'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print12" name="marker_print12" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print12&quot;:{&quot;aField_ID&quot;:[&quot;sBody_12&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asAssignRanks&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'trialPeriod'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print13" name="marker_print13" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print13&quot;:{&quot;aField_ID&quot;:[&quot;sBody_13&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asAssignRanks&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'early'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print14" name="marker_print14" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print14&quot;:{&quot;aField_ID&quot;:[&quot;sBody_14&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asAssignRanks&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'retirement'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Почта; ;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC [sID_Order_URL] "></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow2" sourceRef="scripttask1" targetRef="usertask1"></sequenceFlow>
+    <userTask id="usertask2" name="Погодження наказу на присвоєння рангу держслужбовців" default="flow23">
+      <extensionElements>
+        <activiti:formProperty id="sTDate" name="Дата присвоєння рангу; ;writable=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="asAssignRanks" name="Присвоїти ранги" type="enum" writable="false" required="true">
+          <activiti:value id="regular" name="Чергові"></activiti:value>
+          <activiti:value id="trialPeriod" name="Після випробувального терміну"></activiti:value>
+          <activiti:value id="early" name="Дострокові"></activiti:value>
+          <activiti:value id="retirement" name="У зв’язку з виходом на пенсію"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Перелік держслужбовців на підвищення рангу;;bNew=true, writable=false" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="oTable_Doc_Parent" name="Таблиця пов'язаних документів; ;bNew=true,bImportFieldSkip=true, bVisible=false" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sBody_11" name="Наказ про присвоєння чергового рангу;;bPrintform=true,bVisible=false" type="string" default="{'sPathFile':'1Z_ZYm-UqLRNXeopCwO3sN0nuqBg0rCw88CGUpGVPI4A', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_12" name="Наказ про присвоєння рангу після проходження випробування;;bPrintform=true,bVisible=false" type="string" default="{'sPathFile':'1MerCSZeJB8KjLd68geEHehWGfwQ0D0VKhYtk3NW4Dk0', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_13" name="Наказ про присвоєння дострокового рангу;;bPrintform=true,bVisible=false" type="string" default="{'sPathFile':'1F4kBQFD2XFzsgYZE6DyPoUVOASVEe6VI8Or2E8POYjU', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_14" name="Наказ про присвоєння рангу у зв’язку з виходом на пенсію;;bPrintform=true,bVisible=false" type="string" default="{'sPathFile':'1hLwS7Sru_XDSEllOUJlfmvS1TVUjGISEnbRyfCG49kE', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print11" name="marker_print11" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print11&quot;:{&quot;aField_ID&quot;:[&quot;sBody_11&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asAssignRanks&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'regular'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print12" name="marker_print12" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print12&quot;:{&quot;aField_ID&quot;:[&quot;sBody_12&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asAssignRanks&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'trialPeriod'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print13" name="marker_print13" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print13&quot;:{&quot;aField_ID&quot;:[&quot;sBody_13&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asAssignRanks&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'early'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print14" name="marker_print14" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print14&quot;:{&quot;aField_ID&quot;:[&quot;sBody_14&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asAssignRanks&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'retirement'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Почта; ;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC [sID_Order_URL] "></activiti:formProperty>
+        <activiti:formProperty id="sReportnoteAuthorPosition" name="Посада автора доповідної; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="nRowCount" name="nRowCount; ;bVisible=false" type="long"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask3" name="Реєстрація наказу про присвоєння рангу держслужбовців">
+      <extensionElements>
+        <activiti:formProperty id="sTDate" name="Дата присвоєння рангу; ;writable=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="asAssignRanks" name="Присвоїти ранги" type="enum" writable="false" required="true">
+          <activiti:value id="regular" name="Чергові"></activiti:value>
+          <activiti:value id="trialPeriod" name="Після випробувального терміну"></activiti:value>
+          <activiti:value id="early" name="Дострокові"></activiti:value>
+          <activiti:value id="retirement" name="У зв’язку з виходом на пенсію"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Перелік держслужбовців на підвищення рангу;;bNew=true, writable=false" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBody_11" name="Наказ про присвоєння чергового рангу;;bPrintform=true,bVisible=false" type="string" default="{'sPathFile':'1Z_ZYm-UqLRNXeopCwO3sN0nuqBg0rCw88CGUpGVPI4A', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_12" name="Наказ про присвоєння рангу після проходження випробування;;bPrintform=true,bVisible=false" type="string" default="{'sPathFile':'1MerCSZeJB8KjLd68geEHehWGfwQ0D0VKhYtk3NW4Dk0', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_13" name="Наказ про присвоєння дострокового рангу;;bPrintform=true,bVisible=false" type="string" default="{'sPathFile':'1F4kBQFD2XFzsgYZE6DyPoUVOASVEe6VI8Or2E8POYjU', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_14" name="Наказ про присвоєння рангу у зв’язку з виходом на пенсію;;bPrintform=true,bVisible=false" type="string" default="{'sPathFile':'1hLwS7Sru_XDSEllOUJlfmvS1TVUjGISEnbRyfCG49kE', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print11" name="marker_print11" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print11&quot;:{&quot;aField_ID&quot;:[&quot;sBody_11&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asAssignRanks&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'regular'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print12" name="marker_print12" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print12&quot;:{&quot;aField_ID&quot;:[&quot;sBody_12&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asAssignRanks&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'trialPeriod'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print13" name="marker_print13" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print13&quot;:{&quot;aField_ID&quot;:[&quot;sBody_13&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asAssignRanks&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'early'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print14" name="marker_print14" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print14&quot;:{&quot;aField_ID&quot;:[&quot;sBody_14&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asAssignRanks&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'retirement'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sRegNum" name="Номер реєстрації наказу" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sRegDate" name="Дата реєстрації наказу" type="date" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Почта; ;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC [sID_Order_URL] "></activiti:formProperty>
+        <activiti:formProperty id="sReportnoteAuthorPosition" name="Посада автора доповідної; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="nRowCount" name="nRowCount; ;bVisible=false" type="long"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask4" name="Редагування">
+      <extensionElements>
+        <activiti:formProperty id="sTDate" name="Дата присвоєння рангу; ;writable=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="asAssignRanks" name="Присвоїти ранги" type="enum" required="true">
+          <activiti:value id="regular" name="Чергові"></activiti:value>
+          <activiti:value id="trialPeriod" name="Після випробувального терміну"></activiti:value>
+          <activiti:value id="early" name="Дострокові"></activiti:value>
+          <activiti:value id="retirement" name="У зв’язку з виходом на пенсію"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Перелік держслужбовців на підвищення рангу;;bNew=true" type="table" required="true"></activiti:formProperty>
+        <activiti:formProperty id="oTable_Doc_Parent" name="Таблиця пов'язаних документів; ;bNew=true,bImportFieldSkip=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sBody_11" name="Наказ про присвоєння чергового рангу;;bPrintform=true,bVisible=false" type="string" default="{'sPathFile':'1Z_ZYm-UqLRNXeopCwO3sN0nuqBg0rCw88CGUpGVPI4A', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_12" name="Наказ про присвоєння рангу після проходження випробування;;bPrintform=true,bVisible=false" type="string" default="{'sPathFile':'1MerCSZeJB8KjLd68geEHehWGfwQ0D0VKhYtk3NW4Dk0', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_13" name="Наказ про присвоєння дострокового рангу;;bPrintform=true,bVisible=false" type="string" default="{'sPathFile':'1F4kBQFD2XFzsgYZE6DyPoUVOASVEe6VI8Or2E8POYjU', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_14" name="Наказ про присвоєння рангу у зв’язку з виходом на пенсію;;bPrintform=true,bVisible=false" type="string" default="{'sPathFile':'1hLwS7Sru_XDSEllOUJlfmvS1TVUjGISEnbRyfCG49kE', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print11" name="marker_print11" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print11&quot;:{&quot;aField_ID&quot;:[&quot;sBody_11&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asAssignRanks&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'regular'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print12" name="marker_print12" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print12&quot;:{&quot;aField_ID&quot;:[&quot;sBody_12&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asAssignRanks&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'trialPeriod'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print13" name="marker_print13" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print13&quot;:{&quot;aField_ID&quot;:[&quot;sBody_13&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asAssignRanks&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'early'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print14" name="marker_print14" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print14&quot;:{&quot;aField_ID&quot;:[&quot;sBody_14&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asAssignRanks&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'retirement'&quot;}}}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="flow7" sourceRef="usertask1" targetRef="scripttask3"></sequenceFlow>
+    <userTask id="usertask5" name="Затвердження наказу про присвоєння рангу держслужбовців">
+      <extensionElements>
+        <activiti:formProperty id="sTDate" name="Дата присвоєння рангу; ;writable=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="asAssignRanks" name="Присвоїти ранги" type="enum" writable="false" required="true">
+          <activiti:value id="regular" name="Чергові"></activiti:value>
+          <activiti:value id="trialPeriod" name="Після випробувального терміну"></activiti:value>
+          <activiti:value id="early" name="Дострокові"></activiti:value>
+          <activiti:value id="retirement" name="У зв’язку з виходом на пенсію"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Перелік держслужбовців на підвищення рангу;;bNew=true, writable=false" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBody_11" name="Наказ про присвоєння чергового рангу;;bPrintform=true,bVisible=false" type="string" default="{'sPathFile':'1Z_ZYm-UqLRNXeopCwO3sN0nuqBg0rCw88CGUpGVPI4A', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_12" name="Наказ про присвоєння рангу після проходження випробування;;bPrintform=true,bVisible=false" type="string" default="{'sPathFile':'1MerCSZeJB8KjLd68geEHehWGfwQ0D0VKhYtk3NW4Dk0', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_13" name="Наказ про присвоєння дострокового рангу;;bPrintform=true,bVisible=false" type="string" default="{'sPathFile':'1F4kBQFD2XFzsgYZE6DyPoUVOASVEe6VI8Or2E8POYjU', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_14" name="Наказ про присвоєння рангу у зв’язку з виходом на пенсію;;bPrintform=true,bVisible=false" type="string" default="{'sPathFile':'1hLwS7Sru_XDSEllOUJlfmvS1TVUjGISEnbRyfCG49kE', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print11" name="marker_print11" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print11&quot;:{&quot;aField_ID&quot;:[&quot;sBody_11&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asAssignRanks&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'regular'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print12" name="marker_print12" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print12&quot;:{&quot;aField_ID&quot;:[&quot;sBody_12&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asAssignRanks&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'trialPeriod'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print13" name="marker_print13" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print13&quot;:{&quot;aField_ID&quot;:[&quot;sBody_13&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asAssignRanks&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'early'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print14" name="marker_print14" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print14&quot;:{&quot;aField_ID&quot;:[&quot;sBody_14&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asAssignRanks&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'retirement'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Почта; ;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC [sID_Order_URL] "></activiti:formProperty>
+        <activiti:formProperty id="sReportnoteAuthorPosition" name="Посада автора доповідної; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="nRowCount" name="nRowCount; ;bVisible=false" type="long"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow9" sourceRef="usertask3" targetRef="servicetask8">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_seen]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="FlowButton_PovernutyRoz" name="Редагувати;sIF=hasAny-States(Authorship)" sourceRef="usertask2" targetRef="usertask4">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Edit]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_PovernutyRoz')}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="FlowButton_Vernut" name="Повернути;sIF=hasAny-States(Authorship)" sourceRef="usertask4" targetRef="scripttask3">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_Vernut')}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow10" sourceRef="exclusivegateway1" targetRef="servicetask2">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow11" sourceRef="exclusivegateway2" targetRef="servicetask5">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_agree]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow12" sourceRef="usertask6" targetRef="servicetask1">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_consideration]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <serviceTask id="servicetask1" name="Service Task" activiti:delegateExpression="${setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_Consideration]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('hr_department', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_consideration]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[asAssignRanks]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow13" sourceRef="servicetask1" targetRef="servicetask4"></sequenceFlow>
+    <serviceTask id="servicetask2" name="Service Task" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[IDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow14" sourceRef="servicetask2" targetRef="scripttask2"></sequenceFlow>
+    <serviceTask id="servicetask3" name="Service Task" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[IDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow15" sourceRef="servicetask3" targetRef="usertask5"></sequenceFlow>
+    <serviceTask id="servicetask4" name="Service Task" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_consideration]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[IDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow16" sourceRef="servicetask4" targetRef="usertask3"></sequenceFlow>
+    <serviceTask id="servicetask5" name="Service Task" activiti:delegateExpression="${setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('Derzh.sekretar', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow17" sourceRef="servicetask5" targetRef="servicetask3"></sequenceFlow>
+    <scriptTask id="scripttask2" name="Script Task" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>var sLoginAuthor = execution.getVariable('sLoginAuthor');
+var oEmployee = subjectService.getEmployee(sLoginAuthor, false);
+var oPosition = oEmployee.aSubjectGroupPositionCustom.iterator().next().oSubjectHumanPositionCustom;
+
+execution.setVariable('sReportnoteAuthorPosition', oPosition.sNote);
+</script>
+    </scriptTask>
+    <sequenceFlow id="flow18" sourceRef="scripttask2" targetRef="scripttask4"></sequenceFlow>
+    <scriptTask id="scripttask3" name="Script Task" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>//sID_Order_Document
+var sID_Order = execution.getVariable('sID_Order_Document');
+if(sID_Order){
+	var sNum = sID_Order.split('-')[1];
+	var processInstanceId_parent = sNum.substring(0, sNum.length - 1);
+	var processInstanceId_child = execution.getProcessInstanceId();
+	var nID_Process_Child = processDocumentService.getProcessDocument(processInstanceId_child).id;
+	var nID_Process_Parent = processDocumentService.getProcessDocument(processInstanceId_parent).id;
+	processDocumentTreeService.setProcessDocumentTree(+nID_Process_Parent, +nID_Process_Child);
+}
+
+//Связка нескольких документов, с таблицы
+var sName_Table = 'oTable_Doc_Parent';
+var sName_Table_Field = 'sNum_Doc';
+var snID_Process_Activiti = execution.getProcessInstanceId(); 
+var nID_Process_Child_t = processDocumentService.getProcessDocument(snID_Process_Activiti).id;
+var asTableField = taskForm.getValuesFromTableField(snID_Process_Activiti, sName_Table, sName_Table_Field);
+
+for(i=0; i &lt; asTableField.length; i++) {
+	snID_OrderDocument = asTableField[i];
+	snNum = snID_OrderDocument.split('-')[1];
+	processInstanceId_parent_t = snNum.substring(0, snNum.length - 1);	
+	nID_Process_Parent_t = processDocumentService.getProcessDocument(processInstanceId_parent_t).id;	
+	processDocumentTreeService.setProcessDocumentTree(+nID_Process_Parent_t, +nID_Process_Child_t);
+}</script>
+    </scriptTask>
+    <sequenceFlow id="flow19" sourceRef="scripttask3" targetRef="exclusivegateway1"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway2" name="Exclusive Gateway" default="flow20"></exclusiveGateway>
+    <exclusiveGateway id="exclusivegateway3" name="Exclusive Gateway" default="flow22"></exclusiveGateway>
+    <sequenceFlow id="flow20" sourceRef="exclusivegateway2" targetRef="usertask2">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:expression><![CDATA[+1]]></activiti:expression>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow21" sourceRef="exclusivegateway3" targetRef="exclusivegateway2">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow22" sourceRef="exclusivegateway3" targetRef="usertask2"></sequenceFlow>
+    <sequenceFlow id="flow23" sourceRef="usertask2" targetRef="exclusivegateway3"></sequenceFlow>
+    <userTask id="usertask6" name="Ознайомлення директор департамену кадрового забезпечення з наказом про присвоєння рангу держслужбовців">
+      <extensionElements>
+        <activiti:formProperty id="sTDate" name="Дата присвоєння рангу; ;writable=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="asAssignRanks" name="Присвоїти ранги" type="enum" writable="false" required="true">
+          <activiti:value id="regular" name="Чергові"></activiti:value>
+          <activiti:value id="trialPeriod" name="Після випробувального терміну"></activiti:value>
+          <activiti:value id="early" name="Дострокові"></activiti:value>
+          <activiti:value id="retirement" name="У зв’язку з виходом на пенсію"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Перелік держслужбовців на підвищення рангу;;bNew=true, writable=false" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBody_11" name="Наказ про присвоєння чергового рангу;;bPrintform=true,bVisible=false" type="string" default="{'sPathFile':'1Z_ZYm-UqLRNXeopCwO3sN0nuqBg0rCw88CGUpGVPI4A', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_12" name="Наказ про присвоєння рангу після проходження випробування;;bPrintform=true,bVisible=false" type="string" default="{'sPathFile':'1MerCSZeJB8KjLd68geEHehWGfwQ0D0VKhYtk3NW4Dk0', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_13" name="Наказ про присвоєння дострокового рангу;;bPrintform=true,bVisible=false" type="string" default="{'sPathFile':'1F4kBQFD2XFzsgYZE6DyPoUVOASVEe6VI8Or2E8POYjU', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_14" name="Наказ про присвоєння рангу у зв’язку з виходом на пенсію;;bPrintform=true,bVisible=false" type="string" default="{'sPathFile':'1hLwS7Sru_XDSEllOUJlfmvS1TVUjGISEnbRyfCG49kE', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print11" name="marker_print11" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print11&quot;:{&quot;aField_ID&quot;:[&quot;sBody_11&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asAssignRanks&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'regular'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print12" name="marker_print12" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print12&quot;:{&quot;aField_ID&quot;:[&quot;sBody_12&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asAssignRanks&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'trialPeriod'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print13" name="marker_print13" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print13&quot;:{&quot;aField_ID&quot;:[&quot;sBody_13&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asAssignRanks&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'early'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print14" name="marker_print14" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print14&quot;:{&quot;aField_ID&quot;:[&quot;sBody_14&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asAssignRanks&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'retirement'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Почта; ;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC [sID_Order_URL] "></activiti:formProperty>
+        <activiti:formProperty id="nRowCount" name="nRowCount; ;bVisible=false" type="long"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <serviceTask id="servicetask6" name="Service Task" activiti:delegateExpression="${setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_visa]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('hr_department', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_visa]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[asAssignRanks]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow24" sourceRef="usertask5" targetRef="servicetask6">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_visa]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <serviceTask id="servicetask7" name="Service Task" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_visa]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[IDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow25" sourceRef="servicetask6" targetRef="servicetask7"></sequenceFlow>
+    <sequenceFlow id="flow26" sourceRef="servicetask7" targetRef="usertask6"></sequenceFlow>
+    <userTask id="usertask7" name="Ознайомлення бухгалтерія з наказом  :: №${sRegNum} від ${sRegDate}">
+      <extensionElements>
+        <activiti:formProperty id="sTDate" name="Дата присвоєння рангу; ;writable=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="asAssignRanks" name="Присвоїти ранги" type="enum" writable="false" required="true">
+          <activiti:value id="regular" name="Чергові"></activiti:value>
+          <activiti:value id="trialPeriod" name="Після випробувального терміну"></activiti:value>
+          <activiti:value id="early" name="Дострокові"></activiti:value>
+          <activiti:value id="retirement" name="У зв’язку з виходом на пенсію"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Перелік держслужбовців на підвищення рангу;;bNew=true, writable=false" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBody_11" name="Наказ про присвоєння чергового рангу;;bPrintform=true,bVisible=false" type="string" default="{'sPathFile':'1Z_ZYm-UqLRNXeopCwO3sN0nuqBg0rCw88CGUpGVPI4A', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_12" name="Наказ про присвоєння рангу після проходження випробування;;bPrintform=true,bVisible=false" type="string" default="{'sPathFile':'1MerCSZeJB8KjLd68geEHehWGfwQ0D0VKhYtk3NW4Dk0', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_13" name="Наказ про присвоєння дострокового рангу;;bPrintform=true,bVisible=false" type="string" default="{'sPathFile':'1F4kBQFD2XFzsgYZE6DyPoUVOASVEe6VI8Or2E8POYjU', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_14" name="Наказ про присвоєння рангу у зв’язку з виходом на пенсію;;bPrintform=true,bVisible=false" type="string" default="{'sPathFile':'1hLwS7Sru_XDSEllOUJlfmvS1TVUjGISEnbRyfCG49kE', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print11" name="marker_print11" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print11&quot;:{&quot;aField_ID&quot;:[&quot;sBody_11&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asAssignRanks&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'regular'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print12" name="marker_print12" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print12&quot;:{&quot;aField_ID&quot;:[&quot;sBody_12&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asAssignRanks&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'trialPeriod'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print13" name="marker_print13" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print13&quot;:{&quot;aField_ID&quot;:[&quot;sBody_13&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asAssignRanks&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'early'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print14" name="marker_print14" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print14&quot;:{&quot;aField_ID&quot;:[&quot;sBody_14&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asAssignRanks&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'retirement'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sRegNum" name="Номер реєстрації наказу" type="string" writable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sRegDate" name="Дата реєстрації наказу" type="date" writable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Почта; ;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC [sID_Order_URL] "></activiti:formProperty>
+        <activiti:formProperty id="nRowCount" name="nRowCount; ;bVisible=false" type="long"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <serviceTask id="servicetask8" name="Service Task" activiti:delegateExpression="${setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_seen]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('buhgalter', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_seen]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[asAssignRanks]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="servicetask9" name="Service Task" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_seen]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[IDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow27" sourceRef="servicetask8" targetRef="servicetask9"></sequenceFlow>
+    <sequenceFlow id="flow28" sourceRef="servicetask9" targetRef="usertask7"></sequenceFlow>
+    <sequenceFlow id="flow29" sourceRef="usertask8" targetRef="exclusivegateway5"></sequenceFlow>
+    <userTask id="usertask8" name="Ознайомлення з наказом  :: №${sRegNum} від ${sRegDate}">
+      <extensionElements>
+        <activiti:formProperty id="sTDate" name="Дата присвоєння рангу; ;writable=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="asAssignRanks" name="Присвоїти ранги" type="enum" writable="false" required="true">
+          <activiti:value id="regular" name="Чергові"></activiti:value>
+          <activiti:value id="trialPeriod" name="Після випробувального терміну"></activiti:value>
+          <activiti:value id="early" name="Дострокові"></activiti:value>
+          <activiti:value id="retirement" name="У зв’язку з виходом на пенсію"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Перелік держслужбовців на підвищення рангу;;bNew=true, writable=false" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBody_11" name="Наказ про присвоєння чергового рангу;;bPrintform=true,bVisible=false" type="string" default="{'sPathFile':'1Z_ZYm-UqLRNXeopCwO3sN0nuqBg0rCw88CGUpGVPI4A', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_12" name="Наказ про присвоєння рангу після проходження випробування;;bPrintform=true,bVisible=false" type="string" default="{'sPathFile':'1MerCSZeJB8KjLd68geEHehWGfwQ0D0VKhYtk3NW4Dk0', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_13" name="Наказ про присвоєння дострокового рангу;;bPrintform=true,bVisible=false" type="string" default="{'sPathFile':'1F4kBQFD2XFzsgYZE6DyPoUVOASVEe6VI8Or2E8POYjU', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_14" name="Наказ про присвоєння рангу у зв’язку з виходом на пенсію;;bPrintform=true,bVisible=false" type="string" default="{'sPathFile':'1hLwS7Sru_XDSEllOUJlfmvS1TVUjGISEnbRyfCG49kE', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print11" name="marker_print11" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print11&quot;:{&quot;aField_ID&quot;:[&quot;sBody_11&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asAssignRanks&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'regular'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print12" name="marker_print12" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print12&quot;:{&quot;aField_ID&quot;:[&quot;sBody_12&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asAssignRanks&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'trialPeriod'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print13" name="marker_print13" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print13&quot;:{&quot;aField_ID&quot;:[&quot;sBody_13&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asAssignRanks&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'early'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print14" name="marker_print14" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print14&quot;:{&quot;aField_ID&quot;:[&quot;sBody_14&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asAssignRanks&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'retirement'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sRegNum" name="Номер реєстрації наказу" type="string" writable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sRegDate" name="Дата реєстрації наказу" type="date" writable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Почта; ;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC [sID_Order_URL] "></activiti:formProperty>
+        <activiti:formProperty id="nRowCount" name="nRowCount; ;bVisible=false" type="long"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <serviceTask id="servicetask10" name="Service Task" activiti:delegateExpression="${syncDocumentSignersByTableListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateRight">
+          <activiti:string><![CDATA[_default_direct]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_StepType_Target">
+          <activiti:string><![CDATA[Direct]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sID_Field_Table">
+          <activiti:string><![CDATA[sTableFile]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sID_Field_WithLogin">
+          <activiti:string><![CDATA[sLogin_Subject]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow30" sourceRef="exclusivegateway7" targetRef="servicetask10">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_direct]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <serviceTask id="servicetask11" name="Service Task" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_direct]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[IDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow31" sourceRef="servicetask10" targetRef="servicetask11"></sequenceFlow>
+    <sequenceFlow id="flow32" sourceRef="servicetask11" targetRef="usertask8"></sequenceFlow>
+    <scriptTask id="scripttask4" name="Script Task" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>var sName_Table = 'sTableFile';
+var sLogin_Execute = 'sName_Subject'; 
+var sID_Field = 'nRowCount'; 
+
+var snID_Process_Activiti = execution.getProcessInstanceId();
+
+var aFieldValue = taskForm.getValuesFromTableField(snID_Process_Activiti, sName_Table, sLogin_Execute);
+
+var nParticipantsCount = aFieldValue.length;
+
+execution.setVariable(sID_Field, nParticipantsCount);</script>
+    </scriptTask>
+    <sequenceFlow id="flow33" sourceRef="scripttask4" targetRef="usertask2"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway5" name="Exclusive Gateway" default="flow37"></exclusiveGateway>
+    <sequenceFlow id="flow37" sourceRef="exclusivegateway5" targetRef="usertask8"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway6" name="Exclusive Gateway" default="flow40"></exclusiveGateway>
+    <sequenceFlow id="flow38" sourceRef="exclusivegateway5" targetRef="exclusivegateway6">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow39" sourceRef="exclusivegateway6" targetRef="endevent1"></sequenceFlow>
+    <sequenceFlow id="flow40" sourceRef="exclusivegateway6" targetRef="usertask8">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:expression><![CDATA[+1]]></activiti:expression>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <exclusiveGateway id="exclusivegateway7" name="Exclusive Gateway" default="flow43"></exclusiveGateway>
+    <exclusiveGateway id="exclusivegateway8" name="Exclusive Gateway" default="flow44"></exclusiveGateway>
+    <sequenceFlow id="flow41" sourceRef="usertask7" targetRef="exclusivegateway8"></sequenceFlow>
+    <sequenceFlow id="flow42" sourceRef="exclusivegateway8" targetRef="exclusivegateway7">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow43" sourceRef="exclusivegateway7" targetRef="usertask7">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:expression><![CDATA[+1]]></activiti:expression>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow44" sourceRef="exclusivegateway8" targetRef="usertask7"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram__doc_template_covkmudep_rank_assignment">
+    <bpmndi:BPMNPlane bpmnElement="_doc_template_covkmudep_rank_assignment" id="BPMNPlane__doc_template_covkmudep_rank_assignment">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="1.0" y="230.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask1" id="BPMNShape_scripttask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="81.0" y="220.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="65.0" width="131.0" x="226.0" y="215.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask2" id="BPMNShape_usertask2">
+        <omgdc:Bounds height="65.0" width="131.0" x="1101.0" y="215.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask3" id="BPMNShape_usertask3">
+        <omgdc:Bounds height="71.0" width="131.0" x="773.0" y="650.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask4" id="BPMNShape_usertask4">
+        <omgdc:Bounds height="55.0" width="105.0" x="1290.0" y="121.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway1" id="BPMNShape_exclusivegateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="502.0" y="227.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask5" id="BPMNShape_usertask5">
+        <omgdc:Bounds height="65.0" width="131.0" x="928.0" y="527.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="1030.0" y="1052.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask1" id="BPMNShape_servicetask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="396.0" y="658.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask2" id="BPMNShape_servicetask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="620.0" y="220.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask3" id="BPMNShape_servicetask3">
+        <omgdc:Bounds height="55.0" width="105.0" x="941.0" y="447.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask4" id="BPMNShape_servicetask4">
+        <omgdc:Bounds height="55.0" width="105.0" x="605.0" y="658.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask5" id="BPMNShape_servicetask5">
+        <omgdc:Bounds height="55.0" width="105.0" x="941.0" y="369.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask2" id="BPMNShape_scripttask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="786.0" y="220.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask3" id="BPMNShape_scripttask3">
+        <omgdc:Bounds height="55.0" width="105.0" x="383.0" y="220.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway2" id="BPMNShape_exclusivegateway2">
+        <omgdc:Bounds height="40.0" width="40.0" x="1141.0" y="376.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway3" id="BPMNShape_exclusivegateway3">
+        <omgdc:Bounds height="40.0" width="40.0" x="1141.0" y="320.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask6" id="BPMNShape_usertask6">
+        <omgdc:Bounds height="65.0" width="131.0" x="383.0" y="527.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask6" id="BPMNShape_servicetask6">
+        <omgdc:Bounds height="55.0" width="105.0" x="771.0" y="532.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask7" id="BPMNShape_servicetask7">
+        <omgdc:Bounds height="55.0" width="105.0" x="605.0" y="532.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask7" id="BPMNShape_usertask7">
+        <omgdc:Bounds height="71.0" width="131.0" x="381.0" y="792.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask8" id="BPMNShape_servicetask8">
+        <omgdc:Bounds height="55.0" width="105.0" x="786.0" y="800.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask9" id="BPMNShape_servicetask9">
+        <omgdc:Bounds height="55.0" width="105.0" x="605.0" y="800.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask8" id="BPMNShape_usertask8">
+        <omgdc:Bounds height="71.0" width="131.0" x="784.0" y="942.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask10" id="BPMNShape_servicetask10">
+        <omgdc:Bounds height="55.0" width="105.0" x="394.0" y="950.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask11" id="BPMNShape_servicetask11">
+        <omgdc:Bounds height="55.0" width="105.0" x="603.0" y="950.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask4" id="BPMNShape_scripttask4">
+        <omgdc:Bounds height="55.0" width="105.0" x="941.0" y="220.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway5" id="BPMNShape_exclusivegateway5">
+        <omgdc:Bounds height="40.0" width="40.0" x="829.0" y="1049.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway6" id="BPMNShape_exclusivegateway6">
+        <omgdc:Bounds height="40.0" width="40.0" x="970.0" y="1049.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway7" id="BPMNShape_exclusivegateway7">
+        <omgdc:Bounds height="40.0" width="40.0" x="523.0" y="890.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway8" id="BPMNShape_exclusivegateway8">
+        <omgdc:Bounds height="40.0" width="40.0" x="426.0" y="890.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="36.0" y="247.0"></omgdi:waypoint>
+        <omgdi:waypoint x="81.0" y="247.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="186.0" y="247.0"></omgdi:waypoint>
+        <omgdi:waypoint x="226.0" y="247.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
+        <omgdi:waypoint x="357.0" y="247.0"></omgdi:waypoint>
+        <omgdi:waypoint x="383.0" y="247.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow9" id="BPMNEdge_flow9">
+        <omgdi:waypoint x="838.0" y="721.0"></omgdi:waypoint>
+        <omgdi:waypoint x="838.0" y="800.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_PovernutyRoz" id="BPMNEdge_FlowButton_PovernutyRoz">
+        <omgdi:waypoint x="1232.0" y="247.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1343.0" y="247.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1342.0" y="176.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="1232.0" y="247.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_Vernut" id="BPMNEdge_FlowButton_Vernut">
+        <omgdi:waypoint x="1290.0" y="148.0"></omgdi:waypoint>
+        <omgdi:waypoint x="435.0" y="148.0"></omgdi:waypoint>
+        <omgdi:waypoint x="435.0" y="220.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="1141.0" y="91.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow10" id="BPMNEdge_flow10">
+        <omgdi:waypoint x="542.0" y="247.0"></omgdi:waypoint>
+        <omgdi:waypoint x="620.0" y="247.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow11" id="BPMNEdge_flow11">
+        <omgdi:waypoint x="1141.0" y="396.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1046.0" y="396.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow12" id="BPMNEdge_flow12">
+        <omgdi:waypoint x="448.0" y="592.0"></omgdi:waypoint>
+        <omgdi:waypoint x="448.0" y="658.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow13" id="BPMNEdge_flow13">
+        <omgdi:waypoint x="501.0" y="685.0"></omgdi:waypoint>
+        <omgdi:waypoint x="605.0" y="685.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow14" id="BPMNEdge_flow14">
+        <omgdi:waypoint x="725.0" y="247.0"></omgdi:waypoint>
+        <omgdi:waypoint x="786.0" y="247.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow15" id="BPMNEdge_flow15">
+        <omgdi:waypoint x="993.0" y="502.0"></omgdi:waypoint>
+        <omgdi:waypoint x="993.0" y="527.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow16" id="BPMNEdge_flow16">
+        <omgdi:waypoint x="710.0" y="685.0"></omgdi:waypoint>
+        <omgdi:waypoint x="773.0" y="685.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow17" id="BPMNEdge_flow17">
+        <omgdi:waypoint x="993.0" y="424.0"></omgdi:waypoint>
+        <omgdi:waypoint x="993.0" y="447.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow18" id="BPMNEdge_flow18">
+        <omgdi:waypoint x="891.0" y="247.0"></omgdi:waypoint>
+        <omgdi:waypoint x="941.0" y="247.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow19" id="BPMNEdge_flow19">
+        <omgdi:waypoint x="488.0" y="247.0"></omgdi:waypoint>
+        <omgdi:waypoint x="502.0" y="247.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow20" id="BPMNEdge_flow20">
+        <omgdi:waypoint x="1141.0" y="396.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1072.0" y="392.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1072.0" y="251.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1101.0" y="247.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow21" id="BPMNEdge_flow21">
+        <omgdi:waypoint x="1161.0" y="360.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1161.0" y="376.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow22" id="BPMNEdge_flow22">
+        <omgdi:waypoint x="1161.0" y="320.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1166.0" y="280.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow23" id="BPMNEdge_flow23">
+        <omgdi:waypoint x="1232.0" y="247.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1337.0" y="271.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1337.0" y="340.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1181.0" y="340.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow24" id="BPMNEdge_flow24">
+        <omgdi:waypoint x="928.0" y="559.0"></omgdi:waypoint>
+        <omgdi:waypoint x="876.0" y="559.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow25" id="BPMNEdge_flow25">
+        <omgdi:waypoint x="771.0" y="559.0"></omgdi:waypoint>
+        <omgdi:waypoint x="710.0" y="559.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow26" id="BPMNEdge_flow26">
+        <omgdi:waypoint x="605.0" y="559.0"></omgdi:waypoint>
+        <omgdi:waypoint x="514.0" y="559.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow27" id="BPMNEdge_flow27">
+        <omgdi:waypoint x="786.0" y="827.0"></omgdi:waypoint>
+        <omgdi:waypoint x="710.0" y="827.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow28" id="BPMNEdge_flow28">
+        <omgdi:waypoint x="605.0" y="827.0"></omgdi:waypoint>
+        <omgdi:waypoint x="512.0" y="827.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow29" id="BPMNEdge_flow29">
+        <omgdi:waypoint x="784.0" y="977.0"></omgdi:waypoint>
+        <omgdi:waypoint x="758.0" y="986.0"></omgdi:waypoint>
+        <omgdi:waypoint x="758.0" y="1070.0"></omgdi:waypoint>
+        <omgdi:waypoint x="829.0" y="1069.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow30" id="BPMNEdge_flow30">
+        <omgdi:waypoint x="543.0" y="930.0"></omgdi:waypoint>
+        <omgdi:waypoint x="542.0" y="969.0"></omgdi:waypoint>
+        <omgdi:waypoint x="499.0" y="977.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow31" id="BPMNEdge_flow31">
+        <omgdi:waypoint x="499.0" y="977.0"></omgdi:waypoint>
+        <omgdi:waypoint x="603.0" y="977.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow32" id="BPMNEdge_flow32">
+        <omgdi:waypoint x="708.0" y="977.0"></omgdi:waypoint>
+        <omgdi:waypoint x="784.0" y="977.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow33" id="BPMNEdge_flow33">
+        <omgdi:waypoint x="1046.0" y="247.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1101.0" y="247.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow37" id="BPMNEdge_flow37">
+        <omgdi:waypoint x="849.0" y="1049.0"></omgdi:waypoint>
+        <omgdi:waypoint x="849.0" y="1013.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow38" id="BPMNEdge_flow38">
+        <omgdi:waypoint x="869.0" y="1069.0"></omgdi:waypoint>
+        <omgdi:waypoint x="970.0" y="1069.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow39" id="BPMNEdge_flow39">
+        <omgdi:waypoint x="1010.0" y="1069.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1030.0" y="1069.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow40" id="BPMNEdge_flow40">
+        <omgdi:waypoint x="990.0" y="1049.0"></omgdi:waypoint>
+        <omgdi:waypoint x="990.0" y="977.0"></omgdi:waypoint>
+        <omgdi:waypoint x="915.0" y="977.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow41" id="BPMNEdge_flow41">
+        <omgdi:waypoint x="381.0" y="827.0"></omgdi:waypoint>
+        <omgdi:waypoint x="310.0" y="827.0"></omgdi:waypoint>
+        <omgdi:waypoint x="310.0" y="910.0"></omgdi:waypoint>
+        <omgdi:waypoint x="426.0" y="910.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow42" id="BPMNEdge_flow42">
+        <omgdi:waypoint x="466.0" y="910.0"></omgdi:waypoint>
+        <omgdi:waypoint x="523.0" y="910.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow43" id="BPMNEdge_flow43">
+        <omgdi:waypoint x="543.0" y="890.0"></omgdi:waypoint>
+        <omgdi:waypoint x="542.0" y="834.0"></omgdi:waypoint>
+        <omgdi:waypoint x="512.0" y="827.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow44" id="BPMNEdge_flow44">
+        <omgdi:waypoint x="446.0" y="890.0"></omgdi:waypoint>
+        <omgdi:waypoint x="446.0" y="863.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

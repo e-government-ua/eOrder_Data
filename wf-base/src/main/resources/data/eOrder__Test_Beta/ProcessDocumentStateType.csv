@@ -1,0 +1,38 @@
+nID;sID;sName;sasKey_InterfaceShow;sColor
+1;Urgently;Терміново;List,Item,Settings;#F39590
+2;Authorship;Авторство;Item,Settings;#D0D0D0
+3;NeedECP;Потрібно ЕЦП;Item,Settings;#D0D0D0
+4;ExpiredLoan;Завершений;Item,Settings;#D0D0D0
+5;Updated;Актуалізован;Item,Settings;#D0D0D0
+6;Terminated;Припинен;Item,Settings;#D0D0D0
+7;BlockedRemarks;Заблоковано зауваженнями;Item,Settings;#D0D0D0
+8;SignDelegate;Делегування пiдпису;Item,Settings;#D0D0D0
+9;LifeActial;Чинний;Item,Settings;#D0D0D0
+10;LifeCanceled;Втратив чинність/скасований;Item,Settings;#D0D0D0
+11;LifeProject;Проект;Item,Settings;#D0D0D0
+12;GrifAccessCommon;Загальний доступ;Item,Settings;#D0D0D0
+13;GrifAccessSecretBank;Банківська таємниця;Item,Settings;#D0D0D0
+14;GrifAccessSecretCommercial;Комерційна таємниця;Item,Settings;#D0D0D0
+15;Denied;Відмовлено;Item,Settings;#D0D0D0
+16;Deferred;Відкладений;Item,Settings;#D0D0D0
+17;Created;Створено;Item,Settings;#D0D0D0
+18;UrgentlyRegistration;Термінова реєстрація;Item,Settings;#D0D0D0
+19;VerificationRegulations;Проходить перевірку Регламенту;Item,Settings;#D0D0D0
+21;RespondsRegulations;Відповідає Регламенту;Item,Settings;#D0D0D0
+22;UnrespondsRegulations;Не відповідає Регламенту;Item,Settings;#D0D0D0
+23;ReturnedDeveloper;Повернуто розробнику;Item,Settings;#D0D0D0
+24;TakenExamination;Взято на експертизу;Item,Settings;#D0D0D0
+25;OutputPreparation;підготовка Висновку СКМУ;Item,Settings;#D0D0D0
+26;ProcessingUristDepart;Опрацьовується Юридичним департаментом;Item,Settings;#D0D0D0
+27;ExaminationСompleted;Експертиза СКМУ завершена;Item,Settings;#D0D0D0
+28;NecessityForTender;Необхідність тендерного забезпечення;Item,Settings;#D0D0D0
+29;SessionStarted;Сесію розпочато;List,Item,Settings;#C6F390
+30;SessionnEnded;Сесію завершено;Item,Settings;#D0D0D0
+31;SessionCanceled;Сесію скасовано;Item,Settings;#F3EF90
+100;Accepted;Погоджено;Item,Settings;#D0D0D0
+101;Skipped;Пропущено;Item,Settings;#D0D0D0
+102;Canceled;Відмінено самостійно;Item,Settings;#D0D0D0
+103;AllTasksDone;Усі задачі виконано в термін;List,Item,Settings;#C6F390
+104;HasExpiredTasks;Строк виконання частини задач за документом прострочено;List,Item,Settings;#F39590
+105;AllTasksExpired;Строк виконання всіх задач за документом минув;List,Item,Settings;#F39590
+106;TasksInProcess;Здійснюється виконання завдань за документом;List,Item,Settings;#EDF6F9

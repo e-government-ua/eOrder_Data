@@ -1,0 +1,33 @@
+[
+  {
+    "sHead": "Скласти список нормативних документів, онлайн-курсів, книг та публікацій для ознайомлення",
+    "sBody": "Скласти список нормативних документів, онлайн-курсів, книг та публікацій для ознайомлення",
+    "sID_BP": "_task_base",
+    "sKey_TaskReportType": "Text",
+    "bSplited_Execute": false,
+    "oProcessTaskSubjectsVO": {
+      "aController": [
+        {
+          "oUserVO": {
+            "sLogin": "",
+            "sLabel": ""
+          },
+          "nDaysPlan": null,
+          "oDatePlan": "$[sDate]"
+        }
+      ],
+      "aExecutor": [
+        {
+          "oUserVO": {
+            "sLogin": "",
+            "sLabel": ""
+          },
+          "nDaysPlan": null,
+          "oDatePlan": "$[sDate]"
+        }
+      ],
+      "aVisor": []
+    },
+    "aProcessTaskAttribute": []
+  }
+]

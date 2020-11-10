@@ -1,0 +1,85 @@
+{
+"oProperties":{ 
+      "bSkipStepCreate":true,
+      "sasKey_Field_RKK":"sName_Subject_DocumentRecipient,sName_Subject_DocumentSender,sNote_Subject_DocumentSender,sKey_Private_Outer,oDateAt_Outer,sName_DocumentType,oDateAt,sKey_Private,nPages_Document,sName_SubjectHuman_DocumentAuthor,sName_Document,sName_SubjectHuman_DocumentAuthor"
+       },
+  "_:Watch": {
+	"_default_author": {
+      "oMission": {"sKey_Right":"SignRelease"},
+      "oRights": {
+      	"EditFields": {},
+     	"SignComment": {}, 
+     	"AddSignerWriteAccept": {},
+     	"EditSignerWriteAccept": {},
+      	"RemoveSignerWriteAccept": {},
+     	"Remove": {}
+      }
+    },   
+    "_default_accept": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	
+      	
+      	"SignComment": {}
+      },
+      "bNeedECP": true
+      },
+    "_default_consideration": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"ManageViewers": {},
+      	"EditFields": {},
+     	"SignWriteNotNeed":{},
+      	"SignComment": {},        	
+      	"AddSignerWriteAccept": {},
+      	"EditSignerWriteAccept": {},
+      	"RemoveSignerWriteAccept": {}
+     },
+      "bNeedECP": true
+    },
+    "_default_visa": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"ManageViewers": {},
+      	"EditFields": {},
+      	"SignComment": {}
+     },
+      "bNeedECP": true
+    },
+    "_default_visa_1": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"EditFields": {},
+      	"SignComment": {}
+     },
+      "bNeedECP": true
+    },
+    
+    "_default_view": {
+      "oMission": {"sKey_Right":"View", "sKey_Step_At":""},
+      "oRights": {
+      	"ManageViewers": {},
+        "SignComment": {},
+        "RemoveSubjectNotSelf": {}
+      }
+    },
+    
+    "_default_execute": {
+      "oMission": {"sKey_Right":"SignWrite", "bResetImageAfterSubmit": true},
+      "oRights": {    	
+      	"ManageViewers": {},   	     	
+        "SignComment": {}
+            
+      
+      },
+      "bNeedECP": true
+    }
+  },   
+  "step_create:Create": {},
+  "step_consideration:Consideration": {},  
+  "step_visa:Visa": {},  
+  "step_visa_1:Visa": {},
+  "step_accept:Accept": {"property": {"nSubscribersMin": "1"}},
+  "step_execute:Execute": {},
+   "step_edit:Edit": {}
+ }

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+  <head lang="ua">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Документ створено у системі iDoc</title>
+    
+    <!-- Стили печати -->
+      <style type="text/css">
+         /* Настройки печати должны помещаться в блок @media print */
+         @media print {
+          .main {
+         	page-break-after: always;
+         	}
+         }
+    
+      /* Стили принтформы  */
+      body {
+        margin: 0;
+        padding: 10px;
+        width: 21cm;
+        box-sizing: border-box;
+      }
+      table {
+        margin-top: 50px;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      td {
+        padding: 5px;
+        vertical-align: top;
+      }
+      h3 {
+        margin: 0;
+      }
+      .tac {
+        text-align: center;
+      }
+      .tal {
+        text-align: left;
+      }
+      .tar {
+        text-align: right;
+      }
+      .blg {
+        border: 1px solid lightgrey;
+      }
+      .blw {
+        border-top: 1px solid white;
+        border-left: 1px solid white;
+        border-right: 1px solid white;
+      }
+      .blin {
+        background: linear-gradient(#fcfcfc 0px, #efefef 100%);
+      }
+      .mt0 {
+        margin-top: 0px;
+      }
+      .bbl {
+        border-bottom: 2px solid black;
+      }
+      .fwb {
+          font-weight: bold;
+      }
+      .w50 {
+          width: 50%;
+      }
+      .w40 {
+          width: 40%;
+      }
+      .w30 {
+          width: 30%;
+      }
+      .w20 {
+          width: 20%;
+      }
+      .mt15 {
+        margin-top: 15px;
+      }
+      .mt30 {
+        margin-top: 30px;
+      }
+      .mt0 {
+        margin-top: 0px;
+      }
+      .mt4 {
+        margin-top: 4px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="main">
+      <table class="mt0">
+      <tbody>
+      <tr>
+      <td class="tal"><strong> <img src="api/tasks/getTemplateData?sPathFile=_doc_template_UB_vertical_sz/img/UB_logo.png&amp;sSourceType=LocalFile" alt="" width="250px" /></strong></td>
+      <td class="tar"><strong>АТ &laquo;УНІВЕРСАЛ БАНК&raquo;</strong></td>
+      </tr>
+      </tbody>
+      </table>
+      <table>
+      <tbody>
+      <tr>
+      <td colspan="2" class="tar">
+      <span >від [sDateTimeCreateProcess]</span>
+      </td>
+      </tr>
+      <tr>
+      <td colspan="2">
+      <h3 class="tac">№ [sID_Order]<br />[sTitleDoc]</h3>
+      </td>
+      </tr>
+      </tbody>
+      </table>
+      <table>
+      <tbody>
+      <tr>
+      <td class="tar w50">Ініціатор коригування в обліку:</td>
+      <td class="tal">[sName_Author]</td>
+      </tr>
+      <tr>
+      <td class="tar w50">Підрозділ ініціатора коригування в обліку :</td>
+      <td class="tal">[sDepartment_Author]</td>
+      </tr>
+      <tr id="asTypeChange">
+      <td class="tar">Тип коригування:</td>
+      <td class="tal">[asTypeChange]</td>
+      </tr>
+     <tr id="asTypeChange_Branch">
+      <td class="tar">Тип коригування:</td>
+      <td class="tal">[asTypeChange_Branch]</td>
+      </tr>
+      <tr>
+      <td class="tar">Дата балансу, в якій виконується коригування:</td>
+      <td class="tal">[oDateBalance]</td>
+      </tr>
+      <tr>
+      <td class="tar">Обгрунтування необхідності коригування:</td>
+      <td class="tal">[sReason]</td>
+      </tr>
+      <tr>
+      </tbody>
+      </table>
+      <table id="sTableChange" style="margin-top: 30px; border-spacing: px; border: 1px solid black; border-radius: 5px; border-collapse: collapse;" border="1" width="700">
+      <thead>
+      <tr style="background: linear-gradient(#fcfcfc 0px, #efefef 100%); text-align: center;">
+      <td style="padding: 5px; border-collapse: collapse; border: 1px solid lightgrey;">Дт</td>
+      <td style="border-collapse: collapse; border: 1px solid lightgrey;">Кт</td>
+      <td style="border-collapse: collapse; border: 1px solid lightgrey;">Сума</td>
+      <td style="border-collapse: collapse; border: 1px solid lightgrey;">Валюта</td>
+      <td style="border-collapse: collapse; border: 1px solid lightgrey;">Призначення платежу</td>
+      </tr>
+      </thead>
+      <tbody><!--[sTableChange-->
+      <tr>
+      <td style="padding: 5px; border-collapse: collapse; border: 1px solid lightgrey;">[sDT]</td>
+      <td style="border-collapse: collapse; border: 1px solid lightgrey;">[sKT]</td>
+      <td style="border-collapse: collapse; border: 1px solid lightgrey;">[sAmount]</td>
+      <td style="border-collapse: collapse; border: 1px solid lightgrey;">[sCurrency]</td>
+      <td style="border-collapse: collapse; border: 1px solid lightgrey;">[sPurpose]</td>
+      </tr>
+      <!--sTableChange]--></tbody>
+      </table>
+      <table id="sTableCorrectionRemoval" style="margin-top: 30px; border-spacing: px; border: 1px solid black; border-radius: 5px; border-collapse: collapse;" border="1" width="700">
+      <thead>
+      <tr style="background: linear-gradient(#fcfcfc 0px, #efefef 100%); text-align: center;">
+      <td style="padding: 5px; border-collapse: collapse; border: 1px solid lightgrey;">№ документа <br>Scrooge</td>
+      <td style="border-collapse: collapse; border: 1px solid lightgrey;">Тип</td>
+      <td style="border-collapse: collapse; border: 1px solid lightgrey;">Дт</td>
+      <td style="border-collapse: collapse; border: 1px solid lightgrey;">Кт</td>
+      <td style="border-collapse: collapse; border: 1px solid lightgrey;">Сума</td>
+      <td style="border-collapse: collapse; border: 1px solid lightgrey;">Валюта</td>
+      <td style="border-collapse: collapse; border: 1px solid lightgrey;">Призначення платежу</td>
+      </tr>
+      </thead>
+      <tbody><!--[sTableCorrectionRemoval-->
+      <tr>
+      <td style="padding: 5px; border-collapse: collapse; border: 1px solid lightgrey;">[sNumberScrooge]</td>
+      <td style="padding: 5px; border-collapse: collapse; border: 1px solid lightgrey;">[sType]</td>
+      <td style="padding: 5px; border-collapse: collapse; border: 1px solid lightgrey;">[sDT]</td>
+      <td style="border-collapse: collapse; border: 1px solid lightgrey;">[sKT]</td>
+      <td style="border-collapse: collapse; border: 1px solid lightgrey;">[sAmount]</td>
+      <td style="border-collapse: collapse; border: 1px solid lightgrey;">[sCurrency]</td>
+      <td style="border-collapse: collapse; border: 1px solid lightgrey;">[sPurpose]</td>
+      </tr>
+      <!--sTableCorrectionRemoval]--></tbody>
+      </table>
+      <table style="margin-top: 30px; border-spacing: px; border: 1px solid black; border-radius: 5px; border-collapse: collapse;" border="1" width="700">
+      <thead>
+      <tr style="background: linear-gradient(#fcfcfc 0px, #efefef 100%); text-align: center;">
+      <td style="padding: 5px; border-collapse: collapse; border: 1px solid lightgrey;">№ п/п</td>
+      <td style="border-collapse: collapse; border: 1px solid lightgrey;">Назва додатка</td>
+      </tr>
+      </thead>
+      <tbody><!--[sTableFile-->
+      <tr>
+      <td style="padding: 5px; border-collapse: collapse; border: 1px solid lightgrey;">[sNumber]</td>
+      <td style="border-collapse: collapse; border: 1px solid lightgrey;">[sName]</td>
+      </tr>
+      <!--sTableFile]--></tbody>
+      </table>
+      </div>
+      <table class="mt4">
+      <tbody>
+      <tr>
+      <td>
+      <h3 class="tac">Лист погодження:</h3>
+      </td>
+      </tr>
+      <tr>
+      <td>[footer_signers]</td>
+      </tr>
+      </tbody>
+      </table>
+  </body>
+</html>

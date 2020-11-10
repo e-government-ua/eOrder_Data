@@ -1,0 +1,39 @@
+{
+	"_:Watch": {
+		"_default_author": {
+			"oMission": {"sKey_Right": "SignRelease"},
+			"oRights": {
+				"EditFields": {},
+				"Remove": {},
+				"SignComment": {},
+				"ManageViewers": {},
+				"EditAuthor": {},
+				"Manage":{},
+				"TaskManage": {"bDisable": true}
+			}
+		},
+		"_default_view": {
+			"oMission": {"sKey_Right": "View"},
+			"oRights": {
+				"ManageViewers": {},
+				"SignComment": {}
+			}
+		},
+	  "_default_agree": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignComment": {},
+        "ManageViewers": {},
+      	"ManageAttachNeedSignECP": {}
+      },
+      "bNeedECP": true,
+      "oProperties": {
+        "sasKey_Field_SignECP": "oFile_Main,oTable_Attachments.sFile"
+      }
+    }
+	},
+	"step_create:Create": {},
+	"step_Agree:Agree": {},
+	"step_edit:Edit": {},
+	"step_directExternal:DirectExternal": {}
+}

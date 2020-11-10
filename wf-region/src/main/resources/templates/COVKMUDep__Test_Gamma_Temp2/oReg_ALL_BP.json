@@ -1,0 +1,85 @@
+{
+"aField":[
+{
+"sKey":"nID",
+"sName":"ID поля",
+"sKey_Type":"long"
+},
+{
+"sKey":"sID_SubjectOrgan_Own_System",
+"sName":"Наше OKPO",
+"sKey_Type":"string"
+},
+{
+"sKey":"sDateUpdate_Row_System",
+"sName":"Дата оновлення запису",
+"sKey_Type":"string"
+},
+{
+"sKey":"sbIncome_System",
+"sName":"Вхідна кореспонденція",
+"sFormulaDefault":"bIncome_System?'Вхідна':'Вихідна'",
+"sKey_Type":"string"
+},
+{
+"sKey":"oProcessDocument.sKey_BP",
+"sName":"ИД шаблону БП",
+"sKey_Type":"string"
+},
+{
+"sKey":"oProcessDocument.sURL_Document",
+"sName":"Посилання на документ",
+"sKey_Type":"string"
+},
+{
+"sKey":"oProcessDocument.sName",
+"sName":"Тип кореспонденції",
+"sKey_Type":"string"
+},
+{
+"sKey":"oProcessDocument.sStage",
+"sName":"Статус/юзертаска",
+"sKey_Type":"string"
+},
+{
+"sKey":"oProcessDocument.sHead",
+"sName":"Короткий зміст",
+"sKey_Type":"string"
+},
+{
+"sKey":"oProcessDocument.sID_DocumentStepType",
+"sName":"ИД типу кроку",
+"sKey_Type":"string"
+},
+{
+"sKey":"oProcessDocument.sDateAt",
+"sName":"Дата реєстрації",
+"sKey_Type":"string"
+},
+{
+"sKey":"oProcessDocument.sKey_Private",
+"sName":"№ документа",
+"sKey_Type":"string"
+},
+{
+"sKey":"oProcessDocument.sDateAt_Outer",
+"sName":"Дата реєстрації зовнішня",
+"sKey_Type":"string"
+},
+{
+"sKey":"oProcessDocument.sKey_Private_Outer",
+"sName":"№ реєстрації зовнішній",
+"sKey_Type":"string"
+},
+{
+"sKey":"ID_",
+"sName":"ID_",
+"sKey_Type":"string"
+}
+],
+"oProperties":{
+"asKey_BP_Registry": ["_doc_template_mdadnpokrovsk"],
+"sKey_Field_UniqAuto":"nID",
+"asKey_Field_Uniq":["ID_"]
+}
+}

@@ -1,0 +1,220 @@
+{
+  "aField": [
+    {
+      "sKey": "nID",
+      "sKey_Type": "long",
+      "sName": "ID поля",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "sID",
+      "sKey_Type": "string",
+      "sName": "sID",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "sbIncome_System",
+      "sKey_Type": "string",
+      "sName": "Вхідна кореспонденція",
+      "sFormulaDefault": "[bIncome_System]?'Вхідна':'Вихідна'",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "oProcessDocument.sURL_Document",
+      "sKey_Type": "string",
+      "sName": "Посилання на документ",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false,
+      "nSizeBytes": 500
+    },
+    {
+      "sKey": "oProcessDocument.sName",
+      "sKey_Type": "string",
+      "sName": "Тип кореспонденції",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false,
+      "nSizeBytes": 1000
+    },
+    {
+      "sKey": "oProcessDocument.sHead",
+      "sKey_Type": "string",
+      "sName": "Короткий зміст",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false,
+      "nSizeBytes": 1000
+    },
+    {
+      "sKey": "oProcessDocument.sDateAt",
+      "sKey_Type": "string",
+      "sName": "Дата реєстрації",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "oProcessDocument.sKey_Private",
+      "sKey_Type": "string",
+      "sName": "№ документа",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "sDateUpdate_StatusSendPushed_SystemSEV",
+      "sKey_Type": "string",
+      "sName": "Дата відправки",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "sName_SubjectOrgan_Reciver_SystemSEV",
+      "sKey_Type": "string",
+      "sName": "Адресат",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+	{
+      "sKey": "sTimeDirect",
+      "sKey_Type": "string",
+      "sName": "Час надходження документа адресату",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+     {
+      "sKey": "ID_",
+      "sKey_Type": "string",
+      "sName": "ID поля системного",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": true,
+      "bRequired": false
+    },
+    {
+      "sKey": "sStar1",
+      "sKey_Type": "string",
+      "sName": "Зирка1",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": true,
+      "bRequired": false
+    },
+    {
+      "sKey": "sStar2",
+      "sKey_Type": "string",
+      "sName": "Зирка2",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": true,
+      "bRequired": false
+    },
+    {
+      "sKey": "sStar3",
+      "sKey_Type": "string",
+      "sName": "Зирка3",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": true,
+      "bRequired": false
+    },
+    {
+      "sKey": "sStar4",
+      "sKey_Type": "string",
+      "sName": "Зирка4",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": true,
+      "bRequired": false
+    },
+    {
+      "sKey": "sStar5",
+      "sKey_Type": "string",
+      "sName": "Зирка5",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": true,
+      "bRequired": false
+    },
+    {
+      "sKey": "sStar6",
+      "sKey_Type": "string",
+      "sName": "Зирка6",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": true,
+      "bRequired": false
+    },
+    {
+      "sKey": "sStar7",
+      "sKey_Type": "string",
+      "sName": "Зирка7",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": true,
+      "bRequired": false
+    },
+    {
+      "sKey": "sStar8",
+      "sKey_Type": "string",
+      "sName": "Зирка8",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": true,
+      "bRequired": false
+    },
+    {
+      "sKey": "sStar9",
+      "sKey_Type": "string",
+      "sName": "Зирка9",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": true,
+      "bRequired": false
+    },
+    {
+      "sKey": "sStar10",
+      "sKey_Type": "string",
+      "sName": "Зирка1",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": true,
+      "bRequired": false
+    }
+  ],
+  "oProperties": {
+    "sKey_Field_UniqAuto": "nID",
+    "asKey_Field_Uniq": [
+      "sID"
+    ],
+    "asKey_BP_Registry": [
+      "_doc_template_mdadnpokrovsk_outlettersXXX"
+    ],
+    "sFormula_Registry": "[bExchangeSystem]",
+	"sName": "Реєстр-тест"
+  },
+  "bReadonly": false,
+  "bHide": false,
+  "bRequired": false
+}

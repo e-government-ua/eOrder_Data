@@ -1,0 +1,14 @@
+[
+    {
+        "sLogin_SubjectQuestion": "iCore",
+        "nRowsMax": 40,
+        "bRandom": true,
+        "aProgramDocumentVO": [
+            {
+                "sID": "23-324234",
+                "asKeySet_Item_Include": ["2","5"],
+                "asKeySet_Item_Exclude": []
+            }
+        ]
+    }
+]

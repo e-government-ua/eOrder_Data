@@ -1,0 +1,51 @@
+{
+  "aField": [
+        {
+      "id": "sID_Document",
+      "name": "Номер документа",
+      "type": "string",
+      "bVisible": "false"
+    },
+    {
+      "id": "sProjectHead",
+      "name": "Заголовок рішення",
+      "type": "string",
+      "writable": "false"
+    },
+      {
+      "id": "oDatePublised",
+      "name": "Дата публікації",
+      "type": "date",
+      "writable": "false"
+    },
+    {
+      "id": "sName_Responsible",
+      "name": "Доповідач",
+      "type": "string",
+      "writable": "false"
+    },
+    {
+      "id": "sPosition_Responsible",
+      "name": "Посада доповідача",
+      "type": "string",
+      "writable": "false"
+    },
+    {
+      "id": "sLogin_Responsible",
+      "name": "Логін доповідача",
+      "type": "string",
+      "bVisible": "false"      
+    },
+   {
+      "id": "asRating",
+      "name": "Необхідність редагування",
+      "nWidth": "10%",
+      "type": "boolean"            
+    },
+    {
+      "id": "sLog_Re",
+      "name": "Розшифровка Стінограмми",
+      "type": "string"
+    }
+  ]
+}

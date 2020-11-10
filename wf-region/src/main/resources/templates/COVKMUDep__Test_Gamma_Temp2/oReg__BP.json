@@ -1,0 +1,257 @@
+{
+  "aField": [
+    {
+      "sKey": "nID",
+      "sKey_Type": "long",
+      "sName": "ID поля",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "sID_SubjectOrgan_Own_System",
+      "sKey_Type": "string",
+      "sName": "Наше OKPO",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+        {
+      "sKey": "oProcessDocument.sID_Document",
+      "sKey_Type": "string",
+      "sName": "ID Документу",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false,
+      "asMetaAttribute": ["sURL=/documents/sID_Order=[]"]
+    },
+    {
+      "sKey": "sDateUpdate_Row_System",
+      "sKey_Type": "string",
+      "sName": "Дата оновлення запису",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false,
+      "asMetaAttribute": ["sURL=/documents/sID_Order=[oProcessDocument.sID_Document]"]
+    },
+    {
+      "sKey": "sbIncome_System",
+      "sKey_Type": "string",
+      "sName": "Вхідна кореспонденція",
+      "sFormulaDefault": "[bIncome_System]?'Вхідна':'Вихідна'",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "oProcessDocument.sKey_BP",
+      "sKey_Type": "string",
+      "sName": "ИД шаблону БП",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "oProcessDocument.sURL_Document",
+      "sKey_Type": "string",
+      "sName": "Посилання на документ",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false,
+      "nSizeBytes": 500
+    },
+    {
+      "sKey": "oProcessDocument.sName",
+      "sKey_Type": "string",
+      "sName": "Тип кореспонденції",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false,
+      "nSizeBytes": 1000
+    },
+    {
+      "sKey": "oProcessDocument.sStage",
+      "sKey_Type": "string",
+      "sName": "Статус/юзертаска",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false,
+      "nSizeBytes": 1000
+    },
+    {
+      "sKey": "oProcessDocument.sHead",
+      "sKey_Type": "string",
+      "sName": "Короткий зміст",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false,
+      "nSizeBytes": 1000
+    },
+    {
+      "sKey": "oProcessDocument.sID_DocumentStepType",
+      "sKey_Type": "string",
+      "sName": "ИД типу кроку",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "oProcessDocument.sDateAt",
+      "sKey_Type": "string",
+      "sName": "Дата реєстрації",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "oProcessDocument.sKey_Private",
+      "sKey_Type": "string",
+      "sName": "№ документа",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "oProcessDocument.sDateAt_Outer",
+      "sKey_Type": "string",
+      "sName": "Дата реєстрації зовнішня",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "oProcessDocument.sKey_Private_Outer",
+      "sKey_Type": "string",
+      "sName": "№ реєстрації зовнішній",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "sID",
+      "sKey_Type": "string",
+      "sName": "sID",
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "sDateUpdate_Status_SystemSEV",
+      "sKey_Type": "string",
+      "sName": "Дата оновлення",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "sbUrgent_SEV",
+      "sKey_Type": "string",
+      "sName": "Терміново",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "sAnswerError_StatusSend_SystemSEV",
+      "sKey_Type": "string",
+      "sName": "Помилка",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "sNote_StatusExchange_SystemSEV",
+      "sKey_Type": "string",
+      "sName": "Статус",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "sAnswerComment_StatusSend_SystemSEV",
+      "sKey_Type": "string",
+      "sName": "Коментар",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "sDateUpdate_StatusSendPushed_SystemSEV",
+      "sKey_Type": "string",
+      "sName": "Дата відправки",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "sDateUpdate_StatusSendDelivered_SystemSEV",
+      "sKey_Type": "string",
+      "sName": "Дата вивантаження",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "sDateUpdate_StatusSendRecived_SystemSEV",
+      "sKey_Type": "string",
+      "sName": "Дата отримання адресатом",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+    {
+      "sKey": "sName_SubjectOrgan_Reciver_SystemSEV",
+      "sKey_Type": "string",
+      "sName": "Адресат",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+     {
+      "sKey": "ID_",
+      "sKey_Type": "string",
+      "sName": "ID поля системного",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": true,
+      "bRequired": false
+    }
+  ],
+  "oProperties": {
+    "sKey_Field_UniqAuto": "nID",
+    "asKey_Field_Uniq": [
+      "sID"
+    ],
+    "asKey_BP_Registry": [
+      "_doc_template_mdadnpokrovsk_incoming_letters"
+    ],
+    "sFormula_Registry": ""
+  },
+  "bReadonly": false,
+  "bHide": false,
+  "bRequired": false
+}

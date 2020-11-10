@@ -1,0 +1,14 @@
+{
+  "aField": [
+    {
+      "id": "sNum_Doc",
+      "name": "До номеру;Якщо потрібно декілька документів;bImportFields=false,{{Autocomplete:getProcessDocuments()}},sID_Field_Alias=sID_Order_Document,bImportFieldSkip=true",
+      "type": "string"
+    },
+    {
+      "id": "sReasonDoc",
+      "name": "До документу",
+      "type": "string"
+    }
+  ]
+}

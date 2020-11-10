@@ -1,0 +1,117 @@
+{
+  "aField": [
+    {
+      "id": "nRow",
+      "name": "№ п/п",
+      "type": "long",    
+      "nWidth": "5%"
+   
+    },
+    {
+      "id": "sBody",
+      "name": "Зміст завдання",
+      "type": "string"
+      
+   
+    },
+    {
+      "id": "sNeedTask",
+      "name": "Тип завдання",
+      "type": "enum",
+      "nWidth": "10%",
+      "a": [
+        {
+          "id": "yes",
+          "name": "Виконано"
+        },
+        {
+          "id": "no",
+          "name": "Не виконано"
+        }
+      ]
+    },  
+    {
+      "id": "sDateExecute",
+      "name": "Строк виконання",
+      "type": "date",
+      "nWidth": "10%"     
+    },
+    {
+      "id": "sName_isExecute",
+      "name": "Виконавець; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel",
+      "type": "select",
+      "nWidth": "15%"         
+    },
+    {
+      "id": "sLogin_isExecute",
+      "name": "login",
+      "type": "string",
+      "bVisible": "false"
+      
+      
+    },
+    {
+      "id": "sName_isControl",
+      "name": "Контролюючий; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel",
+      "type": "select",
+      "nWidth": "15%"
+      
+      
+    },
+    {
+      "id": "sLogin_isControl",
+      "name": "login",
+      "type": "string",
+      "bVisible": "false"
+      
+      
+    
+    }
+    
+  ],
+  
+   "aRow": [
+   {
+            "sKey_ServiceConditions": "Повідомити переможцю, що він/вона повинен/на подати декларацію переможця конкурсу",
+            "sStrok": "-2"
+            
+        },
+         {
+            "sKey_ServiceConditions": "Повідомити переможцю, що він/вона повинен/на подати необхідний перелік документів у СУП (заява про призначення, копію військового квитка, у разі наявності тощо)",
+            "sStrok": "-2"
+            
+        },
+        {
+            "sKey_ServiceConditions": "Забезпечити складення присяги переможцем конкурсу (у разі призначення на держслужбу вперше)",
+            "sStrok": "1"
+            
+        },
+        {
+            "sKey_ServiceConditions": "Ознайомити нового співробітника з наказом про призначення",
+            "sStrok": "1"
+            
+        },
+        {
+            "sKey_ServiceConditions": "Ознайомити нового співробітника з Правилами внутрішнього службового розпорядку",
+            "sStrok": "1"
+            
+        },
+        {
+            "sKey_ServiceConditions": "Ознайомити нового співробітника з посадовою інструкцією",
+            "sStrok": "1"
+            
+        },
+        {
+            "sKey_ServiceConditions": "Ознайомити нового співробітника з Порядком проходження випробувального терміну та завданнями для його успішного проходження",
+            "sStrok": "1"
+            
+        },
+        {
+            "sKey_ServiceConditions": "Повідомити нового співробітника про необхідність у 14 денний строк спільно з безпосереднім керівником затвердити перелік завдань і ключових показників результативності, ефективності та якості службової на поточний рік",
+            "sStrok": "1"
+            
+        
+        }
+        
+    ]
+}

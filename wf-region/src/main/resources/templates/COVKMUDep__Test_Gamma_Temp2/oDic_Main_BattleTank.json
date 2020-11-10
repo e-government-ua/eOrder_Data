@@ -1,0 +1,54 @@
+{
+"aField":[
+{
+"sKey":"nID",
+"sName":"ID поля",
+"sKey_Type":"long"
+},
+{
+"sKey":"sName_Nomenclature",
+"sName":"Заголовок",
+"sKey_Type":"string",
+"nSizeBytes":"2000"
+},
+{
+"sKey":"sKey_Nomenclature",
+"sName":"Індекс справи",
+"sKey_Type":"string",
+"nSizeBytes":"2000"
+},
+{
+"sKey":"sKey_NomenclatureDepartment",
+"sName":"№ Раздела",
+"sKey_Type":"string",
+"nSizeBytes":"2000"
+},
+{
+"sKey":"sTerm_Nomenclature",
+"sName":"Строк зберігання",
+"sKey_Type":"string",
+"nSizeBytes":"2000"
+},
+{
+"sKey":"sTermArticles_Nomenclature",
+"sName":"Статьи",
+"sKey_Type":"string",
+"nSizeBytes":"2000"
+},
+{
+"sKey":"sTermNote_Nomenclature",
+"sName":"Примітки",
+"sKey_Type":"string",
+"nSizeBytes":"2000"
+}
+],
+"oProperties":{
+    "sKey_Field_UniqAuto":"nID",
+    "asKey_Field_Uniq":[
+        "sKey_Nomenclature"
+    ],
+    "sID":"oDic_Main_BattleTank",
+    "sID_SubjectSystem":"GoogleExcel_iCore",
+    "sKey_Entity":"1xf6pKJryGuXLPVZemqYGiqOz9JXsdU8xAxJet-gcbzM/Сводная номенклатура дел"
+}
+}

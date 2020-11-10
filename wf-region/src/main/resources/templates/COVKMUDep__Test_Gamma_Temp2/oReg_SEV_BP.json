@@ -1,0 +1,50 @@
+{
+"aField":[
+{
+"sKey":"nID",
+"sKey_Type":"long"
+},
+{
+"sKey":"sID_SubjectOrgan_Own_System",
+"sName":"Наше OKPO",
+"sKey_Type":"string"
+},
+{
+"sKey":"sDateUpdate_Row_System",
+"sName":"Дата оновлення запису",
+"sKey_Type":"string"
+},
+{
+"sKey":"sbIncome_System",
+"sName":"Вхідна кореспонденція",
+"sFormulaDefault":"bIncome_System?'Вхідна':'Вихідна'",
+"sKey_Type":"string"
+},
+{
+"sKey":"oProcessDocument.sKey_BP",
+"sName":"ИД шаблону БП",
+"sKey_Type":"string"
+},
+{
+"sKey":"oProcessDocument.sURL_Document",
+"sName":"Посилання на документ",
+"sKey_Type":"string"
+},
+     {
+      "sKey": "ID_",
+      "sKey_Type": "string",
+      "sName": "ID поля системного",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": true,
+      "bRequired": false
+    }
+],
+"oProperties":{
+"asKey_BP_Registry": ["_doc_template_mdadnpokrovsk"],
+"sKey_Field_UniqAuto":"nID",
+"asKey_Field_Uniq":[
+"sID"
+]
+}
+}

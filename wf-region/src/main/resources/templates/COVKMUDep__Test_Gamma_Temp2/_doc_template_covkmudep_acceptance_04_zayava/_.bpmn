@@ -1,0 +1,898 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="_doc_template_covkmudep_acceptance_04_zayava" name="Прийом на роботу-Заява про призначення" isExecutable="true">
+    <documentation>;bTemplated=true</documentation>
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <userTask id="usertask1" name="Створення заяви про призначення">
+      <extensionElements>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Author" name="Полное ФИО; ;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логин автора; ;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sMyPosition" name="Повна посада автора;Повна посада у родовому відмінку;" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sTitleDoc" name="Заголовок документа" type="string" default="Заява про призначення" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPeriod" name="Строк випробування;місяців" type="long" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Додатки; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Заява про призначення;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'157_jbhrzDs8hLnoK8h1BlmbJbyZ4Lm8jjUcQgbsREGs', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addPerevirka1" name="Маркер доп поля" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_11&quot;:{&quot;aField_ID&quot;:[&quot;sOrganPerevirkaStosovno&quot;,&quot;sDatePerevirkaStosovno&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sPerevirkaStosovno&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addPerevirka2" name="Маркер доп поля" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_12&quot;:{&quot;aField_ID&quot;:[&quot;sOrganPerevirkaOchischennya&quot;,&quot;sDatePerevirkaOchischennya&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sPerevirkaOchischennya&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документа;;bVisible=false" type="date"></activiti:formProperty>
+        <activiti:formProperty id="nID_Process_Child" name="nID_Process_Child;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPidrozdil" name="Підрозділ" type="enum">
+          <activiti:value id="p08" name="Міністр Кабінету Міністрів України"></activiti:value>
+          <activiti:value id="p09" name="Державний секретар Кабінету Міністрів України"></activiti:value>
+          <activiti:value id="p10" name="Заступник Державного секретаря Кабінету Міністрів України-ФЕДОРЧУК В. Я."></activiti:value>
+          <activiti:value id="p11" name="Заступник Державного секретаря Кабінету Міністрів України-ДЕХТЯРЕНКО С. С."></activiti:value>
+          <activiti:value id="p13" name="Заступник Державного секретаря Кабінету Міністрів України-КОВТУН Т.В."></activiti:value>
+          <activiti:value id="p56" name="Урядовий уповноважений з прав осіб з інвалідністю"></activiti:value>
+          <activiti:value id="p17" name="Департамент інформації та комунікацій з громадськістю"></activiti:value>
+          <activiti:value id="p19" name="Департамент кадрового забезпечення"></activiti:value>
+          <activiti:value id="p20" name="Департамент з питань взаємодії з Верховною Радою України, іншими державними органами"></activiti:value>
+          <activiti:value id="p21" name="Департамент з питань інфраструктури та технічного регулювання"></activiti:value>
+          <activiti:value id="p24" name="Господарсько-фінансовий департамент, Управління бухгалтерського обліку, фінансів та звітності"></activiti:value>
+          <activiti:value id="p25" name="Департамент з питань ефективного управління державною власністю"></activiti:value>
+          <activiti:value id="p27" name="Департамент з питань міжнародного співробітництва"></activiti:value>
+          <activiti:value id="p29" name="Департамент з питань безпеки, оборони, діяльності органів юстиції та запобігання корупції"></activiti:value>
+          <activiti:value id="p30" name="Департамент організації засідань Кабінету Міністрів України та урядових комітетів"></activiti:value>
+          <activiti:value id="p32" name="Режимно-секретне управління"></activiti:value>
+          <activiti:value id="p35" name="Департамент забезпечення документообігу"></activiti:value>
+          <activiti:value id="p36" name="Юридичний департамент"></activiti:value>
+          <activiti:value id="p37" name="Департамент з питань розвитку паливно-енергетичного комплексу та житловокомунального господарства"></activiti:value>
+          <activiti:value id="p41" name="Управління з питань роботи із зверненнями громадян (Музейний провулок, 12)"></activiti:value>
+          <activiti:value id="p45" name="Управління інформаційних технологій та безпеки"></activiti:value>
+          <activiti:value id="p49" name="Управління протоколу"></activiti:value>
+          <activiti:value id="p51" name="Відділ з питань дотримання антикорупційного законодавства"></activiti:value>
+          <activiti:value id="p55" name="Урядовий офіс координації європейської та євроатлантичної інтеграції"></activiti:value>
+          <activiti:value id="p67" name="Департамент з питань фінансового та економічного розвитку"></activiti:value>
+          <activiti:value id="p73" name="Департамент гуманітарної та соціальної політики"></activiti:value>
+          <activiti:value id="p75" name="Департамент з питань безпеки життєдіяльності, охорони навколишнього природного середовища та агропромислового комплексу"></activiti:value>
+          <activiti:value id="p80" name="Директорат координації державних політик та стратегічного планування"></activiti:value>
+          <activiti:value id="p81" name="Директорат публічної адміністрації"></activiti:value>
+          <activiti:value id="p82" name="Директорат територіального та місцевого розвитку"></activiti:value>
+          <activiti:value id="p83" name="Директорат моніторингу та контролю"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sPerevirkaStosovno" name="Перевірка стосовно мене проводилась;так/ні;sID_CheckboxTrue=yes" type="enum">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sOrganPerevirkaStosovno" name="Державний орган, який проводив перевірку;якщо проводилась" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDatePerevirkaStosovno" name="Дата перевірки" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sPerevirkaOchischennya" name="Перевірка відповідно до ЗУ Про очищення влади;проводилась чи ні;sID_CheckboxTrue=yes" type="enum">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sOrganPerevirkaOchischennya" name="Державний орган, який проводив перевірку" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDatePerevirkaOchischennya" name="Дата перевірки" type="date"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask2" name="Перевірка кадрами :: ${sAuthorName}" default="flow228">
+      <extensionElements>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Author" name="Полное ФИО; ;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логин автора; ;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sMyPosition" name="Повна посада автора;Повна посада у родовому відмінку;" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTitleDoc" name="Заголовок документа" type="string" default="Заява на відпустку" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="nDaysVacationLeft" name="Доступні дні щорічної відпустки; ;writable=false,bVisible=false" type="string" default="${oDocumentService.getEmployeeDaysVacationLeft(oDocumentService.getLoginAuthor(execution), null).toString()}"></activiti:formProperty>
+        <activiti:formProperty id="asTypeVacation" name="Виберіть тип відпустки" type="enum" writable="false">
+          <activiti:value id="sEnumVac_1" name="основну щорічну відпустку"></activiti:value>
+          <activiti:value id="sEnumVac_2" name="додаткову відпустку"></activiti:value>
+          <activiti:value id="sEnumVac_4" name="навчальну відпустку"></activiti:value>
+          <activiti:value id="sEnumVac_5" name="відпустку без збереження заробітної плати"></activiti:value>
+          <activiti:value id="sEnumVac_6" name="іншу відпустку"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asSubTypeVacation_Main" name="Підтип відпустки" type="enum" writable="false">
+          <activiti:value id="sEnumVacMain_1" name="основну щорічну відпустку"></activiti:value>
+          <activiti:value id="sEnumVacMain_2" name="частину основної щорічної відпустки"></activiti:value>
+          <activiti:value id="sEnumVacMain_3" name="щорічну(для політичних посад)"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asSubTypeVacation_Dop" name="Підтип відпустки" type="enum" writable="false">
+          <activiti:value id="sEnumVacDop_1" name="за стаж державної служби"></activiti:value>
+          <activiti:value id="sEnumVacDop_2" name="жінці, що має двох (та більше) дітей до 15 років "></activiti:value>
+          <activiti:value id="sEnumVacDop_3" name="жінці, що має дитину-інваліда "></activiti:value>
+          <activiti:value id="sEnumVacDop_4" name="жінці, яка усиновила дитину"></activiti:value>
+          <activiti:value id="sEnumVacDop_5" name="одинокій матері"></activiti:value>
+          <activiti:value id="sEnumVacDop_6" name="батьку, який виховує дитину без матері"></activiti:value>
+          <activiti:value id="sEnumVacDop_7" name="одинокій матері двох дітей до 15 років"></activiti:value>
+          <activiti:value id="sEnumVacDop_8" name="окремим категоріям ветеранів війни"></activiti:value>
+          <activiti:value id="sEnumVacDop_9" name="учасникам ліквідації наслідків аварії ЧАЕС"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asSubTypeVacation_Study" name="Підтип відпустки" type="enum">
+          <activiti:value id="sEnumVacStudy_1" name="на період настановних занять, для участі в лабораторно-екзаменаційної сесії на 1-2 курсах з заочною формою навчання"></activiti:value>
+          <activiti:value id="sEnumVacStudy_2" name="на період настановних занять, для участі в лабораторно-екзаменаційної сесії на третьому та наступних курсах з заочною формою навчання"></activiti:value>
+          <activiti:value id="sEnumVacStudy_3" name="особі, що успішно виконує індивідуальний план підготовки в аспірантурі"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asSubTypeVacation_BezZP" name="Підтип відпустки" type="enum">
+          <activiti:value id="sEnumVacBezZP_1" name="за сімейними обставинами (за згодою сторін)"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sSubTypeVacation_Other" name="Підтип відпустки" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDateVacationBegin" name="Дата початку відпустки" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_1" name="Кількість днів:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bAddVacationType" name="Додати ще відпустку; ;sID_CheckboxTrue=yes" type="enum" default="no" writable="false">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asTypeVacation_1" name="Виберіть тип відпустки" type="enum" writable="false">
+          <activiti:value id="sEnumVac_1" name="основну щорічну відпустку "></activiti:value>
+          <activiti:value id="sEnumVac_2" name="додаткову відпустку"></activiti:value>
+          <activiti:value id="sEnumVac_4" name="навчальну відпустку"></activiti:value>
+          <activiti:value id="sEnumVac_5" name="відпустку без збереження заробітної плати"></activiti:value>
+          <activiti:value id="sEnumVac_6" name="іншу відпустку"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asSubTypeVacation_Main_1" name="Підтип відпустки" type="enum" writable="false">
+          <activiti:value id="sEnumVacMain_1" name="основну щорічну відпустку"></activiti:value>
+          <activiti:value id="sEnumVacMain_2" name="частину основної щорічної відпустки"></activiti:value>
+          <activiti:value id="sEnumVacMain_3" name="щорічну(для політичних посад)"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asSubTypeVacation_Dop_1" name="Підтип відпустки" type="enum" writable="false">
+          <activiti:value id="sEnumVacDop_1" name="за стаж державної служби"></activiti:value>
+          <activiti:value id="sEnumVacDop_2" name="жінці, що має двох (та більше) дітей до 15 років "></activiti:value>
+          <activiti:value id="sEnumVacDop_3" name="жінці, що має дитину-інваліда "></activiti:value>
+          <activiti:value id="sEnumVacDop_4" name="жінці, яка усиновила дитину"></activiti:value>
+          <activiti:value id="sEnumVacDop_5" name="одинокій матері"></activiti:value>
+          <activiti:value id="sEnumVacDop_6" name="батьку, який виховує дитину без матері"></activiti:value>
+          <activiti:value id="sEnumVacDop_7" name="одинокій матері двох дітей до 15 років"></activiti:value>
+          <activiti:value id="sEnumVacDop_8" name="окремим категоріям ветеранів війни"></activiti:value>
+          <activiti:value id="sEnumVacDop_9" name="учасникам ліквідації наслідків аварії ЧАЕС"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asSubTypeVacation_Study_1" name="Підтип відпустки" type="enum" writable="false">
+          <activiti:value id="sEnumVacStudy_1" name="на період настановних занять, для участі в лабораторно-екзаменаційної сесії на 1-2 курсах з заочною формою навчання"></activiti:value>
+          <activiti:value id="sEnumVacStudy_2" name="на період настановних занять, для участі в лабораторно-екзаменаційної сесії на третьому та наступних курсах з заочною формою навчання"></activiti:value>
+          <activiti:value id="sEnumVacStudy_3" name="особі, що успішно виконує індивідуальний план підготовки в аспірантурі"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asSubTypeVacation_BezZP_1" name="Підтип відпустки" type="enum" writable="false">
+          <activiti:value id="sEnumVacBezZP_1" name="за сімейними обставинами (за згодою сторін)"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sSubTypeVacation_Other_1" name="Підтип відпустки" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_2" name="Кількість днів:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateVacationEnd" name="Дата кінця відпустки; ;writable=false,bVisible=false" type="date"></activiti:formProperty>
+        <activiti:formProperty id="bMaterialAid" name="З матеріальною (грошовою) допомогою; ;sID_CheckboxTrue=yes" type="enum" default="no" writable="false">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Додатки; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Заява на 1 тип відпустки;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1PAyGT3GVLTKasn74jWuMhxEr3jKdHzK5oUe5AxwvAkg', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="Заява на 2 тип відпустки;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1dli2B1TV2da1m2Q4EpQReZgbakigHhTxMHGW3RZRGlE', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_1" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;asSubTypeVacation_Main&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_2" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;asSubTypeVacation_Dop&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_4" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_4&quot;:{&quot;aField_ID&quot;:[&quot;asSubTypeVacation_Study&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_4'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_5" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_5&quot;:{&quot;aField_ID&quot;:[&quot;asSubTypeVacation_BezZP&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_5'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_6" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_6&quot;:{&quot;aField_ID&quot;:[&quot;sSubTypeVacation_Other&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_6'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addVacation" name="Маркер показывающий доп поля" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_7&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_2&quot;,&quot;asTypeVacation_1&quot;,&quot;sBody_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddVacationType&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_11" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_11&quot;:{&quot;aField_ID&quot;:[&quot;asSubTypeVacation_Main_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_22" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_22&quot;:{&quot;aField_ID&quot;:[&quot;asSubTypeVacation_Dop_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_44" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_44&quot;:{&quot;aField_ID&quot;:[&quot;asSubTypeVacation_Study_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_4'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_55" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_55&quot;:{&quot;aField_ID&quot;:[&quot;asSubTypeVacation_BezZP_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_5'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_66" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_66&quot;:{&quot;aField_ID&quot;:[&quot;sSubTypeVacation_Other_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_6'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_chekbox1" name="Маркер для отображения чекбокса" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1chekbox&quot;:{&quot;aField_ID&quot;:[&quot;bMaterialAid&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asSubTypeVacation_Main&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVacMain_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_chekbox2" name="Маркер для отображения чекбокса" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2chekbox&quot;:{&quot;aField_ID&quot;:[&quot;bMaterialAid&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asSubTypeVacation_Main&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVacMain_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers_12" name="Маркер для отображения ПФ" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_12&quot;:{&quot;aField_ID&quot;:[&quot;sBody_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddVacationType&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers_1212" name="Маркер для отображения ПФ" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1212&quot;:{&quot;aField_ID&quot;:[&quot;sBody_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddVacationType&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'no'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документа" type="date" readable="false" writable="false"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow23" sourceRef="startevent1" targetRef="scripttask4">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.setDocumentTasksRightsNeed(execution, true, "_,accept")}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow179" sourceRef="usertask16" targetRef="scripttask3">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <serviceTask id="servicetask13" name="Старт Приказа" activiti:delegateExpression="#{createDocument}">
+      <extensionElements>
+        <activiti:field name="sID_BP">
+          <activiti:string><![CDATA[_doc_base_staff_vacation_prikaz]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="soData">
+          <activiti:string><![CDATA[sAuthorName::value{[sAuthorName]};;sPosition_AssignTo::value{[sPosition_AssignTo]};;sDepartment::value{[sDepartment]};;sPosition_Author::value{[sPosition_Author]};;sLoginAuthor1::value{[sLoginAuthor2]};;sMyPosition::value{[sMyPosition]};;asTypeVacation::value{[asTypeVacation]};;asSubTypeVacation_Main::value{[asSubTypeVacation_Main]};;asSubTypeVacation_Dop::value{[asSubTypeVacation_Dop]};;asSubTypeVacation_Soc::value{[asSubTypeVacation_Soc]};;asSubTypeVacation_Study::value{[asSubTypeVacation_Study]};;asSubTypeVacation_BezZP::value{[asSubTypeVacation_BezZP]};;asSubTypeVacation_Other::value{[asSubTypeVacation_Other]};;sDateVacationBegin::value{[sDateVacationBegin]};;sDateDiff_1::value{[sDateDiff_1]};;asTypeVacation_1::value{[asTypeVacation_1]};;asSubTypeVacation_Main_1::value{[asSubTypeVacation_Main_1]};;asSubTypeVacation_Dop_1::value{[asSubTypeVacation_Dop_1]};;asSubTypeVacation_Study_1::value{[asSubTypeVacation_Study_1]};;asSubTypeVacation_BezZP_1::value{[asSubTypeVacation_BezZP_1]};;sSubTypeVacation_Other_1::value{[sSubTypeVacation_Other_1]};;sDateDiff_2::value{[sDateDiff_2]};;sDateVacationEnd_1::value{[sDateVacationEnd_1]};;sDaysVacation::value{[sDaysVacation]};;bMaterialAid::value{[bMaterialAid]};;sAssistanceSum::value{[sAssistanceSum]};;]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sLoginAuthor">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('kadri_vikonavec', null)}]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow183" sourceRef="servicetask13" targetRef="endevent1"></sequenceFlow>
+    <userTask id="usertask10" name="Узгодження керівником відділу :: ${sAuthorName}" default="flow223">
+      <extensionElements>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Author" name="Полное ФИО; ;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логин автора; ;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sMyPosition" name="Повна посада автора;Повна посада у родовому відмінку;" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTitleDoc" name="Заголовок документа" type="string" default="Заява на відпустку" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="nDaysVacationLeft" name="Доступні дні щорічної відпустки; ;writable=false,bVisible=false" type="string" default="${oDocumentService.getEmployeeDaysVacationLeft(oDocumentService.getLoginAuthor(execution), null).toString()}"></activiti:formProperty>
+        <activiti:formProperty id="asTypeVacation" name="Виберіть тип відпустки" type="enum" writable="false">
+          <activiti:value id="sEnumVac_1" name="основну щорічну відпустку"></activiti:value>
+          <activiti:value id="sEnumVac_2" name="додаткову відпустку"></activiti:value>
+          <activiti:value id="sEnumVac_4" name="навчальну відпустку"></activiti:value>
+          <activiti:value id="sEnumVac_5" name="відпустку без збереження заробітної плати"></activiti:value>
+          <activiti:value id="sEnumVac_6" name="іншу відпустку"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asSubTypeVacation_Main" name="Підтип відпустки" type="enum" writable="false">
+          <activiti:value id="sEnumVacMain_1" name="основну щорічну відпустку"></activiti:value>
+          <activiti:value id="sEnumVacMain_2" name="частину основної щорічної відпустки"></activiti:value>
+          <activiti:value id="sEnumVacMain_3" name="щорічну(для політичних посад)"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asSubTypeVacation_Dop" name="Підтип відпустки" type="enum" writable="false">
+          <activiti:value id="sEnumVacDop_1" name="за стаж державної служби"></activiti:value>
+          <activiti:value id="sEnumVacDop_2" name="жінці, що має двох (та більше) дітей до 15 років "></activiti:value>
+          <activiti:value id="sEnumVacDop_3" name="жінці, що має дитину-інваліда "></activiti:value>
+          <activiti:value id="sEnumVacDop_4" name="жінці, яка усиновила дитину"></activiti:value>
+          <activiti:value id="sEnumVacDop_5" name="одинокій матері"></activiti:value>
+          <activiti:value id="sEnumVacDop_6" name="батьку, який виховує дитину без матері"></activiti:value>
+          <activiti:value id="sEnumVacDop_7" name="одинокій матері двох дітей до 15 років"></activiti:value>
+          <activiti:value id="sEnumVacDop_8" name="окремим категоріям ветеранів війни"></activiti:value>
+          <activiti:value id="sEnumVacDop_9" name="учасникам ліквідації наслідків аварії ЧАЕС"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asSubTypeVacation_Study" name="Підтип відпустки" type="enum">
+          <activiti:value id="sEnumVacStudy_1" name="на період настановних занять, для участі в лабораторно-екзаменаційної сесії на 1-2 курсах з заочною формою навчання"></activiti:value>
+          <activiti:value id="sEnumVacStudy_2" name="на період настановних занять, для участі в лабораторно-екзаменаційної сесії на третьому та наступних курсах з заочною формою навчання"></activiti:value>
+          <activiti:value id="sEnumVacStudy_3" name="особі, що успішно виконує індивідуальний план підготовки в аспірантурі"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asSubTypeVacation_BezZP" name="Підтип відпустки" type="enum">
+          <activiti:value id="sEnumVacBezZP_1" name="за сімейними обставинами (за згодою сторін)"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sSubTypeVacation_Other" name="Підтип відпустки" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDateVacationBegin" name="Дата початку відпустки" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_1" name="Кількість днів:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bAddVacationType" name="Додати ще відпустку; ;sID_CheckboxTrue=yes" type="enum" default="no" writable="false">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asTypeVacation_1" name="Виберіть тип відпустки" type="enum" writable="false">
+          <activiti:value id="sEnumVac_1" name="основну щорічну відпустку "></activiti:value>
+          <activiti:value id="sEnumVac_2" name="додаткову відпустку"></activiti:value>
+          <activiti:value id="sEnumVac_4" name="навчальну відпустку"></activiti:value>
+          <activiti:value id="sEnumVac_5" name="відпустку без збереження заробітної плати"></activiti:value>
+          <activiti:value id="sEnumVac_6" name="іншу відпустку"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asSubTypeVacation_Main_1" name="Підтип відпустки" type="enum" writable="false">
+          <activiti:value id="sEnumVacMain_1" name="основну щорічну відпустку"></activiti:value>
+          <activiti:value id="sEnumVacMain_2" name="частину основної щорічної відпустки"></activiti:value>
+          <activiti:value id="sEnumVacMain_3" name="щорічну(для політичних посад)"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asSubTypeVacation_Dop_1" name="Підтип відпустки" type="enum" writable="false">
+          <activiti:value id="sEnumVacDop_1" name="за стаж державної служби"></activiti:value>
+          <activiti:value id="sEnumVacDop_2" name="жінці, що має двох (та більше) дітей до 15 років "></activiti:value>
+          <activiti:value id="sEnumVacDop_3" name="жінці, що має дитину-інваліда "></activiti:value>
+          <activiti:value id="sEnumVacDop_4" name="жінці, яка усиновила дитину"></activiti:value>
+          <activiti:value id="sEnumVacDop_5" name="одинокій матері"></activiti:value>
+          <activiti:value id="sEnumVacDop_6" name="батьку, який виховує дитину без матері"></activiti:value>
+          <activiti:value id="sEnumVacDop_7" name="одинокій матері двох дітей до 15 років"></activiti:value>
+          <activiti:value id="sEnumVacDop_8" name="окремим категоріям ветеранів війни"></activiti:value>
+          <activiti:value id="sEnumVacDop_9" name="учасникам ліквідації наслідків аварії ЧАЕС"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asSubTypeVacation_Study_1" name="Підтип відпустки" type="enum" writable="false">
+          <activiti:value id="sEnumVacStudy_1" name="на період настановних занять, для участі в лабораторно-екзаменаційної сесії на 1-2 курсах з заочною формою навчання"></activiti:value>
+          <activiti:value id="sEnumVacStudy_2" name="на період настановних занять, для участі в лабораторно-екзаменаційної сесії на третьому та наступних курсах з заочною формою навчання"></activiti:value>
+          <activiti:value id="sEnumVacStudy_3" name="особі, що успішно виконує індивідуальний план підготовки в аспірантурі"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asSubTypeVacation_BezZP_1" name="Підтип відпустки" type="enum" writable="false">
+          <activiti:value id="sEnumVacBezZP_1" name="за сімейними обставинами (за згодою сторін)"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sSubTypeVacation_Other_1" name="Підтип відпустки" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_2" name="Кількість днів:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateVacationEnd" name="Дата кінця відпустки; ;writable=false,bVisible=false" type="date"></activiti:formProperty>
+        <activiti:formProperty id="bMaterialAid" name="З матеріальною (грошовою) допомогою; ;sID_CheckboxTrue=yes" type="enum" default="no" writable="false">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Додатки; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Заява на 1 тип відпустки;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1PAyGT3GVLTKasn74jWuMhxEr3jKdHzK5oUe5AxwvAkg', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="Заява на 2 тип відпустки;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1dli2B1TV2da1m2Q4EpQReZgbakigHhTxMHGW3RZRGlE', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_1" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;asSubTypeVacation_Main&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_2" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;asSubTypeVacation_Dop&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_4" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_4&quot;:{&quot;aField_ID&quot;:[&quot;asSubTypeVacation_Study&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_4'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_5" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_5&quot;:{&quot;aField_ID&quot;:[&quot;asSubTypeVacation_BezZP&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_5'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_6" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_6&quot;:{&quot;aField_ID&quot;:[&quot;sSubTypeVacation_Other&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_6'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addVacation" name="Маркер показывающий доп поля" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_7&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_2&quot;,&quot;asTypeVacation_1&quot;,&quot;sBody_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddVacationType&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_11" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_11&quot;:{&quot;aField_ID&quot;:[&quot;asSubTypeVacation_Main_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_22" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_22&quot;:{&quot;aField_ID&quot;:[&quot;asSubTypeVacation_Dop_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_44" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_44&quot;:{&quot;aField_ID&quot;:[&quot;asSubTypeVacation_Study_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_4'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_55" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_55&quot;:{&quot;aField_ID&quot;:[&quot;asSubTypeVacation_BezZP_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_5'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_66" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_66&quot;:{&quot;aField_ID&quot;:[&quot;sSubTypeVacation_Other_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_6'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_chekbox1" name="Маркер для отображения чекбокса" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1chekbox&quot;:{&quot;aField_ID&quot;:[&quot;bMaterialAid&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asSubTypeVacation_Main&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVacMain_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_chekbox2" name="Маркер для отображения чекбокса" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2chekbox&quot;:{&quot;aField_ID&quot;:[&quot;bMaterialAid&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asSubTypeVacation_Main&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVacMain_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers_12" name="Маркер для отображения ПФ" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_12&quot;:{&quot;aField_ID&quot;:[&quot;sBody_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddVacationType&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers_1212" name="Маркер для отображения ПФ" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1212&quot;:{&quot;aField_ID&quot;:[&quot;sBody_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddVacationType&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'no'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документа" type="date" readable="false" writable="false"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow208" sourceRef="exclusivegateway27" targetRef="servicetask16">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisTypeStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow213" sourceRef="servicetask16" targetRef="usertask2"></sequenceFlow>
+    <serviceTask id="servicetask16" name="права кадри" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_direct]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('kadri_vikonavec', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_direct]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sMyPosition]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <userTask id="usertask12" name="Затвердження керівником департаменту :: ${sAuthorName}" default="flow227">
+      <extensionElements>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Author" name="Полное ФИО; ;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логин автора; ;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sMyPosition" name="Повна посада автора;Повна посада у родовому відмінку;" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTitleDoc" name="Заголовок документа" type="string" default="Заява на відпустку" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="nDaysVacationLeft" name="Доступні дні щорічної відпустки; ;writable=false,bVisible=false" type="string" default="${oDocumentService.getEmployeeDaysVacationLeft(oDocumentService.getLoginAuthor(execution), null).toString()}"></activiti:formProperty>
+        <activiti:formProperty id="asTypeVacation" name="Виберіть тип відпустки" type="enum" writable="false">
+          <activiti:value id="sEnumVac_1" name="основну щорічну відпустку"></activiti:value>
+          <activiti:value id="sEnumVac_2" name="додаткову відпустку"></activiti:value>
+          <activiti:value id="sEnumVac_4" name="навчальну відпустку"></activiti:value>
+          <activiti:value id="sEnumVac_5" name="відпустку без збереження заробітної плати"></activiti:value>
+          <activiti:value id="sEnumVac_6" name="іншу відпустку"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asSubTypeVacation_Main" name="Підтип відпустки" type="enum" writable="false">
+          <activiti:value id="sEnumVacMain_1" name="основну щорічну відпустку"></activiti:value>
+          <activiti:value id="sEnumVacMain_2" name="частину основної щорічної відпустки"></activiti:value>
+          <activiti:value id="sEnumVacMain_3" name="щорічну(для політичних посад)"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asSubTypeVacation_Dop" name="Підтип відпустки" type="enum" writable="false">
+          <activiti:value id="sEnumVacDop_1" name="за стаж державної служби"></activiti:value>
+          <activiti:value id="sEnumVacDop_2" name="жінці, що має двох (та більше) дітей до 15 років "></activiti:value>
+          <activiti:value id="sEnumVacDop_3" name="жінці, що має дитину-інваліда "></activiti:value>
+          <activiti:value id="sEnumVacDop_4" name="жінці, яка усиновила дитину"></activiti:value>
+          <activiti:value id="sEnumVacDop_5" name="одинокій матері"></activiti:value>
+          <activiti:value id="sEnumVacDop_6" name="батьку, який виховує дитину без матері"></activiti:value>
+          <activiti:value id="sEnumVacDop_7" name="одинокій матері двох дітей до 15 років"></activiti:value>
+          <activiti:value id="sEnumVacDop_8" name="окремим категоріям ветеранів війни"></activiti:value>
+          <activiti:value id="sEnumVacDop_9" name="учасникам ліквідації наслідків аварії ЧАЕС"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asSubTypeVacation_Study" name="Підтип відпустки" type="enum">
+          <activiti:value id="sEnumVacStudy_1" name="на період настановних занять, для участі в лабораторно-екзаменаційної сесії на 1-2 курсах з заочною формою навчання"></activiti:value>
+          <activiti:value id="sEnumVacStudy_2" name="на період настановних занять, для участі в лабораторно-екзаменаційної сесії на третьому та наступних курсах з заочною формою навчання"></activiti:value>
+          <activiti:value id="sEnumVacStudy_3" name="особі, що успішно виконує індивідуальний план підготовки в аспірантурі"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asSubTypeVacation_BezZP" name="Підтип відпустки" type="enum">
+          <activiti:value id="sEnumVacBezZP_1" name="за сімейними обставинами (за згодою сторін)"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sSubTypeVacation_Other" name="Підтип відпустки" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDateVacationBegin" name="Дата початку відпустки" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_1" name="Кількість днів:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bAddVacationType" name="Додати ще відпустку; ;sID_CheckboxTrue=yes" type="enum" default="no" writable="false">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asTypeVacation_1" name="Виберіть тип відпустки" type="enum" writable="false">
+          <activiti:value id="sEnumVac_1" name="основну щорічну відпустку "></activiti:value>
+          <activiti:value id="sEnumVac_2" name="додаткову відпустку"></activiti:value>
+          <activiti:value id="sEnumVac_4" name="навчальну відпустку"></activiti:value>
+          <activiti:value id="sEnumVac_5" name="відпустку без збереження заробітної плати"></activiti:value>
+          <activiti:value id="sEnumVac_6" name="іншу відпустку"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asSubTypeVacation_Main_1" name="Підтип відпустки" type="enum" writable="false">
+          <activiti:value id="sEnumVacMain_1" name="основну щорічну відпустку"></activiti:value>
+          <activiti:value id="sEnumVacMain_2" name="частину основної щорічної відпустки"></activiti:value>
+          <activiti:value id="sEnumVacMain_3" name="щорічну(для політичних посад)"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asSubTypeVacation_Dop_1" name="Підтип відпустки" type="enum" writable="false">
+          <activiti:value id="sEnumVacDop_1" name="за стаж державної служби"></activiti:value>
+          <activiti:value id="sEnumVacDop_2" name="жінці, що має двох (та більше) дітей до 15 років "></activiti:value>
+          <activiti:value id="sEnumVacDop_3" name="жінці, що має дитину-інваліда "></activiti:value>
+          <activiti:value id="sEnumVacDop_4" name="жінці, яка усиновила дитину"></activiti:value>
+          <activiti:value id="sEnumVacDop_5" name="одинокій матері"></activiti:value>
+          <activiti:value id="sEnumVacDop_6" name="батьку, який виховує дитину без матері"></activiti:value>
+          <activiti:value id="sEnumVacDop_7" name="одинокій матері двох дітей до 15 років"></activiti:value>
+          <activiti:value id="sEnumVacDop_8" name="окремим категоріям ветеранів війни"></activiti:value>
+          <activiti:value id="sEnumVacDop_9" name="учасникам ліквідації наслідків аварії ЧАЕС"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asSubTypeVacation_Study_1" name="Підтип відпустки" type="enum" writable="false">
+          <activiti:value id="sEnumVacStudy_1" name="на період настановних занять, для участі в лабораторно-екзаменаційної сесії на 1-2 курсах з заочною формою навчання"></activiti:value>
+          <activiti:value id="sEnumVacStudy_2" name="на період настановних занять, для участі в лабораторно-екзаменаційної сесії на третьому та наступних курсах з заочною формою навчання"></activiti:value>
+          <activiti:value id="sEnumVacStudy_3" name="особі, що успішно виконує індивідуальний план підготовки в аспірантурі"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asSubTypeVacation_BezZP_1" name="Підтип відпустки" type="enum" writable="false">
+          <activiti:value id="sEnumVacBezZP_1" name="за сімейними обставинами (за згодою сторін)"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sSubTypeVacation_Other_1" name="Підтип відпустки" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_2" name="Кількість днів:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateVacationEnd" name="Дата кінця відпустки; ;writable=false,bVisible=false" type="date"></activiti:formProperty>
+        <activiti:formProperty id="bMaterialAid" name="З матеріальною (грошовою) допомогою; ;sID_CheckboxTrue=yes" type="enum" default="no" writable="false">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Додатки; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Заява на 1 тип відпустки;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1PAyGT3GVLTKasn74jWuMhxEr3jKdHzK5oUe5AxwvAkg', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="Заява на 2 тип відпустки;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1dli2B1TV2da1m2Q4EpQReZgbakigHhTxMHGW3RZRGlE', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_1" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;asSubTypeVacation_Main&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_2" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;asSubTypeVacation_Dop&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_4" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_4&quot;:{&quot;aField_ID&quot;:[&quot;asSubTypeVacation_Study&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_4'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_5" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_5&quot;:{&quot;aField_ID&quot;:[&quot;asSubTypeVacation_BezZP&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_5'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_6" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_6&quot;:{&quot;aField_ID&quot;:[&quot;sSubTypeVacation_Other&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_6'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addVacation" name="Маркер показывающий доп поля" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_7&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_2&quot;,&quot;asTypeVacation_1&quot;,&quot;sBody_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddVacationType&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_11" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_11&quot;:{&quot;aField_ID&quot;:[&quot;asSubTypeVacation_Main_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_22" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_22&quot;:{&quot;aField_ID&quot;:[&quot;asSubTypeVacation_Dop_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_44" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_44&quot;:{&quot;aField_ID&quot;:[&quot;asSubTypeVacation_Study_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_4'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_55" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_55&quot;:{&quot;aField_ID&quot;:[&quot;asSubTypeVacation_BezZP_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_5'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_66" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_66&quot;:{&quot;aField_ID&quot;:[&quot;sSubTypeVacation_Other_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_6'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_chekbox1" name="Маркер для отображения чекбокса" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1chekbox&quot;:{&quot;aField_ID&quot;:[&quot;bMaterialAid&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asSubTypeVacation_Main&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVacMain_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_chekbox2" name="Маркер для отображения чекбокса" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2chekbox&quot;:{&quot;aField_ID&quot;:[&quot;bMaterialAid&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asSubTypeVacation_Main&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVacMain_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers_12" name="Маркер для отображения ПФ" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_12&quot;:{&quot;aField_ID&quot;:[&quot;sBody_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddVacationType&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers_1212" name="Маркер для отображения ПФ" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1212&quot;:{&quot;aField_ID&quot;:[&quot;sBody_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddVacationType&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'no'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документа" type="date" readable="false" writable="false"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow217" sourceRef="exclusivegateway25" targetRef="usertask12">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_agree]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisTypeStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway id="exclusivegateway24" name="Exclusive Gateway" default="flow220"></exclusiveGateway>
+    <sequenceFlow id="flow220" sourceRef="exclusivegateway24" targetRef="usertask10"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway25" name="Exclusive Gateway" default="flow222"></exclusiveGateway>
+    <sequenceFlow id="flow221" sourceRef="exclusivegateway24" targetRef="exclusivegateway25">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow222" sourceRef="exclusivegateway25" targetRef="usertask10">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:expression><![CDATA[+1]]></activiti:expression>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow223" sourceRef="usertask10" targetRef="exclusivegateway24"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway26" name="Exclusive Gateway" default="flow226"></exclusiveGateway>
+    <exclusiveGateway id="exclusivegateway27" name="Exclusive Gateway" default="flow225"></exclusiveGateway>
+    <sequenceFlow id="flow224" sourceRef="exclusivegateway26" targetRef="exclusivegateway27">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow225" sourceRef="exclusivegateway27" targetRef="usertask12">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:expression><![CDATA[+1]]></activiti:expression>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow226" sourceRef="exclusivegateway26" targetRef="usertask12"></sequenceFlow>
+    <sequenceFlow id="flow227" sourceRef="usertask12" targetRef="exclusivegateway26"></sequenceFlow>
+    <sequenceFlow id="flow228" sourceRef="usertask2" targetRef="servicetask13">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisTypeStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="FlowButton_AcceptEdit" name="Редагувати;sIF=hasAny-States(Authorship)" sourceRef="usertask10" targetRef="usertask14">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_edit]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_AcceptEdit')}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="FlowButton_SaveChangeAndSnos" name="Збререгти зміни;sIF=hasAny-States(Authorship)" sourceRef="usertask14" targetRef="exclusivegateway29">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${resetDocumentSignesListener}">
+          <activiti:field name="sasKey_StepType">
+            <activiti:string><![CDATA[Consideration,Accept,Agree,Direct]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_SaveChangeAndSnos')}]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway id="exclusivegateway29" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="flow231" sourceRef="usertask1" targetRef="exclusivegateway29"></sequenceFlow>
+    <sequenceFlow id="FlowButton_AgreeEdit" name="Редагувати;sIF=hasAny-States(Authorship)" sourceRef="usertask12" targetRef="usertask14">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_edit]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_AgreeEdit')}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="FlowButton_DirectEditToo" name="Редагувати;sIF=hasAny-States(Authorship)" sourceRef="usertask2" targetRef="usertask14">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_edit]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_DirectEditToo')}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="usertask14" name="Редагування :: ${sAuthorName}">
+      <extensionElements>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Author" name="Полное ФИО; ;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логин автора; ;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sMyPosition" name="Повна посада автора;Повна посада у родовому відмінку;" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sTitleDoc" name="Заголовок документа" type="string" default="Заява на відпустку" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="nDaysVacationLeft" name="Доступні дні щорічної відпустки; ;writable=false,bVisible=false" type="string" default="${oDocumentService.getEmployeeDaysVacationLeft(oDocumentService.getLoginAuthor(execution), null).toString()}"></activiti:formProperty>
+        <activiti:formProperty id="asTypeVacation" name="Виберіть тип відпустки" type="enum" required="true">
+          <activiti:value id="sEnumVac_1" name="основну щорічну відпустку"></activiti:value>
+          <activiti:value id="sEnumVac_2" name="додаткову відпустку"></activiti:value>
+          <activiti:value id="sEnumVac_4" name="навчальну відпустку"></activiti:value>
+          <activiti:value id="sEnumVac_5" name="відпустку без збереження заробітної плати"></activiti:value>
+          <activiti:value id="sEnumVac_6" name="іншу відпустку"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asSubTypeVacation_Main" name="Підтип відпустки" type="enum">
+          <activiti:value id="sEnumVacMain_1" name="основну щорічну відпустку"></activiti:value>
+          <activiti:value id="sEnumVacMain_2" name="частину основної щорічної відпустки"></activiti:value>
+          <activiti:value id="sEnumVacMain_3" name="щорічну(для політичних посад)"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asSubTypeVacation_Dop" name="Підтип відпустки" type="enum">
+          <activiti:value id="sEnumVacDop_1" name="за стаж державної служби"></activiti:value>
+          <activiti:value id="sEnumVacDop_2" name="жінці, що має двох (та більше) дітей до 15 років "></activiti:value>
+          <activiti:value id="sEnumVacDop_3" name="жінці, що має дитину-інваліда "></activiti:value>
+          <activiti:value id="sEnumVacDop_4" name="жінці, яка усиновила дитину"></activiti:value>
+          <activiti:value id="sEnumVacDop_5" name="одинокій матері"></activiti:value>
+          <activiti:value id="sEnumVacDop_6" name="батьку, який виховує дитину без матері"></activiti:value>
+          <activiti:value id="sEnumVacDop_7" name="одинокій матері двох дітей до 15 років"></activiti:value>
+          <activiti:value id="sEnumVacDop_8" name="окремим категоріям ветеранів війни"></activiti:value>
+          <activiti:value id="sEnumVacDop_9" name="учасникам ліквідації наслідків аварії ЧАЕС"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asSubTypeVacation_Study" name="Підтип відпустки" type="enum">
+          <activiti:value id="sEnumVacStudy_1" name="на період настановних занять, для участі в лабораторно-екзаменаційної сесії на 1-2 курсах з заочною формою навчання"></activiti:value>
+          <activiti:value id="sEnumVacStudy_2" name="на період настановних занять, для участі в лабораторно-екзаменаційної сесії на третьому та наступних курсах з заочною формою навчання"></activiti:value>
+          <activiti:value id="sEnumVacStudy_3" name="особі, що успішно виконує індивідуальний план підготовки в аспірантурі"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asSubTypeVacation_BezZP" name="Підтип відпустки" type="enum">
+          <activiti:value id="sEnumVacBezZP_1" name="за сімейними обставинами (за згодою сторін)"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sSubTypeVacation_Other" name="Підтип відпустки" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDateVacationBegin" name="Дата початку відпустки" type="date" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_1" name="Кількість днів:" type="long" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bAddVacationType" name="Додати ще відпустку; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asTypeVacation_1" name="Виберіть тип відпустки" type="enum" required="true">
+          <activiti:value id="sEnumVac_1" name="основну щорічну відпустку "></activiti:value>
+          <activiti:value id="sEnumVac_2" name="додаткову відпустку"></activiti:value>
+          <activiti:value id="sEnumVac_4" name="навчальну відпустку"></activiti:value>
+          <activiti:value id="sEnumVac_5" name="відпустку без збереження заробітної плати"></activiti:value>
+          <activiti:value id="sEnumVac_6" name="іншу відпустку"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asSubTypeVacation_Main_1" name="Підтип відпустки" type="enum">
+          <activiti:value id="sEnumVacMain_1" name="основну щорічну відпустку"></activiti:value>
+          <activiti:value id="sEnumVacMain_2" name="частину основної щорічної відпустки"></activiti:value>
+          <activiti:value id="sEnumVacMain_3" name="щорічну(для політичних посад)"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asSubTypeVacation_Dop_1" name="Підтип відпустки" type="enum">
+          <activiti:value id="sEnumVacDop_1" name="за стаж державної служби"></activiti:value>
+          <activiti:value id="sEnumVacDop_2" name="жінці, що має двох (та більше) дітей до 15 років "></activiti:value>
+          <activiti:value id="sEnumVacDop_3" name="жінці, що має дитину-інваліда "></activiti:value>
+          <activiti:value id="sEnumVacDop_4" name="жінці, яка усиновила дитину"></activiti:value>
+          <activiti:value id="sEnumVacDop_5" name="одинокій матері"></activiti:value>
+          <activiti:value id="sEnumVacDop_6" name="батьку, який виховує дитину без матері"></activiti:value>
+          <activiti:value id="sEnumVacDop_7" name="одинокій матері двох дітей до 15 років"></activiti:value>
+          <activiti:value id="sEnumVacDop_8" name="окремим категоріям ветеранів війни"></activiti:value>
+          <activiti:value id="sEnumVacDop_9" name="учасникам ліквідації наслідків аварії ЧАЕС"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asSubTypeVacation_Study_1" name="Підтип відпустки" type="enum">
+          <activiti:value id="sEnumVacStudy_1" name="на період настановних занять, для участі в лабораторно-екзаменаційної сесії на 1-2 курсах з заочною формою навчання"></activiti:value>
+          <activiti:value id="sEnumVacStudy_2" name="на період настановних занять, для участі в лабораторно-екзаменаційної сесії на третьому та наступних курсах з заочною формою навчання"></activiti:value>
+          <activiti:value id="sEnumVacStudy_3" name="особі, що успішно виконує індивідуальний план підготовки в аспірантурі"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asSubTypeVacation_BezZP_1" name="Підтип відпустки" type="enum">
+          <activiti:value id="sEnumVacBezZP_1" name="за сімейними обставинами (за згодою сторін)"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sSubTypeVacation_Other_1" name="Підтип відпустки" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_2" name="Кількість днів:" type="long"></activiti:formProperty>
+        <activiti:formProperty id="sDateVacationEnd" name="Дата кінця відпустки; ;writable=false,bVisible=false" type="date"></activiti:formProperty>
+        <activiti:formProperty id="bMaterialAid" name="З матеріальною (грошовою) допомогою; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Додатки; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Заява на 1 тип відпустки;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1PAyGT3GVLTKasn74jWuMhxEr3jKdHzK5oUe5AxwvAkg', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="Заява на 2 тип відпустки;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1dli2B1TV2da1m2Q4EpQReZgbakigHhTxMHGW3RZRGlE', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_1" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;asSubTypeVacation_Main&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_2" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;asSubTypeVacation_Dop&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_4" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_4&quot;:{&quot;aField_ID&quot;:[&quot;asSubTypeVacation_Study&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_4'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_5" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_5&quot;:{&quot;aField_ID&quot;:[&quot;asSubTypeVacation_BezZP&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_5'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_6" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_6&quot;:{&quot;aField_ID&quot;:[&quot;sSubTypeVacation_Other&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_6'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addVacation" name="Маркер показывающий доп поля" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_7&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_2&quot;,&quot;asTypeVacation_1&quot;,&quot;sBody_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddVacationType&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_11" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_11&quot;:{&quot;aField_ID&quot;:[&quot;asSubTypeVacation_Main_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_22" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_22&quot;:{&quot;aField_ID&quot;:[&quot;asSubTypeVacation_Dop_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_44" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_44&quot;:{&quot;aField_ID&quot;:[&quot;asSubTypeVacation_Study_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_4'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_55" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_55&quot;:{&quot;aField_ID&quot;:[&quot;asSubTypeVacation_BezZP_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_5'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_vacation_66" name="Маркер при выборе отпуска" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_66&quot;:{&quot;aField_ID&quot;:[&quot;sSubTypeVacation_Other_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_6'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_chekbox1" name="Маркер для отображения чекбокса" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1chekbox&quot;:{&quot;aField_ID&quot;:[&quot;bMaterialAid&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asSubTypeVacation_Main&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVacMain_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_chekbox2" name="Маркер для отображения чекбокса" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2chekbox&quot;:{&quot;aField_ID&quot;:[&quot;bMaterialAid&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asSubTypeVacation_Main&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVacMain_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers_12" name="Маркер для отображения ПФ" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_12&quot;:{&quot;aField_ID&quot;:[&quot;sBody_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddVacationType&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers_1212" name="Маркер для отображения ПФ" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1212&quot;:{&quot;aField_ID&quot;:[&quot;sBody_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddVacationType&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'no'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документа" type="date" readable="false" writable="false"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <serviceTask id="servicetask18" name="Подписание автором" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oDocumentService.getLoginAuthor(execution)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_consideration]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_consideration]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sMyPosition]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow235" sourceRef="exclusivegateway29" targetRef="servicetask18">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Consideration]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow236" sourceRef="servicetask18" targetRef="usertask16"></sequenceFlow>
+    <scriptTask id="scripttask3" name="Script Task" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>var processInstanceId = execution.getProcessInstanceId();
+var nID_Process_Child = processDocumentService.getProcessDocument(processInstanceId);
+execution.setVariable('nID_Process_Child', nID_Process_Child.id);</script>
+    </scriptTask>
+    <sequenceFlow id="flow239" sourceRef="scripttask3" targetRef="usertask10"></sequenceFlow>
+    <scriptTask id="scripttask4" name="Дата" scriptFormat="groovy" activiti:autoStoreVariables="false">
+      <script>// Сегодняшняя дата по умолчанию
+execution.setVariable('oDateAt', new Date().format("dd.MM.yyyy").toString())</script>
+    </scriptTask>
+    <sequenceFlow id="flow240" sourceRef="scripttask4" targetRef="usertask1"></sequenceFlow>
+    <userTask id="usertask16" name="Підписання автором з ЕЦП :: ${sAuthorName}">
+      <extensionElements>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Author" name="Полное ФИО; ;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логин автора; ;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sMyPosition" name="Повна посада автора;Повна посада у родовому відмінку;" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sTitleDoc" name="Заголовок документа" type="string" default="Заява про призначення" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPeriod" name="Строк випробування;місяців" type="long" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Додатки; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name=";;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'157_jbhrzDs8hLnoK8h1BlmbJbyZ4Lm8jjUcQgbsREGs', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addPerevirka1" name="Маркер доп поля" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_11&quot;:{&quot;aField_ID&quot;:[&quot;sOrganPerevirkaStosovno&quot;,&quot;sDatePerevirkaStosovno&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sPerevirkaStosovno&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addPerevirka2" name="Маркер доп поля" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_12&quot;:{&quot;aField_ID&quot;:[&quot;sOrganPerevirkaOchischennya&quot;,&quot;sDatePerevirkaOchischennya&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sPerevirkaOchischennya&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документа" type="date" readable="false" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="nID_Process_Child" name="nID_Process_Child;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPidrozdil" name="Підрозділ" type="enum">
+          <activiti:value id="p08" name="Міністр Кабінету Міністрів України"></activiti:value>
+          <activiti:value id="p09" name="Державний секретар Кабінету Міністрів України"></activiti:value>
+          <activiti:value id="p10" name="Заступник Державного секретаря Кабінету Міністрів України-ФЕДОРЧУК В. Я."></activiti:value>
+          <activiti:value id="p11" name="Заступник Державного секретаря Кабінету Міністрів України-ДЕХТЯРЕНКО С. С."></activiti:value>
+          <activiti:value id="p13" name="Заступник Державного секретаря Кабінету Міністрів України-КОВТУН Т.В."></activiti:value>
+          <activiti:value id="p56" name="Урядовий уповноважений з прав осіб з інвалідністю"></activiti:value>
+          <activiti:value id="p17" name="Департамент інформації та комунікацій з громадськістю"></activiti:value>
+          <activiti:value id="p19" name="Департамент кадрового забезпечення"></activiti:value>
+          <activiti:value id="p20" name="Департамент з питань взаємодії з Верховною Радою України, іншими державними органами"></activiti:value>
+          <activiti:value id="p21" name="Департамент з питань інфраструктури та технічного регулювання"></activiti:value>
+          <activiti:value id="p24" name="Господарсько-фінансовий департамент, Управління бухгалтерського обліку, фінансів та звітності"></activiti:value>
+          <activiti:value id="p25" name="Департамент з питань ефективного управління державною власністю"></activiti:value>
+          <activiti:value id="p27" name="Департамент з питань міжнародного співробітництва"></activiti:value>
+          <activiti:value id="p29" name="Департамент з питань безпеки, оборони, діяльності органів юстиції та запобігання корупції"></activiti:value>
+          <activiti:value id="p30" name="Департамент організації засідань Кабінету Міністрів України та урядових комітетів"></activiti:value>
+          <activiti:value id="p32" name="Режимно-секретне управління"></activiti:value>
+          <activiti:value id="p35" name="Департамент забезпечення документообігу"></activiti:value>
+          <activiti:value id="p36" name="Юридичний департамент"></activiti:value>
+          <activiti:value id="p37" name="Департамент з питань розвитку паливно-енергетичного комплексу та житловокомунального господарства"></activiti:value>
+          <activiti:value id="p41" name="Управління з питань роботи із зверненнями громадян (Музейний провулок, 12)"></activiti:value>
+          <activiti:value id="p45" name="Управління інформаційних технологій та безпеки"></activiti:value>
+          <activiti:value id="p49" name="Управління протоколу"></activiti:value>
+          <activiti:value id="p51" name="Відділ з питань дотримання антикорупційного законодавства"></activiti:value>
+          <activiti:value id="p55" name="Урядовий офіс координації європейської та євроатлантичної інтеграції"></activiti:value>
+          <activiti:value id="p67" name="Департамент з питань фінансового та економічного розвитку"></activiti:value>
+          <activiti:value id="p73" name="Департамент гуманітарної та соціальної політики"></activiti:value>
+          <activiti:value id="p75" name="Департамент з питань безпеки життєдіяльності, охорони навколишнього природного середовища та агропромислового комплексу"></activiti:value>
+          <activiti:value id="p80" name="Директорат координації державних політик та стратегічного планування"></activiti:value>
+          <activiti:value id="p81" name="Директорат публічної адміністрації"></activiti:value>
+          <activiti:value id="p82" name="Директорат територіального та місцевого розвитку"></activiti:value>
+          <activiti:value id="p83" name="Директорат моніторингу та контролю"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sPerevirkaStosovno" name="Перевірка стосовно мене проводилась;так/ні;sID_CheckboxTrue=yes" type="enum">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sOrganPerevirkaStosovno" name="Державний орган, який проводив перевірку;якщо проводилась" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDatePerevirkaStosovno" name="Дата перевірки" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sPerevirkaOchischennya" name="Перевірка відповідно до ЗУ Про очищення влади;проводилась чи ні;sID_CheckboxTrue=yes" type="enum">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sOrganPerevirkaOchischennya" name="Державний орган, який проводив перевірку" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDatePerevirkaOchischennya" name="Дата перевірки" type="date"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram__doc_template_covkmudep_acceptance_04_zayava">
+    <bpmndi:BPMNPlane bpmnElement="_doc_template_covkmudep_acceptance_04_zayava" id="BPMNPlane__doc_template_covkmudep_acceptance_04_zayava">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="36.0" y="272.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="81.0" width="130.0" x="147.0" y="112.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask2" id="BPMNShape_usertask2">
+        <omgdc:Bounds height="81.0" width="131.0" x="998.0" y="605.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="1046.0" y="836.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask13" id="BPMNShape_servicetask13">
+        <omgdc:Bounds height="55.0" width="105.0" x="1011.0" y="736.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask10" id="BPMNShape_usertask10">
+        <omgdc:Bounds height="79.0" width="116.0" x="882.0" y="235.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask16" id="BPMNShape_servicetask16">
+        <omgdc:Bounds height="72.0" width="105.0" x="785.0" y="665.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask12" id="BPMNShape_usertask12">
+        <omgdc:Bounds height="81.0" width="148.0" x="764.0" y="471.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway24" id="BPMNShape_exclusivegateway24">
+        <omgdc:Bounds height="40.0" width="40.0" x="919.0" y="361.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway25" id="BPMNShape_exclusivegateway25">
+        <omgdc:Bounds height="40.0" width="40.0" x="817.0" y="361.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway26" id="BPMNShape_exclusivegateway26">
+        <omgdc:Bounds height="40.0" width="40.0" x="817.0" y="599.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway27" id="BPMNShape_exclusivegateway27">
+        <omgdc:Bounds height="40.0" width="40.0" x="686.0" y="599.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway29" id="BPMNShape_exclusivegateway29">
+        <omgdc:Bounds height="40.0" width="40.0" x="347.0" y="132.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask14" id="BPMNShape_usertask14">
+        <omgdc:Bounds height="81.0" width="130.0" x="1107.0" y="234.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask18" id="BPMNShape_servicetask18">
+        <omgdc:Bounds height="57.0" width="120.0" x="446.0" y="124.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask3" id="BPMNShape_scripttask3">
+        <omgdc:Bounds height="55.0" width="105.0" x="887.0" y="125.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask4" id="BPMNShape_scripttask4">
+        <omgdc:Bounds height="55.0" width="105.0" x="1.0" y="125.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask16" id="BPMNShape_usertask16">
+        <omgdc:Bounds height="81.0" width="130.0" x="642.0" y="112.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow23" id="BPMNEdge_flow23">
+        <omgdi:waypoint x="53.0" y="272.0"></omgdi:waypoint>
+        <omgdi:waypoint x="53.0" y="180.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow179" id="BPMNEdge_flow179">
+        <omgdi:waypoint x="772.0" y="152.0"></omgdi:waypoint>
+        <omgdi:waypoint x="887.0" y="152.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow183" id="BPMNEdge_flow183">
+        <omgdi:waypoint x="1063.0" y="791.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1063.0" y="836.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow208" id="BPMNEdge_flow208">
+        <omgdi:waypoint x="706.0" y="639.0"></omgdi:waypoint>
+        <omgdi:waypoint x="837.0" y="665.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow213" id="BPMNEdge_flow213">
+        <omgdi:waypoint x="890.0" y="701.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1063.0" y="686.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow217" id="BPMNEdge_flow217">
+        <omgdi:waypoint x="837.0" y="401.0"></omgdi:waypoint>
+        <omgdi:waypoint x="838.0" y="471.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow220" id="BPMNEdge_flow220">
+        <omgdi:waypoint x="939.0" y="361.0"></omgdi:waypoint>
+        <omgdi:waypoint x="940.0" y="314.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow221" id="BPMNEdge_flow221">
+        <omgdi:waypoint x="919.0" y="381.0"></omgdi:waypoint>
+        <omgdi:waypoint x="857.0" y="381.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow222" id="BPMNEdge_flow222">
+        <omgdi:waypoint x="837.0" y="361.0"></omgdi:waypoint>
+        <omgdi:waypoint x="837.0" y="275.0"></omgdi:waypoint>
+        <omgdi:waypoint x="882.0" y="274.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow223" id="BPMNEdge_flow223">
+        <omgdi:waypoint x="998.0" y="274.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1025.0" y="296.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1025.0" y="380.0"></omgdi:waypoint>
+        <omgdi:waypoint x="959.0" y="381.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow224" id="BPMNEdge_flow224">
+        <omgdi:waypoint x="817.0" y="619.0"></omgdi:waypoint>
+        <omgdi:waypoint x="726.0" y="619.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow225" id="BPMNEdge_flow225">
+        <omgdi:waypoint x="706.0" y="599.0"></omgdi:waypoint>
+        <omgdi:waypoint x="705.0" y="511.0"></omgdi:waypoint>
+        <omgdi:waypoint x="764.0" y="511.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow226" id="BPMNEdge_flow226">
+        <omgdi:waypoint x="837.0" y="599.0"></omgdi:waypoint>
+        <omgdi:waypoint x="838.0" y="552.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow227" id="BPMNEdge_flow227">
+        <omgdi:waypoint x="912.0" y="511.0"></omgdi:waypoint>
+        <omgdi:waypoint x="948.0" y="552.0"></omgdi:waypoint>
+        <omgdi:waypoint x="948.0" y="619.0"></omgdi:waypoint>
+        <omgdi:waypoint x="857.0" y="619.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow228" id="BPMNEdge_flow228">
+        <omgdi:waypoint x="1063.0" y="686.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1063.0" y="736.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_AcceptEdit" id="BPMNEdge_FlowButton_AcceptEdit">
+        <omgdi:waypoint x="998.0" y="274.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1107.0" y="274.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="1011.0" y="232.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_SaveChangeAndSnos" id="BPMNEdge_FlowButton_SaveChangeAndSnos">
+        <omgdi:waypoint x="1172.0" y="234.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1172.0" y="93.0"></omgdi:waypoint>
+        <omgdi:waypoint x="367.0" y="93.0"></omgdi:waypoint>
+        <omgdi:waypoint x="367.0" y="132.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="1177.0" y="152.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow231" id="BPMNEdge_flow231">
+        <omgdi:waypoint x="277.0" y="152.0"></omgdi:waypoint>
+        <omgdi:waypoint x="347.0" y="152.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_AgreeEdit" id="BPMNEdge_FlowButton_AgreeEdit">
+        <omgdi:waypoint x="912.0" y="511.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1171.0" y="511.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1172.0" y="315.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="916.0" y="448.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_DirectEditToo" id="BPMNEdge_FlowButton_DirectEditToo">
+        <omgdi:waypoint x="1129.0" y="645.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1272.0" y="645.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1272.0" y="501.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1272.0" y="275.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1237.0" y="274.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="1129.0" y="645.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow235" id="BPMNEdge_flow235">
+        <omgdi:waypoint x="387.0" y="152.0"></omgdi:waypoint>
+        <omgdi:waypoint x="446.0" y="152.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow236" id="BPMNEdge_flow236">
+        <omgdi:waypoint x="566.0" y="152.0"></omgdi:waypoint>
+        <omgdi:waypoint x="642.0" y="152.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow239" id="BPMNEdge_flow239">
+        <omgdi:waypoint x="939.0" y="180.0"></omgdi:waypoint>
+        <omgdi:waypoint x="940.0" y="235.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow240" id="BPMNEdge_flow240">
+        <omgdi:waypoint x="106.0" y="152.0"></omgdi:waypoint>
+        <omgdi:waypoint x="147.0" y="152.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

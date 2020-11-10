@@ -1,0 +1,8 @@
+nID;sName;sDescription
+0;launchStatusNone;Инициализировано (создан пункт протокола, перед непосредственным запуском)
+1;launchStatusSuccess;Успешно выполненно
+2;launchStatusWarning;Предупреждения по результатам выполнения
+3;launchStatusError;Не выполненно (ошибка)
+4;launchStatusDelay;Отложено выполнение
+5;launchStatusNull;Фейковый статус
+6;launchStatusCancel;Отменено

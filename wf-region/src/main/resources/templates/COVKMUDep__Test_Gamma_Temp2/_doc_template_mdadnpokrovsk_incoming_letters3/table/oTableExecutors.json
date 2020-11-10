@@ -1,0 +1,37 @@
+{
+  "aField": [
+    {
+      "id": "sName_SubjectExecutor",
+      "name": "Виконавець(ці); ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel",
+      "type": "select",
+      "nWidth": "50%"
+      
+    },
+    {
+      "id": "sLogin_SubjectExecutor",
+      "name": "Login",
+      "type": "string"
+    },
+    {
+      "id": "sKey_Subject_ExecutorType",
+      "name": "Тип виконавця",
+      "type": "enum",
+      "a" : [
+	        {
+		"id" : "sCoEx", 
+		"name" : "Співвиконацець"},
+		{
+		"id" : "sEx", 
+		"name" : "Виконавець"},
+		{
+		"id" : "sSeen", 
+		"name" : "До відома"}
+		]
+    },
+    {
+      "id": "oDate_Subject_Execute",
+      "name": "Дата виконання",
+      "type": "date"
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "_:Watch": {
+	"_default_author": {
+      "oMission": {"sKey_Right":"SignRelease"},
+      "oRights": {
+      	"Manage": {},
+      	"AddSignerWriteAccept": {},     	
+      	"RemoveSignerWriteAccept": {},
+      	"EditSignerWriteAccept": {},
+      	"AddSignerWriteAgree": {},     	
+      	"RemoveSignerWriteAgree": {},
+      	"EditSignerWriteAgree": {},
+        "EditSignerRead": {}
+      }
+    },
+        "_default_accept": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignComment": {},
+      	"SignWriteAny": {},
+      	"SignWriteNotNeed": {"bDisable": true},
+      	"AddSignerWriteAccept": {},
+      	"TaskAdd": {},
+      	"TaskEdit": {},
+      	"TaskRemove": {},
+      	"ManageSignersRead": {},     	
+      	"ManageViewers": {}
+      }
+    },
+     "_default_seen": {
+      "oMission": {"sKey_Right":"SignRead", "bResetImageAfterSubmit": true},
+      "oRights": {
+      	"SignWriteAny": {},
+      	"ManageSignersRead": {},
+        "ManageViewers": {}
+      }
+  },
+    "_default_consideration": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {     	
+      	"SignComment": {},
+      	"TaskEdit": {"bDisable": true},
+        "DocumentRemove": {"bDisable": true},
+		"SignWrite": {"bDisable": true},
+		"SignQuestion": {"bDisable": true}
+      }
+    },
+    "_default_agree": {
+      "oMission": {"sKey_Right":"SignWrite", "bResetImageAfterSubmit": true},
+      "oRights": {
+        "SignComment": {},
+        "SignWriteAny": {},
+        "SignWriteNotNeed": {"bDisable": true},      	
+      	"TaskAdd": {},
+      	"TaskEdit": {},
+      	"TaskRemove": {},
+      	"ManageSignersRead": {},
+        "ManageViewers": {}
+      },
+      "bNeedECP": true,
+      "oProperties": {
+        "sasKey_Field_SignECP": "sTable_2.sFile"
+      }
+    },
+    "_default_view": {
+      "oMission": {"sKey_Right":"View", "sKey_Step_At":""},
+      "oRights": {
+      	"ManageViewers": {},
+        "SignComment": {}
+      }
+    }
+  },
+  "step_create:Create": {},
+  "step_accept:Accept": {},
+  "step_agree:Agree": {"property": {"nSubscribersMin": "1"}},
+  "step_seen:Seen": {},
+  "step_consideration:Consideration": {},
+  "step_edit:Edit": {}
+}

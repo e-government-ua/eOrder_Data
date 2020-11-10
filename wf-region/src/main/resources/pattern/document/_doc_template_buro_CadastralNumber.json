@@ -1,0 +1,77 @@
+{
+  "_:Watch": {
+	"_default_author": {
+      "oMission": {"sKey_Right":"SignRelease"},
+      "oRights": {
+        "EditFields": {},        
+        "Remove": {},
+      	"SignComment": {}
+      }
+    
+    },
+      "_default_accept": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignWriteAny": {},
+      	"SignComment": {}
+      }
+    },
+    "_default_agree": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+        "EditFields": {},        
+        "Remove": {},
+      	"SignComment": {}
+      }
+    },
+      "_default_seen": {
+      "oMission": {"sKey_Right":"SignRead"},
+      "oRights": {
+      	"ManageViewers": {}
+      }
+    },
+    "_default_FirstAccept": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+        "EditFields": {},        
+        "Remove": {},
+      	"SignComment": {}
+      }
+    },
+     "_default_SecondAgree": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+        "EditFields": {},        
+        "Remove": {},
+      	"SignComment": {}
+      }
+    },
+      "_default_direct": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+        "EditFields": {},        
+        "Remove": {},
+      	"SignComment": {}
+      }
+    },
+      "_default_execute": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignComment": {},
+      	"EditFields": {}
+      }
+    }
+  },
+  "step_create:Create": {},
+  "step_accept:Accept": {},
+  "step_FirstAccept:FirstAccept": {},  
+  "step_direct:Direct": {},
+  "step_agree:Agree": {},
+  "step_SecondAgree:SecondAgree": {},  
+  "step_execute:Execute": {},
+  "step_execute_1:Execute": {},
+  "step_execute_2:Execute": {},
+  "step_execute_3:Execute": {},
+  "step_execute_4:Execute": {}, 
+  "step_edit:Edit": {}
+}

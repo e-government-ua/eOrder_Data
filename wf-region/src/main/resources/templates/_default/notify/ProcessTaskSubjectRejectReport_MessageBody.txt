@@ -1,0 +1,1 @@
+Шановний колего! [oSubjectEmployeeVO_ActionSource.sFIO_Short] повернув завдання [oProcessTaskVO.sHead] №[sID_Order] на доопрацювання. Відпрацюйте його у найкоротший термін.

@@ -1,0 +1,5 @@
+{"aField": [
+   {"id": "nRow","name": "№ з/п","type": "string"}
+   ,{"id": "sName","name": "Назва","type": "string"}
+   ,{"id": "oFile","name": "Файл; ;bNew=true,sID_Field_WithPrintformSourceForAutogenerationHerePDF_NotSigned","type": "file"}
+]}

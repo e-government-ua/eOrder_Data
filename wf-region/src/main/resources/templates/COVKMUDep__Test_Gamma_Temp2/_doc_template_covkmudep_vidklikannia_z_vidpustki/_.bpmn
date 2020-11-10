@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="_doc_template_covkmudep_vidklikannia_z_vidpustki" name="Наказ про відкликання з відпустки" isExecutable="true">
+    <documentation>;bTemplated=true</documentation>
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <userTask id="usertask1" name="Картка на створення документу">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа" type="string" default="Наказ про відкликання з відпустки" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sRegNumber" name="Номер документа;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sToNumber" name="До номеру;;bImportFields=true,{{Autocomplete:getProcessDocuments()}},sID_Field_Alias=sID_Order_Document,bImportFieldSkip=true" type="select"></activiti:formProperty>
+        <activiti:formProperty id="sName_Pracivnika" name="ПІБ працівника;який відкликається з відпустки;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Pracivnika" name="Логін працівника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документа;;bImportFieldSkip=true" type="date" readable="false" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCodeName" name="Код та наіменування номенклатури справи;;bImportFields=true,{{Autocomplete:getProcessDocuments()}},sID_Field_Alias=sID_Order_Document,bImportFieldSkip=true" type="select" default="19-6/1: Накази Державного секретаря Кабiнету Мiнiстрiв України з кадрових питань (надання вiдпусток щорiчних та додаткових, у зв’язку з навчанням) з заявами працiвникiв Секретарiату Кабiнету Мiнiстрiв України"></activiti:formProperty>
+        <activiti:formProperty id="sTextNakazu" name="Текст наказу" type="fileHTML" default="У зв’язку із службовою необхідністю," required="true"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логін автора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sAuthorName" name="ПІБ автора документа;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Наказ про відкликання з відпустки;;bVisible=false,bImportFieldSkip=true,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1d9YHjo91g0ta767ZZqlNENZI_nF_7CpN99xRuPmc-Ao', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sID_Order_DocumentStart" name="Номер системний; ;bVisible=false" type="string" expression="${generalConfig.getOrderId_ByProcess(generalConfig.getSelfServerId(), execution.getProcessInstanceId()).toString()}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
+    <sequenceFlow id="flow3" sourceRef="usertask12" targetRef="usertask3">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <userTask id="usertask3" name="Узгодження наказу :: про відкликання з відпустки. ${sName_Pracivnika}" default="flow7">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа" type="string" default="Наказ про відкликання з відпустки" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sRegNumber" name="Номер документа;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sToNumber" name="До номеру;;bImportFields=true,{{Autocomplete:getProcessDocuments()}},sID_Field_Alias=sID_Order_Document,bImportFieldSkip=true" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Pracivnika" name="ПІБ працівника;який відкликається з відпустки;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Pracivnika" name="Логін працівника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документа;;bImportFieldSkip=true" type="date" readable="false" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCodeName" name="Код та наіменування номенклатури справи;;bImportFields=true,{{Autocomplete:getProcessDocuments()}},sID_Field_Alias=sID_Order_Document,bImportFieldSkip=true" type="select" default="19-6/1: Накази Державного секретаря Кабiнету Мiнiстрiв України з кадрових питань (надання вiдпусток щорiчних та додаткових, у зв’язку з навчанням) з заявами працiвникiв Секретарiату Кабiнету Мiнiстрiв України" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTextNakazu" name="Текст наказу" type="fileHTML" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логін автора;;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sAuthorName" name="ПІБ автора документа;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Наказ про відкликання з відпустки;;bVisible=false,bImportFieldSkip=true,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1d9YHjo91g0ta767ZZqlNENZI_nF_7CpN99xRuPmc-Ao', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Pracivnika" name="Полное ФИО; ;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(sLogin_Pracivnika)}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <exclusiveGateway id="exclusivegateway2" name="Exclusive Gateway" default="flow9"></exclusiveGateway>
+    <sequenceFlow id="flow7" sourceRef="usertask3" targetRef="exclusivegateway2"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway3" name="Exclusive Gateway" default="flow10"></exclusiveGateway>
+    <sequenceFlow id="flow8" sourceRef="exclusivegateway2" targetRef="exclusivegateway3">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow9" sourceRef="exclusivegateway2" targetRef="usertask3"></sequenceFlow>
+    <sequenceFlow id="flow10" sourceRef="exclusivegateway3" targetRef="usertask3">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:expression><![CDATA[+1]]></activiti:expression>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="FlowButton_VzyatNaRedaktirovanie" name="Редагування;sIF=hasAny-States(Authorship)" sourceRef="usertask3" targetRef="usertask15">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[edit]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_VzyatNaRedaktirovanie')}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="FlowButton_SnosIVernutNaVizirovanie" name="Знести підписи та зберегти зміни;sIF=hasAny-States(Authorship)" sourceRef="usertask15" targetRef="exclusivegateway9">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentResetStepTypesListener}">
+          <activiti:field name="sasKey_StepType">
+            <activiti:string><![CDATA[Consideration,Accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_SnosIVernutNaVizirovanie')}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow22" sourceRef="exclusivegateway3" targetRef="usertask10">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[agree]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisTypeStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="FlowButton_VzyatNaRedaktirovanieZZatverdgennya" name="Редагування;sIF=hasAny-States(Authorship)" sourceRef="usertask10" targetRef="usertask16">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[edit]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_VzyatNaRedaktirovanieZZatverdgennya')}]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway id="exclusivegateway4" name="Exclusive Gateway" default="flow24"></exclusiveGateway>
+    <sequenceFlow id="flow23" sourceRef="usertask10" targetRef="exclusivegateway4"></sequenceFlow>
+    <sequenceFlow id="flow24" sourceRef="exclusivegateway4" targetRef="usertask10"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway5" name="Exclusive Gateway" default="flow26"></exclusiveGateway>
+    <sequenceFlow id="flow25" sourceRef="exclusivegateway4" targetRef="exclusivegateway5">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow26" sourceRef="exclusivegateway5" targetRef="usertask10"></sequenceFlow>
+    <sequenceFlow id="flow27" sourceRef="exclusivegateway5" targetRef="usertask17">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[direct]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisTypeStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow31" sourceRef="exclusivegateway8" targetRef="endevent1"></sequenceFlow>
+    <userTask id="usertask10" name="Затвердження наказу про відкликання з відпустки. ${sName_Pracivnika}" default="flow23">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа" type="string" default="Наказ про відкликання з відпустки" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sRegNumber" name="Номер документа;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sToNumber" name="До номеру;;bImportFields=true,{{Autocomplete:getProcessDocuments()}},sID_Field_Alias=sID_Order_Document,bImportFieldSkip=true" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Pracivnika" name="ПІБ працівника;який відкликається з відпустки;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Pracivnika" name="Логін працівника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документа;;bImportFieldSkip=true" type="date" readable="false" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCodeName" name="Код та наіменування номенклатури справи;;bImportFields=true,{{Autocomplete:getProcessDocuments()}},sID_Field_Alias=sID_Order_Document,bImportFieldSkip=true" type="select" default="19-6/1: Накази Державного секретаря Кабiнету Мiнiстрiв України з кадрових питань (надання вiдпусток щорiчних та додаткових, у зв’язку з навчанням) з заявами працiвникiв Секретарiату Кабiнету Мiнiстрiв України" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTextNakazu" name="Текст наказу" type="fileHTML" default="У зв’язку із службовою необхідністю," writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логін автора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sAuthorName" name="ПІБ автора документа;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Наказ про відкликання з відпустки;;bVisible=false,bImportFieldSkip=true,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1d9YHjo91g0ta767ZZqlNENZI_nF_7CpN99xRuPmc-Ao', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Pracivnika" name="Полное ФИО; ;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(sLogin_Pracivnika)}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask11" name="Ознайомлення з наказом про відкликання з відпустки. ${sName_Pracivnika} :: ${sRegNumber} від ${oDateAt}">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа" type="string" default="Наказ про відкликання з відпустки" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sRegNumber" name="Номер документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sToNumber" name="До номеру;;bImportFields=true,{{Autocomplete:getProcessDocuments()}},sID_Field_Alias=sID_Order_Document,bImportFieldSkip=true" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Pracivnika" name="ПІБ працівника;який відкликається з відпустки;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Pracivnika" name="Логін працівника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документа;;bImportFieldSkip=true" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCodeName" name="Код та наіменування номенклатури справи;;bImportFields=true,{{Autocomplete:getProcessDocuments()}},sID_Field_Alias=sID_Order_Document,bImportFieldSkip=true" type="select" default="19-6/1: Накази Державного секретаря Кабiнету Мiнiстрiв України з кадрових питань (надання вiдпусток щорiчних та додаткових, у зв’язку з навчанням) з заявами працiвникiв Секретарiату Кабiнету Мiнiстрiв України" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTextNakazu" name="Текст наказу" type="fileHTML" default="У зв’язку із службовою необхідністю," writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логін автора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sAuthorName" name="ПІБ автора документа;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Наказ про відкликання з відпустки;;bVisible=false,bImportFieldSkip=true,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1d9YHjo91g0ta767ZZqlNENZI_nF_7CpN99xRuPmc-Ao', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Pracivnika" name="Полное ФИО; ;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(sLogin_Pracivnika)}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow36" sourceRef="usertask11" targetRef="exclusivegateway7"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway8" name="Exclusive Gateway" default="flow38"></exclusiveGateway>
+    <sequenceFlow id="flow38" sourceRef="exclusivegateway8" targetRef="usertask11">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:expression><![CDATA[+1]]></activiti:expression>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <exclusiveGateway id="exclusivegateway7" name="Exclusive Gateway" default="flow39"></exclusiveGateway>
+    <sequenceFlow id="flow37" sourceRef="exclusivegateway7" targetRef="exclusivegateway8">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow39" sourceRef="exclusivegateway7" targetRef="usertask11"></sequenceFlow>
+    <userTask id="usertask12" name="Наказ про відкликання з відпустки. ${sName_Pracivnika}">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа" type="string" default="Наказ про відкликання з відпустки" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sRegNumber" name="Номер документа;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sToNumber" name="До номеру;;bImportFields=true,{{Autocomplete:getProcessDocuments()}},sID_Field_Alias=sID_Order_Document,bImportFieldSkip=true" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Pracivnika" name="ПІБ працівника;який відкликається з відпустки;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Pracivnika" name="Логін працівника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документа;;bImportFieldSkip=true" type="date" readable="false" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCodeName" name="Код та наіменування номенклатури справи;;bImportFields=true,{{Autocomplete:getProcessDocuments()}},sID_Field_Alias=sID_Order_Document,bImportFieldSkip=true" type="select" default="19-6/1: Накази Державного секретаря Кабiнету Мiнiстрiв України з кадрових питань (надання вiдпусток щорiчних та додаткових, у зв’язку з навчанням) з заявами працiвникiв Секретарiату Кабiнету Мiнiстрiв України" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTextNakazu" name="Текст наказу" type="fileHTML" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логін автора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sAuthorName" name="ПІБ автора документа;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Наказ про відкликання з відпустки;;bVisible=false,bImportFieldSkip=true,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1d9YHjo91g0ta767ZZqlNENZI_nF_7CpN99xRuPmc-Ao', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <serviceTask id="servicetask6" name="Узгодження наказу автором" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_consideration]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_consideration]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sTitleDoc]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oDocumentService.getLoginAuthor(execution)}]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow40" sourceRef="exclusivegateway9" targetRef="scripttask1">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Consideration]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow41" sourceRef="servicetask6" targetRef="usertask12"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway9" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="flow42" sourceRef="usertask1" targetRef="exclusivegateway9"></sequenceFlow>
+    <sequenceFlow id="FlowButton_SnosIVernutNaVizirovanieZZatverdgennya" name="Знести підписи та зберегти зміни;sIF=hasAny-States(Authorship)" sourceRef="usertask16" targetRef="exclusivegateway9">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentResetStepTypesListener}">
+          <activiti:field name="sasKey_StepType">
+            <activiti:string><![CDATA[Consideration,Accept,Agree]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_SnosIVernutNaVizirovanieZZatverdgennya')}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="usertask15" name="Редагування">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа" type="string" default="Наказ про відкликання з відпустки" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sRegNumber" name="Номер документа;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sToNumber" name="До номеру;;bImportFields=true,{{Autocomplete:getProcessDocuments()}},sID_Field_Alias=sID_Order_Document,bImportFieldSkip=true" type="select"></activiti:formProperty>
+        <activiti:formProperty id="sName_Pracivnika" name="ПІБ працівника;який відкликається з відпустки;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Pracivnika" name="Логін працівника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документа;;bImportFieldSkip=true" type="date" readable="false" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCodeName" name="Код та наіменування номенклатури справи;;bImportFields=true,{{Autocomplete:getProcessDocuments()}},sID_Field_Alias=sID_Order_Document,bImportFieldSkip=true" type="select" default="19-6/1: Накази Державного секретаря Кабiнету Мiнiстрiв України з кадрових питань (надання вiдпусток щорiчних та додаткових, у зв’язку з навчанням) з заявами працiвникiв Секретарiату Кабiнету Мiнiстрiв України"></activiti:formProperty>
+        <activiti:formProperty id="sTextNakazu" name="Текст наказу" type="fileHTML" default="У зв’язку із службовою необхідністю," required="true"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логін автора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sAuthorName" name="ПІБ автора документа;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Наказ про відкликання з відпустки;;bVisible=false,bImportFieldSkip=true,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1d9YHjo91g0ta767ZZqlNENZI_nF_7CpN99xRuPmc-Ao', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask16" name="Редагування">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа" type="string" default="Наказ про відкликання з відпустки" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sRegNumber" name="Номер документа;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sToNumber" name="До номеру;;bImportFields=true,{{Autocomplete:getProcessDocuments()}},sID_Field_Alias=sID_Order_Document,bImportFieldSkip=true" type="select"></activiti:formProperty>
+        <activiti:formProperty id="sName_Pracivnika" name="ПІБ працівника;який відкликається з відпустки;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Pracivnika" name="Логін працівника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документа;;bImportFieldSkip=true" type="date" readable="false" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCodeName" name="Код та наіменування номенклатури справи;;bImportFields=true,{{Autocomplete:getProcessDocuments()}},sID_Field_Alias=sID_Order_Document,bImportFieldSkip=true" type="select" default="19-6/1: Накази Державного секретаря Кабiнету Мiнiстрiв України з кадрових питань (надання вiдпусток щорiчних та додаткових, у зв’язку з навчанням) з заявами працiвникiв Секретарiату Кабiнету Мiнiстрiв України"></activiti:formProperty>
+        <activiti:formProperty id="sTextNakazu" name="Текст наказу" type="fileHTML" default="У зв’язку із службовою необхідністю," required="true"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логін автора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sAuthorName" name="ПІБ автора документа;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Наказ про відкликання з відпустки;;bVisible=false,bImportFieldSkip=true,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1d9YHjo91g0ta767ZZqlNENZI_nF_7CpN99xRuPmc-Ao', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask17" name="Ознайомлення автором з наказом про відкликання з відпустки. ${sName_Pracivnika}" default="flow23">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа" type="string" default="Наказ про відкликання з відпустки" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sRegNumber" name="Номер документа" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sToNumber" name="До номеру;;bImportFields=true,{{Autocomplete:getProcessDocuments()}},sID_Field_Alias=sID_Order_Document,bImportFieldSkip=true" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Pracivnika" name="ПІБ працівника;який відкликається з відпустки;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Pracivnika" name="Логін працівника;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документа" type="date" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sCodeName" name="Код та наіменування номенклатури справи;;bImportFields=true,{{Autocomplete:getProcessDocuments()}},sID_Field_Alias=sID_Order_Document,bImportFieldSkip=true" type="select" default="19-6/1: Накази Державного секретаря Кабiнету Мiнiстрiв України з кадрових питань (надання вiдпусток щорiчних та додаткових, у зв’язку з навчанням) з заявами працiвникiв Секретарiату Кабiнету Мiнiстрiв України" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTextNakazu" name="Текст наказу" type="fileHTML" default="У зв’язку із службовою необхідністю,"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логін автора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sAuthorName" name="ПІБ автора документа;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Наказ про відкликання з відпустки;;bVisible=false,bImportFieldSkip=true,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1d9YHjo91g0ta767ZZqlNENZI_nF_7CpN99xRuPmc-Ao', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Pracivnika" name="Полное ФИО; ;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(sLogin_Pracivnika)}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow43" sourceRef="usertask17" targetRef="usertask11">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[seen]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisTypeStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <scriptTask id="scripttask1" name="Script Task" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>//Связка одного документа, с поля
+var sID_Order = execution.getVariable('sToNumber');
+if(sID_Order){
+	var sNum = sID_Order.split('-')[1];
+	var processInstanceId_parent = sNum.substring(0, sNum.length - 1);
+	var processInstanceId_child = execution.getProcessInstanceId();
+	var nID_Process_Child = processDocumentService.getProcessDocument(processInstanceId_child).id;
+	var nID_Process_Parent = processDocumentService.getProcessDocument(processInstanceId_parent).id;
+	processDocumentTreeService.setProcessDocumentTree(+nID_Process_Parent, +nID_Process_Child);
+}</script>
+    </scriptTask>
+    <sequenceFlow id="flow44" sourceRef="scripttask1" targetRef="servicetask6"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram__doc_template_covkmudep_vidklikannia_z_vidpustki">
+    <bpmndi:BPMNPlane bpmnElement="_doc_template_covkmudep_vidklikannia_z_vidpustki" id="BPMNPlane__doc_template_covkmudep_vidklikannia_z_vidpustki">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="210.0" y="134.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="81.0" width="105.0" x="281.0" y="111.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask3" id="BPMNShape_usertask3">
+        <omgdc:Bounds height="98.0" width="131.0" x="710.0" y="263.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway2" id="BPMNShape_exclusivegateway2">
+        <omgdc:Bounds height="40.0" width="40.0" x="755.0" y="379.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway3" id="BPMNShape_exclusivegateway3">
+        <omgdc:Bounds height="40.0" width="40.0" x="653.0" y="379.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway4" id="BPMNShape_exclusivegateway4">
+        <omgdc:Bounds height="40.0" width="40.0" x="660.0" y="581.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway5" id="BPMNShape_exclusivegateway5">
+        <omgdc:Bounds height="40.0" width="40.0" x="560.0" y="581.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="163.0" y="224.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask10" id="BPMNShape_usertask10">
+        <omgdc:Bounds height="111.0" width="126.0" x="618.0" y="447.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask11" id="BPMNShape_usertask11">
+        <omgdc:Bounds height="110.0" width="134.0" x="241.0" y="345.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway8" id="BPMNShape_exclusivegateway8">
+        <omgdc:Bounds height="40.0" width="40.0" x="160.0" y="300.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway7" id="BPMNShape_exclusivegateway7">
+        <omgdc:Bounds height="40.0" width="40.0" x="160.0" y="379.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask12" id="BPMNShape_usertask12">
+        <omgdc:Bounds height="88.0" width="172.0" x="480.0" y="277.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask6" id="BPMNShape_servicetask6">
+        <omgdc:Bounds height="58.0" width="105.0" x="607.0" y="191.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway9" id="BPMNShape_exclusivegateway9">
+        <omgdc:Bounds height="40.0" width="40.0" x="461.0" y="131.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask15" id="BPMNShape_usertask15">
+        <omgdc:Bounds height="81.0" width="105.0" x="920.0" y="271.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask16" id="BPMNShape_usertask16">
+        <omgdc:Bounds height="81.0" width="105.0" x="920.0" y="462.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask17" id="BPMNShape_usertask17">
+        <omgdc:Bounds height="111.0" width="126.0" x="355.0" y="491.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask1" id="BPMNShape_scripttask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="461.0" y="192.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="245.0" y="151.0"></omgdi:waypoint>
+        <omgdi:waypoint x="281.0" y="151.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="652.0" y="321.0"></omgdi:waypoint>
+        <omgdi:waypoint x="710.0" y="312.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
+        <omgdi:waypoint x="841.0" y="312.0"></omgdi:waypoint>
+        <omgdi:waypoint x="864.0" y="312.0"></omgdi:waypoint>
+        <omgdi:waypoint x="864.0" y="399.0"></omgdi:waypoint>
+        <omgdi:waypoint x="795.0" y="399.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow8" id="BPMNEdge_flow8">
+        <omgdi:waypoint x="755.0" y="399.0"></omgdi:waypoint>
+        <omgdi:waypoint x="693.0" y="399.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow9" id="BPMNEdge_flow9">
+        <omgdi:waypoint x="775.0" y="379.0"></omgdi:waypoint>
+        <omgdi:waypoint x="775.0" y="361.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow10" id="BPMNEdge_flow10">
+        <omgdi:waypoint x="673.0" y="379.0"></omgdi:waypoint>
+        <omgdi:waypoint x="673.0" y="312.0"></omgdi:waypoint>
+        <omgdi:waypoint x="710.0" y="312.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_VzyatNaRedaktirovanie" id="BPMNEdge_FlowButton_VzyatNaRedaktirovanie">
+        <omgdi:waypoint x="841.0" y="312.0"></omgdi:waypoint>
+        <omgdi:waypoint x="920.0" y="311.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="841.0" y="265.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_SnosIVernutNaVizirovanie" id="BPMNEdge_FlowButton_SnosIVernutNaVizirovanie">
+        <omgdi:waypoint x="972.0" y="271.0"></omgdi:waypoint>
+        <omgdi:waypoint x="972.0" y="151.0"></omgdi:waypoint>
+        <omgdi:waypoint x="501.0" y="151.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="70.0" width="100.0" x="960.0" y="170.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow22" id="BPMNEdge_flow22">
+        <omgdi:waypoint x="673.0" y="419.0"></omgdi:waypoint>
+        <omgdi:waypoint x="681.0" y="447.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_VzyatNaRedaktirovanieZZatverdgennya" id="BPMNEdge_FlowButton_VzyatNaRedaktirovanieZZatverdgennya">
+        <omgdi:waypoint x="744.0" y="502.0"></omgdi:waypoint>
+        <omgdi:waypoint x="920.0" y="502.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="787.0" y="462.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow23" id="BPMNEdge_flow23">
+        <omgdi:waypoint x="744.0" y="502.0"></omgdi:waypoint>
+        <omgdi:waypoint x="777.0" y="502.0"></omgdi:waypoint>
+        <omgdi:waypoint x="777.0" y="600.0"></omgdi:waypoint>
+        <omgdi:waypoint x="700.0" y="601.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow24" id="BPMNEdge_flow24">
+        <omgdi:waypoint x="680.0" y="581.0"></omgdi:waypoint>
+        <omgdi:waypoint x="681.0" y="558.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow25" id="BPMNEdge_flow25">
+        <omgdi:waypoint x="660.0" y="601.0"></omgdi:waypoint>
+        <omgdi:waypoint x="600.0" y="601.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow26" id="BPMNEdge_flow26">
+        <omgdi:waypoint x="580.0" y="581.0"></omgdi:waypoint>
+        <omgdi:waypoint x="580.0" y="501.0"></omgdi:waypoint>
+        <omgdi:waypoint x="618.0" y="502.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow27" id="BPMNEdge_flow27">
+        <omgdi:waypoint x="560.0" y="601.0"></omgdi:waypoint>
+        <omgdi:waypoint x="481.0" y="546.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow31" id="BPMNEdge_flow31">
+        <omgdi:waypoint x="180.0" y="300.0"></omgdi:waypoint>
+        <omgdi:waypoint x="180.0" y="259.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow36" id="BPMNEdge_flow36">
+        <omgdi:waypoint x="308.0" y="455.0"></omgdi:waypoint>
+        <omgdi:waypoint x="307.0" y="484.0"></omgdi:waypoint>
+        <omgdi:waypoint x="180.0" y="484.0"></omgdi:waypoint>
+        <omgdi:waypoint x="180.0" y="419.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow38" id="BPMNEdge_flow38">
+        <omgdi:waypoint x="200.0" y="320.0"></omgdi:waypoint>
+        <omgdi:waypoint x="307.0" y="319.0"></omgdi:waypoint>
+        <omgdi:waypoint x="308.0" y="345.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow37" id="BPMNEdge_flow37">
+        <omgdi:waypoint x="180.0" y="379.0"></omgdi:waypoint>
+        <omgdi:waypoint x="180.0" y="340.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow39" id="BPMNEdge_flow39">
+        <omgdi:waypoint x="200.0" y="399.0"></omgdi:waypoint>
+        <omgdi:waypoint x="241.0" y="400.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow40" id="BPMNEdge_flow40">
+        <omgdi:waypoint x="481.0" y="171.0"></omgdi:waypoint>
+        <omgdi:waypoint x="513.0" y="192.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow41" id="BPMNEdge_flow41">
+        <omgdi:waypoint x="659.0" y="249.0"></omgdi:waypoint>
+        <omgdi:waypoint x="566.0" y="277.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow42" id="BPMNEdge_flow42">
+        <omgdi:waypoint x="386.0" y="151.0"></omgdi:waypoint>
+        <omgdi:waypoint x="461.0" y="151.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_SnosIVernutNaVizirovanieZZatverdgennya" id="BPMNEdge_FlowButton_SnosIVernutNaVizirovanieZZatverdgennya">
+        <omgdi:waypoint x="1025.0" y="502.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1053.0" y="499.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1053.0" y="259.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1053.0" y="121.0"></omgdi:waypoint>
+        <omgdi:waypoint x="743.0" y="121.0"></omgdi:waypoint>
+        <omgdi:waypoint x="480.0" y="121.0"></omgdi:waypoint>
+        <omgdi:waypoint x="481.0" y="131.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="70.0" width="100.0" x="1020.0" y="391.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow43" id="BPMNEdge_flow43">
+        <omgdi:waypoint x="418.0" y="491.0"></omgdi:waypoint>
+        <omgdi:waypoint x="308.0" y="455.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow44" id="BPMNEdge_flow44">
+        <omgdi:waypoint x="566.0" y="219.0"></omgdi:waypoint>
+        <omgdi:waypoint x="607.0" y="220.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

@@ -1,0 +1,31 @@
+{
+  "_:Watch": {
+    "_default_author": {
+      "oMission": {
+        "sKey_Right": "SignRelease"
+      },
+      "oRights": {
+        "Manage": {}
+      }
+    },
+    "_default_accept": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {
+        "SignWriteAny": {}
+      }
+    },
+    "_default_agree": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {
+        "SignWriteAny": {}
+      }
+    }
+  },
+  "step_create:Create": {},
+  "step_accept:Accept": {},
+  "step_agree:Agree": {}
+}

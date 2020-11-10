@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>FORM-1</title>
+
+
+</head>
+
+<body style="font-size: 14px;">
+
+<table style="width: 100%; padding-top: 30px;">
+    <tbody>
+    <tr>
+        <td colspan="2" style="text-align: center; font-size: 18px;">
+            <b>
+                ЗАЯВА-ДОГОВІР з ОПИТУВАЛЬНИКОМ
+            </b>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: center; font-size: 16px;">
+            відкриття поточного рахунку фізичній особі<br>          
+        </td>
+    </tr>
+    </tbody>
+</table>
+  
+<table id="ClientData" style="width: 100%; padding-top: 30px;table-layout: fixed; border-collapse: collapse;" cellspacing="0" align="center">
+    <tbody>
+      <tr>
+        <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+            Прізвище, ім’я, по батькові
+        </td>
+        <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+            [bankIdlastName] [bankIdfirstName] [bankIdmiddleName]
+        </td>
+      </tr>
+      <tr>
+        <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+            Громадянство 
+        </td>
+        <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+            [bankIdsID_Country]
+        </td>
+      </tr>
+      <tr>
+        <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+            Найменування Банку, в якому клієнт ідентифікований/верифікований (Bank id) 
+        </td>
+        <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+            [sBankId_ID]
+        </td>
+      </tr>
+      <tr>
+        <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+            Місце проживання або місце перебування 
+        </td>
+        <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+            Адреса реєстрації <br/> 
+            [bankIdAddressFactual]<br/>
+            Фактичне місце проживання<br/>
+            [bankIdAddressFactual_fact]
+        </td>
+      </tr>
+      <tr>
+        <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+            Контактний номер телефону:
+        </td>
+        <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+            [phone]
+        </td>
+      </tr>
+      <tr>
+        <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+            Адреса електронної пошти:
+        </td>
+        <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+            [email]
+        </td>
+      </tr>
+    </tbody>
+</table>
+  
+  <table style="width: 100%; padding-top: 30px;table-layout: fixed; border-collapse: collapse;">
+    <tbody>
+      <tr>
+          <td colspan="3" style="text-align: left; font-size: 16px;">
+              <b>Зв’язок з політично значущими особами* (якщо відповідь «так»)</b>          
+          </td>
+      </tr>
+      <tr>
+        <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+          <span id="political"></span> політично значуща особа
+        </td>
+        <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+            <span id="politicalFamilyMember"></span> член сім’ї політично значущої особи
+        </td>
+        <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+            <span id="politicalAssociated"></span> особа, яка пов'язана з політично значущою особою
+        </td>
+      </tr>
+      <tr>
+          <td colspan="3" style="text-align: left; font-size: 14px; border: 2px solid #000000; padding: 4px;">
+            Категорія посад політично значущої особи <br/>
+           <span id="politicalPosition"> 
+			[sPoliticalPPosition]
+           </span>
+          </td>
+      </tr>
+      <tr>
+          <td colspan="3" style="text-align: left; font-size: 14px; border: 2px solid #000000; padding: 4px;">
+             Прізвище, ім’я, по батькові політично значущої особи, інші ідентифікаційні данні (за наявності) та ознака резидентності політично значущої особи <br/>
+           <span id="politicalData"> 
+			[sPoliticalPIB], [sPoliticalIDData], [sPoliticalResidentData]
+           </span>
+          </td>
+      </tr>
+      <tr>
+          <td colspan="3" style="text-align: left; font-size: 14px;">
+              <b>* застосування понять в значеннях, визначених законодавством у сфері запобігання та протидії доведені <span id="LegalPolitical"></span> Так</b>          
+          </td>
+      </tr>
+    </tbody>
+  </table>
+  
+    <table style="width: 100%; padding-top: 30px;table-layout: fixed; border-collapse: collapse;">
+    <tbody>
+      <tr>
+          <td colspan="4" style="text-align: left; font-size: 16px;">
+              <b>Дані про зайнятість</b>          
+          </td>
+      </tr>
+      <tr>
+        <td colspan="2" style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+         <b>Місце роботи, посада </b>
+        </td>
+        <td colspan="2" style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+            [sWork], [sPosition]
+        </td>
+      </tr>
+      <tr>
+          <td colspan="2" style="text-align: left; font-size: 14px; border: 2px solid #000000; padding: 4px;">
+            Чи займаєтесь Ви підприємницькою діяльністю?
+          </td>
+          <td  style="text-align: left; font-size: 14px; border: 2px solid #000000; padding: 4px;">
+            <span id="isSPD">
+                
+            </span>
+            <b>Так</b>
+          </td>
+          <td  style="text-align: left; font-size: 14px; border: 2px solid #000000; padding: 4px;">
+            <span id="notSPD">
+                
+            </span>
+            <b>Ні</b>
+          </td>
+      </tr>
+      <tr>
+          <td style="text-align: left; font-size: 14px; border: 2px solid #000000; padding: 4px;">
+            Орган реєстрації<br/>
+            <span id="sRegOrgan_spd">[sRegOrgan_spd]</span>
+          </td>
+          <td style="text-align: left; font-size: 14px; border: 2px solid #000000; padding: 4px;">
+            Дата запису<br/>
+            <span id="sRegDate_spd">[sRegDate_spd]</span>
+          </td>
+          <td  style="text-align: left; font-size: 14px; border: 2px solid #000000; padding: 4px;">
+           Номер запису<br/>
+            <span id="sRegNum_spd">[sRegNum_spd]</span>
+          </td>
+          <td  style="text-align: left; font-size: 14px; border: 2px solid #000000; padding: 4px;">
+            Вид підприємницької діяльності<br/>
+            <span id="sActType_spd">[sActType_spd]</span>
+          </td>
+      </tr>
+      <tr>
+          <td colspan="2" style="text-align: left; font-size: 14px; border: 2px solid #000000; padding: 4px;">
+            Чи є Ви самозайнятою особою?
+          </td>
+          <td  style="text-align: left; font-size: 14px; border: 2px solid #000000; padding: 4px;">
+            <span id="isSelfEmpl">
+                
+            </span>
+            <b>Так</b>
+          </td>
+          <td  style="text-align: left; font-size: 14px; border: 2px solid #000000; padding: 4px;">
+            <span id="noSelfEmpl">
+                
+            </span>
+            <b>Ні</b>
+          </td>
+      </tr>
+      <tr>
+          <td style="text-align: left; font-size: 14px; border: 2px solid #000000; padding: 4px;">
+            Орган реєстрації<br/>
+            <span id="sRegOrgan_self">[sRegOrgan_self]</span>
+          </td>
+          <td style="text-align: left; font-size: 14px; border: 2px solid #000000; padding: 4px;">
+            Дата запису<br/>
+            <span id="sRegDate_self">[sRegDate_self]</span>
+          </td>
+          <td  style="text-align: left; font-size: 14px; border: 2px solid #000000; padding: 4px;">
+           Номер запису<br/>
+            <span id="sRegNum_self">[sRegNum_self]</span>
+          </td>
+          <td  style="text-align: left; font-size: 14px; border: 2px solid #000000; padding: 4px;">
+            Вид підприємницької діяльності<br/>
+            <span id="sActType_self">[sActType_self]</span>
+          </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table style="width: 100%; padding-top: 30px;table-layout: fixed; border-collapse: collapse;">
+        <tr>
+            <td colspan="3" style="text-align: left; font-size: 16px;">
+                <b>Позначте операції, які плануєте проводити:</b>          
+            </td>
+        </tr>
+      <tr>
+          <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+              <span id="bCashService"></span>
+              Розрахунково-касове обслуговування
+            </td>
+          <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+              <span id="bRemittance"></span>
+              Грошові перекази
+            </td>
+          <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+              <span id="bSpecialPaymentMeans"></span>
+              Операції з використанням спеціальних платіжних засобів
+            </td>
+      </tr>
+      <tr>
+          <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+              <span id="bBorderRemittance"></span>
+              Переказ за кордон
+            </td>
+          <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+              <span id="bSecurities"></span>
+              Операції з цінними паперами
+            </td>
+          <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+              <span id="bBankMetal"></span>
+              Операції з банківськими металами
+            </td>
+      </tr>
+      <tr>
+          <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+              <span id="bCredit"></span>
+              Кредитні операції
+            </td>
+          <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+              <span id="bDepposit"></span>
+              Депозитні операції
+            </td>
+          <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+              <span id="bOther"></span>
+              Інше
+              <span id="sOtherOperationType">
+                
+              </span>
+            </td>
+      </tr>
+  </table>
+
+  <table style="width: 100%; padding-top: 30px;table-layout: fixed; border-collapse: collapse;">
+    <tr>
+        <td colspan="4" style="text-align: left; font-size: 16px;">
+            <b>Характеристика фінансового стану (cума сукупного середньомісячного доходу)</b>
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+        <span id="revenue_less10"></span> до 10 000,00 грн.
+        </td>
+        <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+        <span id="revenue_between10and15"></span> 10 000,00 – 15 000,00 грн.
+        </td>
+        <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+        <span id="revenue_between15and25"></span> 15 000,00 - 25 000,00 грн.
+        </td>
+        <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+        <span id="revenue_more25"></span>  більше 25 000,00 грн.
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="4" style="text-align: left; font-size: 16px;">
+            <b>Характеристика джерел надходження коштів та інших цінностей на рахунки клієнта (у тому числі тих, що очікує клієнт)</b>
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+        <span id="bSalary"></span> Заробітна плата, соціальні виплати
+
+        </td>
+        <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+        <span id="bPension"></span> Пенсія    
+        </td>
+        <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+        <span id="bScholarship"></span> Стипендія
+        </td>
+        <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+        <span id="bSPDIncome"></span>  Доходи від здійснення підприємницької діяльності
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+        <span id="bOwnSavings"></span> Власні заощадження готівки
+        </td>
+        <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+        <span id="bDividends"></span> Дивіденди
+        </td>
+        <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+        <span id="bHeritage"></span> Спадщина
+        </td>
+        <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+        <span id="bRelativesAid"></span>  Фінансова допомога родичів
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+        <span id="bDeppositAndPercents"></span> Депозитні кошти та їх відсотки
+        </td>
+        <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+        <span id="bAsLoan"></span> У вигляді позики
+        </td>
+        <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+        <span id="bLoan"></span> Кредитні  кошти
+        </td>
+        <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+        <span id="bOtherIncome"></span>  Інші джерела <br>
+        <span id="sOtherOperationTypeIncome">
+        </span>
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="4" style="text-align: left; font-size: 16px;">
+            <b>Обсяги надходження на рахунок</b>
+        </td>
+    </tr>
+    
+    <tr>
+        <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+        <span id="income_less5"></span> до 5 000,00 грн.
+        </td>
+        <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+        <span id="income_between5and10"></span> 5 000,00 – 10 000,00 грн.
+        </td>
+        <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+        <span id="income_between10and25"></span> 10 000,00 - 25 000,00 грн.
+        </td>
+        <td style="text-align: left; font-size: 14px;text-align: left; border: 2px solid #000000; padding: 4px;">
+        <span id="income_more25"></span>  більше 25 000,00 грн.
+        </td>
+    </tr>
+
+
+  </table>
+
+  <table style="width: 100%; padding-top: 30px;table-layout: fixed; border-collapse: collapse;">
+    
+    <tr>
+        <td style="text-align: left; font-size: 14px;text-align: left;">
+            <b>Належите до податкових резидентів США?**</b> <span id="notUSA"></span> Ні <span id="isUSA"></span> Так
+        </td>
+    </tr>  
+    <tr>
+        <td style="text-align: left; font-size: 14px;text-align: left;">
+            <b>** умови належності до податкових резидентів Сполучений Штатів Америки доведені</b> <span id="bUSAtaxResidentProved"></span> Так
+        </td>
+    </tr>
+
+
+  </table>
+
+  
+  
+<table style="width: 100%; border-collapse: collapse;">
+                <tbody>
+                <tr>
+                    <td style="width: 35%; text-align: left;font-size: 15px;">
+                        <ol>
+                            <li>
+                                Підтверджую, що дані відповідають дійсності, та  своїм підписом підтверджую, що:
+                                <ul>
+                                    <li>
+                                        ознайомився (-лась), підтверджую прийняття та повне розуміння змісту, і згоден (-на) з Умовами банківського обслуговування фізичних осіб в  АТ "АЙБОКС БАНК", з умовами та правилами надання банківських послуг, тарифами Банку. Зазначені Умовами банківського обслуговування фізичних осіб в  АТ "АЙБОКС БАНК"  та тарифи оприлюднені на офіційному сайті Банку в мережі інтернет за посиланням: www.iboxbank.online; 
+                                    </li>
+                                    <li>
+                                        зі змістом Інструкції про порядок відкриття і закриття рахунків клієнтів банків та кореспондентських рахунків банків - резидентів і нерезидентів, затвердженої Постановою Правління Національного банку України від 2 листопада 2003 року № 492, я ознайомлений, вимоги цієї Інструкції для мене є обов’язкові.  Письмові розпорядження підписуватимуться мною або уповноваженою мною особою за Довіреністю. У разі зміни повноважень особи на право розпоряджатися рахунком зобов'язуюсь негайно повідомити про це Банк у письмовій формі;
+                                    </li>
+                                    <li>
+                                        ознайомлений з тим, що поточний рахунок*, який відкривається для нього  АТ "АЙБОКС БАНК", забороняється використовувати для проведення операцій, пов’язаних зі  здійсненням підприємницької діяльності та незалежної професійної діяльності
+                                    </li>
+                                    <li>
+                                        усе листування щодо цього рахунку прошу надсилати за фактичною адресою місця проживання. Про зміну адреси повідомлятиму Банк письмово; Зобов’язуюсь про всі зміни даних, які зазначені в Анкеті - Заяві повідомляти в Банк письмово не пізніше 5 днів з моменту таких змін
+                                    </li>
+                                    <li>
+                                        повідомлена мною інформація  є достовірною та уповноважую  АТ "АЙБОКС БАНК" перевіряти цю, та іншу інформацію, яка може бути потрібною, у роботодавця, за місцем  проживання або у представників державної влади та місцевого самоврядування тощо.
+                                    </li>
+                                    <li>
+                                        Я надаю Банку право: на обробку моїх персональних даних, отриманих у зв’язку з заповненням Заяви-анкети; на їх використання в наступних цілях: забезпечення реалізації адміністративно-правових (в тому числі, відносин у сфері державного управління), податкових відносин та відносин у сфері бухгалтерського обліку; забезпечення реалізації відносин у сфері економічних, фінансових послуг та страхування; забезпечення реалізації відносин з акціонерами ПРИВАТНЕ АКЦІОНЕРНЕ ТОВАРИСТВО "АЙБОКС БАНК" та пов’язаними особами; на передачу персональних даних третім особам відповідно до зазначених цілей.
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Акцептую  та приєднуюся до умов банківського обслуговування фізичних осіб в ПРИВАТНЕ АКЦІОНЕРНЕ ТОВАРИСТВО "АЙБОКС БАНК" (надалі - Публічна пропозиція), що оприлюднена на  офіційному сайті Банку в мережі інтернет за посиланням: www.iboxbank.online, погодився з тим, що ця Заява-Анкета разом із вищевказаною Публічною пропозицією  АТ "АЙБОКС БАНК"  та Тарифами Банку, що розміщенні на  офіційному веб-сайті Банку за електронною адресою: www.iboxbank.online  становить зміст Договору про банківське обслуговування фізичної особи (надалі – Договір), уповноважує Банк та надає йому згоду на вчинення всіх дій, визначених в Публічній пропозиції, не має жодних заперечень щодо закріпленого в Публічній пропозиції порядку зміни умов обслуговування, тарифів тощо, а також підтверджує, що цей порядок ніяким чином не порушує його права та інтереси.</li>
+                            <li>Підтверджую, що надаю свою згоду Банку на доступ до своєї кредитної історії, збір, зберігання, використання та поширення інформації щодо себе через Бюро кредитних історій, з якими співпрацює Банк. </li>
+                            <li>Приймаю на себе всі обов’язки та набуваю всіх прав, передбачених Публічною пропозицією  АТ "АЙБОКС БАНК" на укладання  Договору про банківське обслуговування фізичної особи стосовно клієнта, рівно як і Банк бере на себе всі обов’язки та набуває всіх прав, передбачених цією Публічною пропозицією стосовно Банку.</li>
+                            <li>Підтверджую, що взаємовідносини Сторін за Договором в частині, не врегульованій ним, визначаються чинним законодавством України</li>
+                            <li>Підтверджую ознайомлення з умовами гарантування вкладів Фондом гарантування вкладів фізичних осіб  викладені в п. 3.4. Публічної пропозиції АТ "АЙБОКС БАНК".</li>
+                            <li>Підтверджую, що до моменту укладення Договору Банк ознайомив мене з довідкою про систему гарантування вкладів фізичних осіб (надалі – Довідка), згідно Порядку здійснення Фондом гарантування вкладів фізичних осіб захисту прав та охоронюваних законом інтересів вкладників, затвердженого виконавчою дирекцією Фонду від 26.05.2016 № 825, зареєстровано в Міністерстві юстиції України 17 червня 2016 р. за  № 874/29004. Після укладення Договору, ознайомлення Клієнта з Довідкою здійснюється Банком не рідше ніж один раз на рік одним із наступних способів на вибір Банку: а) шляхом ознайомлення з Довідкою під підпис Клієнта при відвідуванні Банка; б) шляхом направлення Клієнту Довідки на його поштову адресу, що зазначена, в цьому Договорі; в) шляхом направлення Клієнту сканкопії Довідки на його електронну адресу, що зазначена в цьому Договорі; г) шляхом розміщення Довідки на офіційному веб-сайті Банку: http://www.iboxbank.online.</li>
+                            <li>Підтверджую, що самостійно ініціюю отримання примірника цієї заяви під час першого звернення до Банку.</li>
+                        </ol>
+                    </td>
+                </tr>
+                </tbody>
+</table>
+
+ 
+<script type="text/javascript">
+  
+  var chek = "&#9745";
+  var unchek = "&#9744";
+
+  var bUSAtaxResident = "[bUSAtaxResident]";
+  if (bUSAtaxResident == 'yes' || bUSAtaxResident == 'так') {
+      document.getElementById("isUSA").innerHTML = chek;
+      document.getElementById("notUSA").innerHTML = unchek;
+  } else {
+      document.getElementById("notUSA").innerHTML = chek;
+      document.getElementById("isUSA").innerHTML = unchek;
+  }
+  
+  var bUSAtaxResidentProved = "[bUSAtaxResidentProved]";
+      if (bUSAtaxResidentProved == 'yes' || bUSAtaxResidentProved == 'так') {
+          document.getElementById("bUSAtaxResidentProved").innerHTML = chek;
+      } else {
+        document.getElementById("bUSAtaxResidentProved").innerHTML = unchek;
+      }
+  
+  var Political = "[sPolitical]";
+  switch(Political) {
+    case "Політично значуща особа":
+        document.getElementById("political").innerHTML = chek;
+        document.getElementById("politicalData").style.display = 'none';
+        break;
+    case "Член сім’ї політично значущої особи":
+        document.getElementById("politicalFamilyMember").innerHTML = chek;
+        break;
+    case "Особа, яка пов'язана з політично значущою особою":
+        document.getElementById("politicalAssociated").innerHTML = chek;
+        break;
+    default:
+        document.getElementById("politicalData").style.display = 'none';
+        document.getElementById("politicalPosition").style.display = 'none';
+        document.getElementById("political").innerHTML = unchek;
+        document.getElementById("politicalFamilyMember").innerHTML = unchek;
+        document.getElementById("politicalAssociated").innerHTML = unchek;
+  }
+
+  var bLegalPolitical = "[bLegalPolitical]"; 
+
+  if( bLegalPolitical == 'yes' || bLegalPolitical == 'так') {
+    document.getElementById("LegalPolitical").innerHTML = chek;
+  } else {
+    document.getElementById("LegalPolitical").innerHTML = unchek;
+  }
+
+  var bSPD = "[bSPD]";
+  if( bSPD == 'yes' || bSPD == 'так') {
+    document.getElementById("isSPD").innerHTML = chek;
+    document.getElementById("notSPD").innerHTML = unchek;
+  } else {
+    document.getElementById("notSPD").innerHTML = chek;
+    document.getElementById("isSPD").innerHTML = unchek;
+    document.getElementById("sRegOrgan_spd").style.display = 'none';
+    document.getElementById("sRegDate_spd").style.display = 'none';
+    document.getElementById("sRegNum_spd").style.display = 'none';
+    document.getElementById("sActType_spd").style.display = 'none';
+  }
+
+  var bSelfEmpl = "[bSelfEmpl]";
+  if( bSelfEmpl == 'yes' || bSelfEmpl == 'так') {
+    document.getElementById("isSelfEmpl").innerHTML = chek;
+    document.getElementById("noSelfEmpl").innerHTML = unchek;
+  } else {
+    document.getElementById("noSelfEmpl").innerHTML = chek;
+    document.getElementById("isSelfEmpl").innerHTML = unchek;
+    document.getElementById("sRegOrgan_self").style.display = 'none';
+    document.getElementById("sRegDate_self").style.display = 'none';
+    document.getElementById("sRegNum_self").style.display = 'none';
+    document.getElementById("sActType_self").style.display = 'none';
+  }
+
+    var bCashService = "[bCashService]";
+    if (bCashService == 'yes' || bCashService == 'так') {
+        document.getElementById("bCashService").innerHTML = chek;
+    } else {        
+        document.getElementById("bCashService").innerHTML = unchek;
+    }
+    var bRemittance = "[bRemittance]";
+    if (bRemittance == 'yes' || bRemittance == 'так') {
+        document.getElementById("bRemittance").innerHTML = chek;
+    } else {        
+        document.getElementById("bRemittance").innerHTML = unchek;
+    }
+    var bSpecialPaymentMeans = "[bSpecialPaymentMeans]";
+    if (bSpecialPaymentMeans == 'yes' || bSpecialPaymentMeans == 'так') {
+        document.getElementById("bSpecialPaymentMeans").innerHTML = chek;
+    } else {        
+        document.getElementById("bSpecialPaymentMeans").innerHTML = unchek;
+    }
+    var bBorderRemittance = "[bBorderRemittance]";
+    if (bBorderRemittance == 'yes' || bBorderRemittance == 'так') {
+        document.getElementById("bBorderRemittance").innerHTML = chek;
+    } else {        
+        document.getElementById("bBorderRemittance").innerHTML = unchek;
+    }
+    var bSecurities = "[bSecurities]";
+    if (bSecurities == 'yes' || bSecurities == 'так') {
+        document.getElementById("bSecurities").innerHTML = chek;
+    } else {        
+        document.getElementById("bSecurities").innerHTML = unchek;
+    }
+    var bBankMetal = "[bBankMetal]";
+    if (bBankMetal == 'yes' || bBankMetal == 'так') {
+        document.getElementById("bBankMetal").innerHTML = chek;
+    } else {        
+        document.getElementById("bBankMetal").innerHTML = unchek;
+    }
+    var bCredit = "[bCredit]";
+    if (bCredit == 'yes' || bCredit == 'так') {
+        document.getElementById("bCredit").innerHTML = chek;
+    } else {        
+        document.getElementById("bCredit").innerHTML = unchek;
+    }
+    var bDepposit = "[bDepposit]";
+    if (bDepposit == 'yes' || bDepposit == 'так') {
+        document.getElementById("bDepposit").innerHTML = chek;
+    } else {        
+        document.getElementById("bDepposit").innerHTML = unchek;
+    }
+    var bOther = "[bOther]";
+    if (bOther == 'yes' || bOther == 'так') {
+        document.getElementById("bOther").innerHTML = chek;
+        document.getElementById("sOtherOperationType").innerHTML = "[sOtherOperationType]";
+    } else {        
+        document.getElementById("bOther").innerHTML = unchek;
+    }
+
+    var bSalary = "[bSalary]";
+    if (bSalary == 'yes' || bSalary == 'так') {
+        document.getElementById("bSalary").innerHTML = chek;
+    } else {
+        document.getElementById("bSalary").innerHTML = unchek;
+    }
+    var bPension = "[bPension]";
+    if (bPension == 'yes' || bPension == 'так') {
+        document.getElementById("bPension").innerHTML = chek;
+    } else {
+        document.getElementById("bPension").innerHTML = unchek;
+    }
+    var bScholarship = "[bScholarship]";
+    if (bScholarship == 'yes' || bScholarship == 'так') {
+        document.getElementById("bScholarship").innerHTML = chek;
+    } else {
+        document.getElementById("bScholarship").innerHTML = unchek;
+    }
+    var bSPDIncome = "[bSPDIncome]";
+    if (bSPDIncome == 'yes' || bSPDIncome == 'так') {
+        document.getElementById("bSPDIncome").innerHTML = chek;
+    } else {
+        document.getElementById("bSPDIncome").innerHTML = unchek;
+    }
+    var bOwnSavings = "[bOwnSavings]";
+    if (bOwnSavings == 'yes' || bOwnSavings == 'так') {
+        document.getElementById("bOwnSavings").innerHTML = chek;
+    } else {
+        document.getElementById("bOwnSavings").innerHTML = unchek;
+    }
+    var bDividends = "[bDividends]";
+    if (bDividends == 'yes' || bDividends == 'так') {
+        document.getElementById("bDividends").innerHTML = chek;
+    } else {
+        document.getElementById("bDividends").innerHTML = unchek;
+    }
+    var bHeritage = "[bHeritage]";
+    if (bHeritage == 'yes' || bHeritage == 'так') {
+        document.getElementById("bHeritage").innerHTML = chek;
+    } else {
+        document.getElementById("bHeritage").innerHTML = unchek;
+    }
+    var bRelativesAid = "[bRelativesAid]";
+    if (bRelativesAid == 'yes' || bRelativesAid == 'так') {
+        document.getElementById("bRelativesAid").innerHTML = chek;
+    } else {
+        document.getElementById("bRelativesAid").innerHTML = unchek;
+    }
+    var bDeppositAndPercents = "[bDeppositAndPercents]";
+    if (bDeppositAndPercents == 'yes' || bDeppositAndPercents == 'так') {
+        document.getElementById("bDeppositAndPercents").innerHTML = chek;
+    } else {
+        document.getElementById("bDeppositAndPercents").innerHTML = unchek;
+    }
+    var bAsLoan = "[bAsLoan]";
+    if (bAsLoan == 'yes' || bAsLoan == 'так') {
+        document.getElementById("bAsLoan").innerHTML = chek;
+    } else {
+        document.getElementById("bAsLoan").innerHTML = unchek;
+    }
+    var bLoan = "[bLoan]";
+    if (bLoan == 'yes' || bLoan == 'так') {
+        document.getElementById("bLoan").innerHTML = chek;
+    } else {
+        document.getElementById("bLoan").innerHTML = unchek;
+    }
+    var bOtherIncome = "[bOtherIncome]";
+    if (bOtherIncome == 'yes' || bOtherIncome == 'так') {
+        document.getElementById("bOtherIncome").innerHTML = chek;        
+        document.getElementById("sOtherOperationTypeIncome").innerHTML = "[sOtherOperationTypeIncome]";
+    } else {
+        document.getElementById("bOtherIncome").innerHTML = unchek; 
+    }
+
+    
+
+    var sAverageIncome = "[sAverageIncome]"; 
+    switch(sAverageIncome) {
+    case "до 10 000,00 грн.":
+        document.getElementById("revenue_less10").innerHTML = chek;
+        document.getElementById("revenue_between10and15").innerHTML = unchek;
+        document.getElementById("revenue_between15and25").innerHTML = unchek;
+        document.getElementById("revenue_more25").innerHTML = unchek;
+        break;
+    case "10 000,00 – 15 000,00 грн.":
+        document.getElementById("revenue_less10").innerHTML = unchek;
+        document.getElementById("revenue_between10and15").innerHTML = chek;
+        document.getElementById("revenue_between15and25").innerHTML = unchek;
+        document.getElementById("revenue_more25").innerHTML = unchek;
+        break;
+    case "15 000,00 - 25 000,00 грн":
+        document.getElementById("revenue_less10").innerHTML = unchek;
+        document.getElementById("revenue_between10and15").innerHTML = unchek;
+        document.getElementById("revenue_between15and25").innerHTML = chek;
+        document.getElementById("revenue_more25").innerHTML = unchek;
+        break;
+    default:
+        document.getElementById("revenue_less10").innerHTML = unchek;
+        document.getElementById("revenue_between10and15").innerHTML = unchek;
+        document.getElementById("revenue_between15and25").innerHTML = unchek;
+        document.getElementById("revenue_more25").innerHTML = chek;
+  }
+
+    var sAverageIncome = "[sAverageAccountIncome]"; 
+    switch(sAverageIncome) {
+    case "до 5 000,00 грн.":
+        document.getElementById("income_less5").innerHTML = chek;
+        document.getElementById("income_between5and10").innerHTML = unchek;
+        document.getElementById("income_between10and25").innerHTML = unchek;
+        document.getElementById("income_more25").innerHTML = unchek;
+        break;
+    case "5 000,00 – 10 000,00 грн.":
+        document.getElementById("income_less5").innerHTML = unchek;
+        document.getElementById("income_between5and10").innerHTML = chek;
+        document.getElementById("income_between10and25").innerHTML = unchek;
+        document.getElementById("income_more25").innerHTML = unchek;
+        break;
+    case "10 000,00 - 25 000,00 грн":
+        document.getElementById("income_less5").innerHTML = unchek;
+        document.getElementById("income_between5and10").innerHTML = unchek;
+        document.getElementById("income_between10and25").innerHTML = chek;
+        document.getElementById("income_more25").innerHTML = unchek;
+        break;
+    default:
+        document.getElementById("income_less5").innerHTML = unchek;
+        document.getElementById("income_between5and10").innerHTML = unchek;
+        document.getElementById("income_between10and25").innerHTML = unchek;
+        document.getElementById("income_more25").innerHTML = chek;
+  }
+  
+</script>   
+</body>
+</html>
+

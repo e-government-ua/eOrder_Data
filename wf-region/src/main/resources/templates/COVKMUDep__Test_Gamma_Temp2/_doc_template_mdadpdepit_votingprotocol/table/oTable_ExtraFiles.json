@@ -1,0 +1,17 @@
+{
+  "aField": [
+    {
+      "id": "sNameFileAdditional",
+      "name": "Назва додатка",
+      "type": "string"
+       
+    },
+    {
+      "id": "sFileAdditional",
+      "name": "Додаток; ;bNew=true",
+      "type": "file"
+      
+      
+    }
+  ]
+}

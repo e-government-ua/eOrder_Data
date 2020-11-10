@@ -1,0 +1,29 @@
+{
+  "_:Watch": {
+	"_default_author": {
+      "oMission": {"sKey_Right":"SignRelease"},
+      "oRights": {
+      	"Manage": {},
+      	"SignComment": {},     	
+      	"AddSignerWriteDirect": {"bDisable": true},     	
+      	"RemoveSignerWriteDirect": {"bDisable": true},
+      	"EditSignerWriteDirect": {"bDisable": true},
+		"ManageViewers": {"bDisable": true},
+		"TaskAdd": {"bDisable": true},
+      	"TaskEdit": {"bDisable": true},
+      	"TaskRemove": {"bDisable": true},
+		"ManageJoin": {"bDisable": true}
+      }
+    },
+	   
+    "_default_Seen": {
+      "oMission": {"sKey_Right":"SignRead"},
+      "oRights": {
+      	"SignWriteAny": {}
+      	
+      }
+    }
+  },  
+  "step_create:Create": {},
+  "step_seen:Seen": {}
+}

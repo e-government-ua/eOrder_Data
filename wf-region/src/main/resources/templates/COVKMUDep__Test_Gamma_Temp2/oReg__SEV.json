@@ -1,0 +1,117 @@
+{
+  "aField": [
+    {
+      "sKey": "nID",
+      "sKey_Type": "long",
+      "sName": "ID поля",
+      "asKey_Field_Alias": [],
+      "readonly": false,
+      "hide": false,
+      "required": false
+    },
+    {
+      "sKey": "sDateUpdate_Status_SystemSEV",
+      "sKey_Type": "string",
+      "sName": "Дата оновлення",
+      "asKey_Field_Alias": [],
+      "readonly": false,
+      "hide": false,
+      "required": false
+    },
+    {
+      "sKey": "sbUrgent_SEV",
+      "sKey_Type": "string",
+      "sName": "Терміново",
+      "asKey_Field_Alias": [],
+      "readonly": false,
+      "hide": false,
+      "required": false
+    },
+    {
+      "sKey": "sAnswerError_StatusSend_SystemSEV",
+      "sKey_Type": "string",
+      "sName": "Помилка",
+      "sFormulaDefault": "[bIncome_System]?'Вхідна':'Вихідна'",
+      "asKey_Field_Alias": [],
+      "readonly": false,
+      "hide": false,
+      "required": false
+    },
+    {
+      "sKey": "sNote_StatusExchange_SystemSEV",
+      "sKey_Type": "string",
+      "sName": "Статус",
+      "asKey_Field_Alias": [],
+      "readonly": false,
+      "hide": false,
+      "required": false
+    },
+    {
+      "sKey": "sAnswerComment_StatusSend_SystemSEV",
+      "sKey_Type": "string",
+      "sName": "Коментар",
+      "asKey_Field_Alias": [],
+      "readonly": false,
+      "hide": false,
+      "required": false
+    },
+    {
+      "sKey": "sDateUpdate_StatusSendPushed_SystemSEV",
+      "sKey_Type": "string",
+      "sName": "Дата відправки",
+      "asKey_Field_Alias": [],
+      "readonly": false,
+      "hide": false,
+      "required": false
+    },
+    {
+      "sKey": "sDateUpdate_StatusSendDelivered_SystemSEV",
+      "sKey_Type": "string",
+      "sName": "Дата вивантаження",
+      "asKey_Field_Alias": [],
+      "readonly": false,
+      "hide": false,
+      "required": false
+    },
+    {
+      "sKey": "sDateUpdate_StatusSendRecived_SystemSEV",
+      "sKey_Type": "string",
+      "sName": "Дата отримання адресатом",
+      "asKey_Field_Alias": [],
+      "readonly": false,
+      "hide": false,
+      "required": false
+    },
+    {
+      "sKey": "sName_SubjectOrgan_Reciver_SystemSEV",
+      "sKey_Type": "string",
+      "sName": "Адресат",
+      "asKey_Field_Alias": [],
+      "readonly": false,
+      "hide": false,
+      "required": false
+    },
+     {
+      "sKey": "ID_",
+      "sKey_Type": "string",
+      "sName": "ID поля системного",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": true,
+      "bRequired": false
+    }
+  ],
+  "oProperties": {
+    "sKey_Field_UniqAuto": "nID",
+    "asKey_Field_Uniq": [
+      "sID"
+    ],
+    "asKey_BP_Registry": [
+      "_doc_template_mdadnpokrovsk"
+    ],
+    "sFormula_Registry": ""
+  },
+  "readonly": false,
+  "hide": false,
+  "required": false
+}

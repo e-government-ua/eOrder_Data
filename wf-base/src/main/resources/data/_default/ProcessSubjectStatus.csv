@@ -1,0 +1,15 @@
+nID;sName;sID
+0;Cтворення;create
+1;Нова;new
+2;Виконано;executed
+3;Невиконано;notExecuted
+4;Неактуально;unactual
+5;Перенесено;transfered
+6;Закрита;closed
+7;Делегування іншому виконавцю;delegated
+8;Дозволено;allowed
+9;Заборонено;notAllowed
+10;Відхилено;rejected
+11;Прийнято;accepted
+12;Перенесення;requestTransfered
+13;Закріплена за чергою;HoldByQueue

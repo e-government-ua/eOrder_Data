@@ -1,0 +1,114 @@
+{
+  "oProperties": {
+    "bSkipStepCreate": true
+  },
+  "_:Watch": {
+    "_default_author": {
+      "oMission": {
+        "sKey_Right": "SignRelease"},
+      "oRights": {
+      	"Manage": {},
+      	"AddSignerWriteDirect": {"bDisable": true},
+      	"RemoveSignerWriteDirect": {"bDisable": true},
+      	"EditSignerWriteDirect": {"bDisable": true},
+      	"AddSignerWriteAgree": {"bDisable": true},
+      	"RemoveSignerWriteAgree": {"bDisable": true},
+      	"EditSignerWriteAgree": {"bDisable": true},
+		    "AddSignerWriteAccept": {"bDisable": true},
+      	"RemoveSignerWriteAccept": {"bDisable": true},
+      	"EditSignerWriteAccept": {"bDisable": true},
+		    "AddSignerWriteSeen": {"bDisable": true},
+      	"RemoveSignerWriteSeen": {"bDisable": true},
+      	"EditSignerWriteSeen": {"bDisable": true},
+      	"SignComment": {},
+		    "TaskAdd": {"bDisable": true},
+      	"TaskEdit": {"bDisable": true},
+      	"TaskRemove": {"bDisable": true},
+		    "ManageJoin": {"bDisable": true}
+      }
+    },   
+    "_default_consideration": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {
+        "SignComment": {}
+      }
+    },
+    "_default_firstAccept": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {
+        "SignComment": {}
+      }
+    },
+    "_default_visa": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {
+        "EditFields": {},
+        "SignComment": {}
+      },
+      "bNeedECP": true,
+      "oProperties": {
+        "sasKey_Field_SignECP": "PrintForm_02,PrintForm_03"
+      }      
+    },
+    "_default_accept": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {
+        "EditFields": {},
+        "SignComment": {}
+      },
+      "bNeedECP": true
+    },
+    "_default_execute": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {
+        "SignComment": {}
+      }
+    },
+    "_default_agree": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {
+        "SignComment": {}
+      },
+      "bNeedECP": true
+    },
+    "_default_direct": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {
+        "SignComment": {}
+      },
+      "bNeedECP": true,
+      "oProperties": {
+        "sasKey_Field_SignECP": "sProjectFile,sVisaFile,PrintForm_10"
+      }    
+    },
+	  "_default_seen": {
+      "oMission": {"sKey_Right":"SignRead"},
+      "oRights": {
+      	"SignWriteAny": {}
+      }
+    }	    
+  },
+  "step_create:Create": {},
+  "step_consideration:Consideration": {},
+  "step_visa:Visa": {},
+  "step_firstAccept:FirstAccept": {},  
+  "step_accept:Accept": {},
+  "step_execute:Execute": {},
+  "step_agree:Agree": {},
+  "step_direct:Direct": {},
+  "step_seen:Seen": {}
+}

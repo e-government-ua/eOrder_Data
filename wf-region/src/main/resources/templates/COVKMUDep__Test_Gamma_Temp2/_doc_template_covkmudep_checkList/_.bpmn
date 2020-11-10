@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="_doc_template_covkmudep_checkList" name="Процес адаптації для нових співробітників держслужби" isExecutable="true">
+    <documentation>;bTemplated=true</documentation>
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <userTask id="usertask1" name="Чек-лист для новопризначеного співробітника">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа" type="string" default="Чек-лист для новопризначеного співробітника" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sField6" name="Подав/ла декларацію переможця конкурсу; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sField7" name="Подав/ла необхідний перелік документів у СУП (заява на призначення, копію військового квитка, у разі наявності тощо); ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sField8 " name="Склав/ла присягу державного службовця (у разі призначення на держслужбу вперше); ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sField9" name="Ознайомився/лася з наказом про призначення; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sField10" name="Ознайомився/лася з посадовою інструкцією; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sField11" name="Ознайомився/лася з Правилами внутрішнього службового розпорядку; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sField12" name="Ознайомився/лася з Порядком проходження випробувального терміну та завданнями для його успішного проходження; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sField13" name="Мене забезпечили робочим місцем; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sField14" name="Мене забезпечили комп’ютерною технікою; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sField15" name="Мене ознайомили з порядком пропускного режиму в Будинку Уряду; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sField16" name="Мене познайомили з колегами; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sField17" name="Мені відправлено список контактів колег на електронну пошту; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sField18" name="Мене ознайомили з безпосередніми функціональними обов'язками; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sField19" name="Мене ознайомили з порядком роботи в системі електронного документообігу; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sField20" name="Мені надали список нормативних документів, онлайн-курсів, книг та публікацій для ознайомлення; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sField33" name="Сфотографувався/лася на перепустку (бюро перепусток, каб. 200); ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sField34" name="Оформив/ла заявку на отримання зарплатної картку або надав/ла реквізити діючої картки (бухгалтерія, каб. 600, 2 корпус); ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sField35" name="Подав/ла заявку на отримання електронного цифрового підпису  (подача копії паспорта та коду, каб. 107б); ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sField36" name="Ознайомився/лася з матеріалами Довідника державного службовця; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask6" name="Співробітнику СУП протягом першого робочого дня НС ">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sField27" name="Я забезпечив/ла складення присяги переможцем конкурсу (у разі призначення на держслужбу вперше); ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sField28" name="Я ознайомив/ла нового співробітника з наказом про призначення; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sField29" name="Я ознайомив/ла нового співробітника з Правилами внутрішнього службового розпорядку; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sField30" name="Я ознайомив/ла нового співробітника з посадовою інструкцією; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sField31" name="Я ознайомив/ла нового співробітника з Порядком проходження випробувального терміну та завданнями для його успішного проходження; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sField32" name="Я повідомив/ла нового співробітника про необхідність у 14 денний строк спільно з безпосереднім керівником затвердити перелік завдань і ключових показників результативності, ефективності та якості службової на поточний рік; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="oProcessTasks_27" name="Задача" type="processTasks" default="${oTemplateService.getFieldData(execution, 'table/oProcessTasks_27.json')}"></activiti:formProperty>
+        <activiti:formProperty id="oProcessTasks_28" name="Задача" type="processTasks" default="${oTemplateService.getFieldData(execution, 'table/oProcessTasks_28.json')}"></activiti:formProperty>
+        <activiti:formProperty id="oProcessTasks_29" name="Задача" type="processTasks" default="${oTemplateService.getFieldData(execution, 'table/oProcessTasks_29.json')}"></activiti:formProperty>
+        <activiti:formProperty id="oProcessTasks_30" name="Задача" type="processTasks" default="${oTemplateService.getFieldData(execution, 'table/oProcessTasks_30.json')}"></activiti:formProperty>
+        <activiti:formProperty id="oProcessTasks_31" name="Задача" type="processTasks" default="${oTemplateService.getFieldData(execution, 'table/oProcessTasks_31.json')}"></activiti:formProperty>
+        <activiti:formProperty id="oProcessTasks_32" name="Задача" type="processTasks" default="${oTemplateService.getFieldData(execution, 'table/oProcessTasks_32.json')}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow10" sourceRef="startevent1" targetRef="usertask18"></sequenceFlow>
+    <userTask id="usertask12" name="Керівнику до моменту призначення нового співробітника">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sField1" name="Повідомив/ла співробітникам про прихід новопризначеного працівника; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sField2" name="Забезпечив/ла наявність робочого місця; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sField3" name="Забезпечив/ла наявність комп’ютерної техніки; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTable" name="Таблиця із завданнями" type="table"></activiti:formProperty>
+        <activiti:formProperty id="oProcessTasks_1" name="Задача" type="processTasks" default="${oTemplateService.getFieldData(execution, 'table/oProcessTasks_1.json')}"></activiti:formProperty>
+        <activiti:formProperty id="oProcessTasks_2" name="Задача" type="processTasks" default="${oTemplateService.getFieldData(execution, 'table/oProcessTasks_2.json')}"></activiti:formProperty>
+        <activiti:formProperty id="oProcessTasks_3" name="Задача" type="processTasks" default="${oTemplateService.getFieldData(execution, 'table/oProcessTasks_3.json')}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <userTask id="usertask13" name="Керівнику протягом першого робочого дня НС">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sField21" name="Ознайомив/ла нового співробітника з порядком пропускного режиму в Будинку Уряду; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sField22" name="Познайомив/ла нового співробітника з колегами; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sField23" name="Я відправив/ла список контактів колег новому співробітнику на електронну пошту; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sField24" name="Я познайомив/ла нового співробітника з безпосередніми функціональними обов'язками; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sField25" name="Я ознайомив/ла нового співробітника з порядком роботи в системі електронного документообігу; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sField26" name="Я склав/ла список нормативних документів, онлайн-курсів, книг та публікацій для ознайомлення; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="oProcessTasks_21" name="Задача" type="processTasks" default="${oTemplateService.getFieldData(execution, 'table/oProcessTasks_21.json')}"></activiti:formProperty>
+        <activiti:formProperty id="oProcessTasks_22" name="Задача" type="processTasks" default="${oTemplateService.getFieldData(execution, 'table/oProcessTasks_22.json')}"></activiti:formProperty>
+        <activiti:formProperty id="oProcessTasks_23" name="Задача" type="processTasks" default="${oTemplateService.getFieldData(execution, 'table/oProcessTasks_23.json')}"></activiti:formProperty>
+        <activiti:formProperty id="oProcessTasks_24" name="Задача" type="processTasks" default="${oTemplateService.getFieldData(execution, 'table/oProcessTasks_24.json')}"></activiti:formProperty>
+        <activiti:formProperty id="oProcessTasks_25" name="Задача" type="processTasks" default="${oTemplateService.getFieldData(execution, 'table/oProcessTasks_25.json')}"></activiti:formProperty>
+        <activiti:formProperty id="oProcessTasks_26" name="Задача" type="processTasks" default="${oTemplateService.getFieldData(execution, 'table/oProcessTasks_26.json')}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow15" sourceRef="usertask12" targetRef="usertask13"></sequenceFlow>
+    <userTask id="usertask14" name="Керівнику НС протягом 14 днів">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sField38" name="Затвердив перелік завдань і ключових показників результативності, ефективності та якості службової на поточний рік для новопризначеного; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="oProcessTasks_38" name="Задача" type="processTasks" default="${oTemplateService.getFieldData(execution, 'table/oProcessTasks_38.json')}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow17" sourceRef="usertask13" targetRef="usertask14"></sequenceFlow>
+    <userTask id="usertask15" name="Співробітнику СУП до моменту призначення НС">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sField4" name="Я повідомив/ла переможцю, що він/вона повинен/на подати декларацію переможця конкурсу; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sField5" name="Я повідомив/ла переможцю, що він/вона повинен/на подати необхідний перелік документів у СУП (заява про призначення, копію військового квитка, у разі наявності тощо); ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="oProcessTasks_4" name="Задача" type="processTasks" default="${oTemplateService.getFieldData(execution, 'table/oProcessTasks_4.json')}"></activiti:formProperty>
+        <activiti:formProperty id="oProcessTasks_5" name="Задача" type="processTasks" default="${oTemplateService.getFieldData(execution, 'table/oProcessTasks_5.json')}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow19" sourceRef="usertask15" targetRef="usertask6"></sequenceFlow>
+    <userTask id="usertask18" name="НС">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа" type="string" default="Особисті завдання для новопризначеного співробітника" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTable_Regular_NS" name="Таблиця із завданнями; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Текст повідомлення;;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системі IDOC [sTitleDoc]" required="true"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask19" name="СУП">
+      <extensionElements>
+        <activiti:formProperty id="sTable_Regular_SUP" name="sTable_Regular; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа" type="string"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask20" name="Керівник">
+      <extensionElements>
+        <activiti:formProperty id="sTable_Regular_KER" name="sTable_Regular; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTitleDoc" name="Назва документа" type="string"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow20" sourceRef="usertask1" targetRef="endevent1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.setDocumentApproved(execution, true)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow21" sourceRef="usertask18" targetRef="scripttask1">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Execute]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.setDocumentApproved(execution, false)}]]></conditionExpression>
+    </sequenceFlow>
+    <serviceTask id="servicetask1" name="Service Task" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_execute]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[IDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow22" sourceRef="servicetask1" targetRef="usertask1"></sequenceFlow>
+    <scriptTask id="scripttask1" name="Script Task" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>//Концепт
+
+var sID_BP = '_task_base';
+var snID_Process_Activiti = execution.getProcessInstanceId();
+var sTableName = 'sTable_Regular_NS';
+var aoTable_Values = taskForm.getIdAndValueFromTableField(snID_Process_Activiti, sTableName);
+var sNumber = execution.getVariable('sNumber');
+var sDateMeeting = execution.getVariable('sDateMeeting');
+var sLoginAuthor = oDocumentService.getLoginAuthor(execution);
+
+var aProcessTaskVO = [];
+
+
+for (var i=0; i&lt;aoTable_Values.length; i++){
+
+  sNeedTask = aoTable_Values[i].sNeedTask; // yes | no
+  if(sNeedTask == 'no'){
+  	continue;
+  };
+
+  if(sNeedTask == 'yes'){
+
+	var oProcessTaskVO = {};
+	var oProcessTaskSubjectsVO = {
+	    aVisor : [],
+	    aExecutor : [],
+	    aController : []
+	}	
+	 sBodyTask = aoTable_Values[i].sBody;
+	var sDateExecute = aoTable_Values[i].sDateExecute;
+		sReplacedDate = sDateExecute.replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$2-$1');
+		sDateExecute = sReplacedDate + ' 23:59:59.000';
+	var sLoginController = aoTable_Values[i].sLogin_isControl;
+	var sLoginExecutor = aoTable_Values[i].sLogin_isExecute;
+	var sLoginVisor = aoTable_Values[i].sLogin_isObserver;	
+	var sHeadTask = 'Завдання з чек-листа';
+
+	var oController = {};
+        oController.oUserVO = {};
+        oController.oUserVO.sLogin = sLoginController;        
+        oController.sKey_TaskSubjectRole = 'Controller';
+        oController.nOrder = 0;
+        oController.oDatePlan = sDateExecute;
+        oController.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };
+    oProcessTaskSubjectsVO.aController.push(oController);
+    execution.setVariable('aController', JSON.stringify(oProcessTaskSubjectsVO.aController));
+
+    var oExecutor = {};
+    	oExecutor.oUserVO = {};
+        oExecutor.oUserVO.sLogin = sLoginExecutor;        
+        oExecutor.sKey_TaskSubjectRole = 'Executor';
+        oExecutor.nOrder = 0;
+        oExecutor.oDatePlan = sDateExecute;
+        oExecutor.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };        
+    oProcessTaskSubjectsVO.aExecutor.push(oExecutor);      
+    execution.setVariable('aExecutor', JSON.stringify(oProcessTaskSubjectsVO.aExecutor));
+
+    var oVisor = {};
+        oVisor.oUserVO = {};
+        oVisor.oUserVO.sLogin = sLoginVisor;        
+        oVisor.sKey_TaskSubjectRole = 'Visor';
+        oVisor.nOrder = 0;
+        oVisor.oDatePlan = sDateExecute;
+        oVisor.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        }       
+    oProcessTaskSubjectsVO.aVisor.push(oVisor);     
+    execution.setVariable('aVisor', JSON.stringify(oProcessTaskSubjectsVO.aVisor));
+
+    oProcessTaskVO.sHead = sHeadTask;
+	oProcessTaskVO.sBody = sBodyTask;
+	oProcessTaskVO.sID_BP = sID_BP;
+	oProcessTaskVO.sKey_TaskSource = snID_Process_Activiti;
+	oProcessTaskVO.sKey_TaskSourceType = 'Document';
+	oProcessTaskVO.sKey_TaskReportType = 'textArea';
+	oProcessTaskVO.bSplited_Execute = false;
+	oProcessTaskVO.oProcessTaskSubjectsVO = oProcessTaskSubjectsVO;
+
+	//Проливаем задачи в документ
+	processSubjectTaskService.setProcessTaskData(JSON.stringify(oProcessTaskVO), null, sLoginAuthor);
+
+	aProcessTaskVO.push(oProcessTaskVO);
+	execution.setVariable('oProcessTaskVO', JSON.stringify(oProcessTaskVO));
+  }
+};
+
+execution.setVariable('aProcessTaskVO', JSON.stringify(aProcessTaskVO));
+</script>
+    </scriptTask>
+    <sequenceFlow id="flow23" sourceRef="scripttask1" targetRef="servicetask1"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram__doc_template_covkmudep_checkList">
+    <bpmndi:BPMNPlane bpmnElement="_doc_template_covkmudep_checkList" id="BPMNPlane__doc_template_covkmudep_checkList">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="80.0" y="60.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="75.0" width="105.0" x="690.0" y="40.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask6" id="BPMNShape_usertask6">
+        <omgdc:Bounds height="75.0" width="105.0" x="223.0" y="326.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask12" id="BPMNShape_usertask12">
+        <omgdc:Bounds height="101.0" width="105.0" x="73.0" y="171.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="826.0" y="60.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask13" id="BPMNShape_usertask13">
+        <omgdc:Bounds height="71.0" width="105.0" x="221.0" y="186.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask14" id="BPMNShape_usertask14">
+        <omgdc:Bounds height="71.0" width="105.0" x="560.0" y="186.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask15" id="BPMNShape_usertask15">
+        <omgdc:Bounds height="75.0" width="105.0" x="73.0" y="326.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask18" id="BPMNShape_usertask18">
+        <omgdc:Bounds height="55.0" width="105.0" x="200.0" y="50.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask19" id="BPMNShape_usertask19">
+        <omgdc:Bounds height="55.0" width="105.0" x="695.0" y="360.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask20" id="BPMNShape_usertask20">
+        <omgdc:Bounds height="55.0" width="105.0" x="890.0" y="360.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask1" id="BPMNShape_servicetask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="510.0" y="50.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask1" id="BPMNShape_scripttask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="360.0" y="50.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow10" id="BPMNEdge_flow10">
+        <omgdi:waypoint x="115.0" y="77.0"></omgdi:waypoint>
+        <omgdi:waypoint x="200.0" y="77.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow15" id="BPMNEdge_flow15">
+        <omgdi:waypoint x="178.0" y="221.0"></omgdi:waypoint>
+        <omgdi:waypoint x="221.0" y="221.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow17" id="BPMNEdge_flow17">
+        <omgdi:waypoint x="326.0" y="221.0"></omgdi:waypoint>
+        <omgdi:waypoint x="560.0" y="221.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow19" id="BPMNEdge_flow19">
+        <omgdi:waypoint x="178.0" y="363.0"></omgdi:waypoint>
+        <omgdi:waypoint x="223.0" y="363.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow20" id="BPMNEdge_flow20">
+        <omgdi:waypoint x="795.0" y="77.0"></omgdi:waypoint>
+        <omgdi:waypoint x="826.0" y="77.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow21" id="BPMNEdge_flow21">
+        <omgdi:waypoint x="305.0" y="77.0"></omgdi:waypoint>
+        <omgdi:waypoint x="360.0" y="77.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow22" id="BPMNEdge_flow22">
+        <omgdi:waypoint x="615.0" y="77.0"></omgdi:waypoint>
+        <omgdi:waypoint x="690.0" y="77.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow23" id="BPMNEdge_flow23">
+        <omgdi:waypoint x="465.0" y="77.0"></omgdi:waypoint>
+        <omgdi:waypoint x="510.0" y="77.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

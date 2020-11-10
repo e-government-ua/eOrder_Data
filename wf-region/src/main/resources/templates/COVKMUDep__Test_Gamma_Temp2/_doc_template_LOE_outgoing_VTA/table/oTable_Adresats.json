@@ -1,0 +1,39 @@
+{
+  "aField": [
+    {
+      "id": "sApplicantPosition",
+      "name": "Посада",
+      "type": "string",
+	  "writable": "true",
+      "required": "false"
+    },
+    {
+      "id": "sApplicantOrg",
+      "name": "Назва організації",
+      "type": "string",
+	  "required": "false",
+      "writable": "true"
+    },
+    {
+      "id": "sApplicant",
+      "name": "ПІБ",
+      "type": "string",
+      "required": "false",
+      "writable": "true"
+    },
+    {
+      "id": "sApplicantEmail",
+      "name": "Електронна адреса",
+      "type": "string",
+      "required": "false",
+      "writable": "true"
+    },
+    {
+      "id": "sApplicantAdress",
+      "name": "Поштова адреса",
+      "type": "string",
+      "required": "false",
+      "writable": "true"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+nID;sFileExtension;sContentType;sName;sNote
+1;html;"text/html;charset=utf-8";Текст с поддержкой html разметки;
+2;txt;"text/plain;charset=utf-8";Текстовый файл;
+3;bpmn;"application/xml;charset=utf-8";Бизнес процесс;
+4;xml;"application/xml;charset=utf-8";Файл содержащий xml;
+5;json;"application/json;charset=UTF-8";Файл содержащий json;
+6;jpg;"image/jpeg;charset=utf-8";Графический файл;
+7;png;"image/png;charset=utf-8";Растровый графический файл;
+8;pdf;"application/pdf;charset=utf-8";Графический файл для документов;
+9;tif;"image/tiff;charset=utf-8";Графический файл для документов;
+10;zip;"application/zip;charset=utf-8";Сжатые зархивированные файлы;
+11;rar;"application/x-rar-compressed;charset=utf-8";Сжатые зархивированные файлы;
+12;doc;"application/msword;charset=utf-8";Текстовый документ;
+13;xls;"application/vnd.ms-excel;charset=utf-8";Таблица;
+14;ppt;"application/vnd.ms-powerpoint;charset=utf-8";Презентация;
+15;odt;"application/vnd.oasis.opendocument.text;charset=utf-8";Текстовый документ;
+16;csv;"text/csv;charset=utf-8";Таблица;

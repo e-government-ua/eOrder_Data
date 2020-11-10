@@ -1,0 +1,57 @@
+{
+  "aField": [    
+    {
+      "id": "sNameA",
+      "name": "Назва акта законодавства ЕС",
+      "type": "string",
+	  "nWidth": "14%" 
+    },
+        {
+      "id": "sArt1",
+      "name": "Стаття",
+      "type": "string",
+	  "nWidth": "14%"
+    },
+        {
+      "id": "sTxt1",
+      "name": "Тест",
+      "type": "string",
+	  "nWidth": "14%"
+    },
+        {
+      "id": "sArt2",
+      "name": "Стаття проекту акта",
+      "type": "string",
+	  "nWidth": "14%"
+    },
+        {
+      "id": "sTxt2",
+      "name": "Текст проекту акта",
+      "type": "string",
+	  "nWidth": "14%"
+    },
+    {
+      "id": "sMark",
+      "name": "Оцінка відповідності",
+      "type": "enum",
+      "a" : [
+	        {
+		"id" : "sY", 
+		"name" : "В"},
+		{
+		"id" : "sMb", 
+		"name" : "Ч"},
+		{
+		"id" : "sN", 
+		"name" : "Н"}
+		],
+		"nWidth": "14%" 
+    },
+    {
+      "id": "sComent",
+      "name": "Коментар",
+      "type": "string",
+	  "nWidth": "14%"
+    }
+  ]
+}

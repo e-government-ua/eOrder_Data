@@ -1,0 +1,51 @@
+{
+  "aField": [
+    {
+      "id": "nRow",
+      "name": "№",
+      "type": "long",     
+      "nWidth": "5%"
+     },
+    {
+      "id": "sKey_Service",
+      "name": "Повна назва товару",
+      "type": "enum",     
+      "a" : [
+	    {
+		"id" : "sTech", 
+		"name" : "Лцензія на використання комп'ютерного продукту «Askep.net»"}		
+		],
+		"nWidth": "45%"
+    },
+   
+     {
+      "id": "nPriceCount",
+      "name": "Кількість ліцензій",
+      "type": "string",     
+      "nWidth": "10%"
+    },
+      
+    {
+      "id": "nPriceMonth",
+      "name": "Ціна за місяць",
+      "type": "string",     
+      "nWidth": "15%"
+    },
+         {
+      "id": "MnonthCount",
+      "name": "К-сть місяців",
+      "type": "string",     
+      "nWidth": "10%"
+    },
+    {
+      "id": "nPriceSum",
+      "name": "Сума",
+      "type": "long",
+      "sFormula": "[nPriceCount]*[nPriceMonth]*[MnonthCount]",
+      "sFooterCalc": "sum",
+      "sFooterCalcName": "Сума",
+      "sFooterCalcResult_sID_Field": "nSumAll",
+      "nWidth": "15%"
+    }
+  ]
+}

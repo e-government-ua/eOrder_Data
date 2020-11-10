@@ -1,0 +1,72 @@
+{
+  "aFilterDataVO": [
+    {
+      "sID": "_Tasks_ExecuteWaitMe_FilterSystem",
+      "sName": "Відкриті (очикують).",
+      "oFilterElements": {
+        "sKey_ProcessTaskType": "Executor",
+        "oProcessTaskSubjectStatusCategory_FilterLogicalVO": {
+          "aOr": [
+            {
+              "aAnd": [
+                {
+                  "sID": "TaskSubjectStatusCategory_Progress"
+                }
+              ]
+            }
+          ]
+        },
+        "oField_DateRegions": {
+          "oDateControl": {
+            "oTo": null,
+            "sKey_To": "AutoDate_Today"
+          }
+        }
+      }
+    },
+    {
+      "sID": "_Tasks_ExecuteOpened_FilterSystem",
+      "sName": "Відкриті.",
+      "oFilterElements": {
+        "sKey_ProcessTaskType": "Executor",
+        "oProcessTaskSubjectStatusCategory_FilterLogicalVO": {
+          "aOr": [
+            {
+              "aAnd": [
+                {
+                  "sID": "TaskSubjectStatusCategory_Progress"
+                }
+              ]
+            }
+          ]
+        },
+        "oField_DateRegions": {
+          "oDateControl": {
+            "oAt": null,
+            "sKey_At": "AutoDate_Tomorow"
+          }
+        }
+      }
+    },
+
+    {
+      "sID": "_Tasks_ExecuteClosed_FilterSystem",
+      "sName": "Закриті.",
+      "nCounted": 0,
+      "oFilterElements": {
+        "sKey_ProcessTaskType": "Executor",
+        "oProcessTaskSubjectStatusCategory_FilterLogicalVO": {
+          "aOr": [
+            {
+              "aAnd": [
+                {
+                  "sID": "TaskSubjectStatusCategory_Completed"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

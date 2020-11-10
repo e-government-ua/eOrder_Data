@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="_doc_template_covkmudep_businesstrip_report" name="Відрядження по Україні_Звіт" isExecutable="true">
+    <documentation>;bTemplated=true</documentation>
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <userTask id="usertask1" name="Автор. Кошторис">
+      <extensionElements>
+        <activiti:formProperty id="sID_Custom_GovPublic1" name="Реєстраційний номер; ;writable=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocName" name="Назва документа" type="string" default="ОРІЄНТОВНИЙ КОШТОРИС ВИТРАТ"></activiti:formProperty>
+        <activiti:formProperty id="sPositionHead" name="Посада керівника" type="string" readable="false" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNameHead" name="ПІБ керівника" type="string" readable="false" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDestination" name="Пункт призначення" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTripTask" name="Завдання на відрядження" type="fileHTML" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sToOrganization" name="Найменування установи/організації до якої відряджається" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateFrom" name="Дата початок" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateTill" name="Дата кінець" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateDiff1" name="Строк відрядження" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPurpose" name="Мета відрядження" type="fileHTML" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateAgree" name="Дата узгодження" type="date" readable="false" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNameBuh" name="ПІБ Бухгалтера" type="string" readable="false" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Оповіщення;;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC  [sID_Order_URL] " writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Шаблон звіт;;bVisible=false, bPrintform=true,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1SL8mS3nNAhzVEJ-3O66UGgugIhMPejfz2DDl7fbY13A', 'sSourceType':'GoogleDoc'}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateActual" name="Поточна дата;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLoginA" name="Логин автора;;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sKerAvtora" name="Тест Отображение керивника;;bVisible=false" type="string" expression="${oDocumentService.getSubjectEmployeeParentLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="markerCount" name="Счетчик Номер док" type="markers"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="scripttask1"></sequenceFlow>
+    <endEvent id="endevent2" name="End"></endEvent>
+    <serviceTask id="servicetask3" name="Роль Бухгалтер" activiti:delegateExpression="${setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_seen]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_seen]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('buhgalter',null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow22" sourceRef="servicetask3" targetRef="servicetask4"></sequenceFlow>
+    <serviceTask id="servicetask4" name="Оповіщ-я Бухгалтер" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_seen]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[IDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow23" sourceRef="servicetask4" targetRef="usertask4">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_seen]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow24" sourceRef="usertask4" targetRef="endevent2"></sequenceFlow>
+    <userTask id="usertask4" name="Бухгалтер. Кошторис. Розгляд, зберігання. :: ${sID_Custom_GovPublic1}">
+      <extensionElements>
+        <activiti:formProperty id="sID_Custom_GovPublic1" name="Реєстраційний номер; ;writable=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocName" name="Назва документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPositionHead" name="Посада керівника" type="string" readable="false" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNameHead" name="ПІБ керівника" type="string" readable="false" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDestination" name="Пункт призначення" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTripTask" name="Завдання на відрядження" type="fileHTML" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sToOrganization" name="Найменування установи/організації до якої відряджається" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateFrom" name="Дата початок" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateTill" name="Дата кінець" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateDiff1" name="Строк відрядження" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPurpose" name="Мета відрядження" type="fileHTML" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateAgree" name="Дата узгодження" type="date" readable="false" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNameBuh" name="ПІБ Бухгалтера" type="string" readable="false" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Оповіщення;;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC  [sID_Order_URL] " writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Шаблон звіт;;bVisible=false, bPrintform=true,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1SL8mS3nNAhzVEJ-3O66UGgugIhMPejfz2DDl7fbY13A', 'sSourceType':'GoogleDoc'}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateActual" name="Поточна дата;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLoginA" name="Логин автора;;bVisible=false" type="string"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <scriptTask id="scripttask1" name="Поточна дата" scriptFormat="groovy" activiti:autoStoreVariables="false">
+      <script>// Сегодняшняя дата по умолчанию
+execution.setVariable('sDateActual', new Date().format("dd.MM.yyyy").toString())</script>
+    </scriptTask>
+    <sequenceFlow id="flow25" sourceRef="scripttask1" targetRef="usertask1"></sequenceFlow>
+    <scriptTask id="scripttask2" name="Посада і відділ автора" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>var sLoginAuthor = oDocumentService.getLoginAuthor(execution);
+execution.setVariable('sLoginAuthor2', sLoginAuthor);
+var oEmployeeAuthor = subjectService.getEmployee(sLoginAuthor, false);
+var oPosition = subjectService.getEmployee(sLoginAuthor, false);
+oDocumentService.setProcessDocumentScopeCustom(execution, oPosition.aSubjectGroupPositionCustom.iterator().next().oSubjectHumanPositionCustom);
+
+var obj = subjectService.getEmployee(sLoginAuthor, false);
+var sDepartment = obj.aSubjectGroupPositionCustom.iterator().next().oSubjectHumanPositionCustom.oSubjectGroup_Organ.name;
+execution.setVariable('sDepartment', sDepartment);
+
+var sPosition = oEmployeeAuthor.aSubjectGroupPositionCustom.iterator().next().oSubjectHumanPositionCustom.sNote;
+execution.setVariable('sPosition', sPosition);</script>
+    </scriptTask>
+    <scriptTask id="scripttask3" name="soScope Керівник" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>var sLoginParent = oDocumentService.getSubjectEmployeeParentLogin(oDocumentService.getLoginAuthor(execution)); //по логину автора получаем его руководителя
+var oEmployeeParent = subjectService.getEmployee(sLoginParent, false); //по логину руководителя получаем его данные.
+execution.setVariable('sLoginParent', sLoginParent);
+execution.setVariable('oEmployeeParent', oEmployeeParent.toString());
+
+// oPositionParent = oEmployeeParent.aSubjectHumanPositionCustom.iterator().next().oSubjectHumanPositionCustom.sNote;
+//execution.setVariable('oPositionParent', oPositionParent);
+oDocumentService.setProcessDocumentScopeCustom(execution, oEmployeeParent, 'oEmployeeParent'); // сетим объект, полученный предыдущим сервисом в soScope, в элемент oEmployeeParent
+oDocumentService.setProcessDocumentScopeCustom(execution, oEmployeeParent.aSubjectGroupPositionCustom.iterator().next().oSubjectHumanPositionCustom, 'oPositionParent') // сетим объект должность руководителя в soScope</script>
+    </scriptTask>
+    <serviceTask id="servicetask5" name="Роль Керівника Автора" activiti:delegateExpression="${setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_Accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oDocumentService.getSubjectEmployeeParentLogin(oDocumentService.getLoginAuthor(execution))}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="servicetask6" name="Оповіщ-я керівника автора" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[IDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <userTask id="usertask5" name="Керівник. Кошторис :: ${sID_Custom_GovPublic1}">
+      <extensionElements>
+        <activiti:formProperty id="sID_Custom_GovPublic1" name="Реєстраційний номер; ;writable=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDocName" name="Назва документа" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPositionHead" name="Посада керівника" type="string" readable="false" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNameHead" name="ПІБ керівника" type="string" readable="false" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDestination" name="Пункт призначення" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTripTask" name="Завдання на відрядження" type="fileHTML" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sToOrganization" name="Найменування установи/організації до якої відряджається" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateFrom" name="Дата початок" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateTill" name="Дата кінець" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateDiff1" name="Строк відрядження" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPurpose" name="Мета відрядження" type="fileHTML" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateAgree" name="Дата узгодження" type="date" readable="false" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNameBuh" name="ПІБ Бухгалтера" type="string" readable="false" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Оповіщення;;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC  [sID_Order_URL] " writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Шаблон звіт;;bVisible=false, bPrintform=true,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1SL8mS3nNAhzVEJ-3O66UGgugIhMPejfz2DDl7fbY13A', 'sSourceType':'GoogleDoc'}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateActual" name="Поточна дата;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLoginA" name="Логин автора;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sKerAvtora" name="Тест Отображение керивника;;bVisible=false" type="string" expression="${oDocumentService.getSubjectEmployeeParentLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow26" sourceRef="servicetask5" targetRef="servicetask6"></sequenceFlow>
+    <sequenceFlow id="flow27" sourceRef="servicetask6" targetRef="usertask5"></sequenceFlow>
+    <sequenceFlow id="flow28" sourceRef="usertask5" targetRef="servicetask3">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_seen]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow29" sourceRef="usertask1" targetRef="servicetask5">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram__doc_template_covkmudep_businesstrip_report">
+    <bpmndi:BPMNPlane bpmnElement="_doc_template_covkmudep_businesstrip_report" id="BPMNPlane__doc_template_covkmudep_businesstrip_report">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="11.0" y="90.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="65.0" width="128.0" x="46.0" y="157.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent2" id="BPMNShape_endevent2">
+        <omgdc:Bounds height="35.0" width="35.0" x="976.0" y="267.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask3" id="BPMNShape_servicetask3">
+        <omgdc:Bounds height="55.0" width="105.0" x="651.0" y="162.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask4" id="BPMNShape_servicetask4">
+        <omgdc:Bounds height="61.0" width="105.0" x="790.0" y="157.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask4" id="BPMNShape_usertask4">
+        <omgdc:Bounds height="72.0" width="112.0" x="938.0" y="152.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask1" id="BPMNShape_scripttask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="57.0" y="20.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask2" id="BPMNShape_scripttask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="370.0" y="8.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask3" id="BPMNShape_scripttask3">
+        <omgdc:Bounds height="55.0" width="105.0" x="511.0" y="8.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask5" id="BPMNShape_servicetask5">
+        <omgdc:Bounds height="61.0" width="105.0" x="215.0" y="159.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask6" id="BPMNShape_servicetask6">
+        <omgdc:Bounds height="60.0" width="105.0" x="369.0" y="160.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask5" id="BPMNShape_usertask5">
+        <omgdc:Bounds height="66.0" width="105.0" x="509.0" y="156.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="28.0" y="90.0"></omgdi:waypoint>
+        <omgdi:waypoint x="109.0" y="75.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow22" id="BPMNEdge_flow22">
+        <omgdi:waypoint x="756.0" y="189.0"></omgdi:waypoint>
+        <omgdi:waypoint x="790.0" y="187.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow23" id="BPMNEdge_flow23">
+        <omgdi:waypoint x="895.0" y="187.0"></omgdi:waypoint>
+        <omgdi:waypoint x="938.0" y="188.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow24" id="BPMNEdge_flow24">
+        <omgdi:waypoint x="994.0" y="224.0"></omgdi:waypoint>
+        <omgdi:waypoint x="993.0" y="267.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow25" id="BPMNEdge_flow25">
+        <omgdi:waypoint x="109.0" y="75.0"></omgdi:waypoint>
+        <omgdi:waypoint x="110.0" y="157.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow26" id="BPMNEdge_flow26">
+        <omgdi:waypoint x="320.0" y="189.0"></omgdi:waypoint>
+        <omgdi:waypoint x="369.0" y="190.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow27" id="BPMNEdge_flow27">
+        <omgdi:waypoint x="474.0" y="190.0"></omgdi:waypoint>
+        <omgdi:waypoint x="509.0" y="189.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow28" id="BPMNEdge_flow28">
+        <omgdi:waypoint x="614.0" y="189.0"></omgdi:waypoint>
+        <omgdi:waypoint x="651.0" y="189.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow29" id="BPMNEdge_flow29">
+        <omgdi:waypoint x="174.0" y="189.0"></omgdi:waypoint>
+        <omgdi:waypoint x="215.0" y="189.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

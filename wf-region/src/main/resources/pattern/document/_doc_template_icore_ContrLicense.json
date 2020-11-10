@@ -1,0 +1,47 @@
+{
+  "_:Watch": {
+	"_default_author": {
+      "oMission": {"sKey_Right":"SignRelease"},
+      "oRights": {
+        "EditFields": {},        
+        "Remove": {},
+        "ManageViewers": {},
+      	"SignComment": {}
+      }
+    
+    },
+      "_default_accept": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignWriteAny": {},
+      	"ManageViewers": {},
+      	"SignComment": {}
+      }
+      },
+     "_default_view": {
+      "oMission": {"sKey_Right":"View", "sKey_StepType_At":""},
+      "oRights": {
+      	"ManageViewers": {}
+      }
+    },
+      "_default_agree": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignComment": {}
+      }
+    },
+      "_default_execute": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignComment": {},
+      	"ManageViewers": {},
+      	"EditFields": {}
+      }
+    }
+  },
+  "step_create:Create": {},
+  "step_accept:Accept": {},
+  "step_agree:Agree": {},
+  "step_execute:Execute": {},
+  "step_edit:Edit": {}
+}

@@ -1,0 +1,64 @@
+{
+  "aField": [
+    {
+      "id": "sNumber",
+      "name": "№ п/п",
+      "type": "long",    
+      "nWidth": "10%"
+   
+    },
+    {
+      "id": "sSumm",
+      "name": "Сумма (грн.)",
+      "type": "string"
+   
+    },
+	{
+      "id": "sKontragent",
+      "name": "Контаргент (назва)",
+      "type": "string"
+   
+    },
+	{
+      "id": "sPurposePayment",
+      "name": "Призначення платежу",
+      "type": "string"
+   
+    },
+	{
+      "id": "sBankPayment",
+      "name": "Банк платежу",
+      "type": "string"
+   
+    },
+	{
+      "id": "sInitiatorPayment",
+      "name": "Ініціатор платежу",
+      "type": "string"
+   
+    },
+    {
+      "id": "asAccept",
+      "name": "Узгодженя оплати",
+      "nWidth": "10%",
+      "type": "boolean"
+      
+    },
+{
+      "id": "asAccept2",
+      "name": "Узгодженя оплати",
+      "nWidth": "15%",
+      "type": "enum",           
+      "a": [
+        {
+          "id": "Enum1",
+          "name": "V-завізовано"
+        },
+        {
+          "id": "Enum2",
+          "name": "X-відмовлено"
+        }
+        ]
+    }
+  ]
+}

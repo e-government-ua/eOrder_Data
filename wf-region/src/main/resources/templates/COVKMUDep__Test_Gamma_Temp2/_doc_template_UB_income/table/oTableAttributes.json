@@ -1,0 +1,19 @@
+{
+  "aField": [
+    {
+      "id": "sKeyAttribute",
+      "name": "ІД",
+      "type": "string"
+    },
+    {
+      "id": "sNameAttribute",
+      "name": "Назва",
+      "type": "string"
+    },
+    {
+      "id": "sValueAttribute",
+      "name": "Значення",
+      "type": "string"
+    }
+  ]
+}

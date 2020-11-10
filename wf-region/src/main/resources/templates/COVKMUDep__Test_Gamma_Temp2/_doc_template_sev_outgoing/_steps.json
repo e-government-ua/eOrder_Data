@@ -1,0 +1,36 @@
+{
+  "_:Watch": {
+    "_default_author": {
+      "oMission": {
+        "sKey_Right": "SignRelease"
+      },
+      "oRights": {
+        "Manage": {}
+      }
+    },
+    "_default_Accept": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      }
+    },
+    "_default_agree": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "bNeedECP": true,
+      "oProperties": {
+        "sasKey_Field_SignECP": "sFile_Doc"
+      }
+    },
+    "_default_Direct": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      }
+    }
+  },
+  "step_create:Create": {},
+  "step_accept:Accept": {},
+  "step_agree:Agree": {},
+  "step_direct:Direct": {},
+  "step_directExternal:DirectExternal": {}
+}

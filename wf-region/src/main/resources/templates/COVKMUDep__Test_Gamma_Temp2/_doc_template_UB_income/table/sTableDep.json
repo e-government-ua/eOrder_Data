@@ -1,0 +1,34 @@
+{
+  "aField": [
+	{
+      "id": "sName_Executant",
+      "name": "Виконавець; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel",
+      "type": "select"
+    },
+    {
+      "id": "sLogin_Executant",
+      "name": "Email",
+      "type": "string",
+      "bVisible": "false"
+    },
+    {
+      "id": "asGrade",
+      "name": "Тип виконавця",
+      "type": "enum",
+      "a": [
+        {
+          "id": "main",
+          "name": "Головний"
+        },
+        {
+          "id": "sub",
+          "name": "Співвиконавець"
+        },
+        {
+          "id": "attent",
+          "name": "До відома"
+        }
+      ]
+    }
+  ]
+}

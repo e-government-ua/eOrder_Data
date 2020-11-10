@@ -1,0 +1,26 @@
+{
+  "aField": [
+    {
+      "id": "sNumber",
+      "name": "№ п/п",
+      "type": "long",    
+      "nWidth": "15%"
+    },
+    {
+      "id": "aSubjectQuestionSignType",
+      "name": "aSubjectQuestionSignType",
+      "default": "[{\"sKey\":\"id1\",\"sName\":\"name1\"},{\"sKey\":\"id2\",\"sName\":\"name2\"},{\"sKey\":\"id3\",\"sName\":\"name2\"},{\"sKey\":\"id4\",\"sName\":\"name4\"},{\"sKey\":\"id5\",\"sName\":\"name5\"},{\"sKey\":\"id6\",\"sName\":\"name6\"}]",
+      "type": "string"
+    },
+    {
+      "id": "sSignNote_SubjectQuestionSignType",
+      "name": "Автокомплит;;{{Autocomplete:getArrayAsEnumFromFieldByKey(sKey_Field='aSubjectQuestionSignType')>:sName|sID_SignType_SubjectQuestionSignType:sKey}}",
+      "type": "select"
+    },
+    {
+      "id": "sID_SignType_SubjectQuestionSignType",
+      "name": "sKey_Nomenclature",
+      "type": "string"
+    }
+  ]
+}

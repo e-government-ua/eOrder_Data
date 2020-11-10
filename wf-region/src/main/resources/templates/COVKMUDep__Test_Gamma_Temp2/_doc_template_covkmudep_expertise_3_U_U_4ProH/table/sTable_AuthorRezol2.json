@@ -1,0 +1,23 @@
+{
+  "aField": [
+    {
+      "id": "sName_isExecute",
+      "name": "Адресат; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel",
+      "type": "select"
+      
+    },
+    {
+      "id": "sPosition_isExecute",
+      "name": "Посада",
+      "type": "string",
+      "writable": "false"
+    },
+    {
+      "id": "sLogin_isExecute",
+      "name": "Login",
+      "type": "string",
+       "required": "true",
+      "bVisible": "false"
+    }
+  ]
+}

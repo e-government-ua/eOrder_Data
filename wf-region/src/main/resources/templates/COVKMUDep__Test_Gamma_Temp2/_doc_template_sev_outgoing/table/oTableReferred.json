@@ -1,0 +1,35 @@
+{
+  "aField": [
+    {
+      "id": "sType_Referred",
+      "name": "Тип",
+      "type": "enum",
+      "a" : [
+	        {
+		"id" : "д", 
+		"name" : "Документ"},
+		{
+		"id" : "з", 
+		"name" : "Завдання"}
+		]
+    },
+	{
+      "id": "sID_Order",
+      "name": "№ Документа/Задачі",
+      "type": "string"
+      
+    },
+	
+    {
+      "id": "sKey_Private",
+      "name": "Реєстраційний номер",
+      "type": "string"
+    },
+    
+    {
+      "id": "oDateAt",
+      "name": "Дата реєстрації",
+      "type": "date"
+    }
+  ]
+}

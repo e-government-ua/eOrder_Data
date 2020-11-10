@@ -1,0 +1,13 @@
+nID;sCondition;soData;sPatternFile;nID_EscalationRuleFunction;sID_UserTask;sID_BP
+801;nExecuteDayCountLeft <= nDaysLimit;{nDaysLimit:0,sEscalationType:'escalationTaskUrgent'};У Вас є прострочені завдання. Терміново прийміть міри!;1;usertask2;_task_base
+802;nExecuteDayCountLeft >= nDaysLimit;{nDaysLimit:1,sEscalationType:'escalationTaskUrgent'};У Вас є прострочені завдання. Терміново прийміть міри!;1;usertask2;_task_base
+803;nElapsedDays >= nDaysLimit;{nDaysLimit:1, asRecipientMail:['sasKey_StepType_Unsigned=Accept'], sEscalationType:'setUrgent,sendMail'};У Вас є екстрені документи. Терміново прийміть міри!;1;usertask2;_doc_template_sz
+804;nElapsedDays >= nDaysLimit;{nDaysLimit:2, asRecipientMail:['sasKey_StepType_Unsigned=Agree'], sEscalationType:'setUrgent,sendMail'};У Вас є екстрені документи. Терміново прийміть міри!;1;usertask2_yellow;_doc_template_sz
+805;nElapsedDays >= nDaysLimit;{nDaysLimit:3, asRecipientMail:['sasKey_StepType_Unsigned=Direct'], sEscalationType:'setUrgent,sendMail'};У Вас є екстрені документи. Терміново прийміть міри!;1;usertask3;_doc_template_sz
+806;nElapsedDays >= nDaysLimit;{nDaysLimit:1,sEscalationType:'sendMail',asRecipientMail:['sasKey_StepType_Unsigned=Accept']};До кінцевої дати виконання документа залишився 1 день;1;usertask2;_doc_template_sz
+807;nElapsedDays >= nDaysLimit;{nDaysLimit:1,sEscalationType:'setUrgent'};До кінцевої дати виконання документа залишився 1 день;1;usertask2;_doc_template_sz
+808;nElapsedDays >= nDaysLimit;{nDaysLimit:0,sEscalationType:'setUrgent'};До кінцевої дати виконання документа нічого не залишилося;1;usertask2;_doc_template_sz
+809;nElapsedDays >= nDaysLimit;{nDaysLimit:0,sEscalationType:'setUrgent'};До кінцевої дати виконання документа нічого не залишилося;1;usertask7;_doc_template_sz
+6000;nElapsedDays == nDaysLimit;{nDaysLimit:0, sEscalationType:'setUrgent',sNameScheduler:'oJobDetail_Escalation_Standart_Submit'};escalation/escalation_varus3.htm;1;usertask2_yellow;_doc_template_covkmudep_sz
+6001;nElapsedDays == nDaysLimit;{nDaysLimit:0, sEscalationType:'submit'};escalation/escalation_varus3.html;1;usertask2;_doc_template_covkmudep_sz
+6002;nElapsedDays == nDaysLimit;{nDaysLimit:0, asRecipientMail:['sasKey_StepType_Unsigned=Accept'],sEscalationType:'sendMail'};escalation/escalation_varus3.html;1;usertask2;_doc_template_covkmudep_sz

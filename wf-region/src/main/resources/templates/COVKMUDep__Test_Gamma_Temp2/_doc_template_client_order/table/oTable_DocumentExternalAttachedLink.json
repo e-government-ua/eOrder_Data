@@ -1,0 +1,28 @@
+{
+  "aField": [
+    {
+      "id": "nRow",
+      "name": "№",
+      "type": "long",     
+      "nWidth": "5%"
+     },
+    {
+      "id": "sNameLink",
+      "name": "Назва",
+      "type": "string",
+      "nWidth": "25%"
+    },
+    {
+      "id": "sNoteLink",
+      "name": "Опис",
+      "type": "string",
+      "nWidth": "40%"
+    },
+    {
+      "id": "sURL",
+      "name": "Посилання; ;bNew=true",
+      "type": "string",
+      "nWidth": "30%"
+    }
+  ]
+}

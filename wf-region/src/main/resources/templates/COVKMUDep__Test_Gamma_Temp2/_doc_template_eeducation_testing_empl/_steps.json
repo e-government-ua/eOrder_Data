@@ -1,0 +1,11 @@
+{
+  "_:Watch": {
+	"_default_author": {
+      "oMission": {"sKey_Right":"SignRelease"},
+      "oRights": {
+      	"Manage": {}
+}  
+      } 
+  },
+  "step_create:Create": {}
+}

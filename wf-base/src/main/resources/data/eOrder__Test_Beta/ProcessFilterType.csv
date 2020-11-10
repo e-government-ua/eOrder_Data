@@ -1,0 +1,12 @@
+nID;sID;sName;sHandlerClass;sID_FilterTypeEnum
+1;document;Документы;org.icore.service.business.process.handler.ListDocumentHandler;FilterType_Document
+2;task;Задачи;org.icore.service.business.process.handler.ListTaskHandler;FilterType_Task
+3;department;Департаменты;org.icore.service.business.process.handler.ListPersonalDepartmentHandler;FilterType_Personal
+4;employee;Персонал;org.icore.service.business.process.handler.ListPersonalEmployeeHandler;FilterType_Personal
+5;function;Функции;org.icore.service.business.process.handler.ListPersonalFunctionHandler;FilterType_Personal
+6;position;Должности;org.icore.service.business.process.handler.ListPersonalPositionHandler;FilterType_Personal
+7;role;Роли;org.icore.service.business.process.handler.ListPersonalRoleHandler;FilterType_Personal
+8;taskControlStatistic;Задачи контроль;org.icore.service.business.process.handler.ListTaskControlStatisticHandler;FilterType_Task
+9;taskExecuteStatistic;Задачи исполнение;org.icore.service.business.process.handler.ListTaskExecuteStatisticHandler;FilterType_Task
+10;documentStatistic;Документые;org.icore.service.business.process.handler.ListDocumentStatisticHandler;FilterType_Document
+11;monitoring;Мониторинг;org.icore.service.business.process.handler.ListMonitoringHandler;FilterType_Document

@@ -1,0 +1,1080 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="_doc_template_covmudep_protocol_meeting_resiz" name="Протокол наради (для редизайна)" isExecutable="true">
+    <documentation>;bTemplated=true</documentation>
+    <startEvent id="startevent1" name="Start">
+      <extensionElements>
+        <activiti:formProperty id="oProcessSubject_Executor_1" name="Виконавець завдання; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTable_listener" name="Учасники; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Додатки; ;bNew=true" type="table"></activiti:formProperty>
+      </extensionElements>
+    </startEvent>
+    <userTask id="usertask1" name="Створення документа">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Вид документа" type="string" default="Протокол наради" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sPlaceMeeting" name="Місце проведення" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sDateMeeting" name="Дата проведення наради" type="date" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sNumber" name="Номер протоколу" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sName_Chairperson" name="Нараду проводив; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Chairperson" name="логин нараду проводив;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_Chairperson" name="посада нараду проводив;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sReestr" name="Структурний підрозділ" type="enum" required="true">
+          <activiti:value id="sCOK0" name="Міністр Кабінету Міністрів України"></activiti:value>
+          <activiti:value id="sCOK1" name="Державний секретар Кабінету Міністрів України"></activiti:value>
+          <activiti:value id="sCOK2" name="Заступник Державного секретаря Кабінету Міністрів України"></activiti:value>
+          <activiti:value id="sCOK3" name="Урядовий уповноважений з прав осіб з інвалідністю"></activiti:value>
+          <activiti:value id="sCOK4" name="Департамент інформації та комунікацій з громадськістю"></activiti:value>
+          <activiti:value id="sCOK5" name="Департамент кадрового забезпечення"></activiti:value>
+          <activiti:value id="sCOK6" name="Департамент з питань взаємодії з Верховною Радою України, іншими державними органами"></activiti:value>
+          <activiti:value id="sCOK7" name="Департамент з питань інфраструктури та технічного регулювання"></activiti:value>
+          <activiti:value id="sCOK8" name="Господарсько-фінансовий департамент"></activiti:value>
+          <activiti:value id="sCOK9" name="Управління бухгалтерського обліку, фінансів та звітності (корпус 2)"></activiti:value>
+          <activiti:value id="sCOK10" name="Департамент з питань ефективного управління державною власністю"></activiti:value>
+          <activiti:value id="sCOK11" name="Департамент з питань міжнародного співробітництва"></activiti:value>
+          <activiti:value id="sCOK12" name="Департамент з питань безпеки, оборони, діяльності органів юстиції та запобігання корупції"></activiti:value>
+          <activiti:value id="sCOK13" name="Департамент організації засідань Кабінету Міністрів України та урядових комітетів"></activiti:value>
+          <activiti:value id="sCOK14" name="Режимно-секретне управління"></activiti:value>
+          <activiti:value id="sCOK15" name="Департамент забезпечення документообігу"></activiti:value>
+          <activiti:value id="sCOK16" name="Юридичний департамент"></activiti:value>
+          <activiti:value id="sCOK17" name="Департамент з питань розвитку паливно-енергетичного комплексу та житловокомунального господарства"></activiti:value>
+          <activiti:value id="sCOK18" name="Управління з питань роботи із зверненнями громадян (Музейний провулок, 12)"></activiti:value>
+          <activiti:value id="sCOK19" name="Управління протоколу"></activiti:value>
+          <activiti:value id="sCOK20" name="Управління інформаційних технологій та безпеки"></activiti:value>
+          <activiti:value id="sCOK22" name="Відділ з питань дотримання антикорупційного законодавства"></activiti:value>
+          <activiti:value id="sCOK23" name="Урядовий офіс координації європейської та євроатлантичної інтеграції"></activiti:value>
+          <activiti:value id="sCOK24" name="Департамент з питань фінансового та економічного розвитку"></activiti:value>
+          <activiti:value id="sCOK25" name="Департамент гуманітарної та соціальної політики"></activiti:value>
+          <activiti:value id="sCOK26" name="Департамент з питань безпеки життєдіяльності, охорони навколишнього природного середовища та агропромислового комплексу"></activiti:value>
+          <activiti:value id="sCOK27" name="Директорат координації державних політик та стратегічного планування"></activiti:value>
+          <activiti:value id="sCOK28" name="Директорат публічної адміністрації"></activiti:value>
+          <activiti:value id="sCOK29" name="Директорат територіального та місцевого розвитку"></activiti:value>
+          <activiti:value id="sCOK30" name="Директорат моніторингу та контролю"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTextMeeting" name="Тема наради" type="textArea" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sTable_listener" name="Учасники; ;bNew=true" type="table" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sParticipant" name="Учасники наради (за списком); ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sTableSection" name="Пункти; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableSection2" name="Таблиця; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Додатки; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Друк протокола;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1v1lsZMKI4OhVJ2rlej2Sjy-4dO_EN3XJZrViYibS0HA', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextAccept" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на узгодження надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextAgree" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на затвердження надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextSeen" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на адресацію надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="oProcessSubject_Executor_1" name="Виконавець; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="oProcessSubject_Controller_1" name="Контролер; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select"></activiti:formProperty>
+        <activiti:formProperty id="markers_1" name="маркер" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_11&quot;:{&quot;aField_ID&quot;:[&quot;sforPF&quot;],&quot;asID_Field_sValue&quot;:[&quot;Протокол засідання Кабінету Міністрів України&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sTitleDoc&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sKMU'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers_2" name="маркер" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_12&quot;:{&quot;aField_ID&quot;:[&quot;sforPF&quot;],&quot;asID_Field_sValue&quot;:[&quot;Протокол засідання Урядового комітету&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sTitleDoc&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sUK'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers_3" name="маркер" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_13&quot;:{&quot;aField_ID&quot;:[&quot;sforPF&quot;],&quot;asID_Field_sValue&quot;:[&quot;Протокол наради&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sTitleDoc&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sPN'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sforPF" name="поле для ПФ;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sListAgree" name="sListAgree;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sText" name="Поле для счетчика; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="markers54" name="markers54" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_54&quot;:{&quot;aField_ID&quot;:[&quot;sText&quot;],&quot;asID_Field_sValue&quot;:[&quot;8&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sCOK0'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers23" name="markers23" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_23&quot;:{&quot;aField_ID&quot;:[&quot;sText&quot;],&quot;asID_Field_sValue&quot;:[&quot;9&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sCOK1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers24" name="markers24" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_24&quot;:{&quot;aField_ID&quot;:[&quot;sText&quot;],&quot;asID_Field_sValue&quot;:[&quot;10&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sCOK2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers25" name="markers25" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_25&quot;:{&quot;aField_ID&quot;:[&quot;sText&quot;],&quot;asID_Field_sValue&quot;:[&quot;56&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sCOK3'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers26" name="markers26" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_26&quot;:{&quot;aField_ID&quot;:[&quot;sText&quot;],&quot;asID_Field_sValue&quot;:[&quot;17&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sCOK4'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers27" name="markers27" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_27&quot;:{&quot;aField_ID&quot;:[&quot;sText&quot;],&quot;asID_Field_sValue&quot;:[&quot;19&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sCOK5'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers28" name="markers28" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_28&quot;:{&quot;aField_ID&quot;:[&quot;sText&quot;],&quot;asID_Field_sValue&quot;:[&quot;20&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sCOK6'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers29" name="markers29" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_29&quot;:{&quot;aField_ID&quot;:[&quot;sText&quot;],&quot;asID_Field_sValue&quot;:[&quot;21&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sCOK7'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers30" name="markers30" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_30&quot;:{&quot;aField_ID&quot;:[&quot;sText&quot;],&quot;asID_Field_sValue&quot;:[&quot;24&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sCOK8'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers31" name="markers31" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_31&quot;:{&quot;aField_ID&quot;:[&quot;sText&quot;],&quot;asID_Field_sValue&quot;:[&quot;24&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sCOK9'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers32" name="markers32" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_32&quot;:{&quot;aField_ID&quot;:[&quot;sText&quot;],&quot;asID_Field_sValue&quot;:[&quot;25&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sCOK10'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers33" name="markers33" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_33&quot;:{&quot;aField_ID&quot;:[&quot;sText&quot;],&quot;asID_Field_sValue&quot;:[&quot;27&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sCOK11'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers34" name="markers34" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_34&quot;:{&quot;aField_ID&quot;:[&quot;sText&quot;],&quot;asID_Field_sValue&quot;:[&quot;29&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sCOK12'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers35" name="markers35" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_35&quot;:{&quot;aField_ID&quot;:[&quot;sText&quot;],&quot;asID_Field_sValue&quot;:[&quot;30&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sCOK13'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers36" name="markers36" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_36&quot;:{&quot;aField_ID&quot;:[&quot;sText&quot;],&quot;asID_Field_sValue&quot;:[&quot;32&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sCOK14'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers37" name="markers37" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_37&quot;:{&quot;aField_ID&quot;:[&quot;sText&quot;],&quot;asID_Field_sValue&quot;:[&quot;35&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sCOK15'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers38" name="markers38" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_38&quot;:{&quot;aField_ID&quot;:[&quot;sText&quot;],&quot;asID_Field_sValue&quot;:[&quot;36&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sCOK16'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers39" name="markers39" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_39&quot;:{&quot;aField_ID&quot;:[&quot;sText&quot;],&quot;asID_Field_sValue&quot;:[&quot;37&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sCOK17'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers40" name="markers40" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_40&quot;:{&quot;aField_ID&quot;:[&quot;sText&quot;],&quot;asID_Field_sValue&quot;:[&quot;41&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sCOK18'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers41" name="markers41" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_41&quot;:{&quot;aField_ID&quot;:[&quot;sText&quot;],&quot;asID_Field_sValue&quot;:[&quot;45&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sCOK19'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers42" name="markers42" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_42&quot;:{&quot;aField_ID&quot;:[&quot;sText&quot;],&quot;asID_Field_sValue&quot;:[&quot;49&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sCOK20'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers44" name="markers44" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_44&quot;:{&quot;aField_ID&quot;:[&quot;sText&quot;],&quot;asID_Field_sValue&quot;:[&quot;51&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sCOK22'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers45" name="markers45" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_45&quot;:{&quot;aField_ID&quot;:[&quot;sText&quot;],&quot;asID_Field_sValue&quot;:[&quot;55&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sCOK23'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers46" name="markers46" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_46&quot;:{&quot;aField_ID&quot;:[&quot;sText&quot;],&quot;asID_Field_sValue&quot;:[&quot;67&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sCOK24'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers47" name="markers47" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_47&quot;:{&quot;aField_ID&quot;:[&quot;sText&quot;],&quot;asID_Field_sValue&quot;:[&quot;73&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sCOK25'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers48" name="markers48" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_48&quot;:{&quot;aField_ID&quot;:[&quot;sText&quot;],&quot;asID_Field_sValue&quot;:[&quot;75&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sCOK26'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers49" name="markers49" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_49&quot;:{&quot;aField_ID&quot;:[&quot;sText&quot;],&quot;asID_Field_sValue&quot;:[&quot;80&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sCOK27'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers50" name="markers50" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_50&quot;:{&quot;aField_ID&quot;:[&quot;sText&quot;],&quot;asID_Field_sValue&quot;:[&quot;81&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sCOK28'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers52" name="markers52" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_52&quot;:{&quot;aField_ID&quot;:[&quot;sText&quot;],&quot;asID_Field_sValue&quot;:[&quot;82&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sCOK29'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers53" name="markers53" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_53&quot;:{&quot;aField_ID&quot;:[&quot;sText&quot;],&quot;asID_Field_sValue&quot;:[&quot;83&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sReestr&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sCOK30'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_Line_1" name="Маркер Линия для исполнителя" type="markers" default="{&quot;attributes&quot;:{&quot;Line_1&quot;:{&quot;aElement_ID&quot;:[&quot;sTableFile&quot;],&quot;sValue&quot;:&quot;Додатки до протоколу (у разі наявності)&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sKey_Private" name="Реєстраційний номер" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="дата документа" type="date" required="true"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
+    <serviceTask id="servicetask1" name="sendEmail" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[iDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTextAccept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway" default="flow7"></exclusiveGateway>
+    <userTask id="usertask2" name="Узгодження документa :: ${sTitleDoc}" default="flow17">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Вид документа" type="string" default="Протокол наради" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPlaceMeeting" name="Місце проведення" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateMeeting" name="Дата проведення наради" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumber" name="Номер протоколу" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Chairperson" name="Нараду проводив; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Chairperson" name="логин нараду проводив;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_Chairperson" name="посада нараду проводив;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sReestr" name="Структурний підрозділ" type="enum" writable="false">
+          <activiti:value id="sCOK0" name="Міністр Кабінету Міністрів України"></activiti:value>
+          <activiti:value id="sCOK1" name="Державний секретар Кабінету Міністрів України"></activiti:value>
+          <activiti:value id="sCOK2" name="Заступник Державного секретаря Кабінету Міністрів України"></activiti:value>
+          <activiti:value id="sCOK3" name="Урядовий уповноважений з прав осіб з інвалідністю"></activiti:value>
+          <activiti:value id="sCOK4" name="Департамент інформації та комунікацій з громадськістю"></activiti:value>
+          <activiti:value id="sCOK5" name="Департамент кадрового забезпечення"></activiti:value>
+          <activiti:value id="sCOK6" name="Департамент з питань взаємодії з Верховною Радою України, іншими державними органами"></activiti:value>
+          <activiti:value id="sCOK7" name="Департамент з питань інфраструктури та технічного регулювання"></activiti:value>
+          <activiti:value id="sCOK8" name="Господарсько-фінансовий департамент"></activiti:value>
+          <activiti:value id="sCOK9" name="Управління бухгалтерського обліку, фінансів та звітності (корпус 2)"></activiti:value>
+          <activiti:value id="sCOK10" name="Департамент з питань ефективного управління державною власністю"></activiti:value>
+          <activiti:value id="sCOK11" name="Департамент з питань міжнародного співробітництва"></activiti:value>
+          <activiti:value id="sCOK12" name="Департамент з питань безпеки, оборони, діяльності органів юстиції та запобігання корупції"></activiti:value>
+          <activiti:value id="sCOK13" name="Департамент організації засідань Кабінету Міністрів України та урядових комітетів"></activiti:value>
+          <activiti:value id="sCOK14" name="Режимно-секретне управління"></activiti:value>
+          <activiti:value id="sCOK15" name="Департамент забезпечення документообігу"></activiti:value>
+          <activiti:value id="sCOK16" name="Юридичний департамент"></activiti:value>
+          <activiti:value id="sCOK17" name="Департамент з питань розвитку паливно-енергетичного комплексу та житловокомунального господарства"></activiti:value>
+          <activiti:value id="sCOK18" name="Управління з питань роботи із зверненнями громадян (Музейний провулок, 12)"></activiti:value>
+          <activiti:value id="sCOK19" name="Управління протоколу"></activiti:value>
+          <activiti:value id="sCOK20" name="Управління інформаційних технологій та безпеки"></activiti:value>
+          <activiti:value id="sCOK22" name="Відділ з питань дотримання антикорупційного законодавства"></activiti:value>
+          <activiti:value id="sCOK23" name="Урядовий офіс координації європейської та євроатлантичної інтеграції"></activiti:value>
+          <activiti:value id="sCOK24" name="Департамент з питань фінансового та економічного розвитку"></activiti:value>
+          <activiti:value id="sCOK25" name="Департамент гуманітарної та соціальної політики"></activiti:value>
+          <activiti:value id="sCOK26" name="Департамент з питань безпеки життєдіяльності, охорони навколишнього природного середовища та агропромислового комплексу"></activiti:value>
+          <activiti:value id="sCOK27" name="Директорат координації державних політик та стратегічного планування"></activiti:value>
+          <activiti:value id="sCOK28" name="Директорат публічної адміністрації"></activiti:value>
+          <activiti:value id="sCOK29" name="Директорат територіального та місцевого розвитку"></activiti:value>
+          <activiti:value id="sCOK30" name="Директорат моніторингу та контролю"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTextMeeting" name="Тема наради" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTable_listener" name="Учасники; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sParticipant" name="Учасники наради (за списком); ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Додатки; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTableSection" name="Пункти; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTableSection2" name="Таблиця; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Друк протокола;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1v1lsZMKI4OhVJ2rlej2Sjy-4dO_EN3XJZrViYibS0HA', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextAccept" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на узгодження надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextAgree" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на затвердження надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextSeen" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на адресацію надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="oProcessSubject_Executor_1" name="Виконавець; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="oProcessSubject_Controller_1" name="Контролер; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select"></activiti:formProperty>
+        <activiti:formProperty id="markers_1" name="маркер" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_11&quot;:{&quot;aField_ID&quot;:[&quot;sforPF&quot;],&quot;asID_Field_sValue&quot;:[&quot;Протокол засідання Кабінету Міністрів України&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sTitleDoc&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sKMU'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers_2" name="маркер" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_12&quot;:{&quot;aField_ID&quot;:[&quot;sforPF&quot;],&quot;asID_Field_sValue&quot;:[&quot;Протокол засідання Урядового комітету&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sTitleDoc&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sUK'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers_3" name="маркер" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_13&quot;:{&quot;aField_ID&quot;:[&quot;sforPF&quot;],&quot;asID_Field_sValue&quot;:[&quot;Протокол наради&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sTitleDoc&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sPN'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sforPF" name="поле для ПФ;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sListAgree" name="sListAgree;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sText" name="Поле для счетчика; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sKey_Private" name="Реєстраційний номер" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="дата документа" type="date" required="true"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <exclusiveGateway id="exclusivegateway2" name="Exclusive Gateway" default="flow23"></exclusiveGateway>
+    <sequenceFlow id="flow6" sourceRef="usertask1" targetRef="scripttask2">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow7" sourceRef="exclusivegateway1" targetRef="servicetask1"></sequenceFlow>
+    <userTask id="usertask3" name="Редагуваня :: ${sTitleDoc}" default="FlowButton_SaveChange">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Вид документа" type="string" default="Протокол наради" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sPlaceMeeting" name="Місце проведення" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sDateMeeting" name="Дата проведення наради" type="date" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sNumber" name="Номер протоколу" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sName_Chairperson" name="Нараду проводив; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Chairperson" name="логин нараду проводив;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_Chairperson" name="посада нараду проводив;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sReestr" name="Структурний підрозділ" type="enum" required="true">
+          <activiti:value id="sCOK0" name="Міністр Кабінету Міністрів України"></activiti:value>
+          <activiti:value id="sCOK1" name="Державний секретар Кабінету Міністрів України"></activiti:value>
+          <activiti:value id="sCOK2" name="Заступник Державного секретаря Кабінету Міністрів України"></activiti:value>
+          <activiti:value id="sCOK3" name="Урядовий уповноважений з прав осіб з інвалідністю"></activiti:value>
+          <activiti:value id="sCOK4" name="Департамент інформації та комунікацій з громадськістю"></activiti:value>
+          <activiti:value id="sCOK5" name="Департамент кадрового забезпечення"></activiti:value>
+          <activiti:value id="sCOK6" name="Департамент з питань взаємодії з Верховною Радою України, іншими державними органами"></activiti:value>
+          <activiti:value id="sCOK7" name="Департамент з питань інфраструктури та технічного регулювання"></activiti:value>
+          <activiti:value id="sCOK8" name="Господарсько-фінансовий департамент"></activiti:value>
+          <activiti:value id="sCOK9" name="Управління бухгалтерського обліку, фінансів та звітності (корпус 2)"></activiti:value>
+          <activiti:value id="sCOK10" name="Департамент з питань ефективного управління державною власністю"></activiti:value>
+          <activiti:value id="sCOK11" name="Департамент з питань міжнародного співробітництва"></activiti:value>
+          <activiti:value id="sCOK12" name="Департамент з питань безпеки, оборони, діяльності органів юстиції та запобігання корупції"></activiti:value>
+          <activiti:value id="sCOK13" name="Департамент організації засідань Кабінету Міністрів України та урядових комітетів"></activiti:value>
+          <activiti:value id="sCOK14" name="Режимно-секретне управління"></activiti:value>
+          <activiti:value id="sCOK15" name="Департамент забезпечення документообігу"></activiti:value>
+          <activiti:value id="sCOK16" name="Юридичний департамент"></activiti:value>
+          <activiti:value id="sCOK17" name="Департамент з питань розвитку паливно-енергетичного комплексу та житловокомунального господарства"></activiti:value>
+          <activiti:value id="sCOK18" name="Управління з питань роботи із зверненнями громадян (Музейний провулок, 12)"></activiti:value>
+          <activiti:value id="sCOK19" name="Управління протоколу"></activiti:value>
+          <activiti:value id="sCOK20" name="Управління інформаційних технологій та безпеки"></activiti:value>
+          <activiti:value id="sCOK22" name="Відділ з питань дотримання антикорупційного законодавства"></activiti:value>
+          <activiti:value id="sCOK23" name="Урядовий офіс координації європейської та євроатлантичної інтеграції"></activiti:value>
+          <activiti:value id="sCOK24" name="Департамент з питань фінансового та економічного розвитку"></activiti:value>
+          <activiti:value id="sCOK25" name="Департамент гуманітарної та соціальної політики"></activiti:value>
+          <activiti:value id="sCOK26" name="Департамент з питань безпеки життєдіяльності, охорони навколишнього природного середовища та агропромислового комплексу"></activiti:value>
+          <activiti:value id="sCOK27" name="Директорат координації державних політик та стратегічного планування"></activiti:value>
+          <activiti:value id="sCOK28" name="Директорат публічної адміністрації"></activiti:value>
+          <activiti:value id="sCOK29" name="Директорат територіального та місцевого розвитку"></activiti:value>
+          <activiti:value id="sCOK30" name="Директорат моніторингу та контролю"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTextMeeting" name="Тема наради" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sTable_listener" name="Учасники; ;bNew=true" type="table" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sParticipant" name="Учасники наради (за списком); ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Додатки; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableSection" name="Пункти; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Друк протокола;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1v1lsZMKI4OhVJ2rlej2Sjy-4dO_EN3XJZrViYibS0HA', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextAccept" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на узгодження надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextAgree" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на затвердження надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextSeen" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на адресацію надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="oProcessSubject_Executor_1" name="Виконавець; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="oProcessSubject_Controller_1" name="Контролер; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select"></activiti:formProperty>
+        <activiti:formProperty id="markers_1" name="маркер" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_11&quot;:{&quot;aField_ID&quot;:[&quot;sforPF&quot;],&quot;asID_Field_sValue&quot;:[&quot;Протокол засідання Кабінету Міністрів України&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sTitleDoc&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sKMU'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers_2" name="маркер" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_12&quot;:{&quot;aField_ID&quot;:[&quot;sforPF&quot;],&quot;asID_Field_sValue&quot;:[&quot;Протокол засідання Урядового комітету&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sTitleDoc&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sUK'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers_3" name="маркер" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_13&quot;:{&quot;aField_ID&quot;:[&quot;sforPF&quot;],&quot;asID_Field_sValue&quot;:[&quot;Протокол наради&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sTitleDoc&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sPN'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sforPF" name="поле для ПФ;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sListAgree" name="sListAgree;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sText" name="Поле для счетчика; ;bVisible=false" type="string"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <exclusiveGateway id="exclusivegateway4" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="FlowButton_SaveChangeAndSnos" name="Знести підписи та зберегти зміни;sIF=hasAny-States(Authorship)" sourceRef="usertask3" targetRef="exclusivegateway4">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${resetDocumentSignesListener}">
+          <activiti:field name="sasKey_StepType">
+            <activiti:string><![CDATA[Accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_SaveChangeAndSnos')}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="FlowButton_SaveChange" name="Зберегти зміни;sIF=hasAny-States(Authorship)" sourceRef="usertask3" targetRef="exclusivegateway4">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_SaveChange')}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="FlowButton_Edit" name="Редагувати;sIF=hasAny-States(Authorship)" sourceRef="usertask2" targetRef="usertask3">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[edit]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_Edit')}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow15" sourceRef="exclusivegateway4" targetRef="exclusivegateway1">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepPreviousListener}"></activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow16" sourceRef="servicetask1" targetRef="usertask2"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway5" name="Exclusive Gateway" default="flow18"></exclusiveGateway>
+    <sequenceFlow id="flow17" sourceRef="usertask2" targetRef="exclusivegateway5"></sequenceFlow>
+    <sequenceFlow id="flow18" sourceRef="exclusivegateway5" targetRef="usertask2"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway6" name="Exclusive Gateway" default="flow20"></exclusiveGateway>
+    <sequenceFlow id="flow19" sourceRef="exclusivegateway5" targetRef="exclusivegateway6">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisStep(execution) || execution.getVariable('step_accept_autoSubmit')}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow20" sourceRef="exclusivegateway6" targetRef="usertask2">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:expression><![CDATA[+1]]></activiti:expression>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow21" sourceRef="exclusivegateway6" targetRef="exclusivegateway2">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[agree]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisTypeStep(execution) || execution.getVariable('step_accept_autoSubmit')}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="usertask4" name="Ознайомлення :: ${sTitleDoc}">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Вид документа" type="string" default="Протокол наради" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPlaceMeeting" name="Місце проведення" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateMeeting" name="Дата проведення наради" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumber" name="Номер протоколу" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Chairperson" name="Нараду проводив; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Chairperson" name="логин нараду проводив;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_Chairperson" name="посада нараду проводив;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sReestr" name="Структурний підрозділ" type="enum" writable="false">
+          <activiti:value id="sCOK0" name="Міністр Кабінету Міністрів України"></activiti:value>
+          <activiti:value id="sCOK1" name="Державний секретар Кабінету Міністрів України"></activiti:value>
+          <activiti:value id="sCOK2" name="Заступник Державного секретаря Кабінету Міністрів України"></activiti:value>
+          <activiti:value id="sCOK3" name="Урядовий уповноважений з прав осіб з інвалідністю"></activiti:value>
+          <activiti:value id="sCOK4" name="Департамент інформації та комунікацій з громадськістю"></activiti:value>
+          <activiti:value id="sCOK5" name="Департамент кадрового забезпечення"></activiti:value>
+          <activiti:value id="sCOK6" name="Департамент з питань взаємодії з Верховною Радою України, іншими державними органами"></activiti:value>
+          <activiti:value id="sCOK7" name="Департамент з питань інфраструктури та технічного регулювання"></activiti:value>
+          <activiti:value id="sCOK8" name="Господарсько-фінансовий департамент"></activiti:value>
+          <activiti:value id="sCOK9" name="Управління бухгалтерського обліку, фінансів та звітності (корпус 2)"></activiti:value>
+          <activiti:value id="sCOK10" name="Департамент з питань ефективного управління державною власністю"></activiti:value>
+          <activiti:value id="sCOK11" name="Департамент з питань міжнародного співробітництва"></activiti:value>
+          <activiti:value id="sCOK12" name="Департамент з питань безпеки, оборони, діяльності органів юстиції та запобігання корупції"></activiti:value>
+          <activiti:value id="sCOK13" name="Департамент організації засідань Кабінету Міністрів України та урядових комітетів"></activiti:value>
+          <activiti:value id="sCOK14" name="Режимно-секретне управління"></activiti:value>
+          <activiti:value id="sCOK15" name="Департамент забезпечення документообігу"></activiti:value>
+          <activiti:value id="sCOK16" name="Юридичний департамент"></activiti:value>
+          <activiti:value id="sCOK17" name="Департамент з питань розвитку паливно-енергетичного комплексу та житловокомунального господарства"></activiti:value>
+          <activiti:value id="sCOK18" name="Управління з питань роботи із зверненнями громадян (Музейний провулок, 12)"></activiti:value>
+          <activiti:value id="sCOK19" name="Управління протоколу"></activiti:value>
+          <activiti:value id="sCOK20" name="Управління інформаційних технологій та безпеки"></activiti:value>
+          <activiti:value id="sCOK22" name="Відділ з питань дотримання антикорупційного законодавства"></activiti:value>
+          <activiti:value id="sCOK23" name="Урядовий офіс координації європейської та євроатлантичної інтеграції"></activiti:value>
+          <activiti:value id="sCOK24" name="Департамент з питань фінансового та економічного розвитку"></activiti:value>
+          <activiti:value id="sCOK25" name="Департамент гуманітарної та соціальної політики"></activiti:value>
+          <activiti:value id="sCOK26" name="Департамент з питань безпеки життєдіяльності, охорони навколишнього природного середовища та агропромислового комплексу"></activiti:value>
+          <activiti:value id="sCOK27" name="Директорат координації державних політик та стратегічного планування"></activiti:value>
+          <activiti:value id="sCOK28" name="Директорат публічної адміністрації"></activiti:value>
+          <activiti:value id="sCOK29" name="Директорат територіального та місцевого розвитку"></activiti:value>
+          <activiti:value id="sCOK30" name="Директорат моніторингу та контролю"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTextMeeting" name="Тема наради" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTable_listener" name="Учасники; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sParticipant" name="Учасники наради (за списком); ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Додатки; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTableSection" name="Пункти; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Друк протокола;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1v1lsZMKI4OhVJ2rlej2Sjy-4dO_EN3XJZrViYibS0HA', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextAccept" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на узгодження надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextAgree" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на затвердження надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextSeen" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на адресацію надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="oProcessSubject_Executor_1" name="Виконавець; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="oProcessSubject_Controller_1" name="Контролер; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select"></activiti:formProperty>
+        <activiti:formProperty id="markers_1" name="маркер" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_11&quot;:{&quot;aField_ID&quot;:[&quot;sforPF&quot;],&quot;asID_Field_sValue&quot;:[&quot;Протокол засідання Кабінету Міністрів України&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sTitleDoc&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sKMU'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers_2" name="маркер" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_12&quot;:{&quot;aField_ID&quot;:[&quot;sforPF&quot;],&quot;asID_Field_sValue&quot;:[&quot;Протокол засідання Урядового комітету&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sTitleDoc&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sUK'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers_3" name="маркер" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_13&quot;:{&quot;aField_ID&quot;:[&quot;sforPF&quot;],&quot;asID_Field_sValue&quot;:[&quot;Протокол наради&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sTitleDoc&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sPN'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sforPF" name="поле для ПФ;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sListAgree" name="sListAgree;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sText" name="Поле для счетчика; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sKey_Private" name="Реєстраційний номер" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="oDate_Private" name="дата документа" type="date" required="true"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <serviceTask id="servicetask2" name="sendEmail" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[iDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTextAgree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_agree]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow23" sourceRef="exclusivegateway2" targetRef="servicetask6"></sequenceFlow>
+    <userTask id="usertask5" name="Затвердження документa :: ${sTitleDoc}" default="flow25">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Вид документа" type="string" default="Протокол наради" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPlaceMeeting" name="Місце проведення" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateMeeting" name="Дата проведення наради" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumber" name="Номер протоколу" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Chairperson" name="Нараду проводив; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Chairperson" name="логин нараду проводив;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_Chairperson" name="посада нараду проводив;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sReestr" name="Структурний підрозділ" type="enum" writable="false">
+          <activiti:value id="sCOK0" name="Міністр Кабінету Міністрів України"></activiti:value>
+          <activiti:value id="sCOK1" name="Державний секретар Кабінету Міністрів України"></activiti:value>
+          <activiti:value id="sCOK2" name="Заступник Державного секретаря Кабінету Міністрів України"></activiti:value>
+          <activiti:value id="sCOK3" name="Урядовий уповноважений з прав осіб з інвалідністю"></activiti:value>
+          <activiti:value id="sCOK4" name="Департамент інформації та комунікацій з громадськістю"></activiti:value>
+          <activiti:value id="sCOK5" name="Департамент кадрового забезпечення"></activiti:value>
+          <activiti:value id="sCOK6" name="Департамент з питань взаємодії з Верховною Радою України, іншими державними органами"></activiti:value>
+          <activiti:value id="sCOK7" name="Департамент з питань інфраструктури та технічного регулювання"></activiti:value>
+          <activiti:value id="sCOK8" name="Господарсько-фінансовий департамент"></activiti:value>
+          <activiti:value id="sCOK9" name="Управління бухгалтерського обліку, фінансів та звітності (корпус 2)"></activiti:value>
+          <activiti:value id="sCOK10" name="Департамент з питань ефективного управління державною власністю"></activiti:value>
+          <activiti:value id="sCOK11" name="Департамент з питань міжнародного співробітництва"></activiti:value>
+          <activiti:value id="sCOK12" name="Департамент з питань безпеки, оборони, діяльності органів юстиції та запобігання корупції"></activiti:value>
+          <activiti:value id="sCOK13" name="Департамент організації засідань Кабінету Міністрів України та урядових комітетів"></activiti:value>
+          <activiti:value id="sCOK14" name="Режимно-секретне управління"></activiti:value>
+          <activiti:value id="sCOK15" name="Департамент забезпечення документообігу"></activiti:value>
+          <activiti:value id="sCOK16" name="Юридичний департамент"></activiti:value>
+          <activiti:value id="sCOK17" name="Департамент з питань розвитку паливно-енергетичного комплексу та житловокомунального господарства"></activiti:value>
+          <activiti:value id="sCOK18" name="Управління з питань роботи із зверненнями громадян (Музейний провулок, 12)"></activiti:value>
+          <activiti:value id="sCOK19" name="Управління протоколу"></activiti:value>
+          <activiti:value id="sCOK20" name="Управління інформаційних технологій та безпеки"></activiti:value>
+          <activiti:value id="sCOK22" name="Відділ з питань дотримання антикорупційного законодавства"></activiti:value>
+          <activiti:value id="sCOK23" name="Урядовий офіс координації європейської та євроатлантичної інтеграції"></activiti:value>
+          <activiti:value id="sCOK24" name="Департамент з питань фінансового та економічного розвитку"></activiti:value>
+          <activiti:value id="sCOK25" name="Департамент гуманітарної та соціальної політики"></activiti:value>
+          <activiti:value id="sCOK26" name="Департамент з питань безпеки життєдіяльності, охорони навколишнього природного середовища та агропромислового комплексу"></activiti:value>
+          <activiti:value id="sCOK27" name="Директорат координації державних політик та стратегічного планування"></activiti:value>
+          <activiti:value id="sCOK28" name="Директорат публічної адміністрації"></activiti:value>
+          <activiti:value id="sCOK29" name="Директорат територіального та місцевого розвитку"></activiti:value>
+          <activiti:value id="sCOK30" name="Директорат моніторингу та контролю"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTextMeeting" name="Тема наради" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTable_listener" name="Учасники; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sParticipant" name="Учасники наради (за списком); ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Додатки; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTableSection" name="Пункти; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTableSection2" name="Таблиця; ;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Друк протокола;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1v1lsZMKI4OhVJ2rlej2Sjy-4dO_EN3XJZrViYibS0HA', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextAccept" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на узгодження надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextAgree" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на затвердження надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextSeen" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на адресацію надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="oProcessSubject_Executor_1" name="Виконавець; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="oProcessSubject_Controller_1" name="Контролер; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select"></activiti:formProperty>
+        <activiti:formProperty id="markers_1" name="маркер" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_11&quot;:{&quot;aField_ID&quot;:[&quot;sforPF&quot;],&quot;asID_Field_sValue&quot;:[&quot;Протокол засідання Кабінету Міністрів України&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sTitleDoc&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sKMU'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers_2" name="маркер" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_12&quot;:{&quot;aField_ID&quot;:[&quot;sforPF&quot;],&quot;asID_Field_sValue&quot;:[&quot;Протокол засідання Урядового комітету&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sTitleDoc&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sUK'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers_3" name="маркер" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_13&quot;:{&quot;aField_ID&quot;:[&quot;sforPF&quot;],&quot;asID_Field_sValue&quot;:[&quot;Протокол наради&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sTitleDoc&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sPN'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sforPF" name="поле для ПФ;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sListAgree" name="sListAgree;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sText" name="Поле для счетчика; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sKey_Private" name="Реєстраційний номер" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="дата документа" type="date" required="true"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow24" sourceRef="servicetask2" targetRef="usertask5"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway7" name="Exclusive Gateway" default="flow29"></exclusiveGateway>
+    <sequenceFlow id="flow25" sourceRef="usertask5" targetRef="exclusivegateway7"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway8" name="Exclusive Gateway" default="flow27"></exclusiveGateway>
+    <sequenceFlow id="flow26" sourceRef="exclusivegateway7" targetRef="exclusivegateway8">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow27" sourceRef="exclusivegateway8" targetRef="usertask5">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:expression><![CDATA[+1]]></activiti:expression>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow28" sourceRef="exclusivegateway8" targetRef="servicetask4">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[seen]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisTypeStep(execution) || execution.getVariable('step_agree_autoSubmit')}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow29" sourceRef="exclusivegateway7" targetRef="usertask5"></sequenceFlow>
+    <userTask id="usertask6" name="Редагуваня :: ${sTitleDoc}" default="FlowButton_SaveChangeAgree">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Вид документа" type="string" default="Протокол наради" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sPlaceMeeting" name="Місце проведення" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sDateMeeting" name="Дата проведення наради" type="date" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sNumber" name="Номер протоколу" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sName_Chairperson" name="Нараду проводив; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Chairperson" name="логин нараду проводив;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_Chairperson" name="посада нараду проводив;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sReestr" name="Структурний підрозділ" type="enum" required="true">
+          <activiti:value id="sCOK0" name="Міністр Кабінету Міністрів України"></activiti:value>
+          <activiti:value id="sCOK1" name="Державний секретар Кабінету Міністрів України"></activiti:value>
+          <activiti:value id="sCOK2" name="Заступник Державного секретаря Кабінету Міністрів України"></activiti:value>
+          <activiti:value id="sCOK3" name="Урядовий уповноважений з прав осіб з інвалідністю"></activiti:value>
+          <activiti:value id="sCOK4" name="Департамент інформації та комунікацій з громадськістю"></activiti:value>
+          <activiti:value id="sCOK5" name="Департамент кадрового забезпечення"></activiti:value>
+          <activiti:value id="sCOK6" name="Департамент з питань взаємодії з Верховною Радою України, іншими державними органами"></activiti:value>
+          <activiti:value id="sCOK7" name="Департамент з питань інфраструктури та технічного регулювання"></activiti:value>
+          <activiti:value id="sCOK8" name="Господарсько-фінансовий департамент"></activiti:value>
+          <activiti:value id="sCOK9" name="Управління бухгалтерського обліку, фінансів та звітності (корпус 2)"></activiti:value>
+          <activiti:value id="sCOK10" name="Департамент з питань ефективного управління державною власністю"></activiti:value>
+          <activiti:value id="sCOK11" name="Департамент з питань міжнародного співробітництва"></activiti:value>
+          <activiti:value id="sCOK12" name="Департамент з питань безпеки, оборони, діяльності органів юстиції та запобігання корупції"></activiti:value>
+          <activiti:value id="sCOK13" name="Департамент організації засідань Кабінету Міністрів України та урядових комітетів"></activiti:value>
+          <activiti:value id="sCOK14" name="Режимно-секретне управління"></activiti:value>
+          <activiti:value id="sCOK15" name="Департамент забезпечення документообігу"></activiti:value>
+          <activiti:value id="sCOK16" name="Юридичний департамент"></activiti:value>
+          <activiti:value id="sCOK17" name="Департамент з питань розвитку паливно-енергетичного комплексу та житловокомунального господарства"></activiti:value>
+          <activiti:value id="sCOK18" name="Управління з питань роботи із зверненнями громадян (Музейний провулок, 12)"></activiti:value>
+          <activiti:value id="sCOK19" name="Управління протоколу"></activiti:value>
+          <activiti:value id="sCOK20" name="Управління інформаційних технологій та безпеки"></activiti:value>
+          <activiti:value id="sCOK22" name="Відділ з питань дотримання антикорупційного законодавства"></activiti:value>
+          <activiti:value id="sCOK23" name="Урядовий офіс координації європейської та євроатлантичної інтеграції"></activiti:value>
+          <activiti:value id="sCOK24" name="Департамент з питань фінансового та економічного розвитку"></activiti:value>
+          <activiti:value id="sCOK25" name="Департамент гуманітарної та соціальної політики"></activiti:value>
+          <activiti:value id="sCOK26" name="Департамент з питань безпеки життєдіяльності, охорони навколишнього природного середовища та агропромислового комплексу"></activiti:value>
+          <activiti:value id="sCOK27" name="Директорат координації державних політик та стратегічного планування"></activiti:value>
+          <activiti:value id="sCOK28" name="Директорат публічної адміністрації"></activiti:value>
+          <activiti:value id="sCOK29" name="Директорат територіального та місцевого розвитку"></activiti:value>
+          <activiti:value id="sCOK30" name="Директорат моніторингу та контролю"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sTextMeeting" name="Тема наради" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sTable_listener" name="Учасники; ;bNew=true" type="table" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sParticipant" name="Учасники наради (за списком); ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Додатки; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableSection" name="Пункти; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Друк протокола;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1v1lsZMKI4OhVJ2rlej2Sjy-4dO_EN3XJZrViYibS0HA', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextAccept" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на узгодження надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextAgree" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на затвердження надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailTextSeen" name="текст;;bVisible=false" type="string" default="Шановний колего! Вам на адресацію надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="oProcessSubject_Executor_1" name="Виконавець; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="oProcessSubject_Controller_1" name="Контролер; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select"></activiti:formProperty>
+        <activiti:formProperty id="markers_1" name="маркер" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_11&quot;:{&quot;aField_ID&quot;:[&quot;sforPF&quot;],&quot;asID_Field_sValue&quot;:[&quot;Протокол засідання Кабінету Міністрів України&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sTitleDoc&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sKMU'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers_2" name="маркер" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_12&quot;:{&quot;aField_ID&quot;:[&quot;sforPF&quot;],&quot;asID_Field_sValue&quot;:[&quot;Протокол засідання Урядового комітету&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sTitleDoc&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sUK'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markers_3" name="маркер" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_st_13&quot;:{&quot;aField_ID&quot;:[&quot;sforPF&quot;],&quot;asID_Field_sValue&quot;:[&quot;Протокол наради&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sTitleDoc&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sPN'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sforPF" name="поле для ПФ;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sListAgree" name="sListAgree;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sText" name="Поле для счетчика; ;bVisible=false" type="string"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="FlowButton_EditAgree" name="Редагувати;sIF=hasAny-States(Authorship)" sourceRef="usertask5" targetRef="usertask6">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[edit]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_EditAgree')}]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway id="exclusivegateway9" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="FlowButton_SaveChangeAndSnosAgree" name="Знести підписи та зберегти зміни;sIF=hasAny-States(Authorship)" sourceRef="usertask6" targetRef="exclusivegateway9">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${resetDocumentSignesListener}">
+          <activiti:field name="sasKey_StepType">
+            <activiti:string><![CDATA[Agree]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_SaveChangeAndSnosAgree')}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow32" sourceRef="exclusivegateway9" targetRef="exclusivegateway2">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepPreviousListener}"></activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="FlowButton_SaveChangeAgree" name="Зберегти зміни;sIF=hasAny-States(Authorship)" sourceRef="usertask6" targetRef="exclusivegateway9">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_SaveChangeAgree')}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="FlowButton_SaveChangeAndSnosAccept" name="Повернути на узгодження;sIF=hasAny-States(Authorship)" sourceRef="usertask6" targetRef="exclusivegateway12">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${resetDocumentSignesListener}">
+          <activiti:field name="sasKey_StepType">
+            <activiti:string><![CDATA[Accept, Agree]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_SaveChangeAndSnosAccept')}]]></conditionExpression>
+    </sequenceFlow>
+    <serviceTask id="servicetask3" name="sendEmail" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[iDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTextSeen]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_seen]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow35" sourceRef="servicetask3" targetRef="usertask4"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway10" name="Exclusive Gateway" default="flow37"></exclusiveGateway>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow36" sourceRef="usertask4" targetRef="exclusivegateway10"></sequenceFlow>
+    <sequenceFlow id="flow37" sourceRef="exclusivegateway10" targetRef="usertask4"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway11" name="Exclusive Gateway" default="flow39"></exclusiveGateway>
+    <sequenceFlow id="flow38" sourceRef="exclusivegateway10" targetRef="exclusivegateway11">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow39" sourceRef="exclusivegateway11" targetRef="usertask4">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[+1]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow40" sourceRef="exclusivegateway11" targetRef="endevent1"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway12" name="Exclusive Gateway" default="flow42"></exclusiveGateway>
+    <sequenceFlow id="flow41" sourceRef="exclusivegateway12" targetRef="exclusivegateway5">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${resetDocumentSignesListener}">
+          <activiti:field name="sasKey_StepType">
+            <activiti:string><![CDATA[Accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow42" sourceRef="exclusivegateway12" targetRef="exclusivegateway1">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <scriptTask id="scripttask1" name="1" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>var snID_Process_Activiti = execution.getProcessInstanceId();
+var aLoginListener = taskForm.getValuesFromTableField(snID_Process_Activiti, 'sTable_listener', 'sLogin_isExecute'); 
+if (aLoginListener != null){
+var nParticipantsCount = aLoginListener.length; 
+nParticipantsCount = nParticipantsCount + 1;
+execution.setVariable('sAmtParticipants', nParticipantsCount.toString()); 
+}
+
+//test Scope
+
+var sLoginAuthor = execution.getVariable('sLoginAuthor')
+var obj = subjectService.getEmployee(sLoginAuthor, false)
+oDocumentService.setProcessDocumentScopeCustom(execution, obj)
+
+//Список участников sTable_listener
+var aName_isExecute = taskForm.getValuesFromTableField(snID_Process_Activiti, 'sTable_listener', 'sName_isExecute');
+var sListAgrees = aName_isExecute.toString();
+  sListAgrees = sListAgrees.replace(/\[|\]/g, '');  
+execution.setVariable('sListAgree', sListAgrees);</script>
+    </scriptTask>
+    <sequenceFlow id="flow43" sourceRef="scripttask1" targetRef="exclusivegateway1"></sequenceFlow>
+    <serviceTask id="servicetask4" name="Service Task" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_Seen]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_seen]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oDocumentService.getLoginAuthor(execution)}]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow44" sourceRef="servicetask4" targetRef="servicetask3"></sequenceFlow>
+    <serviceTask id="servicetask5" name="права роли Премьер-Министр" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('kadri_vikonavec', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sTitleDoc]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="servicetask6" name="права роли Держ.секретар" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${sLogin_Chairperson}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sTitleDoc]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <scriptTask id="scripttask2" name="Старт задач" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>//Концепт
+
+var sID_BP = '_task_base';
+var snID_Process_Activiti = execution.getProcessInstanceId();
+var sTableName = 'sTableSection';
+var aoTable_Values = taskForm.getIdAndValueFromTableField(snID_Process_Activiti, sTableName);
+var sNumber = execution.getVariable('sNumber');
+var sDateMeeting = execution.getVariable('sDateMeeting');
+var sLoginAuthor = oDocumentService.getLoginAuthor(execution);
+
+var aProcessTaskVO = [];
+
+
+for (var i=0; i&lt;aoTable_Values.length; i++){
+
+  sNeedTask = aoTable_Values[i].sNeedTask; // yes | no
+  if(sNeedTask == 'no'){
+  	continue;
+  };
+
+  if(sNeedTask == 'yes'){
+
+	var oProcessTaskVO = {};
+	var oProcessTaskSubjectsVO = {
+	    aVisor : [],
+	    aExecutor : [],
+	    aController : []
+	}	
+	 sBodyTask = aoTable_Values[i].sBody;
+	var sDateExecute = aoTable_Values[i].sDateExecute;
+		sReplacedDate = sDateExecute.replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$2-$1');
+		sDateExecute = sReplacedDate + ' 23:59:59.000';
+	var sLoginController = aoTable_Values[i].sLogin_isControl;
+	var sLoginExecutor = aoTable_Values[i].sLogin_isExecute;
+	var sLoginVisor = aoTable_Values[i].sLogin_isObserver;	
+	var sHeadTask = 'Протокол № ' + sNumber +' від ' + sDateMeeting + '. Пункт № ' + (i + 1);
+
+	var oController = {};
+        oController.oUserVO = {};
+        oController.oUserVO.sLogin = sLoginController;        
+        oController.sKey_TaskSubjectRole = 'Controller';
+        oController.nOrder = 0;
+        oController.oDatePlan = sDateExecute;
+        oController.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };
+    oProcessTaskSubjectsVO.aController.push(oController);
+    execution.setVariable('aController', JSON.stringify(oProcessTaskSubjectsVO.aController));
+
+    var oExecutor = {};
+    	oExecutor.oUserVO = {};
+        oExecutor.oUserVO.sLogin = sLoginExecutor;        
+        oExecutor.sKey_TaskSubjectRole = 'Executor';
+        oExecutor.nOrder = 0;
+        oExecutor.oDatePlan = sDateExecute;
+        oExecutor.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        };        
+    oProcessTaskSubjectsVO.aExecutor.push(oExecutor);      
+    execution.setVariable('aExecutor', JSON.stringify(oProcessTaskSubjectsVO.aExecutor));
+
+    var oVisor = {};
+        oVisor.oUserVO = {};
+        oVisor.oUserVO.sLogin = sLoginVisor;        
+        oVisor.sKey_TaskSubjectRole = 'Visor';
+        oVisor.nOrder = 0;
+        oVisor.oDatePlan = sDateExecute;
+        oVisor.oProcessTaskSubjectStatus = {
+          sID: 'new'
+        }       
+    oProcessTaskSubjectsVO.aVisor.push(oVisor);     
+    execution.setVariable('aVisor', JSON.stringify(oProcessTaskSubjectsVO.aVisor));
+
+    oProcessTaskVO.sHead = sHeadTask;
+	oProcessTaskVO.sBody = sBodyTask;
+	oProcessTaskVO.sID_BP = sID_BP;
+	oProcessTaskVO.sKey_TaskSource = snID_Process_Activiti;
+	oProcessTaskVO.sKey_TaskSourceType = 'Document';
+	oProcessTaskVO.sKey_TaskReportType = 'textArea';
+	oProcessTaskVO.bSplited_Execute = false;
+	oProcessTaskVO.oProcessTaskSubjectsVO = oProcessTaskSubjectsVO;
+
+	//Проливаем задачи в документ
+	processSubjectTaskService.setProcessTaskData(JSON.stringify(oProcessTaskVO), null, sLoginAuthor);
+
+	aProcessTaskVO.push(oProcessTaskVO);
+	execution.setVariable('oProcessTaskVO', JSON.stringify(oProcessTaskVO));
+  }
+};
+
+execution.setVariable('aProcessTaskVO', JSON.stringify(aProcessTaskVO));
+</script>
+    </scriptTask>
+    <sequenceFlow id="flow47" sourceRef="scripttask2" targetRef="scripttask1"></sequenceFlow>
+    <scriptTask id="scripttask3" name="Мапа таблицы" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>var snID_Process_Activiti = execution.getProcessInstanceId();
+var sTableName = 'sTableSection';
+var aoTable_Values = taskForm.getIdAndValueFromTableField(snID_Process_Activiti, sTableName);
+
+execution.setVariable('sBody', aoTable_Values.toString());</script>
+    </scriptTask>
+    <sequenceFlow id="flow48" sourceRef="scripttask3" targetRef="scripttask1"></sequenceFlow>
+    <sequenceFlow id="flow49" sourceRef="servicetask6" targetRef="servicetask2"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram__doc_template_covmudep_protocol_meeting_resiz">
+    <bpmndi:BPMNPlane bpmnElement="_doc_template_covmudep_protocol_meeting_resiz" id="BPMNPlane__doc_template_covmudep_protocol_meeting_resiz">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="20.0" y="176.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="74.0" width="121.0" x="102.0" y="157.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask1" id="BPMNShape_servicetask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="460.0" y="91.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway1" id="BPMNShape_exclusivegateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="285.0" y="55.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask2" id="BPMNShape_usertask2">
+        <omgdc:Bounds height="71.0" width="121.0" x="452.0" y="170.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway2" id="BPMNShape_exclusivegateway2">
+        <omgdc:Bounds height="40.0" width="40.0" x="285.0" y="380.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask3" id="BPMNShape_usertask3">
+        <omgdc:Bounds height="71.0" width="121.0" x="730.0" y="170.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway4" id="BPMNShape_exclusivegateway4">
+        <omgdc:Bounds height="40.0" width="40.0" x="770.0" y="54.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway5" id="BPMNShape_exclusivegateway5">
+        <omgdc:Bounds height="40.0" width="40.0" x="492.0" y="280.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway6" id="BPMNShape_exclusivegateway6">
+        <omgdc:Bounds height="40.0" width="40.0" x="380.0" y="280.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask4" id="BPMNShape_usertask4">
+        <omgdc:Bounds height="71.0" width="122.0" x="245.0" y="750.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask2" id="BPMNShape_servicetask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="460.0" y="428.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask5" id="BPMNShape_usertask5">
+        <omgdc:Bounds height="71.0" width="121.0" x="452.0" y="505.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway7" id="BPMNShape_exclusivegateway7">
+        <omgdc:Bounds height="40.0" width="40.0" x="492.0" y="615.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway8" id="BPMNShape_exclusivegateway8">
+        <omgdc:Bounds height="40.0" width="40.0" x="380.0" y="615.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask6" id="BPMNShape_usertask6">
+        <omgdc:Bounds height="73.0" width="121.0" x="730.0" y="504.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway9" id="BPMNShape_exclusivegateway9">
+        <omgdc:Bounds height="40.0" width="40.0" x="770.0" y="380.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask3" id="BPMNShape_servicetask3">
+        <omgdc:Bounds height="55.0" width="105.0" x="253.0" y="680.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway10" id="BPMNShape_exclusivegateway10">
+        <omgdc:Bounds height="40.0" width="40.0" x="285.0" y="860.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="173.0" y="920.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway11" id="BPMNShape_exclusivegateway11">
+        <omgdc:Bounds height="40.0" width="40.0" x="170.0" y="860.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway12" id="BPMNShape_exclusivegateway12">
+        <omgdc:Bounds height="40.0" width="40.0" x="1010.0" y="280.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask1" id="BPMNShape_scripttask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="110.0" y="48.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask4" id="BPMNShape_servicetask4">
+        <omgdc:Bounds height="55.0" width="105.0" x="253.0" y="605.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask5" id="BPMNShape_servicetask5">
+        <omgdc:Bounds height="55.0" width="105.0" x="295.0" y="138.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask6" id="BPMNShape_servicetask6">
+        <omgdc:Bounds height="55.0" width="105.0" x="300.0" y="470.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask2" id="BPMNShape_scripttask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="180.0" y="280.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask3" id="BPMNShape_scripttask3">
+        <omgdc:Bounds height="55.0" width="105.0" x="56.0" y="280.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="55.0" y="193.0"></omgdi:waypoint>
+        <omgdi:waypoint x="102.0" y="194.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="162.0" y="231.0"></omgdi:waypoint>
+        <omgdi:waypoint x="232.0" y="280.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
+        <omgdi:waypoint x="325.0" y="75.0"></omgdi:waypoint>
+        <omgdi:waypoint x="512.0" y="91.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_SaveChangeAndSnos" id="BPMNEdge_FlowButton_SaveChangeAndSnos">
+        <omgdi:waypoint x="851.0" y="205.0"></omgdi:waypoint>
+        <omgdi:waypoint x="887.0" y="204.0"></omgdi:waypoint>
+        <omgdi:waypoint x="887.0" y="74.0"></omgdi:waypoint>
+        <omgdi:waypoint x="810.0" y="74.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="80.0" width="100.0" x="889.0" y="96.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_SaveChange" id="BPMNEdge_FlowButton_SaveChange">
+        <omgdi:waypoint x="790.0" y="170.0"></omgdi:waypoint>
+        <omgdi:waypoint x="790.0" y="94.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="64.0" width="100.0" x="690.0" y="103.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_Edit" id="BPMNEdge_FlowButton_Edit">
+        <omgdi:waypoint x="573.0" y="205.0"></omgdi:waypoint>
+        <omgdi:waypoint x="730.0" y="205.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="64.0" width="100.0" x="590.0" y="205.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow15" id="BPMNEdge_flow15">
+        <omgdi:waypoint x="770.0" y="74.0"></omgdi:waypoint>
+        <omgdi:waypoint x="325.0" y="75.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow16" id="BPMNEdge_flow16">
+        <omgdi:waypoint x="512.0" y="146.0"></omgdi:waypoint>
+        <omgdi:waypoint x="512.0" y="170.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow17" id="BPMNEdge_flow17">
+        <omgdi:waypoint x="573.0" y="205.0"></omgdi:waypoint>
+        <omgdi:waypoint x="573.0" y="241.0"></omgdi:waypoint>
+        <omgdi:waypoint x="573.0" y="251.0"></omgdi:waypoint>
+        <omgdi:waypoint x="573.0" y="299.0"></omgdi:waypoint>
+        <omgdi:waypoint x="532.0" y="300.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow18" id="BPMNEdge_flow18">
+        <omgdi:waypoint x="512.0" y="280.0"></omgdi:waypoint>
+        <omgdi:waypoint x="512.0" y="241.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow19" id="BPMNEdge_flow19">
+        <omgdi:waypoint x="492.0" y="300.0"></omgdi:waypoint>
+        <omgdi:waypoint x="420.0" y="300.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow20" id="BPMNEdge_flow20">
+        <omgdi:waypoint x="400.0" y="280.0"></omgdi:waypoint>
+        <omgdi:waypoint x="400.0" y="205.0"></omgdi:waypoint>
+        <omgdi:waypoint x="452.0" y="205.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow21" id="BPMNEdge_flow21">
+        <omgdi:waypoint x="400.0" y="320.0"></omgdi:waypoint>
+        <omgdi:waypoint x="305.0" y="380.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow23" id="BPMNEdge_flow23">
+        <omgdi:waypoint x="305.0" y="420.0"></omgdi:waypoint>
+        <omgdi:waypoint x="352.0" y="470.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow24" id="BPMNEdge_flow24">
+        <omgdi:waypoint x="512.0" y="483.0"></omgdi:waypoint>
+        <omgdi:waypoint x="512.0" y="505.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow25" id="BPMNEdge_flow25">
+        <omgdi:waypoint x="573.0" y="540.0"></omgdi:waypoint>
+        <omgdi:waypoint x="571.0" y="576.0"></omgdi:waypoint>
+        <omgdi:waypoint x="571.0" y="634.0"></omgdi:waypoint>
+        <omgdi:waypoint x="532.0" y="635.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow26" id="BPMNEdge_flow26">
+        <omgdi:waypoint x="492.0" y="635.0"></omgdi:waypoint>
+        <omgdi:waypoint x="420.0" y="635.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow27" id="BPMNEdge_flow27">
+        <omgdi:waypoint x="400.0" y="615.0"></omgdi:waypoint>
+        <omgdi:waypoint x="400.0" y="540.0"></omgdi:waypoint>
+        <omgdi:waypoint x="452.0" y="540.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow28" id="BPMNEdge_flow28">
+        <omgdi:waypoint x="380.0" y="635.0"></omgdi:waypoint>
+        <omgdi:waypoint x="358.0" y="632.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow29" id="BPMNEdge_flow29">
+        <omgdi:waypoint x="512.0" y="615.0"></omgdi:waypoint>
+        <omgdi:waypoint x="512.0" y="576.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_EditAgree" id="BPMNEdge_FlowButton_EditAgree">
+        <omgdi:waypoint x="573.0" y="540.0"></omgdi:waypoint>
+        <omgdi:waypoint x="730.0" y="540.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="64.0" width="100.0" x="590.0" y="540.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_SaveChangeAndSnosAgree" id="BPMNEdge_FlowButton_SaveChangeAndSnosAgree">
+        <omgdi:waypoint x="851.0" y="540.0"></omgdi:waypoint>
+        <omgdi:waypoint x="886.0" y="539.0"></omgdi:waypoint>
+        <omgdi:waypoint x="886.0" y="400.0"></omgdi:waypoint>
+        <omgdi:waypoint x="810.0" y="400.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="80.0" width="100.0" x="889.0" y="422.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow32" id="BPMNEdge_flow32">
+        <omgdi:waypoint x="770.0" y="400.0"></omgdi:waypoint>
+        <omgdi:waypoint x="325.0" y="400.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_SaveChangeAgree" id="BPMNEdge_FlowButton_SaveChangeAgree">
+        <omgdi:waypoint x="790.0" y="504.0"></omgdi:waypoint>
+        <omgdi:waypoint x="790.0" y="420.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="64.0" width="100.0" x="690.0" y="429.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_SaveChangeAndSnosAccept" id="BPMNEdge_FlowButton_SaveChangeAndSnosAccept">
+        <omgdi:waypoint x="851.0" y="540.0"></omgdi:waypoint>
+        <omgdi:waypoint x="851.0" y="571.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1030.0" y="571.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1030.0" y="320.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="80.0" width="100.0" x="1059.0" y="321.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow35" id="BPMNEdge_flow35">
+        <omgdi:waypoint x="305.0" y="735.0"></omgdi:waypoint>
+        <omgdi:waypoint x="306.0" y="750.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow36" id="BPMNEdge_flow36">
+        <omgdi:waypoint x="367.0" y="785.0"></omgdi:waypoint>
+        <omgdi:waypoint x="362.0" y="821.0"></omgdi:waypoint>
+        <omgdi:waypoint x="362.0" y="880.0"></omgdi:waypoint>
+        <omgdi:waypoint x="325.0" y="880.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow37" id="BPMNEdge_flow37">
+        <omgdi:waypoint x="305.0" y="860.0"></omgdi:waypoint>
+        <omgdi:waypoint x="306.0" y="821.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow38" id="BPMNEdge_flow38">
+        <omgdi:waypoint x="285.0" y="880.0"></omgdi:waypoint>
+        <omgdi:waypoint x="210.0" y="880.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow39" id="BPMNEdge_flow39">
+        <omgdi:waypoint x="190.0" y="860.0"></omgdi:waypoint>
+        <omgdi:waypoint x="190.0" y="785.0"></omgdi:waypoint>
+        <omgdi:waypoint x="245.0" y="785.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow40" id="BPMNEdge_flow40">
+        <omgdi:waypoint x="190.0" y="900.0"></omgdi:waypoint>
+        <omgdi:waypoint x="190.0" y="920.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow41" id="BPMNEdge_flow41">
+        <omgdi:waypoint x="1010.0" y="300.0"></omgdi:waypoint>
+        <omgdi:waypoint x="532.0" y="300.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow42" id="BPMNEdge_flow42">
+        <omgdi:waypoint x="1030.0" y="280.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1029.0" y="31.0"></omgdi:waypoint>
+        <omgdi:waypoint x="305.0" y="31.0"></omgdi:waypoint>
+        <omgdi:waypoint x="305.0" y="55.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow43" id="BPMNEdge_flow43">
+        <omgdi:waypoint x="215.0" y="75.0"></omgdi:waypoint>
+        <omgdi:waypoint x="285.0" y="75.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow44" id="BPMNEdge_flow44">
+        <omgdi:waypoint x="305.0" y="660.0"></omgdi:waypoint>
+        <omgdi:waypoint x="305.0" y="680.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow47" id="BPMNEdge_flow47">
+        <omgdi:waypoint x="232.0" y="280.0"></omgdi:waypoint>
+        <omgdi:waypoint x="162.0" y="103.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow48" id="BPMNEdge_flow48">
+        <omgdi:waypoint x="108.0" y="280.0"></omgdi:waypoint>
+        <omgdi:waypoint x="162.0" y="103.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow49" id="BPMNEdge_flow49">
+        <omgdi:waypoint x="405.0" y="497.0"></omgdi:waypoint>
+        <omgdi:waypoint x="512.0" y="483.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

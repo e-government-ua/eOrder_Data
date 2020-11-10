@@ -1,0 +1,2 @@
+nID;sName;nID_SubjectOrgan;sHandlerClass
+1;Buro;2;org.icore.service.business.document.access.handler.DocumentAccessHandler_IGov

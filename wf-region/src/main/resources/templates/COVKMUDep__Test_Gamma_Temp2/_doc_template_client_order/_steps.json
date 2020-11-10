@@ -1,0 +1,41 @@
+{
+  "_:Watch": {
+	"_default_author": {
+      "oMission": {"sKey_Right":"SignRelease","bResetImageAfterSubmit":true},
+      "oRights": {
+        "Manage": {}
+      }
+    },
+    "_default_consideration": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"Manage": {},
+         "SignComment": {}
+            }},
+      "_default_accept": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"Manage": {},
+         "SignComment": {}
+            }
+    },
+     "_default_agree": {
+      "oMission": {"sKey_Right":"SignWrite","bResetImageAfterSubmit":true},
+      "oRights": {
+          	"Manage": {},
+            "SignComment": {}
+         
+      }
+    },
+    "_default_seen": {
+      "oMission": {"sKey_Right":"SignRead"},
+      "oRights": {	" SignComment ": {},
+      	"Manage": {}      } }
+    },
+"step_create:Create": {},
+ "step_consideration:Consideration": {},
+ "step_accept:Accept": {},
+  "step_agree:Agree": {},
+   "step_seen:Seen": {},
+   "step_edit:Edit": {}
+}

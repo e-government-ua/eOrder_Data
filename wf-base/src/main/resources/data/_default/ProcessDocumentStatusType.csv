@@ -1,0 +1,9 @@
+nID;nOrder;sID;sName;sNote;sID_ProcessDocumentStatusEnum
+1;10;Hold;Утримання;Виключено з обробки, черги або плану (створення/редагування/виправлення);DocumentStatus_Hold
+2;20;Shedule;Заплановано;Очікує часу для обробки або черги (пул заявок на задану дату та час);DocumentStatus_Shedule
+3;30;Queue;Черга обробки;Очікує взяття (ассайну) до обробки (пул заявок на зараз);DocumentStatus_Queue
+4;40;Processing;Йде обробка;ще не діє, очікує обробки;DocumentStatus_Processing
+5;50;Processed;Оброблено;діє після обробки;DocumentStatus_Processed
+6;60;Expired;Прострочено;вже не діє але зберігається;DocumentStatus_Expired
+7;70;Archived;Архівовано;вже не зберігається (тільки нагадування);DocumentStatus_Archived
+8;80;Removed;Видалено;відмічено на видалення;DocumentStatus_Removed

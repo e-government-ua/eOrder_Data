@@ -1,0 +1,95 @@
+{
+	"oProperties":{      
+      "sasKey_Field_RKK":"sKey_Subject_DocumentSender,sName_DocumentType,oDateAt,sName_SubjectHuman_DocumentSigner,sName_SubjectHuman_DocumentAuthor,sName_SubjectOrgan_DocumentExecutor,sName_Document"
+     },
+  "_:Watch": {
+	"_default_author": {
+      "oMission": {"sKey_Right":"SignRelease"},
+      "oRights": {
+		"Manage": {},
+      	"SignComment": {},
+		"ManageSignerWriteAccept": {},
+		"ManageSignersRead": {},
+		"ManageViewers": {},
+		"TaskManage": {}
+      }
+    },
+    "_default_view": {
+      "oMission": {"sKey_Right":"View", "sKey_Step_At":""},
+      "oRights": {
+      	"ManageViewers": {},
+        "SignComment": {}
+      }
+    },
+	"_default_consideration": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {      	
+      	"ManageViewers": {},
+      	"AddSignerWriteAccept": {},
+      	"ManageSignersRead": {},
+      	"SignComment": {}
+      },
+      "bNeedECP": true
+    },
+    "_default_accept": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},      	
+      	"ManageViewers": {},
+      	"SignWriteCancel": {},
+      	"SignWriteNotNeed": {},
+      	"AddSignerWriteAccept": {},
+        "RemoveSignerWriteAccept": {},
+      	"ManageSignersRead": {},
+      	"SignComment": {}
+      },
+      "bNeedECP": true
+    },
+    "_default_accept_1": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {      	
+      	"SignComment": {},
+      	"SignWriteRefuse": {}
+      },
+      "bNeedECP": true
+    },    
+    "_default_agree": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},      	
+      	"ManageViewers": {},
+      	"SignWriteRefuse": {},
+      	"AddSignerWriteAgree": {},
+        "RemoveSignerWriteAgree": {},
+      	"ManageSignersRead": {},
+      	"SignComment": {}
+      },
+      "bNeedECP": true,
+      "oProperties": {
+        "sasKey_Field_SignECP": "PrintForm_091"
+      }
+    },    
+    "_default_seen": {
+      "oMission": {"sKey_Right":"SignRead"},
+      "oRights": {
+        "ManageSignersRead": {},
+      	"SignDelegate":{},
+      	"ManageViewers": {},
+      	"SignComment": {}
+      },
+      "bNeedECP": true
+    }
+    },
+   
+  "step_create:Create": {}, 
+  "step_accept:Accept": {
+	"oProperties": {"nSubscribersMin":1}
+	},
+  "step_accept_1:Accept": {},  
+  "step_accept_2:Accept": {},
+  "step_agree:Agree": {"oProperties": {"nSubscribersMin":1}},  
+  "step_seen:Seen": {},
+  "step_edit:Edit": {},
+  "step_directExternal:DirectExternal": {}
+
+}

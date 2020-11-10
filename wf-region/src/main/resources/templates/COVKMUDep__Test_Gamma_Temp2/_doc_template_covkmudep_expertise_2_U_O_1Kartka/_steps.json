@@ -1,0 +1,82 @@
+{
+"oProperties":{ 
+      "bSkipStepCreate":true
+       },
+  "_:Watch": {
+	"_default_author": {
+      "oMission": {"sKey_Right":"SignRelease"},
+      "oRights": {
+      	
+      	"SignComment": {}
+      }
+    },
+    "_default_consideration": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},      	
+      	"SignComment": {},
+        "ManageAttachNeedSignECP": {}
+      },
+		"bNeedECP": true,
+       	"oProperties": {
+        "sasKey_Field_SignECP": "oTable_Attachments.oFile"
+      }
+    },
+      "_default_visa": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},      	
+      	"SignComment": {}
+      }
+    },
+	"_default_execute": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+	    "ManageSignersWriteAccept": {},
+      	"SignDelegate":{},      	
+      	"SignComment": {}
+      },
+
+      "bNeedECP": true
+    },
+		"_default_accept": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},      	
+      	"SignComment": {},
+     "ManageAttachNeedSignECP": {}
+      },
+		"bNeedECP": true,
+       	"oProperties": {
+        "sasKey_Field_SignECP": "oTable_Attachments.oFile"
+            }
+    },
+     "_default_agree": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+        "SignComment": {},
+        "SignDelegate":{}
+      },
+
+      "bNeedECP": true,
+             "oProperties": {
+        "sasKey_Field_SignECP": "PrintForm_02"
+      }
+    },
+       "_default_seen": {
+      "oMission": {"sKey_Right":"SignRead"},
+      "oRights": {
+      	
+      	"SignComment": {},        
+      	"ManageSignersRead": {}     	
+      }
+    }
+    },
+   
+  "step_create:Create": {},  
+  "step_consideration:Consideration": {},  
+  "step_visa:Visa": {},
+  "step_execute:Execute": {},  
+  "step_accept:Accept": {},
+  "step_agree:Agree": {}
+}

@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="_doc_template_covkmudep_vacation_accounting" name="Заява на матеріальну (грошову) допомогу" isExecutable="true">
+    <documentation>;bTemplated=true</documentation>
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <userTask id="usertask1" name="Створеня заяви на матеріальну (грошову) допомогу">
+      <extensionElements>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логин автора; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sMyPosition" name="Повна посада автора" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTitleDoc" name="Заголовок документа" type="string" default="Заява на матеріальну (грошову) допомогу" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="asTypeVacation" name="Тип відпустки" type="string" default="Основна щорічна відпустка" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="asTypeDopomoga" name="Виберіть тип допомоги:" type="enum" required="true">
+          <activiti:value id="sEnum_1" name="матеріальну допомогу"></activiti:value>
+          <activiti:value id="sEnum_2" name="грошову допомогу"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Заява на грошову(матеріальну) допомогу;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1i_oXGNA8R7oCMfIw9nJGQOQPYOesbqOS6xMt6ruO9MY', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документа" type="date" readable="false" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="nID_Process_Child" name="nID_Process_Child;;bVisible=false" type="string"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow105" sourceRef="startevent1" targetRef="scripttask2"></sequenceFlow>
+    <sequenceFlow id="flow106" sourceRef="usertask17" targetRef="servicetask13">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <userTask id="usertask10" name="Відділ бухгалтерського обліку та звітності :: ${sAuthorName}">
+      <extensionElements>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логин автора; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sMyPosition" name="Повна посада автора" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTitleDoc" name="Заголовок документа" type="string" default="Заява на матеріальну (грошову) допомогу" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="asTypeVacation" name="Тип відпустки" type="string" default="Основна щорічна відпустка" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="asTypeDopomoga" name="Виберіть тип допомоги:" type="enum" writable="false">
+          <activiti:value id="sEnum_1" name="матеріальну допомогу"></activiti:value>
+          <activiti:value id="sEnum_2" name="грошову допомогу"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Заява на грошову(матеріальну) допомогу;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1i_oXGNA8R7oCMfIw9nJGQOQPYOesbqOS6xMt6ruO9MY', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документа" type="date" readable="false" writable="false"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow114" sourceRef="usertask10" targetRef="endevent1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisTypeStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <serviceTask id="servicetask11" name="Роль" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_seen]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('buhgalter_viddil', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_seen]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sMyPosition]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow124" sourceRef="servicetask11" targetRef="usertask10"></sequenceFlow>
+    <sequenceFlow id="flow138" sourceRef="usertask16" targetRef="servicetask11">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[seen]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <userTask id="usertask15" name="Узгодження Головним Бухгалтером :: ${sAuthorName}">
+      <extensionElements>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логин автора; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sMyPosition" name="Повна посада автора" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTitleDoc" name="Заголовок документа" type="string" default="Заява на матеріальну (грошову) допомогу" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="asTypeVacation" name="Тип відпустки" type="string" default="Основна щорічна відпустка" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="asTypeDopomoga" name="Виберіть тип допомоги:" type="enum" writable="false">
+          <activiti:value id="sEnum_1" name="матеріальну допомогу"></activiti:value>
+          <activiti:value id="sEnum_2" name="грошову допомогу"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Заява на грошову(матеріальну) допомогу;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1i_oXGNA8R7oCMfIw9nJGQOQPYOesbqOS6xMt6ruO9MY', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документа" type="date" readable="false" writable="false"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask16" name="Затвердження Державним Секретарем :: ${sAuthorName}">
+      <extensionElements>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логин автора; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sMyPosition" name="Повна посада автора" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTitleDoc" name="Заголовок документа" type="string" default="Заява на матеріальну (грошову) допомогу" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="asTypeVacation" name="Тип відпустки" type="string" default="Основна щорічна відпустка" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="asTypeDopomoga" name="Виберіть тип допомоги:" type="enum" writable="false">
+          <activiti:value id="sEnum_1" name="матеріальну допомогу"></activiti:value>
+          <activiti:value id="sEnum_2" name="грошову допомогу"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Заява на грошову(матеріальну) допомогу;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1i_oXGNA8R7oCMfIw9nJGQOQPYOesbqOS6xMt6ruO9MY', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документа" type="date" readable="false" writable="false"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow142" sourceRef="servicetask13" targetRef="usertask15"></sequenceFlow>
+    <serviceTask id="servicetask13" name="Роль" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('golovnyy_buhgalter', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sMyPosition]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="servicetask14" name="Роль" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('derzhavnyy_secretar', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sMyPosition]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow143" sourceRef="usertask15" targetRef="servicetask14">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[agree]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow144" sourceRef="servicetask14" targetRef="usertask16"></sequenceFlow>
+    <serviceTask id="servicetask15" name="Подписание автором" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oDocumentService.getLoginAuthor(execution)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_consideration]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_consideration]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sMyPosition]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <userTask id="usertask17" name="Підписання автором з ЕЦП :: ${sAuthorName}">
+      <extensionElements>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логин автора; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sMyPosition" name="Повна посада автора" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTitleDoc" name="Заголовок документа" type="string" default="Заява на матеріальну (грошову) допомогу" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="asTypeVacation" name="Тип відпустки" type="string" default="Основна щорічна відпустка" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="asTypeDopomoga" name="Виберіть тип допомоги:" type="enum" writable="false">
+          <activiti:value id="sEnum_1" name="матеріальну допомогу"></activiti:value>
+          <activiti:value id="sEnum_2" name="грошову допомогу"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Заява на грошову(матеріальну) допомогу;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1i_oXGNA8R7oCMfIw9nJGQOQPYOesbqOS6xMt6ruO9MY', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документа" type="date" readable="false" writable="false"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow145" sourceRef="servicetask15" targetRef="usertask17"></sequenceFlow>
+    <sequenceFlow id="flow146" sourceRef="usertask1" targetRef="scripttask1">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Consideration]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <scriptTask id="scripttask1" name="Script Task" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>var processInstanceId_parent = execution.getProcessInstanceId();
+var nID_Process_Parent = processDocumentService.getProcessDocument(processInstanceId_parent).id;
+execution.setVariable('nID_Process_Parent', nID_Process_Parent);
+
+nID_Process_Parent = +nID_Process_Parent;
+execution.setVariable('nID_Process_Parent', nID_Process_Parent);
+processDocumentTreeService.setProcessDocumentTree(nID_Process_Parent, nID_Process_Child)</script>
+    </scriptTask>
+    <sequenceFlow id="flow147" sourceRef="scripttask1" targetRef="servicetask15"></sequenceFlow>
+    <scriptTask id="scripttask2" name="Дата" scriptFormat="groovy" activiti:autoStoreVariables="false">
+      <script>// Сегодняшняя дата по умолчанию
+execution.setVariable('oDateAt', new Date().format("dd.MM.yyyy").toString())</script>
+    </scriptTask>
+    <sequenceFlow id="flow148" sourceRef="scripttask2" targetRef="usertask1"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram__doc_template_covkmudep_vacation_accounting">
+    <bpmndi:BPMNPlane bpmnElement="_doc_template_covkmudep_vacation_accounting" id="BPMNPlane__doc_template_covkmudep_vacation_accounting">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="40.0" y="57.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="82.0" width="157.0" x="303.0" y="34.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="720.0" y="303.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask10" id="BPMNShape_usertask10">
+        <omgdc:Bounds height="81.0" width="135.0" x="495.0" y="280.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask11" id="BPMNShape_servicetask11">
+        <omgdc:Bounds height="55.0" width="105.0" x="340.0" y="293.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask15" id="BPMNShape_usertask15">
+        <omgdc:Bounds height="76.0" width="161.0" x="301.0" y="148.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask16" id="BPMNShape_usertask16">
+        <omgdc:Bounds height="81.0" width="135.0" x="134.0" y="280.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask13" id="BPMNShape_servicetask13">
+        <omgdc:Bounds height="55.0" width="105.0" x="510.0" y="158.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask14" id="BPMNShape_servicetask14">
+        <omgdc:Bounds height="55.0" width="105.0" x="149.0" y="158.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask15" id="BPMNShape_servicetask15">
+        <omgdc:Bounds height="64.0" width="111.0" x="673.0" y="43.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask17" id="BPMNShape_usertask17">
+        <omgdc:Bounds height="69.0" width="139.0" x="659.0" y="151.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask1" id="BPMNShape_scripttask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="510.0" y="47.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask2" id="BPMNShape_scripttask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="149.0" y="47.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow105" id="BPMNEdge_flow105">
+        <omgdi:waypoint x="75.0" y="74.0"></omgdi:waypoint>
+        <omgdi:waypoint x="149.0" y="74.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow106" id="BPMNEdge_flow106">
+        <omgdi:waypoint x="659.0" y="185.0"></omgdi:waypoint>
+        <omgdi:waypoint x="615.0" y="185.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow114" id="BPMNEdge_flow114">
+        <omgdi:waypoint x="630.0" y="320.0"></omgdi:waypoint>
+        <omgdi:waypoint x="720.0" y="320.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow124" id="BPMNEdge_flow124">
+        <omgdi:waypoint x="445.0" y="320.0"></omgdi:waypoint>
+        <omgdi:waypoint x="495.0" y="320.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow138" id="BPMNEdge_flow138">
+        <omgdi:waypoint x="269.0" y="320.0"></omgdi:waypoint>
+        <omgdi:waypoint x="340.0" y="320.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow142" id="BPMNEdge_flow142">
+        <omgdi:waypoint x="510.0" y="185.0"></omgdi:waypoint>
+        <omgdi:waypoint x="462.0" y="186.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow143" id="BPMNEdge_flow143">
+        <omgdi:waypoint x="301.0" y="186.0"></omgdi:waypoint>
+        <omgdi:waypoint x="254.0" y="185.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow144" id="BPMNEdge_flow144">
+        <omgdi:waypoint x="201.0" y="213.0"></omgdi:waypoint>
+        <omgdi:waypoint x="201.0" y="280.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow145" id="BPMNEdge_flow145">
+        <omgdi:waypoint x="728.0" y="107.0"></omgdi:waypoint>
+        <omgdi:waypoint x="728.0" y="151.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow146" id="BPMNEdge_flow146">
+        <omgdi:waypoint x="460.0" y="75.0"></omgdi:waypoint>
+        <omgdi:waypoint x="510.0" y="74.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow147" id="BPMNEdge_flow147">
+        <omgdi:waypoint x="615.0" y="74.0"></omgdi:waypoint>
+        <omgdi:waypoint x="673.0" y="75.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow148" id="BPMNEdge_flow148">
+        <omgdi:waypoint x="254.0" y="74.0"></omgdi:waypoint>
+        <omgdi:waypoint x="303.0" y="75.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

@@ -1,0 +1,759 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="_doc_template_covkmudep_compensation_zayava" name="Заява на виплату компенсації" isExecutable="true">
+    <documentation>;bTemplated=true</documentation>
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <userTask id="usertask1" name="Створення заяви на виплату компенсації">
+      <extensionElements>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Author" name="Полное ФИО; ;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логин автора; ;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sMyPosition" name="Повна посада автора;Повна посада у родовому відмінку;" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sTitleDoc" name="Заголовок документа" type="string" default="Заява про виплату компенсації" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="asTypeVacation" name="Виберіть тип компенсації" type="enum" required="true">
+          <activiti:value id="sEnumVac_1" name="за основну відпустку "></activiti:value>
+          <activiti:value id="sEnumVac_2" name="за додатковий стаж державного службовця"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_1" name="Невикористані дні відпустки: ;Кількість днів цифрами" type="long"></activiti:formProperty>
+        <activiti:formProperty id="sDatePeriodBegin" name="Період роботи з:" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sDatePeriodEnd" name="Період роботи по:" type="date"></activiti:formProperty>
+        <activiti:formProperty id="bAddCompensationType_1" name="Додати ще; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_1_More" name="Невикористані дні відпустки: ;Кількість днів цифрами" type="long"></activiti:formProperty>
+        <activiti:formProperty id="sDatePeriodBegin_More" name="Період роботи з:" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sDatePeriodEnd_More" name="Період роботи по:" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_2" name="Невикористані дні відпустки: ;Кількість днів цифрами" type="long"></activiti:formProperty>
+        <activiti:formProperty id="sExperience_2" name="Стаж роботи:" type="long"></activiti:formProperty>
+        <activiti:formProperty id="sPeriod_2" name="За який рік:" type="long"></activiti:formProperty>
+        <activiti:formProperty id="bAddCompensationType_2" name="Додати ще; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_2_More" name="Невикористані дні відпустки: ;Кількість днів цифрами" type="long"></activiti:formProperty>
+        <activiti:formProperty id="sExperience_2_More" name="Стаж роботи:" type="long"></activiti:formProperty>
+        <activiti:formProperty id="sPeriod_2_More" name="За який рік:" type="long"></activiti:formProperty>
+        <activiti:formProperty id="sBody_11" name="Заява на виплату компенсації;;bPrintform=true,bVisible=false" type="string" default="{'sPathFile':'1tjvprRxX0z3a88pXEnH1b96pPVo8GTJH_WWtE0Bw9ys', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_12" name="Заява на виплату компенсації;;bPrintform=true,bVisible=false" type="string" default="{'sPathFile':'18P89C2bDN2WivWsY_eOePIWHLn4ZU6wBOK4fWx7a-2c', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print11" name="marker_print11" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print11&quot;:{&quot;aField_ID&quot;:[&quot;sBody_11&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print12" name="marker_print12" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print12&quot;:{&quot;aField_ID&quot;:[&quot;sBody_12&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_compensation_1" name="Маркер вибору типу компенсації" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_1&quot;,&quot;sDatePeriodBegin&quot;,&quot;sDatePeriodEnd&quot;,&quot;bAddCompensationType_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_compensation_2" name="Маркер вибору типу компенсації" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_2&quot;,&quot;sExperience_2&quot;,&quot;sPeriod_2&quot;,&quot;bAddCompensationType_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addCompensation_1" name="Маркер показывающий доп поля" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_3&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_1_More&quot;,&quot;sDatePeriodBegin_More&quot;,&quot;sDatePeriodEnd_More&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddCompensationType_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addCompensation_2" name="Маркер показывающий доп поля" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_4&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_2_More&quot;,&quot;sExperience_2_More&quot;,&quot;sPeriod_2_More&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddCompensationType_2&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_compensation_req_1" name="Маркер обов'язкового заповнення поля" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_1&quot;,&quot;sDatePeriodBegin&quot;,&quot;sDatePeriodEnd&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_compensation_req_2" name="Маркер обов'язкового заповнення поля" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_2&quot;,&quot;sExperience_2&quot;,&quot;sPeriod_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addCompensation_req_1" name="Маркер обов'язкового заповнення поля доп поля" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_3&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_1_More&quot;,&quot;sDatePeriodBegin_More&quot;,&quot;sDatePeriodEnd_More&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddCompensationType_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addCompensation_req_2" name="Маркер обов'язкового заповнення поля доп поля" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_4&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_2_More&quot;,&quot;sExperience_2_More&quot;,&quot;sPeriod_2_More&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddCompensationType_2&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документа;;bVisible=false" type="date"></activiti:formProperty>
+        <activiti:formProperty id="nID_Process_Child" name="nID_Process_Child;;bVisible=false" type="string"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask2" name="Перевірка кадрами :: ${sAuthorName}">
+      <extensionElements>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Author" name="Полное ФИО; ;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логин автора; ;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sMyPosition" name="Повна посада автора;Повна посада у родовому відмінку;" type="string" writable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sTitleDoc" name="Заголовок документа" type="string" default="Заява про виплату компенсації" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="asTypeVacation" name="Виберіть тип компенсації" type="enum" writable="false" required="true">
+          <activiti:value id="sEnumVac_1" name="за основну відпустку "></activiti:value>
+          <activiti:value id="sEnumVac_2" name="за додатковий стаж державного службовця"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_1" name="Невикористані дні відпустки:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDatePeriodBegin" name="Період роботи з:" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDatePeriodEnd" name="Період роботи по:" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bAddCompensationType_1" name="Додати ще; ;sID_CheckboxTrue=yes" type="enum" default="no" writable="false">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_1_More" name="Невикористані дні відпустки:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDatePeriodBegin_More" name="Період роботи з:" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDatePeriodEnd_More" name="Період роботи по:" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_2" name="Невикористані дні відпустки:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sExperience_2" name="Стаж роботи:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPeriod_2" name="За який рік:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bAddCompensationType_2" name="Додати ще; ;sID_CheckboxTrue=yes" type="enum" default="no" writable="false">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_2_More" name="Невикористані дні відпустки:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sExperience_2_More" name="Стаж роботи:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPeriod_2_More" name="За який рік:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBody_11" name="Заява на виплату компенсації;;bPrintform=true,bVisible=false,bDocumaentSubTabPrintformDefault=true,bGenerateByGoogle_PDF=true" type="string" default="{'sPathFile':'1tjvprRxX0z3a88pXEnH1b96pPVo8GTJH_WWtE0Bw9ys', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_12" name="Заява на виплату компенсації;;bPrintform=true,bVisible=false,bDocumaentSubTabPrintformDefault=true,bGenerateByGoogle_PDF=true" type="string" default="{'sPathFile':'18P89C2bDN2WivWsY_eOePIWHLn4ZU6wBOK4fWx7a-2c', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print11" name="marker_print11" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print11&quot;:{&quot;aField_ID&quot;:[&quot;sBody_11&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print12" name="marker_print12" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print12&quot;:{&quot;aField_ID&quot;:[&quot;sBody_12&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_compensation_1" name="Маркер вибору типу компенсації" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_1&quot;,&quot;sDatePeriodBegin&quot;,&quot;sDatePeriodEnd&quot;,&quot;bAddCompensationType_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_compensation_2" name="Маркер вибору типу компенсації" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_2&quot;,&quot;sExperience_2&quot;,&quot;sPeriod_2&quot;,&quot;bAddCompensationType_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addCompensation_1" name="Маркер показывающий доп поля" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_3&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_1_More&quot;,&quot;sDatePeriodBegin_More&quot;,&quot;sDatePeriodEnd_More&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddCompensationType_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addCompensation_2" name="Маркер показывающий доп поля" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_4&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_2_More&quot;,&quot;sExperience_2_More&quot;,&quot;sPeriod_2_More&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddCompensationType_2&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_compensation_req_1" name="Маркер обов'язкового заповнення поля" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_1&quot;,&quot;sDatePeriodBegin&quot;,&quot;sDatePeriodEnd&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_compensation_req_2" name="Маркер обов'язкового заповнення поля" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_2&quot;,&quot;sExperience_2&quot;,&quot;sPeriod_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addCompensation_req_1" name="Маркер обов'язкового заповнення поля доп поля" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_3&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_1_More&quot;,&quot;sDatePeriodBegin_More&quot;,&quot;sDatePeriodEnd_More&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddCompensationType_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addCompensation_req_2" name="Маркер обов'язкового заповнення поля доп поля" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_4&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_2_More&quot;,&quot;sExperience_2_More&quot;,&quot;sPeriod_2_More&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddCompensationType_2&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документа;;bVisible=false" type="date"></activiti:formProperty>
+        <activiti:formProperty id="nID_Process_Child" name="nID_Process_Child;;bVisible=false" type="long"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow23" sourceRef="startevent1" targetRef="scripttask4">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.setDocumentTasksRightsNeed(execution, true, "_,accept")}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow179" sourceRef="usertask15" targetRef="servicetask19">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <serviceTask id="servicetask13" name="Старт Приказа" activiti:delegateExpression="#{createDocument}">
+      <extensionElements>
+        <activiti:field name="sID_BP">
+          <activiti:string><![CDATA[_doc_template_covkmudep_compensation_nakaz]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="soData">
+          <activiti:string><![CDATA[nID_Process_Child::value{[nID_Process_Child]};;sName_Subject::value{[sAuthorName]};;sLogin_Subject::value{[sLoginAuthor]};;]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sLoginAuthor">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('kadri_vikonavec_1', null)}]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow183" sourceRef="servicetask13" targetRef="endevent1"></sequenceFlow>
+    <userTask id="usertask10" name="Узгодження заяви про виплату компенсації :: ${sAuthorName}" default="flow223">
+      <extensionElements>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Author" name="Полное ФИО; ;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логин автора; ;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sMyPosition" name="Повна посада автора;Повна посада у родовому відмінку;" type="string" writable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sTitleDoc" name="Заголовок документа" type="string" default="Заява про виплату компенсації" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="asTypeVacation" name="Виберіть тип компенсації" type="enum" writable="false" required="true">
+          <activiti:value id="sEnumVac_1" name="за основну відпустку "></activiti:value>
+          <activiti:value id="sEnumVac_2" name="за додатковий стаж державного службовця"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_1" name="Невикористані дні відпустки:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDatePeriodBegin" name="Період роботи з:" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDatePeriodEnd" name="Період роботи по:" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bAddCompensationType_1" name="Додати ще; ;sID_CheckboxTrue=yes" type="enum" default="no" writable="false">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_1_More" name="Невикористані дні відпустки:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDatePeriodBegin_More" name="Період роботи з:" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDatePeriodEnd_More" name="Період роботи по:" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_2" name="Невикористані дні відпустки:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sExperience_2" name="Стаж роботи:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPeriod_2" name="За який рік:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bAddCompensationType_2" name="Додати ще; ;sID_CheckboxTrue=yes" type="enum" default="no" writable="false">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_2_More" name="Невикористані дні відпустки:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sExperience_2_More" name="Стаж роботи:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPeriod_2_More" name="За який рік:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBody_11" name="Заява на виплату компенсації;;bPrintform=true,bVisible=false,bDocumaentSubTabPrintformDefault=true,bGenerateByGoogle_PDF=true" type="string" default="{'sPathFile':'1tjvprRxX0z3a88pXEnH1b96pPVo8GTJH_WWtE0Bw9ys', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_12" name="Заява на виплату компенсації;;bPrintform=true,bVisible=false,bDocumaentSubTabPrintformDefault=true,bGenerateByGoogle_PDF=true" type="string" default="{'sPathFile':'18P89C2bDN2WivWsY_eOePIWHLn4ZU6wBOK4fWx7a-2c', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print11" name="marker_print11" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print11&quot;:{&quot;aField_ID&quot;:[&quot;sBody_11&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print12" name="marker_print12" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print12&quot;:{&quot;aField_ID&quot;:[&quot;sBody_12&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_compensation_1" name="Маркер вибору типу компенсації" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_1&quot;,&quot;sDatePeriodBegin&quot;,&quot;sDatePeriodEnd&quot;,&quot;bAddCompensationType_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_compensation_2" name="Маркер вибору типу компенсації" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_2&quot;,&quot;sExperience_2&quot;,&quot;sPeriod_2&quot;,&quot;bAddCompensationType_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addCompensation_1" name="Маркер показывающий доп поля" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_3&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_1_More&quot;,&quot;sDatePeriodBegin_More&quot;,&quot;sDatePeriodEnd_More&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddCompensationType_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addCompensation_2" name="Маркер показывающий доп поля" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_4&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_2_More&quot;,&quot;sExperience_2_More&quot;,&quot;sPeriod_2_More&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddCompensationType_2&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_compensation_req_1" name="Маркер обов'язкового заповнення поля" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_1&quot;,&quot;sDatePeriodBegin&quot;,&quot;sDatePeriodEnd&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_compensation_req_2" name="Маркер обов'язкового заповнення поля" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_2&quot;,&quot;sExperience_2&quot;,&quot;sPeriod_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addCompensation_req_1" name="Маркер обов'язкового заповнення поля доп поля" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_3&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_1_More&quot;,&quot;sDatePeriodBegin_More&quot;,&quot;sDatePeriodEnd_More&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddCompensationType_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addCompensation_req_2" name="Маркер обов'язкового заповнення поля доп поля" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_4&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_2_More&quot;,&quot;sExperience_2_More&quot;,&quot;sPeriod_2_More&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddCompensationType_2&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документа;;bVisible=false" type="date"></activiti:formProperty>
+        <activiti:formProperty id="nID_Process_Child" name="nID_Process_Child; ;bVisible=false" type="long"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow213" sourceRef="servicetask16" targetRef="usertask2"></sequenceFlow>
+    <serviceTask id="servicetask16" name="права кадри" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_direct]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('kadri_vikonavec_1', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_direct_1]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sMyPosition]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <userTask id="usertask12" name="Затвердження керівником департаменту :: ${sAuthorName}" default="flow227">
+      <extensionElements>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Author" name="Полное ФИО; ;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логин автора; ;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sMyPosition" name="Повна посада автора;Повна посада у родовому відмінку;" type="string" writable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sTitleDoc" name="Заголовок документа" type="string" default="Заява про виплату компенсації" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="asTypeVacation" name="Виберіть тип компенсації" type="enum" writable="false" required="true">
+          <activiti:value id="sEnumVac_1" name="за основну відпустку "></activiti:value>
+          <activiti:value id="sEnumVac_2" name="за додатковий стаж державного службовця"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_1" name="Невикористані дні відпустки:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDatePeriodBegin" name="Період роботи з:" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDatePeriodEnd" name="Період роботи по:" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bAddCompensationType_1" name="Додати ще; ;sID_CheckboxTrue=yes" type="enum" default="no" writable="false">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_1_More" name="Невикористані дні відпустки:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDatePeriodBegin_More" name="Період роботи з:" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDatePeriodEnd_More" name="Період роботи по:" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_2" name="Невикористані дні відпустки:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sExperience_2" name="Стаж роботи:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPeriod_2" name="За який рік:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bAddCompensationType_2" name="Додати ще; ;sID_CheckboxTrue=yes" type="enum" default="no" writable="false">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_2_More" name="Невикористані дні відпустки:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sExperience_2_More" name="Стаж роботи:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPeriod_2_More" name="За який рік:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBody_11" name="Заява на виплату компенсації;;bPrintform=true,bVisible=false,bDocumaentSubTabPrintformDefault=true,bGenerateByGoogle_PDF=true" type="string" default="{'sPathFile':'1tjvprRxX0z3a88pXEnH1b96pPVo8GTJH_WWtE0Bw9ys', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_12" name="Заява на виплату компенсації;;bPrintform=true,bVisible=false,bDocumaentSubTabPrintformDefault=true,bGenerateByGoogle_PDF=true" type="string" default="{'sPathFile':'18P89C2bDN2WivWsY_eOePIWHLn4ZU6wBOK4fWx7a-2c', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print11" name="marker_print11" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print11&quot;:{&quot;aField_ID&quot;:[&quot;sBody_11&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print12" name="marker_print12" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print12&quot;:{&quot;aField_ID&quot;:[&quot;sBody_12&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_compensation_1" name="Маркер вибору типу компенсації" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_1&quot;,&quot;sDatePeriodBegin&quot;,&quot;sDatePeriodEnd&quot;,&quot;bAddCompensationType_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_compensation_2" name="Маркер вибору типу компенсації" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_2&quot;,&quot;sExperience_2&quot;,&quot;sPeriod_2&quot;,&quot;bAddCompensationType_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addCompensation_1" name="Маркер показывающий доп поля" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_3&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_1_More&quot;,&quot;sDatePeriodBegin_More&quot;,&quot;sDatePeriodEnd_More&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddCompensationType_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addCompensation_2" name="Маркер показывающий доп поля" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_4&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_2_More&quot;,&quot;sExperience_2_More&quot;,&quot;sPeriod_2_More&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddCompensationType_2&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_compensation_req_1" name="Маркер обов'язкового заповнення поля" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_1&quot;,&quot;sDatePeriodBegin&quot;,&quot;sDatePeriodEnd&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_compensation_req_2" name="Маркер обов'язкового заповнення поля" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_2&quot;,&quot;sExperience_2&quot;,&quot;sPeriod_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addCompensation_req_1" name="Маркер обов'язкового заповнення поля доп поля" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_3&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_1_More&quot;,&quot;sDatePeriodBegin_More&quot;,&quot;sDatePeriodEnd_More&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddCompensationType_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addCompensation_req_2" name="Маркер обов'язкового заповнення поля доп поля" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_4&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_2_More&quot;,&quot;sExperience_2_More&quot;,&quot;sPeriod_2_More&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddCompensationType_2&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документа;;bVisible=false" type="date"></activiti:formProperty>
+        <activiti:formProperty id="nID_Process_Child" name="nID_Process_Child;;bVisible=false" type="long"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow217" sourceRef="exclusivegateway25" targetRef="usertask12">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_agree]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisTypeStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow219" sourceRef="exclusivegateway27" targetRef="servicetask20">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_direct]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisTypeStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway id="exclusivegateway24" name="Exclusive Gateway" default="flow220"></exclusiveGateway>
+    <sequenceFlow id="flow220" sourceRef="exclusivegateway24" targetRef="usertask10"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway25" name="Exclusive Gateway" default="flow222"></exclusiveGateway>
+    <sequenceFlow id="flow221" sourceRef="exclusivegateway24" targetRef="exclusivegateway25">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow222" sourceRef="exclusivegateway25" targetRef="usertask10">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:expression><![CDATA[+1]]></activiti:expression>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow223" sourceRef="usertask10" targetRef="exclusivegateway24"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway26" name="Exclusive Gateway" default="flow226"></exclusiveGateway>
+    <exclusiveGateway id="exclusivegateway27" name="Exclusive Gateway" default="flow225"></exclusiveGateway>
+    <sequenceFlow id="flow224" sourceRef="exclusivegateway26" targetRef="exclusivegateway27">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow225" sourceRef="exclusivegateway27" targetRef="usertask12">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:expression><![CDATA[+1]]></activiti:expression>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow226" sourceRef="exclusivegateway26" targetRef="usertask12"></sequenceFlow>
+    <sequenceFlow id="flow227" sourceRef="usertask12" targetRef="exclusivegateway26"></sequenceFlow>
+    <sequenceFlow id="flow228" sourceRef="usertask2" targetRef="servicetask13">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisTypeStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="FlowButton_AcceptEdit" name="Редагувати;sIF=hasAny-States(Authorship)" sourceRef="usertask10" targetRef="usertask14">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_edit]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_AcceptEdit')}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="FlowButton_SaveChangeAndSnos" name="Збререгти зміни;sIF=hasAny-States(Authorship)" sourceRef="usertask14" targetRef="exclusivegateway29">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${resetDocumentSignesListener}">
+          <activiti:field name="sasKey_StepType">
+            <activiti:string><![CDATA[Consideration,Accept,Agree,Direct]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_SaveChangeAndSnos')}]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway id="exclusivegateway29" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="flow231" sourceRef="usertask1" targetRef="exclusivegateway29"></sequenceFlow>
+    <sequenceFlow id="FlowButton_AgreeEdit" name="Редагувати;sIF=hasAny-States(Authorship)" sourceRef="usertask12" targetRef="usertask14">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_edit]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_AgreeEdit')}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="FlowButton_DirectEditToo" name="Редагувати;sIF=hasAny-States(Authorship)" sourceRef="usertask2" targetRef="usertask14">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_edit]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_DirectEditToo')}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="usertask14" name="Редагування :: ${sAuthorName}">
+      <extensionElements>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Author" name="Полное ФИО; ;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логин автора; ;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sMyPosition" name="Повна посада автора;Повна посада у родовому відмінку;" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sTitleDoc" name="Заголовок документа" type="string" default="Заява про виплату компенсації" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="asTypeVacation" name="Виберіть тип компенсації" type="enum" required="true">
+          <activiti:value id="sEnumVac_1" name="за основну відпустку "></activiti:value>
+          <activiti:value id="sEnumVac_2" name="за додатковий стаж державного службовця"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_1" name="Невикористані дні відпустки:" type="long"></activiti:formProperty>
+        <activiti:formProperty id="sDatePeriodBegin" name="Період роботи з:" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sDatePeriodEnd" name="Період роботи по:" type="date"></activiti:formProperty>
+        <activiti:formProperty id="bAddCompensationType_1" name="Додати ще; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_1_More" name="Невикористані дні відпустки:" type="long"></activiti:formProperty>
+        <activiti:formProperty id="sDatePeriodBegin_More" name="Період роботи з:" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sDatePeriodEnd_More" name="Період роботи по:" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_2" name="Невикористані дні відпустки:" type="long"></activiti:formProperty>
+        <activiti:formProperty id="sExperience_2" name="Стаж роботи:" type="long"></activiti:formProperty>
+        <activiti:formProperty id="sPeriod_2" name="За який рік:" type="long"></activiti:formProperty>
+        <activiti:formProperty id="bAddCompensationType_2" name="Додати ще; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_2_More" name="Невикористані дні відпустки:" type="long"></activiti:formProperty>
+        <activiti:formProperty id="sExperience_2_More" name="Стаж роботи:" type="long"></activiti:formProperty>
+        <activiti:formProperty id="sPeriod_2_More" name="За який рік:" type="long"></activiti:formProperty>
+        <activiti:formProperty id="sBody_11" name="Заява на виплату компенсації;;bPrintform=true,bVisible=false,bDocumaentSubTabPrintformDefault=true,bGenerateByGoogle_PDF=true" type="string" default="{'sPathFile':'1tjvprRxX0z3a88pXEnH1b96pPVo8GTJH_WWtE0Bw9ys', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_12" name="Заява на виплату компенсації;;bPrintform=true,bVisible=false,bDocumaentSubTabPrintformDefault=true,bGenerateByGoogle_PDF=true" type="string" default="{'sPathFile':'18P89C2bDN2WivWsY_eOePIWHLn4ZU6wBOK4fWx7a-2c', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print11" name="marker_print11" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print11&quot;:{&quot;aField_ID&quot;:[&quot;sBody_11&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print12" name="marker_print12" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print12&quot;:{&quot;aField_ID&quot;:[&quot;sBody_12&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_compensation_1" name="Маркер вибору типу компенсації" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_1&quot;,&quot;sDatePeriodBegin&quot;,&quot;sDatePeriodEnd&quot;,&quot;bAddCompensationType_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_compensation_2" name="Маркер вибору типу компенсації" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_2&quot;,&quot;sExperience_2&quot;,&quot;sPeriod_2&quot;,&quot;bAddCompensationType_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addCompensation_1" name="Маркер показывающий доп поля" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_3&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_1_More&quot;,&quot;sDatePeriodBegin_More&quot;,&quot;sDatePeriodEnd_More&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddCompensationType_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addCompensation_2" name="Маркер показывающий доп поля" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_4&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_2_More&quot;,&quot;sExperience_2_More&quot;,&quot;sPeriod_2_More&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddCompensationType_2&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_compensation_req_1" name="Маркер обов'язкового заповнення поля" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_1&quot;,&quot;sDatePeriodBegin&quot;,&quot;sDatePeriodEnd&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_compensation_req_2" name="Маркер обов'язкового заповнення поля" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_2&quot;,&quot;sExperience_2&quot;,&quot;sPeriod_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addCompensation_req_1" name="Маркер обов'язкового заповнення поля доп поля" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_3&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_1_More&quot;,&quot;sDatePeriodBegin_More&quot;,&quot;sDatePeriodEnd_More&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddCompensationType_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addCompensation_req_2" name="Маркер обов'язкового заповнення поля доп поля" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_4&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_2_More&quot;,&quot;sExperience_2_More&quot;,&quot;sPeriod_2_More&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddCompensationType_2&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документа;;bVisible=false" type="date"></activiti:formProperty>
+        <activiti:formProperty id="nID_Process_Child" name="nID_Process_Child;;bVisible=false" type="long"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <serviceTask id="servicetask18" name="Подписание автором" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oDocumentService.getLoginAuthor(execution)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_consideration]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_consideration]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sMyPosition]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <userTask id="usertask15" name="Підписання автором з ЕЦП :: ${sAuthorName}" default="flow227">
+      <extensionElements>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Author" name="Полное ФИО; ;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логин автора; ;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sMyPosition" name="Повна посада автора;Повна посада у родовому відмінку;" type="string" writable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sTitleDoc" name="Заголовок документа" type="string" default="Заява про виплату компенсації" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="asTypeVacation" name="Виберіть тип компенсації" type="enum" writable="false" required="true">
+          <activiti:value id="sEnumVac_1" name="за основну відпустку "></activiti:value>
+          <activiti:value id="sEnumVac_2" name="за додатковий стаж державного службовця"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_1" name="Невикористані дні відпустки:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDatePeriodBegin" name="Період роботи з:" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDatePeriodEnd" name="Період роботи по:" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bAddCompensationType_1" name="Додати ще; ;sID_CheckboxTrue=yes" type="enum" default="no" writable="false">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_1_More" name="Невикористані дні відпустки:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDatePeriodBegin_More" name="Період роботи з:" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDatePeriodEnd_More" name="Період роботи по:" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_2" name="Невикористані дні відпустки:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sExperience_2" name="Стаж роботи:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPeriod_2" name="За який рік:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bAddCompensationType_2" name="Додати ще; ;sID_CheckboxTrue=yes" type="enum" default="no" writable="false">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_2_More" name="Невикористані дні відпустки:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sExperience_2_More" name="Стаж роботи:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPeriod_2_More" name="За який рік:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBody_11" name="Заява на виплату компенсації;;bPrintform=true,bVisible=false,bDocumaentSubTabPrintformDefault=true,bGenerateByGoogle_PDF=true" type="string" default="{'sPathFile':'1tjvprRxX0z3a88pXEnH1b96pPVo8GTJH_WWtE0Bw9ys', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_12" name="Заява на виплату компенсації;;bPrintform=true,bVisible=false,bDocumaentSubTabPrintformDefault=true,bGenerateByGoogle_PDF=true" type="string" default="{'sPathFile':'18P89C2bDN2WivWsY_eOePIWHLn4ZU6wBOK4fWx7a-2c', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print11" name="marker_print11" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print11&quot;:{&quot;aField_ID&quot;:[&quot;sBody_11&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print12" name="marker_print12" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print12&quot;:{&quot;aField_ID&quot;:[&quot;sBody_12&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_compensation_1" name="Маркер вибору типу компенсації" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_1&quot;,&quot;sDatePeriodBegin&quot;,&quot;sDatePeriodEnd&quot;,&quot;bAddCompensationType_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_compensation_2" name="Маркер вибору типу компенсації" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_2&quot;,&quot;sExperience_2&quot;,&quot;sPeriod_2&quot;,&quot;bAddCompensationType_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addCompensation_1" name="Маркер показывающий доп поля" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_3&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_1_More&quot;,&quot;sDatePeriodBegin_More&quot;,&quot;sDatePeriodEnd_More&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddCompensationType_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addCompensation_2" name="Маркер показывающий доп поля" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_4&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_2_More&quot;,&quot;sExperience_2_More&quot;,&quot;sPeriod_2_More&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddCompensationType_2&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_compensation_req_1" name="Маркер обов'язкового заповнення поля" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_1&quot;,&quot;sDatePeriodBegin&quot;,&quot;sDatePeriodEnd&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_compensation_req_2" name="Маркер обов'язкового заповнення поля" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_2&quot;,&quot;sExperience_2&quot;,&quot;sPeriod_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addCompensation_req_1" name="Маркер обов'язкового заповнення поля доп поля" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_3&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_1_More&quot;,&quot;sDatePeriodBegin_More&quot;,&quot;sDatePeriodEnd_More&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddCompensationType_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addCompensation_req_2" name="Маркер обов'язкового заповнення поля доп поля" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_4&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_2_More&quot;,&quot;sExperience_2_More&quot;,&quot;sPeriod_2_More&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddCompensationType_2&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документа;;bVisible=false" type="date"></activiti:formProperty>
+        <activiti:formProperty id="nID_Process_Child" name="nID_Process_Child;;bVisible=false" type="string"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow235" sourceRef="exclusivegateway29" targetRef="servicetask18">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Consideration]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow236" sourceRef="servicetask18" targetRef="usertask15"></sequenceFlow>
+    <scriptTask id="scripttask3" name="Script Task" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>var processInstanceId = execution.getProcessInstanceId();
+var nID_Process_Child = processDocumentService.getProcessDocument(processInstanceId);
+execution.setVariable('nID_Process_Child', nID_Process_Child.id);</script>
+    </scriptTask>
+    <sequenceFlow id="flow239" sourceRef="scripttask3" targetRef="usertask10"></sequenceFlow>
+    <scriptTask id="scripttask4" name="Script Task" scriptFormat="groovy" activiti:autoStoreVariables="false">
+      <script>// Сегодняшняя дата по умолчанию
+execution.setVariable('oDateAt', new Date().format("dd.MM.yyyy").toString())</script>
+    </scriptTask>
+    <sequenceFlow id="flow240" sourceRef="scripttask4" targetRef="usertask1"></sequenceFlow>
+    <serviceTask id="servicetask19" name="Долучення бухгалтера" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_Accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('buhgalter', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sMyPosition]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow241" sourceRef="servicetask19" targetRef="scripttask3"></sequenceFlow>
+    <serviceTask id="servicetask20" name="права бухгалтерія" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_direct]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('buhgalter', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_direct]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sMyPosition]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <userTask id="usertask16" name="Ознайомлення бухгалтерія :: ${sAuthorName}">
+      <extensionElements>
+        <activiti:formProperty id="sAuthorName" name="ПІБ заявника; ;writable=false" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Author" name="Полное ФИО; ;bVisible=false" type="string" expression="${usersService.getUserFullFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логин автора; ;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sMyPosition" name="Повна посада автора;Повна посада у родовому відмінку;" type="string" writable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sTitleDoc" name="Заголовок документа" type="string" default="Заява про виплату компенсації" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="asTypeVacation" name="Виберіть тип компенсації" type="enum" writable="false" required="true">
+          <activiti:value id="sEnumVac_1" name="за основну відпустку "></activiti:value>
+          <activiti:value id="sEnumVac_2" name="за додатковий стаж державного службовця"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_1" name="Невикористані дні відпустки:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDatePeriodBegin" name="Період роботи з:" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDatePeriodEnd" name="Період роботи по:" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bAddCompensationType_1" name="Додати ще; ;sID_CheckboxTrue=yes" type="enum" default="no" writable="false">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_1_More" name="Невикористані дні відпустки:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDatePeriodBegin_More" name="Період роботи з:" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDatePeriodEnd_More" name="Період роботи по:" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_2" name="Невикористані дні відпустки:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sExperience_2" name="Стаж роботи:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPeriod_2" name="За який рік:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bAddCompensationType_2" name="Додати ще; ;sID_CheckboxTrue=yes" type="enum" default="no" writable="false">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sDateDiff_2_More" name="Невикористані дні відпустки:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sExperience_2_More" name="Стаж роботи:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPeriod_2_More" name="За який рік:" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBody_11" name="Заява на виплату компенсації;;bPrintform=true,bVisible=false,bDocumaentSubTabPrintformDefault=true,bGenerateByGoogle_PDF=true" type="string" default="{'sPathFile':'1tjvprRxX0z3a88pXEnH1b96pPVo8GTJH_WWtE0Bw9ys', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_12" name="Заява на виплату компенсації;;bPrintform=true,bVisible=false,bDocumaentSubTabPrintformDefault=true,bGenerateByGoogle_PDF=true" type="string" default="{'sPathFile':'18P89C2bDN2WivWsY_eOePIWHLn4ZU6wBOK4fWx7a-2c', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print11" name="marker_print11" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print11&quot;:{&quot;aField_ID&quot;:[&quot;sBody_11&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_print12" name="marker_print12" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_marker_print12&quot;:{&quot;aField_ID&quot;:[&quot;sBody_12&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_compensation_1" name="Маркер вибору типу компенсації" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_1&quot;,&quot;sDatePeriodBegin&quot;,&quot;sDatePeriodEnd&quot;,&quot;bAddCompensationType_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_compensation_2" name="Маркер вибору типу компенсації" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_2&quot;,&quot;sExperience_2&quot;,&quot;sPeriod_2&quot;,&quot;bAddCompensationType_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addCompensation_1" name="Маркер показывающий доп поля" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_3&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_1_More&quot;,&quot;sDatePeriodBegin_More&quot;,&quot;sDatePeriodEnd_More&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddCompensationType_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addCompensation_2" name="Маркер показывающий доп поля" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_4&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_2_More&quot;,&quot;sExperience_2_More&quot;,&quot;sPeriod_2_More&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddCompensationType_2&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_compensation_req_1" name="Маркер обов'язкового заповнення поля" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_1&quot;,&quot;sDatePeriodBegin&quot;,&quot;sDatePeriodEnd&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_compensation_req_2" name="Маркер обов'язкового заповнення поля" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_2&quot;,&quot;sExperience_2&quot;,&quot;sPeriod_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asTypeVacation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnumVac_2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addCompensation_req_1" name="Маркер обов'язкового заповнення поля доп поля" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_3&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_1_More&quot;,&quot;sDatePeriodBegin_More&quot;,&quot;sDatePeriodEnd_More&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddCompensationType_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_addCompensation_req_2" name="Маркер обов'язкового заповнення поля доп поля" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_4&quot;:{&quot;aField_ID&quot;:[&quot;sDateDiff_2_More&quot;,&quot;sExperience_2_More&quot;,&quot;sPeriod_2_More&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;bAddCompensationType_2&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документа;;bVisible=false" type="date"></activiti:formProperty>
+        <activiti:formProperty id="nID_Process_Child" name="nID_Process_Child;;bVisible=false" type="long"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow242" sourceRef="servicetask20" targetRef="usertask16"></sequenceFlow>
+    <sequenceFlow id="flow243" sourceRef="usertask16" targetRef="servicetask16">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_direct_1]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram__doc_template_covkmudep_compensation_zayava">
+    <bpmndi:BPMNPlane bpmnElement="_doc_template_covkmudep_compensation_zayava" id="BPMNPlane__doc_template_covkmudep_compensation_zayava">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="36.0" y="1.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="81.0" width="130.0" x="147.0" y="112.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask2" id="BPMNShape_usertask2">
+        <omgdc:Bounds height="81.0" width="131.0" x="1067.0" y="870.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="1115.0" y="1100.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask13" id="BPMNShape_servicetask13">
+        <omgdc:Bounds height="55.0" width="105.0" x="1080.0" y="1021.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask10" id="BPMNShape_usertask10">
+        <omgdc:Bounds height="79.0" width="116.0" x="876.0" y="235.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask16" id="BPMNShape_servicetask16">
+        <omgdc:Bounds height="72.0" width="105.0" x="785.0" y="875.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask12" id="BPMNShape_usertask12">
+        <omgdc:Bounds height="81.0" width="148.0" x="764.0" y="471.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway24" id="BPMNShape_exclusivegateway24">
+        <omgdc:Bounds height="40.0" width="40.0" x="919.0" y="361.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway25" id="BPMNShape_exclusivegateway25">
+        <omgdc:Bounds height="40.0" width="40.0" x="817.0" y="361.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway26" id="BPMNShape_exclusivegateway26">
+        <omgdc:Bounds height="40.0" width="40.0" x="818.0" y="630.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway27" id="BPMNShape_exclusivegateway27">
+        <omgdc:Bounds height="40.0" width="40.0" x="645.0" y="631.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway29" id="BPMNShape_exclusivegateway29">
+        <omgdc:Bounds height="40.0" width="40.0" x="347.0" y="132.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask14" id="BPMNShape_usertask14">
+        <omgdc:Bounds height="81.0" width="130.0" x="1107.0" y="234.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask18" id="BPMNShape_servicetask18">
+        <omgdc:Bounds height="57.0" width="120.0" x="446.0" y="124.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask15" id="BPMNShape_usertask15">
+        <omgdc:Bounds height="79.0" width="121.0" x="645.0" y="113.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask3" id="BPMNShape_scripttask3">
+        <omgdc:Bounds height="55.0" width="105.0" x="1045.0" y="125.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask4" id="BPMNShape_scripttask4">
+        <omgdc:Bounds height="55.0" width="105.0" x="1.0" y="125.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask19" id="BPMNShape_servicetask19">
+        <omgdc:Bounds height="55.0" width="105.0" x="887.0" y="125.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask20" id="BPMNShape_servicetask20">
+        <omgdc:Bounds height="72.0" width="105.0" x="786.0" y="720.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask16" id="BPMNShape_usertask16">
+        <omgdc:Bounds height="81.0" width="131.0" x="1060.0" y="715.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow23" id="BPMNEdge_flow23">
+        <omgdi:waypoint x="53.0" y="36.0"></omgdi:waypoint>
+        <omgdi:waypoint x="53.0" y="125.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow179" id="BPMNEdge_flow179">
+        <omgdi:waypoint x="766.0" y="152.0"></omgdi:waypoint>
+        <omgdi:waypoint x="887.0" y="152.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow183" id="BPMNEdge_flow183">
+        <omgdi:waypoint x="1132.0" y="1076.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1132.0" y="1100.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow213" id="BPMNEdge_flow213">
+        <omgdi:waypoint x="890.0" y="911.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1067.0" y="910.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow217" id="BPMNEdge_flow217">
+        <omgdi:waypoint x="837.0" y="401.0"></omgdi:waypoint>
+        <omgdi:waypoint x="838.0" y="471.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow219" id="BPMNEdge_flow219">
+        <omgdi:waypoint x="665.0" y="671.0"></omgdi:waypoint>
+        <omgdi:waypoint x="665.0" y="756.0"></omgdi:waypoint>
+        <omgdi:waypoint x="786.0" y="756.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow220" id="BPMNEdge_flow220">
+        <omgdi:waypoint x="939.0" y="361.0"></omgdi:waypoint>
+        <omgdi:waypoint x="934.0" y="314.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow221" id="BPMNEdge_flow221">
+        <omgdi:waypoint x="919.0" y="381.0"></omgdi:waypoint>
+        <omgdi:waypoint x="857.0" y="381.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow222" id="BPMNEdge_flow222">
+        <omgdi:waypoint x="837.0" y="361.0"></omgdi:waypoint>
+        <omgdi:waypoint x="837.0" y="275.0"></omgdi:waypoint>
+        <omgdi:waypoint x="876.0" y="274.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow223" id="BPMNEdge_flow223">
+        <omgdi:waypoint x="992.0" y="274.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1025.0" y="296.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1025.0" y="380.0"></omgdi:waypoint>
+        <omgdi:waypoint x="959.0" y="381.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow224" id="BPMNEdge_flow224">
+        <omgdi:waypoint x="818.0" y="650.0"></omgdi:waypoint>
+        <omgdi:waypoint x="685.0" y="651.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow225" id="BPMNEdge_flow225">
+        <omgdi:waypoint x="665.0" y="631.0"></omgdi:waypoint>
+        <omgdi:waypoint x="664.0" y="511.0"></omgdi:waypoint>
+        <omgdi:waypoint x="764.0" y="511.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow226" id="BPMNEdge_flow226">
+        <omgdi:waypoint x="838.0" y="630.0"></omgdi:waypoint>
+        <omgdi:waypoint x="838.0" y="552.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow227" id="BPMNEdge_flow227">
+        <omgdi:waypoint x="912.0" y="511.0"></omgdi:waypoint>
+        <omgdi:waypoint x="948.0" y="552.0"></omgdi:waypoint>
+        <omgdi:waypoint x="948.0" y="650.0"></omgdi:waypoint>
+        <omgdi:waypoint x="858.0" y="650.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow228" id="BPMNEdge_flow228">
+        <omgdi:waypoint x="1132.0" y="951.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1132.0" y="1021.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_AcceptEdit" id="BPMNEdge_FlowButton_AcceptEdit">
+        <omgdi:waypoint x="992.0" y="274.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1107.0" y="274.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="1005.0" y="232.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_SaveChangeAndSnos" id="BPMNEdge_FlowButton_SaveChangeAndSnos">
+        <omgdi:waypoint x="1172.0" y="234.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1172.0" y="93.0"></omgdi:waypoint>
+        <omgdi:waypoint x="367.0" y="93.0"></omgdi:waypoint>
+        <omgdi:waypoint x="367.0" y="132.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="1177.0" y="152.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow231" id="BPMNEdge_flow231">
+        <omgdi:waypoint x="277.0" y="152.0"></omgdi:waypoint>
+        <omgdi:waypoint x="347.0" y="152.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_AgreeEdit" id="BPMNEdge_FlowButton_AgreeEdit">
+        <omgdi:waypoint x="912.0" y="511.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1171.0" y="511.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1172.0" y="315.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="916.0" y="448.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_DirectEditToo" id="BPMNEdge_FlowButton_DirectEditToo">
+        <omgdi:waypoint x="1198.0" y="910.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1272.0" y="910.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1272.0" y="501.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1272.0" y="275.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1237.0" y="274.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="1198.0" y="910.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow235" id="BPMNEdge_flow235">
+        <omgdi:waypoint x="387.0" y="152.0"></omgdi:waypoint>
+        <omgdi:waypoint x="446.0" y="152.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow236" id="BPMNEdge_flow236">
+        <omgdi:waypoint x="566.0" y="152.0"></omgdi:waypoint>
+        <omgdi:waypoint x="645.0" y="152.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow239" id="BPMNEdge_flow239">
+        <omgdi:waypoint x="1097.0" y="180.0"></omgdi:waypoint>
+        <omgdi:waypoint x="934.0" y="235.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow240" id="BPMNEdge_flow240">
+        <omgdi:waypoint x="106.0" y="152.0"></omgdi:waypoint>
+        <omgdi:waypoint x="147.0" y="152.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow241" id="BPMNEdge_flow241">
+        <omgdi:waypoint x="992.0" y="152.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1045.0" y="152.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow242" id="BPMNEdge_flow242">
+        <omgdi:waypoint x="891.0" y="756.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1060.0" y="755.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow243" id="BPMNEdge_flow243">
+        <omgdi:waypoint x="1125.0" y="796.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1124.0" y="828.0"></omgdi:waypoint>
+        <omgdi:waypoint x="837.0" y="828.0"></omgdi:waypoint>
+        <omgdi:waypoint x="837.0" y="875.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

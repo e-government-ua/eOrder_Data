@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="_doc_template_icore_commercial_offer" name="Персональна комерційна пропозиція" isExecutable="true">
+    <documentation>;bTemplated=true</documentation>
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <userTask id="usertask1" name="Створення документу">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Персональна комерційна пропозиція" type="string" readable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Contrparty_Client" name="П.І.Б. клієнта" type="string"></activiti:formProperty>
+        <activiti:formProperty id="nUsers" name="Кількість користувачів (цифрою)" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sUsers" name="Кількість користувачів (прописом)" type="string"></activiti:formProperty>
+        <activiti:formProperty id="nSum_License" name="Ціна лізенції (цифрою)" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sSum_License" name="Ціна лізенції (прописом)" type="string"></activiti:formProperty>
+        <activiti:formProperty id="nSum_ServiceTech" name="Ціна за тех.обслуговування (цифрою)" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sSum_ServiceTech" name="Ціна за тех.обслуговування (прописом)" type="string"></activiti:formProperty>
+        <activiti:formProperty id="nSum_ServiceCloud" name="Ціна за розміщення системи у хмарі (цифрою)" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sSum_ServiceCloud" name="Ціна за розміщення системи у хмарі (прописом)" type="string"></activiti:formProperty>
+        <activiti:formProperty id="nHours" name="Час розробки (цифрою)" type="long"></activiti:formProperty>
+        <activiti:formProperty id="nSum_ServiceDevelopment" name="Ціна за розробку (цифрою)" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sSum_ServiceDevelopment" name="Ціна за розробку (прописом)" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDate" name="Дата" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Друкована форма;;bVisible=false,bPrintform=true" type="string" default="${oTemplateService.getFieldDataPath(execution, 'printform/sBody_1.html')}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="Печатна форма;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1auoX10kmrkUQ_rKTcw3shJzSxG05Em6nInS9jbsf6ds', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sTextForm" name="Google Doc;;bParseTagsOnSubmitOnly=true" type="fileHTML" default="{'sPathFile':'1auoX10kmrkUQ_rKTcw3shJzSxG05Em6nInS9jbsf6ds', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="PrintForm_2" name="PDF;;sPrintFormFileAsPDF=printform/sBody_1.html,sFileName=printform1, bNew=true" type="file" default="{'sPathFile':'1auoX10kmrkUQ_rKTcw3shJzSxG05Em6nInS9jbsf6ds', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <serviceTask id="servicetask1" name="Google Upload" activiti:delegateExpression="#{SetGoogleDocByUpload}">
+      <extensionElements>
+        <activiti:field name="sKey_RightType_Users">
+          <activiti:string><![CDATA[writer]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="asID_User_Right">
+          <activiti:expression><![CDATA[${sEmail}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sID_File_Variable">
+          <activiti:expression><![CDATA[${sTextForm}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_RightType_Common">
+          <activiti:expression><![CDATA[sKeyRightTypeCommon]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sFileNameAndExt">
+          <activiti:string><![CDATA[Персональна комерційна пропозиція]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow6" sourceRef="usertask4" targetRef="usertask3">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <serviceTask id="servicetask2" name="Отправка письма с ссылкой на гуглДок КП" activiti:delegateExpression="#{MailTaskWithoutAttachment}">
+      <extensionElements>
+        <activiti:field name="from">
+          <activiti:string><![CDATA[noreply@igov.org.ua]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="to">
+          <activiti:expression><![CDATA[${sEmail}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="text">
+          <activiti:expression><![CDATA[Вам надіслано]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <userTask id="usertask3" name="Узгодження">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Персональна комерційна пропозиція" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTextForm" name="Google Doc;;bParseTagsOnSubmitOnly=true" type="fileHTML" default="{'sPathFile':'1auoX10kmrkUQ_rKTcw3shJzSxG05Em6nInS9jbsf6ds', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow7" sourceRef="usertask3" targetRef="endevent1"></sequenceFlow>
+    <sequenceFlow id="flow8" sourceRef="usertask3" targetRef="servicetask2">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Agree]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow9" sourceRef="servicetask2" targetRef="usertask3"></sequenceFlow>
+    <sequenceFlow id="flow10" sourceRef="usertask1" targetRef="servicetask1"></sequenceFlow>
+    <userTask id="usertask4" name="Розгляд персональної комерційної пропозиції">
+      <extensionElements>
+        <activiti:formProperty id="sTitleDoc" name="Персональна комерційна пропозиція" type="string" readable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Contrparty_Client" name="П.І.Б. клієнта" type="string"></activiti:formProperty>
+        <activiti:formProperty id="nUsers" name="Кількість користувачів (цифрою)" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sUsers" name="Кількість користувачів (прописом)" type="string"></activiti:formProperty>
+        <activiti:formProperty id="nSum_License" name="Ціна лізенції (цифрою)" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sSum_License" name="Ціна лізенції (прописом)" type="string"></activiti:formProperty>
+        <activiti:formProperty id="nSum_ServiceTech" name="Ціна за тех.обслуговування (цифрою)" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sSum_ServiceTech" name="Ціна за тех.обслуговування (прописом)" type="string"></activiti:formProperty>
+        <activiti:formProperty id="nSum_ServiceCloud" name="Ціна за розміщення системи у хмарі (цифрою)" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sSum_ServiceCloud" name="Ціна за розміщення системи у хмарі (прописом)" type="string"></activiti:formProperty>
+        <activiti:formProperty id="nHours" name="Час розробки (цифрою)" type="long"></activiti:formProperty>
+        <activiti:formProperty id="nSum_ServiceDevelopment" name="Ціна за розробку (цифрою)" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sSum_ServiceDevelopment" name="Ціна за розробку (прописом)" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDate" name="Дата" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Друкована форма;;bVisible=false,bPrintform=true" type="string" default="${oTemplateService.getFieldDataPath(execution, 'printform/sBody_1.html')}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_2" name="Печатна форма;;bPrintform=true,bVisible=false,bDocumentSubTabPrintformDefault=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1auoX10kmrkUQ_rKTcw3shJzSxG05Em6nInS9jbsf6ds', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sTextForm" name="Google Doc;;bParseTagsOnSubmitOnly=true" type="fileHTML" default="{'sPathFile':'1auoX10kmrkUQ_rKTcw3shJzSxG05Em6nInS9jbsf6ds', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="PrintForm_2" name="PDF;;sPrintFormFileAsPDF=printform/sBody_1.html,sFileName=printform1, bNew=true" type="file" default="{'sPathFile':'1auoX10kmrkUQ_rKTcw3shJzSxG05Em6nInS9jbsf6ds', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow11" sourceRef="servicetask1" targetRef="usertask4">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram__doc_template_icore_commercial_offer">
+    <bpmndi:BPMNPlane bpmnElement="_doc_template_icore_commercial_offer" id="BPMNPlane__doc_template_icore_commercial_offer">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="70.0" y="106.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="73.0" width="141.0" x="150.0" y="87.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="544.0" y="360.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask1" id="BPMNShape_servicetask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="340.0" y="96.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask2" id="BPMNShape_servicetask2">
+        <omgdc:Bounds height="71.0" width="131.0" x="709.0" y="224.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask3" id="BPMNShape_usertask3">
+        <omgdc:Bounds height="55.0" width="105.0" x="507.0" y="240.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask4" id="BPMNShape_usertask4">
+        <omgdc:Bounds height="73.0" width="141.0" x="491.0" y="87.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="105.0" y="123.0"></omgdi:waypoint>
+        <omgdi:waypoint x="150.0" y="123.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="561.0" y="160.0"></omgdi:waypoint>
+        <omgdi:waypoint x="559.0" y="240.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
+        <omgdi:waypoint x="559.0" y="295.0"></omgdi:waypoint>
+        <omgdi:waypoint x="561.0" y="360.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow8" id="BPMNEdge_flow8">
+        <omgdi:waypoint x="559.0" y="295.0"></omgdi:waypoint>
+        <omgdi:waypoint x="663.0" y="326.0"></omgdi:waypoint>
+        <omgdi:waypoint x="774.0" y="295.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow9" id="BPMNEdge_flow9">
+        <omgdi:waypoint x="774.0" y="224.0"></omgdi:waypoint>
+        <omgdi:waypoint x="655.0" y="210.0"></omgdi:waypoint>
+        <omgdi:waypoint x="559.0" y="240.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow10" id="BPMNEdge_flow10">
+        <omgdi:waypoint x="291.0" y="123.0"></omgdi:waypoint>
+        <omgdi:waypoint x="340.0" y="123.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow11" id="BPMNEdge_flow11">
+        <omgdi:waypoint x="445.0" y="123.0"></omgdi:waypoint>
+        <omgdi:waypoint x="491.0" y="123.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

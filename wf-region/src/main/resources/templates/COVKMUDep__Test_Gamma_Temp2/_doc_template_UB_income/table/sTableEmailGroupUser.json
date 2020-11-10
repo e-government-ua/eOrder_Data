@@ -1,0 +1,43 @@
+{
+  "aField": [
+    {
+      "id": "asGroupUser",
+      "name": "Відправлення email;група користувачів",
+      "type": "enum",
+      "a": [
+        {
+          "id": "_DL_Treasury_All",
+          "name": "_DL_Treasury_All"
+        },
+        {
+          "id": "_DL_TBO",
+          "name": "_DL_TBO"
+        },
+        {
+          "id": "_DL_Security_Internal",
+          "name": "_DL_Security_Internal"
+        },
+        {
+          "id": "_DL_Payments",
+          "name": "_DL_Payments"
+        },
+        {
+          "id": "_DL_DPI",
+          "name": "_DL_DPI"
+        },
+        {
+          "id": "_DL_Currency_Control",
+          "name": "_DL_Currency_Control"
+        },
+        {
+          "id": "CASH",
+          "name": "CASH"
+        },
+        {
+          "id": "_DL_Directors",
+          "name": "_DL_Directors"
+        }
+      ]
+    }
+  ]
+}

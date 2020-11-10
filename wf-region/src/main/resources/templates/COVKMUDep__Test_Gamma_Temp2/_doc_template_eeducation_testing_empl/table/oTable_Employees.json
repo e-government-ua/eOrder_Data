@@ -1,0 +1,79 @@
+{
+    "aField": [
+      {
+        "id": "sName_Empl",
+        "name": "ФИО сотрудника",
+        "type": "string",
+        "required": "true"
+      },
+      {
+        "id": "sLogin_Empl",
+        "name": "Логин сотрудника",
+        "type": "string",
+        "required": "true"
+      },
+      {
+        "id": "saSection",
+        "name": "Раздел",
+        "type": "enum",
+        "required": "true",
+        "a": [
+          {
+            "id": "sBA",
+            "name": "БА"
+          },
+          {
+            "id": "sIT",
+            "name": "ИТ"
+          }
+        ]
+      },
+      {
+        "id": "sCurator",
+        "name": "Куратор",
+        "type": "enum",
+        "required": "true",
+        "default": "no",
+        "a": [
+          {
+            "id": "no",
+            "name": "Нет"
+          },
+          {
+            "id": "yes",
+            "name": "Да"
+          }
+        ]
+      },
+      {
+        "id": "sIT_type",
+        "name": "ИТ-вид",
+        "required": "true",
+        "type": "enum",
+        "a": [
+          {
+            "id": "sBA",
+            "name": "БА"
+          },
+          {
+            "id": "sFront",
+            "name": "Фронт"
+          },
+          {
+            "id": "sBack",
+            "name": "Бэк"
+          },
+          {
+            "id": "sDevop",
+            "name": "ДевОп"
+          }
+        ]
+      },
+      {
+        "id": "saWorkState",
+        "name": "Статус",
+        "type": "string",
+        "required": "true"
+      }
+    ]
+  }

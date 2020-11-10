@@ -1,0 +1,134 @@
+{
+  "oProperties": {
+    "bSkipStepCreate": true,
+          "sasKey_Field_RKK":"sName_Subject_DocumentRecipient,sName_Subject_DocumentSender,sNote_Subject_DocumentSender,sKey_Private_Outer,oDateAt_Outer,sName_SubjectHuman_DocumentSigner,sName_DocumentType,sKey_Private_Document_Parent,oDateAt,sKey_Private,nPages_Document,Name_SubjectHuman_DocumentAuthor,sName_SubjectOrgan_DocumentExecutor,sKey_DocumentTopicEnum,sName_Document"
+    
+  },
+  "_:Watch": {
+    "_default_author": {
+      "oMission": {
+        "sKey_Right": "SignRelease"
+      },
+      "oRights": {
+        "EditFields": {},
+        "SignComment": {},
+        "ManageViewers": {},
+        "AddSignerWriteAccept": {},
+        "EditSignerWriteAccept": {},
+        "RemoveSignerWriteAccept": {},
+        "AskMessage": {"bDisable": true},
+        "Remove": {}
+      }
+    },
+      "_default_accept": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {      
+       "AddSignerWriteExecute": {},
+        "EditSignerWriteExecute": {},
+        "RemoveSignerWriteExecute": {},
+         "RemoveSubjectNotSelf": {},
+        "EditSubjectNotSelf": {},
+        "AskMessage": {"bDisable": true},
+        "SignComment": {}
+      }
+    },
+     "_default_firstAccept": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {        
+        "SignComment": {},
+        "AddSignerWriteAccept": {},
+        "EditSignerWriteAccept": {},
+        "RemoveSignerWriteAccept": {},
+        "RemoveSubjectNotSelf": {},
+        "AskMessage": {"bDisable": true},
+        "EditSubjectNotSelf": {}
+      }
+    },
+
+    
+    "_default_agree": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {
+      "AskMessage": {"bDisable": true},
+        "SignComment": {}
+      }
+    },
+    
+    "_default_consideration": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},      	
+      	"SignComment": {},
+		"AskMessage": {"bDisable": true},
+		"AddSignerWriteAgree": {},
+      	"RemoveSignerWriteAgree": {"bDisable": true},
+      	"EditSignerWriteAgree": {"bDisable": true},
+		"AddSignerWriteAccept": {},
+      	"RemoveSignerWriteAccept": {"bDisable": true},
+      	"EditSignerWriteAccept": {"bDisable": true}
+      }
+    },
+    
+    
+    "_default_visa": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {
+        "EditFields": {},
+        "AskMessage": {"bDisable": true},
+        "SignComment": {}
+      }
+    },
+    "_default_view": {
+      "oMission": {
+        "sKey_Right": "View",
+        "sKey_Step_At": ""
+      },
+      "oRights": {
+        "ManageViewers": {},
+        "SignComment": {},
+        "AskMessage": {"bDisable": true},
+        "RemoveSubjectNotSelf": {}
+      }
+    },
+    "_default_execute": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {
+        "SignComment": {},
+        "AskMessage": {"bDisable": true},
+        "SignDelegate": {}
+      }
+    },
+    "_default_seen": {
+      "oMission": {
+        "sKey_Right": "SignRead"
+      },
+      "oRights": {
+      "AskMessage": {"bDisable": true},
+        "SignComment": {}
+      }
+    }
+  },
+  "step_create:Create": {},
+  "step_consideration:Consideration": {},
+  
+  
+  "step_visa:Visa": {},
+  "step_firstAccept:FirstAccept": {},
+  
+  "step_accept:Accept": {"property": {"nSubscribersMin": "1"}},  
+  "step_agree:Agree": {},  
+  "step_execute:Execute": {},
+  "step_direct:Direct": {},
+  "step_edit:Edit": {},
+  "step_seen:Seen": {}
+}

@@ -1,0 +1,1 @@
+[oSubject_Of_ProcessDocumentSignerDelete.sLabel] вас було видалено з документу [oProcessDocument.sName] <a href="https://covkmudep-temp2.test.idoc.com.ua/documents/sID_Order=[oProcessDocument.sID_Document]"> [oProcessDocument.sID_Document]</a> на етапі [oDocumentStepType_oF_oProcessDocument.sNote] у системі iDoc.<br>

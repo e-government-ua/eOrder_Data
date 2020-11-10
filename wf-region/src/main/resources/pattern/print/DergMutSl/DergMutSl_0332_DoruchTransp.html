@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>FORM-1</title>
+
+
+</head>
+
+<body style="font-size: 14px;">
+
+<table style="width: 100%; border-collapse: collapse;">
+    <tbody>
+    <tr>
+        <td>
+            <table style="width: 100%; border-collapse: collapse;">
+                <tbody>
+                <tr>
+                    <td>
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tbody>
+                            <tr>
+                                <td style="width: 50%"></td>
+                                
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td style="text-align: left; font-size: 17px; text-align: center;">Додаток</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td style="text-align: left; font-size: 17px; text-align: center;">до вичерпного переліку</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+  
+
+  
+<table style="width: 100%; padding-top: 30px;">
+    <tbody>
+    <tr>
+        <td colspan="2" style="text-align: center; font-size: 16px;">
+            <b>
+                ДОРУЧЕННЯ
+            </b>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<table style="width: 100%; padding-top: 1px;">
+    <tbody>
+    <tr>
+        <td colspan="2" style="text-align: center; font-size: 18px;">
+            на проведення огляду (переогляду) товарів,<br>
+            транспортних засобів комерційного призначення<br>
+            від [sDateCreateProcess] № [sDorNum]<br><br>
+          
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+  
+  
+<table id="MutAll" style="width: 100%; padding-top: 30px;">
+    <tbody>
+    <tr>
+        <td colspan="2" style="text-align: left; font-size: 16px;text-align: left; border-bottom: 1px solid #000000;">Керівникам всіх митниць України</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: center;font-size: 12px;">(назва митниці якій адресоване доручення)</td>
+    </tr>
+    </tbody>
+</table>    
+
+<table id="MutReg" style="width: 100%; padding-top: 30px;">
+    <tbody>
+    <tr>
+        <td colspan="2" style="text-align: left; font-size: 16px;text-align: left; border-bottom: 1px solid #000000;"><div id="ScrMutName"></div></td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: center;font-size: 12px;">(назва митниці якій адресоване доручення)</td>
+    </tr>
+    </tbody>
+</table> 
+
+<table style="width: 100%; padding-top: 1px;">
+    <tbody>
+    <tr>
+        <td colspan="2" style="text-align: left; font-size: 16px;text-align: left;">Прошу забезпечити проведення ідентифікаційного часткового повного огляду переогляду товарів</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: left; font-size: 16px;text-align: left; border-bottom: 1px solid #000000;">[sTovar]</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: center;font-size: 12px;">(найменування)</td>
+    </tr>
+    </tbody>
+</table>
+      
+<table id="TypeTransp" style="width: 100%; padding-top: 1px;">
+    <tbody>  
+    <tr>
+        <td colspan="2" style="text-align: left; font-size: 16px;text-align: left;">транспортного засобу комерційного призначення (контейнера)</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: left; font-size: 16px;text-align: left; border-bottom: 1px solid #000000;">[sTranspMark] [sTranspMod] [sTranspN]</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: center;font-size: 12px;">(марка, модель та номерний знак/номер)</td>
+    </tr>
+    </tbody>
+</table>
+  
+<table id="TypeKont" style="width: 100%; padding-top: 1px;">
+    <tbody>  
+    <tr>
+        <td colspan="2" style="text-align: left; font-size: 16px;text-align: left;">транспортного засобу комерційного призначення (контейнера)</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: left; font-size: 16px;text-align: left; border-bottom: 1px solid #000000;">контейнер [sKontN]</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: center;font-size: 12px;">(марка, модель та номерний знак/номер)</td>
+    </tr>
+    </tbody>
+</table>
+
+<table id="SubjVidRezident" style="width: 100%; padding-top: 1px;">
+    <tbody>  
+    <tr>
+        <td colspan="2" style="text-align: left; font-size: 16px;text-align: left; border-bottom: 1px solid #000000;">від [sID_SubjectOrgan_OKPO_01] [sFullName_SubjectOrgan_01]</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: center;font-size: 12px;">(найменування відправника, резидента)</td>
+    </tr>
+    </tbody>
+</table>
+
+<table id="SubjVidNoRezident" style="width: 100%; padding-top: 1px;">
+    <tbody>  
+    <tr>
+        <td colspan="2" style="text-align: left; font-size: 16px;text-align: left; border-bottom: 1px solid #000000;">від [sSubjName], країна [SubjState]</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: center;font-size: 12px;">(найменування відправника, нерезидента)</td>
+    </tr>
+    </tbody>
+</table>
+
+<table id="SubjOderRezident" style="width: 100%; padding-top: 1px;">
+    <tbody>  
+    <tr>
+        <td colspan="2" style="text-align: left; font-size: 16px;text-align: left; border-bottom: 1px solid #000000;">що переміщуються до [sID_SubjectOrgan_OKPO_01] [sFullName_SubjectOrgan_01]</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: center;font-size: 12px;">(найменування одержувача, резидента)</td>
+    </tr>
+    </tbody>
+</table>
+
+<table id="SubjOderNoRezident" style="width: 100%; padding-top: 1px;">
+    <tbody>  
+    <tr>
+        <td colspan="2" style="text-align: left; font-size: 16px;text-align: left; border-bottom: 1px solid #000000;">що переміщуються до [sSubjName], країна [SubjState]</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: center;font-size: 12px;">(найменування одержувача, нерезидента)</td>
+    </tr>
+    </tbody>
+</table>
+
+<table id="SubjInSubRezident" style="width: 100%; padding-top: 1px;">
+    <tbody>  
+    <tr>
+        <td colspan="2" style="text-align: left; font-size: 16px;text-align: left; border-bottom: 1px solid #000000;">[sID_SubjectOrgan_OKPO_01] [sFullName_SubjectOrgan_01], статус [tSubjStatus]</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: center;font-size: 12px;">(найменування суб'єкта, резидента)</td>
+    </tr>
+    </tbody>
+</table>
+
+<table id="SubjInSubNoRezident" style="width: 100%; padding-top: 1px;">
+    <tbody>  
+    <tr>
+        <td colspan="2" style="text-align: left; font-size: 16px;text-align: left; border-bottom: 1px solid #000000;">[sSubjName], країна [SubjState], статус [tSubjStatus]</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: center;font-size: 12px;">(найменування суб'єкта, нерезидента)</td>
+    </tr>
+    </tbody>
+</table>
+
+<table id="SubjFO" style="width: 100%; padding-top: 1px;">
+    <tbody>  
+    <tr>
+        <td colspan="2" style="text-align: left; font-size: 16px;text-align: left; border-bottom: 1px solid #000000;">[sSubjPibFO], ІПН [tSubPaspIPN]</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: center;font-size: 12px;">(дані про суб'єкта фізичну особу)</td>
+    </tr>
+    </tbody>
+</table>
+
+<table style="width: 100%; padding-top: 1px;">
+    <tbody>  
+    <tr>
+        <td colspan="2" style="text-align: left; font-size: 16px;text-align: left; border-bottom: 1px solid #000000;">Підстава проведення огляду (переогляду): [asPidstavaOgl] №[sDorNum]</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: center;font-size: 12px;">(реквізити письмового доручення слідчого, вказівки прокурора, ухвали слідчого судді)<br><br></td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: left; font-size: 16px;text-align: left;">Номер кримінального провадження (справи): [sNumK]</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: left; font-size: 16px;text-align: left;">Строк дії цього доручення з [DateStrZ] до [DateStrDo].<br><br></td>
+    </tr>
+        </tbody>
+</table>
+
+<table id="PosOs1" style="width: 100%; padding-top: 1px;">
+    <tbody>  
+    <tr>
+        <td colspan="2" style="text-align: left; font-size: 16px;text-align: left; border-bottom: 1px solid #000000;">Прошу провести огляд (переогляд) у присутності: [sPosOsobaPosada], [sPosOsobaPIB]</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: center;font-size: 12px;">(прізвища, імена, по батькові осіб, які братимуть участь у проведенні огляду (переогляду)<br><br></td>
+    </tr>
+    </tbody>
+</table>
+
+<table id="PosOs2" style="width: 100%; padding-top: 1px;">
+    <tbody>  
+    <tr>
+        <td colspan="2" style="text-align: left; font-size: 16px;text-align: left; border-bottom: 1px solid #000000;">Прошу провести огляд (переогляд) у присутності: [sPosOsobaPosada], [sPosOsobaPIB] та [sPosOsobaPosada2], [sPosOsobaPIB2]</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: center;font-size: 12px;">(прізвища, імена, по батькові осіб, які братимуть участь у проведенні огляду (переогляду)<br><br></td>
+    </tr>
+    </tbody>
+</table>
+
+<table id="PosOs3" style="width: 100%; padding-top: 1px;">
+    <tbody>  
+    <tr>
+        <td colspan="2" style="text-align: left; font-size: 16px;text-align: left; border-bottom: 1px solid #000000;">Прошу провести огляд (переогляд) у присутності: [sPosOsobaPosada], [sPosOsobaPIB], [sPosOsobaPosada2], [sPosOsobaPIB2] та [sPosOsobaPosada3], [sPosOsobaPIB3]</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: center;font-size: 12px;">(прізвища, імена, по батькові осіб, які братимуть участь у проведенні огляду (переогляду)<br><br></td>
+    </tr>
+    </tbody>
+</table>
+
+<table id="PosOs0" style="width: 100%; padding-top: 1px;">
+    <tbody>  
+    <tr>
+        <td colspan="2" style="text-align: left; font-size: 16px;text-align: left; border-bottom: 1px solid #000000;">Додаткових посадових осіб залучати не потрібно</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: center;font-size: 12px;">(прізвища, імена, по батькові осіб, які братимуть участь у проведенні огляду (переогляду)<br><br></td>
+    </tr>
+    </tbody>
+</table>
+
+<table style="width: 100%; padding-top: 1px;">
+    <tbody>      
+    <tr>
+        <td colspan="2" style="text-align: left; font-size: 16px;text-align: left;">Поінформувати про результати огляду (переогляду) до [DateStrInf].<br><br><br></td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: left; font-size: 16px;text-align: left;">Посадова особа, яка надала доручення</td>
+    </tr>
+    </tbody>
+</table><br>
+  
+  
+<table style="width: 100%; border-collapse: collapse;">
+                <tbody>
+                <tr>
+                    <td style="width: 35%; text-align: center;font-size: 15px;">[sZayPosada]</td>
+                    <td style="width: 20%; text-align: left; padding: 0 15px; font-size: 15px;">Подано через iGov</td>
+                    <td></td>
+                    <td style="width: 20%; text-align: left; padding: 0 15px; font-size: 15px;">[bankIdlastName] [bankIdfirstName] [bankIdmiddleName]</td>
+                    <td></td>
+                </tr>
+                </tbody>
+</table>
+
+ 
+<script type="text/javascript">
+  
+  var ScrTranspType = "[asTranspType]";
+  switch(ScrTranspType) {
+    case "Додати інформацію про транспортний засіб":
+        document.getElementById("TypeTransp").style.display = 'table';
+        document.getElementById("TypeKont").style.display = 'none';
+        break;
+    case "Додати інформацію про контейнер":
+        document.getElementById("TypeTransp").style.display = 'none';
+        document.getElementById("TypeKont").style.display = 'table';
+        break;
+    default:
+        document.getElementById("TypeTransp").style.display = 'table';
+        document.getElementById("TypeKont").style.display = 'none';
+  }
+  
+  var ScrSubject = "[asSubject]";
+  var ScrSubStat = "[asSubStat]";
+  switch(ScrSubject) {
+    case "Інформація про відправника":
+        {
+        if(ScrSubStat == 'sEnumRezident'||ScrSubStat == 'Резидент'){
+        document.getElementById("SubjVidRezident").style.display = 'table';
+        document.getElementById("SubjVidNoRezident").style.display = 'none';
+        document.getElementById("SubjOderRezident").style.display = 'none';
+        document.getElementById("SubjOderNoRezident").style.display = 'none';
+        document.getElementById("SubjInSubRezident").style.display = 'none';
+        document.getElementById("SubjInSubNoRezident").style.display = 'none';
+        document.getElementById("SubjFO").style.display = 'none';
+        }
+        else {
+        document.getElementById("SubjVidRezident").style.display = 'none';
+        document.getElementById("SubjVidNoRezident").style.display = 'table';
+        document.getElementById("SubjOderRezident").style.display = 'none';
+        document.getElementById("SubjOderNoRezident").style.display = 'none';
+        document.getElementById("SubjInSubRezident").style.display = 'none';
+        document.getElementById("SubjInSubNoRezident").style.display = 'none';
+        document.getElementById("SubjFO").style.display = 'none';
+        }}
+        break;
+    case "Інформація про одержувача":
+        {
+        if(ScrSubStat == 'sEnumRezident'||ScrSubStat == 'Резидент'){
+        document.getElementById("SubjVidRezident").style.display = 'none';
+        document.getElementById("SubjVidNoRezident").style.display = 'none';
+        document.getElementById("SubjOderRezident").style.display = 'table';
+        document.getElementById("SubjOderNoRezident").style.display = 'none';
+        document.getElementById("SubjInSubRezident").style.display = 'none';
+        document.getElementById("SubjInSubNoRezident").style.display = 'none';
+        document.getElementById("SubjFO").style.display = 'none';
+        }
+        else {
+        document.getElementById("SubjVidRezident").style.display = 'none';
+        document.getElementById("SubjVidNoRezident").style.display = 'none';
+        document.getElementById("SubjOderRezident").style.display = 'none';
+        document.getElementById("SubjOderNoRezident").style.display = 'table';
+        document.getElementById("SubjInSubRezident").style.display = 'none';
+        document.getElementById("SubjInSubNoRezident").style.display = 'none';
+        document.getElementById("SubjFO").style.display = 'none';
+        }}
+        break;
+    case "Інформація про іншого суб’єкта":
+        {
+        if(ScrSubStat == 'sEnumRezident'||ScrSubStat == 'Резидент'){
+        document.getElementById("SubjVidRezident").style.display = 'none';
+        document.getElementById("SubjVidNoRezident").style.display = 'none';
+        document.getElementById("SubjOderRezident").style.display = 'none';
+        document.getElementById("SubjOderNoRezident").style.display = 'none';
+        document.getElementById("SubjInSubRezident").style.display = 'table';
+        document.getElementById("SubjInSubNoRezident").style.display = 'none';
+        document.getElementById("SubjFO").style.display = 'none';
+        }
+        else {
+        document.getElementById("SubjVidRezident").style.display = 'none';
+        document.getElementById("SubjVidNoRezident").style.display = 'none';
+        document.getElementById("SubjOderRezident").style.display = 'none';
+        document.getElementById("SubjOderNoRezident").style.display = 'none';
+        document.getElementById("SubjInSubRezident").style.display = 'none';
+        document.getElementById("SubjInSubNoRezident").style.display = 'table';
+        document.getElementById("SubjFO").style.display = 'none';
+        }}
+        break;
+    case "Інформація про фізичну особу":
+        document.getElementById("SubjVidRezident").style.display = 'none';
+        document.getElementById("SubjVidNoRezident").style.display = 'none';
+        document.getElementById("SubjOderRezident").style.display = 'none';
+        document.getElementById("SubjOderNoRezident").style.display = 'none';
+        document.getElementById("SubjInSubRezident").style.display = 'none';
+        document.getElementById("SubjInSubNoRezident").style.display = 'none';
+        document.getElementById("SubjFO").style.display = 'table';
+        break;
+    default:
+        document.getElementById("SubjVidRezident").style.display = 'table';
+        document.getElementById("SubjVidNoRezident").style.display = 'none';
+        document.getElementById("SubjOderRezident").style.display = 'none';
+        document.getElementById("SubjOderNoRezident").style.display = 'none';
+        document.getElementById("SubjInSubRezident").style.display = 'none';
+        document.getElementById("SubjInSubNoRezident").style.display = 'none';
+        document.getElementById("SubjFO").style.display = 'none';
+  }
+  
+  var ScrPosOsobaKilk = "[asPosOsobaKilk]";
+  switch(ScrPosOsobaKilk) {
+    case "Одна особа":
+        document.getElementById("PosOs1").style.display = 'table';
+        document.getElementById("PosOs2").style.display = 'none';
+        document.getElementById("PosOs3").style.display = 'none';
+        document.getElementById("PosOs0").style.display = 'none';
+        break;
+    case "Дві особи":
+        document.getElementById("PosOs1").style.display = 'none';
+        document.getElementById("PosOs2").style.display = 'table';
+        document.getElementById("PosOs3").style.display = 'none';
+        document.getElementById("PosOs0").style.display = 'none';
+        break;
+    case "Три особи":
+        document.getElementById("PosOs1").style.display = 'none';
+        document.getElementById("PosOs2").style.display = 'none';
+        document.getElementById("PosOs3").style.display = 'table';
+        document.getElementById("PosOs0").style.display = 'none';
+        break;
+    case "Не залучати посадових осіб":
+        document.getElementById("PosOs1").style.display = 'none';
+        document.getElementById("PosOs2").style.display = 'none';
+        document.getElementById("PosOs3").style.display = 'none';
+        document.getElementById("PosOs0").style.display = 'table';
+        break;
+    default:
+        document.getElementById("PosOs1").style.display = 'table';
+        document.getElementById("PosOs2").style.display = 'none';
+        document.getElementById("PosOs3").style.display = 'none';
+        document.getElementById("PosOs0").style.display = 'none';
+  }
+
+  var ScrMut = "[asMut]";
+  switch(ScrMut) {
+    case "Всі митниці країни":
+        document.getElementById("MutAll").style.display = 'table';
+        document.getElementById("MutReg").style.display = 'none';
+        break;
+    case "Обрані митниці по регіонах":
+        document.getElementById("MutAll").style.display = 'none';
+        document.getElementById("MutReg").style.display = 'table';
+        break;
+    default:
+        document.getElementById("MutAll").style.display = 'table';
+        document.getElementById("MutReg").style.display = 'none';
+  }
+  
+
+  var ScrMut1 = "[chekMut1]";
+  if(ScrMut1 == 'yes'||ScrMut1 == 'так'){
+  document.getElementById("ScrMutName").innerHTML += "Начальнику Київської міської митниці, ";}
+  var ScrMut2 = "[chekMut2]";
+  if(ScrMut2 == 'yes'||ScrMut2 == 'так'){
+  document.getElementById("ScrMutName").innerHTML += "Начальнику Житомирської митниці, ";}
+  var ScrMut3 = "[chekMut3]";
+  if(ScrMut3 == 'yes'||ScrMut3 == 'так'){
+  document.getElementById("ScrMutName").innerHTML += "Начальнику Чернігівської митниці, ";}
+  var ScrMut4 = "[chekMut4]";
+  if(ScrMut4 == 'yes'||ScrMut4 == 'так'){
+  document.getElementById("ScrMutName").innerHTML += "Начальнику Дніпропетровської митниці, ";}
+  var ScrMut5 = "[chekMut5]";
+  if(ScrMut5 == 'yes'||ScrMut5 == 'так'){
+  document.getElementById("ScrMutName").innerHTML += "Начальнику Запорізької митниці, ";}
+  var ScrMut6 = "[chekMut6]";
+  if(ScrMut6 == 'yes'||ScrMut6 == 'так'){
+  document.getElementById("ScrMutName").innerHTML += "Начальнику Київської митниці, ";}
+  var ScrMut7 = "[chekMut7]";
+  if(ScrMut7 == 'yes'||ScrMut7 == 'так'){
+  document.getElementById("ScrMutName").innerHTML += "Начальнику Рівненської митниці, ";}
+  var ScrMut8 = "[chekMut8]";
+  if(ScrMut8 == 'yes'||ScrMut8 == 'так'){
+  document.getElementById("ScrMutName").innerHTML += "Начальнику Волинської митниці, ";}
+  var ScrMut9 = "[chekMut9]";
+  if(ScrMut9 == 'yes'||ScrMut9 == 'так'){
+  document.getElementById("ScrMutName").innerHTML += "Начальнику Івано-Франківської митниці, ";}
+  var ScrMut10 = "[chekMut10]";
+  if(ScrMut10 == 'yes'||ScrMut10 == 'так'){
+  document.getElementById("ScrMutName").innerHTML += "Начальнику Львівської митниці, ";}
+  var ScrMut11 = "[chekMut11]";
+  if(ScrMut11 == 'yes'||ScrMut11 == 'так'){
+  document.getElementById("ScrMutName").innerHTML += "Начальнику Закарпатської митниці, ";}
+  var ScrMut12 = "[chekMut12]";
+  if(ScrMut12 == 'yes'||ScrMut12 == 'так'){
+  document.getElementById("ScrMutName").innerHTML += "Начальнику Хмельницької митниці, ";}
+  var ScrMut13 = "[chekMut13]";
+  if(ScrMut13 == 'yes'||ScrMut13 == 'так'){
+  document.getElementById("ScrMutName").innerHTML += "Начальнику Вінницької митниці, ";}
+  var ScrMut14 = "[chekMut14]";
+  if(ScrMut14 == 'yes'||ScrMut14 == 'так'){
+  document.getElementById("ScrMutName").innerHTML += "Начальнику Тернопільської митниці, ";}
+  var ScrMut15 = "[chekMut15]";
+  if(ScrMut15 == 'yes'||ScrMut15 == 'так'){
+  document.getElementById("ScrMutName").innerHTML += "Начальнику Чернівецької митниці, ";}
+  var ScrMut16 = "[chekMut16]";
+  if(ScrMut16 == 'yes'||ScrMut16 == 'так'){
+  document.getElementById("ScrMutName").innerHTML += "Начальнику Одеської митниці, ";}
+  var ScrMut17 = "[chekMut17]";
+  if(ScrMut17 == 'yes'||ScrMut17 == 'так'){
+  document.getElementById("ScrMutName").innerHTML += "Начальнику Миколаївської митниці, ";}
+  var ScrMut18 = "[chekMut18]";
+  if(ScrMut18 == 'yes'||ScrMut18 == 'так'){
+  document.getElementById("ScrMutName").innerHTML += "Начальнику митниці у Херсонській обл., АР Крим та м. Севастополі, ";}
+  var ScrMut19 = "[chekMut19]";
+  if(ScrMut19 == 'yes'||ScrMut19 == 'так'){
+  document.getElementById("ScrMutName").innerHTML += "Начальнику Донецької митниці, ";}
+  var ScrMut20 = "[chekMut20]";
+  if(ScrMut20 == 'yes'||ScrMut20 == 'так'){
+  document.getElementById("ScrMutName").innerHTML += "Начальнику Луганської митниці, ";}
+  var ScrMut21 = "[chekMut21]";
+  if(ScrMut21 == 'yes'||ScrMut21 == 'так'){
+  document.getElementById("ScrMutName").innerHTML += "Начальнику Сумської митниці, ";}
+  var ScrMut22 = "[chekMut22]";
+  if(ScrMut22 == 'yes'||ScrMut22 == 'так'){
+  document.getElementById("ScrMutName").innerHTML += "Начальнику Полтавської митниці, ";}
+  var ScrMut23 = "[chekMut23]";
+  if(ScrMut23 == 'yes'||ScrMut23 == 'так'){
+  document.getElementById("ScrMutName").innerHTML += "Начальнику Харківської митниці, ";}
+  var ScrMut24 = "[chekMut24]";
+  if(ScrMut24 == 'yes'||ScrMut24 == 'так'){
+  document.getElementById("ScrMutName").innerHTML += "Начальнику Кіровоградської митниці, ";}
+  var ScrMut25 = "[chekMut25]";
+  if(ScrMut25 == 'yes'||ScrMut25 == 'так'){
+  document.getElementById("ScrMutName").innerHTML += "Начальнику Черкаської митниці, ";}
+  var ScrMut26 = "[chekMut26]";
+  if(ScrMut26 == 'yes'||ScrMut26 == 'так'){
+  document.getElementById("ScrMutName").innerHTML += "Начальнику Енергетичної митниці";}
+  
+</script>   
+
+
+
+
+</body>
+</html>

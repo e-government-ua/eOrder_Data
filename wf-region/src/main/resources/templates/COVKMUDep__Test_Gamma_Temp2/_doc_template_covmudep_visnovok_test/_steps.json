@@ -1,0 +1,43 @@
+{
+  "oProperties": {
+    "bSkipStepCreate": true
+  },
+  "_:Watch": {
+    "_default_author": {
+      "oMission": {
+        "sKey_Right": "SignRelease"},
+      "oRights": {
+        "Manage": {},
+        "AddSignerWriteConsideration": {},
+        "ManageSignersWriteAccept":{"bDisable": true},
+        "RemoveSignerWriteAccept": {},
+        "EditSignerWriteAccept": {},
+        "SignComment": {}
+      }
+    },   
+    "_default_accept": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {
+        "SignComment": {}
+      },
+      "bNeedECP": true
+    },
+    "_default_accept_1": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {
+        "SignComment": {}
+      }      
+    }
+  },
+  "step_create:Create": {},
+  "step_accept:Accept": {},
+  "step_accept_1:Accept": {},
+  "step_accept_2:Accept": {},
+  "step_accept_3:Accept": {},
+  "step_accept_4:Accept": {},
+  "step_edit:Edit": {}
+}

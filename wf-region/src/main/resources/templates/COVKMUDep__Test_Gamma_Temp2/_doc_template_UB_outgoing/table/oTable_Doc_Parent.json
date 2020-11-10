@@ -1,0 +1,14 @@
+{
+  "aField": [
+    {
+      "id": "sNum_Doc",
+      "name": "До системного номеру;Якщо потрібно підв'язати відповідь до вхідних документів, або зберегти у дерево документів;bImportFields=true,{{Autocomplete:getProcessDocuments()}},sID_Field_Alias=sID_Order_Document,bImportFieldSkip=true",
+      "type": "string"
+    },
+    {
+      "id": "bIncludeAttaches",
+      "name": "Додати вкладення з вхідного;Тільки для відправки каналом НБУ",
+      "type": "boolean"
+    }
+  ]
+}

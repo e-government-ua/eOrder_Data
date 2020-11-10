@@ -1,0 +1,69 @@
+{
+"oProperties":{ 
+      "bSkipStepCreate":true
+       },
+  "_:Watch": {
+	"_default_author": {
+      "oMission": {"sKey_Right":"SignRelease"},
+      "oRights": {
+      	"Manage": {},
+      	"AddSignerWriteConsideration": {},
+      	"RemoveSignerWriteAccept": {},
+      	"EditSignerWriteAccept": {},
+      	"SignComment": {}
+      }
+    },
+    "_default_accept": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},      	
+      	"SignComment": {}
+      }
+    },
+    "_default_consideration": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},      	
+      	"SignComment": {}
+      }
+    },
+     "_default_agree": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+        "SignComment": {},
+        "SignDelegate":{}
+      }
+    },
+     "_default_Execute": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},      	
+      	"SignComment": {}
+      },
+      "bNeedECP": true
+    },
+     "_default_direct": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},      	
+      	"SignComment": {}
+      },
+      "bNeedECP": true
+    }
+    },
+   
+  "step_create:Create": {},
+  "step_accept:Accept": {}, 
+  "step_accept_1:Accept": {},
+  "step_accept_2:Accept": {}, 
+  "step_agree:Agree": {},
+  "step_agree_1:Agree": {},
+  "step_agree_2:Agree": {},
+  "step_agree_3:Agree": {},
+  "step_agree_4:Agree": {},
+  "step_agree_5:Agree": {},
+  "step_execute:Execute": {},
+  "step_direct:Direct": {},  
+  "step_edit:Edit": {}
+
+}

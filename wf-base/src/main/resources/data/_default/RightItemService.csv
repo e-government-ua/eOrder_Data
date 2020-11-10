@@ -1,0 +1,6 @@
+nID;nID_RightItem;sService;saServiceMethod;saServiceParamRequred
+2500001;2459654;/sync/entity/*EntityPool;;
+2500002;2500200;/sync/entity/*EntityPool;;sKey_EntityPool
+2500003;2501000;/debug/*,/test/*;;
+2500004;2459646;/action/identity/set*Group*,/action/identity/remove*Group*;;
+2500005;2459951;/action/identity/get*Group*,/action/identity/getUsers;;

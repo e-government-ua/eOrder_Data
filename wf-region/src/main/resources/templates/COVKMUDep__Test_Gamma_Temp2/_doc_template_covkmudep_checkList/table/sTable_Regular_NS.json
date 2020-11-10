@@ -1,0 +1,122 @@
+{
+  "aField": [
+    {
+      "id": "nRow",
+      "name": "№ п/п",
+      "type": "long",    
+      "nWidth": "5%"
+   
+    },
+    {
+      "id": "sBody",
+      "name": "Зміст завдання",
+      "type": "string"
+      
+   
+    },
+    {
+      "id": "sNeedTask",
+      "name": "Необхідність завдання",
+      "type": "enum",
+      "nWidth": "10%",
+      "a": [
+        {
+          "id": "yes",
+          "name": "так"
+        },
+        {
+          "id": "no",
+          "name": "ні"
+        }
+      ]
+    },  
+    {
+      "id": "sDateExecute",
+      "name": "Строк виконання",
+      "type": "date",
+      "nWidth": "10%"     
+    },
+    {
+      "id": "sName_isExecute",
+      "name": "Виконавець; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel",
+      "type": "select",
+      "nWidth": "15%"         
+    },
+    {
+      "id": "sLogin_isExecute",
+      "name": "login",
+      "type": "string",
+      "bVisible": "false"
+      
+      
+    },
+    {
+      "id": "sName_isControl",
+      "name": "Контролюючий; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel",
+      "type": "select",
+      "nWidth": "15%"
+      
+      
+    },
+    {
+      "id": "sLogin_isControl",
+      "name": "login",
+      "type": "string",
+      "bVisible": "false"
+      
+      
+    
+    },
+    {
+      "id": "sName_isObserver",
+      "name": "Спостерігач; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel",
+      "type": "select",
+      "nWidth": "15%"          
+    },
+    {
+      "id": "sLogin_isObserver",
+      "name": "login",
+      "type": "string",
+      "bVisible": "false"
+      
+      
+    }
+  ],
+  
+   "aRow": [
+   {
+            "sBody": "Подати декларацію переможця конкурсу",
+            "nRow": "1",
+            "sNeedTask": "[yes]"
+            
+        },
+         {
+            "sBody": "Подати необхідний перелік документів у СУП (заява на призначення, копію військового квитка, у разі наявності тощо)",
+            "nRow": "2",
+            "sNeedTask": "[yes]"
+            
+        },
+         {
+            "sBody": "Сфотографуватись на перепустку (бюро перепусток, каб. 200)",
+            "nRow": "3"
+            
+        },
+        {
+            "sBody": "Оформити заявку на отримання зарплатної картку або надати реквізити діючої картки (бухгалтерія, каб. 600, 2 корпус)",
+            "nRow": "4"
+            
+        },
+        {
+            "sBody": "Подати заявку на отримання електронного цифрового підпису  (подача копії паспорта та коду, каб. 107б)",
+            "nRow": "5"
+            
+        },
+        {
+            "sBody": "Ознайомитись з матеріалами Довідника державного службовця",
+            "nRow": "6"
+            
+        
+        }
+        
+    ]
+}

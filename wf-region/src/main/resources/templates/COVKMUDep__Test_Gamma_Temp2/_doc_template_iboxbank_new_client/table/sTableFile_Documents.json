@@ -1,0 +1,59 @@
+{
+    "aField": [
+      {
+        "id": "type",
+        "name": "Обреіть зі списку тип документу",
+        "type": "enum",
+        "required": "true",
+        "a": [
+          {
+            "id": "passport",
+            "name": "Паспорт"
+          },
+          {
+            "id": "zpassport",
+            "name": "Закордонний паспорт"
+          },
+          {
+            "id": "idpassport",
+            "name": "ІД Карта"
+          }
+        ]
+      },
+      {
+        "id": "series",
+        "name": "Серія документа",
+        "type": "string"
+      },
+      {
+        "id": "number",
+        "name": "Номер документа",
+        "required": "true",
+        "type": "string"
+      },
+      {
+        "id": "issue",
+        "name": "Ким виданий документ",
+        "required": "true",
+        "type": "string"
+      },
+      {
+        "id": "dateIssu",
+        "name": "Коли виданий; у форматі дд.мм.рррр;",
+        "required": "true",
+        "type": "string"
+      },
+      {
+        "id": "dateExpiration",
+        "name": "Термін дії; у форматі дд.мм.рррр;",
+        "type": "string"
+      },
+      {
+        "id": "issueCountryIso2",
+        "name": "Країна",
+        "type": "string",
+        "bVisible": "false",
+        "default": "UA"
+      }
+    ]
+  }

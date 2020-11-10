@@ -1,0 +1,17 @@
+{
+    "aField": 
+        [
+            {
+                "sKey":"sSignNote_SubjectQuestionSignType",
+                "asMetaAttribute": [
+                    "{{autocomplete:getObjectAsEnumFromFieldByKey(sKey_Field=’aSubjectQuestionSignType’)}>:sName|sID_SignType_SubjectQuestionSignType:sKey}}"
+                ]
+            }
+        ],
+        "oProperties":{
+            "sKey_Field_UniqAuto":"nID",
+            "asKey_Field_Uniq":[],
+            "sName":"Questions"
+        }
+}
+  

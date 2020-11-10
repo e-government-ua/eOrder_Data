@@ -1,0 +1,33 @@
+[
+  {
+    "sHead": "Задача: $[sField1]",
+    "sBody": "$[sField1]",
+    "sID_BP": "_task_base",
+    "sKey_TaskReportType": "Document",
+    "bSplited_Execute": false,
+    "oProcessTaskSubjectsVO": {
+      "aController": [
+        {
+          "oUserVO": {
+            "sLogin": "IGOV_160582SOD",
+            "sLabel": "Смоктій Оксана Данилівна"
+          },
+          "nDaysPlan": null,
+          "oDatePlan": "$[sDate]"
+        }
+      ],
+      "aExecutor": [
+        {
+          "oUserVO": {
+            "sLogin": "IGOV_310780BVV",
+            "sLabel": "Белявцев Володимир Володимирович"
+          },
+          "nDaysPlan": null,
+          "oDatePlan": "$[sDate]"
+        }
+      ],
+      "aVisor": []
+    },
+    "aProcessTaskAttribute": []
+  }
+]

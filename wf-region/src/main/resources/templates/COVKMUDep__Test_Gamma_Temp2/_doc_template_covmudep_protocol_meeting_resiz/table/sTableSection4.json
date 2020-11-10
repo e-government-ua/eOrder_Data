@@ -1,0 +1,62 @@
+{
+  "aField": [
+    {
+      "id": "sNumber1",
+      "name": "№ п/п",
+      "type": "long",    
+      "nWidth": "5%"
+   
+    },
+    {
+      "id": "sNameFile1",
+      "name": "Суть",
+      "type": "string"
+      
+   
+    },
+    {
+      "id": "sNeedTask",
+      "name": "Необхідність завдання",
+      "type": "enum",
+      "nWidth": "10%",
+      "a": [
+        {
+          "id": "yes",
+          "name": "так"
+        },
+        {
+          "id": "no",
+          "name": "ні"
+        }
+      ]
+    },  
+    {
+      "id": "sDate",
+      "name": "Дата виконання",
+      "type": "date",
+      "nWidth": "10%"     
+    },
+    {
+      "id": "sName_isExecute",
+      "name": "Виконавець; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel",
+      "type": "select",
+      "nWidth": "20%"         
+    },
+    {
+      "id": "sLogin_isExecute",
+      "name": "login",
+      "type": "string",
+      "bVisible": "false"
+      
+      
+    },
+    {
+      "id": "sName_isControl",
+      "name": "Контролюючий; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel",
+      "type": "select",
+      "nWidth": "20%"
+      
+      
+    }
+  ]
+}

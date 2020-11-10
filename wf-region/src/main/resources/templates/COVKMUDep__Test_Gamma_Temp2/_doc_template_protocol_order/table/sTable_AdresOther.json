@@ -1,0 +1,9 @@
+{
+  "aField": [
+    {
+      "id": "sAdresOther",
+      "name": "Інші адресати",
+      "type": "string"       
+    }
+  ]
+}

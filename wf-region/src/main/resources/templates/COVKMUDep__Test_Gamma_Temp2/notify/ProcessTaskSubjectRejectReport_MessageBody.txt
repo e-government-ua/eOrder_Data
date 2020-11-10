@@ -1,0 +1,7 @@
+Статус: [oProcessTaskSubjectStatus.sName] <br />
+Назва :[oProcessTaskVO.sHead] №[sID_Order] <br />
+Завдання: [oProcessTaskVO.sBody]<br />
+Контролюючий: [oSubjectEmployeeVO_ActionSource.sFIO_Short]<br />
+Виконавці: [oSubjectEmployeeVO_ActionSource.sFIO_Short]<br />
+Дата виконання:[oProcessTaskSubject.sDatePlan]<br />
+Форма звіту:[oProcessTaskVO.sKey_TaskReportType]

@@ -1,0 +1,106 @@
+{
+  "aField": [
+    {
+      "id": "sName_SubjectOrgan",
+      "name": "Найменування; ;{{Autocomplete:getSubjectOrgans(nID_Server='99999999',sasID_SubjectType='Organ')>:sName|sOKPO_SubjectOrgan:sOKPO}}",
+      "type": "select",
+      "nWidth": "20%"
+      
+    },
+    {
+      "id": "sOKPO_SubjectOrgan",
+      "name": "ЄДРПОУ",
+      "type": "string",
+      "writable": "false",
+      "nWidth": "10%"
+            
+    },
+    {
+      "id": "sDate",
+      "name": "Дата",
+      "type": "string",
+      "writable": "false",
+      "nWidth": "10%"
+      
+    },
+    {
+      "id": "sAnknowledge",
+      "name": "Статус",
+      "type": "string",
+      "writable": "false",
+      "nWidth": "15%"
+      
+    },
+    {
+      "id": "sRegDate",
+      "name": "Дата реєстрації",
+      "type": "string",
+      "writable": "false",
+      "nWidth": "10%"
+      
+    },
+    {
+      "id": "sRegNumber",
+      "name": "Номер реєстрації",
+      "type": "string",
+      "writable": "false",
+      "nWidth": "15%"
+      
+    },
+    {
+      "id": "sDateDelivered",
+      "name": "Доставлений",
+      "type": "string",
+      "writable": "false",
+      "bVisible": "false"
+      
+    },
+    {
+      "id": "sDateReceived",
+      "name": "Прийнятий",
+      "type": "string",
+      "writable": "false",
+      "bVisible": "false"
+      
+    },    
+    {
+      "id": "sDateRejected",
+      "name": "Відхилений",
+      "type": "string",
+      "writable": "false",
+      "bVisible": "false"
+      
+    },
+    {
+      "id": "sErrorText",
+      "name": "Коментар",
+      "type": "string",
+      "writable": "false",
+      "nWidth": "20%"
+      
+    },
+    {
+      "id": "sDate_Send_Completed",
+      "name": "Дата успішної відправки",
+      "type": "string",
+      "writable": "false",
+      "bVisible": "false"
+      
+    },
+    {
+      "id": "sDate_Send_Error",
+      "name": "Дата помилки відправки",
+      "type": "string",
+      "writable": "false",
+      "bVisible": "false"
+      
+    },
+    {
+      "id": "oFile_Document_Source_SEV",
+      "name": "ХМЛ; ;bNew=true",
+      "type": "file"
+    }
+    
+  ]
+}
+

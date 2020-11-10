@@ -1,0 +1,32 @@
+{
+  "aFilterDataVO": [
+    {
+      "sID": "_Tasks_VisionOpened_FilterSystem",
+      "sName": "На спостереженні.",
+      "oFilterElements": {
+        "oProcessTaskSubjectStatusCategory_FilterLogicalVO": {
+          "aOr": [
+            {
+              "aAnd": [
+                {
+                  "sID": "TaskSubjectStatusCategory_Progress"
+                }
+              ]
+            }
+          ]
+        },
+        "oSubjectRoleGroup_FilterLogicalVO": {
+          "aOr": [
+            {
+              "aAnd": [
+                {
+                  "sID": "{{getasID_SubjectRole_Own()}}"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

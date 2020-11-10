@@ -1,0 +1,169 @@
+{
+  "oProperties": {
+    "bSkipStepCreate": true,
+          "sasKey_Field_RKK":"sName_DocumentType,sCodeFormRKK,sSpravaNumberRKK,sName_Subject_DocumentSenderRKK,sName_SubjectHuman_DocumentSenderSigner,sDirection,sDateRegOutRKK,sKey_PrivateRKK,sKey_Private_Document_ParentRKK,sName_Document,sName_SubjectOrgan_DocumentExecutorRKK,sName_SubjectHuman_DocumentAuthorRKK,sNumberDaysRKK,sTimeSave,nPages_Dodatk,nPages_Document,sIndikator,sTimeInd,sVidProMonitring,sInfoProZmin,sSposibVik,sEleRezMer,sTopExec,sDepTopExec,sTimeExec,sZmistDor,sName_SpivExec,sDepart_SpivExec,sElecRezZam",
+          "sasKey_FieldSystemHide_RKK":"*"
+          
+  },
+  "_:Watch": {
+    "_default_author": {
+      "oMission": {
+        "sKey_Right": "SignRelease"
+      },
+      "oRights": {      
+        "ManageJoin": {},        
+        "EditFields": {},
+        "SignComment": {},
+        "ManageViewers": {},
+        "AddSignerWriteAgree": {},
+        "EditSignerWriteAgree": {},
+        "RemoveSignerWriteAgree": {},
+        "AddSignerWriteAccept": {},
+        "EditSignerWriteAccept": {},
+        "RemoveSignerWriteAccept": {},
+        "AddSignerWriteExecute": {},
+        "EditSignerWriteExecute": {},
+        "RemoveSignerWriteExecute": {},
+        "Remove": {}
+      }
+    },
+      "_default_accept": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {        
+        "AddSignerWriteExecute": {},
+        "EditSignerWriteExecute": {},
+        "RemoveSignerWriteExecute": {},
+         "RemoveSubjectNotSelf": {},
+        "EditSubjectNotSelf": {},
+        "SignComment": {}
+      }
+     
+    },
+     "_default_agree": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {      
+        "TaskAdd": {
+        	"sID_Field_ProcessTasks":"oProcessTasks_1"
+       },
+        "TaskEdit": {},
+        "TaskRemove": {},  
+        "AddSignerWriteExecute": {},
+        "EditSignerWriteExecute": {},
+        "RemoveSignerWriteExecute": {},
+         "RemoveSubjectNotSelf": {},
+        "EditSubjectNotSelf": {},
+        "SignComment": {}
+      },
+     "bNeedECP": true
+    },
+     "_default_firstAccept": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {        
+        "TaskAdd": {},
+        "TaskEdit": {},
+        "TaskRemove": {},  
+        "SignComment": {},
+        "RemoveSubjectNotSelf": {},
+        "EditSubjectNotSelf": {},
+        "SignAnswer": {}
+      }
+    },
+    "_default_consideration": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {
+        "ManageJoin": {},
+        "TaskAdd": {},
+        "TaskEdit": {},
+        "TaskRemove": {},  
+        "ManageViewers": {},
+        "EditFields": {},
+        "SignWriteNotNeed": {},
+        "SignComment": {},
+       "AddSignerWriteAgree": {},
+        "EditSignerWriteAgree": {},
+        "RemoveSignerWriteAgree": {},
+        "AddSignerWriteAccept": {},
+        "EditSignerWriteAccept": {},
+        "RemoveSignerWriteAccept": {},
+        "AddSignerWriteExecute": {},
+        "EditSignerWriteExecute": {},
+        "RemoveSignerWriteExecute": {},
+        "ManageSignersRead": {}
+      }
+    },
+    "_default_visa": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {
+        "TaskAdd": {},
+        "TaskEdit": {},
+        "TaskRemove": {},  
+        "EditFields": {},
+        "SignComment": {}
+      }
+    },
+    "_default_view": {
+      "oMission": {
+        "sKey_Right": "View",
+        "sKey_Step_At": ""
+      },
+      "oRights": {
+        "ManageViewers": {},
+        "SignComment": {},
+        "RemoveSubjectNotSelf": {}
+      }
+    },
+    "_default_execute": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {          
+        "SignComment": {},
+        "SignDelegate": {}
+      }
+    },
+     "_default_direct": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {         
+        "SignComment": {},
+        "SignDelegate": {}
+      }
+    },
+    "_default_seen": {
+      "oMission": {
+        "sKey_Right": "SignRead"
+      },
+      "oRights": {
+       "TaskAdd": {},
+        "TaskEdit": {},
+        "TaskRemove": {},   
+       "SignComment": {}
+      }
+    }
+  },
+  "step_create:Create": {},
+  "step_consideration:Consideration": {},
+  "step_visa:Visa": {},
+  "step_firstAccept:FirstAccept": {},
+  "step_accept:Accept": {},  
+  "step_agree:Agree": {
+  "property": {
+      "nSubscribersMin": "1"}},  
+  "step_execute:Execute": {
+  "property": {
+      "nSubscribersMin": "1"}},
+  "step_direct:Direct": {},
+  "step_edit:Edit": {},
+  "step_seen:Seen": {}
+}

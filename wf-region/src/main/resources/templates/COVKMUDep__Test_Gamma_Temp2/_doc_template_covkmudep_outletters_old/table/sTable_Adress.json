@@ -1,0 +1,9 @@
+{
+  "aField": [
+    {
+      "id": "sAdress",
+      "name": "Адресати не учасники СЕВ; ;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1gNvBwecudtl6s9izLvEDerpmrZTAtlUHF5G870htUkQ/Sheet1',sasKey_Field_Find='ColumA',sasKey_Field_Select='ColumA,ColumB')&gt;:ColumA|sCountDep:ColumB}}",
+      "type": "select"       
+    }
+  ]
+}

@@ -1,0 +1,1015 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="_doc_template_covkmudep_expertise" name="Експертиза Секретаріату КМУ" isExecutable="true">
+    <documentation>;bTemplated=true</documentation>
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <userTask id="usertask4" name="Формування-ЗАКЛАДКА “Картка”">
+      <extensionElements>
+        <activiti:formProperty id="sKartka" name="ЗАКЛАДКА “Картка”; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="marker_kartka" name="Маркер картка" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_58&quot;:{&quot;aField_ID&quot;:[&quot;sVid_Pro&quot;,&quot;sNazva_Pro&quot;,&quot;sVnis&quot;,&quot;sPidstava_Roz&quot;,&quot;sIncomingDate&quot;,&quot;sOutgoingDate&quot;,&quot;sRevenues&quot;,&quot;sTimeOfRevenues&quot;,&quot;sRegisterDate&quot;,&quot;sDateOfRegister&quot;,&quot;sRegisterNumber&quot;,&quot;sRegister&quot;,&quot;nQuantityOfPages&quot;,&quot;nQuantityOfPagesOfProjectOfAct&quot;,&quot;sAdditionally&quot;,&quot;sImmediate&quot;,&quot;sRepeatInput&quot;,&quot;sRegisterNumberOpPreviousSend&quot;,&quot;sStatusOfProject&quot;,&quot;sDueDateOfProcessing&quot;,&quot;sResultOfExpertise&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sKartka&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sVid_Pro" name="Вид проекту акта" type="enum" required="true">
+          <activiti:value id="Postanova" name="постанова КМУ"></activiti:value>
+          <activiti:value id="Rosporyad" name="розпорядження КМУ"></activiti:value>
+          <activiti:value id="Zakonoproekt" name="законопроект"></activiti:value>
+          <activiti:value id="UkazPU" name="указ ПУ"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sNazva_Pro" name="Назва проекту акта" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sAutoComplete_Vneseno" name="Внесено;;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1AjWbhP-BMMEoDcZhq6M-n1ChB9N2tHNaWv0R6_O0zxk/Лист1',sasKey_Field_Find='ColumA',sasKey_Field_Select='ColumA')&gt;:ColumA}}" type="select"></activiti:formProperty>
+        <activiti:formProperty id="sVnis" name="Вніс" type="enum">
+          <activiti:value id="VS1" name="Гончарук Олексій Валерійович"></activiti:value>
+          <activiti:value id="VS2" name="Кулеба Дмитро Іванович"></activiti:value>
+          <activiti:value id="VS3" name="Федоров Михай ло Альбертович"></activiti:value>
+          <activiti:value id="VS4" name="Дубілет Дмитро Олександрович"></activiti:value>
+          <activiti:value id="VS5" name="Аваков Арсен Борисович"></activiti:value>
+          <activiti:value id="VS6" name="Милованов Тимофій Сергійович"></activiti:value>
+          <activiti:value id="VS7" name="Оржель Олексій Анатолійович"></activiti:value>
+          <activiti:value id="VS8" name="Криклій Владислав Артурович"></activiti:value>
+          <activiti:value id="VS9" name="Бабак Альона Валеріївна"></activiti:value>
+          <activiti:value id="VS10" name="Новосад Ганна Ігорівна"></activiti:value>
+          <activiti:value id="VS11" name="Скалецька Зоряна Степанівна"></activiti:value>
+          <activiti:value id="VS12" name="Бородянський Володимир Володимирович"></activiti:value>
+          <activiti:value id="VS13" name="Соколовська Юлія Сергіївна"></activiti:value>
+          <activiti:value id="VS14" name="Загороднюк Андрій Павлович"></activiti:value>
+          <activiti:value id="VS15" name="Пристайко Вадим Володимирович"></activiti:value>
+          <activiti:value id="VS16" name="Коляда Оксана Василівна"></activiti:value>
+          <activiti:value id="VS17" name="Маркарова Оксана Сергіївна"></activiti:value>
+          <activiti:value id="VS18" name="Малюська Денис Леонтійович) - потрібна можливість вводити свій варіант"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sAutoComplete_Rozrobnik" name="Розробник;;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1WO81MlBhiphbNgbq8IxLhT5HC-M3YQhV7ZhgRLCwrbQ/Лист1',sasKey_Field_Find='ColumA',sasKey_Field_Select='ColumA')&gt;:ColumA}}" type="select"></activiti:formProperty>
+        <activiti:formProperty id="sPidstava_Roz" name="Підстава розробки" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sAutoComplete_Pytanna" name="Питання;;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1RfUtGkmzR0DxD6Eke8PVIGeaZYwllJjLNvHc67rwzss/Лист1',sasKey_Field_Find='ColumA',sasKey_Field_Select='ColumA')&gt;:ColumA}}" type="select"></activiti:formProperty>
+        <activiti:formProperty id="sIncomingDate" name="Вихідна дата" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sOutgoingDate" name="Вихідний №" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sRevenues" name="Надходження із СЕВ" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sTimeOfRevenues" name="Час надходження із СЕВ" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sRegisterDate" name="Дата реєстрації" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sDateOfRegister" name="Час реєстрації" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sRegisterNumber" name="Реєстраційний №:" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sRegister" name="Реєстратор" type="enum">
+          <activiti:value id="PER1" name="Семенова Олена Анатоліївна"></activiti:value>
+          <activiti:value id="PER2" name="Власова Тетяна Петрівна"></activiti:value>
+          <activiti:value id="PER3" name="Лошакова Олена Петрівна"></activiti:value>
+          <activiti:value id="PER4" name="Можняк Юлія Олександрівна"></activiti:value>
+          <activiti:value id="PER5" name="Повстяна Юлія Олегівна"></activiti:value>
+          <activiti:value id="PER6" name="Саква Марина Миколаївна"></activiti:value>
+          <activiti:value id="PER7" name="Токарь Людмила Миколаївна"></activiti:value>
+          <activiti:value id="PER8" name="Азаєва Вікторія Валеріївна"></activiti:value>
+          <activiti:value id="PER9" name="Вознюк Аліна Володимирівна"></activiti:value>
+          <activiti:value id="PER10" name="Калайда Світлана Миколаївна"></activiti:value>
+          <activiti:value id="PER11" name="Майєр Софія Олександрівна"></activiti:value>
+          <activiti:value id="PER12" name="Шупік Олена Василівна"></activiti:value>
+          <activiti:value id="PER13" name="Савелова Наталія Іванівна"></activiti:value>
+          <activiti:value id="PER14" name="Васильєва Наталія Вікторівна"></activiti:value>
+          <activiti:value id="PER15" name="Василенко Ірина Іванівна"></activiti:value>
+          <activiti:value id="PER16" name="Гопкало Світлана Миколаївна"></activiti:value>
+          <activiti:value id="PER17" name="Кучеренко Оксана Петрівна"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="nQuantityOfPages" name="Сторінок всього:" type="long"></activiti:formProperty>
+        <activiti:formProperty id="nQuantityOfPagesOfProjectOfAct" name="Сторінок проекту акта:" type="long"></activiti:formProperty>
+        <activiti:formProperty id="sImmediate" name="Терміновий; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRepeatInput" name="Повторне внесення; ;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRegisterNumberOpPreviousSend" name="Реєстраційний № попередньої засилки:" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDueDateOfProcessing" name="Кінцевий строк опрацювання:" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sStatusOfProject" name="Статус проекту акта:" type="enum">
+          <activiti:value id="ST1" name="Зареєстрований"></activiti:value>
+          <activiti:value id="ST2" name="Перевірка на відповідність Регламенту"></activiti:value>
+          <activiti:value id="ST3" name="Повернуто розробнику"></activiti:value>
+          <activiti:value id="ST4" name="Експертиза Секретаріату"></activiti:value>
+          <activiti:value id="ST5" name="Експертиза Секретаріату проведена"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sResultOfExpertise" name="Результат експертизи:" type="enum">
+          <activiti:value id="RES1" name="Не відповідає законодавству"></activiti:value>
+          <activiti:value id="RES2" name="Не відповідає Програмі діяльності Кабінету Міністрів, іншим стратегічним та програмним документам"></activiti:value>
+          <activiti:value id="RES3" name="Не відповідає зобов’язанням України у сфері європейської інтеграції, у тому числі міжнародно-правовим, та праву Європейського Союзу (acquis ЄС)"></activiti:value>
+          <activiti:value id="RES4" name="Не відповідає принципу забезпечення рівних прав та можливостей жінок і чоловіків"></activiti:value>
+          <activiti:value id="RES5" name="Розбіжності у позиціях СКМУ та головного розробника щодо відповідності проекту акта вимогам нормопроектувальної техніки"></activiti:value>
+          <activiti:value id="RES6" name="Наявні інші ризики, обмеження та негативні наслідки реалізації акта"></activiti:value>
+          <activiti:value id="RES7" name="Наявні застереження"></activiti:value>
+          <activiti:value id="RES8" name="Рекомендовано на розгляд нарадою ДС"></activiti:value>
+          <activiti:value id="RES9" name="Рекомендовано на розгляд УК"></activiti:value>
+          <activiti:value id="RES10" name="Рекомендовано на розгляд КМУ"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sZakladkaOfProjectofAct" name="ЗАКЛАДКА “Проект акта”;;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="marker_ZakladkaOfProjectofAct" name="Відкрити закладку" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_75&quot;:{&quot;aField_ID&quot;:[&quot;sNameOfProjectofAct&quot;,&quot;sSubmitted&quot;,&quot;sNumberVid&quot;,&quot;sNumberSign&quot;,&quot;sStatus&quot;,&quot;sDueDate&quot;,&quot;sIncomingVersion&quot;,&quot;sCurrentVersion&quot;,&quot;sVersionMash&quot;,&quot;sCheckboxForEU&quot;,&quot;sGenderCheckBox&quot;,&quot;sExpertStrategCheckBox&quot;,&quot;sLawyerCheckBox&quot;,&quot;sExpertNormalProjectCheckBox&quot;,&quot;sExpertEditCheckBox&quot;,&quot;sSpecialtyUnitCheckBox&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sZakladkaOfProjectofAct&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sNameOfProjectofAct" name="Назва проекту акта" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sSubmitted" name="Внесено" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sNumberVid" name="Від" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sNumberSign" name="№" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sStatus" name="Статус" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDueDate" name="Строк" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sIncomingVersion" name="Вхідна версія;;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="marker_IncomingVersion" name="Відкрити закладку" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_76&quot;:{&quot;aField_ID&quot;:[&quot;sTableIncomingVersion&quot;,&quot;sTableAddForProjectForAct&quot;,&quot;sTableCoverLetter&quot;,&quot;sTableExplanatoryNote&quot;,&quot;sTableAddForExplanatoryNote&quot;,&quot;sTableComparatTable&quot;,&quot;sTableConclusionJustice&quot;,&quot;sTableConclusionFinance&quot;,&quot;sTableConclusionEconomy&quot;,&quot;sTableDovidkaForPogodzenya&quot;,&quot;sTableProtocolUzgodzenya&quot;,&quot;sTableDovidkaForConformityZob&quot;,&quot;sTableOtherMaterials&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sIncomingVersion&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sTableIncomingVersion" name="Проект акта; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableAddForProjectForAct" name="Матеріали до проекту акта:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sCurrentVersion" name="Чинна версія;;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="marker_CurrentVersion" name="Відкрити закладку" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_77&quot;:{&quot;aField_ID&quot;:[&quot;sTableProectOfAct&quot;,&quot;sDateOfCreation_Current1&quot;,&quot;sTimeOfCreation_Current1&quot;,&quot;sTableAddForProjectForAct_Second&quot;,&quot;sDateOfCreation_Current2&quot;,&quot;sTimeOfCreation_Current2&quot;,&quot;sTableOtherMaterials_Second&quot;,&quot;sDateOfCreation_Current3&quot;,&quot;sTimeOfCreation_Current_3&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sCurrentVersion&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sTableProectOfAct" name="Проект акта:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateOfCreation_Current1" name="Дата створення" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sTimeOfCreation_Current1" name="Час створення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sVersionMash" name="Версія (машбюро);;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="marker_sVersionMash" name="Відкрити закладку" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_78&quot;:{&quot;aField_ID&quot;:[&quot;sTableProectOfAct_Version1&quot;,&quot;sDateOfCreation_Version1&quot;,&quot;sTimeOfCreation_Version1&quot;,&quot;sTableAddForProjectForAct_3&quot;,&quot;sDateOfCreation_3&quot;,&quot;sTimeOfCreation_3&quot;,&quot;sVersionWithComentsandNotes&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sVersionMash&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sTableProectOfAct_Version1" name="Проект акта:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateOfCreation_Version1" name="Дата створення" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sTimeOfCreation_Version1" name="Час створення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sCheckboxForEU" name="Урядовий офіс координації європейської та євроатлантичної інтеграції;;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="marker_ForEUTables" name="Відкрити таблиці з коментарями та поправками" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_59&quot;:{&quot;aField_ID&quot;:[&quot;sExspertEU&quot;,&quot;sTableProectOfAct_VersionComment1&quot;,&quot;sDateOfCreation_VersionComment1&quot;,&quot;sTimeOfCreation_VersionComment1&quot;,&quot;sTableAddForProjectForAct_VersionComment2&quot;,&quot;sDateOfCreation_VersionComment2&quot;,&quot;sTimeOfCreation_VersionComment2&quot;,&quot;sTableOtherMaterials_VersionComment3&quot;,&quot;sDateOfCreation_VersionComment3&quot;,&quot;sTimeOfCreation_VersionComment3&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sCheckboxForEU&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sExspertEU" name="Експерт з acquis ЄС:" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTableProectOfAct_VersionComment1" name="Проект акта:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateOfCreation_VersionComment1" name="Дата створення" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sTimeOfCreation_VersionComment1" name="Час створення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLawyerCheckBox" name="ЮРИДИЧНИЙ ДЕПАРТАМЕНТ;;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="marker_Lawyer" name="Відкрити таблиці юрист" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_62&quot;:{&quot;aField_ID&quot;:[&quot;sLawyer&quot;,&quot;sTableProectOfAct_Lawyer1&quot;,&quot;sDateOfCreation_Lawyer1&quot;,&quot;sTimeOfCreation_Lawyer1&quot;,&quot;sTableAddForProjectForAct_Lawyer2&quot;,&quot;sDateOfCreation_Lawyer2&quot;,&quot;sTimeOfCreation_Lawyer2&quot;,&quot;sTableOtherMaterials_Lawyer3&quot;,&quot;sDateOfCreation_Lawyer3&quot;,&quot;sTimeOfCreation_Lawyer3&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sLawyerCheckBox&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sLawyer" name="Експерт-Юрист:" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTableProectOfAct_Lawyer1" name="Проект акта:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateOfCreation_Lawyer1" name="Дата створення" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sTimeOfCreation_Lawyer1" name="Час створення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sExpertNormalProjectCheckBox" name="Експерт-Нормопроектувальник;;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="marker_ExpertNormalProject" name="Відкрити таблиці" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_63&quot;:{&quot;aField_ID&quot;:[&quot;sTableProectOfAct_NormalProject1&quot;,&quot;sDateOfCreation_NormalProject1&quot;,&quot;sTimeOfCreation_NormalProject1&quot;,&quot;sTableAddForProjectForAct_NormalProject2&quot;,&quot;sDateOfCreation_NormalProject2&quot;,&quot;sTimeOfCreation_NormalProject2&quot;,&quot;sTableOtherMaterials_NormalProject3&quot;,&quot;sDateOfCreation_NormalProject3&quot;,&quot;sTimeOfCreation_NormalProject3&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sExpertNormalProjectCheckBox&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sTableProectOfAct_NormalProject1" name="Проект акта:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateOfCreation_NormalProject1" name="Дата створення" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sTimeOfCreation_NormalProject1" name="Час створення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sExpertEditCheckBox" name="Експерт-Редактор;;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="marker_ExpertEdit" name="Відкрити таблиці" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_64&quot;:{&quot;aField_ID&quot;:[&quot;sTableProectOfAct_ExpertEdit1&quot;,&quot;sDateOfCreation_ExpertEdit1&quot;,&quot;sTimeOfCreation_ExpertEdit1&quot;,&quot;sTableAddForProjectForAct_ExpertEdit2&quot;,&quot;sDateOfCreation_ExpertEdit2&quot;,&quot;sTimeOfCreation_ExpertEdit2&quot;,&quot;sTableOtherMaterials_ExpertEdit3&quot;,&quot;sDateOfCreation_ExpertEdit3&quot;,&quot;sTimeOfCreation_ExpertEdit3&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sExpertEditCheckBox&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sTableProectOfAct_ExpertEdit1" name="Проект акта:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateOfCreation_ExpertEdit1" name="Дата створення" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sTimeOfCreation_ExpertEdit1" name="Час створення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sSpecialtyUnitCheckBox" name="Фаховий підрозділ;;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sSpecialtyUnit" name="Фаховий Експерт:" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_SpecialtyUnit" name="Відкрити таблиці" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_65&quot;:{&quot;aField_ID&quot;:[&quot;sSpecialtyUnit&quot;,&quot;sTableProectOfAct_SpecialtyUnit1&quot;,&quot;sDateOfCreation_SpecialtyUnit1&quot;,&quot;sTimeOfCreation_SpecialtyUnit1&quot;,&quot;sTableAddForProjectForAct_SpecialtyUnit2&quot;,&quot;sDateOfCreation_SpecialtyUnit2&quot;,&quot;sTimeOfCreation_SpecialtyUnit2&quot;,&quot;sTableOtherMaterials_SpecialtyUnit3&quot;,&quot;sDateOfCreation_SpecialtyUnit3&quot;,&quot;sTimeOfCreation_SpecialtyUnit3&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sSpecialtyUnitCheckBox&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sTableProectOfAct_SpecialtyUnit1" name="Проект акта:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateOfCreation_SpecialtyUnit1" name="Дата створення" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sTimeOfCreation_SpecialtyUnit1" name="Час створення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="nID_Process_Child" name="nID_Process_Child;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sKey_Private" name="Реєстраційний номер" type="string"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sEvro" name="Опрацювання Урядовим офісом координації європейської та євроатлантичної інтеграції;;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sFuh" name="Опрацювання Фаховим підрозділом;;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sFuhDep_1" name=" " type="enum">
+          <activiti:value id="Dep_1" name="Департамент інформації та комунікацій з громадськістю"></activiti:value>
+          <activiti:value id="Dep_2" name="Департамент комунікацій"></activiti:value>
+          <activiti:value id="Dep_3" name="Департамент кадрового забезпечення"></activiti:value>
+          <activiti:value id="Dep_4" name="Департамент з питань взаємодії з Вепховною Радою України, іншими державними органами"></activiti:value>
+          <activiti:value id="Dep_5" name="Департамент з питань інфраструктури та технічного регулювання"></activiti:value>
+          <activiti:value id="Dep_6" name="Господарсько-фінансовий департамент"></activiti:value>
+          <activiti:value id="Dep_7" name="Департамент з питань ефективного управління державною власністю"></activiti:value>
+          <activiti:value id="Dep_8" name="Департамент з питань міжнародного співробітництва"></activiti:value>
+          <activiti:value id="Dep_9" name="Департамент з питань безпеки, оборони, діяльності органів юстиції та запобігання корупції"></activiti:value>
+          <activiti:value id="Dep_10" name="Департамент організації засідань Кабінету Міністрів України та урядових комітетів"></activiti:value>
+          <activiti:value id="Dep_11" name="Департамент забезпечення документообігу"></activiti:value>
+          <activiti:value id="Dep_12" name="Департамент з питань розвитку паливо-енергетичного комплексу та житлово-комунального господарства"></activiti:value>
+          <activiti:value id="Dep_13" name="Департамент з питань фінансового та економічного розвитку"></activiti:value>
+          <activiti:value id="Dep_14" name="Департамент гуманітарної та соціальної політики"></activiti:value>
+          <activiti:value id="Dep_15" name="Департамент з питань безпеки життєдіяності, охорони навколишнього природного середовища та агропромислового комплексу"></activiti:value>
+          <activiti:value id="Dep_16" name="Юридичний департамент"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sDodVid" name="Додатковый підрозділ;;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="так"></activiti:value>
+          <activiti:value id="no" name="ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sDodVidDepur" name=" " type="enum">
+          <activiti:value id="Depur_1" name="Департамент інформації та комунікацій з громадськістю"></activiti:value>
+          <activiti:value id="Depur_2" name="Департамент комунікацій"></activiti:value>
+          <activiti:value id="Depur_3" name="Департамент кадрового забезпечення"></activiti:value>
+          <activiti:value id="Depur_4" name="Департамент з питань взаємодії з Вепховною Радою України, іншими державними органами"></activiti:value>
+          <activiti:value id="Depur_5" name="Департамент з питань інфраструктури та технічного регулювання"></activiti:value>
+          <activiti:value id="Depur_6" name="Господарсько-фінансовий департамент"></activiti:value>
+          <activiti:value id="Depur_7" name="Департамент з питань ефективного управління державною власністю"></activiti:value>
+          <activiti:value id="Depur_8" name="Департамент з питань міжнародного співробітництва"></activiti:value>
+          <activiti:value id="Depur_9" name="Департамент з питань безпеки, оборони, діяльності органів юстиції та запобігання корупції"></activiti:value>
+          <activiti:value id="Depur_10" name="Департамент організації засідань Кабінету Міністрів України та урядових комітетів"></activiti:value>
+          <activiti:value id="Depur_11" name="Департамент забезпечення документообігу"></activiti:value>
+          <activiti:value id="Depur_12" name="Департамент з питань розвитку паливо-енергетичного комплексу та житлово-комунального господарства"></activiti:value>
+          <activiti:value id="Depur_13" name="Департамент з питань фінансового та економічного розвитку"></activiti:value>
+          <activiti:value id="Depur_14" name="Департамент гуманітарної та соціальної політики"></activiti:value>
+          <activiti:value id="Depur_15" name="Департамент з питань безпеки життєдіяності, охорони навколишнього природного середовища та агропромислового комплексу"></activiti:value>
+          <activiti:value id="Depur_16" name="Юридичний департамент"></activiti:value>
+        </activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow23" sourceRef="startevent1" targetRef="usertask4"></sequenceFlow>
+    <sequenceFlow id="flow24" sourceRef="usertask4" targetRef="scripttask1">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <userTask id="usertask5" name="Формування-ЗАКЛАДКА “Проект акта”">
+      <extensionElements>
+        <activiti:formProperty id="sZakladkaOfProjectofAct" name="ЗАКЛАДКА “Проект акта”;;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="marker_ZakladkaOfProjectofAct" name="Відкрити закладку" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_75&quot;:{&quot;aField_ID&quot;:[&quot;sNameOfProjectofAct&quot;,&quot;sSubmitted&quot;,&quot;sNumberVid&quot;,&quot;sNumberSign&quot;,&quot;sStatus&quot;,&quot;sDueDate&quot;,&quot;sIncomingVersion&quot;,&quot;sCurrentVersion&quot;,&quot;sVersionMash&quot;,&quot;sCheckboxForEU&quot;,&quot;sGenderCheckBox&quot;,&quot;sExpertStrategCheckBox&quot;,&quot;sLawyerCheckBox&quot;,&quot;sExpertNormalProjectCheckBox&quot;,&quot;sExpertEditCheckBox&quot;,&quot;sSpecialtyUnitCheckBox&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sZakladkaOfProjectofAct&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sNameOfProjectofAct" name="Назва проекту акта" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sSubmitted" name="Внесено" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sNumberVid" name="Від" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sNumberSign" name="№" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sStatus" name="Статус" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDueDate" name="Строк" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sIncomingVersion" name="Вхідна версія;;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="marker_IncomingVersion" name="Відкрити закладку" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_76&quot;:{&quot;aField_ID&quot;:[&quot;sTableIncomingVersion&quot;,&quot;sTableAddForProjectForAct&quot;,&quot;sTableCoverLetter&quot;,&quot;sTableExplanatoryNote&quot;,&quot;sTableAddForExplanatoryNote&quot;,&quot;sTableComparatTable&quot;,&quot;sTableConclusionJustice&quot;,&quot;sTableConclusionFinance&quot;,&quot;sTableConclusionEconomy&quot;,&quot;sTableDovidkaForPogodzenya&quot;,&quot;sTableProtocolUzgodzenya&quot;,&quot;sTableDovidkaForConformityZob&quot;,&quot;sTableOtherMaterials&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sIncomingVersion&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sTableIncomingVersion" name="Проект акта:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableAddForProjectForAct" name="Додатки до проекту акта:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableCoverLetter" name="Супровідний лист:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableExplanatoryNote" name="Пояснювальна записка:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableAddForExplanatoryNote" name="Додатки до пояснювальної записки:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableComparatTable" name="Порівняльна таблиця:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableConclusionJustice" name="Висновок Мін'юсту:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableConclusionFinance" name="Висновок Мінфіну:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableConclusionEconomy" name="Висновок Мінекономіки:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableDovidkaForPogodzenya" name="Довідка про погодження проекту акта:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableProtocolUzgodzenya" name="Протокол узгодження позицій:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableDovidkaForConformityZob" name="Довідка щодо відповідності зобов’язанням України у сфері європейської інтеграції та праву Європейського Союзу (acquis ЄС):; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableOtherMaterials" name="Інші матеріали:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sCurrentVersion" name="Чинна версія;;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="marker_CurrentVersion" name="Відкрити закладку" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_77&quot;:{&quot;aField_ID&quot;:[&quot;sTableProectOfAct&quot;,&quot;sDateOfCreation_Current1&quot;,&quot;sTimeOfCreation_Current1&quot;,&quot;sTableAddForProjectForAct_Second&quot;,&quot;sDateOfCreation_Current2&quot;,&quot;sTimeOfCreation_Current2&quot;,&quot;sTableOtherMaterials_Second&quot;,&quot;sDateOfCreation_Current3&quot;,&quot;sTimeOfCreation_Current_3&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sCurrentVersion&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sTableProectOfAct" name="Проект акта:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateOfCreation_Current1" name="Дата створення" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sTimeOfCreation_Current1" name="Час створення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTableAddForProjectForAct_Second" name="Додатки до проекту акта:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateOfCreation_Current2" name="Дата Створення" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sTimeOfCreation_Current2" name="Час створення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTableOtherMaterials_Second" name="Інші матеріали:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateOfCreation_Current3" name="Дата створення" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sTimeOfCreation_Current_3" name="Час створення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sVersionMash" name="Версія (машбюро);;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="marker_sVersionMash" name="Відкрити закладку" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_78&quot;:{&quot;aField_ID&quot;:[&quot;sTableProectOfAct_Version1&quot;,&quot;sDateOfCreation_Version1&quot;,&quot;sTimeOfCreation_Version1&quot;,&quot;sTableAddForProjectForAct_3&quot;,&quot;sDateOfCreation_3&quot;,&quot;sTimeOfCreation_3&quot;,&quot;sVersionWithComentsandNotes&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sVersionMash&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sTableProectOfAct_Version1" name="Проект акта:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateOfCreation_Version1" name="Дата створення" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sTimeOfCreation_Version1" name="Час створення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTableAddForProjectForAct_3" name="Додатки до проекту акта:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateOfCreation_3" name="Дата Створення" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sTimeOfCreation_3" name="Час створення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sVersionWithComentsandNotes" name="Версії з коментарями та поправками" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sCheckboxForEU" name="Урядовий офіс координації європейської та євроатлантичної інтеграції;;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="marker_ForEUTables" name="Відкрити таблиці з коментарями та поправками" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_59&quot;:{&quot;aField_ID&quot;:[&quot;sExspertEU&quot;,&quot;sTableProectOfAct_VersionComment1&quot;,&quot;sDateOfCreation_VersionComment1&quot;,&quot;sTimeOfCreation_VersionComment1&quot;,&quot;sTableAddForProjectForAct_VersionComment2&quot;,&quot;sDateOfCreation_VersionComment2&quot;,&quot;sTimeOfCreation_VersionComment2&quot;,&quot;sTableOtherMaterials_VersionComment3&quot;,&quot;sDateOfCreation_VersionComment3&quot;,&quot;sTimeOfCreation_VersionComment3&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sCheckboxForEU&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sExspertEU" name="Експерт з acquis ЄС:" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTableProectOfAct_VersionComment1" name="Проект акта:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateOfCreation_VersionComment1" name="Дата створення" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sTimeOfCreation_VersionComment1" name="Час створення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTableAddForProjectForAct_VersionComment2" name="Додатки до проекту акта:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateOfCreation_VersionComment2" name="Дата Створення" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sTimeOfCreation_VersionComment2" name="Час створення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTableOtherMaterials_VersionComment3" name="Інші матеріали:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateOfCreation_VersionComment3" name="Дата Створення" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sTimeOfCreation_VersionComment3" name="Час створення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sGenderCheckBox" name="Урядовий уповноважений з питань гендерної політики;;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="marker_ExspertGender" name="Відкрити таблиці" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_60&quot;:{&quot;aField_ID&quot;:[&quot;sExspertGender&quot;,&quot;sTableProectOfAct_GenderAuthorized1&quot;,&quot;sDateOfCreation_GenderAuthorized1&quot;,&quot;sTimeOfCreation_GenderAuthorized1&quot;,&quot;sTableAddForProjectForAct_GenderAuthorized2&quot;,&quot;sDateOfCreation_GenderAuthorized2&quot;,&quot;sTimeOfCreation_GenderAuthorized2&quot;,&quot;sTableOtherMaterials_GenderAuthorized3&quot;,&quot;sDateOfCreation_GenderAuthorized3&quot;,&quot;sTimeOfCreation_GenderAuthorized3&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sGenderCheckBox&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sExspertGender" name="Експерт з гендерних питань:" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTableProectOfAct_GenderAuthorized1" name="Проект акта:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateOfCreation_GenderAuthorized1" name="Дата створення" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sTimeOfCreation_GenderAuthorized1" name="Час створення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTableAddForProjectForAct_GenderAuthorized2" name="Додатки до проекту акта:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateOfCreation_GenderAuthorized2" name="Дата Створення" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sTimeOfCreation_GenderAuthorized2" name="Час створення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTableOtherMaterials_GenderAuthorized3" name="Інші матеріали:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateOfCreation_GenderAuthorized3" name="Дата Створення" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sTimeOfCreation_GenderAuthorized3" name="Час створення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sExpertStrategCheckBox" name="Директорат координації державних політик та стратегічного планування;;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="marker_ExpertStrateg" name="Відкрити таблиці" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_61&quot;:{&quot;aField_ID&quot;:[&quot;sExspertGender&quot;,&quot;sTableProectOfAct_ExpertStrateg1&quot;,&quot;sDateOfCreation_ExpertStrateg1&quot;,&quot;sTimeOfCreation_ExpertStrateg1&quot;,&quot;sTableAddForProjectForAct_ExpertStrateg2&quot;,&quot;sDateOfCreation_ExpertStrateg2&quot;,&quot;sTimeOfCreation_ExpertStrateg2&quot;,&quot;sTableOtherMaterials_ExpertStrateg3&quot;,&quot;sDateOfCreation_ExpertStrateg3&quot;,&quot;sTimeOfCreation_ExpertStrateg3&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sExpertStrategCheckBox&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sExspertGender" name="Експерт-стратег" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTableProectOfAct_ExpertStrateg1" name="Проект акта:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateOfCreation_ExpertStrateg1" name="Дата створення" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sTimeOfCreation_ExpertStrateg1" name="Час створення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTableAddForProjectForAct_ExpertStrateg2" name="Додатки до проекту акта:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateOfCreation_ExpertStrateg2" name="Дата Створення" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sTimeOfCreation_ExpertStrateg2" name="Час створення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTableOtherMaterials_ExpertStrateg3" name="Інші матеріали:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateOfCreation_ExpertStrateg3" name="Дата Створення" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sTimeOfCreation_ExpertStrateg3" name="Час створення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLawyerCheckBox" name="Юридичний департамент;;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="marker_Lawyer" name="Відкрити таблиці юрист" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_62&quot;:{&quot;aField_ID&quot;:[&quot;sLawyer&quot;,&quot;sTableProectOfAct_Lawyer1&quot;,&quot;sDateOfCreation_Lawyer1&quot;,&quot;sTimeOfCreation_Lawyer1&quot;,&quot;sTableAddForProjectForAct_Lawyer2&quot;,&quot;sDateOfCreation_Lawyer2&quot;,&quot;sTimeOfCreation_Lawyer2&quot;,&quot;sTableOtherMaterials_Lawyer3&quot;,&quot;sDateOfCreation_Lawyer3&quot;,&quot;sTimeOfCreation_Lawyer3&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sLawyerCheckBox&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sLawyer" name="Експерт-Юрист:" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTableProectOfAct_Lawyer1" name="Проект акта:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateOfCreation_Lawyer1" name="Дата створення" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sTimeOfCreation_Lawyer1" name="Час створення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTableAddForProjectForAct_Lawyer2" name="Додатки до проекту акта:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateOfCreation_Lawyer2" name="Дата Створення" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sTimeOfCreation_Lawyer2" name="Час створення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTableOtherMaterials_Lawyer3" name="Інші матеріали:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateOfCreation_Lawyer3" name="Дата Створення" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sTimeOfCreation_Lawyer3" name="Час створення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sExpertNormalProjectCheckBox" name="Експерт-Нормопроектувальник;;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="marker_ExpertNormalProject" name="Відкрити таблиці" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_63&quot;:{&quot;aField_ID&quot;:[&quot;sTableProectOfAct_NormalProject1&quot;,&quot;sDateOfCreation_NormalProject1&quot;,&quot;sTimeOfCreation_NormalProject1&quot;,&quot;sTableAddForProjectForAct_NormalProject2&quot;,&quot;sDateOfCreation_NormalProject2&quot;,&quot;sTimeOfCreation_NormalProject2&quot;,&quot;sTableOtherMaterials_NormalProject3&quot;,&quot;sDateOfCreation_NormalProject3&quot;,&quot;sTimeOfCreation_NormalProject3&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sExpertNormalProjectCheckBox&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sTableProectOfAct_NormalProject1" name="Проект акта:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateOfCreation_NormalProject1" name="Дата створення" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sTimeOfCreation_NormalProject1" name="Час створення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTableAddForProjectForAct_NormalProject2" name="Додатки до проекту акта:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateOfCreation_NormalProject2" name="Дата Створення" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sTimeOfCreation_NormalProject2" name="Час створення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTableOtherMaterials_NormalProject3" name="Інші матеріали:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateOfCreation_NormalProject3" name="Дата Створення" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sTimeOfCreation_NormalProject3" name="Час створення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sExpertEditCheckBox" name="Експерт-Редактор;;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="marker_ExpertEdit" name="Відкрити таблиці" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_64&quot;:{&quot;aField_ID&quot;:[&quot;sTableProectOfAct_ExpertEdit1&quot;,&quot;sDateOfCreation_ExpertEdit1&quot;,&quot;sTimeOfCreation_ExpertEdit1&quot;,&quot;sTableAddForProjectForAct_ExpertEdit2&quot;,&quot;sDateOfCreation_ExpertEdit2&quot;,&quot;sTimeOfCreation_ExpertEdit2&quot;,&quot;sTableOtherMaterials_ExpertEdit3&quot;,&quot;sDateOfCreation_ExpertEdit3&quot;,&quot;sTimeOfCreation_ExpertEdit3&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sExpertEditCheckBox&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sTableProectOfAct_ExpertEdit1" name="Проект акта:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateOfCreation_ExpertEdit1" name="Дата створення" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sTimeOfCreation_ExpertEdit1" name="Час створення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTableAddForProjectForAct_ExpertEdit2" name="Додатки до проекту акта:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateOfCreation_ExpertEdit2" name="Дата Створення" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sTimeOfCreation_ExpertEdit2" name="Час створення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTableOtherMaterials_ExpertEdit3" name="Інші матеріали:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateOfCreation_ExpertEdit3" name="Дата Створення" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sTimeOfCreation_ExpertEdit3" name="Час створення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sSpecialtyUnitCheckBox" name="Фаховий підрозділ;;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sSpecialtyUnit" name="Фаховий Експерт:" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_SpecialtyUnit" name="Відкрити таблиці" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_65&quot;:{&quot;aField_ID&quot;:[&quot;sSpecialtyUnit&quot;,&quot;sTableProectOfAct_SpecialtyUnit1&quot;,&quot;sDateOfCreation_SpecialtyUnit1&quot;,&quot;sTimeOfCreation_SpecialtyUnit1&quot;,&quot;sTableAddForProjectForAct_SpecialtyUnit2&quot;,&quot;sDateOfCreation_SpecialtyUnit2&quot;,&quot;sTimeOfCreation_SpecialtyUnit2&quot;,&quot;sTableOtherMaterials_SpecialtyUnit3&quot;,&quot;sDateOfCreation_SpecialtyUnit3&quot;,&quot;sTimeOfCreation_SpecialtyUnit3&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sSpecialtyUnitCheckBox&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sTableProectOfAct_SpecialtyUnit1" name="Проект акта:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateOfCreation_SpecialtyUnit1" name="Дата створення" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sTimeOfCreation_SpecialtyUnit1" name="Час створення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTableAddForProjectForAct_SpecialtyUnit2" name="Додатки до проекту акта:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateOfCreation_SpecialtyUnit2" name="Дата Створення" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sTimeOfCreation_SpecialtyUnit2" name="Час створення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTableOtherMaterials_SpecialtyUnit3" name="Інші матеріали:; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sDateOfCreation_SpecialtyUnit3" name="Дата Створення" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sTimeOfCreation_SpecialtyUnit3" name="Час створення" type="string"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask6" name="Формування-ЗАКЛАДКА “Проходження”">
+      <extensionElements>
+        <activiti:formProperty id="sCheckBoxPassag" name="ЗАКЛАДКА “Проходження”;;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="marker_Passag" name="Проходження маркер" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_67&quot;:{&quot;aField_ID&quot;:[&quot;sViewOfProjectofActPassage&quot;,&quot;sTitleOfProjectofActPassage&quot;,&quot;sVnesenoPassage&quot;,&quot;sViewPassage&quot;,&quot;sNumberSignPassage&quot;,&quot;sStatusPassage&quot;,&quot;sDueDatePassage&quot;,&quot;sCheckBoxCheckReg&quot;,&quot;sExpertiseOfExpertise&quot;,&quot;sCheckBoxEuExamination&quot;,&quot;sCheckBoxGenderAndLegal&quot;,&quot;sComplianceWithStrategicDoc&quot;,&quot;sExpertsInvolved&quot;,&quot;sLegalExpertise&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sCheckBoxPassag&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sViewOfProjectofActPassage" name="Вид проекту акта" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTitleOfProjectofActPassage" name="Назва проекту акта" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sVnesenoPassage" name="Внесено" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sViewPassage" name="Від" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sNumberSignPassage" name="№" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sStatusPassage" name="Статус" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDueDatePassage" name="Строк" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sCheckBoxCheckReg" name="ПЕРЕВІРКА НА ВІДПОВІДНІСТЬ РЕГЛАМЕНТУ;;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="marker_sCheckBoxCheckReg" name="Перевірка на відповідність регламенту" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_68&quot;:{&quot;aField_ID&quot;:[&quot;sFahExpertCheckReg&quot;,&quot;sPhoneCheckReg&quot;,&quot;sStanOfProccesingCheckReg&quot;,&quot;sRecieveDateCheckReg&quot;,&quot;sRecieveTimeCheckReg&quot;,&quot;sRecieveDateFirstCheckReg&quot;,&quot;sRecieveTimeFirstCheckReg&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sCheckBoxCheckReg&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sFahExpertCheckReg" name="Фаховий Експерт:" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPhoneCheckReg" name="Телефон" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sStanOfProccesingCheckReg" name="Стан опрацювання:" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sRecieveDateCheckReg" name="Дата отримання вперше:" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sRecieveTimeCheckReg" name="Час отримання вперше:" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sRecieveDateFirstCheckReg" name="Дата завершення опрацювання:" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sRecieveTimeFirstCheckReg" name="Час завершення опрацювання:" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sExpertiseOfExpertise" name="ФАХОВА ЧАСТИНА ЕКСПЕРТИЗИ;;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="marker_sCheckBoxExpertiseOfExpertise" name="маркер для фахова частина експертизи" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_69&quot;:{&quot;aField_ID&quot;:[&quot;sFahExpertiseOfExpertise&quot;,&quot;sKerExpertiseOfExpertise&quot;,&quot;sFahMainExpertiseOfExpertise&quot;,&quot;sPhoneExpertiseOfExpertise&quot;,&quot;sZastupnikExpertiseOfExpertise&quot;,&quot;sStanOfProccesingExpertiseOfExpertise&quot;,&quot;sListAnswersExpertiseOfExpertise&quot;,&quot;sRecieveDateExpertiseOfExpertise_1&quot;,&quot;sRecieveTimeExpertiseOfExpertise_1&quot;,&quot;sRecieveDateExpertiseOfExpertise_2&quot;,&quot;sRecieveTimeExpertiseOfExpertise_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sExpertiseOfExpertise&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sFahExpertiseOfExpertise" name="Фаховий підрозділ" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sKerExpertiseOfExpertise" name="Керівник фахового підрозділу" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sFahMainExpertiseOfExpertise" name="Фаховий Експерт" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPhoneExpertiseOfExpertise" name="Телефон" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sZastupnikExpertiseOfExpertise" name="Профільний заступник Державного секретаря КМУ" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sStanOfProccesingExpertiseOfExpertise" name="Стан опрацювання" type="enum">
+          <activiti:value id="OPT1" name="Отримано"></activiti:value>
+          <activiti:value id="OPT2" name="На розгляді"></activiti:value>
+          <activiti:value id="OPT3" name="Опрацювання пропозиції щодо поправок, коментарі"></activiti:value>
+          <activiti:value id="OPT4" name="На погодженні"></activiti:value>
+          <activiti:value id="OPT5" name="Погоджено"></activiti:value>
+          <activiti:value id="OPT6" name="Погоджено із застереженням"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sListAnswersExpertiseOfExpertise" name="Чек-лист/відповідь" type="enum">
+          <activiti:value id="OPT1" name="Підготовлено проект"></activiti:value>
+          <activiti:value id="OPT2" name="Передано на підпис"></activiti:value>
+          <activiti:value id="OPT3" name="Завантажено"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRecieveDateExpertiseOfExpertise_1" name="Дата отримання вперше" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sRecieveTimeExpertiseOfExpertise_1" name="Час отримання вперше" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sRecieveDateExpertiseOfExpertise_2" name="Дата завершення опрацювання" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sRecieveTimeExpertiseOfExpertise_2" name="Час завершення опрацювання" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sCheckBoxEuExamination" name="ЕКСПЕРТИЗА acquis ЄС;;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="marker_sCheckBoxEuExamination" name="маркер для ЕКСПЕРТИЗА acquis ЄС" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_70&quot;:{&quot;aField_ID&quot;:[&quot;sUryadOfficeEuExamination&quot;,&quot;sUryadExpertEuExamination&quot;,&quot;sPhoneEuExamination&quot;,&quot;sStanOfProccesingEuExamination&quot;,&quot;sListAnswersEuExamination&quot;,&quot;sRecieveDateEuExamination_1&quot;,&quot;sRecieveTimeEuExamination_1&quot;,&quot;sRecieveDateEuExamination_2&quot;,&quot;sRecieveTimeEuExamination_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sCheckBoxEuExamination&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sUryadOfficeEuExamination" name="Урядовий офіс координації європейської та євроатлантичної інтеграції" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sUryadExpertEuExamination" name="Експерт з acquis ЄС" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPhoneEuExamination" name="Телефон" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sStanOfProccesingEuExamination" name="Стан опрацювання" type="enum">
+          <activiti:value id="OPT1" name="Отримано"></activiti:value>
+          <activiti:value id="OPT2" name="На розгляді"></activiti:value>
+          <activiti:value id="OPT3" name="Надано пропозиції щодо поправок, коментарі"></activiti:value>
+          <activiti:value id="OPT4" name="На погодженні"></activiti:value>
+          <activiti:value id="OPT5" name="Погоджено"></activiti:value>
+          <activiti:value id="OPT6" name="Погоджено із застереженням"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sListAnswersEuExamination" name="Чек-лист/відповідь" type="enum">
+          <activiti:value id="OPT1" name="Підготовлено"></activiti:value>
+          <activiti:value id="OPT2" name="На підписі"></activiti:value>
+          <activiti:value id="OPT3" name="Завантажено"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRecieveDateEuExamination_1" name="Дата отримання вперше" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sRecieveTimeEuExamination_1" name="Час отримання вперше" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sRecieveDateEuExamination_2" name="Дата завершення опрацювання" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sRecieveTimeEuExamination_2" name="Час завершення опрацювання" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sCheckBoxGenderAndLegal" name="ГЕНДЕРНО-ПРАВОВА ЕКСПЕРТИЗА;;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="marker_sCheckBoxGenderAndLegal" name="маркер для гендернопровава експертиза" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_71&quot;:{&quot;aField_ID&quot;:[&quot;sExpertGovermentGenderAndLegal&quot;,&quot;sExpertGenderAndLegal&quot;,&quot;sPhoneGenderAndLegal&quot;,&quot;sStanOfProccesingsGenderAndLegal&quot;,&quot;sListAnswersGenderAndLegal&quot;,&quot;sRecieveDateGenderAndLegal_1&quot;,&quot;sRecieveTimeGenderAndLegal_1&quot;,&quot;sRecieveDateGenderAndLegal_2&quot;,&quot;sRecieveTimeGenderAndLegal_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sCheckBoxGenderAndLegal&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sExpertGovermentGenderAndLegal" name="Урядовий уповноважений з питань гендерної політики" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sExpertGenderAndLegal" name="Експерт з гендерних питань" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPhoneGenderAndLegal" name="Телефон" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sStanOfProccesingsGenderAndLegal" name="Стан опрацювання" type="enum">
+          <activiti:value id="OPT1" name="Отримано"></activiti:value>
+          <activiti:value id="OPT2" name="На розгляді"></activiti:value>
+          <activiti:value id="OPT3" name="Надано пропозиції щодо поправок, коментарі"></activiti:value>
+          <activiti:value id="OPT4" name="На погодженні"></activiti:value>
+          <activiti:value id="OPT5" name="Погоджено"></activiti:value>
+          <activiti:value id="OPT6" name="Погоджено із застереженням"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sListAnswersGenderAndLegal" name="Чек-лист/відповідь" type="enum">
+          <activiti:value id="OPT1" name="Підготовлено"></activiti:value>
+          <activiti:value id="OPT2" name="На підписі"></activiti:value>
+          <activiti:value id="OPT3" name="Завантажено"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRecieveDateGenderAndLegal_1" name="Дата отримання вперше" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sRecieveTimeGenderAndLegal_1" name="Час отримання вперше" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sRecieveDateGenderAndLegal_2" name="Дата завершення опрацювання" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sRecieveTimeGenderAndLegal_2" name="Час завершення опрацювання" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sComplianceWithStrategicDoc" name="ВІДПОВІДНІСТЬ СТРАТЕГІЧНИМ ДОКУМЕНТАМ;;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="marker_ComplianceWithStrategicDoc" name="маркер для відповідність стр документам" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_72&quot;:{&quot;aField_ID&quot;:[&quot;sDirComplianceWithStrategicDoc&quot;,&quot;sStrategComplianceWithStrategicDoc&quot;,&quot;sPhoneComplianceWithStrategicDoc&quot;,&quot;sStanOfProccesingСomplianceWithStrategicDoc&quot;,&quot;sListAnswersСomplianceWithStrategicDoc&quot;,&quot;sRecieveDateСomplianceWithStrategicDoc_1&quot;,&quot;sRecieveTimeСomplianceWithStrategicDoc_1&quot;,&quot;sRecieveDateСomplianceWithStrategicDoc_2&quot;,&quot;sRecieveTimeСomplianceWithStrategicDoc_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sComplianceWithStrategicDoc&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sDirComplianceWithStrategicDoc" name="Директорат координації державних політик та стратегічного планування" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sStrategComplianceWithStrategicDoc" name="Експерт-Стратег" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPhoneComplianceWithStrategicDoc" name="Телефон" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sStanOfProccesingСomplianceWithStrategicDoc" name="Стан опрацювання" type="enum">
+          <activiti:value id="OPT1" name="Отримано"></activiti:value>
+          <activiti:value id="OPT2" name="На розгляді"></activiti:value>
+          <activiti:value id="OPT3" name="Опрацювання пропозиції щодо поправок, коментарі"></activiti:value>
+          <activiti:value id="OPT4" name="На погодженні"></activiti:value>
+          <activiti:value id="OPT5" name="Погоджено"></activiti:value>
+          <activiti:value id="OPT6" name="Погоджено із застереженням"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sListAnswersСomplianceWithStrategicDoc" name="Чек-лист/відповідь" type="enum">
+          <activiti:value id="OPT1" name="Готується"></activiti:value>
+          <activiti:value id="OPT2" name="На підписі"></activiti:value>
+          <activiti:value id="OPT3" name="Завантажено"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRecieveDateСomplianceWithStrategicDoc_1" name="Дата отримання вперше" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sRecieveTimeСomplianceWithStrategicDoc_1" name="Час отримання вперше" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sRecieveDateСomplianceWithStrategicDoc_2" name="Дата завершення опрацювання" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sRecieveTimeСomplianceWithStrategicDoc_2" name="Час завершення опрацювання" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sExpertsInvolved" name="ЗАЛУЧЕНІ ЕКСПЕРТИ;;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="marker_sExpertsInvolved" name="маркер для відповідність стр. документам" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_73&quot;:{&quot;aField_ID&quot;:[&quot;sCompliancesExpertsInvolved&quot;,&quot;sStrategsExpertsInvolved&quot;,&quot;sPhoneExpertsInvolved&quot;,&quot;sStanOfProccesingsExpertsInvolved&quot;,&quot;sListAnswersExpertsInvolved&quot;,&quot;sRecieveDateExpertsInvolved_1&quot;,&quot;sRecieveTimeExpertsInvolved_1&quot;,&quot;sRecieveDateExpertsInvolved_2&quot;,&quot;sRecieveTimeExpertsInvolved_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sExpertsInvolved&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sCompliancesExpertsInvolved" name="Залучений підрозділ" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sStrategsExpertsInvolved" name="Залучений Експерт" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPhoneExpertsInvolved" name="Телефон" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sStanOfProccesingsExpertsInvolved" name="Стан опрацювання" type="enum">
+          <activiti:value id="OPT1" name="Отримано"></activiti:value>
+          <activiti:value id="OPT2" name="На розгляді"></activiti:value>
+          <activiti:value id="OPT3" name="Опрацювання пропозиції щодо поправок, коментарі"></activiti:value>
+          <activiti:value id="OPT4" name="На погодженні"></activiti:value>
+          <activiti:value id="OPT5" name="Погоджено"></activiti:value>
+          <activiti:value id="OPT6" name="Погоджено із застереженням"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sListAnswersExpertsInvolved" name="Чек-лист/відповідь" type="enum">
+          <activiti:value id="OPT1" name="Підготовлено"></activiti:value>
+          <activiti:value id="OPT2" name="На підписі"></activiti:value>
+          <activiti:value id="OPT3" name="Завантажено"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRecieveDateExpertsInvolved_1" name="Дата отримання вперше" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sRecieveTimeExpertsInvolved_1" name="Час отримання вперше" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sRecieveDateExpertsInvolved_2" name="Дата завершення опрацювання" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sRecieveTimeExpertsInvolved_2" name="Час завершення опрацювання" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLegalExpertise" name="ЮРИДИЧНА ЕКСПЕРТИЗА;;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="marker_LegalExpertise" name="маркер для відповідність стр. документам" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_74&quot;:{&quot;aField_ID&quot;:[&quot;sDepartmentLegalExpertise&quot;,&quot;sDirectorOfDepartmentLegalExpertise&quot;,&quot;sExpertLegalExpertise&quot;,&quot;sPhoneLegalExpertise&quot;,&quot;sStanOfProccesingsLegalExpertise&quot;,&quot;sListAnswersLegalExpertise&quot;,&quot;sRecieveDateLegalExpertise_1&quot;,&quot;sRecieveTimeLegalExpertise_1&quot;,&quot;sRecieveDateLegalExpertise_2&quot;,&quot;sRecieveTimeLegalExpertise_2&quot;,&quot;sExpertDesigner&quot;,&quot;sPhoneExpertDesigner&quot;,&quot;sStanOfProccesingsExpertDesigner&quot;,&quot;sListAnswersExpertDesigner&quot;,&quot;sRecieveDateExpertDesigner_1&quot;,&quot;sRecieveTimeExpertDesigner_1&quot;,&quot;sRecieveDateExpertDesigner_2&quot;,&quot;sRecieveTimeExpertDesigner_2&quot;,&quot;sExpertEditor&quot;,&quot;sPhoneExpertEditor&quot;,&quot;sStanOfProccesingsExpertEditor&quot;,&quot;sListAnswersExpertEditor&quot;,&quot;sRecieveDateExpertEditor_1&quot;,&quot;sRecieveTimeExpertEditor_1&quot;,&quot;sRecieveDateExpertEditor_2&quot;,&quot;sRecieveTimeExpertEditor_2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sLegalExpertise&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sDepartmentLegalExpertise" name="Юридичний департамент" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sExpertLegalExpertise" name="Експерт-Юрист" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPhoneLegalExpertise" name="Телефон" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sStanOfProccesingsLegalExpertise" name="Стан опрацювання" type="enum">
+          <activiti:value id="OPT1" name="Отримано"></activiti:value>
+          <activiti:value id="OPT2" name="На розгляді"></activiti:value>
+          <activiti:value id="OPT3" name="Опрацювання пропозиції щодо поправок, коментарі"></activiti:value>
+          <activiti:value id="OPT4" name="На погодженні"></activiti:value>
+          <activiti:value id="OPT5" name="Погоджено"></activiti:value>
+          <activiti:value id="OPT6" name="Погоджено із застереженням"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sListAnswersLegalExpertise" name="Чек-лист/відповідь" type="enum">
+          <activiti:value id="OPT1" name="Підготовлено"></activiti:value>
+          <activiti:value id="OPT2" name="На підписі"></activiti:value>
+          <activiti:value id="OPT3" name="Завантажено"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRecieveDateLegalExpertise_1" name="Дата отримання вперше" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sRecieveTimeLegalExpertise_1" name="Час отримання вперше" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sRecieveDateLegalExpertise_2" name="Дата завершення опрацювання" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sRecieveTimeLegalExpertise_2" name="Час завершення опрацювання" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sExpertDesigner" name="Експерт-Нормопроектувальник" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPhoneExpertDesigner" name="Телефон" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sStanOfProccesingsExpertDesigner" name="Стан опрацювання" type="enum">
+          <activiti:value id="OPT1" name="Отримано"></activiti:value>
+          <activiti:value id="OPT2" name="На розгляді"></activiti:value>
+          <activiti:value id="OPT3" name="Надано пропозиції щодо поправок, коментарі"></activiti:value>
+          <activiti:value id="OPT4" name="На погодженні"></activiti:value>
+          <activiti:value id="OPT5" name="Погоджено"></activiti:value>
+          <activiti:value id="OPT6" name="Погоджено із застереженням"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sListAnswersExpertDesigner" name="Чек-лист/відпо відь" type="enum">
+          <activiti:value id="OPT1" name="Підготовлено"></activiti:value>
+          <activiti:value id="OPT2" name="На підписі"></activiti:value>
+          <activiti:value id="OPT3" name="Завантажено"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRecieveDateExpertDesigner_1" name="Дата отримання вперше" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sRecieveTimeExpertDesigner_1" name="Час отримання вперше" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sRecieveDateExpertDesigner_2" name="Дата завершення опрацювання" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sRecieveTimeExpertDesigner_2" name="Час завершення опрацювання" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sExpertEditor" name="Експерт-Редактор" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPhoneExpertEditor" name="Телефон" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sStanOfProccesingsExpertEditor" name="Стан опрацювання" type="enum">
+          <activiti:value id="OPT1" name="Отримано"></activiti:value>
+          <activiti:value id="OPT2" name="На розгляді"></activiti:value>
+          <activiti:value id="OPT3" name="Надано пропозиції щодо поправок, коментарі"></activiti:value>
+          <activiti:value id="OPT4" name="На погодженні"></activiti:value>
+          <activiti:value id="OPT5" name="Погоджено"></activiti:value>
+          <activiti:value id="OPT6" name="Погоджено із застереженням"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sListAnswersExpertEditor" name="Чек-лист/відповідь" type="enum">
+          <activiti:value id="OPT1" name="Підготовлено"></activiti:value>
+          <activiti:value id="OPT2" name="На підписі"></activiti:value>
+          <activiti:value id="OPT3" name="Завантажено"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sRecieveDateExpertEditor_1" name="Дата отримання вперше" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sRecieveTimeExpertEditor_1" name="Час отримання вперше" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sRecieveDateExpertEditor_2" name="Дата завершення опрацювання" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sRecieveTimeExpertEditor_2" name="Час завершення опрацювання" type="string"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask7" name="Формування-ЗАКЛАДКА “Експертиза Секретаріату”">
+      <extensionElements>
+        <activiti:formProperty id="sViewOfProjectofActBookmark" name="ЗАКЛАДКА “Експертиза Секретаріату”;;sID_CheckboxTrue=yes" type="enum" default="no">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="marker_Bookmark" name="Експертиза секретаріату маркер" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_66&quot;:{&quot;aField_ID&quot;:[&quot;sViewOfProjectofActBookmark_1&quot;,&quot;sTitleOfProjectofActBookmark&quot;,&quot;sVnesenoBookmark&quot;,&quot;sViewBookmark&quot;,&quot;sNumberSignBookmark&quot;,&quot;sStatusBookmark&quot;,&quot;sDueDateBookmark&quot;,&quot;sIncomingBookmark&quot;,&quot;sTableCheckListAcquis&quot;,&quot;sTableCheckListGender&quot;,&quot;sTableCheckListInfluencesr&quot;,&quot;sTableCheckListLoyer&quot;,&quot;sTableCheckListNormProect&quot;,&quot;sTableServiceNote&quot;,&quot;sTableServiceNoteZaluch&quot;,&quot;sTableVisnovokSecretary&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sViewOfProjectofActBookmark&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'yes'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sViewOfProjectofActBookmark_1" name="Вид проекту акта" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTitleOfProjectofActBookmark" name="Назва проекту акта" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sVnesenoBookmark" name="Внесено" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sViewBookmark" name="Від" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sNumberSignBookmark" name="№" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sStatusBookmark" name="Статус" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDueDateBookmark" name="Строк" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sIncomingBookmark" name="Матеріали експертизи" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTableCheckListAcquis" name="Чек-лист Acquis ЄС; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableCheckListGender" name="Чек-лист Гендерно-правова експертиза; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableCheckListInfluencesr" name="Чек-лист Впливи; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableCheckListLoyer" name="Чек-лист Юридичний; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableCheckListNormProect" name="Чек-лист Нормопроектування; ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableServiceNote" name="Службова записка (стратег); ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableServiceNoteZaluch" name="Службова записка (залучені); ;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableVisnovokSecretary" name="ВИСНОВОК Секретаріату; ;bNew=true" type="table"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <scriptTask id="scripttask1" name="Script Task" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>var processInstanceId = execution.getProcessInstanceId();
+//var nID_Process_Child = processDocumentService.getProcessDocument(processInstanceId);
+//execution.setVariable('nID_Process_Child', nID_Process_Child.id);</script>
+    </scriptTask>
+    <sequenceFlow id="flow43" sourceRef="scripttask1" targetRef="exclusivegateway2"></sequenceFlow>
+    <endEvent id="endevent2" name="End"></endEvent>
+    <serviceTask id="servicetask13" name="Створення Картка проекту акта-Опрацювання Урядовим офісом координації європейської та євроатлантичної інтеграції " activiti:delegateExpression="#{createDocument}">
+      <extensionElements>
+        <activiti:field name="sID_BP">
+          <activiti:string><![CDATA[_doc_template_covkmudep_expertise_2_U_O_1Kartka]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="soData">
+          <activiti:string><![CDATA[sKartka::value{[sKartka]};;sVid_Pro::value{[sVid_Pro]};;sNazva_Pro::value{[sNazva_Pro]};;sVneseno::value{[sVneseno]};;sVnis::value{[sVnis]};;sRozrobnik::value{[sRozrobnik]};;sPidstava_Roz::value{[sPidstava_Roz]};;sPytanna::value{[sPytanna]};;sIncomingDate::value{[sIncomingDate]};;sOutgoingDate::value{[sOutgoingDate]};;sRevenues::value{[sRevenues]};;sTimeOfRevenues::value{[sTimeOfRevenues]};;sRegisterDate::value{[sRegisterDate]};;sDateOfRegister::value{[sDateOfRegister]};;sRegisterNumber::value{[sRegisterNumber]};;sRegister::value{[sRegister]};;nQuantityOfPages::value{[nQuantityOfPages]};;nQuantityOfPagesOfProjectOfAct::value{[nQuantityOfPagesOfProjectOfAct]};;sAdditionally::value{[sAdditionally]};;sImmediate::value{[sImmediate]};;sRepeatInput::value{[sRepeatInput]};;sRegisterNumberOpPreviousSend::value{[sRegisterNumberOpPreviousSend]};;sStatusOfProject::value{[sStatusOfProject]};;sDueDateOfProcessing::value{[sDueDateOfProcessing]};;sResultOfExpertise::value{[sResultOfExpertise]};;nID_Process_Child::value{[nID_Process_Child]};;sLogin_Evro::value{[sLogin_Evro]}]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sLoginAuthor">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('test', null)}]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow48" sourceRef="exclusivegateway2" targetRef="servicetask13">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${sEvro == 'yes' && sFuh == 'no' && sDodVid == 'no'}]]></conditionExpression>
+    </sequenceFlow>
+    <serviceTask id="servicetask14" name="Створення Картка проекту акта-Опрацювання Фаховим підрозділом" activiti:delegateExpression="#{createDocument}">
+      <extensionElements>
+        <activiti:field name="sID_BP">
+          <activiti:string><![CDATA[_doc_template_covkmudep_expertise_Fuh]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="soData">
+          <activiti:string><![CDATA[sKartka::value{[sKartka]};;sVid_Pro::value{[sVid_Pro]};;sNazva_Pro::value{[sNazva_Pro]};;sVneseno::value{[sVneseno]};;sVnis::value{[sVnis]};;sRozrobnik::value{[sRozrobnik]};;sPidstava_Roz::value{[sPidstava_Roz]};;sPytanna::value{[sPytanna]};;sIncomingDate::value{[sIncomingDate]};;sOutgoingDate::value{[sOutgoingDate]};;sRevenues::value{[sRevenues]};;sTimeOfRevenues::value{[sTimeOfRevenues]};;sRegisterDate::value{[sRegisterDate]};;sDateOfRegister::value{[sDateOfRegister]};;sRegisterNumber::value{[sRegisterNumber]};;sRegister::value{[sRegister]};;nQuantityOfPages::value{[nQuantityOfPages]};;nQuantityOfPagesOfProjectOfAct::value{[nQuantityOfPagesOfProjectOfAct]};;sAdditionally::value{[sAdditionally]};;sImmediate::value{[sImmediate]};;sRepeatInput::value{[sRepeatInput]};;sRegisterNumberOpPreviousSend::value{[sRegisterNumberOpPreviousSend]};;sStatusOfProject::value{[sStatusOfProject]};;sDueDateOfProcessing::value{[sDueDateOfProcessing]};;sResultOfExpertise::value{[sResultOfExpertise]};;sFuhDep_1::value{[sFuhDep_1]};;]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sLoginAuthor">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles(sFuhDep_1, null)}]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow49" sourceRef="exclusivegateway2" targetRef="servicetask14">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${sEvro == 'no' && sFuh == 'yes' && sDodVid == 'no'}]]></conditionExpression>
+    </sequenceFlow>
+    <serviceTask id="servicetask15" name="Створення Картка проекту акта" activiti:delegateExpression="#{createDocument}">
+      <extensionElements>
+        <activiti:field name="sID_BP">
+          <activiti:string><![CDATA[_doc_template_covkmudep_expertise_Dod]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="soData">
+          <activiti:string><![CDATA[sKartka::value{[sKartka]};;sVid_Pro::value{[sVid_Pro]};;sNazva_Pro::value{[sNazva_Pro]};;sVneseno::value{[sVneseno]};;sVnis::value{[sVnis]};;sRozrobnik::value{[sRozrobnik]};;sPidstava_Roz::value{[sPidstava_Roz]};;sPytanna::value{[sPytanna]};;sIncomingDate::value{[sIncomingDate]};;sOutgoingDate::value{[sOutgoingDate]};;sRevenues::value{[sRevenues]};;sTimeOfRevenues::value{[sTimeOfRevenues]};;sRegisterDate::value{[sRegisterDate]};;sDateOfRegister::value{[sDateOfRegister]};;sRegisterNumber::value{[sRegisterNumber]};;sRegister::value{[sRegister]};;nQuantityOfPages::value{[nQuantityOfPages]};;nQuantityOfPagesOfProjectOfAct::value{[nQuantityOfPagesOfProjectOfAct]};;sAdditionally::value{[sAdditionally]};;sImmediate::value{[sImmediate]};;sRepeatInput::value{[sRepeatInput]};;sRegisterNumberOpPreviousSend::value{[sRegisterNumberOpPreviousSend]};;sStatusOfProject::value{[sStatusOfProject]};;sDueDateOfProcessing::value{[sDueDateOfProcessing]};;sResultOfExpertise::value{[sResultOfExpertise]};;sDodVidDepur::value{[sDodVidDepur]};;]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sLoginAuthor">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles(sDodVidDepur, null)}]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow58" sourceRef="servicetask13" targetRef="endevent2"></sequenceFlow>
+    <sequenceFlow id="flow59" sourceRef="servicetask14" targetRef="endevent2"></sequenceFlow>
+    <sequenceFlow id="flow60" sourceRef="servicetask15" targetRef="endevent2"></sequenceFlow>
+    <sequenceFlow id="flow61" sourceRef="exclusivegateway2" targetRef="servicetask15">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${sEvro == 'no' && sFuh == 'no' && sDodVid == 'yes'}]]></conditionExpression>
+    </sequenceFlow>
+    <serviceTask id="servicetask16" name="Створення Картка проекту акта-Опрацювання Урядовим офісом координації європейської та євроатлантичної інтеграції " activiti:delegateExpression="#{createDocument}">
+      <extensionElements>
+        <activiti:field name="sID_BP">
+          <activiti:string><![CDATA[_doc_template_covkmudep_expertise_2_U_O_1Kartka]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="soData">
+          <activiti:string><![CDATA[sKartka::value{[sKartka]};;sVid_Pro::value{[sVid_Pro]};;sNazva_Pro::value{[sNazva_Pro]};;sVneseno::value{[sVneseno]};;sVnis::value{[sVnis]};;sRozrobnik::value{[sRozrobnik]};;sPidstava_Roz::value{[sPidstava_Roz]};;sPytanna::value{[sPytanna]};;sIncomingDate::value{[sIncomingDate]};;sOutgoingDate::value{[sOutgoingDate]};;sRevenues::value{[sRevenues]};;sTimeOfRevenues::value{[sTimeOfRevenues]};;sRegisterDate::value{[sRegisterDate]};;sDateOfRegister::value{[sDateOfRegister]};;sRegisterNumber::value{[sRegisterNumber]};;sRegister::value{[sRegister]};;nQuantityOfPages::value{[nQuantityOfPages]};;nQuantityOfPagesOfProjectOfAct::value{[nQuantityOfPagesOfProjectOfAct]};;sAdditionally::value{[sAdditionally]};;sImmediate::value{[sImmediate]};;sRepeatInput::value{[sRepeatInput]};;sRegisterNumberOpPreviousSend::value{[sRegisterNumberOpPreviousSend]};;sStatusOfProject::value{[sStatusOfProject]};;sDueDateOfProcessing::value{[sDueDateOfProcessing]};;sResultOfExpertise::value{[sResultOfExpertise]};;nID_Process_Child::value{[nID_Process_Child]};;sLogin_Evro::value{[sLogin_Evro]}]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sLoginAuthor">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('test', null)}]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="servicetask17" name="Створення Картка проекту акта-Опрацювання Фаховим підрозділом" activiti:delegateExpression="#{createDocument}">
+      <extensionElements>
+        <activiti:field name="sID_BP">
+          <activiti:string><![CDATA[_doc_template_covkmudep_expertise_Fuh]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="soData">
+          <activiti:string><![CDATA[sKartka::value{[sKartka]};;sVid_Pro::value{[sVid_Pro]};;sNazva_Pro::value{[sNazva_Pro]};;sVneseno::value{[sVneseno]};;sVnis::value{[sVnis]};;sRozrobnik::value{[sRozrobnik]};;sPidstava_Roz::value{[sPidstava_Roz]};;sPytanna::value{[sPytanna]};;sIncomingDate::value{[sIncomingDate]};;sOutgoingDate::value{[sOutgoingDate]};;sRevenues::value{[sRevenues]};;sTimeOfRevenues::value{[sTimeOfRevenues]};;sRegisterDate::value{[sRegisterDate]};;sDateOfRegister::value{[sDateOfRegister]};;sRegisterNumber::value{[sRegisterNumber]};;sRegister::value{[sRegister]};;nQuantityOfPages::value{[nQuantityOfPages]};;nQuantityOfPagesOfProjectOfAct::value{[nQuantityOfPagesOfProjectOfAct]};;sAdditionally::value{[sAdditionally]};;sImmediate::value{[sImmediate]};;sRepeatInput::value{[sRepeatInput]};;sRegisterNumberOpPreviousSend::value{[sRegisterNumberOpPreviousSend]};;sStatusOfProject::value{[sStatusOfProject]};;sDueDateOfProcessing::value{[sDueDateOfProcessing]};;sResultOfExpertise::value{[sResultOfExpertise]};;sFuhDep_1::value{[sFuhDep_1]};;]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sLoginAuthor">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles(sFuhDep_1, null)}]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow62" sourceRef="servicetask16" targetRef="servicetask17"></sequenceFlow>
+    <sequenceFlow id="flow63" sourceRef="exclusivegateway2" targetRef="servicetask16">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${sEvro == 'yes' && sFuh == 'yes' && sDodVid == 'no'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow64" sourceRef="servicetask17" targetRef="endevent2"></sequenceFlow>
+    <serviceTask id="servicetask18" name="Створення Картка проекту акта-Опрацювання Урядовим офісом координації європейської та євроатлантичної інтеграції " activiti:delegateExpression="#{createDocument}">
+      <extensionElements>
+        <activiti:field name="sID_BP">
+          <activiti:string><![CDATA[_doc_template_covkmudep_expertise_2_U_O_1Kartka]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="soData">
+          <activiti:string><![CDATA[sKartka::value{[sKartka]};;sVid_Pro::value{[sVid_Pro]};;sNazva_Pro::value{[sNazva_Pro]};;sVneseno::value{[sVneseno]};;sVnis::value{[sVnis]};;sRozrobnik::value{[sRozrobnik]};;sPidstava_Roz::value{[sPidstava_Roz]};;sPytanna::value{[sPytanna]};;sIncomingDate::value{[sIncomingDate]};;sOutgoingDate::value{[sOutgoingDate]};;sRevenues::value{[sRevenues]};;sTimeOfRevenues::value{[sTimeOfRevenues]};;sRegisterDate::value{[sRegisterDate]};;sDateOfRegister::value{[sDateOfRegister]};;sRegisterNumber::value{[sRegisterNumber]};;sRegister::value{[sRegister]};;nQuantityOfPages::value{[nQuantityOfPages]};;nQuantityOfPagesOfProjectOfAct::value{[nQuantityOfPagesOfProjectOfAct]};;sAdditionally::value{[sAdditionally]};;sImmediate::value{[sImmediate]};;sRepeatInput::value{[sRepeatInput]};;sRegisterNumberOpPreviousSend::value{[sRegisterNumberOpPreviousSend]};;sStatusOfProject::value{[sStatusOfProject]};;sDueDateOfProcessing::value{[sDueDateOfProcessing]};;sResultOfExpertise::value{[sResultOfExpertise]};;nID_Process_Child::value{[nID_Process_Child]};;sLogin_Evro::value{[sLogin_Evro]}]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sLoginAuthor">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('test', null)}]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="servicetask19" name="Створення Картка проекту акта" activiti:delegateExpression="#{createDocument}">
+      <extensionElements>
+        <activiti:field name="sID_BP">
+          <activiti:string><![CDATA[_doc_template_covkmudep_expertise_Dod]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="soData">
+          <activiti:string><![CDATA[sKartka::value{[sKartka]};;sVid_Pro::value{[sVid_Pro]};;sNazva_Pro::value{[sNazva_Pro]};;sVneseno::value{[sVneseno]};;sVnis::value{[sVnis]};;sRozrobnik::value{[sRozrobnik]};;sPidstava_Roz::value{[sPidstava_Roz]};;sPytanna::value{[sPytanna]};;sIncomingDate::value{[sIncomingDate]};;sOutgoingDate::value{[sOutgoingDate]};;sRevenues::value{[sRevenues]};;sTimeOfRevenues::value{[sTimeOfRevenues]};;sRegisterDate::value{[sRegisterDate]};;sDateOfRegister::value{[sDateOfRegister]};;sRegisterNumber::value{[sRegisterNumber]};;sRegister::value{[sRegister]};;nQuantityOfPages::value{[nQuantityOfPages]};;nQuantityOfPagesOfProjectOfAct::value{[nQuantityOfPagesOfProjectOfAct]};;sAdditionally::value{[sAdditionally]};;sImmediate::value{[sImmediate]};;sRepeatInput::value{[sRepeatInput]};;sRegisterNumberOpPreviousSend::value{[sRegisterNumberOpPreviousSend]};;sStatusOfProject::value{[sStatusOfProject]};;sDueDateOfProcessing::value{[sDueDateOfProcessing]};;sResultOfExpertise::value{[sResultOfExpertise]};;sDodVidDepur::value{[sDodVidDepur]};;]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sLoginAuthor">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles(sDodVidDepur, null)}]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow65" sourceRef="exclusivegateway2" targetRef="servicetask18">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${sEvro == 'yes' && sFuh == 'no' && sDodVid == 'yes'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow66" sourceRef="servicetask18" targetRef="servicetask19"></sequenceFlow>
+    <sequenceFlow id="flow67" sourceRef="servicetask19" targetRef="endevent2"></sequenceFlow>
+    <serviceTask id="servicetask20" name="Створення Картка проекту акта-Опрацювання Урядовим офісом координації європейської та євроатлантичної інтеграції " activiti:delegateExpression="#{createDocument}">
+      <extensionElements>
+        <activiti:field name="sID_BP">
+          <activiti:string><![CDATA[_doc_template_covkmudep_expertise_2_U_O_1Kartka]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="soData">
+          <activiti:string><![CDATA[sKartka::value{[sKartka]};;sVid_Pro::value{[sVid_Pro]};;sNazva_Pro::value{[sNazva_Pro]};;sVneseno::value{[sVneseno]};;sVnis::value{[sVnis]};;sRozrobnik::value{[sRozrobnik]};;sPidstava_Roz::value{[sPidstava_Roz]};;sPytanna::value{[sPytanna]};;sIncomingDate::value{[sIncomingDate]};;sOutgoingDate::value{[sOutgoingDate]};;sRevenues::value{[sRevenues]};;sTimeOfRevenues::value{[sTimeOfRevenues]};;sRegisterDate::value{[sRegisterDate]};;sDateOfRegister::value{[sDateOfRegister]};;sRegisterNumber::value{[sRegisterNumber]};;sRegister::value{[sRegister]};;nQuantityOfPages::value{[nQuantityOfPages]};;nQuantityOfPagesOfProjectOfAct::value{[nQuantityOfPagesOfProjectOfAct]};;sAdditionally::value{[sAdditionally]};;sImmediate::value{[sImmediate]};;sRepeatInput::value{[sRepeatInput]};;sRegisterNumberOpPreviousSend::value{[sRegisterNumberOpPreviousSend]};;sStatusOfProject::value{[sStatusOfProject]};;sDueDateOfProcessing::value{[sDueDateOfProcessing]};;sResultOfExpertise::value{[sResultOfExpertise]};;nID_Process_Child::value{[nID_Process_Child]};;sLogin_Evro::value{[sLogin_Evro]}]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sLoginAuthor">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('test', null)}]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="servicetask21" name="Створення Картка проекту акта-Опрацювання Фаховим підрозділом" activiti:delegateExpression="#{createDocument}">
+      <extensionElements>
+        <activiti:field name="sID_BP">
+          <activiti:string><![CDATA[_doc_template_covkmudep_expertise_Fuh]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="soData">
+          <activiti:string><![CDATA[sKartka::value{[sKartka]};;sVid_Pro::value{[sVid_Pro]};;sNazva_Pro::value{[sNazva_Pro]};;sVneseno::value{[sVneseno]};;sVnis::value{[sVnis]};;sRozrobnik::value{[sRozrobnik]};;sPidstava_Roz::value{[sPidstava_Roz]};;sPytanna::value{[sPytanna]};;sIncomingDate::value{[sIncomingDate]};;sOutgoingDate::value{[sOutgoingDate]};;sRevenues::value{[sRevenues]};;sTimeOfRevenues::value{[sTimeOfRevenues]};;sRegisterDate::value{[sRegisterDate]};;sDateOfRegister::value{[sDateOfRegister]};;sRegisterNumber::value{[sRegisterNumber]};;sRegister::value{[sRegister]};;nQuantityOfPages::value{[nQuantityOfPages]};;nQuantityOfPagesOfProjectOfAct::value{[nQuantityOfPagesOfProjectOfAct]};;sAdditionally::value{[sAdditionally]};;sImmediate::value{[sImmediate]};;sRepeatInput::value{[sRepeatInput]};;sRegisterNumberOpPreviousSend::value{[sRegisterNumberOpPreviousSend]};;sStatusOfProject::value{[sStatusOfProject]};;sDueDateOfProcessing::value{[sDueDateOfProcessing]};;sResultOfExpertise::value{[sResultOfExpertise]};;sFuhDep_1::value{[sFuhDep_1]};;]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sLoginAuthor">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles(sFuhDep_1, null)}]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="servicetask22" name="Створення Картка проекту акта" activiti:delegateExpression="#{createDocument}">
+      <extensionElements>
+        <activiti:field name="sID_BP">
+          <activiti:string><![CDATA[_doc_template_covkmudep_expertise_Dod]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="soData">
+          <activiti:string><![CDATA[sKartka::value{[sKartka]};;sVid_Pro::value{[sVid_Pro]};;sNazva_Pro::value{[sNazva_Pro]};;sVneseno::value{[sVneseno]};;sVnis::value{[sVnis]};;sRozrobnik::value{[sRozrobnik]};;sPidstava_Roz::value{[sPidstava_Roz]};;sPytanna::value{[sPytanna]};;sIncomingDate::value{[sIncomingDate]};;sOutgoingDate::value{[sOutgoingDate]};;sRevenues::value{[sRevenues]};;sTimeOfRevenues::value{[sTimeOfRevenues]};;sRegisterDate::value{[sRegisterDate]};;sDateOfRegister::value{[sDateOfRegister]};;sRegisterNumber::value{[sRegisterNumber]};;sRegister::value{[sRegister]};;nQuantityOfPages::value{[nQuantityOfPages]};;nQuantityOfPagesOfProjectOfAct::value{[nQuantityOfPagesOfProjectOfAct]};;sAdditionally::value{[sAdditionally]};;sImmediate::value{[sImmediate]};;sRepeatInput::value{[sRepeatInput]};;sRegisterNumberOpPreviousSend::value{[sRegisterNumberOpPreviousSend]};;sStatusOfProject::value{[sStatusOfProject]};;sDueDateOfProcessing::value{[sDueDateOfProcessing]};;sResultOfExpertise::value{[sResultOfExpertise]};;sDodVidDepur::value{[sDodVidDepur]};;]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sLoginAuthor">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('test', null)}]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow68" sourceRef="exclusivegateway2" targetRef="servicetask21">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${sEvro == 'no' && sFuh == 'yes' && sDodVid == 'yes'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow69" sourceRef="servicetask20" targetRef="servicetask23"></sequenceFlow>
+    <sequenceFlow id="flow70" sourceRef="servicetask21" targetRef="servicetask22"></sequenceFlow>
+    <sequenceFlow id="flow71" sourceRef="servicetask22" targetRef="endevent2"></sequenceFlow>
+    <sequenceFlow id="flow72" sourceRef="exclusivegateway2" targetRef="servicetask20">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${sEvro == 'yes' && sFuh == 'yes' && sDodVid == 'yes'}]]></conditionExpression>
+    </sequenceFlow>
+    <serviceTask id="servicetask23" name="Створення Картка проекту акта-Опрацювання Фаховим підрозділом" activiti:delegateExpression="#{createDocument}">
+      <extensionElements>
+        <activiti:field name="sID_BP">
+          <activiti:string><![CDATA[_doc_template_covkmudep_expertise_Fuh]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="soData">
+          <activiti:string><![CDATA[sKartka::value{[sKartka]};;sVid_Pro::value{[sVid_Pro]};;sNazva_Pro::value{[sNazva_Pro]};;sVneseno::value{[sVneseno]};;sVnis::value{[sVnis]};;sRozrobnik::value{[sRozrobnik]};;sPidstava_Roz::value{[sPidstava_Roz]};;sPytanna::value{[sPytanna]};;sIncomingDate::value{[sIncomingDate]};;sOutgoingDate::value{[sOutgoingDate]};;sRevenues::value{[sRevenues]};;sTimeOfRevenues::value{[sTimeOfRevenues]};;sRegisterDate::value{[sRegisterDate]};;sDateOfRegister::value{[sDateOfRegister]};;sRegisterNumber::value{[sRegisterNumber]};;sRegister::value{[sRegister]};;nQuantityOfPages::value{[nQuantityOfPages]};;nQuantityOfPagesOfProjectOfAct::value{[nQuantityOfPagesOfProjectOfAct]};;sAdditionally::value{[sAdditionally]};;sImmediate::value{[sImmediate]};;sRepeatInput::value{[sRepeatInput]};;sRegisterNumberOpPreviousSend::value{[sRegisterNumberOpPreviousSend]};;sStatusOfProject::value{[sStatusOfProject]};;sDueDateOfProcessing::value{[sDueDateOfProcessing]};;sResultOfExpertise::value{[sResultOfExpertise]};;sFuhDep_1::value{[sFuhDep_1]};;]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sLoginAuthor">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles(sFuhDep_1, null)}]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="servicetask24" name="Створення Картка проекту акта" activiti:delegateExpression="#{createDocument}">
+      <extensionElements>
+        <activiti:field name="sID_BP">
+          <activiti:string><![CDATA[_doc_template_covkmudep_expertise_Dod]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="soData">
+          <activiti:string><![CDATA[sKartka::value{[sKartka]};;sVid_Pro::value{[sVid_Pro]};;sNazva_Pro::value{[sNazva_Pro]};;sVneseno::value{[sVneseno]};;sVnis::value{[sVnis]};;sRozrobnik::value{[sRozrobnik]};;sPidstava_Roz::value{[sPidstava_Roz]};;sPytanna::value{[sPytanna]};;sIncomingDate::value{[sIncomingDate]};;sOutgoingDate::value{[sOutgoingDate]};;sRevenues::value{[sRevenues]};;sTimeOfRevenues::value{[sTimeOfRevenues]};;sRegisterDate::value{[sRegisterDate]};;sDateOfRegister::value{[sDateOfRegister]};;sRegisterNumber::value{[sRegisterNumber]};;sRegister::value{[sRegister]};;nQuantityOfPages::value{[nQuantityOfPages]};;nQuantityOfPagesOfProjectOfAct::value{[nQuantityOfPagesOfProjectOfAct]};;sAdditionally::value{[sAdditionally]};;sImmediate::value{[sImmediate]};;sRepeatInput::value{[sRepeatInput]};;sRegisterNumberOpPreviousSend::value{[sRegisterNumberOpPreviousSend]};;sStatusOfProject::value{[sStatusOfProject]};;sDueDateOfProcessing::value{[sDueDateOfProcessing]};;sResultOfExpertise::value{[sResultOfExpertise]};;sDodVidDepur::value{[sDodVidDepur]};;]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sLoginAuthor">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles(sDodVidDepur, null)}]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow73" sourceRef="servicetask23" targetRef="servicetask24"></sequenceFlow>
+    <sequenceFlow id="flow74" sourceRef="servicetask24" targetRef="endevent2"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway2" name="Exclusive Gateway"></exclusiveGateway>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram__doc_template_covkmudep_expertise">
+    <bpmndi:BPMNPlane bpmnElement="_doc_template_covkmudep_expertise" id="BPMNPlane__doc_template_covkmudep_expertise">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="29.0" y="25.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask4" id="BPMNShape_usertask4">
+        <omgdc:Bounds height="84.0" width="130.0" x="410.0" y="1.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask5" id="BPMNShape_usertask5">
+        <omgdc:Bounds height="84.0" width="130.0" x="50.0" y="477.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask6" id="BPMNShape_usertask6">
+        <omgdc:Bounds height="84.0" width="130.0" x="225.0" y="477.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask7" id="BPMNShape_usertask7">
+        <omgdc:Bounds height="84.0" width="130.0" x="410.0" y="477.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask1" id="BPMNShape_scripttask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="560.0" y="15.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent2" id="BPMNShape_endevent2">
+        <omgdc:Bounds height="35.0" width="35.0" x="950.0" y="410.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask13" id="BPMNShape_servicetask13">
+        <omgdc:Bounds height="55.0" width="105.0" x="40.0" y="206.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask14" id="BPMNShape_servicetask14">
+        <omgdc:Bounds height="55.0" width="105.0" x="160.0" y="206.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask15" id="BPMNShape_servicetask15">
+        <omgdc:Bounds height="55.0" width="105.0" x="280.0" y="206.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask16" id="BPMNShape_servicetask16">
+        <omgdc:Bounds height="55.0" width="105.0" x="422.0" y="200.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask17" id="BPMNShape_servicetask17">
+        <omgdc:Bounds height="55.0" width="105.0" x="422.0" y="270.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask18" id="BPMNShape_servicetask18">
+        <omgdc:Bounds height="55.0" width="105.0" x="552.0" y="200.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask19" id="BPMNShape_servicetask19">
+        <omgdc:Bounds height="55.0" width="105.0" x="552.0" y="270.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask20" id="BPMNShape_servicetask20">
+        <omgdc:Bounds height="55.0" width="105.0" x="820.0" y="191.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask21" id="BPMNShape_servicetask21">
+        <omgdc:Bounds height="55.0" width="105.0" x="670.0" y="200.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask22" id="BPMNShape_servicetask22">
+        <omgdc:Bounds height="55.0" width="105.0" x="670.0" y="270.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask23" id="BPMNShape_servicetask23">
+        <omgdc:Bounds height="55.0" width="105.0" x="820.0" y="260.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask24" id="BPMNShape_servicetask24">
+        <omgdc:Bounds height="55.0" width="105.0" x="820.0" y="326.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway2" id="BPMNShape_exclusivegateway2">
+        <omgdc:Bounds height="40.0" width="40.0" x="454.0" y="136.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow23" id="BPMNEdge_flow23">
+        <omgdi:waypoint x="64.0" y="42.0"></omgdi:waypoint>
+        <omgdi:waypoint x="410.0" y="43.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow24" id="BPMNEdge_flow24">
+        <omgdi:waypoint x="540.0" y="43.0"></omgdi:waypoint>
+        <omgdi:waypoint x="560.0" y="42.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow43" id="BPMNEdge_flow43">
+        <omgdi:waypoint x="612.0" y="70.0"></omgdi:waypoint>
+        <omgdi:waypoint x="612.0" y="113.0"></omgdi:waypoint>
+        <omgdi:waypoint x="474.0" y="113.0"></omgdi:waypoint>
+        <omgdi:waypoint x="474.0" y="136.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow48" id="BPMNEdge_flow48">
+        <omgdi:waypoint x="454.0" y="156.0"></omgdi:waypoint>
+        <omgdi:waypoint x="358.0" y="157.0"></omgdi:waypoint>
+        <omgdi:waypoint x="92.0" y="157.0"></omgdi:waypoint>
+        <omgdi:waypoint x="92.0" y="206.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow49" id="BPMNEdge_flow49">
+        <omgdi:waypoint x="454.0" y="156.0"></omgdi:waypoint>
+        <omgdi:waypoint x="212.0" y="157.0"></omgdi:waypoint>
+        <omgdi:waypoint x="212.0" y="206.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow58" id="BPMNEdge_flow58">
+        <omgdi:waypoint x="92.0" y="261.0"></omgdi:waypoint>
+        <omgdi:waypoint x="92.0" y="424.0"></omgdi:waypoint>
+        <omgdi:waypoint x="358.0" y="424.0"></omgdi:waypoint>
+        <omgdi:waypoint x="950.0" y="427.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow59" id="BPMNEdge_flow59">
+        <omgdi:waypoint x="212.0" y="261.0"></omgdi:waypoint>
+        <omgdi:waypoint x="212.0" y="424.0"></omgdi:waypoint>
+        <omgdi:waypoint x="474.0" y="424.0"></omgdi:waypoint>
+        <omgdi:waypoint x="950.0" y="427.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow60" id="BPMNEdge_flow60">
+        <omgdi:waypoint x="332.0" y="261.0"></omgdi:waypoint>
+        <omgdi:waypoint x="332.0" y="424.0"></omgdi:waypoint>
+        <omgdi:waypoint x="593.0" y="424.0"></omgdi:waypoint>
+        <omgdi:waypoint x="950.0" y="427.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow61" id="BPMNEdge_flow61">
+        <omgdi:waypoint x="454.0" y="156.0"></omgdi:waypoint>
+        <omgdi:waypoint x="332.0" y="157.0"></omgdi:waypoint>
+        <omgdi:waypoint x="332.0" y="206.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow62" id="BPMNEdge_flow62">
+        <omgdi:waypoint x="474.0" y="255.0"></omgdi:waypoint>
+        <omgdi:waypoint x="474.0" y="270.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow63" id="BPMNEdge_flow63">
+        <omgdi:waypoint x="474.0" y="176.0"></omgdi:waypoint>
+        <omgdi:waypoint x="474.0" y="200.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow64" id="BPMNEdge_flow64">
+        <omgdi:waypoint x="474.0" y="325.0"></omgdi:waypoint>
+        <omgdi:waypoint x="474.0" y="424.0"></omgdi:waypoint>
+        <omgdi:waypoint x="950.0" y="427.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow65" id="BPMNEdge_flow65">
+        <omgdi:waypoint x="494.0" y="156.0"></omgdi:waypoint>
+        <omgdi:waypoint x="604.0" y="157.0"></omgdi:waypoint>
+        <omgdi:waypoint x="604.0" y="200.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow66" id="BPMNEdge_flow66">
+        <omgdi:waypoint x="604.0" y="255.0"></omgdi:waypoint>
+        <omgdi:waypoint x="604.0" y="270.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow67" id="BPMNEdge_flow67">
+        <omgdi:waypoint x="604.0" y="325.0"></omgdi:waypoint>
+        <omgdi:waypoint x="605.0" y="424.0"></omgdi:waypoint>
+        <omgdi:waypoint x="950.0" y="427.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow68" id="BPMNEdge_flow68">
+        <omgdi:waypoint x="494.0" y="156.0"></omgdi:waypoint>
+        <omgdi:waypoint x="722.0" y="157.0"></omgdi:waypoint>
+        <omgdi:waypoint x="722.0" y="200.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow69" id="BPMNEdge_flow69">
+        <omgdi:waypoint x="872.0" y="246.0"></omgdi:waypoint>
+        <omgdi:waypoint x="872.0" y="260.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow70" id="BPMNEdge_flow70">
+        <omgdi:waypoint x="722.0" y="255.0"></omgdi:waypoint>
+        <omgdi:waypoint x="722.0" y="270.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow71" id="BPMNEdge_flow71">
+        <omgdi:waypoint x="722.0" y="325.0"></omgdi:waypoint>
+        <omgdi:waypoint x="722.0" y="427.0"></omgdi:waypoint>
+        <omgdi:waypoint x="950.0" y="427.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow72" id="BPMNEdge_flow72">
+        <omgdi:waypoint x="494.0" y="156.0"></omgdi:waypoint>
+        <omgdi:waypoint x="872.0" y="157.0"></omgdi:waypoint>
+        <omgdi:waypoint x="872.0" y="191.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow73" id="BPMNEdge_flow73">
+        <omgdi:waypoint x="925.0" y="287.0"></omgdi:waypoint>
+        <omgdi:waypoint x="872.0" y="326.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow74" id="BPMNEdge_flow74">
+        <omgdi:waypoint x="872.0" y="381.0"></omgdi:waypoint>
+        <omgdi:waypoint x="872.0" y="427.0"></omgdi:waypoint>
+        <omgdi:waypoint x="950.0" y="427.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

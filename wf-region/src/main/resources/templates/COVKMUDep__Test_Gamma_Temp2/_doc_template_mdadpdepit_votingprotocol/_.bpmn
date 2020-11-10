@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="_doc_template_mdadpdepit_votingprotocol" name="Протокол голусування" isExecutable="true">
+    <documentation>;bTemplated=true</documentation>
+    <endEvent id="endevent2" name="End"></endEvent>
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <userTask id="usertask1" name="Створення Протоколу проведення сесії зі всіма рішеннями та додатками">
+      <extensionElements>
+        <activiti:formProperty id="oDateSession" name="Дата проведення сессії" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sSessionN" name="Номер чергової сесії міської ради;;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1wNAXlCycWgaTQ7X8i-0zveQ7EaoiebcZGrUl1Wf5b7I/Лист1',sasKey_Field_Find='SessionN,SessionM',sasKey_Field_Select='SessionN')&amp;gt;:SessionN}}" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumberConv" name="Номер скликання" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sURL_Table" name="Посилання на Порядок денний" type="string" default="https://docs.google.com/spreadsheets/d/14ykHIXmJu8_Q0LAU6qL6ShGnS07u_gbS057GfJTR6po" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sURLprotocolteamplate" name="Протокол голосування;;writable=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="oSessionCSV" name="Результати поіменного голлусування у форматі CSV" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sSessionRec" name="Посилання на відеозапис засідання" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="oTable_Decisions" name="Рішення міської ради (у формат PDF);;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="oTable_ExtraFiles" name="Додатки;;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sURLprotocolteamplate" name="Протокол голосування;;writable=false" type="string"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
+    <userTask id="usertask2" name="Підписання Секретаріатом Протоколу проведення сессії" default="flow5">
+      <extensionElements>
+        <activiti:formProperty id="oDateSession" name="Дата проведення сессії" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sSessionN" name="Номер чергової сесії міської ради;;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1wNAXlCycWgaTQ7X8i-0zveQ7EaoiebcZGrUl1Wf5b7I/Лист1',sasKey_Field_Find='SessionN,SessionM',sasKey_Field_Select='SessionN')&amp;gt;:SessionN}}" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumberConv" name="Номер скликання" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sURL_Table" name="Посилання на Порядок денний" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sURLprotocolteamplate" name="Протокол голосування;;writable=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="oSessionCSV" name="Результати поіменного голлусування у форматі CSV" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sSessionRec" name="Посилання на відеозапис засідання" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="oTable_Decisions" name="Рішення міської ради (у формат PDF);;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="oTable_ExtraFiles" name="Додатки;;bNew=true" type="table" writable="false"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask3" name="Підписання міським головою Протоколу проведення сессії">
+      <extensionElements>
+        <activiti:formProperty id="oDateSession" name="Дата проведення сессії" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sSessionN" name="Номер чергової сесії міської ради;;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1wNAXlCycWgaTQ7X8i-0zveQ7EaoiebcZGrUl1Wf5b7I/Лист1',sasKey_Field_Find='SessionN,SessionM',sasKey_Field_Select='SessionN')&amp;gt;:SessionN}}" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumberConv" name="Номер скликання" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sURL_Table" name="Посилання на Порядок денний" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sURLprotocolteamplate" name="Протокол голосування;;writable=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="oSessionCSV" name="Результати поіменного голлусування у форматі CSV" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sSessionRec" name="Посилання на відеозапис засідання" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="oTable_Decisions" name="Рішення міської ради (у формат PDF);;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="oTable_ExtraFiles" name="Додатки;;bNew=true" type="table" writable="false"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask4" name="Сканування підписанного Протоколу проведення сесії">
+      <extensionElements>
+        <activiti:formProperty id="oDateSession" name="Дата проведення сессії" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sSessionN" name="Номер чергової сесії міської ради;;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1wNAXlCycWgaTQ7X8i-0zveQ7EaoiebcZGrUl1Wf5b7I/Лист1',sasKey_Field_Find='SessionN,SessionM',sasKey_Field_Select='SessionN')&amp;gt;:SessionN}}" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumberConv" name="Номер скликання" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sURL_Table" name="Посилання на Порядок денний" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sURLprotocolteamplate" name="Протокол голосування;;writable=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="oSessionCSV" name="Результати поіменного голлусування у форматі CSV" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sSessionRec" name="Посилання на відеозапис засідання" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="oTable_Decisions" name="Рішення міської ради (у формат PDF);;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="oTable_ExtraFiles" name="Додатки;;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sFile_Protocol" name="Фотокопія Протоколу проведення сессії (скан-PDF з підписами);;bNew=true" type="file" required="true"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <userTask id="usertask5" name="Ознайомлення відділом Діловодсва протоколу проведення сесії зі всіма рішеннями та додатками">
+      <extensionElements>
+        <activiti:formProperty id="oDateSession" name="Дата проведення сессії" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sSessionN" name="Номер чергової сесії міської ради;;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1wNAXlCycWgaTQ7X8i-0zveQ7EaoiebcZGrUl1Wf5b7I/Лист1',sasKey_Field_Find='SessionN,SessionM',sasKey_Field_Select='SessionN')&amp;gt;:SessionN}}" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumberConv" name="Номер скликання" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sURL_Table" name="Посилання на Порядок денний" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sURLprotocolteamplate" name="Протокол голосування;;writable=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="oSessionCSV" name="Результати поіменного голлусування у форматі CSV" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sSessionRec" name="Посилання на відеозапис засідання" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="oTable_Decisions" name="Рішення міської ради (у формат PDF);;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="oTable_ExtraFiles" name="Додатки;;bNew=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sFile_Protocol" name="Фотокопія Протоколу проведення сессії (скан-PDF з підписами);;bNew=true" type="file" writable="false"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <endEvent id="endevent3" name="End"></endEvent>
+    <sequenceFlow id="flow2" sourceRef="usertask5" targetRef="endevent3"></sequenceFlow>
+    <userTask id="usertask6" name="Редагування Протоколу засідання">
+      <extensionElements>
+        <activiti:formProperty id="oDateSession" name="Дата проведення сессії" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sSessionN" name="Номер чергової сесії міської ради;;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1wNAXlCycWgaTQ7X8i-0zveQ7EaoiebcZGrUl1Wf5b7I/Лист1',sasKey_Field_Find='SessionN,SessionM',sasKey_Field_Select='SessionN')&amp;gt;:SessionN}}" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumberConv" name="Номер скликання" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sURL_Table" name="Посилання на Порядок денний" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sURLprotocolteamplate" name="Протокол голосування;;writable=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="oSessionCSV" name="Результати поіменного голлусування у форматі CSV" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sSessionRec" name="Посилання на відеозапис засідання" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="oTable_Decisions" name="Рішення міської ради (у формат PDF);;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="oTable_ExtraFiles" name="Додатки;;bNew=true" type="table"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <serviceTask id="servicetask1" name="Видача прав Секретаріату" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('Com1', null)}]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="servicetask2" name="Видача прав Міському голові" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('Com1', null)}]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="servicetask3" name="Видача прав Виконавцям" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_execute]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_execute]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('Com1', null)}]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="servicetask4" name="Видача прав відділу Діловодства" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_Seen]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_seen]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('Com1', null)}]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow3" sourceRef="usertask1" targetRef="servicetask1">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow4" sourceRef="servicetask1" targetRef="usertask2"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway" default="flow6"></exclusiveGateway>
+    <sequenceFlow id="flow5" sourceRef="usertask2" targetRef="exclusivegateway1"></sequenceFlow>
+    <sequenceFlow id="flow6" sourceRef="exclusivegateway1" targetRef="usertask2"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway2" name="Exclusive Gateway" default="flow8"></exclusiveGateway>
+    <sequenceFlow id="flow7" sourceRef="exclusivegateway1" targetRef="exclusivegateway2">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow8" sourceRef="exclusivegateway2" targetRef="usertask2">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:expression><![CDATA[+1]]></activiti:expression>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow9" sourceRef="exclusivegateway2" targetRef="servicetask2">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[agree]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisTypeStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow10" sourceRef="servicetask2" targetRef="usertask3"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway3" name="Exclusive Gateway" default="flow12"></exclusiveGateway>
+    <sequenceFlow id="flow11" sourceRef="usertask3" targetRef="exclusivegateway3"></sequenceFlow>
+    <sequenceFlow id="flow12" sourceRef="exclusivegateway3" targetRef="usertask3"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway4" name="Exclusive Gateway" default="flow14"></exclusiveGateway>
+    <sequenceFlow id="flow13" sourceRef="exclusivegateway3" targetRef="exclusivegateway4">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow14" sourceRef="exclusivegateway4" targetRef="usertask3">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:expression><![CDATA[+1]]></activiti:expression>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow15" sourceRef="exclusivegateway4" targetRef="servicetask3">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_execute]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisTypeStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow16" sourceRef="servicetask3" targetRef="usertask4">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.setDocumentApproved(execution, false)}]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway id="exclusivegateway5" name="Exclusive Gateway" default="flow18"></exclusiveGateway>
+    <sequenceFlow id="flow17" sourceRef="usertask4" targetRef="exclusivegateway5"></sequenceFlow>
+    <sequenceFlow id="flow18" sourceRef="exclusivegateway5" targetRef="usertask4"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway6" name="Exclusive Gateway" default="flow20"></exclusiveGateway>
+    <sequenceFlow id="flow19" sourceRef="exclusivegateway5" targetRef="exclusivegateway6">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow20" sourceRef="exclusivegateway6" targetRef="usertask4">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:expression><![CDATA[+1]]></activiti:expression>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow21" sourceRef="exclusivegateway6" targetRef="servicetask4">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[seen]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisTypeStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow22" sourceRef="servicetask4" targetRef="usertask5">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.setDocumentApproved(execution, true)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="FlowButton_Edit" name="На редагування автору;sIF=hasAny-States(Authorship)" sourceRef="usertask2" targetRef="usertask6">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[edit]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_Edit')}]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway id="exclusivegateway7" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="FlowButton_Return" name="Повернути на підписання Секретаріату;sIF=hasAny-States(Authorship)" sourceRef="usertask6" targetRef="exclusivegateway7">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentResetStepTypesListener}">
+          <activiti:field name="sasKey_StepType">
+            <activiti:string><![CDATA[Accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_Return')}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow30" sourceRef="exclusivegateway7" targetRef="usertask2">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram__doc_template_mdadpdepit_votingprotocol">
+    <bpmndi:BPMNPlane bpmnElement="_doc_template_mdadpdepit_votingprotocol" id="BPMNPlane__doc_template_mdadpdepit_votingprotocol">
+      <bpmndi:BPMNShape bpmnElement="endevent2" id="BPMNShape_endevent2">
+        <omgdc:Bounds height="35.0" width="35.0" x="20.0" y="1305.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="120.0" y="64.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="84.0" width="151.0" x="200.0" y="40.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask2" id="BPMNShape_usertask2">
+        <omgdc:Bounds height="84.0" width="151.0" x="578.0" y="40.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask3" id="BPMNShape_usertask3">
+        <omgdc:Bounds height="84.0" width="151.0" x="1030.0" y="40.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask4" id="BPMNShape_usertask4">
+        <omgdc:Bounds height="84.0" width="151.0" x="1030.0" y="420.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask5" id="BPMNShape_usertask5">
+        <omgdc:Bounds height="84.0" width="151.0" x="578.0" y="420.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent3" id="BPMNShape_endevent3">
+        <omgdc:Bounds height="35.0" width="35.0" x="470.0" y="444.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask6" id="BPMNShape_usertask6">
+        <omgdc:Bounds height="84.0" width="151.0" x="578.0" y="230.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask1" id="BPMNShape_servicetask1">
+        <omgdc:Bounds height="84.0" width="141.0" x="400.0" y="40.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask2" id="BPMNShape_servicetask2">
+        <omgdc:Bounds height="84.0" width="151.0" x="800.0" y="40.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask3" id="BPMNShape_servicetask3">
+        <omgdc:Bounds height="84.0" width="151.0" x="1030.0" y="230.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask4" id="BPMNShape_servicetask4">
+        <omgdc:Bounds height="84.0" width="151.0" x="800.0" y="420.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway1" id="BPMNShape_exclusivegateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="633.0" y="151.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway2" id="BPMNShape_exclusivegateway2">
+        <omgdc:Bounds height="40.0" width="40.0" x="740.0" y="151.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway3" id="BPMNShape_exclusivegateway3">
+        <omgdc:Bounds height="40.0" width="40.0" x="1085.0" y="151.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway4" id="BPMNShape_exclusivegateway4">
+        <omgdc:Bounds height="40.0" width="40.0" x="990.0" y="151.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway5" id="BPMNShape_exclusivegateway5">
+        <omgdc:Bounds height="40.0" width="40.0" x="1085.0" y="538.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway6" id="BPMNShape_exclusivegateway6">
+        <omgdc:Bounds height="40.0" width="40.0" x="990.0" y="538.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway7" id="BPMNShape_exclusivegateway7">
+        <omgdc:Bounds height="40.0" width="40.0" x="761.0" y="252.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="155.0" y="81.0"></omgdi:waypoint>
+        <omgdi:waypoint x="200.0" y="82.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="578.0" y="462.0"></omgdi:waypoint>
+        <omgdi:waypoint x="505.0" y="461.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="351.0" y="82.0"></omgdi:waypoint>
+        <omgdi:waypoint x="400.0" y="82.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="541.0" y="82.0"></omgdi:waypoint>
+        <omgdi:waypoint x="578.0" y="82.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="578.0" y="82.0"></omgdi:waypoint>
+        <omgdi:waypoint x="556.0" y="94.0"></omgdi:waypoint>
+        <omgdi:waypoint x="556.0" y="170.0"></omgdi:waypoint>
+        <omgdi:waypoint x="633.0" y="171.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="653.0" y="151.0"></omgdi:waypoint>
+        <omgdi:waypoint x="653.0" y="124.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
+        <omgdi:waypoint x="673.0" y="171.0"></omgdi:waypoint>
+        <omgdi:waypoint x="740.0" y="171.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow8" id="BPMNEdge_flow8">
+        <omgdi:waypoint x="760.0" y="151.0"></omgdi:waypoint>
+        <omgdi:waypoint x="759.0" y="83.0"></omgdi:waypoint>
+        <omgdi:waypoint x="729.0" y="82.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow9" id="BPMNEdge_flow9">
+        <omgdi:waypoint x="780.0" y="171.0"></omgdi:waypoint>
+        <omgdi:waypoint x="875.0" y="170.0"></omgdi:waypoint>
+        <omgdi:waypoint x="875.0" y="124.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow10" id="BPMNEdge_flow10">
+        <omgdi:waypoint x="951.0" y="82.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1030.0" y="82.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow11" id="BPMNEdge_flow11">
+        <omgdi:waypoint x="1181.0" y="82.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1201.0" y="86.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1201.0" y="170.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1125.0" y="171.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow12" id="BPMNEdge_flow12">
+        <omgdi:waypoint x="1105.0" y="151.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1105.0" y="124.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow13" id="BPMNEdge_flow13">
+        <omgdi:waypoint x="1085.0" y="171.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1030.0" y="171.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow14" id="BPMNEdge_flow14">
+        <omgdi:waypoint x="1010.0" y="151.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1010.0" y="82.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1030.0" y="82.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow15" id="BPMNEdge_flow15">
+        <omgdi:waypoint x="1010.0" y="191.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1010.0" y="272.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1030.0" y="272.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow16" id="BPMNEdge_flow16">
+        <omgdi:waypoint x="1105.0" y="314.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1105.0" y="420.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow17" id="BPMNEdge_flow17">
+        <omgdi:waypoint x="1181.0" y="462.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1215.0" y="460.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1215.0" y="559.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1125.0" y="558.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow18" id="BPMNEdge_flow18">
+        <omgdi:waypoint x="1105.0" y="538.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1105.0" y="504.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow19" id="BPMNEdge_flow19">
+        <omgdi:waypoint x="1085.0" y="558.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1030.0" y="558.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow20" id="BPMNEdge_flow20">
+        <omgdi:waypoint x="1010.0" y="538.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1010.0" y="462.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1030.0" y="462.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow21" id="BPMNEdge_flow21">
+        <omgdi:waypoint x="990.0" y="558.0"></omgdi:waypoint>
+        <omgdi:waypoint x="876.0" y="558.0"></omgdi:waypoint>
+        <omgdi:waypoint x="875.0" y="504.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow22" id="BPMNEdge_flow22">
+        <omgdi:waypoint x="800.0" y="462.0"></omgdi:waypoint>
+        <omgdi:waypoint x="729.0" y="462.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_Edit" id="BPMNEdge_FlowButton_Edit">
+        <omgdi:waypoint x="578.0" y="82.0"></omgdi:waypoint>
+        <omgdi:waypoint x="551.0" y="83.0"></omgdi:waypoint>
+        <omgdi:waypoint x="551.0" y="277.0"></omgdi:waypoint>
+        <omgdi:waypoint x="578.0" y="272.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="444.0" y="152.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_Return" id="BPMNEdge_FlowButton_Return">
+        <omgdi:waypoint x="729.0" y="272.0"></omgdi:waypoint>
+        <omgdi:waypoint x="761.0" y="272.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="70.0" width="100.0" x="731.0" y="300.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow30" id="BPMNEdge_flow30">
+        <omgdi:waypoint x="781.0" y="252.0"></omgdi:waypoint>
+        <omgdi:waypoint x="781.0" y="82.0"></omgdi:waypoint>
+        <omgdi:waypoint x="729.0" y="82.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

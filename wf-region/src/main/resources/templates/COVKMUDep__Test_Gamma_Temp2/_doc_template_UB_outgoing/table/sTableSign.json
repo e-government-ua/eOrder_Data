@@ -1,0 +1,22 @@
+{
+  "aField": [
+    {
+      "id": "sName_Sign",
+      "name": "Підписант; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel",
+      "type": "select",
+      "required": "true"
+    },
+    {
+      "id": "sLogin_Sign",
+      "name": "Login",
+      "type": "string",
+      "bVisible": "false"
+    }
+  ],
+	"aRow": [
+    {
+      "sName_Sign": "Старомінська Ірина Олександрівна",
+	  "sLogin_Sign": "UB_IStaro1"
+    }		
+  ]
+}

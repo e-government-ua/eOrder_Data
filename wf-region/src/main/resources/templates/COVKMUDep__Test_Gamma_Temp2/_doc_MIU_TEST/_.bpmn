@@ -1,0 +1,941 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="_doc_MIU_TEST" name="Тестовий БП" isExecutable="true">
+    <documentation>;bTemplated=true</documentation>
+    <startEvent id="startevent1" name="Start">
+      <extensionElements>
+        <activiti:formProperty id="asBusTransportation" name="Вид перевезення" type="enum" required="true">
+          <activiti:value id="sInterregional" name="міжобласні"></activiti:value>
+          <activiti:value id="sInternational" name="міжнародні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asStatement" name="Заява на:" type="enum">
+          <activiti:value id="sEnum1" name="відкриття"></activiti:value>
+          <activiti:value id="sEnum2" name="продовження"></activiti:value>
+          <activiti:value id="sEnum3" name="зміни"></activiti:value>
+          <activiti:value id="sEnum4" name="анулювання"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asStatement_1" name="Заява на:" type="enum">
+          <activiti:value id="sEnum1" name="відкриття"></activiti:value>
+          <activiti:value id="sEnum2" name="продовження"></activiti:value>
+          <activiti:value id="sEnum3" name="продовження + зміни"></activiti:value>
+          <activiti:value id="sEnum4" name="зміни"></activiti:value>
+          <activiti:value id="sEnum5" name="анулювання"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sDate_ServEnd" name="Кінцевий строк подачі документів" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sID_SubjectOrgan_OKPO_01" name="Введіть код ЄДРПОУ" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_SubjectOrgan_01" name="Назва організації-перевізника" type="textArea" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sLocation_SubjectOrgan_01" name="Юридична адреса; індекс, місто, вулиця, будинок, офіс" type="textArea" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sActual_SubjectOrgan_01" name="Фактична адреса; індекс, місто, вулиця, будинок, офіс" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sPost_SubjectOrgan_01" name="Поштова адреса; індекс, місто, вулиця, будинок, офіс" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sFinDetails_SubjectOrgan_01" name="Фінансові реквізити;р/р, МФО, ІПН" type="textArea" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sName_Route" name="Назва маршруту" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sName_TransportOrganizer" name="Найменування організатора перевезень" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sName_PlacePublication" name="Інформація про місце публікування оголошення" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sNumber_Object" name="Номер об'єкта в оголошенні" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPriority_Object" name="Приоритетність за об'єктами;у разі потреби" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sIdentification_Number" name="Ідентифікаційний номер автомобільного перевізника" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDate_licenses" name="Номер та дата прийняття рішення щодо видачі ліцензії на здійснення перевезень" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sFlight_numbers" name="Номери рейсів" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sPart_chang" name="Частина, в яку треба внести зміни" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sCEOName_SubjectOrgan_01" name="ПІБ" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sCEOposition_SubjectOrgan_01" name="Посада" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="email" name="E-Mail перевізникан" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="phone" name="Контактний номер перевізникан" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sNotes" name="Примітки" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sDoc1" name="Проект схеми маршруту; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sDoc2" name="Проект розкладу руху; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sDoc3" name="Анкета для продовження дії договору (дозволу); ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sDoc4" name="Заява на продовження строку дії дозволу; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sDoc5" name="Відомості про автобуси, які будуть використовуватись на маршруті; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sDoc6" name="Відомості про додаткові умови обслуговування маршруту; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sDoc7" name="Відомості щодо інвестування коштів на придбання більш нових та/або комфортабельних автобусів; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sDoc8" name="Копія діючого дозволу; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sDoc9" name="Копія витягу з дозволу; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sDoc10" name="Копія діючого розкладу; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sDoc11" name="Заява щодо анулювання дозволу на перевезення; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sDoc12" name="Копія дозволу та витягу з дозволу; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sDoc13" name="Схема міжнародного маршруту; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sDoc14" name="Розклад руху; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sDoc15" name="Графік роботи та відпочинку водіїв; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sDoc16" name="Тарифи на перевезення; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sDoc17" name="Список автобусів, що будуть використовуватись, у т.ч. резервних; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sDoc18" name="Підтвердження відповідності автобуса умовам перевезень; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sDoc19" name="Копії свідоцтв про проходження водіями спеціальних курсів міжнародних перевезень; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sDoc20" name="Копії ліцензії на право надання послуг з міжнародних перевезень пасажирів автомобільним транспортом; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sDoc21" name="Рекомендація громадської організації транспортного профілю; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sDoc22" name="Копія угоди про спільну діяльність з іноземним перевізником; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sDoc23" name="Довідка щодо наявності досвіду у перевізника; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sDoc24" name="Копія діючого дозволу; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sDoc25" name="Копії ліцензійних карток на кожний автобус за списком; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sDoc26" name="Копії угод про спільну діяльність з іноземним перевізником та автостанціями на наступний термін; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sDoc27" name="Лист-згода (за наявності інших українських перевізників); ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sDoc28" name="Довідка перевізника про наявність досвіду у перевізника щодо здійснення внутрішніх перевезень пасажирів протягом двох і більше років або міжнародних нерегулярних чи маятникових перевезень пасажирів - одного і більше років; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sDoc29" name="Копії ліцензії на право надання послуг з міжнародних перевезень пасажирів автомобільним транспортом та ліцензійних карток на кожний автобус за списком; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="marker_Internat_1" name="marker_Internat_1" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_Internat_1&quot;:{&quot;aField_ID&quot;:[&quot;sActual_SubjectOrgan_01&quot;,&quot;sName_TransportOrganizer&quot;,&quot;sName_PlacePublication&quot;,&quot;sNumber_Object&quot;,&quot;sPriority_Object&quot;,&quot;sIdentification_Number&quot;,&quot;sDate_licenses&quot;,&quot;sName_PlacePublication&quot;,&quot;sFlight_numbers&quot;,&quot;sDoc1&quot;,&quot;sDoc2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement&quot;,&quot;sClient1&quot;:&quot;asBusTransportation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum1'&amp;&amp;[sClient1] == 'sInterregional'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_Internat_2" name="marker_Internat_2" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_Internat_2&quot;:{&quot;aField_ID&quot;:[&quot;sActual_SubjectOrgan_01&quot;,&quot;sIdentification_Number&quot;,&quot;sDate_licenses&quot;,&quot;sFlight_numbers&quot;,&quot;sPost_SubjectOrgan_01&quot;,&quot;sDoc3&quot;,&quot;sDoc4&quot;,&quot;sDoc5&quot;,&quot;sDoc6&quot;,&quot;sDoc7&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement&quot;,&quot;sClient1&quot;:&quot;asBusTransportation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum2'&amp;&amp;[sClient1] == 'sInterregional'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_Internat_3" name="marker_Internat_3" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_Internat_3&quot;:{&quot;aField_ID&quot;:[&quot;sActual_SubjectOrgan_01&quot;,&quot;sIdentification_Number&quot;,&quot;sDate_licenses&quot;,&quot;sFlight_numbers&quot;,&quot;sPart_chang&quot;,&quot;sDoc1&quot;,&quot;sDoc2&quot;,&quot;sDoc8&quot;,&quot;sDoc9&quot;,&quot;sDoc10&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum3'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_Internat_4" name="marker_Internat_4" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_Internat_4&quot;:{&quot;aField_ID&quot;:[&quot;sIdentification_Number&quot;,&quot;sActual_SubjectOrgan_01&quot;,&quot;sDate_licenses&quot;,&quot;sFlight_numbers&quot;,&quot;sDoc11&quot;,&quot;sDoc12&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement&quot;,&quot;sClient1&quot;:&quot;asBusTransportation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum4'&amp;&amp;[sClient1] == 'sInterregional'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_sInterregional" name="marker_sInterregional" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_sInterregional&quot;:{&quot;aField_ID&quot;:[&quot;asStatement&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asBusTransportation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sInterregional'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_sInternational" name="marker_sInternational" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_sInternational&quot;:{&quot;aField_ID&quot;:[&quot;asStatement_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asBusTransportation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sInternational'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_ShowInternational_1" name="marker_ShowInternational_1" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_International_1&quot;:{&quot;aField_ID&quot;:[&quot;sDoc13&quot;,&quot;sDoc14&quot;,&quot;sDoc15&quot;,&quot;sDoc16&quot;,&quot;sDoc17&quot;,&quot;sDoc18&quot;,&quot;sDoc19&quot;,&quot;sDoc20&quot;,&quot;sDoc21&quot;,&quot;sDoc22&quot;,&quot;sDoc25&quot;,&quot;sDoc28&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement_1&quot;,&quot;sClient1&quot;:&quot;asBusTransportation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum1'&amp;&amp;[sClient1] == 'sInternational'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_ShowInternational_2" name="marker_ShowInternational_2" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_International_2&quot;:{&quot;aField_ID&quot;:[&quot;sDoc13&quot;,&quot;sDoc14&quot;,&quot;sDoc15&quot;,&quot;sDoc16&quot;,&quot;sDoc17&quot;,&quot;sDoc18&quot;,&quot;sDoc19&quot;,&quot;sDoc21&quot;,&quot;sDoc22&quot;,&quot;sDoc24&quot;,&quot;sDoc25&quot;,&quot;sDoc28&quot;,&quot;sDoc29&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_ShowInternational_3" name="marker_ShowInternational_3" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_International_3&quot;:{&quot;aField_ID&quot;:[&quot;sPart_chang&quot;,&quot;sDoc13&quot;,&quot;sDoc14&quot;,&quot;sDoc15&quot;,&quot;sDoc16&quot;,&quot;sDoc17&quot;,&quot;sDoc18&quot;,&quot;sDoc19&quot;,&quot;sDoc20&quot;,&quot;sDoc21&quot;,&quot;sDoc22&quot;,&quot;sDoc24&quot;,&quot;sDoc26&quot;,&quot;sDoc28&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement_1&quot;,&quot;sClient1&quot;:&quot;asBusTransportation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum3'&amp;&amp;[sClient1] == 'sInterregional'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_ShowInternational_4" name="marker_ShowInternational_4" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_International_4&quot;:{&quot;aField_ID&quot;:[&quot;sPart_chang&quot;,&quot;sDoc13&quot;,&quot;sDoc14&quot;,&quot;sDoc15&quot;,&quot;sDoc16&quot;,&quot;sDoc17&quot;,&quot;sDoc18&quot;,&quot;sDoc19&quot;,&quot;sDoc20&quot;,&quot;sDoc21&quot;,&quot;sDoc22&quot;,&quot;sDoc24&quot;,&quot;sDoc25&quot;,&quot;sDoc28&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement_1&quot;,&quot;sClient1&quot;:&quot;asBusTransportation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum4'&amp;&amp;[sClient1] == 'sInterregional'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_ShowInternational_5" name="marker_ShowInternational_5" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnConditio_International_5&quot;:{&quot;aField_ID&quot;:[&quot;sDoc24&quot;,&quot;sDoc27&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement_1&quot;,&quot;sClient1&quot;:&quot;asBusTransportation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum5'&amp;&amp;[sClient1] == 'sInterregional'&quot;}}}"></activiti:formProperty>
+      </extensionElements>
+    </startEvent>
+    <serviceTask id="servicetask1" name="Лист Подача" activiti:delegateExpression="#{MailTaskWithAttachmentsAndSMS}">
+      <extensionElements>
+        <activiti:field name="to">
+          <activiti:expression><![CDATA[${email}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="from">
+          <activiti:string><![CDATA[noreply@igov.gov.ua]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="subject">
+          <activiti:expression><![CDATA[Звернення зареєстровано в сиcтемі.]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="text">
+          <activiti:expression><![CDATA[[pattern/mail/new_design/_common_header.html]
+			[pattern/mail/new_design/_common_content_start.html]
+Ви подали заявку на послугу подання документів для дозволів на міжрегіональні автобусні маршрути до Міністерства інфраструктури України на рішення.<br>
+Додатково Вас буде повідомлено:<br>
+1) Про реєстраційний номер звернення.<br>
+2) За результатами розгляду звернення на Вашу електронну поштову адресу буде надіслано відповідне рішення. <br>
+			[pattern/mail/new_design/_common_content_end.html]
+			[pattern/mail/new_design/_common_signature_start.html]
+			[pattern/mail/new_design/_common_signature_end.html]
+			[pattern/mail/new_design/_common_footer.html]]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sPhone_SMS">
+          <activiti:expression><![CDATA[${phone}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sText_SMS">
+          <activiti:expression><![CDATA[Vashe zvernennya zareyestrovano. Detalno na igov.gov.ua/journal abo u Vashomu email]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="saAttachmentsForSend">
+          <activiti:expression><![CDATA[" "]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <userTask id="usertask1" name="Перевірка звернення">
+      <extensionElements>
+        <activiti:formProperty id="asBusTransportation" name="Вид перевезення" type="enum" writable="false">
+          <activiti:value id="sInterregional" name="міжобласні"></activiti:value>
+          <activiti:value id="sInternational" name="міжнародні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asStatement" name="Заява на:" type="enum" writable="false">
+          <activiti:value id="sEnum1" name="відкриття"></activiti:value>
+          <activiti:value id="sEnum2" name="продовження"></activiti:value>
+          <activiti:value id="sEnum3" name="зміни"></activiti:value>
+          <activiti:value id="sEnum4" name="анулювання"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asStatement_1" name="Заява на:" type="enum" writable="false">
+          <activiti:value id="sEnum1" name="відкриття"></activiti:value>
+          <activiti:value id="sEnum2" name="продовження"></activiti:value>
+          <activiti:value id="sEnum3" name="продовження + зміни"></activiti:value>
+          <activiti:value id="sEnum4" name="зміни"></activiti:value>
+          <activiti:value id="sEnum5" name="анулювання"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sDate_ServEnd" name="Кінцевий строк подачі документів" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sID_SubjectOrgan_OKPO_01" name="Введіть код ЄДРПОУ" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_SubjectOrgan_01" name="Назва організації-перевізника" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLocation_SubjectOrgan_01" name="Юридична адреса; індекс, місто, вулиця, будинок, офіс" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sActual_SubjectOrgan_01" name="Фактична адреса; індекс, місто, вулиця, будинок, офіс" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPost_SubjectOrgan_01" name="Поштова адреса; індекс, місто, вулиця, будинок, офіс" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sFinDetails_SubjectOrgan_01" name="Фінансові реквізити;р/р, МФО, ІПН" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Route" name="Назва маршруту" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_TransportOrganizer" name="Найменування організатора перевезень" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_PlacePublication" name="Інформація про місце публікування оголошення" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumber_Object" name="Номер об'єкта в оголошенні" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPriority_Object" name="Приоритетність за об'єктами;у разі потреби" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sIdentification_Number" name="Ідентифікаційний номер автомобільного перевізника" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDate_licenses" name="Номер та дата прийняття рішення щодо видачі ліцензії на здійснення перевезень" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sFlight_numbers" name="Номери рейсів" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPart_chang" name="Частина, в яку треба внести зміни" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCEOName_SubjectOrgan_01" name="ПІБ" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCEOposition_SubjectOrgan_01" name="Посада" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="email" name="E-Mail перевізникан" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="phone" name="Контактний номер перевізникан" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNotes" name="Примітки" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc1" name="Проект схеми маршруту; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc2" name="Проект розкладу руху; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc3" name="Анкета для продовження дії договору (дозволу); ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc4" name="Заява на продовження строку дії дозволу; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc5" name="Відомості про автобуси, які будуть використовуватись на маршруті; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc6" name="Відомості про додаткові умови обслуговування маршруту; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc7" name="Відомості щодо інвестування коштів на придбання більш нових та/або комфортабельних автобусів; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc8" name="Копія діючого дозволу; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc9" name="Копія витягу з дозволу; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc10" name="Копія діючого розкладу; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc11" name="Заява щодо анулювання дозволу на перевезення; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc12" name="Копія дозволу та витягу з дозволу; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc13" name="Схема міжнародного маршруту; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc14" name="Розклад руху; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc15" name="Графік роботи та відпочинку водіїв; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc16" name="Тарифи на перевезення; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc17" name="Список автобусів, що будуть використовуватись, у т.ч. резервних; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc18" name="Підтвердження відповідності автобуса умовам перевезень; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc19" name="Копії свідоцтв про проходження водіями спеціальних курсів міжнародних перевезень; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc20" name="Копії ліцензії на право надання послуг з міжнародних перевезень пасажирів автомобільним транспортом; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc21" name="Рекомендація громадської організації транспортного профілю; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc22" name="Копія угоди про спільну діяльність з іноземним перевізником; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc23" name="Довідка щодо наявності досвіду у перевізника; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc24" name="Копія діючого дозволу; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc25" name="Копії ліцензійних карток на кожний автобус за списком; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc26" name="Копії угод про спільну діяльність з іноземним перевізником та автостанціями на наступний термін; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc27" name="Лист-згода (за наявності інших українських перевізників); ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc28" name="Довідка перевізника про наявність досвіду у перевізника щодо здійснення внутрішніх перевезень пасажирів протягом двох і більше років або міжнародних нерегулярних чи маятникових перевезень пасажирів - одного і більше років; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc29" name="Копії ліцензії на право надання послуг з міжнародних перевезень пасажирів автомобільним транспортом та ліцензійних карток на кожний автобус за списком; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="marker_Internat_1" name="marker_Internat_1" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_Internat_1&quot;:{&quot;aField_ID&quot;:[&quot;sActual_SubjectOrgan_01&quot;,&quot;sName_TransportOrganizer&quot;,&quot;sName_PlacePublication&quot;,&quot;sNumber_Object&quot;,&quot;sPriority_Object&quot;,&quot;sIdentification_Number&quot;,&quot;sDate_licenses&quot;,&quot;sName_PlacePublication&quot;,&quot;sFlight_numbers&quot;,&quot;sDoc1&quot;,&quot;sDoc2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_Internat_2" name="marker_Internat_2" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_Internat_2&quot;:{&quot;aField_ID&quot;:[&quot;sActual_SubjectOrgan_01&quot;,&quot;sIdentification_Number&quot;,&quot;sDate_licenses&quot;,&quot;sFlight_numbers&quot;,&quot;sPost_SubjectOrgan_01&quot;,&quot;sDoc3&quot;,&quot;sDoc4&quot;,&quot;sDoc5&quot;,&quot;sDoc6&quot;,&quot;sDoc7&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_Internat_3" name="marker_Internat_3" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_Internat_3&quot;:{&quot;aField_ID&quot;:[&quot;sActual_SubjectOrgan_01&quot;,&quot;sIdentification_Number&quot;,&quot;sDate_licenses&quot;,&quot;sFlight_numbers&quot;,&quot;sPart_chang&quot;,&quot;sDoc1&quot;,&quot;sDoc2&quot;,&quot;sDoc8&quot;,&quot;sDoc9&quot;,&quot;sDoc10&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum3'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_Internat_4" name="marker_Internat_4" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_Internat_4&quot;:{&quot;aField_ID&quot;:[&quot;sIdentification_Number&quot;,&quot;sActual_SubjectOrgan_01&quot;,&quot;sDate_licenses&quot;,&quot;sFlight_numbers&quot;,&quot;sDoc11&quot;,&quot;sDoc12&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum4'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_sInterregional" name="marker_sInterregional" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_sInterregional&quot;:{&quot;aField_ID&quot;:[&quot;asStatement&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asBusTransportation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sInterregional'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_sInternational" name="marker_sInternational" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_sInternational&quot;:{&quot;aField_ID&quot;:[&quot;asStatement_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asBusTransportation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sInternational'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_ShowInternational_1" name="marker_ShowInternational_1" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_International_1&quot;:{&quot;aField_ID&quot;:[&quot;sDoc13&quot;,&quot;sDoc14&quot;,&quot;sDoc15&quot;,&quot;sDoc16&quot;,&quot;sDoc17&quot;,&quot;sDoc18&quot;,&quot;sDoc19&quot;,&quot;sDoc20&quot;,&quot;sDoc21&quot;,&quot;sDoc22&quot;,&quot;sDoc25&quot;,&quot;sDoc28&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_ShowInternational_2" name="marker_ShowInternational_2" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_International_2&quot;:{&quot;aField_ID&quot;:[&quot;sDoc13&quot;,&quot;sDoc14&quot;,&quot;sDoc15&quot;,&quot;sDoc16&quot;,&quot;sDoc17&quot;,&quot;sDoc18&quot;,&quot;sDoc19&quot;,&quot;sDoc21&quot;,&quot;sDoc22&quot;,&quot;sDoc24&quot;,&quot;sDoc25&quot;,&quot;sDoc28&quot;,&quot;sDoc29&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_ShowInternational_3" name="marker_ShowInternational_3" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_International_3&quot;:{&quot;aField_ID&quot;:[&quot;sPart_chang&quot;,&quot;sDoc13&quot;,&quot;sDoc14&quot;,&quot;sDoc15&quot;,&quot;sDoc16&quot;,&quot;sDoc17&quot;,&quot;sDoc18&quot;,&quot;sDoc19&quot;,&quot;sDoc20&quot;,&quot;sDoc21&quot;,&quot;sDoc22&quot;,&quot;sDoc24&quot;,&quot;sDoc26&quot;,&quot;sDoc28&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum3'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_ShowInternational_4" name="marker_ShowInternational_4" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_International_4&quot;:{&quot;aField_ID&quot;:[&quot;sPart_chang&quot;,&quot;sDoc13&quot;,&quot;sDoc14&quot;,&quot;sDoc15&quot;,&quot;sDoc16&quot;,&quot;sDoc17&quot;,&quot;sDoc18&quot;,&quot;sDoc19&quot;,&quot;sDoc20&quot;,&quot;sDoc21&quot;,&quot;sDoc22&quot;,&quot;sDoc24&quot;,&quot;sDoc25&quot;,&quot;sDoc28&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum4'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_ShowInternational_5" name="marker_ShowInternational_5" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnConditio_International_5&quot;:{&quot;aField_ID&quot;:[&quot;sDoc24&quot;,&quot;sDoc27&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum5'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="sEmailTest; ;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ [sID_Order_URL] системи iDOC."></activiti:formProperty>
+        <activiti:formProperty id="sData_Consideration " name="Дата розгляду заяви" type="date" readable="false"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow3" sourceRef="usertask5" targetRef="exclusivegateway2">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow6" sourceRef="servicetask2" targetRef="endevent1"></sequenceFlow>
+    <serviceTask id="servicetask2" name="Відмова по суті" activiti:delegateExpression="#{MailTaskWithAttachmentsAndSMS}">
+      <extensionElements>
+        <activiti:field name="to">
+          <activiti:expression><![CDATA[${email}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="from">
+          <activiti:string><![CDATA[noreply@igov.gov.ua]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="subject">
+          <activiti:expression><![CDATA[Відмова в зверненні.]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="text">
+          <activiti:expression><![CDATA[[pattern/mail/new_design/_common_header.html]
+			[pattern/mail/new_design/_common_content_start.html]
+				Ваше звернення до Міністерства інфраструктури України розглянута. <br><br>
+				За результатами розгляду прийнято рішення про відмову в її задоволенні.<br><br>			
+			[pattern/mail/new_design/_common_content_end.html]
+			[pattern/mail/new_design/_common_signature_start.html]
+			[pattern/mail/new_design/_common_signature_end.html]
+			[pattern/mail/new_design/_common_footer.html]]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sPhone_SMS">
+          <activiti:expression><![CDATA[${phone}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sText_SMS">
+          <activiti:expression><![CDATA[Detalno na igov.gov.ua/journal abo u Vashomu email]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="saAttachmentsForSend">
+          <activiti:expression><![CDATA[" "]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="servicetask5" name="Лист Задоволено" activiti:delegateExpression="#{MailTaskWithAttachmentsAndSMS}">
+      <extensionElements>
+        <activiti:field name="to">
+          <activiti:expression><![CDATA[${email}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="from">
+          <activiti:string><![CDATA[noreply@igov.gov.ua]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="subject">
+          <activiti:expression><![CDATA[Звернення задоволено.]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="text">
+          <activiti:expression><![CDATA[[pattern/mail/new_design/_common_header.html]
+			[pattern/mail/new_design/_common_content_start.html]
+Ваше звернення до Міністерства інфраструктури України розглянута. <br><br>
+				За результатами розгляду прийнято рішення про задоволення звернення.<br><br>	
+				
+			[pattern/mail/new_design/_common_content_end.html]
+			[pattern/mail/new_design/_common_signature_start.html]
+			[pattern/mail/new_design/_common_signature_end.html]
+			[pattern/mail/new_design/_common_footer.html]]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sPhone_SMS">
+          <activiti:expression><![CDATA[${phone}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sText_SMS">
+          <activiti:expression><![CDATA[Vashe zvernennya zareyestrovano. Detalno na igov.gov.ua/journal abo u Vashomu email]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="saAttachmentsForSend">
+          <activiti:expression><![CDATA[" "]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow14" sourceRef="servicetask5" targetRef="endevent1"></sequenceFlow>
+    <userTask id="usertask2" name="Затвердження звернення">
+      <extensionElements>
+        <activiti:formProperty id="asBusTransportation" name="Вид перевезення" type="enum" writable="false">
+          <activiti:value id="sInterregional" name="міжобласні"></activiti:value>
+          <activiti:value id="sInternational" name="міжнародні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asStatement" name="Заява на:" type="enum" writable="false">
+          <activiti:value id="sEnum1" name="відкриття"></activiti:value>
+          <activiti:value id="sEnum2" name="продовження"></activiti:value>
+          <activiti:value id="sEnum3" name="зміни"></activiti:value>
+          <activiti:value id="sEnum4" name="анулювання"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asStatement_1" name="Заява на:" type="enum" writable="false">
+          <activiti:value id="sEnum1" name="відкриття"></activiti:value>
+          <activiti:value id="sEnum2" name="продовження"></activiti:value>
+          <activiti:value id="sEnum3" name="продовження + зміни"></activiti:value>
+          <activiti:value id="sEnum4" name="зміни"></activiti:value>
+          <activiti:value id="sEnum5" name="анулювання"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sDate_ServEnd" name="Кінцевий строк подачі документів" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sID_SubjectOrgan_OKPO_01" name="Введіть код ЄДРПОУ" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_SubjectOrgan_01" name="Назва організації-перевізника" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLocation_SubjectOrgan_01" name="Юридична адреса; індекс, місто, вулиця, будинок, офіс" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sActual_SubjectOrgan_01" name="Фактична адреса; індекс, місто, вулиця, будинок, офіс" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPost_SubjectOrgan_01" name="Поштова адреса; індекс, місто, вулиця, будинок, офіс" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sFinDetails_SubjectOrgan_01" name="Фінансові реквізити;р/р, МФО, ІПН" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Route" name="Назва маршруту" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_TransportOrganizer" name="Найменування організатора перевезень" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_PlacePublication" name="Інформація про місце публікування оголошення" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumber_Object" name="Номер об'єкта в оголошенні" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPriority_Object" name="Приоритетність за об'єктами;у разі потреби" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sIdentification_Number" name="Ідентифікаційний номер автомобільного перевізника" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDate_licenses" name="Номер та дата прийняття рішення щодо видачі ліцензії на здійснення перевезень" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sFlight_numbers" name="Номери рейсів" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPart_chang" name="Частина, в яку треба внести зміни" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCEOName_SubjectOrgan_01" name="ПІБ" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCEOposition_SubjectOrgan_01" name="Посада" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="email" name="E-Mail перевізникан" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="phone" name="Контактний номер перевізникан" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNotes" name="Примітки" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc1" name="Проект схеми маршруту; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc2" name="Проект розкладу руху; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc3" name="Анкета для продовження дії договору (дозволу); ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc4" name="Заява на продовження строку дії дозволу; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc5" name="Відомості про автобуси, які будуть використовуватись на маршруті; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc6" name="Відомості про додаткові умови обслуговування маршруту; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc7" name="Відомості щодо інвестування коштів на придбання більш нових та/або комфортабельних автобусів; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc8" name="Копія діючого дозволу; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc9" name="Копія витягу з дозволу; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc10" name="Копія діючого розкладу; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc11" name="Заява щодо анулювання дозволу на перевезення; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc12" name="Копія дозволу та витягу з дозволу; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc13" name="Схема міжнародного маршруту; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc14" name="Розклад руху; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc15" name="Графік роботи та відпочинку водіїв; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc16" name="Тарифи на перевезення; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc17" name="Список автобусів, що будуть використовуватись, у т.ч. резервних; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc18" name="Підтвердження відповідності автобуса умовам перевезень; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc19" name="Копії свідоцтв про проходження водіями спеціальних курсів міжнародних перевезень; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc20" name="Копії ліцензії на право надання послуг з міжнародних перевезень пасажирів автомобільним транспортом; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc21" name="Рекомендація громадської організації транспортного профілю; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc22" name="Копія угоди про спільну діяльність з іноземним перевізником; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc23" name="Довідка щодо наявності досвіду у перевізника; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc24" name="Копія діючого дозволу; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc25" name="Копії ліцензійних карток на кожний автобус за списком; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc26" name="Копії угод про спільну діяльність з іноземним перевізником та автостанціями на наступний термін; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc27" name="Лист-згода (за наявності інших українських перевізників); ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc28" name="Довідка перевізника про наявність досвіду у перевізника щодо здійснення внутрішніх перевезень пасажирів протягом двох і більше років або міжнародних нерегулярних чи маятникових перевезень пасажирів - одного і більше років; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc29" name="Копії ліцензії на право надання послуг з міжнародних перевезень пасажирів автомобільним транспортом та ліцензійних карток на кожний автобус за списком; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="marker_Internat_1" name="marker_Internat_1" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_Internat_1&quot;:{&quot;aField_ID&quot;:[&quot;sActual_SubjectOrgan_01&quot;,&quot;sName_TransportOrganizer&quot;,&quot;sName_PlacePublication&quot;,&quot;sNumber_Object&quot;,&quot;sPriority_Object&quot;,&quot;sIdentification_Number&quot;,&quot;sDate_licenses&quot;,&quot;sName_PlacePublication&quot;,&quot;sFlight_numbers&quot;,&quot;sDoc1&quot;,&quot;sDoc2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_Internat_2" name="marker_Internat_2" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_Internat_2&quot;:{&quot;aField_ID&quot;:[&quot;sActual_SubjectOrgan_01&quot;,&quot;sIdentification_Number&quot;,&quot;sDate_licenses&quot;,&quot;sFlight_numbers&quot;,&quot;sPost_SubjectOrgan_01&quot;,&quot;sDoc3&quot;,&quot;sDoc4&quot;,&quot;sDoc5&quot;,&quot;sDoc6&quot;,&quot;sDoc7&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_Internat_3" name="marker_Internat_3" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_Internat_3&quot;:{&quot;aField_ID&quot;:[&quot;sActual_SubjectOrgan_01&quot;,&quot;sIdentification_Number&quot;,&quot;sDate_licenses&quot;,&quot;sFlight_numbers&quot;,&quot;sPart_chang&quot;,&quot;sDoc1&quot;,&quot;sDoc2&quot;,&quot;sDoc8&quot;,&quot;sDoc9&quot;,&quot;sDoc10&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum3'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_Internat_4" name="marker_Internat_4" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_Internat_4&quot;:{&quot;aField_ID&quot;:[&quot;sIdentification_Number&quot;,&quot;sActual_SubjectOrgan_01&quot;,&quot;sDate_licenses&quot;,&quot;sFlight_numbers&quot;,&quot;sDoc11&quot;,&quot;sDoc12&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum4'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markerRequired_Internat_1" name="markerRequired_Internat_1" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_Internat_1&quot;:{&quot;aField_ID&quot;:[&quot;sActual_SubjectOrgan_01&quot;,&quot;sName_TransportOrganizer&quot;,&quot;sName_PlacePublication&quot;,&quot;sNumber_Object&quot;,&quot;sPriority_Object&quot;,&quot;sIdentification_Number&quot;,&quot;sDate_licenses&quot;,&quot;sName_PlacePublication&quot;,&quot;sFlight_numbers&quot;,&quot;sDoc1&quot;,&quot;sDoc2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markerRequired_Internat_2" name="markerRequired_Internat_2" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_Internat_2&quot;:{&quot;aField_ID&quot;:[&quot;sActual_SubjectOrgan_01&quot;,&quot;sIdentification_Number&quot;,&quot;sDate_licenses&quot;,&quot;sFlight_numbers&quot;,&quot;sPost_SubjectOrgan_01&quot;,&quot;sDoc3&quot;,&quot;sDoc4&quot;,&quot;sDoc5&quot;,&quot;sDoc6&quot;,&quot;sDoc7&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markerRequired_Internat_3" name="markerRequired_Internat_3" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_Internat_3&quot;:{&quot;aField_ID&quot;:[&quot;sActual_SubjectOrgan_01&quot;,&quot;sIdentification_Number&quot;,&quot;sDate_licenses&quot;,&quot;sFlight_numbers&quot;,&quot;sPart_chang&quot;,&quot;sDoc1&quot;,&quot;sDoc2&quot;,&quot;sDoc8&quot;,&quot;sDoc9&quot;,&quot;sDoc10&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum3'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markerRequired_Internat_4" name="markerRequired_Internat_4" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_Internat_4&quot;:{&quot;aField_ID&quot;:[&quot;sIdentification_Number&quot;,&quot;sActual_SubjectOrgan_01&quot;,&quot;sDate_licenses&quot;,&quot;sFlight_numbers&quot;,&quot;sDoc11&quot;,&quot;sDoc12&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum4'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_sInterregional" name="marker_sInterregional" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_sInterregional&quot;:{&quot;aField_ID&quot;:[&quot;asStatement&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asBusTransportation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sInterregional'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_sInternational" name="marker_sInternational" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_sInternational&quot;:{&quot;aField_ID&quot;:[&quot;asStatement_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asBusTransportation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sInternational'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_ShowInternational_1" name="marker_ShowInternational_1" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_International_1&quot;:{&quot;aField_ID&quot;:[&quot;sDoc13&quot;,&quot;sDoc14&quot;,&quot;sDoc15&quot;,&quot;sDoc16&quot;,&quot;sDoc17&quot;,&quot;sDoc18&quot;,&quot;sDoc19&quot;,&quot;sDoc20&quot;,&quot;sDoc21&quot;,&quot;sDoc22&quot;,&quot;sDoc25&quot;,&quot;sDoc28&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_ShowInternational_2" name="marker_ShowInternational_2" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_International_2&quot;:{&quot;aField_ID&quot;:[&quot;sDoc13&quot;,&quot;sDoc14&quot;,&quot;sDoc15&quot;,&quot;sDoc16&quot;,&quot;sDoc17&quot;,&quot;sDoc18&quot;,&quot;sDoc19&quot;,&quot;sDoc21&quot;,&quot;sDoc22&quot;,&quot;sDoc24&quot;,&quot;sDoc25&quot;,&quot;sDoc28&quot;,&quot;sDoc29&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_ShowInternational_3" name="marker_ShowInternational_3" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_International_3&quot;:{&quot;aField_ID&quot;:[&quot;sPart_chang&quot;,&quot;sDoc13&quot;,&quot;sDoc14&quot;,&quot;sDoc15&quot;,&quot;sDoc16&quot;,&quot;sDoc17&quot;,&quot;sDoc18&quot;,&quot;sDoc19&quot;,&quot;sDoc20&quot;,&quot;sDoc21&quot;,&quot;sDoc22&quot;,&quot;sDoc24&quot;,&quot;sDoc26&quot;,&quot;sDoc28&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum3'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_ShowInternational_4" name="marker_ShowInternational_4" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_International_4&quot;:{&quot;aField_ID&quot;:[&quot;sPart_chang&quot;,&quot;sDoc13&quot;,&quot;sDoc14&quot;,&quot;sDoc15&quot;,&quot;sDoc16&quot;,&quot;sDoc17&quot;,&quot;sDoc18&quot;,&quot;sDoc19&quot;,&quot;sDoc20&quot;,&quot;sDoc21&quot;,&quot;sDoc22&quot;,&quot;sDoc24&quot;,&quot;sDoc25&quot;,&quot;sDoc28&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum4'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_ShowInternational_5" name="marker_ShowInternational_5" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnConditio_International_5&quot;:{&quot;aField_ID&quot;:[&quot;sDoc24&quot;,&quot;sDoc27&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum5'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_RequiredInterregional" name="marker_RequiredInterregional" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_Interregional&quot;:{&quot;aField_ID&quot;:[&quot;asStatement&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asBusTransportation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sInterregional'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_RequiredInternational" name="marker_RequiredInternational" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_International&quot;:{&quot;aField_ID&quot;:[&quot;asStatement_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asBusTransportation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sInternational'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_RequiredInternational_1" name="marker_RequiredInternational_1" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_International_1&quot;:{&quot;aField_ID&quot;:[&quot;sDoc13&quot;,&quot;sDoc14&quot;,&quot;sDoc15&quot;,&quot;sDoc16&quot;,&quot;sDoc17&quot;,&quot;sDoc18&quot;,&quot;sDoc19&quot;,&quot;sDoc20&quot;,&quot;sDoc21&quot;,&quot;sDoc22&quot;,&quot;sDoc25&quot;,&quot;sDoc28&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_RequiredInternational_2" name="marker_RequiredInternational_2" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_International_2&quot;:{&quot;aField_ID&quot;:[&quot;sDoc13&quot;,&quot;sDoc14&quot;,&quot;sDoc15&quot;,&quot;sDoc16&quot;,&quot;sDoc17&quot;,&quot;sDoc18&quot;,&quot;sDoc19&quot;,&quot;sDoc21&quot;,&quot;sDoc22&quot;,&quot;sDoc24&quot;,&quot;sDoc25&quot;,&quot;sDoc28&quot;,&quot;sDoc29&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_RequiredInternational_3" name="marker_RequiredInternational_3" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_International_3&quot;:{&quot;aField_ID&quot;:[&quot;sPart_chang&quot;,&quot;sDoc13&quot;,&quot;sDoc14&quot;,&quot;sDoc15&quot;,&quot;sDoc16&quot;,&quot;sDoc17&quot;,&quot;sDoc18&quot;,&quot;sDoc19&quot;,&quot;sDoc20&quot;,&quot;sDoc21&quot;,&quot;sDoc22&quot;,&quot;sDoc24&quot;,&quot;sDoc26&quot;,&quot;sDoc28&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum3'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_RequiredInternational_4" name="marker_RequiredInternational_4" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_International_4&quot;:{&quot;aField_ID&quot;:[&quot;sPart_chang&quot;,&quot;sDoc13&quot;,&quot;sDoc14&quot;,&quot;sDoc15&quot;,&quot;sDoc16&quot;,&quot;sDoc17&quot;,&quot;sDoc18&quot;,&quot;sDoc19&quot;,&quot;sDoc20&quot;,&quot;sDoc21&quot;,&quot;sDoc22&quot;,&quot;sDoc24&quot;,&quot;sDoc25&quot;,&quot;sDoc28&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum4'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_RequiredInternational_5" name="marker_RequiredInternational_5" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_International_5&quot;:{&quot;aField_ID&quot;:[&quot;sDoc24&quot;,&quot;sDoc27&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum5'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="sEmailTest; ;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ [sID_Order_URL] системи iDOC."></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <serviceTask id="servicetask9" name="права" activiti:delegateExpression="${setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('Rezolution', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[asBusTransportation]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow18" sourceRef="servicetask9" targetRef="servicetask11"></sequenceFlow>
+    <serviceTask id="servicetask10" name="права" activiti:delegateExpression="${setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_execute]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('Accept_InterregionalTransportation', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_execute]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[asBusTransportation]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow19" sourceRef="servicetask9" targetRef="exclusivegateway12">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[execute]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.setDocumentApproved(execution, false)}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="usertask4" name="Виконання звернення">
+      <extensionElements>
+        <activiti:formProperty id="asBusTransportation" name="Вид перевезення" type="enum" writable="false">
+          <activiti:value id="sInterregional" name="міжобласні"></activiti:value>
+          <activiti:value id="sInternational" name="міжнародні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asStatement" name="Заява на:" type="enum" writable="false">
+          <activiti:value id="sEnum1" name="відкриття"></activiti:value>
+          <activiti:value id="sEnum2" name="продовження"></activiti:value>
+          <activiti:value id="sEnum3" name="зміни"></activiti:value>
+          <activiti:value id="sEnum4" name="анулювання"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asStatement_1" name="Заява на:" type="enum" writable="false">
+          <activiti:value id="sEnum1" name="відкриття"></activiti:value>
+          <activiti:value id="sEnum2" name="продовження"></activiti:value>
+          <activiti:value id="sEnum3" name="продовження + зміни"></activiti:value>
+          <activiti:value id="sEnum4" name="зміни"></activiti:value>
+          <activiti:value id="sEnum5" name="анулювання"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sDate_ServEnd" name="Кінцевий строк подачі документів" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sID_SubjectOrgan_OKPO_01" name="Введіть код ЄДРПОУ" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_SubjectOrgan_01" name="Назва організації-перевізника" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLocation_SubjectOrgan_01" name="Юридична адреса; індекс, місто, вулиця, будинок, офіс" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sActual_SubjectOrgan_01" name="Фактична адреса; індекс, місто, вулиця, будинок, офіс" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPost_SubjectOrgan_01" name="Поштова адреса; індекс, місто, вулиця, будинок, офіс" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sFinDetails_SubjectOrgan_01" name="Фінансові реквізити;р/р, МФО, ІПН" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Route" name="Назва маршруту" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_TransportOrganizer" name="Найменування організатора перевезень" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_PlacePublication" name="Інформація про місце публікування оголошення" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumber_Object" name="Номер об'єкта в оголошенні" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPriority_Object" name="Приоритетність за об'єктами;у разі потреби" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sIdentification_Number" name="Ідентифікаційний номер автомобільного перевізника" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDate_licenses" name="Номер та дата прийняття рішення щодо видачі ліцензії на здійснення перевезень" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sFlight_numbers" name="Номери рейсів" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPart_chang" name="Частина, в яку треба внести зміни" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCEOName_SubjectOrgan_01" name="ПІБ" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCEOposition_SubjectOrgan_01" name="Посада" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="email" name="E-Mail перевізникан" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="phone" name="Контактний номер перевізникан" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNotes" name="Примітки" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc1" name="Проект схеми маршруту; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc2" name="Проект розкладу руху; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc3" name="Анкета для продовження дії договору (дозволу); ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc4" name="Заява на продовження строку дії дозволу; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc5" name="Відомості про автобуси, які будуть використовуватись на маршруті; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc6" name="Відомості про додаткові умови обслуговування маршруту; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc7" name="Відомості щодо інвестування коштів на придбання більш нових та/або комфортабельних автобусів; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc8" name="Копія діючого дозволу; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc9" name="Копія витягу з дозволу; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc10" name="Копія діючого розкладу; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc11" name="Заява щодо анулювання дозволу на перевезення; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc12" name="Копія дозволу та витягу з дозволу; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc13" name="Схема міжнародного маршруту; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc14" name="Розклад руху; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc15" name="Графік роботи та відпочинку водіїв; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc16" name="Тарифи на перевезення; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc17" name="Список автобусів, що будуть використовуватись, у т.ч. резервних; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc18" name="Підтвердження відповідності автобуса умовам перевезень; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc19" name="Копії свідоцтв про проходження водіями спеціальних курсів міжнародних перевезень; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc20" name="Копії ліцензії на право надання послуг з міжнародних перевезень пасажирів автомобільним транспортом; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc21" name="Рекомендація громадської організації транспортного профілю; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc22" name="Копія угоди про спільну діяльність з іноземним перевізником; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc23" name="Довідка щодо наявності досвіду у перевізника; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc24" name="Копія діючого дозволу; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc25" name="Копії ліцензійних карток на кожний автобус за списком; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc26" name="Копії угод про спільну діяльність з іноземним перевізником та автостанціями на наступний термін; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc27" name="Лист-згода (за наявності інших українських перевізників); ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc28" name="Довідка перевізника про наявність досвіду у перевізника щодо здійснення внутрішніх перевезень пасажирів протягом двох і більше років або міжнародних нерегулярних чи маятникових перевезень пасажирів - одного і більше років; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc29" name="Копії ліцензії на право надання послуг з міжнародних перевезень пасажирів автомобільним транспортом та ліцензійних карток на кожний автобус за списком; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="marker_Internat_1" name="marker_Internat_1" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_Internat_1&quot;:{&quot;aField_ID&quot;:[&quot;sActual_SubjectOrgan_01&quot;,&quot;sName_TransportOrganizer&quot;,&quot;sName_PlacePublication&quot;,&quot;sNumber_Object&quot;,&quot;sPriority_Object&quot;,&quot;sIdentification_Number&quot;,&quot;sDate_licenses&quot;,&quot;sName_PlacePublication&quot;,&quot;sFlight_numbers&quot;,&quot;sDoc1&quot;,&quot;sDoc2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_Internat_2" name="marker_Internat_2" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_Internat_2&quot;:{&quot;aField_ID&quot;:[&quot;sActual_SubjectOrgan_01&quot;,&quot;sIdentification_Number&quot;,&quot;sDate_licenses&quot;,&quot;sFlight_numbers&quot;,&quot;sPost_SubjectOrgan_01&quot;,&quot;sDoc3&quot;,&quot;sDoc4&quot;,&quot;sDoc5&quot;,&quot;sDoc6&quot;,&quot;sDoc7&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_Internat_3" name="marker_Internat_3" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_Internat_3&quot;:{&quot;aField_ID&quot;:[&quot;sActual_SubjectOrgan_01&quot;,&quot;sIdentification_Number&quot;,&quot;sDate_licenses&quot;,&quot;sFlight_numbers&quot;,&quot;sPart_chang&quot;,&quot;sDoc1&quot;,&quot;sDoc2&quot;,&quot;sDoc8&quot;,&quot;sDoc9&quot;,&quot;sDoc10&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum3'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_Internat_4" name="marker_Internat_4" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_Internat_4&quot;:{&quot;aField_ID&quot;:[&quot;sIdentification_Number&quot;,&quot;sActual_SubjectOrgan_01&quot;,&quot;sDate_licenses&quot;,&quot;sFlight_numbers&quot;,&quot;sDoc11&quot;,&quot;sDoc12&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum4'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markerRequired_Internat_1" name="markerRequired_Internat_1" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_Internat_1&quot;:{&quot;aField_ID&quot;:[&quot;sActual_SubjectOrgan_01&quot;,&quot;sName_TransportOrganizer&quot;,&quot;sName_PlacePublication&quot;,&quot;sNumber_Object&quot;,&quot;sPriority_Object&quot;,&quot;sIdentification_Number&quot;,&quot;sDate_licenses&quot;,&quot;sName_PlacePublication&quot;,&quot;sFlight_numbers&quot;,&quot;sDoc1&quot;,&quot;sDoc2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markerRequired_Internat_2" name="markerRequired_Internat_2" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_Internat_2&quot;:{&quot;aField_ID&quot;:[&quot;sActual_SubjectOrgan_01&quot;,&quot;sIdentification_Number&quot;,&quot;sDate_licenses&quot;,&quot;sFlight_numbers&quot;,&quot;sPost_SubjectOrgan_01&quot;,&quot;sDoc3&quot;,&quot;sDoc4&quot;,&quot;sDoc5&quot;,&quot;sDoc6&quot;,&quot;sDoc7&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markerRequired_Internat_3" name="markerRequired_Internat_3" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_Internat_3&quot;:{&quot;aField_ID&quot;:[&quot;sActual_SubjectOrgan_01&quot;,&quot;sIdentification_Number&quot;,&quot;sDate_licenses&quot;,&quot;sFlight_numbers&quot;,&quot;sPart_chang&quot;,&quot;sDoc1&quot;,&quot;sDoc2&quot;,&quot;sDoc8&quot;,&quot;sDoc9&quot;,&quot;sDoc10&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum3'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markerRequired_Internat_4" name="markerRequired_Internat_4" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_Internat_4&quot;:{&quot;aField_ID&quot;:[&quot;sIdentification_Number&quot;,&quot;sActual_SubjectOrgan_01&quot;,&quot;sDate_licenses&quot;,&quot;sFlight_numbers&quot;,&quot;sDoc11&quot;,&quot;sDoc12&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum4'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_sInterregional" name="marker_sInterregional" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_sInterregional&quot;:{&quot;aField_ID&quot;:[&quot;asStatement&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asBusTransportation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sInterregional'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_sInternational" name="marker_sInternational" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_sInternational&quot;:{&quot;aField_ID&quot;:[&quot;asStatement_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asBusTransportation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sInternational'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_ShowInternational_1" name="marker_ShowInternational_1" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_International_1&quot;:{&quot;aField_ID&quot;:[&quot;sDoc13&quot;,&quot;sDoc14&quot;,&quot;sDoc15&quot;,&quot;sDoc16&quot;,&quot;sDoc17&quot;,&quot;sDoc18&quot;,&quot;sDoc19&quot;,&quot;sDoc20&quot;,&quot;sDoc21&quot;,&quot;sDoc22&quot;,&quot;sDoc25&quot;,&quot;sDoc28&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_ShowInternational_2" name="marker_ShowInternational_2" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_International_2&quot;:{&quot;aField_ID&quot;:[&quot;sDoc13&quot;,&quot;sDoc14&quot;,&quot;sDoc15&quot;,&quot;sDoc16&quot;,&quot;sDoc17&quot;,&quot;sDoc18&quot;,&quot;sDoc19&quot;,&quot;sDoc21&quot;,&quot;sDoc22&quot;,&quot;sDoc24&quot;,&quot;sDoc25&quot;,&quot;sDoc28&quot;,&quot;sDoc29&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_ShowInternational_3" name="marker_ShowInternational_3" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_International_3&quot;:{&quot;aField_ID&quot;:[&quot;sPart_chang&quot;,&quot;sDoc13&quot;,&quot;sDoc14&quot;,&quot;sDoc15&quot;,&quot;sDoc16&quot;,&quot;sDoc17&quot;,&quot;sDoc18&quot;,&quot;sDoc19&quot;,&quot;sDoc20&quot;,&quot;sDoc21&quot;,&quot;sDoc22&quot;,&quot;sDoc24&quot;,&quot;sDoc26&quot;,&quot;sDoc28&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum3'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_ShowInternational_4" name="marker_ShowInternational_4" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_International_4&quot;:{&quot;aField_ID&quot;:[&quot;sPart_chang&quot;,&quot;sDoc13&quot;,&quot;sDoc14&quot;,&quot;sDoc15&quot;,&quot;sDoc16&quot;,&quot;sDoc17&quot;,&quot;sDoc18&quot;,&quot;sDoc19&quot;,&quot;sDoc20&quot;,&quot;sDoc21&quot;,&quot;sDoc22&quot;,&quot;sDoc24&quot;,&quot;sDoc25&quot;,&quot;sDoc28&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum4'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_ShowInternational_5" name="marker_ShowInternational_5" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnConditio_International_5&quot;:{&quot;aField_ID&quot;:[&quot;sDoc24&quot;,&quot;sDoc27&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum5'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_RequiredInterregional" name="marker_RequiredInterregional" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_Interregional&quot;:{&quot;aField_ID&quot;:[&quot;asStatement&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asBusTransportation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sInterregional'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_RequiredInternational" name="marker_RequiredInternational" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_International&quot;:{&quot;aField_ID&quot;:[&quot;asStatement_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asBusTransportation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sInternational'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_RequiredInternational_1" name="marker_RequiredInternational_1" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_International_1&quot;:{&quot;aField_ID&quot;:[&quot;sDoc13&quot;,&quot;sDoc14&quot;,&quot;sDoc15&quot;,&quot;sDoc16&quot;,&quot;sDoc17&quot;,&quot;sDoc18&quot;,&quot;sDoc19&quot;,&quot;sDoc20&quot;,&quot;sDoc21&quot;,&quot;sDoc22&quot;,&quot;sDoc25&quot;,&quot;sDoc28&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_RequiredInternational_2" name="marker_RequiredInternational_2" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_International_2&quot;:{&quot;aField_ID&quot;:[&quot;sDoc13&quot;,&quot;sDoc14&quot;,&quot;sDoc15&quot;,&quot;sDoc16&quot;,&quot;sDoc17&quot;,&quot;sDoc18&quot;,&quot;sDoc19&quot;,&quot;sDoc21&quot;,&quot;sDoc22&quot;,&quot;sDoc24&quot;,&quot;sDoc25&quot;,&quot;sDoc28&quot;,&quot;sDoc29&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_RequiredInternational_3" name="marker_RequiredInternational_3" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_International_3&quot;:{&quot;aField_ID&quot;:[&quot;sPart_chang&quot;,&quot;sDoc13&quot;,&quot;sDoc14&quot;,&quot;sDoc15&quot;,&quot;sDoc16&quot;,&quot;sDoc17&quot;,&quot;sDoc18&quot;,&quot;sDoc19&quot;,&quot;sDoc20&quot;,&quot;sDoc21&quot;,&quot;sDoc22&quot;,&quot;sDoc24&quot;,&quot;sDoc26&quot;,&quot;sDoc28&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum3'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_RequiredInternational_4" name="marker_RequiredInternational_4" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_International_4&quot;:{&quot;aField_ID&quot;:[&quot;sPart_chang&quot;,&quot;sDoc13&quot;,&quot;sDoc14&quot;,&quot;sDoc15&quot;,&quot;sDoc16&quot;,&quot;sDoc17&quot;,&quot;sDoc18&quot;,&quot;sDoc19&quot;,&quot;sDoc20&quot;,&quot;sDoc21&quot;,&quot;sDoc22&quot;,&quot;sDoc24&quot;,&quot;sDoc25&quot;,&quot;sDoc28&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum4'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_RequiredInternational_5" name="marker_RequiredInternational_5" type="markers" default="{&quot;motion&quot;:{&quot;RequiredFieldsOnCondition_International_5&quot;:{&quot;aField_ID&quot;:[&quot;sDoc24&quot;,&quot;sDoc27&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum5'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="asRishenia" name="Рішення держаного службовця" type="enum" required="true">
+          <activiti:value id="sEnamOK" name="Звернення задоволено після розгляду"></activiti:value>
+          <activiti:value id="sEnamVidmova" name="Відмова після розгляду"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sNumber_Registration" name="Реєстраційний номер приказа" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Додаткові файли" type="table"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow20" sourceRef="servicetask10" targetRef="servicetask12"></sequenceFlow>
+    <serviceTask id="servicetask11" name="Send Email" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[IDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow22" sourceRef="servicetask11" targetRef="usertask2"></sequenceFlow>
+    <serviceTask id="servicetask12" name="Send Email" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_execute]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[IDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow23" sourceRef="servicetask12" targetRef="usertask4"></sequenceFlow>
+    <serviceTask id="servicetask13" name="права" activiti:delegateExpression="${setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('Accept_InterregionalTransportation', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[asBusTransportation]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow24" sourceRef="servicetask13" targetRef="usertask1"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway2" name="Exclusive Gateway" default="flow25"></exclusiveGateway>
+    <sequenceFlow id="flow25" sourceRef="exclusivegateway2" targetRef="servicetask14"></sequenceFlow>
+    <sequenceFlow id="flow26" sourceRef="exclusivegateway2" targetRef="servicetask13">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${asBusTransportation=='sInterregional'}]]></conditionExpression>
+    </sequenceFlow>
+    <serviceTask id="servicetask14" name="права" activiti:delegateExpression="${setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('Accept_InternationalTransportation', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[asBusTransportation]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow27" sourceRef="servicetask14" targetRef="usertask1"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway3" name="Exclusive Gateway" default="flow31"></exclusiveGateway>
+    <sequenceFlow id="flow30" sourceRef="usertask2" targetRef="exclusivegateway3"></sequenceFlow>
+    <sequenceFlow id="flow31" sourceRef="exclusivegateway3" targetRef="usertask2"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway4" name="Exclusive Gateway" default="flow33"></exclusiveGateway>
+    <sequenceFlow id="flow32" sourceRef="exclusivegateway3" targetRef="exclusivegateway4">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow33" sourceRef="exclusivegateway4" targetRef="usertask2">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:expression><![CDATA[+1]]></activiti:expression>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <serviceTask id="servicetask16" name="права" activiti:delegateExpression="${setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_execute]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('Accept_InternationalTransportation', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_execute]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[asBusTransportation]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow40" sourceRef="servicetask16" targetRef="servicetask12"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway8" name="Exclusive Gateway" default="flow42"></exclusiveGateway>
+    <sequenceFlow id="flow41" sourceRef="usertask4" targetRef="exclusivegateway8"></sequenceFlow>
+    <sequenceFlow id="flow42" sourceRef="exclusivegateway8" targetRef="usertask4"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway9" name="Exclusive Gateway" default="flow44"></exclusiveGateway>
+    <sequenceFlow id="flow43" sourceRef="exclusivegateway8" targetRef="exclusivegateway9">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow44" sourceRef="exclusivegateway9" targetRef="usertask4">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:expression><![CDATA[+1]]></activiti:expression>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow45" sourceRef="exclusivegateway11" targetRef="servicetask2">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${asRishenia == 'sEnamVidmova'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow46" sourceRef="exclusivegateway11" targetRef="servicetask5"></sequenceFlow>
+    <sequenceFlow id="flow48" sourceRef="exclusivegateway12" targetRef="servicetask16"></sequenceFlow>
+    <sequenceFlow id="flow49" sourceRef="exclusivegateway12" targetRef="servicetask10">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${asBusTransportation=='sInterregional'}]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway id="exclusivegateway11" name="Exclusive Gateway" default="flow46"></exclusiveGateway>
+    <sequenceFlow id="flow50" sourceRef="exclusivegateway9" targetRef="exclusivegateway11">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.setDocumentApproved(execution, true)}]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway id="exclusivegateway12" name="Exclusive Gateway" default="flow48"></exclusiveGateway>
+    <endEvent id="endevent2" name="End"></endEvent>
+    <sequenceFlow id="flow51" sourceRef="usertask1" targetRef="endevent2"></sequenceFlow>
+    <userTask id="usertask5" name="Перевірка звернення">
+      <extensionElements>
+        <activiti:formProperty id="asBusTransportation" name="Вид перевезення" type="enum" writable="false">
+          <activiti:value id="sInterregional" name="міжобласні"></activiti:value>
+          <activiti:value id="sInternational" name="міжнародні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asStatement" name="Заява на:" type="enum" writable="false">
+          <activiti:value id="sEnum1" name="відкриття"></activiti:value>
+          <activiti:value id="sEnum2" name="продовження"></activiti:value>
+          <activiti:value id="sEnum3" name="зміни"></activiti:value>
+          <activiti:value id="sEnum4" name="анулювання"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="asStatement_1" name="Заява на:" type="enum" writable="false">
+          <activiti:value id="sEnum1" name="відкриття"></activiti:value>
+          <activiti:value id="sEnum2" name="продовження"></activiti:value>
+          <activiti:value id="sEnum3" name="продовження + зміни"></activiti:value>
+          <activiti:value id="sEnum4" name="зміни"></activiti:value>
+          <activiti:value id="sEnum5" name="анулювання"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sDate_ServEnd" name="Кінцевий строк подачі документів" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sID_SubjectOrgan_OKPO_01" name="Введіть код ЄДРПОУ" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_SubjectOrgan_01" name="Назва організації-перевізника" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sLocation_SubjectOrgan_01" name="Юридична адреса; індекс, місто, вулиця, будинок, офіс" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sActual_SubjectOrgan_01" name="Фактична адреса; індекс, місто, вулиця, будинок, офіс" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPost_SubjectOrgan_01" name="Поштова адреса; індекс, місто, вулиця, будинок, офіс" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sFinDetails_SubjectOrgan_01" name="Фінансові реквізити;р/р, МФО, ІПН" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Route" name="Назва маршруту" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_TransportOrganizer" name="Найменування організатора перевезень" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_PlacePublication" name="Інформація про місце публікування оголошення" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumber_Object" name="Номер об'єкта в оголошенні" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPriority_Object" name="Приоритетність за об'єктами;у разі потреби" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sIdentification_Number" name="Ідентифікаційний номер автомобільного перевізника" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDate_licenses" name="Номер та дата прийняття рішення щодо видачі ліцензії на здійснення перевезень" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sFlight_numbers" name="Номери рейсів" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPart_chang" name="Частина, в яку треба внести зміни" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCEOName_SubjectOrgan_01" name="ПІБ" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCEOposition_SubjectOrgan_01" name="Посада" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="email" name="E-Mail перевізникан" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="phone" name="Контактний номер перевізникан" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNotes" name="Примітки" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc1" name="Проект схеми маршруту; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc2" name="Проект розкладу руху; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc3" name="Анкета для продовження дії договору (дозволу); ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc4" name="Заява на продовження строку дії дозволу; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc5" name="Відомості про автобуси, які будуть використовуватись на маршруті; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc6" name="Відомості про додаткові умови обслуговування маршруту; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc7" name="Відомості щодо інвестування коштів на придбання більш нових та/або комфортабельних автобусів; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc8" name="Копія діючого дозволу; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc9" name="Копія витягу з дозволу; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc10" name="Копія діючого розкладу; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc11" name="Заява щодо анулювання дозволу на перевезення; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc12" name="Копія дозволу та витягу з дозволу; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc13" name="Схема міжнародного маршруту; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc14" name="Розклад руху; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc15" name="Графік роботи та відпочинку водіїв; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc16" name="Тарифи на перевезення; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc17" name="Список автобусів, що будуть використовуватись, у т.ч. резервних; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc18" name="Підтвердження відповідності автобуса умовам перевезень; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc19" name="Копії свідоцтв про проходження водіями спеціальних курсів міжнародних перевезень; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc20" name="Копії ліцензії на право надання послуг з міжнародних перевезень пасажирів автомобільним транспортом; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc21" name="Рекомендація громадської організації транспортного профілю; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc22" name="Копія угоди про спільну діяльність з іноземним перевізником; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc23" name="Довідка щодо наявності досвіду у перевізника; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc24" name="Копія діючого дозволу; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc25" name="Копії ліцензійних карток на кожний автобус за списком; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc26" name="Копії угод про спільну діяльність з іноземним перевізником та автостанціями на наступний термін; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc27" name="Лист-згода (за наявності інших українських перевізників); ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc28" name="Довідка перевізника про наявність досвіду у перевізника щодо здійснення внутрішніх перевезень пасажирів протягом двох і більше років або міжнародних нерегулярних чи маятникових перевезень пасажирів - одного і більше років; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDoc29" name="Копії ліцензії на право надання послуг з міжнародних перевезень пасажирів автомобільним транспортом та ліцензійних карток на кожний автобус за списком; ;bNew=true" type="file" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="marker_Internat_1" name="marker_Internat_1" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_Internat_1&quot;:{&quot;aField_ID&quot;:[&quot;sActual_SubjectOrgan_01&quot;,&quot;sName_TransportOrganizer&quot;,&quot;sName_PlacePublication&quot;,&quot;sNumber_Object&quot;,&quot;sPriority_Object&quot;,&quot;sIdentification_Number&quot;,&quot;sDate_licenses&quot;,&quot;sName_PlacePublication&quot;,&quot;sFlight_numbers&quot;,&quot;sDoc1&quot;,&quot;sDoc2&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_Internat_2" name="marker_Internat_2" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_Internat_2&quot;:{&quot;aField_ID&quot;:[&quot;sActual_SubjectOrgan_01&quot;,&quot;sIdentification_Number&quot;,&quot;sDate_licenses&quot;,&quot;sFlight_numbers&quot;,&quot;sPost_SubjectOrgan_01&quot;,&quot;sDoc3&quot;,&quot;sDoc4&quot;,&quot;sDoc5&quot;,&quot;sDoc6&quot;,&quot;sDoc7&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_Internat_3" name="marker_Internat_3" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_Internat_3&quot;:{&quot;aField_ID&quot;:[&quot;sActual_SubjectOrgan_01&quot;,&quot;sIdentification_Number&quot;,&quot;sDate_licenses&quot;,&quot;sFlight_numbers&quot;,&quot;sPart_chang&quot;,&quot;sDoc1&quot;,&quot;sDoc2&quot;,&quot;sDoc8&quot;,&quot;sDoc9&quot;,&quot;sDoc10&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum3'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_Internat_4" name="marker_Internat_4" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_Internat_4&quot;:{&quot;aField_ID&quot;:[&quot;sIdentification_Number&quot;,&quot;sActual_SubjectOrgan_01&quot;,&quot;sDate_licenses&quot;,&quot;sFlight_numbers&quot;,&quot;sDoc11&quot;,&quot;sDoc12&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum4'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_sInterregional" name="marker_sInterregional" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_sInterregional&quot;:{&quot;aField_ID&quot;:[&quot;asStatement&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asBusTransportation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sInterregional'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_sInternational" name="marker_sInternational" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_sInternational&quot;:{&quot;aField_ID&quot;:[&quot;asStatement_1&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asBusTransportation&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sInternational'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_ShowInternational_1" name="marker_ShowInternational_1" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_International_1&quot;:{&quot;aField_ID&quot;:[&quot;sDoc13&quot;,&quot;sDoc14&quot;,&quot;sDoc15&quot;,&quot;sDoc16&quot;,&quot;sDoc17&quot;,&quot;sDoc18&quot;,&quot;sDoc19&quot;,&quot;sDoc20&quot;,&quot;sDoc21&quot;,&quot;sDoc22&quot;,&quot;sDoc25&quot;,&quot;sDoc28&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum1'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_ShowInternational_2" name="marker_ShowInternational_2" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_International_2&quot;:{&quot;aField_ID&quot;:[&quot;sDoc13&quot;,&quot;sDoc14&quot;,&quot;sDoc15&quot;,&quot;sDoc16&quot;,&quot;sDoc17&quot;,&quot;sDoc18&quot;,&quot;sDoc19&quot;,&quot;sDoc21&quot;,&quot;sDoc22&quot;,&quot;sDoc24&quot;,&quot;sDoc25&quot;,&quot;sDoc28&quot;,&quot;sDoc29&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum2'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_ShowInternational_3" name="marker_ShowInternational_3" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_International_3&quot;:{&quot;aField_ID&quot;:[&quot;sPart_chang&quot;,&quot;sDoc13&quot;,&quot;sDoc14&quot;,&quot;sDoc15&quot;,&quot;sDoc16&quot;,&quot;sDoc17&quot;,&quot;sDoc18&quot;,&quot;sDoc19&quot;,&quot;sDoc20&quot;,&quot;sDoc21&quot;,&quot;sDoc22&quot;,&quot;sDoc24&quot;,&quot;sDoc26&quot;,&quot;sDoc28&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum3'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_ShowInternational_4" name="marker_ShowInternational_4" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_International_4&quot;:{&quot;aField_ID&quot;:[&quot;sPart_chang&quot;,&quot;sDoc13&quot;,&quot;sDoc14&quot;,&quot;sDoc15&quot;,&quot;sDoc16&quot;,&quot;sDoc17&quot;,&quot;sDoc18&quot;,&quot;sDoc19&quot;,&quot;sDoc20&quot;,&quot;sDoc21&quot;,&quot;sDoc22&quot;,&quot;sDoc24&quot;,&quot;sDoc25&quot;,&quot;sDoc28&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum4'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_ShowInternational_5" name="marker_ShowInternational_5" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnConditio_International_5&quot;:{&quot;aField_ID&quot;:[&quot;sDoc24&quot;,&quot;sDoc27&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;asStatement_1&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum5'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="sEmailTest; ;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ [sID_Order_URL] системи iDOC."></activiti:formProperty>
+        <activiti:formProperty id="sData_Consideration " name="Дата розгляду заяви" type="date" readable="false"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow52" sourceRef="startevent1" targetRef="usertask5"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram__doc_MIU_TEST">
+    <bpmndi:BPMNPlane bpmnElement="_doc_MIU_TEST" id="BPMNPlane__doc_MIU_TEST">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="1.0" y="175.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask1" id="BPMNShape_servicetask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="121.0" y="352.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="71.0" width="105.0" x="522.0" y="170.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="557.0" y="671.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask2" id="BPMNShape_servicetask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="611.0" y="755.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask5" id="BPMNShape_servicetask5">
+        <omgdc:Bounds height="55.0" width="105.0" x="611.0" y="579.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask2" id="BPMNShape_usertask2">
+        <omgdc:Bounds height="71.0" width="105.0" x="1044.0" y="167.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask9" id="BPMNShape_servicetask9">
+        <omgdc:Bounds height="55.0" width="105.0" x="684.0" y="175.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask10" id="BPMNShape_servicetask10">
+        <omgdc:Bounds height="55.0" width="105.0" x="844.0" y="376.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask4" id="BPMNShape_usertask4">
+        <omgdc:Bounds height="71.0" width="105.0" x="962.0" y="575.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask11" id="BPMNShape_servicetask11">
+        <omgdc:Bounds height="55.0" width="105.0" x="826.0" y="175.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask12" id="BPMNShape_servicetask12">
+        <omgdc:Bounds height="55.0" width="105.0" x="962.0" y="473.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask13" id="BPMNShape_servicetask13">
+        <omgdc:Bounds height="55.0" width="105.0" x="333.0" y="71.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway2" id="BPMNShape_exclusivegateway2">
+        <omgdc:Bounds height="40.0" width="40.0" x="271.0" y="172.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask14" id="BPMNShape_servicetask14">
+        <omgdc:Bounds height="55.0" width="105.0" x="351.0" y="236.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway3" id="BPMNShape_exclusivegateway3">
+        <omgdc:Bounds height="40.0" width="40.0" x="1076.0" y="264.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway4" id="BPMNShape_exclusivegateway4">
+        <omgdc:Bounds height="40.0" width="40.0" x="994.0" y="264.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask16" id="BPMNShape_servicetask16">
+        <omgdc:Bounds height="55.0" width="105.0" x="1074.0" y="376.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway8" id="BPMNShape_exclusivegateway8">
+        <omgdc:Bounds height="40.0" width="40.0" x="994.0" y="673.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway9" id="BPMNShape_exclusivegateway9">
+        <omgdc:Bounds height="40.0" width="40.0" x="908.0" y="673.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway11" id="BPMNShape_exclusivegateway11">
+        <omgdc:Bounds height="40.0" width="40.0" x="822.0" y="673.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway12" id="BPMNShape_exclusivegateway12">
+        <omgdc:Bounds height="40.0" width="40.0" x="554.0" y="322.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent2" id="BPMNShape_endevent2">
+        <omgdc:Bounds height="35.0" width="35.0" x="458.0" y="386.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask5" id="BPMNShape_usertask5">
+        <omgdc:Bounds height="71.0" width="105.0" x="111.0" y="157.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="216.0" y="192.0"></omgdi:waypoint>
+        <omgdi:waypoint x="271.0" y="192.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="611.0" y="782.0"></omgdi:waypoint>
+        <omgdi:waypoint x="574.0" y="780.0"></omgdi:waypoint>
+        <omgdi:waypoint x="574.0" y="706.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow14" id="BPMNEdge_flow14">
+        <omgdi:waypoint x="611.0" y="606.0"></omgdi:waypoint>
+        <omgdi:waypoint x="574.0" y="605.0"></omgdi:waypoint>
+        <omgdi:waypoint x="574.0" y="671.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow18" id="BPMNEdge_flow18">
+        <omgdi:waypoint x="789.0" y="202.0"></omgdi:waypoint>
+        <omgdi:waypoint x="826.0" y="202.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow19" id="BPMNEdge_flow19">
+        <omgdi:waypoint x="736.0" y="230.0"></omgdi:waypoint>
+        <omgdi:waypoint x="574.0" y="322.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow20" id="BPMNEdge_flow20">
+        <omgdi:waypoint x="896.0" y="431.0"></omgdi:waypoint>
+        <omgdi:waypoint x="896.0" y="500.0"></omgdi:waypoint>
+        <omgdi:waypoint x="962.0" y="500.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow22" id="BPMNEdge_flow22">
+        <omgdi:waypoint x="931.0" y="202.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1044.0" y="202.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow23" id="BPMNEdge_flow23">
+        <omgdi:waypoint x="1014.0" y="528.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1014.0" y="575.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow24" id="BPMNEdge_flow24">
+        <omgdi:waypoint x="438.0" y="98.0"></omgdi:waypoint>
+        <omgdi:waypoint x="574.0" y="98.0"></omgdi:waypoint>
+        <omgdi:waypoint x="574.0" y="170.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow25" id="BPMNEdge_flow25">
+        <omgdi:waypoint x="291.0" y="212.0"></omgdi:waypoint>
+        <omgdi:waypoint x="290.0" y="263.0"></omgdi:waypoint>
+        <omgdi:waypoint x="351.0" y="263.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow26" id="BPMNEdge_flow26">
+        <omgdi:waypoint x="291.0" y="172.0"></omgdi:waypoint>
+        <omgdi:waypoint x="290.0" y="99.0"></omgdi:waypoint>
+        <omgdi:waypoint x="333.0" y="98.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow27" id="BPMNEdge_flow27">
+        <omgdi:waypoint x="456.0" y="263.0"></omgdi:waypoint>
+        <omgdi:waypoint x="574.0" y="241.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow30" id="BPMNEdge_flow30">
+        <omgdi:waypoint x="1149.0" y="202.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1200.0" y="202.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1200.0" y="284.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1116.0" y="284.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow31" id="BPMNEdge_flow31">
+        <omgdi:waypoint x="1096.0" y="264.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1096.0" y="238.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow32" id="BPMNEdge_flow32">
+        <omgdi:waypoint x="1076.0" y="284.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1034.0" y="284.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow33" id="BPMNEdge_flow33">
+        <omgdi:waypoint x="1014.0" y="264.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1013.0" y="203.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1044.0" y="202.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow40" id="BPMNEdge_flow40">
+        <omgdi:waypoint x="1126.0" y="431.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1126.0" y="500.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1067.0" y="500.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow41" id="BPMNEdge_flow41">
+        <omgdi:waypoint x="1067.0" y="610.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1104.0" y="611.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1104.0" y="692.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1034.0" y="693.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow42" id="BPMNEdge_flow42">
+        <omgdi:waypoint x="1014.0" y="673.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1014.0" y="646.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow43" id="BPMNEdge_flow43">
+        <omgdi:waypoint x="994.0" y="693.0"></omgdi:waypoint>
+        <omgdi:waypoint x="948.0" y="693.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow44" id="BPMNEdge_flow44">
+        <omgdi:waypoint x="928.0" y="673.0"></omgdi:waypoint>
+        <omgdi:waypoint x="928.0" y="610.0"></omgdi:waypoint>
+        <omgdi:waypoint x="962.0" y="610.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow45" id="BPMNEdge_flow45">
+        <omgdi:waypoint x="842.0" y="713.0"></omgdi:waypoint>
+        <omgdi:waypoint x="842.0" y="782.0"></omgdi:waypoint>
+        <omgdi:waypoint x="716.0" y="782.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow46" id="BPMNEdge_flow46">
+        <omgdi:waypoint x="842.0" y="673.0"></omgdi:waypoint>
+        <omgdi:waypoint x="842.0" y="606.0"></omgdi:waypoint>
+        <omgdi:waypoint x="716.0" y="606.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow48" id="BPMNEdge_flow48">
+        <omgdi:waypoint x="594.0" y="342.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1126.0" y="342.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1126.0" y="376.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow49" id="BPMNEdge_flow49">
+        <omgdi:waypoint x="574.0" y="362.0"></omgdi:waypoint>
+        <omgdi:waypoint x="574.0" y="403.0"></omgdi:waypoint>
+        <omgdi:waypoint x="844.0" y="403.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow50" id="BPMNEdge_flow50">
+        <omgdi:waypoint x="908.0" y="693.0"></omgdi:waypoint>
+        <omgdi:waypoint x="862.0" y="693.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow51" id="BPMNEdge_flow51">
+        <omgdi:waypoint x="574.0" y="241.0"></omgdi:waypoint>
+        <omgdi:waypoint x="475.0" y="386.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow52" id="BPMNEdge_flow52">
+        <omgdi:waypoint x="36.0" y="192.0"></omgdi:waypoint>
+        <omgdi:waypoint x="111.0" y="192.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

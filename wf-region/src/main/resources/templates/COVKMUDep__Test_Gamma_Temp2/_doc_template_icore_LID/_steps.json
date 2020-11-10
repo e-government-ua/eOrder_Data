@@ -1,0 +1,136 @@
+{
+"oProperties":{ 
+      "bSkipStepCreate":true
+        },
+  "_:Watch": {
+    "_default_author": {
+      "oMission": {
+        "sKey_Right": "SignRelease"
+      },
+      "oRights": {
+        "EditFields": {},
+        "Remove": {},
+        "ManageViewers": {},
+        "SignComment": {}
+      }
+    },
+    "_default_view": {
+      "oMission": {
+        "sKey_Right": "View",
+        "sKey_StepType_At": ""
+      },
+      "oRights": {
+        "ManageViewers": {}
+      }
+    },
+        "_default_firstAccept": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {        
+        "SignComment": {},
+        "SignDelegate":{},      	
+      	"ManageSignersRead": {}      
+      }
+    },
+    
+        "_default_firstAccept_1": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {        
+        "SignComment": {},
+        "SignDelegate":{},      	
+      	"ManageSignersRead": {}      
+      }
+    },    
+    
+    "_default_visa": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {
+        "EditFields": {},
+        "AskMessage": {"bDisable": true},
+        "SignComment": {}
+      }
+    },
+    "_default_visa_1": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {
+        "EditFields": {},
+        "AskMessage": {"bDisable": true},
+        "SignComment": {}
+      }
+    },
+    "_default_visa_2": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {
+        "EditFields": {},
+        "AskMessage": {"bDisable": true},
+        "SignComment": {}
+      }
+    },
+    "_default_visa_3": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {
+        "EditFields": {},
+        "AskMessage": {"bDisable": true},
+        "SignComment": {}
+      }
+    },
+
+    "_default_accept": {
+      "oMission": {"sKey_Right": "SignWrite"},
+      "oRights": {
+        "SignComment": {},
+        "SignDelegate":{},      	
+      	"ManageSignersRead": {}
+      }
+    },
+        "_default_Execute": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignComment": {},      	
+      	"SignDelegate": {}
+      }
+      },
+        "_default_direct": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignComment": {}
+      }
+      },
+        "_default_direct_1": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignComment": {}
+      }
+      },
+
+    "_default_consideration": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	
+        "SignComment": {},
+        "SignDelegate":{},      	
+      	"ManageSignersRead": {}
+       }
+    }
+  },
+  "step_create:Create": {},
+  "step_visa:Visa": {},
+  "step_visa_1:Visa": {},
+  "step_visa_2:Visa": {},
+  "step_visa_3:Visa": {},
+  "step_consideration:Consideration": {},
+  "step_firstAccept:FirstAccept": {},
+  "step_firstAccept_1:FirstAccept": {},
+  "step_accept:Accept": {},
+  "step_execute:Execute": {},
+  "step_direct:Direct": {},
+  "step_direct_1:Direct": {},
+  "step_edit:Edit": {}
+}

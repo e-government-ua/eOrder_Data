@@ -1,0 +1,93 @@
+{
+  "oProperties":{ 
+      "bSkipStepCreate":true,
+      "sasKey_Field_RKK":"oDateAt,sKey_Private,sName_Author,sName_Depart,tDocZmist,sZLastName,sZFirstName,sZMiddleName,asSex,sIPN,sAdressOblast,sAdressNasPunkt,HTMLVidpovid"
+       },
+  "_:Watch": {
+    "_default_author": {
+      "oMission": {"sKey_Right": "SignRelease"},
+      "oRights": {
+        "EditFields": {},
+        "SignAnswer": {},
+        "SignComment": {},
+        "TaskAdd": {},
+        "TaskEdit": {},
+      	"AddSignerWriteAccept": {},
+        "AddSignerWriteAgree": {},
+        "AddSignerWriteDirect": {}
+        
+      }
+    },
+    "_default_consideration": {
+      "oMission": {"sKey_Right": "SignWrite"},
+      "oRights": {
+        "EditFields": {},
+        "SignAnswer": {},
+        "SignComment": {},
+        "TaskAdd": {},
+        "TaskEdit": {},
+      	"AddSignerWriteAccept": {},
+        "AddSignerWriteAgree": {},
+        "AddSignerWriteDirect": {},
+      }
+    },
+    "_default_firstAccept": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+        "SignWriteRefuse": {},
+        "SignComment": {},
+        "SignDelegate":{},      	
+      	"ManageSignersRead": {}      
+      }
+    },
+    "_default_accept": {
+      "oMission": {"sKey_Right": "SignWrite"},
+      "oRights": {
+        "SignWriteRefuse": {},
+        "SignComment": {},
+        "SignDelegate":{},      	
+      	"ManageSignersRead": {}
+      }
+    },
+    "_default_agree": {
+      "oMission": {"sKey_Right": "SignWrite"},
+      "oRights": {
+        "SignWriteRefuse": {},
+        "SignComment": {},
+        "SignDelegate":{},      	
+      	"ManageSignersRead": {}
+      },
+      "bNeedECP": true,
+      "oProperties": {
+        "sasKey_Field_SignECP": "PrintForm_03,PrintForm_02,sTableFile.sFile"
+      }
+    },
+    "_default_execute": {
+      "oMission": {"sKey_Right": "SignWrite"},
+      "oRights": {
+        "SignWriteRefuse": {},
+        "SignComment": {},
+        "SignDelegate":{},      	
+      	"ManageSignersRead": {}
+      }
+    },
+    "_default_seen": {
+      "oMission": {
+        "sKey_Right": "SignRead"
+      },
+      "oRights": {
+        "SignComment": {},
+        "ManageSignersRead": {}
+      }
+    }
+  },
+  "step_create:Create": {},
+  "step_consideration:Consideration": {},
+  "step_firstAccept:FirstAccept": {},
+  "step_accept:Accept": {},
+  "step_agree:Agree": {"property": {"nSubscribersMin": "1"}},
+  "step_execute:Execute": {},
+  "step_edit:Edit": {},
+  "step_seen:Seen": {},
+  "step_directExternal:DirectExternal": {}
+}

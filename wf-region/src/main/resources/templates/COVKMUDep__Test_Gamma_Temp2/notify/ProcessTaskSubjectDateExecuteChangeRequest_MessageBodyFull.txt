@@ -1,0 +1,1 @@
+Шановний колего! Виконавець [oSubjectEmployeeVO_ActionSource.sFIO_Short] запросив дозвіл на перенесення терміну відпрацювання завдання [oProcessTaskVO.sHead] №[sID_Order]. Відпрацюйте його у найкоротший термін

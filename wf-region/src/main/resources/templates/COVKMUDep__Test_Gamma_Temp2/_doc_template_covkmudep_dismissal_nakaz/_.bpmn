@@ -1,0 +1,777 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="_doc_template_covkmudep_dismissal_nakaz" name="Наказ на звільнення" isExecutable="true">
+    <documentation>;bTemplated=true</documentation>
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <userTask id="usertask1" name="Створення наказа">
+      <extensionElements>
+        <activiti:formProperty id="sNameAuthorNakaz" name="Автор картки" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sDepAuthorNakaz" name="Підрозділ, який готував документ" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTypeNakaz" name="Тип наказу" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sCode" name="Код та найменування номенклатури справи" type="string" default="19-6/1: Накази Державного секретаря Кабiнету Мiнiстрiв України з кадрових питань (надання вiдпусток щорiчних та додаткових, у зв’язку з навчанням) з заявами працiвникiв Секретарiату Кабiнету Мiнiстрiв України"></activiti:formProperty>
+        <activiti:formProperty id="sTextNakazu" name="Поле для тексту наказу" type="fileHTML"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Почта; ;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC [sID_Order_URL] "></activiti:formProperty>
+        <activiti:formProperty id="sLoginAuthor" name="Логин автора; ;bVisible=false" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Наказ на звільнення;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1hRts6bIgT8aE95KZ5mF7zL_-D2IVwra3OPd9p7PhpYc', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="nID_Process_Child" name="nID_Process_Child; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Zayava" name="Полное ФИО; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLoginZayava" name="sLoginZayava; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_1" name="Маркер" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sTypeNakaz&quot;],&quot;asID_Field_sValue&quot;:[&quot;Про звільнення [sFullName_Zayava]&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sTypeNakaz&quot;},&quot;sCondition&quot;:&quot;[sClient] != '[0]'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="nID_Process_Parent" name="nID_Process_Parent;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="oTable_Doc_Parent" name="Таблиця пов'язаних документів; ;bNew=true,bImportFieldSkip=true" type="table"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="scripttask1"></sequenceFlow>
+    <userTask id="usertask2" name="Узгодження наказа" default="flow4">
+      <extensionElements>
+        <activiti:formProperty id="sNameAuthorNakaz" name="Автор картки" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDepAuthorNakaz" name="Підрозділ, яуий готував документ" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTypeNakaz" name="Тип наказу" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCode" name="Код та найменування номенклатури справи" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTextNakazu" name="Поле для тексту наказу" type="fileHTML" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Наказ на звільнення;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1hRts6bIgT8aE95KZ5mF7zL_-D2IVwra3OPd9p7PhpYc', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Почта; ;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC [sID_Order_URL] "></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Zayava" name="Полное ФИО; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLoginZayava" name="sLoginZayava;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="oTable_Doc_Parent" name="Таблиця пов'язаних документів; ;bNew=true,bImportFieldSkip=true" type="table" writable="false"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <serviceTask id="servicetask1" name="письмо" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[IDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow3" sourceRef="usertask8" targetRef="servicetask1">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway" default="flow7"></exclusiveGateway>
+    <sequenceFlow id="flow4" sourceRef="usertask2" targetRef="exclusivegateway1"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway2" name="Exclusive Gateway" default="flow6"></exclusiveGateway>
+    <sequenceFlow id="flow5" sourceRef="exclusivegateway1" targetRef="exclusivegateway2">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow6" sourceRef="exclusivegateway2" targetRef="usertask2">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:expression><![CDATA[+1]]></activiti:expression>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow7" sourceRef="exclusivegateway1" targetRef="usertask2"></sequenceFlow>
+    <userTask id="usertask3" name="Затвердження наказа" default="flow10">
+      <extensionElements>
+        <activiti:formProperty id="sNameAuthorNakaz" name="Автор картки" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDepAuthorNakaz" name="Підрозділ, яуий готував документ" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTypeNakaz" name="Тип наказу" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCode" name="Код та найменування номенклатури справи" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTextNakazu" name="Поле для тексту наказу" type="fileHTML" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Наказ на звільнення;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1hRts6bIgT8aE95KZ5mF7zL_-D2IVwra3OPd9p7PhpYc', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Почта; ;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC [sID_Order_URL] "></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Zayava" name="Полное ФИО; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLoginZayava" name="sLoginZayava;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="oTable_Doc_Parent" name="Таблиця пов'язаних документів; ;bNew=true,bImportFieldSkip=true" type="table" writable="false"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow9" sourceRef="exclusivegateway2" targetRef="servicetask4">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Agree]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisTypeStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway id="exclusivegateway3" name="Exclusive Gateway" default="flow13"></exclusiveGateway>
+    <sequenceFlow id="flow10" sourceRef="usertask3" targetRef="exclusivegateway3"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway4" name="Exclusive Gateway" default="flow12"></exclusiveGateway>
+    <sequenceFlow id="flow11" sourceRef="exclusivegateway3" targetRef="exclusivegateway4">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow12" sourceRef="exclusivegateway4" targetRef="usertask3">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:expression><![CDATA[+1]]></activiti:expression>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow13" sourceRef="exclusivegateway3" targetRef="usertask3"></sequenceFlow>
+    <userTask id="usertask4" name="Редагування наказа">
+      <extensionElements>
+        <activiti:formProperty id="sNameAuthorNakaz" name="Автор картки" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sDepAuthorNakaz" name="Підрозділ, яуий готував документ" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTypeNakaz" name="Тип наказу" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sCode" name="Код та найменування номенклатури справи" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTextNakazu" name="Поле для тексту наказу" type="fileHTML"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Наказ на звільнення;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1hRts6bIgT8aE95KZ5mF7zL_-D2IVwra3OPd9p7PhpYc', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Почта; ;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC [sID_Order_URL] "></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Zayava" name="Полное ФИО; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLoginZayava" name="sLoginZayava;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="oTable_Doc_Parent" name="Таблиця пов'язаних документів; ;bNew=true,bImportFieldSkip=true" type="table"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="FlowButton_VzyatNaRedaktirovanie" name="Редагування;sIF=hasAny-States(Authorship)" sourceRef="usertask2" targetRef="usertask4">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[edit]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_VzyatNaRedaktirovanie')}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="FlowButton_SnosIVernutNaVizirovanie" name="Зберегти зміни;sIF=hasAny-States(Authorship)" sourceRef="usertask4" targetRef="exclusivegateway18">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${resetDocumentSignesListener}">
+          <activiti:field name="sasKey_StepType">
+            <activiti:string><![CDATA[Consideration,Accept,Agree]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_SnosIVernutNaVizirovanie')}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="FlowButton_VzyatNaRedaktirovanieZatverdgennya" name="Редагування;sIF=hasAny-States(Authorship)" sourceRef="usertask3" targetRef="usertask4">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[edit]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_VzyatNaRedaktirovanieZatverdgennya')}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="usertask6" name="Формування списку розсилки">
+      <extensionElements>
+        <activiti:formProperty id="sDateNakaz" name="Дата " type="date"></activiti:formProperty>
+        <activiti:formProperty id="sNumberNakaz" name="№" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sNameAuthorNakaz" name="Автор картки" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDepAuthorNakaz" name="Підрозділ, яуий готував документ" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTypeNakaz" name="Тип наказу" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCode" name="Код та найменування номенклатури справи" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTextNakazu" name="Поле для тексту наказу" type="fileHTML" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Наказ на звільнення;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1hRts6bIgT8aE95KZ5mF7zL_-D2IVwra3OPd9p7PhpYc', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Почта; ;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC [sID_Order_URL] "></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Zayava" name="Полное ФИО; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLoginZayava" name="sLoginZayava;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="oTable_Doc_Parent" name="Таблиця пов'язаних документів; ;bNew=true,bImportFieldSkip=true" type="table" writable="false"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow22" sourceRef="exclusivegateway4" targetRef="servicetask5">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Direct]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisTypeStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow23" sourceRef="exclusivegateway8" targetRef="servicetask9">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Execute]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisTypeStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway id="exclusivegateway7" name="Exclusive Gateway" default="flow24"></exclusiveGateway>
+    <sequenceFlow id="flow24" sourceRef="exclusivegateway7" targetRef="usertask6"></sequenceFlow>
+    <sequenceFlow id="flow25" sourceRef="usertask6" targetRef="exclusivegateway7"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway8" name="Exclusive Gateway" default="flow27"></exclusiveGateway>
+    <sequenceFlow id="flow26" sourceRef="exclusivegateway7" targetRef="exclusivegateway8">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow27" sourceRef="exclusivegateway8" targetRef="usertask6">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:expression><![CDATA[+1]]></activiti:expression>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <serviceTask id="servicetask4" name="письмо" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[IDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="servicetask5" name="письмо" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_direct]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[IDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="servicetask6" name="письмо" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_seen]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[IDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <userTask id="usertask7" name="Ознайомлення">
+      <extensionElements>
+        <activiti:formProperty id="sDateNakaz" name="Дата " type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumberNakaz" name="№" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNameAuthorNakaz" name="Автор картки" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDepAuthorNakaz" name="Підрозділ, яуий готував документ" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTypeNakaz" name="Тип наказу" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCode" name="Код та найменування номенклатури справи" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTextNakazu" name="Поле для тексту наказу" type="fileHTML" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Наказ на звільнення;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1hRts6bIgT8aE95KZ5mF7zL_-D2IVwra3OPd9p7PhpYc', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Почта; ;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC [sID_Order_URL] "></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Zayava" name="Полное ФИО; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLoginZayava" name="sLoginZayava;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="oTable_Doc_Parent" name="Таблиця пов'язаних документів; ;bNew=true,bImportFieldSkip=true" type="table" writable="false"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow29" sourceRef="exclusivegateway12" targetRef="servicetask6">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Seen]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisTypeStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="usertask8" name="Підписання автором з ЕЦП" default="flow4">
+      <extensionElements>
+        <activiti:formProperty id="sNameAuthorNakaz" name="Автор картки" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDepAuthorNakaz" name="Підрозділ, яуий готував документ" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTypeNakaz" name="Тип наказу" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCode" name="Код та найменування номенклатури справи" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTextNakazu" name="Поле для тексту наказу" type="fileHTML" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Наказ на звільнення;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1hRts6bIgT8aE95KZ5mF7zL_-D2IVwra3OPd9p7PhpYc', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Почта; ;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC [sID_Order_URL] "></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Zayava" name="Полное ФИО; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLoginZayava" name="sLoginZayava;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="oTable_Doc_Parent" name="Таблиця пов'язаних документів; ;bNew=true,bImportFieldSkip=true" type="table" writable="false"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <serviceTask id="servicetask8" name="LoginAuthor" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oDocumentService.getLoginAuthor(execution)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_consideration]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_consideration]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow36" sourceRef="exclusivegateway18" targetRef="scripttask2">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Consideration]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <scriptTask id="scripttask1" name="Script Task" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>var sLoginAuthor = execution.getVariable('sLoginAuthor');
+var oEmployeeAuthor = subjectService.getEmployee(sLoginAuthor, false);
+
+var sDepartment_Author = oEmployeeAuthor.aSubjectGroupPositionCustom.iterator().next().oSubjectHumanPositionCustom.oSubjectGroup_Owner.oSubject.sLabelShort;
+execution.setVariable('sDepAuthorNakaz', sDepartment_Author);</script>
+    </scriptTask>
+    <serviceTask id="servicetask9" name="LoginZayava" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${sLoginZayava}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_execute]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_execute]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <userTask id="usertask9" name="Ознайомлення автора заяви">
+      <extensionElements>
+        <activiti:formProperty id="sDateNakaz" name="Дата " type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNumberNakaz" name="№" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNameAuthorNakaz" name="Автор картки" type="string" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sDepAuthorNakaz" name="Підрозділ, яуий готував документ" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTypeNakaz" name="Тип наказу" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sCode" name="Код та найменування номенклатури справи" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTextNakazu" name="Поле для тексту наказу" type="fileHTML" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Наказ на звільнення;;bVisible=false,bPrintform=true,bParseTagsOnSubmitOnly=true" type="string" default="{'sPathFile':'1hRts6bIgT8aE95KZ5mF7zL_-D2IVwra3OPd9p7PhpYc', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="Почта; ;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи IDOC [sID_Order_URL] "></activiti:formProperty>
+        <activiti:formProperty id="sFullName_Zayava" name="Полное ФИО; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sLoginZayava" name="sLoginZayava;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="oTable_Doc_Parent" name="Таблиця пов'язаних документів; ;bNew=true,bImportFieldSkip=true" type="table" writable="false"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <serviceTask id="servicetask10" name="письмо" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_execute]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[IDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow41" sourceRef="servicetask10" targetRef="usertask9"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway11" name="Exclusive Gateway" default="flow45"></exclusiveGateway>
+    <sequenceFlow id="flow42" sourceRef="usertask9" targetRef="exclusivegateway11">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.setDocumentApproved(execution, true)}]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway id="exclusivegateway12" name="Exclusive Gateway" default="flow44"></exclusiveGateway>
+    <sequenceFlow id="flow43" sourceRef="exclusivegateway11" targetRef="exclusivegateway12">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow44" sourceRef="exclusivegateway12" targetRef="usertask9">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:expression><![CDATA[+1]]></activiti:expression>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow45" sourceRef="exclusivegateway11" targetRef="usertask9"></sequenceFlow>
+    <sequenceFlow id="flow46" sourceRef="servicetask9" targetRef="servicetask10">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.setDocumentApproved(execution, false)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow47" sourceRef="servicetask5" targetRef="servicetask13"></sequenceFlow>
+    <sequenceFlow id="flow48" sourceRef="servicetask6" targetRef="servicetask12"></sequenceFlow>
+    <serviceTask id="servicetask12" name="Role1" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_seen]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_seen]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('RoleNakazSeen', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow49" sourceRef="servicetask12" targetRef="usertask7"></sequenceFlow>
+    <sequenceFlow id="flow50" sourceRef="servicetask13" targetRef="usertask6"></sequenceFlow>
+    <sequenceFlow id="flow52" sourceRef="usertask7" targetRef="exclusivegateway17"></sequenceFlow>
+    <sequenceFlow id="flow53" sourceRef="servicetask1" targetRef="usertask2"></sequenceFlow>
+    <sequenceFlow id="flow55" sourceRef="servicetask4" targetRef="usertask3"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway16" name="Exclusive Gateway" default="flow58"></exclusiveGateway>
+    <sequenceFlow id="flow57" sourceRef="exclusivegateway17" targetRef="exclusivegateway16">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow58" sourceRef="exclusivegateway16" targetRef="usertask7">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:expression><![CDATA[+1]]></activiti:expression>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow59" sourceRef="exclusivegateway16" targetRef="endevent1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisTypeStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway id="exclusivegateway17" name="Exclusive Gateway" default="flow60"></exclusiveGateway>
+    <sequenceFlow id="flow60" sourceRef="exclusivegateway17" targetRef="usertask7"></sequenceFlow>
+    <serviceTask id="servicetask13" name="LoginAuthor" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oDocumentService.getLoginAuthor(execution)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_direct]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_direct]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow62" sourceRef="usertask1" targetRef="exclusivegateway18"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway18" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="flow63" sourceRef="servicetask8" targetRef="usertask8"></sequenceFlow>
+    <scriptTask id="scripttask2" name="Script Task" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>//Связка нескольких документов, с таблицы
+var sName_Table = 'oTable_Doc_Parent';
+var sName_Table_Field = 'sNum_Doc';
+var snID_Process_Activiti = execution.getProcessInstanceId(); 
+var nID_Process_Child_t = processDocumentService.getProcessDocument(snID_Process_Activiti).id;
+var asTableField = taskForm.getValuesFromTableField(snID_Process_Activiti, sName_Table, sName_Table_Field);
+
+for(i=0; i &lt; asTableField.length; i++) {
+	snID_OrderDocument = asTableField[i];
+	snNum = snID_OrderDocument.split('-')[1];
+	processInstanceId_parent_t = snNum.substring(0, snNum.length - 1);	
+	nID_Process_Parent_t = processDocumentService.getProcessDocument(processInstanceId_parent_t).id;	
+	processDocumentTreeService.setProcessDocumentTree(+nID_Process_Parent_t, +nID_Process_Child_t);
+}</script>
+    </scriptTask>
+    <sequenceFlow id="flow64" sourceRef="scripttask2" targetRef="servicetask8"></sequenceFlow>
+    <sequenceFlow id="flow65" sourceRef="scripttask1" targetRef="usertask1"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram__doc_template_covkmudep_dismissal_nakaz">
+    <bpmndi:BPMNPlane bpmnElement="_doc_template_covkmudep_dismissal_nakaz" id="BPMNPlane__doc_template_covkmudep_dismissal_nakaz">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="21.0" y="21.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="218.0" y="11.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask2" id="BPMNShape_usertask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="100.0" y="190.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask1" id="BPMNShape_servicetask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="100.0" y="101.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway1" id="BPMNShape_exclusivegateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="132.0" y="258.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway2" id="BPMNShape_exclusivegateway2">
+        <omgdc:Bounds height="40.0" width="40.0" x="40.0" y="258.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask3" id="BPMNShape_usertask3">
+        <omgdc:Bounds height="63.0" width="105.0" x="220.0" y="376.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway3" id="BPMNShape_exclusivegateway3">
+        <omgdc:Bounds height="40.0" width="40.0" x="252.0" y="470.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway4" id="BPMNShape_exclusivegateway4">
+        <omgdc:Bounds height="40.0" width="40.0" x="164.0" y="470.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask4" id="BPMNShape_usertask4">
+        <omgdc:Bounds height="61.0" width="105.0" x="642.0" y="187.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask6" id="BPMNShape_usertask6">
+        <omgdc:Bounds height="65.0" width="105.0" x="323.0" y="545.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway7" id="BPMNShape_exclusivegateway7">
+        <omgdc:Bounds height="40.0" width="40.0" x="355.0" y="659.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway8" id="BPMNShape_exclusivegateway8">
+        <omgdc:Bounds height="40.0" width="40.0" x="271.0" y="659.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask4" id="BPMNShape_servicetask4">
+        <omgdc:Bounds height="55.0" width="105.0" x="8.0" y="380.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask5" id="BPMNShape_servicetask5">
+        <omgdc:Bounds height="55.0" width="105.0" x="5.0" y="463.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask6" id="BPMNShape_servicetask6">
+        <omgdc:Bounds height="55.0" width="105.0" x="250.0" y="823.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask7" id="BPMNShape_usertask7">
+        <omgdc:Bounds height="65.0" width="105.0" x="250.0" y="900.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask8" id="BPMNShape_usertask8">
+        <omgdc:Bounds height="71.0" width="105.0" x="678.0" y="3.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask8" id="BPMNShape_servicetask8">
+        <omgdc:Bounds height="55.0" width="105.0" x="550.0" y="11.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask1" id="BPMNShape_scripttask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="90.0" y="11.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask9" id="BPMNShape_servicetask9">
+        <omgdc:Bounds height="55.0" width="105.0" x="100.0" y="740.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask9" id="BPMNShape_usertask9">
+        <omgdc:Bounds height="65.0" width="105.0" x="439.0" y="735.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask10" id="BPMNShape_servicetask10">
+        <omgdc:Bounds height="55.0" width="105.0" x="250.0" y="740.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway11" id="BPMNShape_exclusivegateway11">
+        <omgdc:Bounds height="40.0" width="40.0" x="471.0" y="830.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway12" id="BPMNShape_exclusivegateway12">
+        <omgdc:Bounds height="40.0" width="40.0" x="387.0" y="830.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask12" id="BPMNShape_servicetask12">
+        <omgdc:Bounds height="55.0" width="105.0" x="100.0" y="823.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway16" id="BPMNShape_exclusivegateway16">
+        <omgdc:Bounds height="40.0" width="40.0" x="206.0" y="989.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="209.0" y="1060.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway17" id="BPMNShape_exclusivegateway17">
+        <omgdc:Bounds height="40.0" width="40.0" x="282.0" y="989.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask13" id="BPMNShape_servicetask13">
+        <omgdc:Bounds height="55.0" width="105.0" x="132.0" y="550.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway18" id="BPMNShape_exclusivegateway18">
+        <omgdc:Bounds height="40.0" width="40.0" x="366.0" y="18.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask2" id="BPMNShape_scripttask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="427.0" y="11.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="56.0" y="38.0"></omgdi:waypoint>
+        <omgdi:waypoint x="90.0" y="38.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="730.0" y="74.0"></omgdi:waypoint>
+        <omgdi:waypoint x="730.0" y="128.0"></omgdi:waypoint>
+        <omgdi:waypoint x="343.0" y="128.0"></omgdi:waypoint>
+        <omgdi:waypoint x="205.0" y="128.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="205.0" y="217.0"></omgdi:waypoint>
+        <omgdi:waypoint x="262.0" y="217.0"></omgdi:waypoint>
+        <omgdi:waypoint x="262.0" y="278.0"></omgdi:waypoint>
+        <omgdi:waypoint x="172.0" y="278.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="132.0" y="278.0"></omgdi:waypoint>
+        <omgdi:waypoint x="80.0" y="278.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="60.0" y="258.0"></omgdi:waypoint>
+        <omgdi:waypoint x="60.0" y="217.0"></omgdi:waypoint>
+        <omgdi:waypoint x="100.0" y="217.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
+        <omgdi:waypoint x="152.0" y="258.0"></omgdi:waypoint>
+        <omgdi:waypoint x="152.0" y="245.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow9" id="BPMNEdge_flow9">
+        <omgdi:waypoint x="60.0" y="298.0"></omgdi:waypoint>
+        <omgdi:waypoint x="60.0" y="380.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow10" id="BPMNEdge_flow10">
+        <omgdi:waypoint x="325.0" y="407.0"></omgdi:waypoint>
+        <omgdi:waypoint x="372.0" y="408.0"></omgdi:waypoint>
+        <omgdi:waypoint x="372.0" y="489.0"></omgdi:waypoint>
+        <omgdi:waypoint x="292.0" y="490.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow11" id="BPMNEdge_flow11">
+        <omgdi:waypoint x="252.0" y="490.0"></omgdi:waypoint>
+        <omgdi:waypoint x="204.0" y="490.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow12" id="BPMNEdge_flow12">
+        <omgdi:waypoint x="184.0" y="470.0"></omgdi:waypoint>
+        <omgdi:waypoint x="184.0" y="407.0"></omgdi:waypoint>
+        <omgdi:waypoint x="220.0" y="407.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow13" id="BPMNEdge_flow13">
+        <omgdi:waypoint x="272.0" y="470.0"></omgdi:waypoint>
+        <omgdi:waypoint x="272.0" y="439.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_VzyatNaRedaktirovanie" id="BPMNEdge_FlowButton_VzyatNaRedaktirovanie">
+        <omgdi:waypoint x="205.0" y="217.0"></omgdi:waypoint>
+        <omgdi:waypoint x="642.0" y="217.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="289.0" y="217.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_SnosIVernutNaVizirovanie" id="BPMNEdge_FlowButton_SnosIVernutNaVizirovanie">
+        <omgdi:waypoint x="747.0" y="217.0"></omgdi:waypoint>
+        <omgdi:waypoint x="844.0" y="217.0"></omgdi:waypoint>
+        <omgdi:waypoint x="844.0" y="-8.0"></omgdi:waypoint>
+        <omgdi:waypoint x="735.0" y="-8.0"></omgdi:waypoint>
+        <omgdi:waypoint x="386.0" y="-8.0"></omgdi:waypoint>
+        <omgdi:waypoint x="386.0" y="18.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="747.0" y="217.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_VzyatNaRedaktirovanieZatverdgennya" id="BPMNEdge_FlowButton_VzyatNaRedaktirovanieZatverdgennya">
+        <omgdi:waypoint x="325.0" y="407.0"></omgdi:waypoint>
+        <omgdi:waypoint x="694.0" y="407.0"></omgdi:waypoint>
+        <omgdi:waypoint x="694.0" y="248.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="388.0" y="407.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow22" id="BPMNEdge_flow22">
+        <omgdi:waypoint x="164.0" y="490.0"></omgdi:waypoint>
+        <omgdi:waypoint x="110.0" y="490.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow23" id="BPMNEdge_flow23">
+        <omgdi:waypoint x="271.0" y="679.0"></omgdi:waypoint>
+        <omgdi:waypoint x="152.0" y="679.0"></omgdi:waypoint>
+        <omgdi:waypoint x="152.0" y="740.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow24" id="BPMNEdge_flow24">
+        <omgdi:waypoint x="375.0" y="659.0"></omgdi:waypoint>
+        <omgdi:waypoint x="375.0" y="610.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow25" id="BPMNEdge_flow25">
+        <omgdi:waypoint x="428.0" y="577.0"></omgdi:waypoint>
+        <omgdi:waypoint x="519.0" y="577.0"></omgdi:waypoint>
+        <omgdi:waypoint x="519.0" y="679.0"></omgdi:waypoint>
+        <omgdi:waypoint x="395.0" y="679.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow26" id="BPMNEdge_flow26">
+        <omgdi:waypoint x="355.0" y="679.0"></omgdi:waypoint>
+        <omgdi:waypoint x="311.0" y="679.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow27" id="BPMNEdge_flow27">
+        <omgdi:waypoint x="291.0" y="659.0"></omgdi:waypoint>
+        <omgdi:waypoint x="291.0" y="577.0"></omgdi:waypoint>
+        <omgdi:waypoint x="323.0" y="577.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow29" id="BPMNEdge_flow29">
+        <omgdi:waypoint x="387.0" y="850.0"></omgdi:waypoint>
+        <omgdi:waypoint x="355.0" y="850.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow36" id="BPMNEdge_flow36">
+        <omgdi:waypoint x="406.0" y="38.0"></omgdi:waypoint>
+        <omgdi:waypoint x="427.0" y="38.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow41" id="BPMNEdge_flow41">
+        <omgdi:waypoint x="355.0" y="767.0"></omgdi:waypoint>
+        <omgdi:waypoint x="439.0" y="767.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow42" id="BPMNEdge_flow42">
+        <omgdi:waypoint x="544.0" y="767.0"></omgdi:waypoint>
+        <omgdi:waypoint x="606.0" y="767.0"></omgdi:waypoint>
+        <omgdi:waypoint x="606.0" y="849.0"></omgdi:waypoint>
+        <omgdi:waypoint x="511.0" y="850.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow43" id="BPMNEdge_flow43">
+        <omgdi:waypoint x="471.0" y="850.0"></omgdi:waypoint>
+        <omgdi:waypoint x="427.0" y="850.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow44" id="BPMNEdge_flow44">
+        <omgdi:waypoint x="407.0" y="830.0"></omgdi:waypoint>
+        <omgdi:waypoint x="407.0" y="767.0"></omgdi:waypoint>
+        <omgdi:waypoint x="439.0" y="767.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow45" id="BPMNEdge_flow45">
+        <omgdi:waypoint x="491.0" y="830.0"></omgdi:waypoint>
+        <omgdi:waypoint x="491.0" y="800.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow46" id="BPMNEdge_flow46">
+        <omgdi:waypoint x="205.0" y="767.0"></omgdi:waypoint>
+        <omgdi:waypoint x="250.0" y="767.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow47" id="BPMNEdge_flow47">
+        <omgdi:waypoint x="57.0" y="518.0"></omgdi:waypoint>
+        <omgdi:waypoint x="57.0" y="577.0"></omgdi:waypoint>
+        <omgdi:waypoint x="132.0" y="577.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow48" id="BPMNEdge_flow48">
+        <omgdi:waypoint x="250.0" y="850.0"></omgdi:waypoint>
+        <omgdi:waypoint x="205.0" y="850.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow49" id="BPMNEdge_flow49">
+        <omgdi:waypoint x="152.0" y="878.0"></omgdi:waypoint>
+        <omgdi:waypoint x="152.0" y="932.0"></omgdi:waypoint>
+        <omgdi:waypoint x="250.0" y="932.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow50" id="BPMNEdge_flow50">
+        <omgdi:waypoint x="237.0" y="577.0"></omgdi:waypoint>
+        <omgdi:waypoint x="323.0" y="577.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow52" id="BPMNEdge_flow52">
+        <omgdi:waypoint x="355.0" y="932.0"></omgdi:waypoint>
+        <omgdi:waypoint x="397.0" y="931.0"></omgdi:waypoint>
+        <omgdi:waypoint x="397.0" y="1008.0"></omgdi:waypoint>
+        <omgdi:waypoint x="322.0" y="1009.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow53" id="BPMNEdge_flow53">
+        <omgdi:waypoint x="152.0" y="156.0"></omgdi:waypoint>
+        <omgdi:waypoint x="152.0" y="190.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow55" id="BPMNEdge_flow55">
+        <omgdi:waypoint x="113.0" y="407.0"></omgdi:waypoint>
+        <omgdi:waypoint x="220.0" y="407.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow57" id="BPMNEdge_flow57">
+        <omgdi:waypoint x="282.0" y="1009.0"></omgdi:waypoint>
+        <omgdi:waypoint x="246.0" y="1009.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow58" id="BPMNEdge_flow58">
+        <omgdi:waypoint x="226.0" y="989.0"></omgdi:waypoint>
+        <omgdi:waypoint x="226.0" y="932.0"></omgdi:waypoint>
+        <omgdi:waypoint x="250.0" y="932.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow59" id="BPMNEdge_flow59">
+        <omgdi:waypoint x="226.0" y="1029.0"></omgdi:waypoint>
+        <omgdi:waypoint x="226.0" y="1060.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow60" id="BPMNEdge_flow60">
+        <omgdi:waypoint x="302.0" y="989.0"></omgdi:waypoint>
+        <omgdi:waypoint x="302.0" y="965.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow62" id="BPMNEdge_flow62">
+        <omgdi:waypoint x="323.0" y="38.0"></omgdi:waypoint>
+        <omgdi:waypoint x="366.0" y="38.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow63" id="BPMNEdge_flow63">
+        <omgdi:waypoint x="655.0" y="38.0"></omgdi:waypoint>
+        <omgdi:waypoint x="678.0" y="38.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow64" id="BPMNEdge_flow64">
+        <omgdi:waypoint x="532.0" y="38.0"></omgdi:waypoint>
+        <omgdi:waypoint x="550.0" y="38.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow65" id="BPMNEdge_flow65">
+        <omgdi:waypoint x="195.0" y="38.0"></omgdi:waypoint>
+        <omgdi:waypoint x="218.0" y="38.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

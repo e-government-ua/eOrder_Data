@@ -1,0 +1,1 @@
+Шановний(а) [oSubjectEmployeeVO_OnWhomTheAction.sFIO_Short] ([oSubjectEmployeeVO_OnWhomTheAction.sLogin]): по завданню [oProcessTaskVO.sHead] №[sID_Order] термін виконання перенесено на: [oProcessTaskSubject.sDatePlan]

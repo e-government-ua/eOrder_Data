@@ -1,0 +1,14 @@
+{
+  "aField": [
+    {
+      "id": "Links_Name",
+      "name": "Назва документа(тів)",
+      "type": "string"
+    },
+    {
+      "id": "Links_URL",
+      "name": "URL документа(тів)",
+      "type": "string"
+    }
+  ]
+}

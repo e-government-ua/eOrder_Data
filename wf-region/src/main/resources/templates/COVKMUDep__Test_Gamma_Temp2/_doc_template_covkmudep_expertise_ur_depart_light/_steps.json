@@ -1,0 +1,164 @@
+{
+	"oProperties":{ 
+      "bSkipStepCreate":true
+       },
+  "_:Watch": {
+	"_default_author": {
+      "oMission": {"sKey_Right":"SignRelease"},
+      "oRights": {
+      	"Manage": {},
+      	"AddSignerWriteDirect": {"bDisable": true},
+      	"RemoveSignerWriteDirect": {"bDisable": true},
+      	"EditSignerWriteDirect": {"bDisable": true},
+      	"AddSignerWriteAgree": {"bDisable": true},
+      	"RemoveSignerWriteAgree": {"bDisable": true},
+      	"EditSignerWriteAgree": {"bDisable": true},
+		"AddSignerWriteAccept": {"bDisable": true},
+      	"RemoveSignerWriteAccept": {"bDisable": true},
+      	"EditSignerWriteAccept": {"bDisable": true},
+		"AddSignerWriteSeen": {"bDisable": true},
+      	"RemoveSignerWriteSeen": {"bDisable": true},
+      	"EditSignerWriteSeen": {"bDisable": true},
+      	"SignComment": {},
+		"TaskAdd": {"bDisable": true},
+      	"TaskEdit": {"bDisable": true},
+      	"TaskRemove": {"bDisable": true},
+		"ManageJoin": {"bDisable": true},
+		"AskMessage": {"bDisable": true}
+      }
+    },
+	"_default_consideration": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},      	
+      	"SignComment": {},
+		"AskMessage": {"bDisable": true}
+      }
+    },
+	"_default_visa": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},      	
+      	"SignComment": {},
+		"AskMessage": {"bDisable": true}
+      }
+    },
+	"_default_firstAccept": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},      	
+      	"SignComment": {},
+		"AskMessage": {"bDisable": true}
+      }
+    },
+    "_default_accept": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},      	
+      	"SignComment": {},
+		"AskMessage": {"bDisable": true}
+      }
+    },
+    
+     "_default_agree": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+        "SignComment": {},
+        "SignDelegate":{},
+		"AskMessage": {"bDisable": true}
+      },
+		"bNeedECP": true,
+		"oProperties": {
+        "sasKey_Field_SignECP": "sProjectFile"
+      }
+    },
+	"_default_agree_1": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+        "SignComment": {},
+        "SignDelegate":{},
+		"AskMessage": {"bDisable": true}
+      },
+		"bNeedECP": true,
+       	"oProperties": {
+        "sasKey_Field_SignECP": "sProjectFile,PrintForm_08"
+      }
+    },
+	"_default_agree_2": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+        "SignComment": {},
+        "SignDelegate":{},
+		"AskMessage": {"bDisable": true}
+      },
+		"bNeedECP": true,
+       	"oProperties": {
+        "sasKey_Field_SignECP": "sProjectFile,PrintForm_08"
+      }
+    },
+	"_default_agree_3": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+        "SignComment": {},
+        "SignDelegate":{},
+		"AskMessage": {"bDisable": true}
+      },
+		"bNeedECP": true,
+       	"oProperties": {
+        "sasKey_Field_SignECP": "sProjectFile,PrintForm_07"
+      }
+    },
+     "_default_Execute": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},      	
+      	"SignComment": {},
+		"AskMessage": {"bDisable": true}
+      },
+      "bNeedECP": true
+    },
+     "_default_direct": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},      	
+      	"SignComment": {},
+		"AskMessage": {"bDisable": true}
+      },
+      "bNeedECP": true,
+		"oProperties": {
+        "sasKey_Field_SignECP": "sProjectFile,PrintForm_07,PrintForm_08"
+      }
+    },
+	"_default_Seen": {
+      "oMission": {"sKey_Right":"SignRead"},
+      "oRights": {
+      	"SignWriteAny": {}
+      }
+    }	
+    },
+   
+  "step_create:Create": {},
+  "step_consideration:Consideration": {},
+  "step_consideration_1:Consideration": {},
+  "step_visa:Visa": {},
+  "step_visa_1:Visa": {},
+  "step_firstAccept:FirstAccept": {},
+  "step_firstAccept_1:FirstAccept": {},
+  "step_firstAccept_2:FirstAccept": {},
+  "step_firstAccept_3:FirstAccept": {},
+  "step_accept:Accept": {}, 
+  "step_accept_1:Accept": {},
+  "step_accept_2:Accept": {},
+  "step_accept_3:Accept": {},
+  "step_agree:Agree": {},
+  "step_agree_1:Agree": {},
+  "step_agree_2:Agree": {},
+  "step_agree_3:Agree": {},
+  "step_agree_4:Agree": {},
+  "step_agree_5:Agree": {},
+  "step_agree_6:Agree": {},
+  "step_direct:Direct": {},
+  "step_seen:Seen": {},
+  "step_edit:Edit": {}
+
+}

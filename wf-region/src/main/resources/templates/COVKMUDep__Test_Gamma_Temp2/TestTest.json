@@ -1,0 +1,27 @@
+ {
+        "sLogin_SubjectQuestion": "covkmudep_zastupnik_derjavnogo_sekretarya3_",
+        "nRowsMax": 3,
+        "bRandom": true,
+        "aProgramDocumentVO": [
+            {
+                "sID": "108-131544630",
+                "nfPercent": 100,
+                "asKeySet_Item_Include": [                    
+                    "Властелин Колец.Третья эпоха.Гондор"
+                ],
+                "asKeySet_Item_Exclude": [                    
+                    "История.Холодная Война.Cuba"
+                ]
+            },
+            {
+                "sID": "108-131410014",
+                "nfPercent": 100,
+                "asKeySet_Item_Include": [
+                    "Властелин Колец.Третья эпоха.Рохан"
+                ],
+                "asKeySet_Item_Exclude": [
+                    "История.Вторая мировая Война.Kursk"
+                ]
+            }
+        ]
+    }

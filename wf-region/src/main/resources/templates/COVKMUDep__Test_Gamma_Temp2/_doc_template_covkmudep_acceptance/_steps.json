@@ -1,0 +1,87 @@
+{
+  "_:Watch": {
+	"_default_author": {
+      "oMission": {"sKey_Right":"SignRelease"},
+      "oRights": {
+      "EditFields": {},
+      "Manage": {},
+      "AddSignerWriteAccept": {"bDisable": true},
+      "RemoveSignerWriteAccept": {"bDisable": true},
+      "EditSignerWriteAccept": {"bDisable": true},
+      "AddSignerWriteAgree": {"bDisable": true},
+      "RemoveSignerWriteAgree": {"bDisable": true},
+      "EditSignerWriteAgree": {"bDisable": true},
+      "AddSignerWriteDirect": {"bDisable": true},
+      "RemoveSignerWriteDirect": {"bDisable": true},
+      "SignAnswer": {},  
+      "SignQuestion": {},     
+      "SignComment": {},        
+      "ManageSignersRead": {}
+      }
+    },
+    "_default_accept": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},      	
+      	"ManageViewers": {},
+      	"SignWriteRefuse": {},      	
+      	"AddSignerWriteAccept": {},        
+      	"ManageSignersRead": {},
+      	"SignComment": {},
+      	"SignWriteCancel": {},
+      	"SignWriteNotNeed": {}
+      }
+    },
+    "_default_agree": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},      	
+      	"ManageViewers": {},
+      	"SignWriteRefuse": {},      	
+      	"AddSignerWriteAccept": {},        
+      	"ManageSignersRead": {},
+      	"SignComment": {},
+      	"SignWriteCancel": {},
+      	"SignWriteNotNeed": {}
+      }
+    },
+    "_default_direct": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},      	
+      	"ManageViewers": {},
+      	"SignWriteAny": {},
+      	"SignWriteNotNeed": {"bDisable": true},
+      	"AddSignerWriteDirect": {},     	       
+      	"ManageSignersRead": {},
+      	"TaskManage": {},
+      	"SignComment": {}
+      }
+    },
+    "_default_seen": {
+      "oMission": {"sKey_Right":"SignRead"},
+      "oRights": {
+        "SignComment": {},
+      	"ManageViewers": {},        
+      	"ManageSignersRead": {}
+      }
+    }
+  },
+  "step_create:Create": {},
+  "step_accept:Accept": {},
+  "step_accept_1:Accept": {},
+  "step_accept_2:Accept": {},
+  "step_accept_3:Accept": {},
+  "step_accept_4:Accept": {},
+  "step_accept_5:Accept": {},
+  "step_accept_6:Accept": {},
+  "step_accept_7:Accept": {},  
+  "step_agree:Agree": {},
+  "step_agree_1:Agree": {},
+  "step_agree_2:Agree": {},
+  "step_agree_3:Agree": {},
+  "step_agree_4:Agree": {}, 
+  "step_direct:Direct": {},
+  "step_seen:Seen": {},  
+  "step_edit:Edit": {}  
+}

@@ -1,0 +1,1 @@
+Вас видалено з документу №[oProcessDocument.sID_Document]

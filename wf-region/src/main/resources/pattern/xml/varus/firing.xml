@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"
+      xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+      xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+
+    <entry>
+        <category term="StandardODATA.Document_УвольнениеИзОрганизаций"/>
+        <content>
+            <m:properties>
+                <d:Date>%sDataPrich[yyyy-MM-dd'T'HH:mm:ss]</d:Date>
+                <d:РаботникиОрганизации m:type="Collection(StandardODATA.Document_УвольнениеИзОрганизаций_РаботникиОрганизации_RowType)">
+                    <d:element m:type="StandardODATA.Document_УвольнениеИзОрганизаций_РаботникиОрганизации_RowType">
+                        <d:LineNumber>1</d:LineNumber>
+                        <d:ДатаУвольнения>%sDataDisMiss[yyyy-MM-dd'T'HH:mm:ss]</d:ДатаУвольнения>
+                        <d:Сотрудник_Key>{{"sTable":"Catalog_СотрудникиОрганизаций","sFilter":"Code eq '%sVidRaboti'","sSelect":"Ref_Key"}}</d:Сотрудник_Key>
+                        <d:СтатьяКЗОТ_Key>{{"sTable":"Catalog_ОснованияУвольненияИзОрганизации","sFilter":"Description eq '%asZvilnennia'","sSelect":"Ref_Key"}}</d:СтатьяКЗОТ_Key>
+                        <d:ПричинаТекучести_>%asDataPlin</d:ПричинаТекучести_>
+                    </d:element>
+                </d:РаботникиОрганизации>
+            </m:properties>
+        </content>
+    </entry>
+
+</feed>

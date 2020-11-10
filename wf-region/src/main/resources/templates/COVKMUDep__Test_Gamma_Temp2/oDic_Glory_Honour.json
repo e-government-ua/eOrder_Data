@@ -1,0 +1,49 @@
+  
+{
+  "aField": [
+    {
+      "sKey": "nID",
+      "sKey_Type": "long",
+      "sName": "ID перечисления",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+	{
+      "sKey": "sID",
+      "sKey_Type": "string",
+      "sName": "Идендификатор уникальности",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false
+    },
+	{
+      "sKey": "sName",
+      "sKey_Type": "string",
+      "sName": "Наименование",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false,
+      "nSizeBytes": 500
+    },
+    {
+      "sKey": "sCountry",
+      "sKey_Type": "string",
+      "sName": "Страна",
+      "asKey_Field_Alias": [],
+      "bReadonly": false,
+      "bHide": false,
+      "bRequired": false   
+} 
+  ],
+"oProperties":{
+"sKey_Field_UniqAuto":"nID",
+"asKey_Field_Uniq":[
+"sID"
+],
+"sName":"Слава и честь"
+}
+}

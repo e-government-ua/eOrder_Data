@@ -1,0 +1,40 @@
+nID;sID;sName;sNote;sPathFileIcon
+1;Contract;Договор;;RepositoryCategories/folder-root.png
+2;ContractWithClient;C клиентом;;RepositoryCategories/doc.png
+3;SubLicenseSoft;Сублицензионный;;RepositoryCategories/doc.png
+4;SubLicenseSoftAsService;Как сервис;;RepositoryCategories/doc.png
+5;SubLicenseSoftAsServiceFree;Льготный;;RepositoryCategories/doc.png
+6;SubLicenseRoyalty;Роялти;;RepositoryCategories/doc.png
+7;SoftService;Сервисный;;RepositoryCategories/doc.png
+8;SoftServiceWithOrder;С заказом;;RepositoryCategories/doc.png
+9;LicenseSoft;Лицензионный;;RepositoryCategories/doc.png
+10;ContractPayload;Залога;;RepositoryCategories/doc.png
+11;ContractCredit;Кредитный;;RepositoryCategories/doc.png
+12;ContractDelivery;На поставку;;RepositoryCategories/doc.png
+13;ContractService;На услуги;;RepositoryCategories/doc.png
+14;ContractAdditional;Допсоглашение;;RepositoryCategories/doc.png
+15;ContractOrder;Заказ;;RepositoryCategories/doc.png
+16;Agreement;Соглашение;;RepositoryCategories/folder-root.png
+17;Memorandum;Меморандум;;RepositoryCategories/folder-root.png
+18;Order;Приказ;;RepositoryCategories/folder-root.png
+19;Subjectives;Кадровый;;RepositoryCategories/doc.png
+20;Objectives;Хозяйственный;;RepositoryCategories/doc.png
+21;Ordinance;Распоряжение;;RepositoryCategories/folder-root.png
+22;IR;СЗ;;RepositoryCategories/folder-root.png
+23;Statement;Заявление;;RepositoryCategories/folder-root.png
+24;Publication;Обьявление;;RepositoryCategories/folder-root.png
+25;Letter;Письмо;;RepositoryCategories/mail.png
+26;Information;Уведомление;;RepositoryCategories/mail.png
+27;Escalation;Эскалация;;RepositoryCategories/folder.png
+28;Requisites;Реквизиты;;RepositoryCategories/folder-root.png
+29;CommercePropose;Коммерческое предложение;;RepositoryCategories/folder-root.png
+30;Act;Акт;;RepositoryCategories/folder-root.png
+31;Bill;Счет;;RepositoryCategories/folder-root.png
+32;Payment;Платежка;;RepositoryCategories/folder-root.png
+33;System;Система;;RepositoryCategories/parts.png
+34;BP;БП;;RepositoryCategories/parts.png
+35;BP-Marker;Маркеры;;RepositoryCategories/parts.png
+36;BP-Marker-Validator;Маркеры-Валидаторы;;RepositoryCategories/parts.png
+37;BP-Table;Таблицы;;RepositoryCategories/parts.png
+38;Printform;Принтформы;;RepositoryCategories/parts.png
+39;BP-ScriptTask;Скрипттаски;;RepositoryCategories/parts.png

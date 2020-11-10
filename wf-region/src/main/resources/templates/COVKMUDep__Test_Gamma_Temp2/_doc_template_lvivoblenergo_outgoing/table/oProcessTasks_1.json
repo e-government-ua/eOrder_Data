@@ -1,0 +1,43 @@
+[
+  {
+    "sHead": "проливка задач",
+    "sBody": "",
+    "sID_BP": "_task_base",
+    "sKey_TaskReportType": "",
+    "bSplited_Execute": false,
+    "oProcessTaskSubjectsVO": {
+      "aController": [
+        {
+          "oUserVO": {
+            "sLogin": "",
+            "sLabel": ""
+          },
+          "nDaysPlan": null,
+          "oDatePlan": "",
+          "oProcessTaskSubjectStatus": {
+	        "sID": "new" 
+	        ,"nID": 0 
+	        ,"sName": "Нова"           
+	        }
+        }
+      ],
+      "aExecutor": [
+        {
+          "oUserVO": {
+            "sLogin": "",
+            "sLabel": ""
+          },
+          "nDaysPlan": null,
+          "oDatePlan": "",
+          "oProcessTaskSubjectStatus": {
+	        "sID": "new" 
+	        ,"nID": 0 
+	        ,"sName": "Нова"           
+	        }
+        }
+      ],
+      "aVisor": []
+    },
+    "aProcessTaskAttribute": []
+  }
+]

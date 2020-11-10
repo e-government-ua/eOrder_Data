@@ -1,0 +1,22 @@
+{
+  "_:Watch": {
+    "_default_author": {
+      "oMission": {
+        "sKey_Right": "SignRelease"
+      },
+      "oRights": {
+        "Manage": {}
+      }
+  },
+  "_default_accept": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {
+        "Manage": {}
+      }
+    }
+  },
+  "step_create:Create": {},
+  "step_accept:Accept": {}
+}

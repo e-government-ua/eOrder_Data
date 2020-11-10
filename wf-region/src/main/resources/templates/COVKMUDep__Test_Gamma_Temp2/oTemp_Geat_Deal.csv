@@ -1,0 +1,5 @@
+nID;sID;sFirst_name;sLast_name;nfSalary;sLanguage
+1;Alpha;Микита;Micado;2000.00;JavaScript
+2;Bravo;Павел;Дуров;1000.00;C++
+3;Tango;Jozef;Bezos;0.01;Php
+4;Zullu;Steew;Woznick;5000.00;Java

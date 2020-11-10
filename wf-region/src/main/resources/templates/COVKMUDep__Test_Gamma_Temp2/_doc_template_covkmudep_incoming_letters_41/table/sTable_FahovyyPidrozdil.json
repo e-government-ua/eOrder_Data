@@ -1,0 +1,22 @@
+{
+  "aField": [
+    {
+      "id": "sName_isVisa",
+      "name": "Фаховий підрозділ:; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel",
+      "type": "select"
+    },
+    {
+      "id": "sPosition_isVisa",
+      "name": "Посада",
+      "type": "string",
+      "writable": "false"
+    },
+    {
+      "id": "sLogin_isVisa",
+      "name": "Login",
+      "type": "string",
+       "required": "true",
+      "bVisible": "false"
+    }
+  ]
+}

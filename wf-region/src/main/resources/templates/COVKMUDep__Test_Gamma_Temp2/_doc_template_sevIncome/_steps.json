@@ -1,0 +1,36 @@
+{
+  "_:Watch": 
+  {
+	"_default_author": {
+      "oMission": {"sKey_Right":"SignRelease"},
+      "oRights": {
+      	"Manage": {}
+      }
+    },
+    "_default_Accept": 
+    {    
+      "oMission": {"sKey_Right":"SignWrite"}
+    },
+    "_default_Agree": 
+    {    
+      "oMission": {"sKey_Right":"SignWrite"}
+    },
+    "_default_Direct": 
+    {    
+      "oMission": {"sKey_Right":"SignWrite"}
+    },
+    "_default_Seen": 
+    {    
+      "oMission": {"sKey_Right":"SignRead"}
+    }
+  },
+  "step_create:Create": {},
+  "step_accept:Accept": {
+  	"Login1":{
+      "oMission": {"sKey_Right":"SignRead"}
+  	}
+  },
+  "step_agree:Agree": {},
+  "step_direct:Direct": {},
+  "step_seen:Seen": {}
+}

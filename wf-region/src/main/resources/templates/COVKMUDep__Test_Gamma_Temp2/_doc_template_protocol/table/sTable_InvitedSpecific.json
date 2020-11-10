@@ -1,0 +1,26 @@
+{
+  "aField": [
+    {
+      "id": "sName_isInvited",
+      "name": "Запрошені з окремих питань",
+      "type": "string",
+      "nWidth": "50%"
+      
+    },
+      {
+      "id": "sPosition_isInvited",
+      "name": "Посада",
+      "type": "string",
+      "writable": "true"
+            
+    },
+    {
+      "id": "sCompany_isInvited",
+      "name": "Назва Органу",
+      "type": "string",
+      "writable": "true",
+      
+      "bVisible": "false"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "aField": [
+    {
+      "id": "sNum_Doc",
+      "name": "До системного номеру;Якщо потрібно декілька документів;bImportFields=true,{{Autocomplete:getProcessDocuments()}},sID_Field_Alias=sID_Order_Document,bImportFieldSkip=true",
+      "type": "string"
+    },
+    {
+      "id": "sReasonDoc",
+      "name": "До номеру;Приклад: До листа СКМУ № 6/1/1-19 від 18/11/2019 р.",
+      "type": "string"
+    }
+  ]
+}

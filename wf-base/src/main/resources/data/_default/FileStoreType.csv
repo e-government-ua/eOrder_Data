@@ -1,0 +1,6 @@
+nID;sID;sName;sNote;sURL_Pattern;sClass
+1;filesystem;Файловая система;;;org.icore.service.business.storage.handler.FileSystem_Handler
+2;db-sql;Реляционная БД;;;org.icore.service.business.storage.handler.DB_SQL_Handler
+3;db-nosql;Документоориентированная БД;;;org.icore.service.business.storage.handler.DB_NOSQL_Handler
+4;google;Гугл;;;org.icore.service.business.storage.handler.Alien_Google_Handler
+5;db-nosql-inmemory;Документоориентированная БД в памяти;;;org.icore.service.business.storage.handler.DB_NOSQL_INMEMORY_Handler

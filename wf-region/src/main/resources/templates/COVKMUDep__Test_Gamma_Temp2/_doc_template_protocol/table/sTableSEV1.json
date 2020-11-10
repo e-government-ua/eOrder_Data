@@ -1,0 +1,19 @@
+{
+  "aField": [
+    {
+      "id": "sAutOrgan",
+      "name": "Адресати Витяг №1; ;{{Autocomplete:getSubjectOrgans(nID_Server='99999999',sasID_SubjectType='Organ')>:sName|sOrganOKPO:sOKPO}}",
+      "type": "select",
+      "nWidth": "50%"
+      
+    },
+        {
+      "id": "sOrganOKPO",
+      "name": "sOKPO",
+      "type": "string",
+      "writable": "false"
+            
+    }
+  ]
+}
+

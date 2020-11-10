@@ -1,0 +1,58 @@
+{
+  "oProperties":{ 
+      "bSkipStepCreate":true
+       },
+  "_:Watch": {
+	"_default_author": {
+      "oMission": {"sKey_Right":"SignRelease"},
+      "oRights": {
+      	"Manage": {},
+      	"SignComment": {},     	
+      	"AddSignerWriteDirect": {"bDisable": true},     	
+      	"RemoveSignerWriteDirect": {"bDisable": true},
+      	"EditSignerWriteDirect": {"bDisable": true},
+		"ManageViewers": {},
+		"TaskAdd": {"bDisable": true},
+      	"TaskEdit": {"bDisable": true},
+      	"TaskRemove": {"bDisable": true},
+		"ManageJoin": {"bDisable": true}
+      }
+    },
+    "_default_consideration": {
+      "oMission": {"sKey_Right": "SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},
+      	"SignWriteRefuse": {},
+        "EditFields": {},
+        "SignAnswer": {},
+      	"AddSignerWriteAccept": {},
+        "AddSignerWriteAgree": {}
+      }
+    },
+    "_default_view": {
+      "oMission": {"sKey_Right":"View", "sKey_Step_At":""},
+      "oRights": {
+      	"ManageViewers": {},
+        "SignComment": {}
+      }
+    },
+     "_default_direct": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {      	
+      	"ManageViewers": {"bDisable": true},
+      	"AddSignerWriteDirect": {},        
+      	"ManageSignersRead": {},
+      	"TaskAdd": {"bDisable": true},
+      	"TaskEdit": {"bDisable": true},
+      	"TaskRemove": {"bDisable": true},
+      	"SignComment": {},
+		"ManageJoin": {"bDisable": true},
+		"SignWriteNotNeed" : {"bDisable": true}
+      }
+    }
+  },  
+  "step_create:Create": {},
+  "step_consideration:Consideration": {},
+  "step_direct:Direct": {},
+  "step_edit:Edit": {}
+}

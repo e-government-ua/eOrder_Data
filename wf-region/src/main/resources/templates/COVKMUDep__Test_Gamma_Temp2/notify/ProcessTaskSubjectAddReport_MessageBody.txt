@@ -1,0 +1,1 @@
+Шановний колего! Виконавець [oSubjectEmployeeVO_ActionSource.sFIO_Short] вніс звіт:[oProcessTaskVO.sBody] по завданню [oProcessTaskVO.sHead] №[sID_Order]. Відпрацюйте його у найкоротший термін.

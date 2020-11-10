@@ -1,0 +1,66 @@
+{
+  "_:Watch": {
+	"_default_author": {
+      "oMission": {"sKey_Right":"SignRelease"},
+      "oRights": {
+      	"Manage": {},
+      	"ManageViewers": {"bDisable": true},
+      	"AddSignerRead": {},
+      	"AddSignerWriteDirect": {"bDisable": true},
+      	"AddSignerWriteVisa": {"bDisable": true},
+        "ManageJoin": {"bDisable": true},
+        "AskMessage": {"bDisable": true},
+        "SignComment": {"bDisable": true},
+        "SignWriteRefuse": {"bDisable": true},
+        "EditFields": {"bDisable": true},
+        "TaskAdd": {"bDisable": true},
+        "TaskEdit": {"bDisable": true},
+        "TaskRemove": {"bDisable": true}
+      },
+       "bNeedECP": true
+    },    
+    "_default_Accept": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignWrite": {},
+		"SignWriteNotNeed" : {"bDisable": true}
+      },
+		"bNeedECP": true
+    },
+   "_default_Agree": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignWrite": {},
+		"SignWriteNotNeed" : {"bDisable": true}
+      },
+		"bNeedECP": true
+    },
+     "_default_direct": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {      	
+      	"ManageViewers": {"bDisable": true},
+      	"SignWrite": {},
+      	"AddSignerWriteDirect": {},        
+      	"ManageSignersRead": {},
+      	"TaskAdd": {"bDisable": true},
+      	"TaskEdit": {"bDisable": true},
+      	"TaskRemove": {"bDisable": true},
+      	"SignComment": {},
+		"ManageJoin": {"bDisable": true},
+		"SignWriteNotNeed" : {"bDisable": true}
+      }
+    },
+    "_default_Seen": {
+      "oMission": {"sKey_Right":"SignRead"},
+      "oRights": {
+      	"SignWriteAny": {}
+      	
+      }
+    }
+  },  
+  "step_create:Create": {},
+  "step_accept:Accept": {"property": {"nSubscribersMin": "1"}},
+  "step_agree:Agree": {"property": {"nSubscribersMin": "1"}},
+  "step_direct:Direct": {},
+  "step_edit:Edit": {}
+}

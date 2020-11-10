@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="_doc_template_development" name="Розробка" isExecutable="true">
+    <documentation>;bTemplated=true</documentation>
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <userTask id="usertask1" name="Створення">
+      <extensionElements>
+        <activiti:formProperty id="sTitle" name="Title" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sDatePokrovsk" name="Дата виконання документа;;bShowLeftPeriod=true" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Таблица;;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sKey_Enum" name="sKey_Enum (выбор шага)" type="enum">
+          <activiti:value id="ACCEPT" name="ACCEPT"></activiti:value>
+          <activiti:value id="AGREE" name="AGREE"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_Executor" name="sName_Executor; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Executor" name="sLogin_Executor" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_accept" name="marker_accept (тип шага)" type="markers" default="{&quot;motion&quot;:{&quot;SignerSyncByFields_2&quot;:{&quot;asKey_Field_WithLogin&quot;:[&quot;sLogin_Executor&quot;,&quot;sLoginExecutor2&quot;],&quot;sKey_Step&quot;:&quot;step_accept&quot;,&quot;sKey_StepType&quot;:&quot;accept&quot;,&quot;sCondition_Additional&quot;:&quot;[id=sKey_Enum] == 'ACCEPT'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_example" name="marker_example" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sTest&quot;],&quot;asID_Field_sValue&quot;:[&quot;aasdsaasdsd&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sKey_Enum&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'AGREE'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sTest" name="sTest" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sDateVacationBegin" name="Початок" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sDateVacationEnd" name="Кінець" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sDateDiff1" name="Result" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_serv" name="marker_serv" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnService_1&quot;:{&quot;sMethod&quot;:&quot;GET&quot;,&quot;sPath&quot;:&quot;calendar/getDaysInDateRangeExcludeDayOff&quot;,&quot;oParams&quot;:{&quot;sDateAt&quot;:{&quot;sID_Field&quot;:&quot;sDateVacationBegin&quot;},&quot;sDateTo&quot;:{&quot;sID_Field&quot;:&quot;sDateVacationEnd&quot;},&quot;sDateFormat&quot;:&quot;dd/MM/yyyy&quot;,&quot;nID_Subject&quot;:&quot;2000024&quot;},&quot;oReturn&quot;:{&quot;sDateDiff1&quot;:&quot;nDays&quot;}}}}"></activiti:formProperty>
+        <activiti:formProperty id="sID_Document1" name="sID_Document1; ;sID_Field_Alias=sID_ProcessDocument_1" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sYear_Nomenclature" name="sYear_Nomenclature" type="string" default="2020"></activiti:formProperty>
+        <activiti:formProperty id="sName_Nomenclature" name="findTableCustom_Profiled;Autocomplete;{{Autocomplete:findTableCustom_Profiled(sID_TableCustomTypeEnum='TableCustom_Dictonary', sKey_Group='[sYear_Nomenclature]', sKey_Item='NomenclatureBusiness')&gt;:sName_Nomenclature|sKey_Nomenclature:sKey_Nomenclature}}" type="select"></activiti:formProperty>
+        <activiti:formProperty id="sKey_Nomenclature" name="sKey_Nomenclature" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sName_DocumentBusiness" name="getExchangeObjects;Autocomplete;bImportFieldSkip=true,{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1ipEX8_e1H7HTWNX-kF-rNUMQ6yXpN-At8qkbyTxRcYc/Лист1',sasKey_Field_Find='ColumA,ColumB',sasKey_Field_Select='ColumA,ColumB')&amp;gt;:ColumA|sCountQues:ColumB}}" type="select"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow2" sourceRef="usertask3" targetRef="scripttask2">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Agree]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <userTask id="usertask2" name="Agree">
+      <extensionElements>
+        <activiti:formProperty id="sTitle" name="Title" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sID_Document1" name="sID_Document1; ;sID_Field_Alias=sID_ProcessDocument_1" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Таблица;;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sKey_Enum" name="sKey_Enum (выбор шага)" type="enum">
+          <activiti:value id="ACCEPT" name="ACCEPT"></activiti:value>
+          <activiti:value id="AGREE" name="AGREE"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_Executor" name="sName_Executor; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Executor" name="sLogin_Executor" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_agree" name="marker_agree (шаг)" type="markers" default="{&quot;motion&quot;:{&quot;SignerSyncByFields_1&quot;:{&quot;asKey_Field_WithLogin&quot;:[&quot;sLogin_Executor&quot;,&quot;sLoginExecutor2&quot;],&quot;sKey_Step&quot;:&quot;step_agree&quot;,&quot;sCondition_Additional&quot;:&quot;'[id=sKey_Enum]' !== 'AGREE'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_accept" name="marker_accept (тип шага)" type="markers" default="{&quot;motion&quot;:{&quot;SignerSyncByFields_2&quot;:{&quot;asKey_Field_WithLogin&quot;:[&quot;sLogin_Executor&quot;,&quot;sLoginExecutor2&quot;],&quot;sKey_StepType&quot;:&quot;accept&quot;,&quot;sCondition_Additional&quot;:&quot;'[id=sKey_Enum]' !== 'ACCEPT'&quot;}}}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow3" sourceRef="usertask2" targetRef="endevent1"></sequenceFlow>
+    <userTask id="usertask3" name="Accept">
+      <extensionElements>
+        <activiti:formProperty id="sTitle" name="Title" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sID_Document1" name="sID_Document1; ;sID_Field_Alias=sID_ProcessDocument_1" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTableFile" name="Таблица;;bNew=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sKey_Enum" name="sKey_Enum (выбор шага)" type="enum">
+          <activiti:value id="ACCEPT" name="ACCEPT"></activiti:value>
+          <activiti:value id="AGREE" name="AGREE"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_Executor" name="sName_Executor; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel" type="select"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Executor" name="sLogin_Executor" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_agree" name="marker_agree (шаг)" type="markers" default="{&quot;motion&quot;:{&quot;SignerSyncByFields_1&quot;:{&quot;asKey_Field_WithLogin&quot;:[&quot;sLogin_Executor&quot;,&quot;sLoginExecutor2&quot;],&quot;sKey_Step&quot;:&quot;step_agree&quot;,&quot;sCondition_Additional&quot;:&quot;'[id=sKey_Enum]' !== 'AGREE'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_accept" name="marker_accept (тип шага)" type="markers" default="{&quot;motion&quot;:{&quot;SignerSyncByFields_2&quot;:{&quot;asKey_Field_WithLogin&quot;:[&quot;sLogin_Executor&quot;,&quot;sLoginExecutor2&quot;],&quot;sKey_StepType&quot;:&quot;accept&quot;,&quot;sCondition_Additional&quot;:&quot;'[id=sKey_Enum]' !== 'ACCEPT'&quot;}}}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow4" sourceRef="usertask1" targetRef="servicetask1">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <scriptTask id="scripttask1" name="nSeconds_Life_StepType 30" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>var nSeconds_Life_StepType = 30;
+
+processDocumentService.setProcessDocument_nSeconds_Life_StepType(execution, nSeconds_Life_StepType)</script>
+    </scriptTask>
+    <sequenceFlow id="flow5" sourceRef="scripttask1" targetRef="usertask3"></sequenceFlow>
+    <serviceTask id="servicetask1" name="#{setDocumentSignersListener}" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oDocumentService.getLoginAuthor(execution)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sTitle]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="servicetask2" name="#{setDocumentSignersListener}" activiti:delegateExpression="#{setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oDocumentService.getLoginAuthor(execution)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sTitle]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow6" sourceRef="servicetask1" targetRef="scripttask1"></sequenceFlow>
+    <sequenceFlow id="flow7" sourceRef="servicetask2" targetRef="usertask2"></sequenceFlow>
+    <scriptTask id="scripttask2" name="nSeconds_Life_StepType 0" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>var nSeconds_Life_StepType = 0;
+
+processDocumentService.setProcessDocument_nSeconds_Life_StepType(execution, nSeconds_Life_StepType)</script>
+    </scriptTask>
+    <sequenceFlow id="flow8" sourceRef="scripttask2" targetRef="servicetask2"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram__doc_template_development">
+    <bpmndi:BPMNPlane bpmnElement="_doc_template_development" id="BPMNPlane__doc_template_development">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="30.0" y="40.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="110.0" y="30.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="620.0" y="423.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask2" id="BPMNShape_usertask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="470.0" y="413.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask3" id="BPMNShape_usertask3">
+        <omgdc:Bounds height="55.0" width="105.0" x="310.0" y="216.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask1" id="BPMNShape_scripttask1">
+        <omgdc:Bounds height="55.0" width="135.0" x="95.0" y="216.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask1" id="BPMNShape_servicetask1">
+        <omgdc:Bounds height="61.0" width="111.0" x="107.0" y="120.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask2" id="BPMNShape_servicetask2">
+        <omgdc:Bounds height="61.0" width="111.0" x="307.0" y="410.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask2" id="BPMNShape_scripttask2">
+        <omgdc:Bounds height="55.0" width="135.0" x="295.0" y="310.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="65.0" y="57.0"></omgdi:waypoint>
+        <omgdi:waypoint x="110.0" y="57.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="362.0" y="271.0"></omgdi:waypoint>
+        <omgdi:waypoint x="362.0" y="310.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="575.0" y="440.0"></omgdi:waypoint>
+        <omgdi:waypoint x="620.0" y="440.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="162.0" y="85.0"></omgdi:waypoint>
+        <omgdi:waypoint x="162.0" y="120.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="230.0" y="243.0"></omgdi:waypoint>
+        <omgdi:waypoint x="310.0" y="243.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="162.0" y="181.0"></omgdi:waypoint>
+        <omgdi:waypoint x="162.0" y="216.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
+        <omgdi:waypoint x="418.0" y="440.0"></omgdi:waypoint>
+        <omgdi:waypoint x="470.0" y="440.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow8" id="BPMNEdge_flow8">
+        <omgdi:waypoint x="362.0" y="365.0"></omgdi:waypoint>
+        <omgdi:waypoint x="362.0" y="410.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

@@ -1,0 +1,76 @@
+{
+"oProperties": {    
+          "sasKey_Field_RKK":"sName_SubjectOrgan_Actor,sName_DocumentType,sID_Document_Parent,sKey_Private_Document_Parent,oDateAt,sKey_Private,sName_Chairperson"
+    
+  },
+  "_:Watch": {
+	"_default_author": {
+      "oMission": {"sKey_Right":"SignRelease"},
+      "oRights": {
+      	"Manage": {},
+      	"AddSignerWriteAccept": {},
+      	"RemoveSignerWriteAccept": {},
+      	"EditSubjectNotSelf": {},
+      	"RemoveSubjectNotSelf": {},
+      	"SignComment": {}
+      }
+    },
+    "_default_view": {
+      "oMission": {"sKey_Right":"View"},
+      "oRights": {
+      	"ManageViewers": {},
+        "SignComment": {}
+      }
+    },
+    "_default_Accept": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignComment": {},
+      	"SignWriteAny": {},
+      	"TaskEdit":{"bDisable": true},
+      	"AddSignerWriteAccept": {},
+      	"RemoveSignerWriteAccept": {},
+      	"EditSubjectNotSelf": {},
+      	"RemoveSubjectNotSelf": {},
+      	"ManageSignersRead": {},
+      	"ManageViewers": {}
+      },
+      "bNeedECP": true
+    },
+    "_default_agree": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+        "SignComment": {},
+        "SignWriteAny": {},
+      	"SignWriteNotNeed":{},
+      	"ManageViewers": {},
+      	"ManageSignersRead": {}	
+      },
+      "bNeedECP": true,
+      "oProperties": {
+        "sasKey_Field_SignECP": "PrintForm_QR1"
+      }
+    },
+    "_default_seen": {
+      "oMission": {"sKey_Right":"SignRead"},
+      "oRights": {
+        "SignComment": {},
+        "ManageSignersRead": {},
+      	"ManageViewers": {}
+      }
+    }
+  },
+  "step_create:Create": {},
+  "step_accept:Accept": {
+	 "oProperties": {
+      "nSubscribersMin":1
+}
+},  
+  "step_agree:Agree": {
+	 "oProperties": {
+      "nSubscribersMin":1
+}
+},
+  "step_edit:Edit": {},
+  "step_seen:Seen": {}
+}

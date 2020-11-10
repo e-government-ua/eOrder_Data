@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="_doc_template_authorization_deputies" name="Авторизація депутата для онлаін голосування" isExecutable="true">
+    <documentation>;bTemplated=true</documentation>
+    <startEvent id="startevent1" name="Start">
+      <extensionElements>
+        <activiti:formProperty id="markersLine_1" name="Відомості про особу" type="markers" default="{&quot;attributes&quot;:{&quot;Line_1&quot;:{&quot;aElement_ID&quot;:[&quot;bankIdlastName&quot;],&quot;sValue&quot;:&quot;Відомості про особу&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="bankIdlastName" name="Ваше прізвище" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdfirstName" name="Ваше ім`я" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdmiddleName" name="Ваше по батькові" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdemail" name="БанкІДпошта" type="string"></activiti:formProperty>
+        <activiti:formProperty id="form_signed_all_1" name="Заява з ЕЦП; ;bPrintFormFileAsPDF=true,bNew=true" type="file" required="true"></activiti:formProperty>
+        <activiti:formProperty id="PrintFormAutoSign_1" name="Заява для накладення ЕЦП ; ;bVisible=false" type="string" default="{'sPathFile':'1y0pCcM1BkmQ363yelDIyVPs8C-lNSLJMjnL0nbxVK7I', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="sEmailTest; ;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ у системи iDOC."></activiti:formProperty>
+      </extensionElements>
+    </startEvent>
+    <serviceTask id="servicetask8" name="Email в Орган про нове звернення" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[IDOC]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailTest]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="scripttask2"></sequenceFlow>
+    <userTask id="usertask1" name="Перевірка даних депутата">
+      <extensionElements>
+        <activiti:formProperty id="markersLine_1" name="Відомості про особу" type="markers" default="{&quot;attributes&quot;:{&quot;Line_1&quot;:{&quot;aElement_ID&quot;:[&quot;bankIdlastName&quot;],&quot;sValue&quot;:&quot;Відомості про особу&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="bankIdlastName" name="Ваше прізвище" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdfirstName" name="Ваше ім`я" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdmiddleName" name="Ваше по батькові" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="INN" name="ІПН депутата" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdemail" name="БанкІДпошта" type="string"></activiti:formProperty>
+        <activiti:formProperty id="form_signed_all_1" name="Заява з ЕЦП; ;bPrintFormFileAsPDF=true,bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="PrintFormAutoSign_1" name="Заява для накладення ЕЦП ; ;bVisible=false" type="string" default="{'sPathFile':'1y0pCcM1BkmQ363yelDIyVPs8C-lNSLJMjnL0nbxVK7I', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow3" sourceRef="usertask2" targetRef="servicetask8">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Agree]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow17" sourceRef="usertask1" targetRef="scripttask3"></sequenceFlow>
+    <serviceTask id="servicetask12" name="Email про Прийом" activiti:delegateExpression="#{MailTaskWithAttachments}">
+      <extensionElements>
+        <activiti:field name="to">
+          <activiti:expression><![CDATA[${bankIdemail}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="from">
+          <activiti:string><![CDATA[noreply@igov.gov.ua]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="subject">
+          <activiti:expression><![CDATA[Ваше звернення прийнято]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="text">
+          <activiti:expression><![CDATA[[pattern/mail/new_design/_common_header.html]
+			[pattern/mail/new_design/_common_content_start.html]
+<br>
+Ваше звернення прийнято.<br>
+			[pattern/mail/new_design/_common_content_end.html]
+			[pattern/mail/new_design/_common_signature_start.html]
+			[pattern/mail/new_design/_common_signature_end.html]
+			[pattern/mail/new_design/_common_footer.html]]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="saAttachmentsForSend">
+          <activiti:expression><![CDATA[${form_signed_all_1}]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow22" sourceRef="servicetask12" targetRef="scripttask1"></sequenceFlow>
+    <sequenceFlow id="flow24" sourceRef="servicetask8" targetRef="usertask1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${processDocumentService.setProcessDocumentRoles(execution.getProcessInstanceId(), 'step_agree', 'RoleDocumentoborot', true)!=null}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="usertask2" name="Створення відгуку на вакансію">
+      <extensionElements>
+        <activiti:formProperty id="markersLine_1" name="Відомості про особу" type="markers" default="{&quot;attributes&quot;:{&quot;Line_1&quot;:{&quot;aElement_ID&quot;:[&quot;bankIdlastName&quot;],&quot;sValue&quot;:&quot;Відомості про особу&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="bankIdlastName" name="Ваше прізвище" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdfirstName" name="Ваше ім`я" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdmiddleName" name="Ваше по батькові" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="INN" name="ІПН депутата" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdemail" name="БанкІДпошта" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sEmailTest" name="sEmailTest; ;bVisible=false" type="string" default="Шановний колего! Вам в роботу надійшов документ [sID_Order_URL] системи iDOC."></activiti:formProperty>
+        <activiti:formProperty id="form_signed_all_1" name="Заява з ЕЦП; ;bPrintFormFileAsPDF=true,bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="oTable_FileScans_Contract" name="Файли - скани документів;;bNew=true" type="table"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <scriptTask id="scripttask1" name="Дадавання депутата до блоку персоналу " scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>var sFamily = execution.getVariable('bankIdlastName');
+var sName = execution.getVariable('bankIdfirstName');
+var sSurname = execution.getVariable('bankIdmiddleName');
+var sEmail = execution.getVariable('bankIdemail');
+var sINN = execution.getVariable('INN');
+
+subjectHumanService.setSubjectHuman(sLogin_Dep,null,sFamily,sName,sSurname,'covkmudep_administrator_11111','Working',null,sEmail,null,'covkmudep_administrator',false,null,true,null,null,true,sINN)</script>
+    </scriptTask>
+    <sequenceFlow id="flow25" sourceRef="scripttask1" targetRef="endevent1"></sequenceFlow>
+    <scriptTask id="scripttask2" name="Script Task" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>execution.setVariable('sEmailTest', 'Шановний колего! Вам в роботу надійшов документ системи iDOC.')</script>
+    </scriptTask>
+    <sequenceFlow id="flow26" sourceRef="scripttask2" targetRef="usertask2"></sequenceFlow>
+    <scriptTask id="scripttask3" name="Генератор логіна депутата" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <documentation>var sFirstLetterName = execution.getVariable('bankIdlastName');
+sFirstLetterName = sFirstLetterName.charAt(0);//первая буква имени
+var sFirstLetterSurname = execution.getVariable('bankIdfirstName');
+sFirstLetterSurname = sFirstLetterSurname.charAt(0);//первая буква фамилии
+var sFirstLetterMiddleName = execution.getVariable('bankIdmiddleName');
+sFirstLetterMiddleName = sFirstLetterMiddleName.charAt(0);//первая буква отчества
+var sIdUser = execution.getVariable('INN');
+sIdUser = sIdUser.substr(5); //первые 5 символов ИНН
+
+sFirstLetterMiddleName = sFirstLetterMiddleName.charAt(0);//первая букваотчества
+var Initials = 'sFirstLetterName'+'sFirstLetterSurname'+'sFirstLetterMiddleName';
+Initials = Initials.toLowerCase();
+var transl = new Array();
+    transl['а']='a';
+    transl['б']='b';
+    transl['в']='v';
+    transl['г']='h';
+    transl['ґ']='g';
+    transl['д']='d';
+    transl['е']='e';
+    transl['є']='ye';
+    transl['ж']='zh';
+    transl['з']='z';
+    transl['и']='y';
+    transl['і']='i';
+    transl['ї']='yi';
+    transl['й']='y';
+    transl['к']='k';
+    transl['л']='l';
+    transl['м']='m';
+    transl['н']='n';
+    transl['о']='o';
+    transl['п']='p';
+    transl['р']='r';
+    transl['с']='c';
+    transl['т']='t';
+    transl['у']='u';
+    transl['ф']='f';
+    transl['х']='kh';
+    transl['ц']='ts';
+    transl['ч']='ch';
+    transl['ш']='sh';
+    transl['щ']='shch';
+    transl['ь']='';
+    transl['ю']='yu';
+    transl['я']='ya';
+
+    var result = '';
+    for(i=0;i&lt;Initials.length;i++) {
+        if(transl[Initials[i]] != undefined) { result += Initials[Initials[i]]; }
+        else { result += text[i]; }
+    }
+    document.getElementById('Initials').value = result;
+var Login = 'mdadpdepit_' + sIdUser + result
+execution.setVariable('sLogin_Dep',Login)</documentation>
+      <script>var sFirstLetterName = execution.getVariable('bankIdlastName');
+Name = sFirstLetterName.charAt(0);//первая буква имени
+
+var sFirstLetterSurname = execution.getVariable('bankIdfirstName');
+Surname = sFirstLetterSurname.charAt(0);//первая буква фамилии
+
+var sFirstLetterMiddleName = execution.getVariable('bankIdmiddleName');
+MiddleName = sFirstLetterMiddleName.charAt(0);//первая буква отчества
+
+execution.setVariable('MiddleName',MiddleName)
+var sIdUser = execution.getVariable('INN');
+sIdUser = sIdUser.substr(5); //последние 5 символов ИНН
+
+var Initials = Name + Surname + MiddleName;//сложение инициалов
+Initials = Initials.toLowerCase();
+
+
+
+function rus_to_latin ( str ) {
+    
+    var ru = {
+        'а': 'a', 'б': 'b', 'в': 'v', 'г': 'h', 'ґ': 'g', 
+        'д': 'd', 'е': 'e', 'є': 'ye', 'ж': 'zh', 'з': 'z', 
+        'и': 'y', 'і': 'i', 'ї': 'yi', 'й': 'y', 'к': 'k', 
+        'л': 'l', 'м': 'm', 'н': 'n', 'о': 'o', 'п': 'p', 
+        'р': 'r', 'с': 's', 'т': 't', 'у': 'u', 'ф': 'f', 
+        'х': 'kh', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'shch',
+        'ю': 'yu','я': 'ya'
+    }, n_str = [];
+    
+    str = str.replace(/[ъь]+/g, '').replace(/й/g, 'i');
+    
+    for ( var i = 0; i &lt; str.length; ++i ) {
+       n_str.push(
+              
+            ru[ str[i].toLowerCase() ].replace(/^(.)/, function ( match ) { return match.toUpperCase() })
+       );
+    }
+    
+    return n_str.join('');
+}
+ 
+var result = rus_to_latin ( Initials );
+var Login = 'mdadpdepit_' + sIdUser + result //формируем логин
+execution.setVariable('sLogin_Dep',Login) //сетим логин</script>
+    </scriptTask>
+    <sequenceFlow id="flow27" sourceRef="scripttask3" targetRef="servicetask12"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram__doc_template_authorization_deputies">
+    <bpmndi:BPMNPlane bpmnElement="_doc_template_authorization_deputies" id="BPMNPlane__doc_template_authorization_deputies">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="11.0" y="73.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask8" id="BPMNShape_servicetask8">
+        <omgdc:Bounds height="55.0" width="105.0" x="340.0" y="180.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="340.0" y="63.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="840.0" y="73.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask12" id="BPMNShape_servicetask12">
+        <omgdc:Bounds height="55.0" width="105.0" x="595.0" y="63.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask2" id="BPMNShape_usertask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="140.0" y="180.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask1" id="BPMNShape_scripttask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="720.0" y="63.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask2" id="BPMNShape_scripttask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="140.0" y="63.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask3" id="BPMNShape_scripttask3">
+        <omgdc:Bounds height="55.0" width="105.0" x="480.0" y="63.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="46.0" y="90.0"></omgdi:waypoint>
+        <omgdi:waypoint x="140.0" y="90.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="245.0" y="207.0"></omgdi:waypoint>
+        <omgdi:waypoint x="340.0" y="207.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow17" id="BPMNEdge_flow17">
+        <omgdi:waypoint x="445.0" y="90.0"></omgdi:waypoint>
+        <omgdi:waypoint x="480.0" y="90.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow22" id="BPMNEdge_flow22">
+        <omgdi:waypoint x="700.0" y="90.0"></omgdi:waypoint>
+        <omgdi:waypoint x="720.0" y="90.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow24" id="BPMNEdge_flow24">
+        <omgdi:waypoint x="392.0" y="180.0"></omgdi:waypoint>
+        <omgdi:waypoint x="392.0" y="118.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow25" id="BPMNEdge_flow25">
+        <omgdi:waypoint x="825.0" y="90.0"></omgdi:waypoint>
+        <omgdi:waypoint x="840.0" y="90.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow26" id="BPMNEdge_flow26">
+        <omgdi:waypoint x="192.0" y="118.0"></omgdi:waypoint>
+        <omgdi:waypoint x="192.0" y="180.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow27" id="BPMNEdge_flow27">
+        <omgdi:waypoint x="585.0" y="90.0"></omgdi:waypoint>
+        <omgdi:waypoint x="595.0" y="90.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

@@ -1,0 +1,25 @@
+{
+  "aField": [
+    {
+      "id": "sDateBegin",
+      "name": "Дата початку відпустки",
+      "type": "date"
+      
+   
+    },
+    {
+      "id": "nDateDiff",
+      "name": "Кількість днів",
+      "type": "string"
+      
+      
+    },
+{
+      "id": "sDateEnd",
+      "name": "Дата кінця відпустки",
+      "type": "string"
+      
+      
+    }
+  ]
+}

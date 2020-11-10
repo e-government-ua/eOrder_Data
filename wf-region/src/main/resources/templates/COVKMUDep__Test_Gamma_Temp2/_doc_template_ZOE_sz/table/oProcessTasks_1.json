@@ -1,0 +1,50 @@
+[
+  {
+    "sHead": "",
+    "sBody": "",
+    "sID_BP": "_task_Loe",
+    "sKey_TaskReportType": "",
+    "bSplited_Execute": false,
+    "oProcessTaskSubjectsVO": {
+      "aController": [
+        {
+          "oUserVO": {
+            "sLogin": "",
+            "sLabel": ""
+          },
+          "nDaysPlan": "",
+          "oDatePlan": ""
+        }
+      ],
+      "aExecutor": [ 
+      {
+          "oUserVO": {
+            "sLogin": "",
+            "sLabel": ""
+          },
+          "nDaysPlan": "",
+          "oDatePlan": ""
+        }
+        ],
+      "aVisor": [
+      {
+          "oUserVO": {
+            "sLogin": "",
+            "sLabel": ""
+          },
+          "nDaysPlan": "",
+          "oDatePlan": ""
+        },
+         {
+          "oUserVO": {
+            "sLogin": "",
+            "sLabel": ""
+          },
+          "nDaysPlan": "",
+          "oDatePlan": ""
+        }
+      ]
+    },
+    "aProcessTaskAttribute": []
+  }
+]

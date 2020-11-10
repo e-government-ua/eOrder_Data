@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+   <head lang="ua">
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Документ створено у системі iDoc</title>
+      <!-- Стили печати -->
+      <style type="text/css">
+         /* Настройки печати должны помещаться в блок @media print */
+         @media print {
+         .main {
+         page-break-after: always;
+         }
+         }
+      </style>
+   </head>
+   <body>
+ 
+<div class="main">
+<table style="width: 700px;">
+<tbody>
+<tr>
+<td style="width: 350px;"><strong> <img src="api/tasks/getTemplateData?sPathFile=_doc_template_UB_employment/img/UB_logo.png&amp;sSourceType=LocalFile" alt="" width="250px" /></strong></td>
+<td style="width: 350px; text-align: right;"><strong>АТ &laquo;УНІВЕРСАЛ БАНК&raquo;</strong></td>
+</tr>
+</tbody>
+</table>
+<table style="width: 700px; margin-top: 50px;">
+<tbody>
+<tr>
+<td colspan="2">
+<h3 class="layout ta-j w100p" style="text-align: center;">№ 50-[sID_Order]<br />[sTitleDoc]</h3>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="width: 700px; margin-top: 50px; border-spacing: 10px 10px;">
+<tbody>
+<tr>
+<td style="vertical-align: top; width: 350px; text-align: right;">Номер вихідного звернення:</td>
+<td style="vertical-align: top; width: 350px; text-align: left;">[sNumberOutgoing]</td>
+</tr>
+<tr>
+<td style="vertical-align: top; width: 350px; text-align: right;">Дата вихідного звернення:</td>
+<td style="vertical-align: top; width: 350px; text-align: left;">[sDateRegistration]</td>
+</tr>
+<tr>
+<td style="vertical-align: top; width: 350px; text-align: right;">Вид документа:</td>
+<td style="vertical-align: top; width: 350px; text-align: left;">[sName_typeDoc]</td>
+</tr>
+<tr id="sNote_SubjectHumanPosition">
+<td style="vertical-align: top; width: 350px; text-align: right;">Номенклатура:</td>
+<td style="vertical-align: top; width: 350px; text-align: left;">[sName_nomencl]</td>
+</tr>
+<tr id="sPosition1">
+<td style="vertical-align: top; width: 350px; text-align: right;">Вибрати зі списку:</td>
+<td style="vertical-align: top; width: 350px; text-align: left;"><span style="width: 16px; height: 16px; font-size: 11px; border: 1px solid #000; display: inline-block; text-align: center;"><span id="asGovs" style="visibility: hidden;">✔</span></span></td>
+</tr>
+<tr>
+<td style="vertical-align: top; width: 350px; text-align: right;">Адресат:</td>
+<td style="vertical-align: top; width: 350px; text-align: left;">[sDirect]</td>
+</tr>
+  <tr>
+<td style="vertical-align: top; width: 350px; text-align: right;">Адресат:</td>
+<td style="vertical-align: top; width: 350px; text-align: left;">[sName_publicAuthorities]</td>
+</tr>
+<tr id="sName_Department">
+<td style="vertical-align: top; width: 350px; text-align: right;">Б/Т:</td>
+<td style="vertical-align: top; width: 350px; text-align: left;"><span style="width: 16px; height: 16px; font-size: 11px; border: 1px solid #000; display: inline-block; text-align: center;"><span id="asBT" style="visibility: hidden;">✔</span></span></td>
+</tr>
+<tr id="sUnit1">
+<td style="vertical-align: top; width: 350px; text-align: right;">Короткий зміст:</td>
+<td style="vertical-align: top; width: 350px; text-align: left;">[sContent]</td>
+</tr>
+<tr>
+<td style="vertical-align: top; width: 350px; text-align: right;">Виконавець:</td>
+<td style="vertical-align: top; width: 350px; text-align: left;">[sExecutor]</td>
+</tr>
+<tr>
+<td style="vertical-align: top; width: 350px; text-align: right;">Строк зберігання:</td>
+<td style="vertical-align: top; width: 350px; text-align: left;">[sDateSave]</td>
+</tr>
+<tr>
+<td style="vertical-align: top; width: 350px; text-align: right;">Передача в архів:</td>
+<td style="vertical-align: top; width: 350px; text-align: left;">[sToArchive]</td>
+</tr>
+<tr>
+<td style="vertical-align: top; width: 350px; text-align: right;">Кількість аркушів супровідного листа:</td>
+<td style="vertical-align: top; width: 350px; text-align: left;">[sQtyCover]</td>
+</tr>
+<tr>
+<td style="vertical-align: top; width: 350px; text-align: right;">Кількість аркушів додатків:</td>
+<td style="vertical-align: top; width: 350px; text-align: left;">[sQtyDop]</td>
+</tr>
+<tr>
+<td style="vertical-align: top; width: 350px; text-align: right;">Історія документу:</td>
+<td style="vertical-align: top; width: 350px; text-align: left;">[sID_Order_Document_1]</td>
+</tr>
+<tr>
+<td style="vertical-align: top; width: 350px; text-align: right;">Номерний бланк:</td>
+<td style="vertical-align: top; width: 350px; text-align: left;">[sBlanc]</td>
+</tr>
+</tbody>
+</table>
+
+<table style="margin-top: 30px; border-spacing: px; border: 1px solid black; border-radius: 5px; border-collapse: collapse;" border="1" width="700">
+<thead>
+<tr style="background: linear-gradient(#fcfcfc 0px, #efefef 100%); text-align: center;">
+<td style="padding: 5px; border-collapse: collapse; border: 1px solid lightgrey;">Підписант</td>
+</tr>
+</thead>
+<tbody><!--[sTableSign-->
+<tr>
+<td style="padding: 5px; border-collapse: collapse; border: 1px solid lightgrey;">[sName_Sign]</td>
+</tr>
+<!--sTableSign]--></tbody>
+</table>
+<table style="margin-top: 15px; border-spacing: px; border: 1px solid black; border-radius: 5px; border-collapse: collapse;" border="1" width="700">
+<thead>
+<tr style="background: linear-gradient(#fcfcfc 0px, #efefef 100%); text-align: center;">
+<td style="padding: 5px; border-collapse: collapse; border: 1px solid lightgrey;">№ п/п</td>
+<td style="border-collapse: collapse; border: 1px solid lightgrey;">Назва додатка</td>
+</tr>
+</thead>
+<tbody><!--[sTableFile-->
+<tr>
+<td style="padding: 5px; border-collapse: collapse; border: 1px solid lightgrey;">[sNumber]</td>
+<td style="border-collapse: collapse; border: 1px solid lightgrey;">[sName]</td>
+</tr>
+<!--sTableFile]--></tbody>
+</table>
+</div>
+<table style="width: 700px; margin-top: 30px;">
+<tbody>
+<tr>
+<td>
+<h3 class="layout ta-j w100p" style="text-align: center;">Лист погодження:</h3>
+</td>
+</tr>
+<tr>
+<td>[footer_signers]</td>
+</tr>
+</tbody>
+</table>
+   
+<script>
+if ("[asGovs]" == "yes") {document.getElementById('asGovs').style.visibility = 'visible';}
+if ("[asBT]" == "yes") {document.getElementById('asBT').style.visibility = 'visible';}
+</script>
+ </body>
+</html>

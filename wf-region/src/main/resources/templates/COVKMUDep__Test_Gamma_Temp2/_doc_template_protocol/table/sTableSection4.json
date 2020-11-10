@@ -1,0 +1,85 @@
+{
+  "aField": [
+    {
+      "id": "nRow",
+      "name": "№ п/п",
+      "type": "long",    
+      "nWidth": "5%"
+   
+    },
+    {
+      "id": "sBody",
+      "name": "Суть",
+      "type": "string"
+      
+   
+    },
+    {
+      "id": "sNeedTask",
+      "name": "До виконання/До відома",
+      "type": "enum",
+      "nWidth": "10%",
+      "a": [
+        {
+          "id": "yes",
+          "name": "До виконання"
+        },
+        {
+          "id": "no",
+          "name": "До відома"
+        }
+      ]
+    },  
+    {
+      "id": "sDateExecute",
+      "name": "Дата виконання",
+      "type": "date",
+      "nWidth": "10%"     
+    },
+    {
+      "id": "sName_isExecute",
+      "name": "Виконавець; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel",
+      "type": "select",
+      "nWidth": "15%"         
+    },
+    {
+      "id": "sLogin_isExecute",
+      "name": "login",
+      "type": "string",
+      "bVisible": "false"
+      
+      
+    },
+    {
+      "id": "sName_isControl",
+      "name": "Контролюючий; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel",
+      "type": "select",
+      "nWidth": "15%"
+      
+      
+    },
+    {
+      "id": "sLogin_isControl",
+      "name": "login",
+      "type": "string",
+      "bVisible": "false"
+      
+      
+    },
+    {
+      "id": "sName_isObserver",
+      "name": "Спостерігач; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel",
+      "type": "select",
+      "nWidth": "15%"          
+    },
+    {
+      "id": "sLogin_isObserver",
+      "name": "login",
+      "type": "string",
+      "bVisible": "false"
+      
+      
+    }
+    
+  ]
+}

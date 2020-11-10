@@ -1,0 +1,124 @@
+{
+  "oProperties": {
+    "bSkipStepCreate": true,
+          "sasKey_Field_RKK":"sKomy,sLabelShort_Organ,sKorespondentDetails,sKey_Private_Outer,oDateAt_Outer,sSigner,sDocumentType,sKeyDoc_Inc,oDateAt,sKey_Private,sTitle,nPagesNum,sPrimitka,sRozglad,sGrif,sName_Author,sName_Depart,sTematika,sAnnotation"
+    
+  },
+  "_:Watch": {
+    "_default_author": {
+      "oMission": {
+        "sKey_Right": "SignRelease"
+      },
+      "oRights": {
+        "EditFields": {},
+        "SignComment": {},
+        "ManageViewers": {},
+        "AddSignerWriteAccept": {},
+        "EditSignerWriteAccept": {},
+        "RemoveSignerWriteAccept": {},
+        "Remove": {}
+      }
+    },
+      "_default_accept": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {
+       "AddSignerWriteExecute": {},
+        "EditSignerWriteExecute": {},
+        "RemoveSignerWriteExecute": {},
+        "SignComment": {}
+      }
+    },
+     "_default_firstAccept": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {        
+        "SignComment": {},
+        "AddSignerWriteAccept": {},
+        "EditSignerWriteAccept": {},
+        "RemoveSignerWriteAccept": {},
+        "RemoveSubjectNotSelf": {},
+        "EditSubjectNotSelf": {}
+      }
+    },
+    
+    "_default_agree": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {
+        "SignComment": {}
+      }
+    },
+    
+    
+    
+    "_default_consideration": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {
+        "ManageViewers": {},
+        "EditFields": {},
+        "SignWriteNotNeed": {},
+        "SignComment": {},
+        "AddSignerWriteAccept": {},
+        "EditSignerWriteAccept": {},
+        "RemoveSignerWriteAccept": {}
+      }
+    },
+    "_default_visa": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {
+        "EditFields": {},
+        "SignComment": {}
+      }
+    },
+    "_default_view": {
+      "oMission": {
+        "sKey_Right": "View",
+        "sKey_Step_At": ""
+      },
+      "oRights": {
+        "ManageViewers": {},
+        "SignComment": {},
+        "RemoveSubjectNotSelf": {}
+      }
+    },
+    "_default_execute": {
+      "oMission": {
+        "sKey_Right": "SignWrite"
+      },
+      "oRights": {
+        "SignComment": {},
+        "SignDelegate": {}
+      }
+    },
+    "_default_seen": {
+      "oMission": {
+        "sKey_Right": "SignRead"
+      },
+      "oRights": {
+        "SignComment": {}
+      }
+    }
+  },
+  "step_create:Create": {},
+  "step_consideration:Consideration": {},
+  "step_visa:Visa": {},
+  "step_firstAccept:FirstAccept": {},
+  "step_accept:Accept": {  
+    "property": {
+      "nSubscribersMin": "1"
+    }
+    },  
+  "step_agree:Agree": {},  
+  "step_execute:Execute": {},
+  "step_direct:Direct": {},
+  "step_edit:Edit": {},
+  "step_seen:Seen": {}
+}

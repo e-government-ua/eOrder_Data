@@ -1,0 +1,19 @@
+{
+  "aField": [
+    {
+      "id": "sName_Name",
+      "name": "Ім'я запрошуваного працівника в систему Askep",
+      "type": "string"
+    },
+    {
+      "id": "sName_Position",
+      "name": "Посада запрошуваного працівника в систему Askep",
+      "type": "string"
+    },
+    {
+      "id": "sName_email",
+      "name": "Пошта запрошуваного працівника в систему Askep",
+      "type": "string"
+    }
+  ]
+}

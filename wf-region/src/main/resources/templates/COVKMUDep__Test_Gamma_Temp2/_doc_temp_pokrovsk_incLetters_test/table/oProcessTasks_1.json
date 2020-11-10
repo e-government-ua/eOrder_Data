@@ -1,0 +1,24 @@
+[
+     {
+          "sHead": "Резолюція"
+          ,"sBody": ""
+          ,"sID_BP": "_task_base"
+          ,"sKey_TaskReportType": "Text"
+          ,"bSplited_Execute": false
+          ,"oProcessTaskSubjectsVO": {
+               "aController": [
+               ]
+               ,"aExecutor": [
+               ]
+               ,"aVisor": [
+               ]
+          }
+          ,"aProcessTaskAttribute": [
+             {
+                "oProcessTaskAttributeType": {"sID":"sKey_Type"}
+                ,"sID":"sKey_Type"
+                , "sValue":"Resolution"}
+]
+     }
+]
+

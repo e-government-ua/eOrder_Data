@@ -1,0 +1,93 @@
+{
+  "aField": [
+    {
+      "id": "sNumberScrooge",
+      "name": "№ документа;Scrooge",
+      "type": "string" 
+    },
+    {
+      "id": "sType",
+      "name": "Тип",
+	  "type": "enum",
+	  "required": "true",
+	  "a": [
+	  		{
+			"id": "sTrue",
+			"name": "Правильний"
+			},
+			{
+			"id": "sFalse",
+			"name": "Неправильний"
+			}]
+    },
+    {
+      "id": "sDT",
+      "name": "Дт",
+      "type": "string",
+      "required": "true"
+    },
+    {
+      "id": "sKT",
+      "name": "Кт",
+      "type": "string",
+      "required": "true"  
+    },
+    {
+      "id": "sAmount",
+      "name": "Сума",
+      "type": "string",
+      "required": "true"
+      
+    },
+    {
+      "id": "sCurrency",
+      "name": "Валюта",
+	  "type": "enum",
+	  "required": "true",
+	  "a": [
+	  		{
+			"id": "UAH",
+			"name": "980 - Гривня"
+			},
+			{
+			"id": "CHF",
+			"name": "756 - Швейцарський франк"
+			},
+			{
+			"id": "GBP",
+			"name": "826 - Фунт стерлінгів"
+			},
+			{
+			"id": "USD",
+			"name": "840 - Долар США"
+			},
+			{
+			"id": "EUH",
+			"name": "978 - Ївро"
+			},
+			{
+			"id": "RUB",
+			"name": "643 - Російський рубль"
+			},
+			{
+			"id": "PLN",
+			"name": "985 - Злотий"
+			},
+			{
+			"id": "CAD",
+			"name": "124 - Канадський долар"
+			},
+			{
+			"id": "JPY",
+			"name": "392 - Їна"
+			}
+		]
+    },
+    {
+      "id": "sPurpose",
+      "name": "Призначення платежу",
+      "type": "string",
+      "required": "true"
+    }
+  ]
+}

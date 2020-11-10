@@ -1,0 +1,9 @@
+{
+  "aField": [
+    {
+      "id": "sDirect",
+      "name": "Адресати",
+      "type": "string"
+    }
+  ]
+}

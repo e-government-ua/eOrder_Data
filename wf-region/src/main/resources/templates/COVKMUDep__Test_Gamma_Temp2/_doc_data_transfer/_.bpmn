@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="_doc_data_transfer" name="Передача данних з форми в кабінет" isExecutable="true">
+    <documentation>;bTemplated=true</documentation>
+    <startEvent id="startevent1" name="Start" activiti:initiator="initiator">
+      <extensionElements>
+        <activiti:formProperty id="markersLine_ZZ" name="Інформація про заявника" type="markers" default="{&quot;attributes&quot;:{&quot;Line_ZZ&quot;:{&quot;aElement_ID&quot;:[&quot;bankIdlastName&quot;],&quot;sValue&quot;:&quot;Інформація про заявника&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="bankIdlastName" name="Ваше прізвище" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdfirstName" name="Ваше ім`я" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdmiddleName" name="Ваше по батькові" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdinn" name="Ваш ІПН" type="string" default="1" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdbirthDay" name="Дата народження" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="asTypePasport" name="Тип паспорту" type="enum" required="true">
+          <activiti:value id="sEnumIDKard" name="id картка"></activiti:value>
+          <activiti:value id="sEnumBook" name="книжка"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sPasportS" name="Серія паспорту" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sPasportNB" name="Номер паспорта" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sPasportNID" name="Номер паспорта" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="markerPasport" name="markerPasport" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_sEnumIDKard&quot;:{&quot;aField_ID&quot;:[&quot;sPasportNID&quot;],&quot;asID_Field&quot;:{&quot;sCond&quot;:&quot;asTypePasport&quot;},&quot;sCondition&quot;:&quot;[sCond]=='sEnumIDKard'&quot;},&quot;ShowFieldsOnCondition_sEnumBook&quot;:{&quot;aField_ID&quot;:[&quot;sPasportNB&quot;,&quot;sPasportS&quot;],&quot;asID_Field&quot;:{&quot;sCond&quot;:&quot;asTypePasport&quot;},&quot;sCondition&quot;:&quot;[sCond]=='sEnumBook'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="phone" name="Ваш телефон" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="email" name="Ваш E-Mail" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="markersLine_2" name="Зареєстроване місце проживання" type="markers" default="{&quot;attributes&quot;:{&quot;Line_2&quot;:{&quot;aElement_ID&quot;:[&quot;sAdressInd&quot;],&quot;sValue&quot;:&quot;Адреса проживання заявника&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sAdressOblast" name="Область; ;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='14XRRbMQGaSOQiCWR4H96qnbsz1Js8ZXqz8kIKBBFeFc/name1',sasKey_Field_Find='ColumA',sasKey_Field_Select='ColumA,ColumB')&gt;:ColumA|sShotCode:ColumB}}" type="select" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sAdressNasPunktType" name="Тип населеного пункту" type="enum" required="true">
+          <activiti:value id="asMisto" name="Місто"></activiti:value>
+          <activiti:value id="asSelysche" name="Селище"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sAdressNasPunkt" name="Назва населенного пункту" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sAdressRaion" name="Район у місті" type="string"></activiti:formProperty>
+        <activiti:formProperty id="asTypeVul" name="Тип вулиці" type="enum" required="true">
+          <activiti:value id="sEnamVul" name="вулиця"></activiti:value>
+          <activiti:value id="sEnamProv" name="провулок"></activiti:value>
+          <activiti:value id="sEnamProsp" name="проспект"></activiti:value>
+          <activiti:value id="sEnamBulv" name="бульвар"></activiti:value>
+          <activiti:value id="sEnamNaber" name="набережна"></activiti:value>
+          <activiti:value id="sEnamUzviz" name="узвіз"></activiti:value>
+          <activiti:value id="sEnamTupik" name="тупик"></activiti:value>
+          <activiti:value id="sEnamStanc" name="станція"></activiti:value>
+          <activiti:value id="sEnamSose" name="шосе"></activiti:value>
+          <activiti:value id="sEnamPlosh" name="площа"></activiti:value>
+          <activiti:value id="sEnamGM" name="жилий масив"></activiti:value>
+          <activiti:value id="sEnamProy" name="проїзд"></activiti:value>
+          <activiti:value id="sEnamSpusk" name="спуск"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sAdressVul" name="Назва вулиці" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sAdressNum" name="Номер будинку" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sAdressKorp" name="Корпус будинку" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sAdressKvart" name="Номер квартири" type="string"></activiti:formProperty>
+      </extensionElements>
+    </startEvent>
+    <serviceTask id="servicetask2" name="Лист подача" activiti:delegateExpression="#{MailTaskWithoutAttachment}">
+      <extensionElements>
+        <activiti:field name="to">
+          <activiti:expression><![CDATA[${email}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="from">
+          <activiti:string><![CDATA[noreply@igov.gov.ua]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="subject">
+          <activiti:expression><![CDATA[Лист подача]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="text">
+          <activiti:expression><![CDATA[Лист подача]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow61" sourceRef="servicetask2" targetRef="usertask1"></sequenceFlow>
+    <userTask id="usertask1" name="Перевірка">
+      <extensionElements>
+        <activiti:formProperty id="markersLine_ZZ" name="Інформація про заявника" type="markers" default="{&quot;attributes&quot;:{&quot;Line_ZZ&quot;:{&quot;aElement_ID&quot;:[&quot;bankIdlastName&quot;],&quot;sValue&quot;:&quot;Інформація про заявника&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="bankIdlastName" name="Ваше прізвище" type="string" writable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdfirstName" name="Ваше ім`я" type="string" writable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdmiddleName" name="Ваше по батькові" type="string" writable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdinn" name="Ваш ІПН" type="string" default="1" writable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdbirthDay" name="Дата народження" type="string" writable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="asTypePasport" name="Тип паспорту" type="enum" writable="false" required="true">
+          <activiti:value id="sEnumIDKard" name="id картка"></activiti:value>
+          <activiti:value id="sEnumBook" name="книжка"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sPasportS" name="Серія паспорту" type="string" writable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sPasportNB" name="Номер паспорта" type="string" writable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sPasportNID" name="Номер паспорта" type="string" writable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="markerPasport" name="markerPasport" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_sEnumIDKard&quot;:{&quot;aField_ID&quot;:[&quot;sPasportNID&quot;],&quot;asID_Field&quot;:{&quot;sCond&quot;:&quot;asTypePasport&quot;},&quot;sCondition&quot;:&quot;[sCond]=='sEnumIDKard'&quot;},&quot;ShowFieldsOnCondition_sEnumBook&quot;:{&quot;aField_ID&quot;:[&quot;sPasportNB&quot;,&quot;sPasportS&quot;],&quot;asID_Field&quot;:{&quot;sCond&quot;:&quot;asTypePasport&quot;},&quot;sCondition&quot;:&quot;[sCond]=='sEnumBook'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="phone" name="Ваш телефон" type="string" writable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="email" name="Ваш E-Mail" type="string" writable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="markersLine_2" name="Зареєстроване місце проживання" type="markers" default="{&quot;attributes&quot;:{&quot;Line_2&quot;:{&quot;aElement_ID&quot;:[&quot;sAdressInd&quot;],&quot;sValue&quot;:&quot;Адреса проживання заявника&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sAdressOblast" name="Область; ;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='14XRRbMQGaSOQiCWR4H96qnbsz1Js8ZXqz8kIKBBFeFc/name1',sasKey_Field_Find='ColumA',sasKey_Field_Select='ColumA,ColumB')&gt;:ColumA|sShotCode:ColumB}}" type="select" writable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sAdressNasPunktType" name="Тип населеного пункту" type="enum" writable="false" required="true">
+          <activiti:value id="asMisto" name="Місто"></activiti:value>
+          <activiti:value id="asSelysche" name="Селище"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sAdressNasPunkt" name="Назва населенного пункту" type="string" writable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sAdressRaion" name="Район у місті" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="asTypeVul" name="Тип вулиці" type="enum" writable="false" required="true">
+          <activiti:value id="sEnamVul" name="вулиця"></activiti:value>
+          <activiti:value id="sEnamProv" name="провулок"></activiti:value>
+          <activiti:value id="sEnamProsp" name="проспект"></activiti:value>
+          <activiti:value id="sEnamBulv" name="бульвар"></activiti:value>
+          <activiti:value id="sEnamNaber" name="набережна"></activiti:value>
+          <activiti:value id="sEnamUzviz" name="узвіз"></activiti:value>
+          <activiti:value id="sEnamTupik" name="тупик"></activiti:value>
+          <activiti:value id="sEnamStanc" name="станція"></activiti:value>
+          <activiti:value id="sEnamSose" name="шосе"></activiti:value>
+          <activiti:value id="sEnamPlosh" name="площа"></activiti:value>
+          <activiti:value id="sEnamGM" name="жилий масив"></activiti:value>
+          <activiti:value id="sEnamProy" name="проїзд"></activiti:value>
+          <activiti:value id="sEnamSpusk" name="спуск"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sAdressVul" name="Назва вулиці" type="string" writable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sAdressNum" name="Номер будинку" type="string" writable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sAdressKvart" name="Номер квартири" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="asSpecialStatus" name="Прийняти данні?" type="enum">
+          <activiti:value id="sEnumStatusYes" name="Так"></activiti:value>
+          <activiti:value id="sEnumStatusNo" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sAdressKorp" name="Корпус будинку" type="string" writable="false"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow13" sourceRef="usertask1" targetRef="exclusivegateway1"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="flow5" sourceRef="exclusivegateway1" targetRef="servicetask4">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${asSpecialStatus=='sEnumStatusYes'}]]></conditionExpression>
+    </sequenceFlow>
+    <serviceTask id="servicetask4" name="Лист відмова" activiti:delegateExpression="#{MailTaskWithoutAttachment}">
+      <extensionElements>
+        <activiti:field name="from">
+          <activiti:string><![CDATA[noreply@igov.gov.ua]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="to">
+          <activiti:expression><![CDATA["${email}"]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="subject">
+          <activiti:expression><![CDATA[Лист відмова]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="text">
+          <activiti:expression><![CDATA[Відмова]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow19" sourceRef="servicetask4" targetRef="endevent3"></sequenceFlow>
+    <endEvent id="endevent3" name="End"></endEvent>
+    <sequenceFlow id="flow4" sourceRef="exclusivegateway1" targetRef="servicetask7">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${asSpecialStatus=='sEnumStatusYes'}]]></conditionExpression>
+    </sequenceFlow>
+    <serviceTask id="servicetask7" name="Лист Внесення" activiti:delegateExpression="#{MailTaskWithAttachments}">
+      <extensionElements>
+        <activiti:field name="from">
+          <activiti:string><![CDATA[noreply@igov.gov.ua]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="to">
+          <activiti:expression><![CDATA["${email}"]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="subject">
+          <activiti:expression><![CDATA[Лист Внесення]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="text">
+          <activiti:expression><![CDATA[Лист Внесення]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow63" sourceRef="usertask2" targetRef="servicetask2">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${processDocumentService.setProcessDocumentRoles(execution.getProcessInstanceId(), 'step_accept', 'test_role', true)!=null}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow64" sourceRef="servicetask7" targetRef="endevent3"></sequenceFlow>
+    <serviceTask id="servicetask8" name="Передача в реєстр" activiti:delegateExpression="#{MailTaskWithAttachments}">
+      <extensionElements>
+        <activiti:field name="from">
+          <activiti:string><![CDATA[noreply@igov.gov.ua]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="to">
+          <activiti:expression><![CDATA["${email}"]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="subject">
+          <activiti:expression><![CDATA[Звернення на тему: ${sTopic}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="saAttachmentsForSend">
+          <activiti:expression><![CDATA["${nDocFile}"]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="text">
+          <activiti:expression><![CDATA[[pattern/mail/new_design/_common_header.html]
+[pattern/mail/new_design/_common_content_start.html]
+                                    <p>
+                                        Ваше звернення на тему: ${sTopic} розглянуте.<br>
+                                        Скан-копія рішення знаходиться у додатках до цього листа.
+                                    </p>
+                                    <p>Якщо Ви бажаєте отримати фізичну копію цього документа - зверніться до відповідального органу.</p>
+                                    <p>
+                                        ${sPhoneOrgan},<br>
+                                        ${sAddress},<br>
+					${sWorkTime},<br>
+                                        ${sPhoneOrgan} <br>
+				    </p>
+                                    <p> <i>${decisionComment}</i> </p>
+[pattern/mail/new_design/_common_content_end.html]
+[pattern/mail/new_design/_common_signature_start.html]
+${sNameOrgan},<br>
+[pattern/mail/new_design/_common_signature_end.html]
+[pattern/mail/new_design/_common_footer.html]]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow65" sourceRef="servicetask8" targetRef="endevent3"></sequenceFlow>
+    <userTask id="usertask2" name="Створення">
+      <extensionElements>
+        <activiti:formProperty id="bankIdlastName" name="Прізвище" type="string"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow66" sourceRef="startevent1" targetRef="usertask2"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram__doc_data_transfer">
+    <bpmndi:BPMNPlane bpmnElement="_doc_data_transfer" id="BPMNPlane__doc_data_transfer">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="41.0" x="310.0" y="99.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask2" id="BPMNShape_servicetask2">
+        <omgdc:Bounds height="72.0" width="105.0" x="571.0" y="82.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="72.0" width="105.0" x="711.0" y="81.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway1" id="BPMNShape_exclusivegateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="743.0" y="215.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask4" id="BPMNShape_servicetask4">
+        <omgdc:Bounds height="72.0" width="121.0" x="586.0" y="200.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent3" id="BPMNShape_endevent3">
+        <omgdc:Bounds height="35.0" width="35.0" x="746.0" y="348.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask7" id="BPMNShape_servicetask7">
+        <omgdc:Bounds height="61.0" width="105.0" x="852.0" y="205.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask8" id="BPMNShape_servicetask8">
+        <omgdc:Bounds height="61.0" width="105.0" x="930.0" y="335.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask2" id="BPMNShape_usertask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="390.0" y="90.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow61" id="BPMNEdge_flow61">
+        <omgdi:waypoint x="676.0" y="118.0"></omgdi:waypoint>
+        <omgdi:waypoint x="711.0" y="117.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow13" id="BPMNEdge_flow13">
+        <omgdi:waypoint x="763.0" y="153.0"></omgdi:waypoint>
+        <omgdi:waypoint x="763.0" y="215.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="743.0" y="235.0"></omgdi:waypoint>
+        <omgdi:waypoint x="707.0" y="236.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow19" id="BPMNEdge_flow19">
+        <omgdi:waypoint x="646.0" y="272.0"></omgdi:waypoint>
+        <omgdi:waypoint x="646.0" y="365.0"></omgdi:waypoint>
+        <omgdi:waypoint x="746.0" y="365.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="783.0" y="235.0"></omgdi:waypoint>
+        <omgdi:waypoint x="852.0" y="235.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow63" id="BPMNEdge_flow63">
+        <omgdi:waypoint x="495.0" y="117.0"></omgdi:waypoint>
+        <omgdi:waypoint x="571.0" y="118.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow64" id="BPMNEdge_flow64">
+        <omgdi:waypoint x="904.0" y="266.0"></omgdi:waypoint>
+        <omgdi:waypoint x="763.0" y="348.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow65" id="BPMNEdge_flow65">
+        <omgdi:waypoint x="930.0" y="365.0"></omgdi:waypoint>
+        <omgdi:waypoint x="781.0" y="365.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow66" id="BPMNEdge_flow66">
+        <omgdi:waypoint x="351.0" y="116.0"></omgdi:waypoint>
+        <omgdi:waypoint x="390.0" y="117.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

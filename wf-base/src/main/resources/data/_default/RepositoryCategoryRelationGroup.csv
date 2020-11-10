@@ -1,0 +1,4 @@
+nID;sID;sName;nID_RepositoryCategory_Main
+1;ContractStandart;Договор обычный;1
+2;ContractWithOrder;Договор с заказом;1
+3;ContractWithClient;Договор с клиентом;2

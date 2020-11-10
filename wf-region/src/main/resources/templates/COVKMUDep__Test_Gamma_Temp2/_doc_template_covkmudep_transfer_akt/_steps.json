@@ -1,0 +1,57 @@
+{
+  "_:Watch": {
+	"_default_author": {
+      "oMission": {"sKey_Right":"SignRelease"},
+      "oRights": {
+      	"Manage": {},
+      	"AddSignerWriteConsideration": {"bDisable": true},
+      	"AddSignerWriteRead": {"bDisable": true},
+      	"AddSignerWriteAccept": {"bDisable": true},
+        "ManageJoin": {"bDisable": true},
+        "TaskAdd": {"bDisable": true},
+        "TaskEdit": {"bDisable": true},
+        "TaskRemove": {"bDisable": true}
+      }
+    },
+    "_default_Consideration": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},  
+      	"SignWriteRefuse": {},      	
+      	"SignComment": {}
+      },
+       "bNeedECP": true
+     },
+    "_default_accept": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},  
+      	"SignWriteRefuse": {},      	
+      	"SignComment": {}
+      },
+      "bNeedECP": true
+     },        
+    "_default_seen": {
+      "oMission": {"sKey_Right":"SignRead"},
+      "oRights": {
+      	"ManageSignersRead": {}
+      }
+    }
+    },
+    
+  "step_create:Create": {},
+  "step_consideration:Consideration": {},
+  "step_accept_1:Accept": {},
+  "step_accept_2:Accept": {},
+  "step_accept_3:Accept": {},
+  "step_accept_4:Accept": {},
+  "step_accept_5:Accept": {},
+  "step_accept_6:Accept": {},
+  "step_accept_7:Accept": {},
+  "step_accept_8:Accept": {},
+  "step_accept_9:Accept": {},
+  "step_accept_10:Accept": {},  
+  "step_seen:Seen": {},
+  "step_edit:Edit": {}
+
+}

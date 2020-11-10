@@ -1,0 +1,9 @@
+{
+  "aField": [
+    {
+      "id": "sNameFile",
+      "name": "Пропозиції",
+      "type": "string"
+    }
+  ]
+}

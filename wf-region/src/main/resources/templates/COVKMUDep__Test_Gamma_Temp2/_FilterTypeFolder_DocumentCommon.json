@@ -1,0 +1,213 @@
+{
+  "aFilterDataVO": [
+    {
+      "sID": "_Documents_WaitMe_FilterSystem",
+      "sName": "Очікує мене.",
+      "oFilterElements": {
+        "sID_ProcessDocumentSubjectStatusType": "vising"
+      }
+    },
+    {
+      "sID": "_Documents_Unassigned_FilterSystem",
+      "sName": "Очікує взяття.",
+      "oFilterElements": {
+        "oProcessDocumentStatusType_FilterLogicalVO": {
+          "aOr": [
+            {
+              "aAnd": [
+                {
+                  "sID": "Queue"
+                }
+              ]
+            }
+          ]
+        },
+        "oSubjectRoleGroup_FilterLogicalVO": {
+          "aOr": [
+            {
+              "aAnd": [
+                {
+                  "sID": "{{getasID_SubjectRole_Own()}}"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "sID": "_Documents_SheduleToday_FilterSystem",
+      "sName": "еЧерга сьогодні.",
+      "oFilterElements": {
+        "oProcessDocumentStatusType_FilterLogicalVO": {
+          "aOr": [
+            {
+              "aAnd": [
+                {
+                  "sID": "Shedule"
+                }
+              ]
+            }
+          ]
+        },
+        "oField_DateRegions": {
+          "oDateTimeShedule": {
+            "oAt": null,
+            "sKey_At": "AutoDate_Today",
+            "oTo": null,
+            "sKey_To": "AutoDate_Today"
+          }
+        }
+      }
+    },
+    {
+      "sID": "_Documents_SheduleOpened_FilterSystem",
+      "sName": "еЧерга з завтра.",
+      "oFilterElements": {
+        "oProcessDocumentStatusType_FilterLogicalVO": {
+          "aOr": [
+            {
+              "aAnd": [
+                {
+                  "sID": "Shedule"
+                }
+              ]
+            }
+          ]
+        },
+        "oField_DateRegions": {
+          "oDateTimeShedule": {
+            "oAt": null,
+            "sKey_At": "AutoDate_Tomorow"
+          }
+        }
+      }
+    },
+    
+    {
+      "sID": "_Documents_Urgent_FilterSystem",
+      "sName": "Екстрені зі мною.",
+      "oFilterElements": {
+        
+        "sID_ProcessDocumentSubjectStatusType": "vising",
+            
+        "oProcessDocumentStateType_FilterLogicalVO": {
+          "aOr": [
+            {
+              "aAnd": [
+                {
+                  "sID": "Urgently"
+                }
+              ]
+            }
+          ]
+        }
+      }
+  
+    },
+    {
+      "sID": "_Documents_MyHold_FilterSystem",
+      "sName": "Мої мною утримується.",
+      "oFilterElements": {
+        "oProcessDocumentStatusCategory_FilterLogicalVO": {
+          "aOr": [
+            {
+              "aAnd": [
+                {
+                  "sID": "DocumentStatusCategory_Hold"
+                }
+              ]
+            }
+          ]
+        },
+        "oProcessDocumentStateType_FilterLogicalVO": {
+          "aOr": [
+            {
+              "aAnd": [
+                {
+                  "sID": "Authorship"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+
+    {
+      "sID": "_Documents_My_FilterSystem",
+      "sName": "Мої документи.",
+      "nCounted": 0,
+      "oFilterElements": {
+        "oProcessDocumentStateType_FilterLogicalVO": {
+          "aOr": [
+            {
+              "aAnd": [
+                {
+                  "sID": "Authorship"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+
+    {
+      "sID": "_Documents_WaitMeECP_FilterSystem",
+      "sName": "Очікують мого ЕЦП.",
+      "oFilterElements": {
+        "oProcessDocumentStateType_FilterLogicalVO": {
+          "aOr": [
+            {
+              "aAnd": [
+                {
+                  "sID": "NeedECP"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+
+    {
+      "sID": "_Documents_OpenedWithMe_FilterSystem",
+      "sName": "Оброблені, зі мною.",
+      "oFilterElements": {
+        "sID_ProcessDocumentSubjectStatusType": "revised",
+        "oProcessDocumentStatusCategory_FilterLogicalVO": {
+          "aOr": [
+            {
+              "aAnd": [
+                {
+                  "sID": "DocumentStatusCategory_Progress"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+
+    {
+      "sID": "_Documents_ClosedWithMe_FilterSystem",
+      "sName": "В історії, зі мною.",
+      "nCounted": 0,
+      "oFilterElements": {
+        "sID_ProcessDocumentSubjectStatusType": "revised",
+        "oProcessDocumentStatusCategory_FilterLogicalVO": {
+          "aOr": [
+            {
+              "aAnd": [
+                {
+                  "sID": "DocumentStatusCategory_Completed"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

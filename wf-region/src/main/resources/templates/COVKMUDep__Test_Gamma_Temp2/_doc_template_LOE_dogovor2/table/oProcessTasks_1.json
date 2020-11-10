@@ -1,0 +1,32 @@
+[
+  {
+    "sHead": "узгодити угоду $[sNameGoods] до $[sDataCreate]",
+    "sBody": "прохання внести  зауваження до тексту угоди впродовж трьох календарних днів",
+    "sID_BP": "_task_base",
+    "sKey_TaskReportType": "Text",
+    "bSplited_Execute": false,
+    "oProcessTaskSubjectsVO": {
+      "aController": [
+        {
+          "oUserVO": {
+            "sLogin": "$[sLoginAuthor]",
+            "sLabel": ""
+          },
+          "nDaysPlan": "",
+          "oDatePlan": ""
+        }
+      ],
+      "aExecutor": [{
+          "oUserVO": {
+            "sLogin": "",
+            "sLabel": ""
+          },
+          "nDaysPlan": "",
+          "oDatePlan": "$[sDataCreate]"
+        }
+        ],
+      "aVisor": []
+    },
+    "aProcessTaskAttribute": []
+  }
+]

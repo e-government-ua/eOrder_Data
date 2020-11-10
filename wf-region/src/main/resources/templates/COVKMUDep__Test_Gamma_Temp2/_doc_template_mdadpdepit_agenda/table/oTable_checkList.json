@@ -1,0 +1,15 @@
+{     
+ "aField": [
+    {
+      "id": "sName_Present",
+      "name": "Учасник; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel",
+      "type": "select"
+    },
+ {
+      "id": "asRating",
+      "name": "Присутній",
+      "nWidth": "10%",
+      "type": "boolean"           
+     }
+  ]
+}

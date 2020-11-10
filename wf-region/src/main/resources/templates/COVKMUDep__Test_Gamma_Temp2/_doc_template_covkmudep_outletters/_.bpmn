@@ -1,0 +1,1152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="_doc_template_covkmudep_outletters" name="Вихідні листи" isExecutable="true">
+    <documentation>;bTemplated=true</documentation>
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <scriptTask id="scripttask1" name="Час створення листа" scriptFormat="groovy" activiti:autoStoreVariables="false">
+      <script>execution.setVariable('sTDate', new Date().format("dd.MM.yyyy").toString())</script>
+    </scriptTask>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="scripttask2"></sequenceFlow>
+    <scriptTask id="scripttask2" name="Отримання данних автора листа" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>// получаем логин автора
+var sLoginAuthor = execution.getVariable('sLoginAuthor');
+//по логину автора получаем его данные
+var oEmployeeAuthor = subjectService.getEmployee(sLoginAuthor, false);
+
+var sDepartment_Author = oEmployeeAuthor.aSubjectGroupPositionCustom.iterator().next().oSubjectHumanPositionCustom.oSubjectGroup_Owner.oSubject.sLabelShort;
+execution.setVariable('sDepartment_Author', sDepartment_Author);</script>
+    </scriptTask>
+    <userTask id="usertask1" name="Створення вихідного листа">
+      <extensionElements>
+        <activiti:formProperty id="sName_SubjectOrgan_Actor" name="Відправник;;bImportFieldSkip=true" type="enum" default="sEnum_2" required="true">
+          <activiti:value id="sEnum_1" name="Кабінет Міністрів України"></activiti:value>
+          <activiti:value id="sEnum_2" name="Секретаріат Кабінету Міністрів України"></activiti:value>
+          <activiti:value id="sEnum_3" name="Секретаріат Кабінету Міністрів України, Структурний підрозділ"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_SubjectOrgan_Depart" name="Структурний підрозділ;;bImportFieldSkip=true" type="enum" required="true">
+          <activiti:value id="sDep_0" name="Управління з питань роботи із зверненнями громадян"></activiti:value>
+          <activiti:value id="sDep_1" name="Господарсько-фінансовий департамент"></activiti:value>
+          <activiti:value id="sDep_2" name="Режимно-секретне управління"></activiti:value>
+          <activiti:value id="sDep_3" name="Департамент кадрового забезпечення"></activiti:value>
+          <activiti:value id="sDep_4" name="Урядовий уповноважений з прав осіб з інвалідністю"></activiti:value>
+          <activiti:value id="sDep_5" name="Урядовий уповноважений з питань гендерної політики"></activiti:value>
+          <activiti:value id="sDep_6" name="Департамент забезпечення документообігу"></activiti:value>
+          <activiti:value id="sDep_7" name="Департамент інформації та кумунікації з громадськістю"></activiti:value>
+          <activiti:value id="sDep_8" name="Директорат публіної адміністрації"></activiti:value>
+          <activiti:value id="sDep_9" name="Директорат державних політик та стратегічного планування"></activiti:value>
+          <activiti:value id="sDep_10" name="Директорат територіального та місцевого розвитку"></activiti:value>
+          <activiti:value id="sDep_11" name="Директорат моніторінгу та контролю"></activiti:value>
+          <activiti:value id="sDep_12" name="Управління протоколу"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_DocumentType" name="Вид документа;;bImportFieldSkip=true" type="enum" default="RoleLetter">
+          <activiti:value id="RolePatronatPM" name="Лист Прем'єр-міністра"></activiti:value>
+          <activiti:value id="RolePatronatTsyfra" name="Лист Віце-прем’єр-міністра - Міністра цифрової трансформації"></activiti:value>
+          <activiti:value id="RolePatronatEuro" name="Лист Віце-прем’єр-міністра з питань європейської та євроатлантичної інтеграції"></activiti:value>
+          <activiti:value id="RolePatronatMinKMU" name="Лист Міністра КМУ"></activiti:value>
+          <activiti:value id="RolePatronatGovSecr" name="Лист Державного секретаря КМУ"></activiti:value>
+          <activiti:value id="RolePatronatSecrKmu" name="Лист Секретаріату КМУ"></activiti:value>
+          <activiti:value id="RoleLetter" name="Лист"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sID_Document_Parent" name="До системного номеру ;;bImportFields=true,{{Autocomplete:getProcessDocuments()&amp;gt;:sID_Document|sKey_Private_Document_Parent:sKey_Private}},sID_Field_Alias=sID_Document_Parent,bImportFieldSkip=true" type="select" default=" "></activiti:formProperty>
+        <activiti:formProperty id="sKey_Private_Document_Parent" name="До номеру" type="string" default=" "></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документу;;bImportFieldSkip=true" type="date" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sName_DocumentBusiness" name="Справа;;bImportFieldSkip=true,{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1ipEX8_e1H7HTWNX-kF-rNUMQ6yXpN-At8qkbyTxRcYc/Лист1',sasKey_Field_Find='ColumA,ColumB',sasKey_Field_Select='ColumA,ColumB')&amp;gt;:ColumA|sCountQues:ColumB}}" type="select"></activiti:formProperty>
+        <activiti:formProperty id="sName_SubjectHuman_DocumentSigner" name="Підписав; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel,bImportFieldSkip=true" type="select" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_SubjectHuman_DocumentSigner" name="Підписант посада;;bImportFieldSkip=true" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="oTable_Doc_Parent" name="Зв'язок з документом; ;bNew=true,bImportFieldSkip=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sNote_Document" name="Примітки;;bImportFieldSkip=true" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sKey_DocumentUrgencyEnum" name="Терміновий;;sID_CheckboxTrue=yes,bImportFieldSkip=true" type="enum" default="No">
+          <activiti:value id="Yes" name="Так"></activiti:value>
+          <activiti:value id="No" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sKey_DocumentGrifEnum" name="Гриф; ;bVisible=false" type="enum">
+          <activiti:value id="sEnum1" name="Особливої важливості Літер 'М'"></activiti:value>
+          <activiti:value id="sEnum2" name="Цілком таємно"></activiti:value>
+          <activiti:value id="sEnum3" name="Цілком таємно Літер 'М'"></activiti:value>
+          <activiti:value id="sEnum4" name="Цілком таємно Літер 'Сі'"></activiti:value>
+          <activiti:value id="sEnum5" name="Таємно"></activiti:value>
+          <activiti:value id="sEnum6" name="Таємно літер 'М'"></activiti:value>
+          <activiti:value id="sEnum7" name="Таємно літер 'Сі'"></activiti:value>
+          <activiti:value id="sEnum8" name="ДСК"></activiti:value>
+          <activiti:value id="sEnum9" name="ДСК Літер 'М'"></activiti:value>
+          <activiti:value id="sEnum10" name="ДСК Літер 'Сі'"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_SubjectHuman_DocumentAuthor" name="Підготував; ;writable=false,bImportFieldSkip=true" type="select" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sName_SubjectOrgan_DocumentExecutor" name="Відповідальний підрозділ; ;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1qt9hnprNHjnn4gGJJNqn0b2nJfxx1tT7CBP8AGZvLoE/Лист1',sasKey_Field_Find='ColumA',sasKey_Field_Select='ColumA,ColumB')&amp;gt;:ColumA|sCountDep:ColumB}}" type="select"></activiti:formProperty>
+        <activiti:formProperty id="sKey_DocumentTopicEnum" name="Тематика; ;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1R8lJ5GTXyE25CrLR_6Ppsk8uy_1t12TfeMudCXBDVAo/Лист1',sasKey_Field_Find='ColumA,ColumB',sasKey_Field_Select='ColumA,ColumB')&amp;gt;:ColumA|sCountQues:ColumB}}" type="select"></activiti:formProperty>
+        <activiti:formProperty id="sName_Document" name="Короткий зміст" type="textArea" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sText" name="Текст листа;;bImportFieldSkip=true" type="fileHTML"></activiti:formProperty>
+        <activiti:formProperty id="sTableSEV2" name="Додатки;;bNew=true,bImportFieldSkip=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableSEV1" name="Відправити в СЕВ;bVisible=false;bNew=true,bImportFieldSkip=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTable_Adress" name="Адресати (немає у СЕВОВВ);bVisible=false;bNew=true,bImportFieldSkip=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTable_AdresOther" name="Інші адресати;bVisible=false;bNew=true,bImportFieldSkip=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="bEnable_SaveScanCopies" name="Сканувати;;sID_CheckboxTrue=yes,bImportFieldSkip=true" type="enum" default="no">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sLogin_Author" name="sLogin_Author; ;bVisible=false,bImportFieldSkip=true" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Принт форма;;bVisible=false, bPrintform=true,bParseTagsOnSubmitOnly=true,bImportFieldSkip=true" type="string" default="{'sPathFile':'1NF_ytRPvV8RZsLmAC_IhvucNfxhV192tLWrycQmfCxI', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailAccept" name="имейл;;bVisible=false,bImportFieldSkip=true" type="string" default="Шановний колего! Вам на погодження надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailAgree" name="имейл;;bVisible=false,bImportFieldSkip=true" type="string" default="Шановний колего! Вам на затвердження надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailExecute" name="имейл;;bVisible=false,bImportFieldSkip=true" type="string" default="Шановний колего! Вам на реєестрацію надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sName_Subject_DocumentSender" name="СКМУ дефолт;;bVisible=false,bImportFieldSkip=true" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_Sender" name="marker_values_Sender;;bImportFieldSkip=true" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_100&quot;:{&quot;aField_ID&quot;:[&quot;sName_Subject_DocumentSender&quot;],&quot;asID_Field_sValue&quot;:[&quot;Секретаріат Кабінету Міністрів України&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sName_SubjectOrgan_Actor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum_2' &quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sKey_DocumentDS" name="Ключ документу;;bImportFieldSkip=true" type="enum" default="DS1" required="true">
+          <activiti:value id="DS1" name="До виконання"></activiti:value>
+          <activiti:value id="DS3" name="На погодження"></activiti:value>
+          <activiti:value id="DS5" name="Інформування"></activiti:value>
+          <activiti:value id="DS6" name="Для узагальнення"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sAOptional1" name="файл1;;bVisible=false,bImportFieldSkip=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sAOptional2" name="файл1;;bVisible=false,bImportFieldSkip=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sResult" name="sResult; ;bImportFieldSkip=true,bVisible=false" type="enum" default="not_work">
+          <activiti:value id="work" name="work"></activiti:value>
+          <activiti:value id="not_work" name="not_work"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="marker_test" name="marker_values_work;;bImportFieldSkip=true" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_1&quot;:{&quot;aField_ID&quot;:[&quot;sResult&quot;],&quot;asID_Field_sValue&quot;:[&quot;work&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sKey_Private_Document_Parent&quot;},&quot;sCondition&quot;:&quot;[sClient] != '' &quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sNumberDoc" name="Номер документа;;bVisible=false,bImportFieldSkip=true" type="string" expression="${generalConfig.getOrderId_ByProcess(generalConfig.getSelfServerId(), execution.getProcessInstanceId()).toString()}"></activiti:formProperty>
+        <activiti:formProperty id="sKey_Private" name="Реєстраційний номер документу; ;bImportFieldSkip=true,bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_show" name="Показати поле Структурний підрозділ" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sName_SubjectOrgan_Depart&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sName_SubjectOrgan_Actor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum_3'&quot;}}}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow3" sourceRef="scripttask2" targetRef="usertask1"></sequenceFlow>
+    <userTask id="usertask2" name="Узгодження вихідного листа" default="flow6">
+      <extensionElements>
+        <activiti:formProperty id="sName_SubjectOrgan_Actor" name="Відправник;;bImportFieldSkip=true" type="enum" default="sEnum_2" writable="false">
+          <activiti:value id="sEnum_1" name="Кабінет Міністрів України"></activiti:value>
+          <activiti:value id="sEnum_2" name="Секретаріат Кабінету Міністрів України"></activiti:value>
+          <activiti:value id="sEnum_3" name="Секретаріат Кабінету Міністрів України, Структурний підрозділ"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_SubjectOrgan_Depart" name="Структурний підрозділ;;bImportFieldSkip=true" type="enum" required="true">
+          <activiti:value id="sDep_0" name="Управління з питань роботи із зверненнями громадян"></activiti:value>
+          <activiti:value id="sDep_1" name="Господарсько-фінансовий департамент"></activiti:value>
+          <activiti:value id="sDep_2" name="Режимно-секретне управління"></activiti:value>
+          <activiti:value id="sDep_3" name="Департамент кадрового забезпечення"></activiti:value>
+          <activiti:value id="sDep_4" name="Урядовий уповноважений з прав осіб з інвалідністю"></activiti:value>
+          <activiti:value id="sDep_5" name="Урядовий уповноважений з питань гендерної політики"></activiti:value>
+          <activiti:value id="sDep_6" name="Департамент забезпечення документообігу"></activiti:value>
+          <activiti:value id="sDep_7" name="Департамент інформації та кумунікації з громадськістю"></activiti:value>
+          <activiti:value id="sDep_8" name="Директорат публіної адміністрації"></activiti:value>
+          <activiti:value id="sDep_9" name="Директорат державних політик та стратегічного планування"></activiti:value>
+          <activiti:value id="sDep_10" name="Директорат територіального та місцевого розвитку"></activiti:value>
+          <activiti:value id="sDep_11" name="Директорат моніторінгу та контролю"></activiti:value>
+          <activiti:value id="sDep_12" name="Управління протоколу"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_DocumentType" name="Вид документа;;bImportFieldSkip=true" type="enum" default="RoleLetter" writable="false">
+          <activiti:value id="RolePatronatPM" name="Лист Прем'єр-міністра"></activiti:value>
+          <activiti:value id="RolePatronatTsyfra" name="Лист Віце-прем’єр-міністра - Міністра цифрової трансформації"></activiti:value>
+          <activiti:value id="RolePatronatEuro" name="Лист Віце-прем’єр-міністра з питань європейської та євроатлантичної інтеграції"></activiti:value>
+          <activiti:value id="RolePatronatMinKMU" name="Лист Міністра КМУ"></activiti:value>
+          <activiti:value id="RolePatronatGovSecr" name="Лист Державного секретаря КМУ"></activiti:value>
+          <activiti:value id="RolePatronatSecrKmu" name="Лист Секретаріату КМУ"></activiti:value>
+          <activiti:value id="RoleLetter" name="Лист"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sID_Document_Parent" name="До системного номеру;;bImportFields=true,{{Autocomplete:getProcessDocuments()&amp;gt;:sID_Document|sKey_Private_Document_Parent:sKey_Private}},sID_Field_Alias=sID_Document_Parent,bImportFieldSkip=true" type="select" default=" " writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sKey_Private_Document_Parent" name="До номеру" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документу;;bImportFieldSkip=true" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_DocumentBusiness" name="Справа;;bImportFieldSkip=true,{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1ipEX8_e1H7HTWNX-kF-rNUMQ6yXpN-At8qkbyTxRcYc/Лист1',sasKey_Field_Find='ColumA,ColumB',sasKey_Field_Select='ColumA,ColumB')&amp;gt;:ColumA|sCountQues:ColumB}}" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_SubjectHuman_DocumentSigner" name="Підписав; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel,bImportFieldSkip=true" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_SubjectHuman_DocumentSigner" name="Підписант посада;;bImportFieldSkip=true" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="oTable_Doc_Parent" name="Зв'язок з документом; ;bNew=true,bImportFieldSkip=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNote_Document" name="Примітки;;bImportFieldSkip=true" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sKey_DocumentUrgencyEnum" name="Терміновий;;sID_CheckboxTrue=yes,bImportFieldSkip=true" type="enum" writable="false">
+          <activiti:value id="Yes" name="Так"></activiti:value>
+          <activiti:value id="No" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sKey_DocumentGrifEnum" name="Гриф; ;bVisible=false" type="enum" writable="false">
+          <activiti:value id="sEnum1" name="Особливої важливості Літер 'М'"></activiti:value>
+          <activiti:value id="sEnum2" name="Цілком таємно"></activiti:value>
+          <activiti:value id="sEnum3" name="Цілком таємно Літер 'М'"></activiti:value>
+          <activiti:value id="sEnum4" name="Цілком таємно Літер 'Сі'"></activiti:value>
+          <activiti:value id="sEnum5" name="Таємно"></activiti:value>
+          <activiti:value id="sEnum6" name="Таємно літер 'М'"></activiti:value>
+          <activiti:value id="sEnum7" name="Таємно літер 'Сі'"></activiti:value>
+          <activiti:value id="sEnum8" name="ДСК"></activiti:value>
+          <activiti:value id="sEnum9" name="ДСК Літер 'М'"></activiti:value>
+          <activiti:value id="sEnum10" name="ДСК Літер 'Сі'"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_SubjectHuman_DocumentAuthor" name="Підготував;;writable=false,bImportFieldSkip=true" type="select" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sName_SubjectOrgan_DocumentExecutor" name="Відповідальний підрозділ; ;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1qt9hnprNHjnn4gGJJNqn0b2nJfxx1tT7CBP8AGZvLoE/Лист1',sasKey_Field_Find='ColumA',sasKey_Field_Select='ColumA,ColumB')&amp;gt;:ColumA|sCountDep:ColumB}}" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sKey_DocumentTopicEnum" name="Тематика; ;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1R8lJ5GTXyE25CrLR_6Ppsk8uy_1t12TfeMudCXBDVAo/Лист1',sasKey_Field_Find='ColumA,ColumB',sasKey_Field_Select='ColumA,ColumB')&amp;gt;:ColumA|sCountQues:ColumB}}" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Document" name="Короткий зміст" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sText" name="Текст листа;;bImportFieldSkip=true" type="fileHTML" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTableSEV2" name="Додатки;;bNew=true,bImportFieldSkip=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTableSEV1" name="Відправити в СЕВ;bVisible=false;bNew=true,bImportFieldSkip=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTable_Adress" name="Адресати (немає у СЕВОВВ);bVisible=false;bNew=true,bImportFieldSkip=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTable_AdresOther" name="Інші адресати;bVisible=false;bNew=true,bImportFieldSkip=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Принт форма;;bVisible=false, bPrintform=true,bParseTagsOnSubmitOnly=true,bImportFieldSkip=true" type="string" default="{'sPathFile':'1NF_ytRPvV8RZsLmAC_IhvucNfxhV192tLWrycQmfCxI', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sKey_DocumentDS" name="Ключ документу;;bImportFieldSkip=true" type="enum" default="DS1" writable="false">
+          <activiti:value id="DS1" name="До виконання"></activiti:value>
+          <activiti:value id="DS3" name="На погодження"></activiti:value>
+          <activiti:value id="DS5" name="Інформування"></activiti:value>
+          <activiti:value id="DS6" name="Для узагальнення"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата листа; ;bVisible=false,bImportFieldSkip=true" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sKey_Private" name="Вихідний номер;;bVisible=false,bImportFieldSkip=true" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sResult" name="sResult; ;bImportFieldSkip=true,bVisible=false" type="enum">
+          <activiti:value id="work" name="work"></activiti:value>
+          <activiti:value id="not_work" name="not_work"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sKey_Private" name="Реєстраційний номер документу; ;bImportFieldSkip=true,bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="marker_show" name="Показати поле Структурний підрозділ" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sName_SubjectOrgan_Depart&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sName_SubjectOrgan_Actor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum_3'&quot;}}}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway" default="flow8"></exclusiveGateway>
+    <sequenceFlow id="flow6" sourceRef="usertask2" targetRef="exclusivegateway1"></sequenceFlow>
+    <sequenceFlow id="flow8" sourceRef="exclusivegateway1" targetRef="usertask2"></sequenceFlow>
+    <userTask id="usertask3" name="Затвердження документа :: № ${sKey_Private} від ${oDateAt}" default="flow12">
+      <extensionElements>
+        <activiti:formProperty id="sName_SubjectOrgan_Actor" name="Відправник;;bImportFieldSkip=true" type="enum" default="sEnum_2" writable="false">
+          <activiti:value id="sEnum_1" name="Кабінет Міністрів України"></activiti:value>
+          <activiti:value id="sEnum_2" name="Секретаріат Кабінету Міністрів України"></activiti:value>
+          <activiti:value id="sEnum_3" name="Секретаріат Кабінету Міністрів України, Структурний підрозділ"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_SubjectOrgan_Depart" name="Структурний підрозділ;;bImportFieldSkip=true" type="enum" required="true">
+          <activiti:value id="sDep_0" name="Управління з питань роботи із зверненнями громадян"></activiti:value>
+          <activiti:value id="sDep_1" name="Господарсько-фінансовий департамент"></activiti:value>
+          <activiti:value id="sDep_2" name="Режимно-секретне управління"></activiti:value>
+          <activiti:value id="sDep_3" name="Департамент кадрового забезпечення"></activiti:value>
+          <activiti:value id="sDep_4" name="Урядовий уповноважений з прав осіб з інвалідністю"></activiti:value>
+          <activiti:value id="sDep_5" name="Урядовий уповноважений з питань гендерної політики"></activiti:value>
+          <activiti:value id="sDep_6" name="Департамент забезпечення документообігу"></activiti:value>
+          <activiti:value id="sDep_7" name="Департамент інформації та кумунікації з громадськістю"></activiti:value>
+          <activiti:value id="sDep_8" name="Директорат публіної адміністрації"></activiti:value>
+          <activiti:value id="sDep_9" name="Директорат державних політик та стратегічного планування"></activiti:value>
+          <activiti:value id="sDep_10" name="Директорат територіального та місцевого розвитку"></activiti:value>
+          <activiti:value id="sDep_11" name="Директорат моніторінгу та контролю"></activiti:value>
+          <activiti:value id="sDep_12" name="Управління протоколу"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_DocumentType" name="Вид документа;;bImportFieldSkip=true" type="enum" default="RoleLetter" writable="false">
+          <activiti:value id="RolePatronatPM" name="Лист Прем'єр-міністра"></activiti:value>
+          <activiti:value id="RolePatronatTsyfra" name="Лист Віце-прем’єр-міністра - Міністра цифрової трансформації"></activiti:value>
+          <activiti:value id="RolePatronatEuro" name="Лист Віце-прем’єр-міністра з питань європейської та євроатлантичної інтеграції"></activiti:value>
+          <activiti:value id="RolePatronatMinKMU" name="Лист Міністра КМУ"></activiti:value>
+          <activiti:value id="RolePatronatGovSecr" name="Лист Державного секретаря КМУ"></activiti:value>
+          <activiti:value id="RolePatronatSecrKmu" name="Лист Секретаріату КМУ"></activiti:value>
+          <activiti:value id="RoleLetter" name="Лист"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sID_Document_Parent" name="До системного номеру;;bImportFields=true,{{Autocomplete:getProcessDocuments()&amp;gt;:sID_Document|sKey_Private_Document_Parent:sKey_Private}},sID_Field_Alias=sID_Document_Parent,bImportFieldSkip=true" type="select" default=" " writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sKey_Private_Document_Parent" name="До номеру" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документу;;bImportFieldSkip=true" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sKey_Private" name="Реєстраційний номер документу; ;writable=false,bImportFieldSkip=true" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sName_DocumentBusiness" name="Справа;;bImportFieldSkip=true,{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1ipEX8_e1H7HTWNX-kF-rNUMQ6yXpN-At8qkbyTxRcYc/Лист1',sasKey_Field_Find='ColumA,ColumB',sasKey_Field_Select='ColumA,ColumB')&amp;gt;:ColumA|sCountQues:ColumB}}" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_SubjectHuman_DocumentSigner" name="Підписав; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel,bImportFieldSkip=true" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_SubjectHuman_DocumentSigner" name="Підписант посада;;bImportFieldSkip=true" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="oTable_Doc_Parent" name="Зв'язок з документом; ;bNew=true,bImportFieldSkip=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNote_Document" name="Примітки;;bImportFieldSkip=true" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sKey_DocumentUrgencyEnum" name="Терміновий;;sID_CheckboxTrue=yes,bImportFieldSkip=true" type="enum" writable="false">
+          <activiti:value id="Yes" name="Так"></activiti:value>
+          <activiti:value id="No" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sKey_DocumentGrifEnum" name="Гриф; ;bVisible=false" type="enum" writable="false">
+          <activiti:value id="sEnum1" name="Особливої важливості Літер 'М'"></activiti:value>
+          <activiti:value id="sEnum2" name="Цілком таємно"></activiti:value>
+          <activiti:value id="sEnum3" name="Цілком таємно Літер 'М'"></activiti:value>
+          <activiti:value id="sEnum4" name="Цілком таємно Літер 'Сі'"></activiti:value>
+          <activiti:value id="sEnum5" name="Таємно"></activiti:value>
+          <activiti:value id="sEnum6" name="Таємно літер 'М'"></activiti:value>
+          <activiti:value id="sEnum7" name="Таємно літер 'Сі'"></activiti:value>
+          <activiti:value id="sEnum8" name="ДСК"></activiti:value>
+          <activiti:value id="sEnum9" name="ДСК Літер 'М'"></activiti:value>
+          <activiti:value id="sEnum10" name="ДСК Літер 'Сі'"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_SubjectHuman_DocumentAuthor" name="Підготував; ;writable=false,bImportFieldSkip=true" type="select" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sName_SubjectOrgan_DocumentExecutor" name="Відповідальний підрозділ; ;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1qt9hnprNHjnn4gGJJNqn0b2nJfxx1tT7CBP8AGZvLoE/Лист1',sasKey_Field_Find='ColumA',sasKey_Field_Select='ColumA,ColumB')&amp;gt;:ColumA|sCountDep:ColumB}}" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sKey_DocumentTopicEnum" name="Тематика; ;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1R8lJ5GTXyE25CrLR_6Ppsk8uy_1t12TfeMudCXBDVAo/Лист1',sasKey_Field_Find='ColumA,ColumB',sasKey_Field_Select='ColumA,ColumB')&amp;gt;:ColumA|sCountQues:ColumB}}" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Document" name="Короткий зміст" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sText" name="Текст листа;;bImportFieldSkip=true" type="fileHTML" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTableSEV2" name="Додатки;;bNew=true,bImportFieldSkip=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTableSEV1" name="Відправити в СЕВ;bVisible=false;bNew=true,bImportFieldSkip=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTable_Adress" name="Адресати (немає у СЕВОВВ);bVisible=false;bNew=true,bImportFieldSkip=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTable_AdresOther" name="Інші адресати;bVisible=false;bNew=true,bImportFieldSkip=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Принт форма;;bVisible=false, bPrintform=true,bParseTagsOnSubmitOnly=true,bImportFieldSkip=true" type="string" default="{'sPathFile':'1NF_ytRPvV8RZsLmAC_IhvucNfxhV192tLWrycQmfCxI', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="nPages_Document" name="Кількість сторінок;;bImportFieldSkip=true" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sKey_DocumentDS" name="Ключ документу;;bImportFieldSkip=true" type="enum" default="DS1" writable="false">
+          <activiti:value id="DS1" name="До виконання"></activiti:value>
+          <activiti:value id="DS3" name="На погодження"></activiti:value>
+          <activiti:value id="DS5" name="Інформування"></activiti:value>
+          <activiti:value id="DS6" name="Для узагальнення"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sResult" name="sResult; ;bImportFieldSkip=true,bVisible=false" type="enum">
+          <activiti:value id="work" name="work"></activiti:value>
+          <activiti:value id="not_work" name="not_work"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="PrintForm_1" name="Вихідні у ПДФ; File title;sID_Field_Reciver_PrintformDefault_NotSigned=PrintForm_1,sFileName=Принт форма, bNew=true,bImportFieldSkip=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="marker_show" name="Показати поле Структурний підрозділ" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sName_SubjectOrgan_Depart&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sName_SubjectOrgan_Actor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum_3'&quot;}}}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <exclusiveGateway id="exclusivegateway3" name="Exclusive Gateway" default="flow13"></exclusiveGateway>
+    <sequenceFlow id="flow12" sourceRef="usertask3" targetRef="exclusivegateway3"></sequenceFlow>
+    <sequenceFlow id="flow13" sourceRef="exclusivegateway3" targetRef="usertask3"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway4" name="Exclusive Gateway" default="flow15"></exclusiveGateway>
+    <sequenceFlow id="flow14" sourceRef="exclusivegateway3" targetRef="exclusivegateway4">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow15" name="Повернення на затвердження, якщо не усі підписанти " sourceRef="exclusivegateway4" targetRef="usertask3">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:expression><![CDATA[+1]]></activiti:expression>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow17" sourceRef="scripttask3" targetRef="servicetask1">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <serviceTask id="servicetask1" name="Email узгоджувачам про надходження документа " activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[iDoc]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailAccept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow21" name="Перехід документа на затвердження, якщо патронатна служба узгодила лист" sourceRef="usertask7" targetRef="servicetask2">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Agree]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="flow22" sourceRef="servicetask1" targetRef="usertask2"></sequenceFlow>
+    <serviceTask id="servicetask2" name="Email про надходження документа на затвердження" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[iDoc]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailAgree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_agree]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow23" sourceRef="servicetask2" targetRef="usertask3"></sequenceFlow>
+    <userTask id="usertask4" name="Автору листа на редагування :: ${sName_Document}">
+      <extensionElements>
+        <activiti:formProperty id="sName_SubjectOrgan_Actor" name="Відправник;;bImportFieldSkip=true" type="enum" default="sEnum_2" required="true">
+          <activiti:value id="sEnum_1" name="Кабінет Міністрів України"></activiti:value>
+          <activiti:value id="sEnum_2" name="Секретаріат Кабінету Міністрів України"></activiti:value>
+          <activiti:value id="sEnum_3" name="Секретаріат Кабінету Міністрів України, Структурний підрозділ"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_SubjectOrgan_Depart" name="Структурний підрозділ;;bImportFieldSkip=true" type="enum" required="true">
+          <activiti:value id="sDep_0" name="Управління з питань роботи із зверненнями громадян"></activiti:value>
+          <activiti:value id="sDep_1" name="Господарсько-фінансовий департамент"></activiti:value>
+          <activiti:value id="sDep_2" name="Режимно-секретне управління"></activiti:value>
+          <activiti:value id="sDep_3" name="Департамент кадрового забезпечення"></activiti:value>
+          <activiti:value id="sDep_4" name="Урядовий уповноважений з прав осіб з інвалідністю"></activiti:value>
+          <activiti:value id="sDep_5" name="Урядовий уповноважений з питань гендерної політики"></activiti:value>
+          <activiti:value id="sDep_6" name="Департамент забезпечення документообігу"></activiti:value>
+          <activiti:value id="sDep_7" name="Департамент інформації та кумунікації з громадськістю"></activiti:value>
+          <activiti:value id="sDep_8" name="Директорат публіної адміністрації"></activiti:value>
+          <activiti:value id="sDep_9" name="Директорат державних політик та стратегічного планування"></activiti:value>
+          <activiti:value id="sDep_10" name="Директорат територіального та місцевого розвитку"></activiti:value>
+          <activiti:value id="sDep_11" name="Директорат моніторінгу та контролю"></activiti:value>
+          <activiti:value id="sDep_12" name="Управління протоколу"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_DocumentType" name="Вид документа;;bImportFieldSkip=true" type="enum" default="RoleLetter">
+          <activiti:value id="RolePatronatPM" name="Лист Прем'єр-міністра"></activiti:value>
+          <activiti:value id="RolePatronatTsyfra" name="Лист Віце-прем’єр-міністра - Міністра цифрової трансформації"></activiti:value>
+          <activiti:value id="RolePatronatEuro" name="Лист Віце-прем’єр-міністра з питань європейської та євроатлантичної інтеграції"></activiti:value>
+          <activiti:value id="RolePatronatMinKMU" name="Лист Міністра КМУ"></activiti:value>
+          <activiti:value id="RolePatronatGovSecr" name="Лист Державного секретаря КМУ"></activiti:value>
+          <activiti:value id="RolePatronatSecrKmu" name="Лист Секретаріату КМУ"></activiti:value>
+          <activiti:value id="RoleLetter" name="Лист"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sID_Document_Parent" name="До системного номеру;;bImportFields=true,{{Autocomplete:getProcessDocuments()&amp;gt;:sID_Document|sKey_Private_Document_Parent:sKey_Private}},sID_Field_Alias=sID_Document_Parent,bImportFieldSkip=true" type="select" default=" "></activiti:formProperty>
+        <activiti:formProperty id="sKey_Private_Document_Parent" name="До номеру" type="string"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документу;;bImportFieldSkip=true" type="date" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sName_DocumentBusiness" name="Справа;;bImportFieldSkip=true,{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1ipEX8_e1H7HTWNX-kF-rNUMQ6yXpN-At8qkbyTxRcYc/Лист1',sasKey_Field_Find='ColumA,ColumB',sasKey_Field_Select='ColumA,ColumB')&amp;gt;:ColumA|sCountQues:ColumB}}" type="select"></activiti:formProperty>
+        <activiti:formProperty id="sName_SubjectHuman_DocumentSigner" name="Підписав; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel,bImportFieldSkip=true" type="select" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_SubjectHuman_DocumentSigner" name="Підписант посада;;bImportFieldSkip=true" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="oTable_Doc_Parent" name="Зв'язок з документом; ;bNew=true,bImportFieldSkip=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sNote_Document" name="Примітки;;bImportFieldSkip=true" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sKey_DocumentUrgencyEnum" name="Терміновий;;sID_CheckboxTrue=yes,bImportFieldSkip=true" type="enum">
+          <activiti:value id="Yes" name="Так"></activiti:value>
+          <activiti:value id="No" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sKey_DocumentGrifEnum" name="Гриф; ;bVisible=false" type="enum">
+          <activiti:value id="sEnum1" name="Особливої важливості Літер 'М'"></activiti:value>
+          <activiti:value id="sEnum2" name="Цілком таємно"></activiti:value>
+          <activiti:value id="sEnum3" name="Цілком таємно Літер 'М'"></activiti:value>
+          <activiti:value id="sEnum4" name="Цілком таємно Літер 'Сі'"></activiti:value>
+          <activiti:value id="sEnum5" name="Таємно"></activiti:value>
+          <activiti:value id="sEnum6" name="Таємно літер 'М'"></activiti:value>
+          <activiti:value id="sEnum7" name="Таємно літер 'Сі'"></activiti:value>
+          <activiti:value id="sEnum8" name="ДСК"></activiti:value>
+          <activiti:value id="sEnum9" name="ДСК Літер 'М'"></activiti:value>
+          <activiti:value id="sEnum10" name="ДСК Літер 'Сі'"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_SubjectHuman_DocumentAuthor" name="Підготував; ;writable=false,bImportFieldSkip=true" type="select" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sName_SubjectOrgan_DocumentExecutor" name="Відповідальний підрозділ; ;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1qt9hnprNHjnn4gGJJNqn0b2nJfxx1tT7CBP8AGZvLoE/Лист1',sasKey_Field_Find='ColumA',sasKey_Field_Select='ColumA,ColumB')&amp;gt;:ColumA|sCountDep:ColumB}}" type="select"></activiti:formProperty>
+        <activiti:formProperty id="sKey_DocumentTopicEnum" name="Тематика; ;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1R8lJ5GTXyE25CrLR_6Ppsk8uy_1t12TfeMudCXBDVAo/Лист1',sasKey_Field_Find='ColumA,ColumB',sasKey_Field_Select='ColumA,ColumB')&amp;gt;:ColumA|sCountQues:ColumB}}" type="select"></activiti:formProperty>
+        <activiti:formProperty id="sName_Document" name="Короткий зміст" type="textArea" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sText" name="Текст листа;;bImportFieldSkip=true" type="fileHTML"></activiti:formProperty>
+        <activiti:formProperty id="sTableSEV2" name="Додатки;;bNew=true,bImportFieldSkip=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTableSEV1" name="Відправити в СЕВ;bVisible=false;bNew=true,bImportFieldSkip=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTable_Adress" name="Адресати (немає у СЕВОВВ);bVisible=false;bNew=true,bImportFieldSkip=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sTable_AdresOther" name="Інші адресати;bVisible=false;bNew=true,bImportFieldSkip=true" type="table"></activiti:formProperty>
+        <activiti:formProperty id="sLogin_Author" name="sLogin_Author; ;bVisible=false,bImportFieldSkip=true" type="string" expression="${oDocumentService.getLoginAuthor(execution)}"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Принт форма;;bVisible=false, bPrintform=true,bParseTagsOnSubmitOnly=true,bImportFieldSkip=true" type="string" default="{'sPathFile':'1NF_ytRPvV8RZsLmAC_IhvucNfxhV192tLWrycQmfCxI', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sEmailAccept" name="имейл;;bVisible=false,bImportFieldSkip=true" type="string" default="Шановний колего! Вам на погодження надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailAgree" name="имейл;;bVisible=false,bImportFieldSkip=true" type="string" default="Шановний колего! Вам на затвердження надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sEmailExecute" name="имейл;;bVisible=false,bImportFieldSkip=true" type="string" default="Шановний колего! Вам на реєестрацію надійшов документ [sID_Order_URL]  у системі iDOC. Відпрацюйте його у найкоротший термін."></activiti:formProperty>
+        <activiti:formProperty id="sKey_DocumentDS" name="Ключ документу;;bImportFieldSkip=true" type="enum" default="DS1" required="true">
+          <activiti:value id="DS1" name="До виконання"></activiti:value>
+          <activiti:value id="DS3" name="На погодження"></activiti:value>
+          <activiti:value id="DS5" name="Інформування"></activiti:value>
+          <activiti:value id="DS6" name="Для узагальнення"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sResult" name="sResult; ;bImportFieldSkip=true,bVisible=false" type="enum">
+          <activiti:value id="work" name="work"></activiti:value>
+          <activiti:value id="not_work" name="not_work"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sNumberDoc" name="Номер документа;;bVisible=false,bImportFieldSkip=true" type="string" expression="${generalConfig.getOrderId_ByProcess(generalConfig.getSelfServerId(), execution.getProcessInstanceId()).toString()}"></activiti:formProperty>
+        <activiti:formProperty id="marker_show" name="Показати поле Структурний підрозділ" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sName_SubjectOrgan_Depart&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sName_SubjectOrgan_Actor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum_3'&quot;}}}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <exclusiveGateway id="exclusivegateway5" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="FlowButton_SaveChangeAndSnos" name="Знести підписи та зберегти зміни;sIF=hasAny-States(Authorship)" sourceRef="usertask4" targetRef="exclusivegateway5">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${resetDocumentSignesListener}">
+          <activiti:field name="sasKey_StepType">
+            <activiti:string><![CDATA[Accept, Agree]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_SaveChangeAndSnos')}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow25" sourceRef="exclusivegateway5" targetRef="usertask2">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Accept]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <userTask id="usertask5" name="Узгодження канцелярією документа :: № ${sKey_Private} від ${oDateAt}" default="flow38">
+      <extensionElements>
+        <activiti:formProperty id="sName_SubjectOrgan_Actor" name="Відправник;;bImportFieldSkip=true" type="enum" default="sEnum_2" writable="false">
+          <activiti:value id="sEnum_1" name="Кабінет Міністрів України"></activiti:value>
+          <activiti:value id="sEnum_2" name="Секретаріат Кабінету Міністрів України"></activiti:value>
+          <activiti:value id="sEnum_3" name="Секретаріат Кабінету Міністрів України, Структурний підрозділ"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_SubjectOrgan_Depart" name="Структурний підрозділ;;bImportFieldSkip=true" type="enum" required="true">
+          <activiti:value id="sDep_0" name="Управління з питань роботи із зверненнями громадян"></activiti:value>
+          <activiti:value id="sDep_1" name="Господарсько-фінансовий департамент"></activiti:value>
+          <activiti:value id="sDep_2" name="Режимно-секретне управління"></activiti:value>
+          <activiti:value id="sDep_3" name="Департамент кадрового забезпечення"></activiti:value>
+          <activiti:value id="sDep_4" name="Урядовий уповноважений з прав осіб з інвалідністю"></activiti:value>
+          <activiti:value id="sDep_5" name="Урядовий уповноважений з питань гендерної політики"></activiti:value>
+          <activiti:value id="sDep_6" name="Департамент забезпечення документообігу"></activiti:value>
+          <activiti:value id="sDep_7" name="Департамент інформації та кумунікації з громадськістю"></activiti:value>
+          <activiti:value id="sDep_8" name="Директорат публіної адміністрації"></activiti:value>
+          <activiti:value id="sDep_9" name="Директорат державних політик та стратегічного планування"></activiti:value>
+          <activiti:value id="sDep_10" name="Директорат територіального та місцевого розвитку"></activiti:value>
+          <activiti:value id="sDep_11" name="Директорат моніторінгу та контролю"></activiti:value>
+          <activiti:value id="sDep_12" name="Управління протоколу"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_DocumentType" name="Вид документа;;bImportFieldSkip=true" type="enum" default="RoleLetter" writable="false">
+          <activiti:value id="RolePatronatPM" name="Лист Прем'єр-міністра"></activiti:value>
+          <activiti:value id="RolePatronatTsyfra" name="Лист Віце-прем’єр-міністра - Міністра цифрової трансформації"></activiti:value>
+          <activiti:value id="RolePatronatEuro" name="Лист Віце-прем’єр-міністра з питань європейської та євроатлантичної інтеграції"></activiti:value>
+          <activiti:value id="RolePatronatMinKMU" name="Лист Міністра КМУ"></activiti:value>
+          <activiti:value id="RolePatronatGovSecr" name="Лист Державного секретаря КМУ"></activiti:value>
+          <activiti:value id="RolePatronatSecrKmu" name="Лист Секретаріату КМУ"></activiti:value>
+          <activiti:value id="RoleLetter" name="Лист"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sID_Document_Parent" name="До системного номеру;;bImportFields=true,{{Autocomplete:getProcessDocuments()&amp;gt;:sID_Document|sKey_Private_Document_Parent:sKey_Private}},sID_Field_Alias=sID_Document_Parent,bImportFieldSkip=true" type="select" default=" " writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sKey_Private_Document_Parent" name="До номеру" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документу;;bImportFieldSkip=true" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sKey_Private" name="Реєстраційний номер документу;;bImportFieldSkip=true" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sName_DocumentBusiness" name="Справа;;bImportFieldSkip=true,{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1ipEX8_e1H7HTWNX-kF-rNUMQ6yXpN-At8qkbyTxRcYc/Лист1',sasKey_Field_Find='ColumA,ColumB',sasKey_Field_Select='ColumA,ColumB')&amp;gt;:ColumA|sCountQues:ColumB}}" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_SubjectHuman_DocumentSigner" name="Підписав; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel,bImportFieldSkip=true" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_SubjectHuman_DocumentSigner" name="Підписант посада;;bImportFieldSkip=true" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="oTable_Doc_Parent" name="Зв'язок з документом; ;bNew=true,bImportFieldSkip=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="nPages_Document" name="Кількість сторінок;;bImportFieldSkip=true" type="long"></activiti:formProperty>
+        <activiti:formProperty id="nPages_DocumentAttach" name="Кількість сторінок додатків;;bImportFieldSkip=true" type="long"></activiti:formProperty>
+        <activiti:formProperty id="sNote_Document" name="Примітки;;bImportFieldSkip=true" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sKey_DocumentUrgencyEnum" name="Терміновий;;sID_CheckboxTrue=yes,bImportFieldSkip=true" type="enum" writable="false">
+          <activiti:value id="Yes" name="Так"></activiti:value>
+          <activiti:value id="No" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sKey_DocumentGrifEnum" name="Гриф; ;bVisible=false" type="enum">
+          <activiti:value id="sEnum1" name="Особливої важливості Літер 'М'"></activiti:value>
+          <activiti:value id="sEnum2" name="Цілком таємно"></activiti:value>
+          <activiti:value id="sEnum3" name="Цілком таємно Літер 'М'"></activiti:value>
+          <activiti:value id="sEnum4" name="Цілком таємно Літер 'Сі'"></activiti:value>
+          <activiti:value id="sEnum5" name="Таємно"></activiti:value>
+          <activiti:value id="sEnum6" name="Таємно літер 'М'"></activiti:value>
+          <activiti:value id="sEnum7" name="Таємно літер 'Сі'"></activiti:value>
+          <activiti:value id="sEnum8" name="ДСК"></activiti:value>
+          <activiti:value id="sEnum9" name="ДСК Літер 'М'"></activiti:value>
+          <activiti:value id="sEnum10" name="ДСК Літер 'Сі'"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_SubjectHuman_DocumentAuthor" name="Підготував; ;writable=false,bImportFieldSkip=true" type="select" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sName_SubjectOrgan_DocumentExecutor" name="Відповідальний підрозділ; ;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1qt9hnprNHjnn4gGJJNqn0b2nJfxx1tT7CBP8AGZvLoE/Лист1',sasKey_Field_Find='ColumA',sasKey_Field_Select='ColumA,ColumB')&amp;gt;:ColumA|sCountDep:ColumB}}" type="select"></activiti:formProperty>
+        <activiti:formProperty id="sKey_DocumentTopicEnum" name="Тематика; ;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1R8lJ5GTXyE25CrLR_6Ppsk8uy_1t12TfeMudCXBDVAo/Лист1',sasKey_Field_Find='ColumA,ColumB',sasKey_Field_Select='ColumA,ColumB')&amp;gt;:ColumA|sCountQues:ColumB}}" type="select"></activiti:formProperty>
+        <activiti:formProperty id="sName_Document" name="Короткий зміст" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sText" name="Текст листа;;bImportFieldSkip=true" type="fileHTML" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTableSEV2" name="Додатки;;bNew=true,bImportFieldSkip=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTableSEV1" name="Відправити в СЕВ;bVisible=false;bNew=true,bImportFieldSkip=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTable_Adress" name="Адресати (немає у СЕВОВВ);bVisible=false;bNew=true,bImportFieldSkip=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTable_AdresOther" name="Інші адресати;bVisible=false;bNew=true,bImportFieldSkip=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Принт форма;;bVisible=false, bPrintform=true,bParseTagsOnSubmitOnly=true,bImportFieldSkip=true" type="string" default="{'sPathFile':'1NF_ytRPvV8RZsLmAC_IhvucNfxhV192tLWrycQmfCxI', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="PrintForm_1" name="Вихідні у ПДФ; File title;sID_Field_Reciver_PrintformDefault_NotSigned=PrintForm_1,sFileName=Принт форма, bNew=true,bImportFieldSkip=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sKey_DocumentDS" name="Ключ документу;;bImportFieldSkip=true" type="enum" default="DS1" writable="false">
+          <activiti:value id="DS1" name="До виконання"></activiti:value>
+          <activiti:value id="DS3" name="На погодження"></activiti:value>
+          <activiti:value id="DS5" name="Інформування"></activiti:value>
+          <activiti:value id="DS6" name="Для узагальнення"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sResult" name="sResult; ;bImportFieldSkip=true,bVisible=false" type="enum">
+          <activiti:value id="work" name="work"></activiti:value>
+          <activiti:value id="not_work" name="not_work"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="markercount" name="лічильник номера при реєстрації;;bImportFieldSkip=true" type="markers" default="{&quot;motion&quot;:{&quot;GenerateCounterCustom_8&quot;:{&quot;aID&quot;:[{&quot;sFormula&quot;:&quot;('[sKey_Private_Document_Parent]' !== '') ? ('[sKey_Private_Document_Parent]'.substring(0,'[sKey_Private_Document_Parent]'.indexOf('/')) +'//'+ '[sKey_Private_Document_Parent]'.substr(0-(('[sKey_Private_Document_Parent]'.length-1) - '[sKey_Private_Document_Parent]'.lastIndexOf('/')))) : ''&quot;},{&quot;sFormula&quot;:&quot;('[sKey_Private_Document_Parent]' === '') ? 'inout' : ''&quot;}],&quot;sFormulaResult&quot;:&quot;('[sKey_Private_Document_Parent]' !== '') ? ('[sKey_Private_Document_Parent]'.substring(0,'[sKey_Private_Document_Parent]'.indexOf('/')) +'/'+([0]+1)+'/'+ '[sKey_Private_Document_Parent]'.substr(0-(('[sKey_Private_Document_Parent]'.length-1) - '[sKey_Private_Document_Parent]'.lastIndexOf('/')))) : (([1] + 1) + '/0/5-'+((new Date()).getYear() - 100))&quot;,&quot;sID_Field_Target&quot;:&quot;sKey_Private&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="marker_show" name="Показати поле Структурний підрозділ" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sName_SubjectOrgan_Depart&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sName_SubjectOrgan_Actor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum_3'&quot;}}}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <serviceTask id="servicetask3" name="Видача прав на узгодження канцелярією документа" activiti:delegateExpression="${setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('Outgoing_Correspondence', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sEmailExecute]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept_1]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow28" sourceRef="servicetask3" targetRef="usertask5"></sequenceFlow>
+    <sequenceFlow id="FlowButton_Edit" name="Взяти на редагування;sIF=hasAny-States(Authorship)" sourceRef="usertask2" targetRef="usertask4">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[edit]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_Edit')}]]></conditionExpression>
+    </sequenceFlow>
+    <serviceTask id="servicetask4" name="Відправка в СЕВ ОВВ" activiti:delegateExpression="#{SetDocument_GovUA_SEVOVV_ServiceTask}">
+      <extensionElements>
+        <activiti:field name="sKey_DocumentDS">
+          <activiti:expression><![CDATA[${sKey_DocumentDS}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sName">
+          <activiti:string><![CDATA[Вихідний лист]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sNote">
+          <activiti:expression><![CDATA[${sName_Document}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="oFieldTable_SubjectsAdressats">
+          <activiti:string><![CDATA['']]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasPathFieldFile_AttachMain">
+          <activiti:string><![CDATA[PrintForm_1]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasPathFieldFile_AttachOther">
+          <activiti:string><![CDATA[sTableSEV2.sFile]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="servicetask5" name="Видача прав на ознайомлення відповідальним за вихідну кореспонденцію" activiti:delegateExpression="${setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_seen]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('Outgoing_Correspondence', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_seen]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sEmailExecute]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow29" sourceRef="servicetask4" targetRef="servicetask5">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Seen]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <userTask id="usertask6" name="Ознайомлення відповідальними за вихідну кореспонденцію :: № ${sKey_Private} від ${oDateAt}">
+      <extensionElements>
+        <activiti:formProperty id="oFile_Document_Source_SEV" name="xml; ;bNew=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="sName_SubjectOrgan_Actor" name="Відправник;;bImportFieldSkip=true" type="enum" default="sEnum_2" writable="false">
+          <activiti:value id="sEnum_1" name="Кабінет Міністрів України"></activiti:value>
+          <activiti:value id="sEnum_2" name="Секретаріат Кабінету Міністрів України"></activiti:value>
+          <activiti:value id="sEnum_3" name="Секретаріат Кабінету Міністрів України, Структурний підрозділ"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_SubjectOrgan_Depart" name="Структурний підрозділ;;bImportFieldSkip=true" type="enum" required="true">
+          <activiti:value id="sDep_0" name="Управління з питань роботи із зверненнями громадян"></activiti:value>
+          <activiti:value id="sDep_1" name="Господарсько-фінансовий департамент"></activiti:value>
+          <activiti:value id="sDep_2" name="Режимно-секретне управління"></activiti:value>
+          <activiti:value id="sDep_3" name="Департамент кадрового забезпечення"></activiti:value>
+          <activiti:value id="sDep_4" name="Урядовий уповноважений з прав осіб з інвалідністю"></activiti:value>
+          <activiti:value id="sDep_5" name="Урядовий уповноважений з питань гендерної політики"></activiti:value>
+          <activiti:value id="sDep_6" name="Департамент забезпечення документообігу"></activiti:value>
+          <activiti:value id="sDep_7" name="Департамент інформації та кумунікації з громадськістю"></activiti:value>
+          <activiti:value id="sDep_8" name="Директорат публіної адміністрації"></activiti:value>
+          <activiti:value id="sDep_9" name="Директорат державних політик та стратегічного планування"></activiti:value>
+          <activiti:value id="sDep_10" name="Директорат територіального та місцевого розвитку"></activiti:value>
+          <activiti:value id="sDep_11" name="Директорат моніторінгу та контролю"></activiti:value>
+          <activiti:value id="sDep_12" name="Управління протоколу"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_DocumentType" name="Вид документа;;bImportFieldSkip=true" type="enum" default="RoleLetter" writable="false">
+          <activiti:value id="RolePatronatPM" name="Лист Прем'єр-міністра"></activiti:value>
+          <activiti:value id="RolePatronatTsyfra" name="Лист Віце-прем’єр-міністра - Міністра цифрової трансформації"></activiti:value>
+          <activiti:value id="RolePatronatEuro" name="Лист Віце-прем’єр-міністра з питань європейської та євроатлантичної інтеграції"></activiti:value>
+          <activiti:value id="RolePatronatMinKMU" name="Лист Міністра КМУ"></activiti:value>
+          <activiti:value id="RolePatronatGovSecr" name="Лист Державного секретаря КМУ"></activiti:value>
+          <activiti:value id="RolePatronatSecrKmu" name="Лист Секретаріату КМУ"></activiti:value>
+          <activiti:value id="RoleLetter" name="Лист"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sID_Document_Parent" name="До системного номеру;;bImportFields=true,{{Autocomplete:getProcessDocuments()&amp;gt;:sID_Document|sKey_Private_Document_Parent:sKey_Private}},sID_Field_Alias=sID_Document_Parent,bImportFieldSkip=true" type="select" default=" " writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sKey_Private_Document_Parent" name="До номеру" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документу;;bImportFieldSkip=true" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sKey_Private" name="Реєстраційний номер документу; ;writable=false,bImportFieldSkip=true" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sName_DocumentBusiness" name="Справа;;bImportFieldSkip=true,{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1ipEX8_e1H7HTWNX-kF-rNUMQ6yXpN-At8qkbyTxRcYc/Лист1',sasKey_Field_Find='ColumA,ColumB',sasKey_Field_Select='ColumA,ColumB')&amp;gt;:ColumA|sCountQues:ColumB}}" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_SubjectHuman_DocumentSigner" name="Підписав; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel,bImportFieldSkip=true" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_SubjectHuman_DocumentSigner" name="Підписант посада;;bImportFieldSkip=true" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="oTable_Doc_Parent" name="Зв'язок з документом; ;bNew=true,bImportFieldSkip=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="nPages_Document" name="Кількість сторінок;;bImportFieldSkip=true" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="nPages_DocumentAttachach" name="Кількість сторінок додатків;;bImportFieldSkip=true" type="long" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNote_Document" name="Примітки;;bImportFieldSkip=true" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sKey_DocumentUrgencyEnum" name="Терміновий;;sID_CheckboxTrue=yes,bImportFieldSkip=true" type="enum" writable="false">
+          <activiti:value id="Yes" name="Так"></activiti:value>
+          <activiti:value id="No" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sKey_DocumentGrifEnum" name="Гриф; ;bVisible=false" type="enum" writable="false">
+          <activiti:value id="sEnum1" name="Особливої важливості Літер 'М'"></activiti:value>
+          <activiti:value id="sEnum2" name="Цілком таємно"></activiti:value>
+          <activiti:value id="sEnum3" name="Цілком таємно Літер 'М'"></activiti:value>
+          <activiti:value id="sEnum4" name="Цілком таємно Літер 'Сі'"></activiti:value>
+          <activiti:value id="sEnum5" name="Таємно"></activiti:value>
+          <activiti:value id="sEnum6" name="Таємно літер 'М'"></activiti:value>
+          <activiti:value id="sEnum7" name="Таємно літер 'Сі'"></activiti:value>
+          <activiti:value id="sEnum8" name="ДСК"></activiti:value>
+          <activiti:value id="sEnum9" name="ДСК Літер 'М'"></activiti:value>
+          <activiti:value id="sEnum10" name="ДСК Літер 'Сі'"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_SubjectHuman_DocumentAuthor" name="Підготував; ;writable=false,bImportFieldSkip=true" type="select" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sName_SubjectOrgan_DocumentExecutor" name="Відповідальний підрозділ; ;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1qt9hnprNHjnn4gGJJNqn0b2nJfxx1tT7CBP8AGZvLoE/Лист1',sasKey_Field_Find='ColumA',sasKey_Field_Select='ColumA,ColumB')&amp;gt;:ColumA|sCountDep:ColumB}}" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sKey_DocumentTopicEnum" name="Тематика; ;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1R8lJ5GTXyE25CrLR_6Ppsk8uy_1t12TfeMudCXBDVAo/Лист1',sasKey_Field_Find='ColumA,ColumB',sasKey_Field_Select='ColumA,ColumB')&amp;gt;:ColumA|sCountQues:ColumB}}" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Document" name="Короткий зміст" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sText" name="Текст листа;;bImportFieldSkip=true" type="fileHTML" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTableSEV2" name="Додатки;;bNew=true,bImportFieldSkip=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTableSEV1" name="Відправити в СЕВ;bVisible=false;bNew=true,bImportFieldSkip=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTable_Adress" name="Адресати (немає у СЕВОВВ);bVisible=false;bNew=true,bImportFieldSkip=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTable_AdresOther" name="Інші адресати;bVisible=false;bNew=true,bImportFieldSkip=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Принт форма;;bVisible=false, bPrintform=true,bParseTagsOnSubmitOnly=true,bImportFieldSkip=true" type="string" default="{'sPathFile':'1NF_ytRPvV8RZsLmAC_IhvucNfxhV192tLWrycQmfCxI', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sKey_DocumentDS" name="Ключ документу; ;bVisible=false,bImportFieldSkip=true" type="enum" default="DS1" writable="false">
+          <activiti:value id="DS1" name="До виконання"></activiti:value>
+          <activiti:value id="DS3" name="На погодження"></activiti:value>
+          <activiti:value id="DS5" name="Інформування"></activiti:value>
+          <activiti:value id="DS6" name="Для узагальнення"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sResult" name="sResult; ;bImportFieldSkip=true,bVisible=false" type="enum">
+          <activiti:value id="work" name="work"></activiti:value>
+          <activiti:value id="not_work" name="not_work"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="PrintForm_1" name="Вихідні у ПДФ; File title;sID_Field_Reciver_PrintformDefault_NotSigned=PrintForm_1,sFileName=Принт форма, bNew=true,bImportFieldSkip=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="marker_show" name="Показати поле Структурний підрозділ" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sName_SubjectOrgan_Depart&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sName_SubjectOrgan_Actor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum_3'&quot;}}}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow30" sourceRef="servicetask5" targetRef="usertask6"></sequenceFlow>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow32" sourceRef="usertask6" targetRef="endevent1"></sequenceFlow>
+    <sequenceFlow id="flow33" name="Узгодження вихідного листа з канцелярією" sourceRef="exclusivegateway1" targetRef="servicetask3">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_accept_1]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="FlowButton_VzyatNaRedaktirovanieZZatverdgennya1" name="Редагування від канцелярії;sIF=hasAny-States(Authorship)" sourceRef="usertask5" targetRef="usertask4">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[edit]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_VzyatNaRedaktirovanieZZatverdgennya1')}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="FlowButton_VzyatNaRedaktirovanieZZ" name="Редагування;sIF=hasAny-States(Authorship)" sourceRef="usertask3" targetRef="usertask4">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Edit]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_VzyatNaRedaktirovanieZZ')}]]></conditionExpression>
+    </sequenceFlow>
+    <scriptTask id="scripttask3" name="Зв'язок документів та присвоєння стану терміново при необхідності" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>//Связка одного документа, с поля
+var sID_Order = execution.getVariable('sID_Document_Parent');
+if(sID_Order){
+	var sNum = sID_Order.split('-')[1];
+	var processInstanceId_parent = sNum.substring(0, sNum.length - 1);
+	var processInstanceId_child = execution.getProcessInstanceId();
+	var nID_Process_Child = processDocumentService.getProcessDocument(processInstanceId_child).id;
+	var nID_Process_Parent = processDocumentService.getProcessDocument(processInstanceId_parent).id;
+	processDocumentTreeService.setProcessDocumentTree(+nID_Process_Parent, +nID_Process_Child);
+}
+
+//Присвоение состояния
+if(sKey_DocumentUrgencyEnum == 'yes'){
+processDocumentService.setProcessDocumentState(sNumberDoc, "UrgentlyRegistration");
+}</script>
+    </scriptTask>
+    <sequenceFlow id="flow36" name="Перехід до відправки в СЕВ, якщо усі затверджуючі підписали" sourceRef="exclusivegateway4" targetRef="servicetask4">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisTypeStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow37" sourceRef="usertask1" targetRef="scripttask3"></sequenceFlow>
+    <serviceTask id="servicetask6" name="Моніторинг" activiti:delegateExpression="${setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_view]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('RoleMonitoring',null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sEmailExecute]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[_]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="servicetask7" name="Видача прав на узгодження патронатній службі" activiti:delegateExpression="${setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_accept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles(sName_DocumentType, null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept_2]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[sEmailExecute]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow38" sourceRef="usertask5" targetRef="servicetask7">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepListener}">
+          <activiti:field name="sKey_Step">
+            <activiti:string><![CDATA[step_accept_2]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisTypeStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <serviceTask id="servicetask8" name="Email про надходження документа на узгодження патронатною службою" activiti:delegateExpression="#{sendEmailToAllDocumentStepOwners}">
+      <extensionElements>
+        <activiti:field name="sHead">
+          <activiti:string><![CDATA[iDoc]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sContentKey">
+          <activiti:string><![CDATA[sEmailAccept]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_accept_2]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow39" sourceRef="servicetask7" targetRef="servicetask8"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway6" name="Exclusive Gateway" default="flow41"></exclusiveGateway>
+    <sequenceFlow id="flow40" sourceRef="servicetask8" targetRef="exclusivegateway6"></sequenceFlow>
+    <userTask id="usertask7" name="Узгодження вихідного листа патронатною службою" default="flow21">
+      <extensionElements>
+        <activiti:formProperty id="sName_SubjectOrgan_Actor" name="Відправник;;bImportFieldSkip=true" type="enum" default="sEnum_2" writable="false">
+          <activiti:value id="sEnum_1" name="Кабінет Міністрів України"></activiti:value>
+          <activiti:value id="sEnum_2" name="Секретаріат Кабінету Міністрів України"></activiti:value>
+          <activiti:value id="sEnum_3" name="Секретаріат Кабінету Міністрів України, Структурний підрозділ"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_SubjectOrgan_Depart" name="Структурний підрозділ;;bImportFieldSkip=true" type="enum" required="true">
+          <activiti:value id="sDep_0" name="Управління з питань роботи із зверненнями громадян"></activiti:value>
+          <activiti:value id="sDep_1" name="Господарсько-фінансовий департамент"></activiti:value>
+          <activiti:value id="sDep_2" name="Режимно-секретне управління"></activiti:value>
+          <activiti:value id="sDep_3" name="Департамент кадрового забезпечення"></activiti:value>
+          <activiti:value id="sDep_4" name="Урядовий уповноважений з прав осіб з інвалідністю"></activiti:value>
+          <activiti:value id="sDep_5" name="Урядовий уповноважений з питань гендерної політики"></activiti:value>
+          <activiti:value id="sDep_6" name="Департамент забезпечення документообігу"></activiti:value>
+          <activiti:value id="sDep_7" name="Департамент інформації та кумунікації з громадськістю"></activiti:value>
+          <activiti:value id="sDep_8" name="Директорат публіної адміністрації"></activiti:value>
+          <activiti:value id="sDep_9" name="Директорат державних політик та стратегічного планування"></activiti:value>
+          <activiti:value id="sDep_10" name="Директорат територіального та місцевого розвитку"></activiti:value>
+          <activiti:value id="sDep_11" name="Директорат моніторінгу та контролю"></activiti:value>
+          <activiti:value id="sDep_12" name="Управління протоколу"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_DocumentType" name="Вид документа;;bImportFieldSkip=true" type="enum" default="RoleLetter" writable="false">
+          <activiti:value id="RolePatronatPM" name="Лист Прем'єр-міністра"></activiti:value>
+          <activiti:value id="RolePatronatTsyfra" name="Лист Віце-прем’єр-міністра - Міністра цифрової трансформації"></activiti:value>
+          <activiti:value id="RolePatronatEuro" name="Лист Віце-прем’єр-міністра з питань європейської та євроатлантичної інтеграції"></activiti:value>
+          <activiti:value id="RolePatronatMinKMU" name="Лист Міністра КМУ"></activiti:value>
+          <activiti:value id="RolePatronatGovSecr" name="Лист Державного секретаря КМУ"></activiti:value>
+          <activiti:value id="RolePatronatSecrKmu" name="Лист Секретаріату КМУ"></activiti:value>
+          <activiti:value id="RoleLetter" name="Лист"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sID_Document_Parent" name="До системного номеру;;bImportFields=true,{{Autocomplete:getProcessDocuments()&amp;gt;:sID_Document|sKey_Private_Document_Parent:sKey_Private}},sID_Field_Alias=sID_Document_Parent,bImportFieldSkip=true" type="select" default=" " writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sKey_Private_Document_Parent" name="До номеру" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата документу;;bImportFieldSkip=true" type="date" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_DocumentBusiness" name="Справа;;bImportFieldSkip=true,{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1ipEX8_e1H7HTWNX-kF-rNUMQ6yXpN-At8qkbyTxRcYc/Лист1',sasKey_Field_Find='ColumA,ColumB',sasKey_Field_Select='ColumA,ColumB')&amp;gt;:ColumA|sCountQues:ColumB}}" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_SubjectHuman_DocumentSigner" name="Підписав; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel,bImportFieldSkip=true" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPosition_SubjectHuman_DocumentSigner" name="Підписант посада;;bImportFieldSkip=true" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="oTable_Doc_Parent" name="Зв'язок з документом; ;bNew=true,bImportFieldSkip=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sNote_Document" name="Примітки;;bImportFieldSkip=true" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sKey_DocumentUrgencyEnum" name="Терміновий;;sID_CheckboxTrue=yes,bImportFieldSkip=true" type="enum" writable="false">
+          <activiti:value id="Yes" name="Так"></activiti:value>
+          <activiti:value id="No" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sKey_DocumentGrifEnum" name="Гриф; ;bVisible=false" type="enum" writable="false">
+          <activiti:value id="sEnum1" name="Особливої важливості Літер 'М'"></activiti:value>
+          <activiti:value id="sEnum2" name="Цілком таємно"></activiti:value>
+          <activiti:value id="sEnum3" name="Цілком таємно Літер 'М'"></activiti:value>
+          <activiti:value id="sEnum4" name="Цілком таємно Літер 'Сі'"></activiti:value>
+          <activiti:value id="sEnum5" name="Таємно"></activiti:value>
+          <activiti:value id="sEnum6" name="Таємно літер 'М'"></activiti:value>
+          <activiti:value id="sEnum7" name="Таємно літер 'Сі'"></activiti:value>
+          <activiti:value id="sEnum8" name="ДСК"></activiti:value>
+          <activiti:value id="sEnum9" name="ДСК Літер 'М'"></activiti:value>
+          <activiti:value id="sEnum10" name="ДСК Літер 'Сі'"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sName_SubjectHuman_DocumentAuthor" name="Підготував; ;writable=false,bImportFieldSkip=true" type="select" expression="${usersService.getUserFIObyLogin(oDocumentService.getLoginAuthor(execution))}"></activiti:formProperty>
+        <activiti:formProperty id="sName_SubjectOrgan_DocumentExecutor" name="Відповідальний підрозділ; ;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1qt9hnprNHjnn4gGJJNqn0b2nJfxx1tT7CBP8AGZvLoE/Лист1',sasKey_Field_Find='ColumA',sasKey_Field_Select='ColumA,ColumB')&amp;gt;:ColumA|sCountDep:ColumB}}" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sKey_DocumentTopicEnum" name="Тематика; ;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='1R8lJ5GTXyE25CrLR_6Ppsk8uy_1t12TfeMudCXBDVAo/Лист1',sasKey_Field_Find='ColumA,ColumB',sasKey_Field_Select='ColumA,ColumB')&amp;gt;:ColumA|sCountQues:ColumB}}" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sName_Document" name="Короткий зміст" type="textArea" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sText" name="Текст листа;;bImportFieldSkip=true" type="fileHTML" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTableSEV2" name="Додатки;;bNew=true,bImportFieldSkip=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTableSEV1" name="Відправити в СЕВ;bVisible=false;bNew=true,bImportFieldSkip=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTable_Adress" name="Адресати (немає у СЕВОВВ);bVisible=false;bNew=true,bImportFieldSkip=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sTable_AdresOther" name="Інші адресати;bVisible=false;bNew=true,bImportFieldSkip=true" type="table" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sBody_1" name="Принт форма;;bVisible=false, bPrintform=true,bParseTagsOnSubmitOnly=true,bImportFieldSkip=true" type="string" default="{'sPathFile':'1NF_ytRPvV8RZsLmAC_IhvucNfxhV192tLWrycQmfCxI', 'sSourceType':'GoogleDoc'}"></activiti:formProperty>
+        <activiti:formProperty id="sKey_DocumentDS" name="Ключ документу;;bImportFieldSkip=true" type="enum" default="DS1" writable="false">
+          <activiti:value id="DS1" name="До виконання"></activiti:value>
+          <activiti:value id="DS3" name="На погодження"></activiti:value>
+          <activiti:value id="DS5" name="Інформування"></activiti:value>
+          <activiti:value id="DS6" name="Для узагальнення"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="oDateAt" name="Дата листа; ;bVisible=false,bImportFieldSkip=true" type="date"></activiti:formProperty>
+        <activiti:formProperty id="sKey_Private" name="Вихідний номер; ;bVisible=false,bImportFieldSkip=true" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sResult" name="sResult; ;bImportFieldSkip=true,bVisible=false" type="enum">
+          <activiti:value id="work" name="work"></activiti:value>
+          <activiti:value id="not_work" name="not_work"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sKey_Private" name="Реєстраційний номер документу; ;bImportFieldSkip=true,bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="PrintForm_1" name="Вихідні у ПДФ; File title;sID_Field_Reciver_PrintformDefault_NotSigned=PrintForm_1,sFileName=Принт форма, bNew=true,bImportFieldSkip=true" type="file"></activiti:formProperty>
+        <activiti:formProperty id="marker_show" name="Показати поле Структурний підрозділ" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_2&quot;:{&quot;aField_ID&quot;:[&quot;sName_SubjectOrgan_Depart&quot;],&quot;asID_Field&quot;:{&quot;sClient&quot;:&quot;sName_SubjectOrgan_Actor&quot;},&quot;sCondition&quot;:&quot;[sClient] == 'sEnum_3'&quot;}}}"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow41" name="Узгодження листів прем'єр-міністра, міністрів та віце-міністрів з патронатною службою" sourceRef="exclusivegateway6" targetRef="usertask7"></sequenceFlow>
+    <sequenceFlow id="flow42" name="Узгодження документа без патронатної служби" sourceRef="exclusivegateway6" targetRef="servicetask2">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Agree]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.hasDocumentSignsAllThisStep(execution)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="FlowButton_VzyatNaRedaktirovaniePatronat" name="Редагування від патронатної служби;sIF=hasAny-States(Authorship)" sourceRef="usertask7" targetRef="usertask4">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[edit]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${oDocumentService.isButton(execution, 'FlowButton_VzyatNaRedaktirovaniePatronat')}]]></conditionExpression>
+    </sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram__doc_template_covkmudep_outletters">
+    <bpmndi:BPMNPlane bpmnElement="_doc_template_covkmudep_outletters" id="BPMNPlane__doc_template_covkmudep_outletters">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="155.0" y="184.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask1" id="BPMNShape_scripttask1">
+        <omgdc:Bounds height="61.0" width="121.0" x="131.0" y="12.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask2" id="BPMNShape_scripttask2">
+        <omgdc:Bounds height="70.0" width="121.0" x="260.0" y="167.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="61.0" width="121.0" x="260.0" y="271.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask2" id="BPMNShape_usertask2">
+        <omgdc:Bounds height="61.0" width="121.0" x="430.0" y="271.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway1" id="BPMNShape_exclusivegateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="550.0" y="392.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask3" id="BPMNShape_usertask3">
+        <omgdc:Bounds height="90.0" width="121.0" x="800.0" y="231.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway3" id="BPMNShape_exclusivegateway3">
+        <omgdc:Bounds height="40.0" width="40.0" x="1009.0" y="255.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway4" id="BPMNShape_exclusivegateway4">
+        <omgdc:Bounds height="40.0" width="40.0" x="1009.0" y="350.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask1" id="BPMNShape_servicetask1">
+        <omgdc:Bounds height="73.0" width="121.0" x="260.0" y="427.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask2" id="BPMNShape_servicetask2">
+        <omgdc:Bounds height="91.0" width="140.0" x="283.0" y="640.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask4" id="BPMNShape_usertask4">
+        <omgdc:Bounds height="85.0" width="121.0" x="430.0" y="100.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway5" id="BPMNShape_exclusivegateway5">
+        <omgdc:Bounds height="40.0" width="40.0" x="382.0" y="1.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask5" id="BPMNShape_usertask5">
+        <omgdc:Bounds height="89.0" width="136.0" x="27.0" y="480.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask3" id="BPMNShape_servicetask3">
+        <omgdc:Bounds height="80.0" width="145.0" x="477.0" y="485.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask4" id="BPMNShape_servicetask4">
+        <omgdc:Bounds height="76.0" width="144.0" x="957.0" y="463.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask5" id="BPMNShape_servicetask5">
+        <omgdc:Bounds height="84.0" width="161.0" x="951.0" y="600.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask6" id="BPMNShape_usertask6">
+        <omgdc:Bounds height="111.0" width="149.0" x="957.0" y="730.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="820.0" y="768.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask3" id="BPMNShape_scripttask3">
+        <omgdc:Bounds height="90.0" width="130.0" x="114.0" y="331.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask6" id="BPMNShape_servicetask6">
+        <omgdc:Bounds height="55.0" width="105.0" x="158.0" y="580.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask7" id="BPMNShape_servicetask7">
+        <omgdc:Bounds height="83.0" width="120.0" x="35.0" y="640.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask8" id="BPMNShape_servicetask8">
+        <omgdc:Bounds height="87.0" width="129.0" x="30.0" y="780.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway6" id="BPMNShape_exclusivegateway6">
+        <omgdc:Bounds height="40.0" width="40.0" x="74.0" y="920.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask7" id="BPMNShape_usertask7">
+        <omgdc:Bounds height="81.0" width="131.0" x="283.0" y="960.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="190.0" y="201.0"></omgdi:waypoint>
+        <omgdi:waypoint x="260.0" y="202.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="320.0" y="237.0"></omgdi:waypoint>
+        <omgdi:waypoint x="320.0" y="271.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="490.0" y="332.0"></omgdi:waypoint>
+        <omgdi:waypoint x="497.0" y="405.0"></omgdi:waypoint>
+        <omgdi:waypoint x="550.0" y="412.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow8" id="BPMNEdge_flow8">
+        <omgdi:waypoint x="570.0" y="392.0"></omgdi:waypoint>
+        <omgdi:waypoint x="577.0" y="302.0"></omgdi:waypoint>
+        <omgdi:waypoint x="551.0" y="301.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow12" id="BPMNEdge_flow12">
+        <omgdi:waypoint x="921.0" y="276.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1009.0" y="275.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow13" id="BPMNEdge_flow13">
+        <omgdi:waypoint x="1029.0" y="255.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1029.0" y="193.0"></omgdi:waypoint>
+        <omgdi:waypoint x="865.0" y="193.0"></omgdi:waypoint>
+        <omgdi:waypoint x="860.0" y="231.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow14" id="BPMNEdge_flow14">
+        <omgdi:waypoint x="1029.0" y="295.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1029.0" y="350.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow15" id="BPMNEdge_flow15">
+        <omgdi:waypoint x="1009.0" y="370.0"></omgdi:waypoint>
+        <omgdi:waypoint x="925.0" y="370.0"></omgdi:waypoint>
+        <omgdi:waypoint x="860.0" y="321.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="908.0" y="376.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow17" id="BPMNEdge_flow17">
+        <omgdi:waypoint x="244.0" y="376.0"></omgdi:waypoint>
+        <omgdi:waypoint x="320.0" y="427.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow21" id="BPMNEdge_flow21">
+        <omgdi:waypoint x="348.0" y="960.0"></omgdi:waypoint>
+        <omgdi:waypoint x="353.0" y="731.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="70.0" width="100.0" x="352.0" y="863.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow22" id="BPMNEdge_flow22">
+        <omgdi:waypoint x="381.0" y="463.0"></omgdi:waypoint>
+        <omgdi:waypoint x="490.0" y="462.0"></omgdi:waypoint>
+        <omgdi:waypoint x="490.0" y="332.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow23" id="BPMNEdge_flow23">
+        <omgdi:waypoint x="423.0" y="685.0"></omgdi:waypoint>
+        <omgdi:waypoint x="860.0" y="681.0"></omgdi:waypoint>
+        <omgdi:waypoint x="860.0" y="321.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_SaveChangeAndSnos" id="BPMNEdge_FlowButton_SaveChangeAndSnos">
+        <omgdi:waypoint x="490.0" y="100.0"></omgdi:waypoint>
+        <omgdi:waypoint x="402.0" y="41.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="70.0" width="100.0" x="481.0" y="-2.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow25" id="BPMNEdge_flow25">
+        <omgdi:waypoint x="402.0" y="41.0"></omgdi:waypoint>
+        <omgdi:waypoint x="402.0" y="301.0"></omgdi:waypoint>
+        <omgdi:waypoint x="430.0" y="301.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow28" id="BPMNEdge_flow28">
+        <omgdi:waypoint x="477.0" y="525.0"></omgdi:waypoint>
+        <omgdi:waypoint x="163.0" y="524.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_Edit" id="BPMNEdge_FlowButton_Edit">
+        <omgdi:waypoint x="490.0" y="271.0"></omgdi:waypoint>
+        <omgdi:waypoint x="490.0" y="185.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="500.0" y="191.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow29" id="BPMNEdge_flow29">
+        <omgdi:waypoint x="1029.0" y="539.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1031.0" y="600.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow30" id="BPMNEdge_flow30">
+        <omgdi:waypoint x="1031.0" y="684.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1031.0" y="730.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow32" id="BPMNEdge_flow32">
+        <omgdi:waypoint x="957.0" y="785.0"></omgdi:waypoint>
+        <omgdi:waypoint x="855.0" y="785.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow33" id="BPMNEdge_flow33">
+        <omgdi:waypoint x="570.0" y="432.0"></omgdi:waypoint>
+        <omgdi:waypoint x="549.0" y="485.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="581.0" y="447.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_VzyatNaRedaktirovanieZZatverdgennya1" id="BPMNEdge_FlowButton_VzyatNaRedaktirovanieZZatverdgennya1">
+        <omgdi:waypoint x="95.0" y="480.0"></omgdi:waypoint>
+        <omgdi:waypoint x="97.0" y="144.0"></omgdi:waypoint>
+        <omgdi:waypoint x="430.0" y="142.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="0.0" y="355.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_VzyatNaRedaktirovanieZZ" id="BPMNEdge_FlowButton_VzyatNaRedaktirovanieZZ">
+        <omgdi:waypoint x="860.0" y="231.0"></omgdi:waypoint>
+        <omgdi:waypoint x="490.0" y="185.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="762.0" y="123.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow36" id="BPMNEdge_flow36">
+        <omgdi:waypoint x="1049.0" y="370.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1240.0" y="368.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1240.0" y="499.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1101.0" y="501.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="70.0" width="100.0" x="1049.0" y="379.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow37" id="BPMNEdge_flow37">
+        <omgdi:waypoint x="260.0" y="301.0"></omgdi:waypoint>
+        <omgdi:waypoint x="179.0" y="331.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow38" id="BPMNEdge_flow38">
+        <omgdi:waypoint x="95.0" y="569.0"></omgdi:waypoint>
+        <omgdi:waypoint x="95.0" y="640.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow39" id="BPMNEdge_flow39">
+        <omgdi:waypoint x="95.0" y="723.0"></omgdi:waypoint>
+        <omgdi:waypoint x="94.0" y="780.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow40" id="BPMNEdge_flow40">
+        <omgdi:waypoint x="94.0" y="867.0"></omgdi:waypoint>
+        <omgdi:waypoint x="94.0" y="920.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow41" id="BPMNEdge_flow41">
+        <omgdi:waypoint x="94.0" y="960.0"></omgdi:waypoint>
+        <omgdi:waypoint x="99.0" y="1000.0"></omgdi:waypoint>
+        <omgdi:waypoint x="283.0" y="1000.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="84.0" width="100.0" x="131.0" y="960.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow42" id="BPMNEdge_flow42">
+        <omgdi:waypoint x="114.0" y="940.0"></omgdi:waypoint>
+        <omgdi:waypoint x="206.0" y="937.0"></omgdi:waypoint>
+        <omgdi:waypoint x="353.0" y="731.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="56.0" width="100.0" x="132.0" y="891.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="FlowButton_VzyatNaRedaktirovaniePatronat" id="BPMNEdge_FlowButton_VzyatNaRedaktirovaniePatronat">
+        <omgdi:waypoint x="348.0" y="1041.0"></omgdi:waypoint>
+        <omgdi:waypoint x="291.0" y="1075.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-9.0" y="1075.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-9.0" y="962.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-9.0" y="551.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-9.0" y="227.0"></omgdi:waypoint>
+        <omgdi:waypoint x="-9.0" y="111.0"></omgdi:waypoint>
+        <omgdi:waypoint x="209.0" y="111.0"></omgdi:waypoint>
+        <omgdi:waypoint x="335.0" y="111.0"></omgdi:waypoint>
+        <omgdi:waypoint x="430.0" y="142.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="70.0" width="100.0" x="-84.0" y="957.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

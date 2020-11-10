@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="_doc_UPSZN_0745_ZapisOchered" name="Запис до електронної черги в орган соціальної допомоги" isExecutable="true">
+    <documentation>;bTemplated=true</documentation>
+    <startEvent id="startevent1" name="Start">
+      <extensionElements>
+        <activiti:formProperty id="markersLine_ZZ" name="Інформація про заявника" type="markers" default="{&quot;attributes&quot;:{&quot;Line_ZZ&quot;:{&quot;aElement_ID&quot;:[&quot;bankIdlastName&quot;],&quot;sValue&quot;:&quot;Інформація про заявника&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="bankIdlastName" name="Ваше прізвище" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdfirstName" name="Ваше ім`я" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdmiddleName" name="Ваше по батькові" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdinn" name="Ваш ІПН" type="string" default="1" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdbirthDay" name="Дата народження" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="asTypePasport" name="Тип паспорту" type="enum" required="true">
+          <activiti:value id="sEnumIDKard" name="id картка"></activiti:value>
+          <activiti:value id="sEnumBook" name="книжка"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sPasportS" name="Серія паспорту" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sPasportNB" name="Номер паспорта" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="sPasportNID" name="Номер паспорта" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="markerPasport" name="markerPasport" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_sEnumIDKard&quot;:{&quot;aField_ID&quot;:[&quot;sPasportNID&quot;],&quot;asID_Field&quot;:{&quot;sCond&quot;:&quot;asTypePasport&quot;},&quot;sCondition&quot;:&quot;[sCond]=='sEnumIDKard'&quot;},&quot;ShowFieldsOnCondition_sEnumBook&quot;:{&quot;aField_ID&quot;:[&quot;sPasportNB&quot;,&quot;sPasportS&quot;],&quot;asID_Field&quot;:{&quot;sCond&quot;:&quot;asTypePasport&quot;},&quot;sCondition&quot;:&quot;[sCond]=='sEnumBook'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="phone" name="Ваш телефон" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="email" name="Ваш E-Mail" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdphone" name="БанкІДтелефон; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="bankIdemail" name="БанкІДпошта; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="FlagBankId" name="FlagBankIdPhoneEmail; ;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="markerBankIdPasportPhoneEmail" name="markerBankIdPasportPhoneEmail" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_BankIdPhoneEmail&quot;:{&quot;aField_ID&quot;:[&quot;phone&quot;,&quot;email&quot;,&quot;FlagBankId&quot;],&quot;asID_Field_sValue&quot;:[&quot;[bankIdphone]&quot;,&quot;[bankIdemail]&quot;,&quot;1234567890&quot;],&quot;asID_Field&quot;:{&quot;sCondit1&quot;:&quot;bankIdlastName&quot;,&quot;sCondit2&quot;:&quot;FlagBankId&quot;},&quot;sCondition&quot;:&quot;[sCondit1] != '1234567890'&amp;&amp;[sCondit2] != '1234567890'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markersLine_2" name="Адреса проживання заявника" type="markers" default="{&quot;attributes&quot;:{&quot;Line_2&quot;:{&quot;aElement_ID&quot;:[&quot;sAdressReg&quot;],&quot;sValue&quot;:&quot;Адреса проживання заявника&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sAdressReg" name="Адреса реєстрації" type="textArea" required="true"></activiti:formProperty>
+        <activiti:formProperty id="saQuestion" name="Чи співпадає адреса реєстрації з адресою проживання?" type="enum" required="true">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sAdressLive" name="Адреса проживання" type="textArea" required="true"></activiti:formProperty>
+        <activiti:formProperty id="markersLine_Z" name="Управління соціального захисту" type="markers" default="{&quot;attributes&quot;:{&quot;Line_Z&quot;:{&quot;aElement_ID&quot;:[&quot;IDPosluga&quot;],&quot;sValue&quot;:&quot;Управління соціального захисту&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="IDPosluga" name="Послуга; ;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='17ji0hyL-YGetkAU8iGtvnMYYxV48EwaHYseZGPmr8As/Лист1',sasKey_Field_Find='Послуга',sasKey_Field_Select='Послуга,Група послуг',sKey_Field_ValueUniqFirst='Послуга')&amp;gt;:Послуга|IDFlag1:Група послуг}};{nSymbolsMin:0;sPatternRow:'[IDPosluga]-[Послуга]'}" type="select" required="true"></activiti:formProperty>
+        <activiti:formProperty id="IDRaion" name="Район; ;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='17ji0hyL-YGetkAU8iGtvnMYYxV48EwaHYseZGPmr8As/Лист1',sasKey_Field_Find='Район',sasKey_Field_Select='Район,Група послуг,Айди',sKey_Field_ValueUniqFirst='Район',smFieldValuePair_Filter='Група послуг=[IDFlag1]')&amp;gt;:Район|IDFlag2:Айди}};{nSymbolsMin:0;sPatternRow:'[IDRaion]-[Район]'}" type="select" required="true"></activiti:formProperty>
+        <activiti:formProperty id="labelW" name=" ; ;labelType=warning" type="label" default="Увага! Соборний район має два відділення за такими адресами:&lt;br&gt;• вул. В. Жуковського буд. 39/41&lt;br&gt;• пр. Героїв буд. 40"></activiti:formProperty>
+        <activiti:formProperty id="IDVikno" name="Вікно; ;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='17ji0hyL-YGetkAU8iGtvnMYYxV48EwaHYseZGPmr8As/Лист2',sasKey_Field_Find='Вікно',sasKey_Field_Select='Вікно,Номер черги,Айди',smFieldValuePair_Filter='Айди=[IDFlag2]')&amp;gt;:Вікно|nID_Department_visitDay:Номер черги}};{nSymbolsMin:0;sPatternRow:'[IDVikno]-[Вікно]'}" type="select" required="true"></activiti:formProperty>
+        <activiti:formProperty id="IDFlag1" name="IDFlag1;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="IDFlag2" name="IDFlag2;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="visitDay" name="Оберіть день та час, коли Вам буде зручно з'явитись для отримання послуги?" type="queueData" required="true"></activiti:formProperty>
+        <activiti:formProperty id="nID_Department_visitDay" name="Департамент черги;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="markerShowVisitDay" name="markerShowVisitDay" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_1111111&quot;:{&quot;aField_ID&quot;:[&quot;visitDay&quot;],&quot;asID_Field&quot;:{&quot;sReason&quot;:&quot;IDVikno&quot;},&quot;sCondition&quot;:&quot;[sReason] != '0'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markerShowAdrLive" name="markerShowAdrLive" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_222&quot;:{&quot;aField_ID&quot;:[&quot;sAdressLive&quot;],&quot;asID_Field&quot;:{&quot;sReason&quot;:&quot;saQuestion&quot;},&quot;sCondition&quot;:&quot;[sReason] == 'no'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="markerShowLabelSobor" name="markerShowLabelSobor" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_44444&quot;:{&quot;aField_ID&quot;:[&quot;labelW&quot;],&quot;asID_Field&quot;:{&quot;sReason&quot;:&quot;IDRaion&quot;},&quot;sCondition&quot;:&quot;[sReason]=='Соборний район'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sTextDocMail" name="Необхідний пакет документів;;bVisible=false" type="textArea"></activiti:formProperty>
+        <activiti:formProperty id="sTextCentrAdr" name="Адреса центру;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sTextMailDate" name="Дата черги в лист;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="sMailClerk" name="пошта;;bVisible=false" type="string" default="fenek411@gmail.com"></activiti:formProperty>
+      </extensionElements>
+    </startEvent>
+    <userTask id="usertask1" name="Створення">
+      <extensionElements>
+        <activiti:formProperty id="bankIdlastName" name="Ваше прізвище" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdfirstName" name="Ваше ім`я" type="string" required="true"></activiti:formProperty>
+        <activiti:formProperty id="bankIdmiddleName" name="Ваше по батькові" type="string" required="true"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <scriptTask id="scripttask2" name="Текст листа" scriptFormat="javascript" activiti:autoStoreVariables="false">
+      <script>        
+      var Area=' '
+      var Posluga =' '
+      
+        if(execution.getVariable('IDRaion') == 'Шевченківський район')
+          {
+          Area='м. Дніпро, пр. Богдана Хмельницького, буд. 116А'
+          }
+        if(execution.getVariable('IDRaion') == 'Центральний район')
+          {
+          Area='м. Дніпро,  вул. Володимира Антоновича, буд.30/32'
+          }
+        if(execution.getVariable('IDRaion') == 'Соборний район')
+          {
+          if(execution.getVariable('IDVikno') == 'Вікно 4')
+            {
+            Area='м. Дніпро, пр. Героїв буд. 40'
+            }
+          if(execution.getVariable('IDVikno') == 'Вікно 5')
+            {
+            Area='м. Дніпро, пр. Героїв буд. 40'
+            }
+          if(execution.getVariable('IDVikno') == 'Вікно 6')
+            {
+            Area='м. Дніпро, пр. Героїв буд. 40'
+            }
+          if(execution.getVariable('IDVikno') == 'Вікно 7')
+            {
+            Area='м. Дніпро, пр. Героїв буд. 40'
+            }
+          if(execution.getVariable('IDVikno') == 'Кабінет 8 - Вікно 1')
+            {
+            Area='м. Дніпро, вул. В. Жуковського буд. 39/41'
+            }
+          if(execution.getVariable('IDVikno') == 'Кабінет 14 - Вікно 1')
+            {
+            Area='м. Дніпро, вул. В. Жуковського буд. 39/41'
+            }
+          if(execution.getVariable('IDVikno') == 'Кабінет 1 - Вікно 1')
+            {
+            Area='м. Дніпро, вул. В. Жуковського буд. 39/41'
+            }
+          if(execution.getVariable('IDVikno') == 'Кабінет 14 - Вікно 2')
+            {
+            Area='м. Дніпро, вул. В. Жуковського буд. 39/41'
+            }
+          if(execution.getVariable('IDVikno') == 'Кабінет 12 - Вікно 1')
+            {
+            Area='м. Дніпро, вул. В. Жуковського буд. 39/41'
+            }
+          if(execution.getVariable('IDVikno') == 'Кабінет 12 - Вікно 2')
+            {
+            Area='м. Дніпро, вул. В. Жуковського буд. 39/41'
+            }
+          }
+        if(execution.getVariable('IDRaion') == 'Новокодацький район')
+          {
+          Area='м. Дніпро, вул. Трудова, 1а'
+          }
+        if(execution.getVariable('IDRaion') == 'Чечелівський район')
+          {
+          Area='м. Дніпро, вул. Уральська, 5'
+          }
+        if(execution.getVariable('IDRaion') == 'Амур-Нижньодніпровський район')
+          {
+          Area='м. Дніпро, вул. Радистів, буд. 8'
+          }
+        if(execution.getVariable('IDRaion') == 'Індустріальний район')
+          {
+          Area='м. Дніпро, пр. Петра Калнишевського буд. 55'
+          }      
+        
+        if(execution.getVariable('IDPosluga') == 'Допомога у зв\'язку з вагітністю та пологами')
+          {
+          Posluga ='Копія реєстраційного номера облікової картки платника податків  (з пред\'явленням оригіналу).&lt;br /&gt;Довідка, видана лікувально-профілактичним закладом, за формою № 147/о.&lt;br /&gt;Довідка з місця навчання про те, що жінка навчається – для студентів.&lt;br /&gt;Довідка ліквідаційної комісії про те, що жінка звільнена з роботи у зв\'язку з ліквідацією підприємства, установи та організації – для жінок, звільнених з роботи.&lt;br /&gt;Довідка центру зайнятості про те, що жінка зареєстрована у центрі зайнятості як безробітна – для жінок, які перебувають на обліку в центрі зайнятості.&lt;br /&gt;Довідка Пенсійного фонду України про те, що жінка, яка є фізичною особою - підприємцем, перебуває (не перебуває) на обліку в органах Пенсійного фонду України та не бере участь на добровільних засадах у загальнообов\'язковому державному соціальному страхуванню у зв\'язку з тимчасовою втратою працездатності та витратами, зумовленими похованням – для жінок, які є фізичними особами – підприємцями.&lt;br /&gt;Особи, які усиновили чи взяли під опіку дитину протягом двох місяців з дня її народження, подають рішення про усиновлення чи встановлення опіки.&lt;br /&gt;Реквізити банківської установи для перерахування коштів.'
+          }
+        if(execution.getVariable('IDPosluga') == 'Допомога при народженні дитини')
+          {
+          Posluga ='Копія реєстраційного номера облікової картки платника податків  (з пред\'явленням оригіналу).&lt;br /&gt;Копія свідоцтва про народження дитини (з пред\'явленням оригіналу).&lt;br /&gt;Довідка про неодержання зазначеної допомоги в органах праці та соціального захисту населення за місцем реєстрації (у випадку призначення допомоги за місцем фактичного проживання).&lt;br /&gt;Реквізити банківської установи для перерахування коштів.'
+          }
+        if(execution.getVariable('IDPosluga') == 'Допомога при усиновленні дитини')
+          {
+          Posluga ='Копія реєстраційного номера облікової картки платника податків (з пред\'явленням оригіналу).&lt;br /&gt;Копія свідоцтва про народження дитини, виданого державним органом реєстрації актів цивільного стану після внесення змін до актового запису про народження дитини на підставі рішення суду про усиновлення дитини.&lt;br /&gt;Копія рішення суду про усиновлення дитини.&lt;br /&gt;Реквізити банківської установи для перерахування коштів.'
+          }          
+       if(execution.getVariable('IDPosluga') == 'Надання стипендії особам, яким виповнилось 100 і більше років')
+          {
+          Posluga ='Відповідно до розпорядження голови Дніпропетровської обласної державної адміністрації від 27.07.2005 № 229-р-05 (із змінами) \"Про щомісячну стипендію особам, яким виповнилось 100 і більше років\" для призначення довічної стипендії особам, яким виповнилось 100 років необхідно звернутися із заявою та додати копію паспорту та індивідуального номера платника податків.&lt;br /&gt;Довічна щомісячна стипендія виплачується за місцем отримання пенсії.'
+          }          
+        if(execution.getVariable('IDPosluga') == 'Одноразова винагорода жінкам, яким присвоєно почесне звання \"Мати-героїня\"')
+          {
+          Posluga ='Копія паспорту.&lt;br /&gt;Реквізити банківської установи для перерахування коштів.'
+          }
+        if(execution.getVariable('IDPosluga') == 'Тимчасова державна допомога дітям, батьки яких ухиляються від сплати аліментів, не мають можливості утримувати дитину або місце проживання їх невідоме')
+          {
+          Posluga ='Паспорт або інший документ, що посвідчує особу.&lt;br /&gt;Копія свідоцтва про народження дитини (з пред\'явленням оригіналу).&lt;br /&gt;Довідка про реєстрацію місця проживання (перебування) дитини.&lt;br /&gt;Довідка про реєстрацію місця проживання (перебування) одержувача.&lt;br /&gt;Залежно від підстав, на яких призначається тимчасова допомога, додатково подаються такі документи:&lt;br /&gt;Рішення суду (виконавчий лист про стягнення з одного з батьків аліментів на дитину).&lt;br /&gt;Довідка державної виконавчої служби, що підтверджує факт несплати аліментів одним з батьків протягом шести місяців, що передують місяцю звернення.&lt;br /&gt;Довідка відповідної установи про здійснення стосовно одного з батьків кримінального провадження або про його перебування на примусовому лікуванні, у місцях позбавлення волі, визнання його в установленому порядку недієздатним, а також перебування на строковій військовій службі.&lt;br /&gt;Повідомлення органу внутрішніх справ про те, що місце проживання (перебування) одного з батьків дитини не встановлено.&lt;br /&gt;Реквізити банківської установи для перерахування коштів.'
+          }
+        if(execution.getVariable('IDPosluga') == 'Довідка про отримання/неотримання усіх видів державних соціальних допомог')
+          {
+          Posluga ='Довідка про отримання (неотримання) соціальної допомоги видається на підставі письмової заяви або усної вимоги за умови пред\'явлення паспорта або іншого документа, який підтверджує особу та місце її проживання (реєстрації). Отримання іншою особою соціальної допомоги здійснюється лише у випадках, передбачених відповідними нормативно-правовими актами (на вимогу правоохоронних органів, органів опіки тощо).&lt;br /&gt;У разі, якщо заявник звертається з проханням надати довідку за телефоном, його вимога реєструється в Журналі видачі довідок та повідомлень, а заявникові повідомляється про час, коли можна отримати довідку.'
+          }
+        if(execution.getVariable('IDPosluga') == 'Довідка про забезпечення (не забезпечення) санаторно-курортним лікуванням')
+          {
+          Posluga ='Оригінал паспорту.'
+          }
+        if(execution.getVariable('IDPosluga') == 'Заява на виплату пільг у грошовій готівковій формі.')
+          {
+          Posluga ='Оригінал паспорту.&lt;br /&gt;Реквізити банківської установи для перерахування коштів.'
+          }
+        if(execution.getVariable('IDPosluga') == 'Встановлення статусу батьків та дитини з багатодітної сім\'ї (видача посвідчень)')
+          {
+          Posluga ='Копії свідоцтв про народження дітей (з пред\'явленням оригіналу).&lt;br /&gt;Копії свідоцтва про шлюб (крім батьків, які не перебувають у шлюбі) (з пред\'явленням оригіналу).&lt;br /&gt;Копії сторінок паспорта громадянина України батьків з даними про прізвище, ім\'я, по батькові, дату видачі паспорта та місце реєстрації (з пред\'явленням оригіналу).&lt;br /&gt;Копії посвідки на постійне проживання батьків, якщо вони є іноземцями або особами без громадянства, які перебувають в Україні на законних підставах (з пред\'явленням оригіналу).&lt;br /&gt;Довідка про склад сім\'ї (за умови відсутності в електронній картотеці).&lt;br /&gt;Фотокартки (батьків та дітей) розміром 30 х 40 міліметрів.&lt;br /&gt;Довідка із загальноосвітнього, професійно-технічного, вищого навчального закладу (для осіб від 18 до 23 років, які навчаються за денною формою навчання).&lt;br /&gt;Довідка про реєстрацію місця проживання або перебування особи під час навчання (для осіб від 18 до 23 років, які навчаються за денною формою навчання).&lt;br /&gt;Довідка структурного підрозділу районної, районної в мм. Києві та Севастополі держадміністрації, виконавчого органу міської, районної у місті (у разі її утворення) ради про те, що батькам за місцем реєстрації посвідчення не видавалися (у разі, коли зареєстроване місце проживання батьків різне).&lt;br /&gt;Копія довідки про взяття на облік внутрішньо переміщеної особи (з пред\'явленням оригіналу).&lt;br /&gt;У разі народження або навчання дитини за межами України - копія свідоцтва про народження дитини та довідка з навчального закладу з перекладом на українську мову, вірність якого засвідчена нотаріусом.'
+          }
+        if(execution.getVariable('IDPosluga') == 'Дублікат посвідчення багатодітної сім\'ї та дитини з багатодітної сім\'ї у разі його втрати')
+          {
+          Posluga ='Копії свідоцтв про народження дітей (з пред\'явленням оригіналу).&lt;br /&gt;Копії свідоцтва про шлюб (крім батьків, які не перебувають у шлюбі) (з пред\'явленням оригіналу).&lt;br /&gt;Копії сторінок паспорта громадянина України батьків з даними про прізвище, ім\'я, по батькові, дату видачі паспорта та місце реєстрації (з пред\'явленням оригіналу).&lt;br /&gt;Копії посвідки на постійне проживання батьків, якщо вони є іноземцями або особами без громадянства, які перебувають в Україні на законних підставах (з пред\'явленням оригіналу).&lt;br /&gt;Довідка про склад сім\'ї (за умови відсутності в електронній картотеці).&lt;br /&gt;Фотокартки (батьків та дітей) розміром 30 х 40 міліметрів.&lt;br /&gt;Довідка із загальноосвітнього, професійно-технічного, вищого навчального закладу (для осіб від 18 до 23 років, які навчаються за денною формою навчання).&lt;br /&gt;Довідка про реєстрацію місця проживання або перебування особи під час навчання (для осіб від 18 до 23 років, які навчаються за денною формою навчання).&lt;br /&gt;Довідка структурного підрозділу районної, районної в мм. Києві та Севастополі держадміністрації, виконавчого органу міської, районної у місті (у разі її утворення) ради про те, що батькам за місцем реєстрації посвідчення не видавалися (у разі, коли зареєстроване місце проживання батьків різне).&lt;br /&gt;Копія довідки про взяття на облік внутрішньо переміщеної особи (з пред\'явленням оригіналу).&lt;br /&gt;У разі народження або навчання дитини за межами України - копія свідоцтва про народження дитини та довідка з навчального закладу з перекладом на українську мову, вірність якого засвідчена нотаріусом.&lt;br /&gt;Інформація щодо розміщення оголошення про втрату у друкованих засобах масової інформації.'
+          }          
+
+        if(execution.getVariable('IDPosluga') == 'Подовження строку дії посвідчень багатодітної сім\'ї у разі навчання дитини за денною формою після 18-річного віку')
+          {
+          Posluga ='Оригінал паспорта батьків.&lt;br /&gt;Довідка про склад сім\'ї (за умови відсутності в електронній картотеці).&lt;br /&gt;Копії свідоцтв про народження дітей (з пред\'явленням оригіналу).&lt;br /&gt;Оригінал посвідчення дитини з багатодітної сім\'ї.&lt;br /&gt;Оригінал посвідчення батьків з багатодітної сім\'ї.&lt;br /&gt;Довідка про реєстрацію місця проживання або перебування особи під час навчання (для осіб від 18 до 23 років, які навчаються за денною формою навчання).&lt;br /&gt;Довідка із загальноосвітнього, професійно-технічного, вищого навчального закладу (для осіб від 18 до 23 років, у разі коли навчаються за денною формою навчання).'
+          }
+        if(execution.getVariable('IDPosluga') == 'Вклеювання фотографії у посвідчення дитини з багатодітної сім\'ї у звязку з досягненням 14-річного віку')
+          {
+          Posluga ='Оригінал паспорта батьків.&lt;br /&gt;Оригінал посвідчення батьків з багатодітної сім\'ї.&lt;br /&gt;Оригінал посвідчення дитини з багатодітної сім\'ї.&lt;br /&gt;Фотокартка дитини розміром 30 х 40 міліметрів.'
+          }
+        if(execution.getVariable('IDPosluga') == 'Подовження строку дії посвідчень багатодітної сім\'ї у зв\'язку з народженням дитини')
+          {
+          Posluga ='Оригінал паспорту батьків.&lt;br /&gt;Оригінал посвідчення батьків з багатодітної сім\'ї.&lt;br /&gt;Оригінал посвідчення дитини з багатодітної сім\'ї.&lt;br /&gt;Копії свідоцтв про народження дітей (з пред\'явленням оригіналу).&lt;br /&gt;Довідка про склад сім\'ї (за умови відсутності в електронній картотеці).'
+          }
+        if(execution.getVariable('IDPosluga') == 'Державна соціальна допомога інвалідам з дитинства та дітям-інваліда віком до 18 років')
+          {
+          Posluga ='Паспорт (оригінал).&lt;br /&gt;Довідка  про реєстраційний номер облікової картки платника податків (оригінал).&lt;br /&gt;Свідоцтво про народження дитини з  інвалідністю (оригінал та копія).&lt;br /&gt;Довідка з місця навчання  із зазначенням перебування (не перебування) на повному державному утриманні.&lt;br /&gt;Копія рішення суду про усиновлення дитини (у разі усиновлення).&lt;br /&gt;Довідка про місце проживання особи з  інвалідністю  з дитинства або дитини з інвалідністю чи копія паспорта особи з інвалідністю  з дитинства або дитини з інвалідністю з відомостями про місце проживання.&lt;br /&gt;Довідка про місце проживання законного представника, піклувальника, який подав заяву, чи копія паспорта з відомостями про місце проживання.&lt;br /&gt;Іноземці та особи без громадянства додатково подають копію посвідки на постійне або тимчасове проживання.&lt;br /&gt;Якщо із заявою звертається опікун або піклувальник, подається також:&lt;br /&gt;Копія рішення про встановлення опіки (піклування) та призначення дитині з інвалідністю опікуна (піклувальника).&lt;br /&gt;Копія рішення суду про визнання особи  з  інвалідністю  з дитинства недієздатною.&lt;br /&gt;Копія рішення суду про призначення опікуна особі з інвалідністю  з дитинства або копія документа, що підтверджує повноваження представника закладу (органу опіки та піклування), який виконує функції опікуна.&lt;br /&gt;Довідки лікарсько – консультативної комісії,  медико – соціальної експертної комісії про інвалідність (оригінали), встановленої форми.&lt;br /&gt;Довідка (заява) з банку про відкриття  рахунку на соціальні виплати.'
+          }
+        if(execution.getVariable('IDPosluga') == 'Надбавка на догляд за інвалідом з дитинства або дитиною-інвалідом')
+          {
+          Posluga ='За одинокими особами з інвалідністю  з дитинства ІІ і ІІІ групи:&lt;br /&gt;Висновок лікарсько - консультативної комісії про те, що вони потребують постійного стороннього догляду.&lt;br /&gt;За дитиною з  інвалідністю  віком  до 18 років:&lt;br /&gt;Копія трудової книжки.&lt;br /&gt;Довідка з центру зайнятості про те, що особа не перебуває на обліку як безробітна.&lt;br /&gt;Довідка про доходи за останній звітний період (рік).&lt;br /&gt;Довідка про спільне проживання дитини з інвалідністю  з одним з батьків, усиновителем, опікуном, піклувальником, видана уповноваженим органом за місцем проживання.&lt;br /&gt;Довідка з місця навчання дитини.&lt;br /&gt;Довідка про потребу дитини (дитини з інвалідністю) у домашньому догляді за формою, затвердженою наказом Міністерства охорони здоров\'я України від 11 червня 2012 року № 430, та копію наказу (розпорядження) роботодавця про надання відпустки або витяг з них.'
+          }
+        if(execution.getVariable('IDPosluga') == 'Видача посвідчень особам з інвалідністю з дитинства та дітям з інвалідністю, особам, які не мають права на пенсію та особам з інвалідністю')
+          {
+          Posluga ='Паспорт.&lt;br /&gt;Довідка МСЕК про інвалідність.&lt;br /&gt;Фото 3*4.'
+          }
+        if(execution.getVariable('IDPosluga') == 'Надання адресної допомоги на оплату житлово-комунальних послуг вдовам чорнобильців без статусу')
+          {
+          Posluga ='Паспорт (оригінал та копія).&lt;br /&gt;Довідка про присвоєння ідентифікаційного номера (оригінал та копія).&lt;br /&gt;Копія свідоцтва про смерть дружини (чоловіка).&lt;br /&gt;Посвідчення  постраждалого внаслідок Чорнобильської катастрофиоригінал та копія.&lt;br /&gt;Свідоцтво  про шлюб,оригінал та копія.&lt;br /&gt;Довідка про склад сім\'ї.&lt;br /&gt;Копії документів, які підтверджують родинні зв\'язки (за необхідністю).&lt;br /&gt;Особові рахунки у постачальників житлово-комунальних послуг.'
+          }
+        if(execution.getVariable('IDPosluga') == 'Надання адресної допомоги на оплату житлово-комунальних послуг учасникам АТО, членам їх сімей та сім\'ям загиблих учасників АТО, що зареєстровані у м. Дніпрі')
+          {
+          Posluga ='Паспорт (оригінал та копія).&lt;br /&gt;Копія документа, що засвідчує реєстрацію в Державному реєстрі фізичних осіб-платників податків.&lt;br /&gt;Копія довідки про безпосереднью участь особи в АТО, забезпеченні її проведення і захисті незалежності, суверенітету та територіальної цілісності України, затвердженого зразка або копія про участь особи у здійснення із забезпечення національної безпеки і оборони,відсічі і спримування збройної агресії Російської Федерації в Донецькій та Луганській областях, забезпечення їх здійснення, затвердженого зразка.&lt;br /&gt;Копія посвідчення учасника бойових дій.&lt;br /&gt;Копія посвідчення члена сім\'ї загиблого (померлого).&lt;br /&gt;Копія свідоцтва про смерть загиблого (померлого) учасника АТО.&lt;br /&gt;Копія повідомлення про смерть, засвідчена військовим комісаріатом, або копії інших документів, що підтверджують факт загибелі в зоні проведення АТО, засвідчені належним чином.&lt;br /&gt;Довідка  військово-лікарсткої комісії про причининний зв\'язок смерті з виконанням обов\'язків військової служби або захистом Батьківщини  (для померлих учасників АТО).&lt;br /&gt;Довідка про склад сім\'ї та реєстрацію (у разі відсутності в електронній картотеці).&lt;br /&gt;Копія свідоцтва про шлюб (за наявності).&lt;br /&gt;Копія свідоцтва про народження дитини (за наявності).&lt;br /&gt;Особові рахунки підприємств, що надають житлово-комунальні послуги.'
+          }
+        if(execution.getVariable('IDPosluga') == 'Надання адресної допомоги на оплату житлово-комунальних послуг родинам осіб з інвалідністю')
+          {
+          Posluga ='Паспорт особи з інвалідністю або свідоцтво про народження дитини з інвалідністю (оригінал та копія).&lt;br /&gt;Довідка МСЕК або ЛКК (із зазначенням нозології).&lt;br /&gt;Довідка про склад сім\'ї (у разі відсутності в електронній картотеці).&lt;br /&gt;Особові рахунки у постачальників в житлово-комунальних послуг.'
+          }
+        if(execution.getVariable('IDPosluga') == 'Довідка про те, що за місцем реєстрації батька або матері посвідчення батьків та дитини з багатодітної сім\'ї не видавались')
+          {
+          Posluga ='Паспорт особи'
+          }
+
+          
+        execution.setVariable('sTextDocMail', Posluga)
+        execution.setVariable('sTextCentrAdr', Area) 
+        
+                var src=execution.getVariable('visitDay') 
+var year=src.substr(57,4)
+var month=src.substr(62,2)
+var day=src.substr(65,2)
+var hour=src.substr(68,2)
+var minutes=src.substr(71,2)
+
+var timer=year+'-'+month+'-'+day + ' ' + hour+':'+minutes
+execution.setVariable('sTextMailDate', timer)
+
+      </script>
+    </scriptTask>
+    <serviceTask id="servicetask2" name="Повідомлення співробітника" activiti:delegateExpression="#{MailTaskWithoutAttachment}">
+      <extensionElements>
+        <activiti:field name="to">
+          <activiti:expression><![CDATA[${sMailClerk}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="subject">
+          <activiti:string><![CDATA[Нове звернення на тему: Запис на електронну чергу до органу соціальної допомоги]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="from">
+          <activiti:string><![CDATA[noreply@igov.gov.ua]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="text">
+          <activiti:expression><![CDATA[[pattern/mail/new_design/_common_employee_notify.html]]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="servicetask1" name="Повідомлення громадянина" activiti:delegateExpression="#{MailTaskWithAttachmentsAndSMS}">
+      <extensionElements>
+        <activiti:field name="to">
+          <activiti:expression><![CDATA[${email}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="from">
+          <activiti:string><![CDATA[noreply@igov.gov.ua]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="subject">
+          <activiti:string><![CDATA[Нове звернення на тему: Запис на електронну чергу до органу соціальної допомоги]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="text">
+          <activiti:expression><![CDATA[[pattern/mail/new_design/_common_header.html]
+[pattern/mail/new_design/_common_content_start.html]
+Ваше звернення [sID_Order] успішно зареєстровано.<br/>
+
+Ви записались на <b>${sTextMailDate}</b> для отримання послуги:<br/>
+<br/>
+${visitDay}
+<br/>
+<b>${IDPosluga}</b><br/><br/>
+
+Вам необхідно прийти до обраного Управління соціального захисту населення за адресою:<br/>
+<b>${sTextCentrAdr}</b><br/><br/>
+
+З собою необхідно мати такий пакет документів: <br/>
+<i>${sTextDocMail}</i><br/>
+
+<br /><br />
+
+			[pattern/mail/new_design/_common_content_end.html]
+			[pattern/mail/new_design/_common_signature_start.html]
+			[pattern/mail/new_design/_common_signature_end.html]
+			[pattern/mail/new_design/_common_footer.html]]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sPhone_SMS">
+          <activiti:expression><![CDATA[${phone}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sText_SMS">
+          <activiti:expression><![CDATA[Vashe zvernennya [sID_Order] zareestrovano]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="saAttachmentsForSend">
+          <activiti:expression><![CDATA[" "]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <userTask id="usertask2" name="Перевірка звернення">
+      <extensionElements>
+        <activiti:formProperty id="markersLine_ZZ" name="Інформація про заявника" type="markers" default="{&quot;attributes&quot;:{&quot;Line_ZZ&quot;:{&quot;aElement_ID&quot;:[&quot;clFio&quot;],&quot;sValue&quot;:&quot;Інформація про заявника&quot;}}}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="clFio" name="ПІБ заявника" type="string" writable="false" default="${bankIdlastName} ${bankIdfirstName} ${bankIdmiddleName}"></activiti:formProperty>
+        <activiti:formProperty id="bankIdinn" name="Ваш ІПН" type="string" default="1" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdbirthDay" name="Дата народження" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="asTypePasport" name="Тип паспорту" type="enum" writable="false">
+          <activiti:value id="sEnumIDKard" name="id картка"></activiti:value>
+          <activiti:value id="sEnumBook" name="книжка"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sPasportS" name="Серія паспорту" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPasportNB" name="Номер паспорта" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="sPasportNID" name="Номер паспорта" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="markerPasport" name="markerPasport" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_sEnumIDKard&quot;:{&quot;aField_ID&quot;:[&quot;sPasportNID&quot;],&quot;asID_Field&quot;:{&quot;sCond&quot;:&quot;asTypePasport&quot;},&quot;sCondition&quot;:&quot;[sCond]=='sEnumIDKard'&quot;},&quot;ShowFieldsOnCondition_sEnumBook&quot;:{&quot;aField_ID&quot;:[&quot;sPasportNB&quot;,&quot;sPasportS&quot;],&quot;asID_Field&quot;:{&quot;sCond&quot;:&quot;asTypePasport&quot;},&quot;sCondition&quot;:&quot;[sCond]=='sEnumBook'&quot;}}}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="phone" name="Телефон" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="email" name="E-Mail" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdphone" name="БанкІДтелефон; ;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="bankIdemail" name="БанкІДпошта; ;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="FlagBankId" name="FlagBankIdPhoneEmail; ;bVisible=false" type="string" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="markerBankIdPasportPhoneEmail" name="markerBankIdPasportPhoneEmail" type="markers" default="{&quot;motion&quot;:{&quot;ValuesFieldsOnCondition_BankIdPhoneEmail&quot;:{&quot;aField_ID&quot;:[&quot;phone&quot;,&quot;email&quot;,&quot;FlagBankId&quot;],&quot;asID_Field_sValue&quot;:[&quot;[bankIdphone]&quot;,&quot;[bankIdemail]&quot;,&quot;1234567890&quot;],&quot;asID_Field&quot;:{&quot;sCondit1&quot;:&quot;bankIdlastName&quot;,&quot;sCondit2&quot;:&quot;FlagBankId&quot;},&quot;sCondition&quot;:&quot;[sCondit1] != '1234567890'&amp;&amp;[sCondit2] != '1234567890'&quot;}}}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="markersLine_2" name="Адреса проживання заявника" type="markers" default="{&quot;attributes&quot;:{&quot;Line_2&quot;:{&quot;aElement_ID&quot;:[&quot;sAdressReg&quot;],&quot;sValue&quot;:&quot;Адреса проживання заявника&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="sAdressReg" name="Адреса реєстрації" type="textArea" writable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="saQuestion" name="Чи співпадає адреса реєстрації з адресою проживання?; ;sID_CheckboxTrue=yes" type="enum"  writable="false">
+          <activiti:value id="yes" name="Так"></activiti:value>
+          <activiti:value id="no" name="Ні"></activiti:value>
+        </activiti:formProperty>
+        <activiti:formProperty id="sAdressLive" name="Адреса проживання" type="textArea" writable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="markersLine_Z" name="Управління соціального захисту" type="markers" default="{&quot;attributes&quot;:{&quot;Line_Z&quot;:{&quot;aElement_ID&quot;:[&quot;IDPosluga&quot;],&quot;sValue&quot;:&quot;Управління соціального захисту&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="IDPosluga" name="Послуга; ;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='17ji0hyL-YGetkAU8iGtvnMYYxV48EwaHYseZGPmr8As/Лист1',sasKey_Field_Find='Послуга',sasKey_Field_Select='Послуга,Група послуг',sKey_Field_ValueUniqFirst='Послуга')&amp;gt;:Послуга|IDFlag1:Група послуг}};{nSymbolsMin:0}" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="IDRaion" name="Район; ;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='17ji0hyL-YGetkAU8iGtvnMYYxV48EwaHYseZGPmr8As/Лист1',sasKey_Field_Find='Район',sasKey_Field_Select='Район,Група послуг,Айди',sKey_Field_ValueUniqFirst='Район',smFieldValuePair_Filter='Група послуг=[IDFlag1]')&amp;gt;:Район|IDFlag2:Айди}};{nSymbolsMin:0}" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="IDVikno" name="Вікно; ;{{Autocomplete:getExchangeObjects(sID_SubjectSystem='GoogleExcel_iCore',sKey_Entity ='17ji0hyL-YGetkAU8iGtvnMYYxV48EwaHYseZGPmr8As/Лист2',sasKey_Field_Find='Вікно',sasKey_Field_Select='Айди,Вікно,Номер черги',smFieldValuePair_Filter='Айди=[IDFlag2]')&amp;gt;:Вікно|nID_Department_visitDay:Номер черги}};{nSymbolsMin:0}" type="select" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="IDFlag1" name="IDFlag1;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="IDFlag2" name="IDFlag2;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="visitDay" name="Оберіть день та час, коли Вам буде зручно з'явитись для отримання послуги?" type="queueData" writable="false" required="true"></activiti:formProperty>
+        <activiti:formProperty id="nID_Department_visitDay" name="Департамент черги;;bVisible=false" type="string"></activiti:formProperty>
+        <activiti:formProperty id="markerShowAdrLive" name="markerShowAdrLive" type="markers" default="{&quot;motion&quot;:{&quot;ShowFieldsOnCondition_222&quot;:{&quot;aField_ID&quot;:[&quot;sAdressLive&quot;],&quot;asID_Field&quot;:{&quot;sReason&quot;:&quot;saQuestion&quot;},&quot;sCondition&quot;:&quot;[sReason] == 'no'&quot;}}}"></activiti:formProperty>
+        <activiti:formProperty id="asEnum_decision" name="Результат рішення" type="enum" required="true">
+          <activiti:value id="decision_2_1" name="Громадян з'явився"></activiti:value>
+          <activiti:value id="decision_2_2" name="Громадянин не з'явився"></activiti:value>
+        </activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow1" sourceRef="servicetask1" targetRef="servicetask5">
+      <extensionElements>
+        <activiti:executionListener event="take" delegateExpression="${setDocumentStepTypeListener}">
+          <activiti:field name="sKey_StepType">
+            <activiti:string><![CDATA[Agree]]></activiti:string>
+          </activiti:field>
+        </activiti:executionListener>
+      </extensionElements>
+    </sequenceFlow>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow3" sourceRef="usertask2" targetRef="exclusivegateway1"></sequenceFlow>
+    <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway"></exclusiveGateway>
+    <serviceTask id="servicetask3" name="Повідомлення громадянина" activiti:delegateExpression="#{MailTaskWithAttachmentsAndSMS}">
+      <extensionElements>
+        <activiti:field name="to">
+          <activiti:expression><![CDATA[${email}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="from">
+          <activiti:string><![CDATA[noreply@igov.gov.ua]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="subject">
+          <activiti:string><![CDATA[Нове звернення на тему: Запис на електронну чергу до органу соціальної допомоги]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="text">
+          <activiti:expression><![CDATA[[pattern/mail/new_design/_common_header.html]
+			[pattern/mail/new_design/_common_content_start.html]
+				<p>
+					Дякуємо, що скористались порталом iGov!
+				</p>
+			[pattern/mail/new_design/_common_content_end.html]
+			[pattern/mail/new_design/_common_signature_start.html]
+			[pattern/mail/new_design/_common_signature_end.html]
+			[pattern/mail/new_design/_common_footer.html]]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sPhone_SMS">
+          <activiti:expression><![CDATA[${phone}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sText_SMS">
+          <activiti:expression><![CDATA[Vashe zvernennya [sID_Order] zareestrovano]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="saAttachmentsForSend">
+          <activiti:expression><![CDATA[" "]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <serviceTask id="servicetask4" name="Повідомлення громадянина" activiti:delegateExpression="#{MailTaskWithAttachmentsAndSMS}">
+      <extensionElements>
+        <activiti:field name="to">
+          <activiti:expression><![CDATA[${email}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="from">
+          <activiti:string><![CDATA[noreply@igov.gov.ua]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="subject">
+          <activiti:string><![CDATA[Нове звернення на тему: Запис на електронну чергу до органу соціальної допомоги]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="text">
+          <activiti:expression><![CDATA[[pattern/mail/new_design/_common_header.html]
+			[pattern/mail/new_design/_common_content_start.html]
+				<p>
+На жаль, Ви не з'явились в обраний час для надання послуги.
+				</p>
+			[pattern/mail/new_design/_common_content_end.html]
+			[pattern/mail/new_design/_common_signature_start.html]
+			[pattern/mail/new_design/_common_signature_end.html]
+			[pattern/mail/new_design/_common_footer.html]]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sPhone_SMS">
+          <activiti:expression><![CDATA[${phone}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sText_SMS">
+          <activiti:expression><![CDATA[Vashe zvernennya [sID_Order] zareestrovano]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="saAttachmentsForSend">
+          <activiti:expression><![CDATA[" "]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow7" sourceRef="exclusivegateway1" targetRef="servicetask3">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${asEnum_decision=='decision_2_1'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow8" sourceRef="exclusivegateway1" targetRef="servicetask4">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${asEnum_decision=='decision_2_2'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow9" sourceRef="servicetask4" targetRef="endevent1"></sequenceFlow>
+    <sequenceFlow id="flow10" sourceRef="servicetask3" targetRef="endevent1"></sequenceFlow>
+    <serviceTask id="servicetask5" name="Права" activiti:delegateExpression="${setDocumentSignersListener}">
+      <extensionElements>
+        <activiti:field name="sKey_TemplateSigner">
+          <activiti:string><![CDATA[_default_agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sasLogin">
+          <activiti:expression><![CDATA[${oSubjectRoleService.getsEmployeesLoginsOfRoles('Dnipro_UPSZN_Cherga', null)}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="sKey_Step">
+          <activiti:string><![CDATA[step_agree]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="sKey_Fields">
+          <activiti:string><![CDATA[asOrgan]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow11" sourceRef="servicetask5" targetRef="usertask2"></sequenceFlow>
+    <sequenceFlow id="flow16" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
+    <sequenceFlow id="flow17" sourceRef="usertask1" targetRef="scripttask2"></sequenceFlow>
+    <sequenceFlow id="flow20" sourceRef="scripttask2" targetRef="servicetask1"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram__doc_UPSZN_0745_ZapisOchered">
+    <bpmndi:BPMNPlane bpmnElement="_doc_UPSZN_0745_ZapisOchered" id="BPMNPlane__doc_UPSZN_0745_ZapisOchered">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="50.0" y="168.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="120.0" y="158.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="scripttask2" id="BPMNShape_scripttask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="250.0" y="158.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask2" id="BPMNShape_servicetask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="384.0" y="60.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask1" id="BPMNShape_servicetask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="520.0" y="158.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask2" id="BPMNShape_usertask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="795.0" y="158.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="830.0" y="310.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway1" id="BPMNShape_exclusivegateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="827.0" y="240.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask3" id="BPMNShape_servicetask3">
+        <omgdc:Bounds height="55.0" width="105.0" x="655.0" y="233.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask4" id="BPMNShape_servicetask4">
+        <omgdc:Bounds height="55.0" width="105.0" x="930.0" y="233.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="servicetask5" id="BPMNShape_servicetask5">
+        <omgdc:Bounds height="55.0" width="105.0" x="650.0" y="158.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="625.0" y="185.0"></omgdi:waypoint>
+        <omgdi:waypoint x="650.0" y="185.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="847.0" y="213.0"></omgdi:waypoint>
+        <omgdi:waypoint x="847.0" y="240.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
+        <omgdi:waypoint x="827.0" y="260.0"></omgdi:waypoint>
+        <omgdi:waypoint x="760.0" y="260.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow8" id="BPMNEdge_flow8">
+        <omgdi:waypoint x="867.0" y="260.0"></omgdi:waypoint>
+        <omgdi:waypoint x="930.0" y="260.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow9" id="BPMNEdge_flow9">
+        <omgdi:waypoint x="982.0" y="288.0"></omgdi:waypoint>
+        <omgdi:waypoint x="847.0" y="310.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow10" id="BPMNEdge_flow10">
+        <omgdi:waypoint x="707.0" y="288.0"></omgdi:waypoint>
+        <omgdi:waypoint x="847.0" y="310.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow11" id="BPMNEdge_flow11">
+        <omgdi:waypoint x="755.0" y="185.0"></omgdi:waypoint>
+        <omgdi:waypoint x="795.0" y="185.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow16" id="BPMNEdge_flow16">
+        <omgdi:waypoint x="85.0" y="185.0"></omgdi:waypoint>
+        <omgdi:waypoint x="120.0" y="185.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow17" id="BPMNEdge_flow17">
+        <omgdi:waypoint x="225.0" y="185.0"></omgdi:waypoint>
+        <omgdi:waypoint x="250.0" y="185.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow20" id="BPMNEdge_flow20">
+        <omgdi:waypoint x="355.0" y="185.0"></omgdi:waypoint>
+        <omgdi:waypoint x="520.0" y="185.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

@@ -1,0 +1,5 @@
+Шановний колего,  [oSubjectEmployeeVO_OnWhomTheAction.sName] [oSubjectEmployeeVO_OnWhomTheAction.sLastName].
+Вас призначено [oProcessTaskSubject.oTaskSubjectRole.sName_Creative] по завданню [oProcessTaskVO.sHead] №[sID_Order] <br />
+Текст завдання: [oProcessTaskVO.sBody]<br />
+Термін виконання:[oProcessTaskSubject.sDatePlan]<br />
+Протягом зазначеного терміну необхідно виконати завдання та надати звіт про виконання.<br />

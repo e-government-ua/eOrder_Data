@@ -1,0 +1,30 @@
+{
+  "aField": [
+    {
+      "id": "sNumber",
+      "name": "№ п/п",
+      "type": "long",    
+      "nWidth": "15%"
+    },
+    {
+      "id": "sNameFile",
+      "name": "Назва додатка",
+      "type": "string"
+    },
+    {
+      "id": "sFieldHTML",
+      "name": "поле ХТМЛ",
+      "type": "fileHTML"
+    },
+    {
+      "id": "sFieldTextArea",
+      "name": "поле текстАреа",
+      "type": "textArea"
+    },
+    {
+      "id": "sFile",
+      "name": "Додаток; ;bNew=true",
+      "type": "file"
+    }
+  ]
+}

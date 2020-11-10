@@ -1,0 +1,84 @@
+{
+  "oProperties": {
+    "bSkipStepCreate": true
+  },
+  "_:Watch": {
+	"_default_author": {
+      "oMission": {"sKey_Right":"SignRelease"},
+      "oRights": {
+        "TaskAdd": {},
+      	"Manage": {},
+      	"ManageViewers": {},
+      	"AddSignerWriteAgree": {},
+        "EditSubjectNotSelf": {},
+        "ManageSignersWriteAccept":{"bDisable": true},
+        "ManageSignersWriteAgree":{"bDisable": true},
+        "ManageSignersWriteDirect":{"bDisable": true},
+      	"ManageJoin": {"bDisable": true},
+      	"SignComment": {"bDisable": true}
+      }
+    },
+    "_default_accept": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate": {},      	
+      	"SignWriteAny": {},
+      	"ManageViewers": {},
+      	"ManageSignersRead": {},
+      	"TaskAdd": {"bDisable": true},
+      	"TaskEdit": {"bDisable": true},
+      	"TaskRemove": {"bDisable": true},
+      	"ManageJoin": {"bDisable": true},
+      	"SignComment": {"bDisable": true}
+      },
+      "bNeedECP": true
+    },
+    "_default_agree": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},      	
+		    "SignWrite": {},
+      	"SignWriteRefuse":{},
+        "ManageViewers": {},
+        "ManageSignersRead": {},
+        "TaskAdd": {"bDisable": true},
+      	"TaskEdit": {"bDisable": true},
+      	"TaskRemove": {"bDisable": true},
+      	"ManageJoin": {"bDisable": true},
+      	"SignComment": {"bDisable": true} 	
+      },
+      "bNeedECP": true
+    },
+    "_default_agree_1": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},      	
+		    "SignWrite": {},
+      	"SignWriteRefuse":{},
+        "ManageViewers": {},
+        "ManageSignersRead": {},
+        "TaskAdd": {"bDisable": true},
+      	"TaskEdit": {"bDisable": true},
+      	"TaskRemove": {"bDisable": true},
+      	"ManageJoin": {"bDisable": true},
+      	"SignComment": {"bDisable": true} 	
+      }
+    },    
+      "_default_direct": {
+        "oMission": {"sKey_Right":"SignWrite"},
+        "oRights": {
+          "SignDelegate":{},      	
+          "SignComment": {}
+        },
+        "bNeedECP": true
+      }
+  },
+   
+  "step_create:Create": {},
+  "step_accept:Accept": {},  
+  "step_agree:Agree": {},
+  "step_agree_1:Agree": {},
+  "step_agree_2:Agree": {},
+  "step_direct:Direct": {},
+  "step_edit:Edit": {}
+}

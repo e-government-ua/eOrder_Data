@@ -1,0 +1,1 @@
+[oProcessTaskVO.sHead] перенесено на: [oProcessTaskSubject.sDatePlan]

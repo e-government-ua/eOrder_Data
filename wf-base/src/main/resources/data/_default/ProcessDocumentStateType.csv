@@ -1,0 +1,34 @@
+nID;sID;sName;sasKey_InterfaceShow
+1;Urgently;Терміново;List,Item,Settings
+2;Authorship;Авторство;Item,Settings
+3;NeedECP;Потрібно ЕЦП;Item,Settings
+4;ExpiredLoan;Завершений;Item,Settings
+5;Updated;Актуалізован;Item,Settings
+6;Terminated;Припинен;Item,Settings
+7;BlockedRemarks;Заблоковано зауваженнями;Item,Settings
+8;SignDelegate;Делегування пiдпису;Item,Settings
+9;LifeActial;Чинний;Item,Settings
+10;LifeCanceled;Втратив чинність/скасований;Item,Settings
+11;LifeProject;Проект;Item,Settings
+12;GrifAccessCommon;Загальний доступ;Item,Settings
+13;GrifAccessSecretBank;Банківська таємниця;Item,Settings
+14;GrifAccessSecretCommercial;Комерційна таємниця;Item,Settings
+15;Denied;Відмовлено;Item,Settings
+16;Deferred;Відкладений;Item,Settings
+17;Created;Створено;Item,Settings
+18;UrgentlyRegistration;Термінова реєстрація;Item,Settings
+19;VerificationRegulations;Проходить перевірку Регламенту;Item,Settings
+21;RespondsRegulations;Відповідає Регламенту;Item,Settings
+22;UnrespondsRegulations;Не відповідає Регламенту;Item,Settings
+23;ReturnedDeveloper;Повернуто розробнику;Item,Settings
+24;TakenExamination;Взято на експертизу;Item,Settings
+25;OutputPreparation;підготовка Висновку СКМУ;Item,Settings
+26;ProcessingUristDepart;Опрацьовується Юридичним департаментом;Item,Settings
+27;ExaminationСompleted;Експертиза СКМУ завершена;Item,Settings
+28;NecessityForTender;Необхідність тендерного забезпечення;Item,Settings
+29;SessionStarted;Сесія розпочато;Item,Settings
+30;SessionnEnded;Сесія завершено;Item,Settings
+31;SessionCanceled;Сесія скасовано;Item,Settings
+100;Accepted;Погоджено;Item,Settings
+101;Skipped;Пропущено;Item,Settings
+102;Canceled;Відмінено самостійно;Item,Settings

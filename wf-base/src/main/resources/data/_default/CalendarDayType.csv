@@ -1,0 +1,6 @@
+nID;nOrder;sID;bDayOff;sName
+1;1;WorkNormal;false;Робочий день
+2;2;WorkShorted;false;Скорочений робочий день
+3;3;DayOffNormal;true;Стандартний вихідний день
+4;4;DayOffWeekEnd;true;Вихідний день “кінця тижня”
+5;5;DayOffHoliday;true;Cвято

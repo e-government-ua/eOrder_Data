@@ -1,0 +1,29 @@
+{
+  "aField": [    
+    {
+      "id": "sCode",
+      "name": "Код",
+      "type": "string"
+    },
+        {
+      "id": "sPosition",
+      "name": "Положення проекту акта",
+      "type": "string"
+    },
+        {
+      "id": "sNorm",
+      "name": "Існуюча норма, якій не відповідає положення",
+      "type": "string"
+    },
+    {
+      "id": "sJust",
+      "name": "Обґрунтування невідповідності",
+      "type": "string"
+    },
+    {
+      "id": "sProposition",
+      "name": "Пропозиція по врегулюванню невідповідності",
+      "type": "string"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "oProperties": {
+    "bSkipStepCreate": true,
+          "sasKey_Field_RKK":"bankIdlastName"
+          
+  },
+  "_:Watch": {
+    "_default_author": {
+      "oMission": {"sKey_Right": "SignRelease"},
+      "oRights": {
+        "EditFields": {},
+        "TaskEdit": {},
+        "Remove": {}
+      }
+    },
+      
+     "_default_agree": {
+      "oMission": {"sKey_Right": "SignWrite"},
+      "oRights": {
+      	"SignComment": {"bDisable": true},
+      	"SignQuestion": {"bDisable": true},
+		"SignWriteRefuse" : {"bDisable": true}
+      },
+      "bNeedECP": true
+     }
+    },
+     
+  "step_create:Create": {},
+  "step_agree:Agree": {}
+
+}

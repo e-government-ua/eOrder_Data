@@ -1,0 +1,59 @@
+{
+  "_:Watch": {
+	"_default_author": {
+      "oMission": {"sKey_Right":"SignRelease"},
+      "oRights": {
+      	"Manage": {},
+      	"AddSignerWriteConsideration": {"bDisable": true},
+      	"AddSignerWriteDirect": {"bDisable": true},
+        "ManageJoin": {"bDisable": true},
+        "TaskAdd": {"bDisable": true},
+        "TaskEdit": {"bDisable": true},
+        "TaskRemove": {"bDisable": true}
+      }
+    },
+    "_default_Consideration": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},  
+      	"SignWriteRefuse": {},      	
+      	"SignComment": {}
+      },
+       "bNeedECP": true
+     },
+    "_default_accept": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},  
+      	"SignWriteRefuse": {},      	
+      	"SignComment": {}
+      },
+      "bNeedECP": true
+     },        
+    "_default_agree": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},  
+      	"SignWriteRefuse": {},      	
+      	"SignComment": {}
+      },
+      "bNeedECP": true
+     },
+     "_default_direct": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignDelegate":{},  
+      	"SignWriteRefuse": {},      	
+      	"SignComment": {}
+      }
+     }
+    },
+    
+  "step_create:Create": {},
+  "step_consideration:Consideration": {},
+  "step_accept:Accept": {},  
+  "step_agree:Agree": {},
+  "step_direct:Direct": {},
+  "step_edit:Edit": {}
+
+}

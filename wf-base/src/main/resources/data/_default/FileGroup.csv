@@ -1,0 +1,20 @@
+nID;sID;sName;sNote;sPathFileIcon
+1;text;текст(txt);;
+2;text-formatted;текст форматированный(html);;FileGroups/xml.png
+3;document-data;данные документа(json,xml);;
+4;printform;документ принтформы(html);;FileGroups/xml.png
+5;document-application;документ приложения(doc,odt);;
+6;document;документ зафиксированный(pdf);;
+7;document-scan;документ сканкопия(jpg,tiff,png);;
+8;bp;БП(bpmn);;FileGroups/xml.png
+9;bp-servicetask;БП-сервистаска;;FileGroups/xml.png
+10;bp-scripttask;БП-скрипттаска;;FileGroups/xml.png
+11;bp-listener;БП-листенер;;FileGroups/xml.png
+12;system-table;системная-таблица(json);;FileGroups/json.png
+13;system-marker;системный-маркер(json);;FileGroups/json.png
+14;system-marker-validator;системный-маркер-валидатор(json);;FileGroups/json.png
+15;table-application;таблица приложения(xls);;
+16;table;таблица(csv);;
+17;presentation;презентация(ppt);;
+18;archive;архив(zip);;
+19;misc;другое(*);;

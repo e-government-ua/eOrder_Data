@@ -1,0 +1,33 @@
+[
+  {
+    "sHead": "Задача: $[sNumber]",
+    "sBody": "$[sNameFile1] - проверка ",
+    "sID_BP": "_task_base",
+    "sKey_TaskReportType": "",
+    "bSplited_Execute": false,
+    "oProcessTaskSubjectsVO": {
+      "aController": [
+        {
+          "oUserVO": {
+            "sLogin": "$[sLogin_isExecute]",
+            "sLabel": ""
+          },
+          "nDaysPlan": null,
+          "oDatePlan": ""
+        }
+      ],
+      "aExecutor": [
+        {
+          "oUserVO": {
+            "sLogin": "",
+            "sLabel": ""
+          },
+          "nDaysPlan": null,
+          "oDatePlan": "$[sDate]"
+        }
+      ],
+      "aVisor": []
+    },
+    "aProcessTaskAttribute": []
+  }
+]

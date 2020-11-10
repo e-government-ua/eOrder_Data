@@ -1,0 +1,39 @@
+{
+  "_:Watch": {
+	"_default_author": {
+      "oMission": {"sKey_Right":"SignRelease"},
+      "oRights": {      	
+      	"SignComment": {}
+      }
+    },
+    "_default_view": {
+      "oMission": {"sKey_Right":"View"},
+      "oRights": {
+      	"ManageViewers": {},
+        "SignComment": {}
+      }
+    },
+    "_default_consideration": {    
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+      	"SignComment": {},
+      	"SignWriteAny": {},
+      	"AddSignerWriteAccept": {},
+      	"ManageViewers": {},
+      	"TaskManage": {}
+      }
+    },
+    "_default_accept": {
+      "oMission": {"sKey_Right":"SignWrite"},
+      "oRights": {
+        "SignComment": {},
+        "SignWriteAny": {},
+      	"SignWriteNotNeed":{}
+      }
+    }
+  },
+  "step_create:Create": {},
+  "step_consideration:Consideration": {},
+  "step_accept:Accept": {},  
+  "step_edit:Edit": {}
+}

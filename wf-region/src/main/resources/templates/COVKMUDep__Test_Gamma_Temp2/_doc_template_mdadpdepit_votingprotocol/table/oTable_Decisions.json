@@ -1,0 +1,17 @@
+{
+  "aField": [
+    {
+      "id": "sNameFileAdditional",
+      "name": "Назва файла Рішення",
+      "type": "string"
+       
+    },
+    {
+      "id": "sFileAdditional",
+      "name": "Файл рішення; ;bNew=true",
+      "type": "file"
+      
+      
+    }
+  ]
+}

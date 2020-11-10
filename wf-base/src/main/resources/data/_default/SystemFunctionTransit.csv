@@ -1,0 +1,2 @@
+nID;sID;sRegExp;sType;sURL_PrefixCustom;sURL_Postfix;sRequestMethod;saParam;sKey_Method
+1;findEmployees;;Autocomplete;;subject/getEmployees;;String:sFind,Integer:nRowsLimit;

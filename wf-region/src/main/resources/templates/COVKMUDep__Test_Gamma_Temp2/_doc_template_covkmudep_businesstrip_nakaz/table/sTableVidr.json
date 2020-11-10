@@ -1,0 +1,24 @@
+{
+  "aField": [
+    {
+      "id": "sName_Vidr",
+      "name": "Відряджений(і); ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel",
+      "type": "select",
+      "nWidth": "50%"
+      
+    },
+    {
+      "id": "sLogin_Vidr",
+      "name": "Login",
+      "type": "string",
+      
+      "bVisible": "false"
+    },
+    {
+      "id": "sPosition_Vidr",
+      "name": "Посада",
+      "type": "string",
+      "writable": "false"   
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+    "sName": "Пол человека, IISD",
+    "sNote": "Справочник пол субьекта-человека из системы IISD (Стратег)",
+    "sID_ResourceStandartEnum": "Resource_Service_REST",
+    "sKey_ScopeEntity": "Residence/DictionariesRestApi/GenderTypes",
+    "mRequestOperation": {
+        "Operation_Gets": {
+            "sID_RequestProtocolEnum": "Protocol_HTTPS",
+            "sID_RequestMethodEnum": "Method_HTTP_Get",
+            "msHeaderHTTP": {
+                "Content-Type": "text/html; charset=utf-8",
+                "token": "[sAccountSecret.PropertyScope]"
+            },
+            "sBody": ""
+        }
+    },
+    "sID_FileFormatArrayEnum": "FileArray_JSON",
+    "mElementVO": {
+        "Id": {
+            "sKey": "sID",
+            "sName": "Ідентифікатор запису (ніколи не повторюється), пошук по повному",
+            "sKey_Type": "string"
+        },
+        "Pid": {
+            "sKey": "sID_Parent",
+            "sName": "Батьківський запис, посилання на Id",
+            "sKey_Type": "string"
+        },
+        "Name": {
+            "sKey": "sNote",
+            "sName": "Назва",
+            "sKey_Type": "string"
+        },
+        "SName": {
+            "sKey": "sName",
+            "sName": "Скорочена назва",
+            "sKey_Type": "string"
+        },
+        "Code": {
+            "sKey": "sKey_Private",
+            "sName": "Код",
+            "sKey_Type": "string"
+        }
+    },
+    "oTableMetadataVO": {
+        "oProperties":{
+            "sKey_Field_UniqAuto":"nID",
+            "asKey_Field_Uniq":[
+                "sID"
+            ]
+        },
+        "aField": [
+            {
+                "sKey":"nID",
+                "sName":"ID поля",
+                "sKey_Type":"long"
+            }
+        ]
+    }
+}

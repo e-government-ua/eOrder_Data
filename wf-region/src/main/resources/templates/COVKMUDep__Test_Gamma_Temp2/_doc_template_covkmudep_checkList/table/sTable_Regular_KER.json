@@ -1,0 +1,128 @@
+{
+  "aField": [
+    {
+      "id": "nRow",
+      "name": "№ п/п",
+      "type": "long",    
+      "nWidth": "5%"
+   
+    },
+    {
+      "id": "sBody",
+      "name": "Зміст завдання",
+      "type": "string"
+      
+   
+    },
+    {
+      "id": "sNeedTask",
+      "name": "Тип завдання",
+      "type": "enum",
+      "nWidth": "10%",
+      "a": [
+        {
+          "id": "yes",
+          "name": "Виконано"
+        },
+        {
+          "id": "no",
+          "name": "Не виконано"
+        }
+      ]
+    },  
+    {
+      "id": "sDateExecute",
+      "name": "Строк виконання",
+      "type": "date",
+      "nWidth": "10%"     
+    },
+    {
+      "id": "sName_isExecute",
+      "name": "Виконавець; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel",
+      "type": "select",
+      "nWidth": "15%"         
+    },
+    {
+      "id": "sLogin_isExecute",
+      "name": "login",
+      "type": "string",
+      "bVisible": "false"
+      
+      
+    },
+    {
+      "id": "sName_isControl",
+      "name": "Контролюючий; ;sID_SubjectRole=Executor,sID_Group_Activiti=sID_Group_Activiti,nDeepLevel=nDeepLevel",
+      "type": "select",
+      "nWidth": "15%"
+      
+      
+    },
+    {
+      "id": "sLogin_isControl",
+      "name": "login",
+      "type": "string",
+      "bVisible": "false"
+      
+      
+    
+    }
+    
+  ],
+  
+   "aRow": [
+   {
+            "sKey_ServiceConditions": "Повідомити співробітникам про прихід новопризначеного працівника",
+            "sStrok": "-2"
+            
+        },
+         {
+            "sKey_ServiceConditions": "Забезпечити наявність робочого місця для новопризначеного працівника",
+            "sStrok": "-2"
+            
+        },
+        {
+            "sKey_ServiceConditions": "Забезпечити наявність комп’ютерної техніки для новопризначеного працівника",
+            "sStrok": "-2"
+            
+        },
+        {
+            "sKey_ServiceConditions": "Ознайомити нового співробітника з порядком пропускного режиму в Будинку Уряду",
+            "sStrok": "1"
+            
+        },
+        {
+            "sKey_ServiceConditions": "Познайомити нового співробітника з колегами",
+            "sStrok": "1"
+            
+        },
+        {
+            "sKey_ServiceConditions": "Відправити список контактів колег новому співробітнику на електронну пошту",
+            "sStrok": "1"
+            
+        },
+        {
+            "sKey_ServiceConditions": "Познайомити нового співробітника з безпосередніми функціональними обов'язками",
+            "sStrok": "1"
+            
+        },
+        {
+            "sKey_ServiceConditions": "Ознайомити нового співробітника з порядком роботи в системі електронного документообігу",
+            "sStrok": "1"
+            
+        
+        },
+        {
+            "sKey_ServiceConditions": "Скласти список нормативних документів, онлайн-курсів, книг та публікацій для ознайомлення",
+            "sStrok": "1"
+            
+        
+        },
+        {
+            "sKey_ServiceConditions": "Затвердити перелік завдань і ключових показників результативності, ефективності та якості службової на поточний рік для новопризначеного",
+            "sStrok": "14"
+            
+        
+        }
+    ]
+}
