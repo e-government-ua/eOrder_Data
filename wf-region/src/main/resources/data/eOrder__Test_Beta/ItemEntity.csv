@@ -1,0 +1,8 @@
+sID_ClassEntity;sKey_Element;sName;sNote
+sKey_Element;sName;sName_Alternative;sID_ClassEntity
+4;5;6;7
+org.icore.service.event.EventActionTypeEnum;CREATE;створено;
+org.icore.service.event.EventActionTypeEnum;UPDATE;оновлено;
+org.icore.service.event.EventActionTypeEnum;READ;ознайомленно;
+org.icore.service.event.EventActionTypeEnum;ATTACH;додано;
+org.icore.service.event.EventActionTypeEnum;DELETE;видилено;
